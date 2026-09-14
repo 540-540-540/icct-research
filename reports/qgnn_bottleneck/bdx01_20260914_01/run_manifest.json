@@ -1,0 +1,1850 @@
+{
+  "schema_version": "BDX-01-v1",
+  "run_id": "bdx01_20260914_01",
+  "started_utc": "2026-09-14T08:52:00.226770+00:00",
+  "server_project": "/home/dell/YrM/ICCT",
+  "server_git_head": null,
+  "repository_reference_commit": "6652c7df09c47401e7685540b8618e6887564965",
+  "server_git_note": "Authoritative server directory has no .git; source/data/checkpoint hashes are the executable identity.",
+  "python": "3.11.15 (main, Mar 11 2026, 17:20:07) [GCC 14.3.0]",
+  "torch": "2.13.0+cu130",
+  "numpy": "2.4.6",
+  "cuda": "13.0",
+  "devices": [
+    "NVIDIA GeForce RTX 4090",
+    "NVIDIA GeForce RTX 4090"
+  ],
+  "configuration": {
+    "schema_version": "BDX-01-v1",
+    "run_id": "bdx01_20260914_01",
+    "repository_reference_commit": "6652c7df09c47401e7685540b8618e6887564965",
+    "allowed_splits": [
+      "train",
+      "V_select"
+    ],
+    "snr_db": [
+      5,
+      10,
+      15,
+      20
+    ],
+    "prediction_steps": 20,
+    "time_step_seconds": 0.1,
+    "horizons": [
+      5,
+      10,
+      20
+    ],
+    "inference_batch": 16,
+    "devices": [
+      0,
+      1
+    ],
+    "archive_metric_atol_m": 1e-05,
+    "output_atol": 2e-05,
+    "output_rtol": 2e-05,
+    "identity_atol": 1e-08,
+    "identity_rtol": 1e-10,
+    "source_rows": "data/f01_source/source_states.npy",
+    "report_root": "reports/qgnn_bottleneck",
+    "cache_root": "results/qgnn_bottleneck",
+    "checkpoints": {
+      "Q_best": {
+        "family": "Q",
+        "kind": "original",
+        "path": "results/qgnn_directed_context/seed2026/original/best.pt",
+        "epoch": 75
+      },
+      "Q_latest": {
+        "family": "Q",
+        "kind": "original",
+        "path": "results/qgnn_directed_context/seed2026/original/latest.pt",
+        "epoch": 95
+      },
+      "A_best": {
+        "family": "A",
+        "kind": "directed_context",
+        "path": "results/qgnn_directed_context/seed2026/directed_context/best.pt",
+        "epoch": 54
+      },
+      "A_latest": {
+        "family": "A",
+        "kind": "directed_context",
+        "path": "results/qgnn_directed_context/seed2026/directed_context/latest.pt",
+        "epoch": 74
+      },
+      "G_best": {
+        "family": "G",
+        "kind": "gnn",
+        "path": "results/qgnn_motionframe/seed2026/gnn/best.pt",
+        "epoch": 82
+      },
+      "G_latest": {
+        "family": "G",
+        "kind": "gnn",
+        "path": "results/qgnn_motionframe/seed2026/gnn/latest.pt",
+        "epoch": 102
+      }
+    },
+    "directed_context_keys": [
+      "graph.graph_layers.0.receiver_context",
+      "graph.graph_layers.0.sender_context",
+      "graph.graph_layers.1.receiver_context",
+      "graph.graph_layers.1.sender_context"
+    ]
+  },
+  "checkpoint_manifest": {
+    "Q_best": {
+      "family": "Q",
+      "kind": "original",
+      "path": "results/qgnn_directed_context/seed2026/original/best.pt",
+      "epoch": 75,
+      "bytes": 10429011,
+      "sha256": "6853008762325fc18f8e0503feb9bc1d9e8f181f063829800c115436850288ab",
+      "actual_epoch": 75,
+      "optimizer_steps_in_checkpoint": 26025,
+      "best_J_in_checkpoint": 1.0904777556743648,
+      "model_key_count": 84,
+      "mutable_keys": [
+        "graph.graph_layers.0.angle_bias",
+        "graph.graph_layers.0.angle_scale_raw",
+        "graph.graph_layers.0.core.weights",
+        "graph.graph_layers.0.edge_value.0.bias",
+        "graph.graph_layers.0.edge_value.0.weight",
+        "graph.graph_layers.0.edge_value.2.weight",
+        "graph.graph_layers.0.ffn.0.bias",
+        "graph.graph_layers.0.ffn.0.weight",
+        "graph.graph_layers.0.ffn.3.bias",
+        "graph.graph_layers.0.ffn.3.weight",
+        "graph.graph_layers.0.final_norm.bias",
+        "graph.graph_layers.0.final_norm.weight",
+        "graph.graph_layers.0.gate.weight",
+        "graph.graph_layers.0.latent_norm.bias",
+        "graph.graph_layers.0.latent_norm.weight",
+        "graph.graph_layers.0.node_norm.bias",
+        "graph.graph_layers.0.node_norm.weight",
+        "graph.graph_layers.0.output_norm.bias",
+        "graph.graph_layers.0.output_norm.weight",
+        "graph.graph_layers.0.residual_logit",
+        "graph.graph_layers.0.score.weight",
+        "graph.graph_layers.0.value.weight",
+        "graph.graph_layers.0.value_norm.bias",
+        "graph.graph_layers.0.value_norm.weight",
+        "graph.graph_layers.1.angle_bias",
+        "graph.graph_layers.1.angle_scale_raw",
+        "graph.graph_layers.1.core.weights",
+        "graph.graph_layers.1.edge_value.0.bias",
+        "graph.graph_layers.1.edge_value.0.weight",
+        "graph.graph_layers.1.edge_value.2.weight",
+        "graph.graph_layers.1.ffn.0.bias",
+        "graph.graph_layers.1.ffn.0.weight",
+        "graph.graph_layers.1.ffn.3.bias",
+        "graph.graph_layers.1.ffn.3.weight",
+        "graph.graph_layers.1.final_norm.bias",
+        "graph.graph_layers.1.final_norm.weight",
+        "graph.graph_layers.1.gate.weight",
+        "graph.graph_layers.1.latent_norm.bias",
+        "graph.graph_layers.1.latent_norm.weight",
+        "graph.graph_layers.1.node_norm.bias",
+        "graph.graph_layers.1.node_norm.weight",
+        "graph.graph_layers.1.output_norm.bias",
+        "graph.graph_layers.1.output_norm.weight",
+        "graph.graph_layers.1.residual_logit",
+        "graph.graph_layers.1.score.weight",
+        "graph.graph_layers.1.value.weight",
+        "graph.graph_layers.1.value_norm.bias",
+        "graph.graph_layers.1.value_norm.weight",
+        "graph.input.0.bias",
+        "graph.input.0.weight",
+        "graph.input.2.bias",
+        "graph.input.2.weight",
+        "temporal.adapter.graph_projection.weight",
+        "temporal.adapter.marker_projection.weight",
+        "temporal.adapter.state_projection.bias",
+        "temporal.adapter.state_projection.weight",
+        "temporal.head.0.bias",
+        "temporal.head.0.weight",
+        "temporal.head.2.bias",
+        "temporal.head.2.weight",
+        "temporal.llm.h.0.attn.c_attn.lora_A",
+        "temporal.llm.h.0.attn.c_attn.lora_B",
+        "temporal.llm.h.1.attn.c_attn.lora_A",
+        "temporal.llm.h.1.attn.c_attn.lora_B",
+        "temporal.llm.h.10.attn.c_attn.lora_A",
+        "temporal.llm.h.10.attn.c_attn.lora_B",
+        "temporal.llm.h.11.attn.c_attn.lora_A",
+        "temporal.llm.h.11.attn.c_attn.lora_B",
+        "temporal.llm.h.2.attn.c_attn.lora_A",
+        "temporal.llm.h.2.attn.c_attn.lora_B",
+        "temporal.llm.h.3.attn.c_attn.lora_A",
+        "temporal.llm.h.3.attn.c_attn.lora_B",
+        "temporal.llm.h.4.attn.c_attn.lora_A",
+        "temporal.llm.h.4.attn.c_attn.lora_B",
+        "temporal.llm.h.5.attn.c_attn.lora_A",
+        "temporal.llm.h.5.attn.c_attn.lora_B",
+        "temporal.llm.h.6.attn.c_attn.lora_A",
+        "temporal.llm.h.6.attn.c_attn.lora_B",
+        "temporal.llm.h.7.attn.c_attn.lora_A",
+        "temporal.llm.h.7.attn.c_attn.lora_B",
+        "temporal.llm.h.8.attn.c_attn.lora_A",
+        "temporal.llm.h.8.attn.c_attn.lora_B",
+        "temporal.llm.h.9.attn.c_attn.lora_A",
+        "temporal.llm.h.9.attn.c_attn.lora_B"
+      ]
+    },
+    "Q_latest": {
+      "family": "Q",
+      "kind": "original",
+      "path": "results/qgnn_directed_context/seed2026/original/latest.pt",
+      "epoch": 95,
+      "bytes": 10502979,
+      "sha256": "97731e2715e0e995a6d74dbd4f5c4167394bf1bca81d1b577da95d86181591b5",
+      "actual_epoch": 95,
+      "optimizer_steps_in_checkpoint": 32965,
+      "best_J_in_checkpoint": 1.0904777556743648,
+      "model_key_count": 84,
+      "mutable_keys": [
+        "graph.graph_layers.0.angle_bias",
+        "graph.graph_layers.0.angle_scale_raw",
+        "graph.graph_layers.0.core.weights",
+        "graph.graph_layers.0.edge_value.0.bias",
+        "graph.graph_layers.0.edge_value.0.weight",
+        "graph.graph_layers.0.edge_value.2.weight",
+        "graph.graph_layers.0.ffn.0.bias",
+        "graph.graph_layers.0.ffn.0.weight",
+        "graph.graph_layers.0.ffn.3.bias",
+        "graph.graph_layers.0.ffn.3.weight",
+        "graph.graph_layers.0.final_norm.bias",
+        "graph.graph_layers.0.final_norm.weight",
+        "graph.graph_layers.0.gate.weight",
+        "graph.graph_layers.0.latent_norm.bias",
+        "graph.graph_layers.0.latent_norm.weight",
+        "graph.graph_layers.0.node_norm.bias",
+        "graph.graph_layers.0.node_norm.weight",
+        "graph.graph_layers.0.output_norm.bias",
+        "graph.graph_layers.0.output_norm.weight",
+        "graph.graph_layers.0.residual_logit",
+        "graph.graph_layers.0.score.weight",
+        "graph.graph_layers.0.value.weight",
+        "graph.graph_layers.0.value_norm.bias",
+        "graph.graph_layers.0.value_norm.weight",
+        "graph.graph_layers.1.angle_bias",
+        "graph.graph_layers.1.angle_scale_raw",
+        "graph.graph_layers.1.core.weights",
+        "graph.graph_layers.1.edge_value.0.bias",
+        "graph.graph_layers.1.edge_value.0.weight",
+        "graph.graph_layers.1.edge_value.2.weight",
+        "graph.graph_layers.1.ffn.0.bias",
+        "graph.graph_layers.1.ffn.0.weight",
+        "graph.graph_layers.1.ffn.3.bias",
+        "graph.graph_layers.1.ffn.3.weight",
+        "graph.graph_layers.1.final_norm.bias",
+        "graph.graph_layers.1.final_norm.weight",
+        "graph.graph_layers.1.gate.weight",
+        "graph.graph_layers.1.latent_norm.bias",
+        "graph.graph_layers.1.latent_norm.weight",
+        "graph.graph_layers.1.node_norm.bias",
+        "graph.graph_layers.1.node_norm.weight",
+        "graph.graph_layers.1.output_norm.bias",
+        "graph.graph_layers.1.output_norm.weight",
+        "graph.graph_layers.1.residual_logit",
+        "graph.graph_layers.1.score.weight",
+        "graph.graph_layers.1.value.weight",
+        "graph.graph_layers.1.value_norm.bias",
+        "graph.graph_layers.1.value_norm.weight",
+        "graph.input.0.bias",
+        "graph.input.0.weight",
+        "graph.input.2.bias",
+        "graph.input.2.weight",
+        "temporal.adapter.graph_projection.weight",
+        "temporal.adapter.marker_projection.weight",
+        "temporal.adapter.state_projection.bias",
+        "temporal.adapter.state_projection.weight",
+        "temporal.head.0.bias",
+        "temporal.head.0.weight",
+        "temporal.head.2.bias",
+        "temporal.head.2.weight",
+        "temporal.llm.h.0.attn.c_attn.lora_A",
+        "temporal.llm.h.0.attn.c_attn.lora_B",
+        "temporal.llm.h.1.attn.c_attn.lora_A",
+        "temporal.llm.h.1.attn.c_attn.lora_B",
+        "temporal.llm.h.10.attn.c_attn.lora_A",
+        "temporal.llm.h.10.attn.c_attn.lora_B",
+        "temporal.llm.h.11.attn.c_attn.lora_A",
+        "temporal.llm.h.11.attn.c_attn.lora_B",
+        "temporal.llm.h.2.attn.c_attn.lora_A",
+        "temporal.llm.h.2.attn.c_attn.lora_B",
+        "temporal.llm.h.3.attn.c_attn.lora_A",
+        "temporal.llm.h.3.attn.c_attn.lora_B",
+        "temporal.llm.h.4.attn.c_attn.lora_A",
+        "temporal.llm.h.4.attn.c_attn.lora_B",
+        "temporal.llm.h.5.attn.c_attn.lora_A",
+        "temporal.llm.h.5.attn.c_attn.lora_B",
+        "temporal.llm.h.6.attn.c_attn.lora_A",
+        "temporal.llm.h.6.attn.c_attn.lora_B",
+        "temporal.llm.h.7.attn.c_attn.lora_A",
+        "temporal.llm.h.7.attn.c_attn.lora_B",
+        "temporal.llm.h.8.attn.c_attn.lora_A",
+        "temporal.llm.h.8.attn.c_attn.lora_B",
+        "temporal.llm.h.9.attn.c_attn.lora_A",
+        "temporal.llm.h.9.attn.c_attn.lora_B"
+      ]
+    },
+    "A_best": {
+      "family": "A",
+      "kind": "directed_context",
+      "path": "results/qgnn_directed_context/seed2026/directed_context/best.pt",
+      "epoch": 54,
+      "bytes": 10395587,
+      "sha256": "7dd370e44d7afc6f20628becc0d465289019afa6941d90204f0571956dbb49ec",
+      "actual_epoch": 54,
+      "optimizer_steps_in_checkpoint": 18738,
+      "best_J_in_checkpoint": 1.0908795700783958,
+      "model_key_count": 88,
+      "mutable_keys": [
+        "graph.graph_layers.0.angle_bias",
+        "graph.graph_layers.0.angle_scale_raw",
+        "graph.graph_layers.0.core.weights",
+        "graph.graph_layers.0.edge_value.0.bias",
+        "graph.graph_layers.0.edge_value.0.weight",
+        "graph.graph_layers.0.edge_value.2.weight",
+        "graph.graph_layers.0.ffn.0.bias",
+        "graph.graph_layers.0.ffn.0.weight",
+        "graph.graph_layers.0.ffn.3.bias",
+        "graph.graph_layers.0.ffn.3.weight",
+        "graph.graph_layers.0.final_norm.bias",
+        "graph.graph_layers.0.final_norm.weight",
+        "graph.graph_layers.0.gate.weight",
+        "graph.graph_layers.0.latent_norm.bias",
+        "graph.graph_layers.0.latent_norm.weight",
+        "graph.graph_layers.0.node_norm.bias",
+        "graph.graph_layers.0.node_norm.weight",
+        "graph.graph_layers.0.output_norm.bias",
+        "graph.graph_layers.0.output_norm.weight",
+        "graph.graph_layers.0.receiver_context",
+        "graph.graph_layers.0.residual_logit",
+        "graph.graph_layers.0.score.weight",
+        "graph.graph_layers.0.sender_context",
+        "graph.graph_layers.0.value.weight",
+        "graph.graph_layers.0.value_norm.bias",
+        "graph.graph_layers.0.value_norm.weight",
+        "graph.graph_layers.1.angle_bias",
+        "graph.graph_layers.1.angle_scale_raw",
+        "graph.graph_layers.1.core.weights",
+        "graph.graph_layers.1.edge_value.0.bias",
+        "graph.graph_layers.1.edge_value.0.weight",
+        "graph.graph_layers.1.edge_value.2.weight",
+        "graph.graph_layers.1.ffn.0.bias",
+        "graph.graph_layers.1.ffn.0.weight",
+        "graph.graph_layers.1.ffn.3.bias",
+        "graph.graph_layers.1.ffn.3.weight",
+        "graph.graph_layers.1.final_norm.bias",
+        "graph.graph_layers.1.final_norm.weight",
+        "graph.graph_layers.1.gate.weight",
+        "graph.graph_layers.1.latent_norm.bias",
+        "graph.graph_layers.1.latent_norm.weight",
+        "graph.graph_layers.1.node_norm.bias",
+        "graph.graph_layers.1.node_norm.weight",
+        "graph.graph_layers.1.output_norm.bias",
+        "graph.graph_layers.1.output_norm.weight",
+        "graph.graph_layers.1.receiver_context",
+        "graph.graph_layers.1.residual_logit",
+        "graph.graph_layers.1.score.weight",
+        "graph.graph_layers.1.sender_context",
+        "graph.graph_layers.1.value.weight",
+        "graph.graph_layers.1.value_norm.bias",
+        "graph.graph_layers.1.value_norm.weight",
+        "graph.input.0.bias",
+        "graph.input.0.weight",
+        "graph.input.2.bias",
+        "graph.input.2.weight",
+        "temporal.adapter.graph_projection.weight",
+        "temporal.adapter.marker_projection.weight",
+        "temporal.adapter.state_projection.bias",
+        "temporal.adapter.state_projection.weight",
+        "temporal.head.0.bias",
+        "temporal.head.0.weight",
+        "temporal.head.2.bias",
+        "temporal.head.2.weight",
+        "temporal.llm.h.0.attn.c_attn.lora_A",
+        "temporal.llm.h.0.attn.c_attn.lora_B",
+        "temporal.llm.h.1.attn.c_attn.lora_A",
+        "temporal.llm.h.1.attn.c_attn.lora_B",
+        "temporal.llm.h.10.attn.c_attn.lora_A",
+        "temporal.llm.h.10.attn.c_attn.lora_B",
+        "temporal.llm.h.11.attn.c_attn.lora_A",
+        "temporal.llm.h.11.attn.c_attn.lora_B",
+        "temporal.llm.h.2.attn.c_attn.lora_A",
+        "temporal.llm.h.2.attn.c_attn.lora_B",
+        "temporal.llm.h.3.attn.c_attn.lora_A",
+        "temporal.llm.h.3.attn.c_attn.lora_B",
+        "temporal.llm.h.4.attn.c_attn.lora_A",
+        "temporal.llm.h.4.attn.c_attn.lora_B",
+        "temporal.llm.h.5.attn.c_attn.lora_A",
+        "temporal.llm.h.5.attn.c_attn.lora_B",
+        "temporal.llm.h.6.attn.c_attn.lora_A",
+        "temporal.llm.h.6.attn.c_attn.lora_B",
+        "temporal.llm.h.7.attn.c_attn.lora_A",
+        "temporal.llm.h.7.attn.c_attn.lora_B",
+        "temporal.llm.h.8.attn.c_attn.lora_A",
+        "temporal.llm.h.8.attn.c_attn.lora_B",
+        "temporal.llm.h.9.attn.c_attn.lora_A",
+        "temporal.llm.h.9.attn.c_attn.lora_B"
+      ]
+    },
+    "A_latest": {
+      "family": "A",
+      "kind": "directed_context",
+      "path": "results/qgnn_directed_context/seed2026/directed_context/latest.pt",
+      "epoch": 74,
+      "bytes": 10470227,
+      "sha256": "3fa7568e7f4c9c69a82a7718c5ec633217bb5f4580dbb7577a58103e197b879b",
+      "actual_epoch": 74,
+      "optimizer_steps_in_checkpoint": 25678,
+      "best_J_in_checkpoint": 1.0908795700783958,
+      "model_key_count": 88,
+      "mutable_keys": [
+        "graph.graph_layers.0.angle_bias",
+        "graph.graph_layers.0.angle_scale_raw",
+        "graph.graph_layers.0.core.weights",
+        "graph.graph_layers.0.edge_value.0.bias",
+        "graph.graph_layers.0.edge_value.0.weight",
+        "graph.graph_layers.0.edge_value.2.weight",
+        "graph.graph_layers.0.ffn.0.bias",
+        "graph.graph_layers.0.ffn.0.weight",
+        "graph.graph_layers.0.ffn.3.bias",
+        "graph.graph_layers.0.ffn.3.weight",
+        "graph.graph_layers.0.final_norm.bias",
+        "graph.graph_layers.0.final_norm.weight",
+        "graph.graph_layers.0.gate.weight",
+        "graph.graph_layers.0.latent_norm.bias",
+        "graph.graph_layers.0.latent_norm.weight",
+        "graph.graph_layers.0.node_norm.bias",
+        "graph.graph_layers.0.node_norm.weight",
+        "graph.graph_layers.0.output_norm.bias",
+        "graph.graph_layers.0.output_norm.weight",
+        "graph.graph_layers.0.receiver_context",
+        "graph.graph_layers.0.residual_logit",
+        "graph.graph_layers.0.score.weight",
+        "graph.graph_layers.0.sender_context",
+        "graph.graph_layers.0.value.weight",
+        "graph.graph_layers.0.value_norm.bias",
+        "graph.graph_layers.0.value_norm.weight",
+        "graph.graph_layers.1.angle_bias",
+        "graph.graph_layers.1.angle_scale_raw",
+        "graph.graph_layers.1.core.weights",
+        "graph.graph_layers.1.edge_value.0.bias",
+        "graph.graph_layers.1.edge_value.0.weight",
+        "graph.graph_layers.1.edge_value.2.weight",
+        "graph.graph_layers.1.ffn.0.bias",
+        "graph.graph_layers.1.ffn.0.weight",
+        "graph.graph_layers.1.ffn.3.bias",
+        "graph.graph_layers.1.ffn.3.weight",
+        "graph.graph_layers.1.final_norm.bias",
+        "graph.graph_layers.1.final_norm.weight",
+        "graph.graph_layers.1.gate.weight",
+        "graph.graph_layers.1.latent_norm.bias",
+        "graph.graph_layers.1.latent_norm.weight",
+        "graph.graph_layers.1.node_norm.bias",
+        "graph.graph_layers.1.node_norm.weight",
+        "graph.graph_layers.1.output_norm.bias",
+        "graph.graph_layers.1.output_norm.weight",
+        "graph.graph_layers.1.receiver_context",
+        "graph.graph_layers.1.residual_logit",
+        "graph.graph_layers.1.score.weight",
+        "graph.graph_layers.1.sender_context",
+        "graph.graph_layers.1.value.weight",
+        "graph.graph_layers.1.value_norm.bias",
+        "graph.graph_layers.1.value_norm.weight",
+        "graph.input.0.bias",
+        "graph.input.0.weight",
+        "graph.input.2.bias",
+        "graph.input.2.weight",
+        "temporal.adapter.graph_projection.weight",
+        "temporal.adapter.marker_projection.weight",
+        "temporal.adapter.state_projection.bias",
+        "temporal.adapter.state_projection.weight",
+        "temporal.head.0.bias",
+        "temporal.head.0.weight",
+        "temporal.head.2.bias",
+        "temporal.head.2.weight",
+        "temporal.llm.h.0.attn.c_attn.lora_A",
+        "temporal.llm.h.0.attn.c_attn.lora_B",
+        "temporal.llm.h.1.attn.c_attn.lora_A",
+        "temporal.llm.h.1.attn.c_attn.lora_B",
+        "temporal.llm.h.10.attn.c_attn.lora_A",
+        "temporal.llm.h.10.attn.c_attn.lora_B",
+        "temporal.llm.h.11.attn.c_attn.lora_A",
+        "temporal.llm.h.11.attn.c_attn.lora_B",
+        "temporal.llm.h.2.attn.c_attn.lora_A",
+        "temporal.llm.h.2.attn.c_attn.lora_B",
+        "temporal.llm.h.3.attn.c_attn.lora_A",
+        "temporal.llm.h.3.attn.c_attn.lora_B",
+        "temporal.llm.h.4.attn.c_attn.lora_A",
+        "temporal.llm.h.4.attn.c_attn.lora_B",
+        "temporal.llm.h.5.attn.c_attn.lora_A",
+        "temporal.llm.h.5.attn.c_attn.lora_B",
+        "temporal.llm.h.6.attn.c_attn.lora_A",
+        "temporal.llm.h.6.attn.c_attn.lora_B",
+        "temporal.llm.h.7.attn.c_attn.lora_A",
+        "temporal.llm.h.7.attn.c_attn.lora_B",
+        "temporal.llm.h.8.attn.c_attn.lora_A",
+        "temporal.llm.h.8.attn.c_attn.lora_B",
+        "temporal.llm.h.9.attn.c_attn.lora_A",
+        "temporal.llm.h.9.attn.c_attn.lora_B"
+      ]
+    },
+    "G_best": {
+      "family": "G",
+      "kind": "gnn",
+      "path": "results/qgnn_motionframe/seed2026/gnn/best.pt",
+      "epoch": 82,
+      "bytes": 11705275,
+      "sha256": "30154a753f756b462c37e1893fdf7934b3eef0c152f26bd47fbae60cc546d191",
+      "actual_epoch": 82,
+      "optimizer_steps_in_checkpoint": 28454,
+      "best_J_in_checkpoint": 1.1093646752808128,
+      "model_key_count": 82,
+      "mutable_keys": [
+        "graph.graph_layers.0.edge_bias.0.bias",
+        "graph.graph_layers.0.edge_bias.0.weight",
+        "graph.graph_layers.0.edge_bias.2.bias",
+        "graph.graph_layers.0.edge_bias.2.weight",
+        "graph.graph_layers.0.edge_value.0.bias",
+        "graph.graph_layers.0.edge_value.0.weight",
+        "graph.graph_layers.0.edge_value.2.bias",
+        "graph.graph_layers.0.edge_value.2.weight",
+        "graph.graph_layers.0.feed_forward.0.bias",
+        "graph.graph_layers.0.feed_forward.0.weight",
+        "graph.graph_layers.0.feed_forward.3.bias",
+        "graph.graph_layers.0.feed_forward.3.weight",
+        "graph.graph_layers.0.feed_forward_gate",
+        "graph.graph_layers.0.key.weight",
+        "graph.graph_layers.0.message_gate",
+        "graph.graph_layers.0.norm1.bias",
+        "graph.graph_layers.0.norm1.weight",
+        "graph.graph_layers.0.norm2.bias",
+        "graph.graph_layers.0.norm2.weight",
+        "graph.graph_layers.0.output.bias",
+        "graph.graph_layers.0.output.weight",
+        "graph.graph_layers.0.query.weight",
+        "graph.graph_layers.0.value.weight",
+        "graph.graph_layers.1.edge_bias.0.bias",
+        "graph.graph_layers.1.edge_bias.0.weight",
+        "graph.graph_layers.1.edge_bias.2.bias",
+        "graph.graph_layers.1.edge_bias.2.weight",
+        "graph.graph_layers.1.edge_value.0.bias",
+        "graph.graph_layers.1.edge_value.0.weight",
+        "graph.graph_layers.1.edge_value.2.bias",
+        "graph.graph_layers.1.edge_value.2.weight",
+        "graph.graph_layers.1.feed_forward.0.bias",
+        "graph.graph_layers.1.feed_forward.0.weight",
+        "graph.graph_layers.1.feed_forward.3.bias",
+        "graph.graph_layers.1.feed_forward.3.weight",
+        "graph.graph_layers.1.feed_forward_gate",
+        "graph.graph_layers.1.key.weight",
+        "graph.graph_layers.1.message_gate",
+        "graph.graph_layers.1.norm1.bias",
+        "graph.graph_layers.1.norm1.weight",
+        "graph.graph_layers.1.norm2.bias",
+        "graph.graph_layers.1.norm2.weight",
+        "graph.graph_layers.1.output.bias",
+        "graph.graph_layers.1.output.weight",
+        "graph.graph_layers.1.query.weight",
+        "graph.graph_layers.1.value.weight",
+        "graph.input.0.bias",
+        "graph.input.0.weight",
+        "graph.input.2.bias",
+        "graph.input.2.weight",
+        "temporal.adapter.graph_projection.weight",
+        "temporal.adapter.marker_projection.weight",
+        "temporal.adapter.state_projection.bias",
+        "temporal.adapter.state_projection.weight",
+        "temporal.head.0.bias",
+        "temporal.head.0.weight",
+        "temporal.head.2.bias",
+        "temporal.head.2.weight",
+        "temporal.llm.h.0.attn.c_attn.lora_A",
+        "temporal.llm.h.0.attn.c_attn.lora_B",
+        "temporal.llm.h.1.attn.c_attn.lora_A",
+        "temporal.llm.h.1.attn.c_attn.lora_B",
+        "temporal.llm.h.10.attn.c_attn.lora_A",
+        "temporal.llm.h.10.attn.c_attn.lora_B",
+        "temporal.llm.h.11.attn.c_attn.lora_A",
+        "temporal.llm.h.11.attn.c_attn.lora_B",
+        "temporal.llm.h.2.attn.c_attn.lora_A",
+        "temporal.llm.h.2.attn.c_attn.lora_B",
+        "temporal.llm.h.3.attn.c_attn.lora_A",
+        "temporal.llm.h.3.attn.c_attn.lora_B",
+        "temporal.llm.h.4.attn.c_attn.lora_A",
+        "temporal.llm.h.4.attn.c_attn.lora_B",
+        "temporal.llm.h.5.attn.c_attn.lora_A",
+        "temporal.llm.h.5.attn.c_attn.lora_B",
+        "temporal.llm.h.6.attn.c_attn.lora_A",
+        "temporal.llm.h.6.attn.c_attn.lora_B",
+        "temporal.llm.h.7.attn.c_attn.lora_A",
+        "temporal.llm.h.7.attn.c_attn.lora_B",
+        "temporal.llm.h.8.attn.c_attn.lora_A",
+        "temporal.llm.h.8.attn.c_attn.lora_B",
+        "temporal.llm.h.9.attn.c_attn.lora_A",
+        "temporal.llm.h.9.attn.c_attn.lora_B"
+      ]
+    },
+    "G_latest": {
+      "family": "G",
+      "kind": "gnn",
+      "path": "results/qgnn_motionframe/seed2026/gnn/latest.pt",
+      "epoch": 102,
+      "bytes": 11779611,
+      "sha256": "05d95c4431d63dee54b2702c89c580d0cbab76be87d69a8af59ef21fab4edf37",
+      "actual_epoch": 102,
+      "optimizer_steps_in_checkpoint": 35394,
+      "best_J_in_checkpoint": 1.1093646752808128,
+      "model_key_count": 82,
+      "mutable_keys": [
+        "graph.graph_layers.0.edge_bias.0.bias",
+        "graph.graph_layers.0.edge_bias.0.weight",
+        "graph.graph_layers.0.edge_bias.2.bias",
+        "graph.graph_layers.0.edge_bias.2.weight",
+        "graph.graph_layers.0.edge_value.0.bias",
+        "graph.graph_layers.0.edge_value.0.weight",
+        "graph.graph_layers.0.edge_value.2.bias",
+        "graph.graph_layers.0.edge_value.2.weight",
+        "graph.graph_layers.0.feed_forward.0.bias",
+        "graph.graph_layers.0.feed_forward.0.weight",
+        "graph.graph_layers.0.feed_forward.3.bias",
+        "graph.graph_layers.0.feed_forward.3.weight",
+        "graph.graph_layers.0.feed_forward_gate",
+        "graph.graph_layers.0.key.weight",
+        "graph.graph_layers.0.message_gate",
+        "graph.graph_layers.0.norm1.bias",
+        "graph.graph_layers.0.norm1.weight",
+        "graph.graph_layers.0.norm2.bias",
+        "graph.graph_layers.0.norm2.weight",
+        "graph.graph_layers.0.output.bias",
+        "graph.graph_layers.0.output.weight",
+        "graph.graph_layers.0.query.weight",
+        "graph.graph_layers.0.value.weight",
+        "graph.graph_layers.1.edge_bias.0.bias",
+        "graph.graph_layers.1.edge_bias.0.weight",
+        "graph.graph_layers.1.edge_bias.2.bias",
+        "graph.graph_layers.1.edge_bias.2.weight",
+        "graph.graph_layers.1.edge_value.0.bias",
+        "graph.graph_layers.1.edge_value.0.weight",
+        "graph.graph_layers.1.edge_value.2.bias",
+        "graph.graph_layers.1.edge_value.2.weight",
+        "graph.graph_layers.1.feed_forward.0.bias",
+        "graph.graph_layers.1.feed_forward.0.weight",
+        "graph.graph_layers.1.feed_forward.3.bias",
+        "graph.graph_layers.1.feed_forward.3.weight",
+        "graph.graph_layers.1.feed_forward_gate",
+        "graph.graph_layers.1.key.weight",
+        "graph.graph_layers.1.message_gate",
+        "graph.graph_layers.1.norm1.bias",
+        "graph.graph_layers.1.norm1.weight",
+        "graph.graph_layers.1.norm2.bias",
+        "graph.graph_layers.1.norm2.weight",
+        "graph.graph_layers.1.output.bias",
+        "graph.graph_layers.1.output.weight",
+        "graph.graph_layers.1.query.weight",
+        "graph.graph_layers.1.value.weight",
+        "graph.input.0.bias",
+        "graph.input.0.weight",
+        "graph.input.2.bias",
+        "graph.input.2.weight",
+        "temporal.adapter.graph_projection.weight",
+        "temporal.adapter.marker_projection.weight",
+        "temporal.adapter.state_projection.bias",
+        "temporal.adapter.state_projection.weight",
+        "temporal.head.0.bias",
+        "temporal.head.0.weight",
+        "temporal.head.2.bias",
+        "temporal.head.2.weight",
+        "temporal.llm.h.0.attn.c_attn.lora_A",
+        "temporal.llm.h.0.attn.c_attn.lora_B",
+        "temporal.llm.h.1.attn.c_attn.lora_A",
+        "temporal.llm.h.1.attn.c_attn.lora_B",
+        "temporal.llm.h.10.attn.c_attn.lora_A",
+        "temporal.llm.h.10.attn.c_attn.lora_B",
+        "temporal.llm.h.11.attn.c_attn.lora_A",
+        "temporal.llm.h.11.attn.c_attn.lora_B",
+        "temporal.llm.h.2.attn.c_attn.lora_A",
+        "temporal.llm.h.2.attn.c_attn.lora_B",
+        "temporal.llm.h.3.attn.c_attn.lora_A",
+        "temporal.llm.h.3.attn.c_attn.lora_B",
+        "temporal.llm.h.4.attn.c_attn.lora_A",
+        "temporal.llm.h.4.attn.c_attn.lora_B",
+        "temporal.llm.h.5.attn.c_attn.lora_A",
+        "temporal.llm.h.5.attn.c_attn.lora_B",
+        "temporal.llm.h.6.attn.c_attn.lora_A",
+        "temporal.llm.h.6.attn.c_attn.lora_B",
+        "temporal.llm.h.7.attn.c_attn.lora_A",
+        "temporal.llm.h.7.attn.c_attn.lora_B",
+        "temporal.llm.h.8.attn.c_attn.lora_A",
+        "temporal.llm.h.8.attn.c_attn.lora_B",
+        "temporal.llm.h.9.attn.c_attn.lora_A",
+        "temporal.llm.h.9.attn.c_attn.lora_B"
+      ]
+    }
+  },
+  "baseline_files": {
+    "prediction/temporal.py": {
+      "bytes": 6437,
+      "sha256": "1c5e5f45bdff854eb7ff58a25221aad03dd9db2b70a8686d0fdaefd206f62f99"
+    },
+    "prediction/training.py": {
+      "bytes": 18251,
+      "sha256": "27e746f9083bb67fc1b7cbb68d1c81672c22b6271b94861ce2c081e1ba065cb1"
+    },
+    "prediction/classical.py": {
+      "bytes": 5051,
+      "sha256": "5d9b3fe6b80350271b105ad8367c34120df090d566a81071f42ec77fa9e4e041"
+    },
+    "prediction/evaluation_cache.py": {
+      "bytes": 2687,
+      "sha256": "095274ff0af7d50fd0c54ede0b1fa0035962b71d748101caffb7f1783fec50f0"
+    },
+    "frontend/symbol_dataset.py": {
+      "bytes": 4744,
+      "sha256": "5eae742edaa773716d88544d366fb72fbaf1af1d99617484303b47317d078452"
+    },
+    "frontend/pack_symbol_dataset.py": {
+      "bytes": 11680,
+      "sha256": "f964fef067a008e4474fd03b315c4ed033a7463e616d45707c978e6c438d192d"
+    },
+    "frontend/scene_manifest.py": {
+      "bytes": 15526,
+      "sha256": "4482c0c61dd24cea6e869c35a927c013c74c9f8d82ef3755ea74b96c3b4e15a4"
+    },
+    "experiments/qgnn_inherited/graph.py": {
+      "bytes": 6242,
+      "sha256": "f950b3f5294232ccb17c4aa802b13f44114b6bc1f85470d0e7dc9169e6c23b83"
+    },
+    "experiments/qgnn_directed_context/graph.py": {
+      "bytes": 2186,
+      "sha256": "159eb9bad0a98e045db5f2a5c7a71f2e8b45b9eb60d0fb329de44bef010ead7d"
+    },
+    "experiments/qgnn_directed_context/run.py": {
+      "bytes": 11430,
+      "sha256": "7405f7c93562c5353742fa36a81d49fc89d5c887201407e100b63e8707060787"
+    },
+    "experiments/qgnn_motionframe/run.py": {
+      "bytes": 20688,
+      "sha256": "6b48355b361f1401a1f12e352014d2a5144c256f3f991c92c84d29ab0193fc54"
+    },
+    "experiments/qgnn_bottleneck/diagnose.py": {
+      "bytes": 76529,
+      "sha256": "b2219251d1602b41e443e9b59c3491aaac81d20d71ee23df809734677441af60"
+    },
+    "experiments/qgnn_bottleneck/metrics.py": {
+      "bytes": 8354,
+      "sha256": "0ae0454ed24400995335e3e1ad3d1f4b3e63f933f1ca188366d70b8b81a943dc"
+    },
+    "experiments/qgnn_bottleneck/analysis.py": {
+      "bytes": 8416,
+      "sha256": "a1516ac44a10bb86b19292209e7b0d7860a78079bb4b021f044879ff7cc67146"
+    },
+    "experiments/qgnn_bottleneck/plot_results.py": {
+      "bytes": 12613,
+      "sha256": "6102c8af0799f50138b8f84358bf3a09e85c6c92f8b2a62844f5b6906db22a5f"
+    },
+    "experiments/qgnn_bottleneck/tests/test_metrics.py": {
+      "bytes": 2618,
+      "sha256": "0127907e65c462983086130d878984224bc28833e5270434fc1cf84cf84e7b5c"
+    },
+    "configs/qgnn_bottleneck_diagnostic.json": {
+      "bytes": 1658,
+      "sha256": "e9da27ba2b383fe172a51c0141415957ebe5113ab8997a4e5acd648b8552abb5"
+    },
+    "docs/QGNN_性能瓶颈定位工单_BDX01.md": {
+      "bytes": 31846,
+      "sha256": "7a5ab6990054b06ee91aab6125ad64b8a154837d5d9e89dd528d52436a468317"
+    },
+    "data/f01d/normalization.json": {
+      "bytes": 1376,
+      "sha256": "bb2d8173a8b7c852a4142deab4f5cc786359bf202517612e75414ee3b70f3a53"
+    },
+    "data/f01_source/source_states.npy": {
+      "bytes": 96439460,
+      "sha256": "2190ddf95b0517d592fd770cf0d381b6004c00258092e12c3e5f28f95f65472d"
+    },
+    "models/gpt2/config.json": {
+      "bytes": 665,
+      "sha256": "0daed7749b4f02b8f76240d5444551d7b08712dab4d0adb8239c56ba823bb7b4"
+    },
+    "models/gpt2/model.safetensors": {
+      "bytes": 548105171,
+      "sha256": "248dfc3911869ec493c76e65bf2fcf7f615828b0254c12b473182f0f81d3a707"
+    },
+    "data/f01d/labels/train.npz": {
+      "bytes": 978973,
+      "sha256": "488b2623185cdd697927881dec5ff4556aeed14aeaee0b8d8874197cf5a0f950"
+    },
+    "data/f01d/metadata/train.json": {
+      "bytes": 3038757,
+      "sha256": "e472c757fbf5925320867c1825b77a1f35f5419d015045456b6cede18014b6f1"
+    },
+    "data/f01d/inputs/train_snr_5.npz": {
+      "bytes": 1986040,
+      "sha256": "3d627fb2061e44d17feeb820ca8f89f63b5474c3e99d41e108a0bf96b3dc11c8"
+    },
+    "data/f01d/inputs/train_snr_10.npz": {
+      "bytes": 1977463,
+      "sha256": "ae097d7b6047cf5b60025d94f359b730011944c185db71b6b869f795bd5a8726"
+    },
+    "data/f01d/inputs/train_snr_15.npz": {
+      "bytes": 1972820,
+      "sha256": "739a510788901b97215cc7e867651ab1af7c2350a0b74eefa7c60688999b7f72"
+    },
+    "data/f01d/inputs/train_snr_20.npz": {
+      "bytes": 1970294,
+      "sha256": "5b7111202d7c823c3d150e56ed3ea147aac3a9a6dc0e863cf23c5780df81afca"
+    },
+    "data/f01d/labels/V_select.npz": {
+      "bytes": 157330,
+      "sha256": "f31a840311223d8eedb0e33d8c53df3064dc7175cfe8509e98369bef074c980e"
+    },
+    "data/f01d/metadata/V_select.json": {
+      "bytes": 230869,
+      "sha256": "32d12c2fe091fde226fa50f7a69be444c26593e9cce9942f617d37c60a15b1ed"
+    },
+    "data/f01d/inputs/V_select_snr_5.npz": {
+      "bytes": 285874,
+      "sha256": "2bb0204aa49e2930a7db2d13ce299b6d4cbfca86b80562cada4069bfedba9fd3"
+    },
+    "data/f01d/inputs/V_select_snr_10.npz": {
+      "bytes": 284306,
+      "sha256": "8f692d43693b726a4cda361e2e7201d7c867a19dae3ecd92a2f01a22164eed33"
+    },
+    "data/f01d/inputs/V_select_snr_15.npz": {
+      "bytes": 283284,
+      "sha256": "6e99e986a994baedd58fa80bc22e9964ea7c2586302a1c3394dc9c8dbe58e522"
+    },
+    "data/f01d/inputs/V_select_snr_20.npz": {
+      "bytes": 282558,
+      "sha256": "42749735f9fe9b3fbd9651ce74a8957589ddaeada195fa0caf39152715bbe8d5"
+    },
+    "results/qgnn_directed_context/seed2026/original/best.pt": {
+      "bytes": 10429011,
+      "sha256": "6853008762325fc18f8e0503feb9bc1d9e8f181f063829800c115436850288ab"
+    },
+    "results/qgnn_directed_context/seed2026/original/latest.pt": {
+      "bytes": 10502979,
+      "sha256": "97731e2715e0e995a6d74dbd4f5c4167394bf1bca81d1b577da95d86181591b5"
+    },
+    "results/qgnn_directed_context/seed2026/directed_context/best.pt": {
+      "bytes": 10395587,
+      "sha256": "7dd370e44d7afc6f20628becc0d465289019afa6941d90204f0571956dbb49ec"
+    },
+    "results/qgnn_directed_context/seed2026/directed_context/latest.pt": {
+      "bytes": 10470227,
+      "sha256": "3fa7568e7f4c9c69a82a7718c5ec633217bb5f4580dbb7577a58103e197b879b"
+    },
+    "results/qgnn_motionframe/seed2026/gnn/best.pt": {
+      "bytes": 11705275,
+      "sha256": "30154a753f756b462c37e1893fdf7934b3eef0c152f26bd47fbae60cc546d191"
+    },
+    "results/qgnn_motionframe/seed2026/gnn/latest.pt": {
+      "bytes": 11779611,
+      "sha256": "05d95c4431d63dee54b2702c89c580d0cbab76be87d69a8af59ef21fab4edf37"
+    }
+  },
+  "optimizer_steps_executed": 0,
+  "new_training_started": false,
+  "actual_splits_accessed": [
+    "V_select",
+    "train"
+  ],
+  "forbidden_splits_accessed": [],
+  "commands": [],
+  "worker_results": {
+    "archive": {
+      "G_best": {
+        "status": "passed",
+        "label": "G_best",
+        "scope": "archive",
+        "pid": 4079554,
+        "started_utc": "2026-09-14T08:52:16.371633+00:00",
+        "optimizer_steps_executed": 0,
+        "finished_utc": "2026-09-14T08:52:23.527413+00:00",
+        "checkpoint_sha256_before": "30154a753f756b462c37e1893fdf7934b3eef0c152f26bd47fbae60cc546d191",
+        "checkpoint_sha256_after": "30154a753f756b462c37e1893fdf7934b3eef0c152f26bd47fbae60cc546d191",
+        "model_state_sha256_before": "ea7af274fc3eb3edae11a0f232ae6d96aa8969734c5ed20f5e022b9737c95fee",
+        "model_state_sha256_after": "ea7af274fc3eb3edae11a0f232ae6d96aa8969734c5ed20f5e022b9737c95fee",
+        "hook_and_batch": {
+          "hook_max_abs_error": 0.0,
+          "batch_max_abs_error": 1.52587890625e-05,
+          "hook_shapes": [
+            [
+              16,
+              20,
+              8,
+              128
+            ]
+          ]
+        },
+        "intervention_restore": null,
+        "completed": [
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/G_best__V_select__snr5.npz",
+            "scenes": 400,
+            "last_batch_size": 16
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/G_best__V_select__snr10.npz",
+            "scenes": 400,
+            "last_batch_size": 16
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/G_best__V_select__snr15.npz",
+            "scenes": 400,
+            "last_batch_size": 16
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/G_best__V_select__snr20.npz",
+            "scenes": 400,
+            "last_batch_size": 16
+          }
+        ],
+        "returncode": 0,
+        "physical_device": 1
+      },
+      "Q_best": {
+        "status": "passed",
+        "label": "Q_best",
+        "scope": "archive",
+        "pid": 4079553,
+        "started_utc": "2026-09-14T08:52:16.344780+00:00",
+        "optimizer_steps_executed": 0,
+        "finished_utc": "2026-09-14T08:52:28.412218+00:00",
+        "checkpoint_sha256_before": "6853008762325fc18f8e0503feb9bc1d9e8f181f063829800c115436850288ab",
+        "checkpoint_sha256_after": "6853008762325fc18f8e0503feb9bc1d9e8f181f063829800c115436850288ab",
+        "model_state_sha256_before": "f2ad7c601cbd1a95c9103da1dafcee00c4c242995d127ae7e6e343b8377164d3",
+        "model_state_sha256_after": "f2ad7c601cbd1a95c9103da1dafcee00c4c242995d127ae7e6e343b8377164d3",
+        "hook_and_batch": {
+          "hook_max_abs_error": 0.0,
+          "batch_max_abs_error": 1.52587890625e-05,
+          "hook_shapes": [
+            [
+              16,
+              20,
+              8,
+              128
+            ]
+          ]
+        },
+        "intervention_restore": null,
+        "completed": [
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/Q_best__V_select__snr5.npz",
+            "scenes": 400,
+            "last_batch_size": 16
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/Q_best__V_select__snr10.npz",
+            "scenes": 400,
+            "last_batch_size": 16
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/Q_best__V_select__snr15.npz",
+            "scenes": 400,
+            "last_batch_size": 16
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/Q_best__V_select__snr20.npz",
+            "scenes": 400,
+            "last_batch_size": 16
+          }
+        ],
+        "returncode": 0,
+        "physical_device": 0
+      },
+      "A_best": {
+        "status": "passed",
+        "label": "A_best",
+        "scope": "archive",
+        "pid": 4079683,
+        "started_utc": "2026-09-14T08:52:26.065781+00:00",
+        "optimizer_steps_executed": 0,
+        "finished_utc": "2026-09-14T08:52:37.684995+00:00",
+        "checkpoint_sha256_before": "7dd370e44d7afc6f20628becc0d465289019afa6941d90204f0571956dbb49ec",
+        "checkpoint_sha256_after": "7dd370e44d7afc6f20628becc0d465289019afa6941d90204f0571956dbb49ec",
+        "model_state_sha256_before": "1dad46e7a4561fa65214d657f1adecd18b3a5a7ccb292e88c37c4cd0774d63fe",
+        "model_state_sha256_after": "1dad46e7a4561fa65214d657f1adecd18b3a5a7ccb292e88c37c4cd0774d63fe",
+        "hook_and_batch": {
+          "hook_max_abs_error": 0.0,
+          "batch_max_abs_error": 1.52587890625e-05,
+          "hook_shapes": [
+            [
+              16,
+              20,
+              8,
+              128
+            ]
+          ]
+        },
+        "intervention_restore": null,
+        "completed": [
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/A_best__V_select__snr5.npz",
+            "scenes": 400,
+            "last_batch_size": 16
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/A_best__V_select__snr10.npz",
+            "scenes": 400,
+            "last_batch_size": 16
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/A_best__V_select__snr15.npz",
+            "scenes": 400,
+            "last_batch_size": 16
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/A_best__V_select__snr20.npz",
+            "scenes": 400,
+            "last_batch_size": 16
+          }
+        ],
+        "returncode": 0,
+        "physical_device": 1
+      }
+    },
+    "matrix": {
+      "Q_best": {
+        "status": "passed",
+        "label": "Q_best",
+        "scope": "matrix",
+        "pid": 4079946,
+        "started_utc": "2026-09-14T08:52:42.503324+00:00",
+        "optimizer_steps_executed": 0,
+        "finished_utc": "2026-09-14T08:54:16.761133+00:00",
+        "checkpoint_sha256_before": "6853008762325fc18f8e0503feb9bc1d9e8f181f063829800c115436850288ab",
+        "checkpoint_sha256_after": "6853008762325fc18f8e0503feb9bc1d9e8f181f063829800c115436850288ab",
+        "model_state_sha256_before": "f2ad7c601cbd1a95c9103da1dafcee00c4c242995d127ae7e6e343b8377164d3",
+        "model_state_sha256_after": "f2ad7c601cbd1a95c9103da1dafcee00c4c242995d127ae7e6e343b8377164d3",
+        "hook_and_batch": {
+          "hook_max_abs_error": 0.0,
+          "batch_max_abs_error": 1.52587890625e-05,
+          "hook_shapes": [
+            [
+              16,
+              20,
+              8,
+              128
+            ]
+          ]
+        },
+        "intervention_restore": null,
+        "completed": [
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/Q_best__train__snr5.npz",
+            "scenes": 5549,
+            "last_batch_size": 13
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/Q_best__train__snr10.npz",
+            "scenes": 5549,
+            "last_batch_size": 13
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/Q_best__train__snr15.npz",
+            "scenes": 5549,
+            "last_batch_size": 13
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/Q_best__train__snr20.npz",
+            "scenes": 5549,
+            "last_batch_size": 13
+          },
+          {
+            "reused": true,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/Q_best__V_select__snr5.npz",
+            "scenes": 400,
+            "last_batch_size": 16
+          },
+          {
+            "reused": true,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/Q_best__V_select__snr10.npz",
+            "scenes": 400,
+            "last_batch_size": 16
+          },
+          {
+            "reused": true,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/Q_best__V_select__snr15.npz",
+            "scenes": 400,
+            "last_batch_size": 16
+          },
+          {
+            "reused": true,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/Q_best__V_select__snr20.npz",
+            "scenes": 400,
+            "last_batch_size": 16
+          }
+        ],
+        "returncode": 0,
+        "physical_device": 0
+      },
+      "Q_latest": {
+        "status": "passed",
+        "label": "Q_latest",
+        "scope": "matrix",
+        "pid": 4079947,
+        "started_utc": "2026-09-14T08:52:42.510315+00:00",
+        "optimizer_steps_executed": 0,
+        "finished_utc": "2026-09-14T08:54:24.664540+00:00",
+        "checkpoint_sha256_before": "97731e2715e0e995a6d74dbd4f5c4167394bf1bca81d1b577da95d86181591b5",
+        "checkpoint_sha256_after": "97731e2715e0e995a6d74dbd4f5c4167394bf1bca81d1b577da95d86181591b5",
+        "model_state_sha256_before": "d591a8ff7ab979717fe65a1655ee75e3d5017d219367d35170d59cd34110fc76",
+        "model_state_sha256_after": "d591a8ff7ab979717fe65a1655ee75e3d5017d219367d35170d59cd34110fc76",
+        "hook_and_batch": {
+          "hook_max_abs_error": 0.0,
+          "batch_max_abs_error": 1.52587890625e-05,
+          "hook_shapes": [
+            [
+              16,
+              20,
+              8,
+              128
+            ]
+          ]
+        },
+        "intervention_restore": null,
+        "completed": [
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/Q_latest__train__snr5.npz",
+            "scenes": 5549,
+            "last_batch_size": 13
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/Q_latest__train__snr10.npz",
+            "scenes": 5549,
+            "last_batch_size": 13
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/Q_latest__train__snr15.npz",
+            "scenes": 5549,
+            "last_batch_size": 13
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/Q_latest__train__snr20.npz",
+            "scenes": 5549,
+            "last_batch_size": 13
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/Q_latest__V_select__snr5.npz",
+            "scenes": 400,
+            "last_batch_size": 16
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/Q_latest__V_select__snr10.npz",
+            "scenes": 400,
+            "last_batch_size": 16
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/Q_latest__V_select__snr15.npz",
+            "scenes": 400,
+            "last_batch_size": 16
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/Q_latest__V_select__snr20.npz",
+            "scenes": 400,
+            "last_batch_size": 16
+          }
+        ],
+        "returncode": 0,
+        "physical_device": 1
+      },
+      "A_best": {
+        "status": "passed",
+        "label": "A_best",
+        "scope": "matrix",
+        "pid": 4081322,
+        "started_utc": "2026-09-14T08:54:19.464183+00:00",
+        "optimizer_steps_executed": 0,
+        "finished_utc": "2026-09-14T08:55:54.909925+00:00",
+        "checkpoint_sha256_before": "7dd370e44d7afc6f20628becc0d465289019afa6941d90204f0571956dbb49ec",
+        "checkpoint_sha256_after": "7dd370e44d7afc6f20628becc0d465289019afa6941d90204f0571956dbb49ec",
+        "model_state_sha256_before": "1dad46e7a4561fa65214d657f1adecd18b3a5a7ccb292e88c37c4cd0774d63fe",
+        "model_state_sha256_after": "1dad46e7a4561fa65214d657f1adecd18b3a5a7ccb292e88c37c4cd0774d63fe",
+        "hook_and_batch": {
+          "hook_max_abs_error": 0.0,
+          "batch_max_abs_error": 1.52587890625e-05,
+          "hook_shapes": [
+            [
+              16,
+              20,
+              8,
+              128
+            ]
+          ]
+        },
+        "intervention_restore": null,
+        "completed": [
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/A_best__train__snr5.npz",
+            "scenes": 5549,
+            "last_batch_size": 13
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/A_best__train__snr10.npz",
+            "scenes": 5549,
+            "last_batch_size": 13
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/A_best__train__snr15.npz",
+            "scenes": 5549,
+            "last_batch_size": 13
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/A_best__train__snr20.npz",
+            "scenes": 5549,
+            "last_batch_size": 13
+          },
+          {
+            "reused": true,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/A_best__V_select__snr5.npz",
+            "scenes": 400,
+            "last_batch_size": 16
+          },
+          {
+            "reused": true,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/A_best__V_select__snr10.npz",
+            "scenes": 400,
+            "last_batch_size": 16
+          },
+          {
+            "reused": true,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/A_best__V_select__snr15.npz",
+            "scenes": 400,
+            "last_batch_size": 16
+          },
+          {
+            "reused": true,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/A_best__V_select__snr20.npz",
+            "scenes": 400,
+            "last_batch_size": 16
+          }
+        ],
+        "returncode": 0,
+        "physical_device": 0
+      },
+      "A_latest": {
+        "status": "passed",
+        "label": "A_latest",
+        "scope": "matrix",
+        "pid": 4081370,
+        "started_utc": "2026-09-14T08:54:26.483334+00:00",
+        "optimizer_steps_executed": 0,
+        "finished_utc": "2026-09-14T08:56:07.358371+00:00",
+        "checkpoint_sha256_before": "3fa7568e7f4c9c69a82a7718c5ec633217bb5f4580dbb7577a58103e197b879b",
+        "checkpoint_sha256_after": "3fa7568e7f4c9c69a82a7718c5ec633217bb5f4580dbb7577a58103e197b879b",
+        "model_state_sha256_before": "374ec5d845d99f5eee17b9b143603aadadf4aa7c59b66cc92866bed43b742a37",
+        "model_state_sha256_after": "374ec5d845d99f5eee17b9b143603aadadf4aa7c59b66cc92866bed43b742a37",
+        "hook_and_batch": {
+          "hook_max_abs_error": 0.0,
+          "batch_max_abs_error": 1.52587890625e-05,
+          "hook_shapes": [
+            [
+              16,
+              20,
+              8,
+              128
+            ]
+          ]
+        },
+        "intervention_restore": null,
+        "completed": [
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/A_latest__train__snr5.npz",
+            "scenes": 5549,
+            "last_batch_size": 13
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/A_latest__train__snr10.npz",
+            "scenes": 5549,
+            "last_batch_size": 13
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/A_latest__train__snr15.npz",
+            "scenes": 5549,
+            "last_batch_size": 13
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/A_latest__train__snr20.npz",
+            "scenes": 5549,
+            "last_batch_size": 13
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/A_latest__V_select__snr5.npz",
+            "scenes": 400,
+            "last_batch_size": 16
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/A_latest__V_select__snr10.npz",
+            "scenes": 400,
+            "last_batch_size": 16
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/A_latest__V_select__snr15.npz",
+            "scenes": 400,
+            "last_batch_size": 16
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/A_latest__V_select__snr20.npz",
+            "scenes": 400,
+            "last_batch_size": 16
+          }
+        ],
+        "returncode": 0,
+        "physical_device": 1
+      },
+      "G_best": {
+        "status": "passed",
+        "label": "G_best",
+        "scope": "matrix",
+        "pid": 4082795,
+        "started_utc": "2026-09-14T08:55:57.484111+00:00",
+        "optimizer_steps_executed": 0,
+        "finished_utc": "2026-09-14T08:56:28.987415+00:00",
+        "checkpoint_sha256_before": "30154a753f756b462c37e1893fdf7934b3eef0c152f26bd47fbae60cc546d191",
+        "checkpoint_sha256_after": "30154a753f756b462c37e1893fdf7934b3eef0c152f26bd47fbae60cc546d191",
+        "model_state_sha256_before": "ea7af274fc3eb3edae11a0f232ae6d96aa8969734c5ed20f5e022b9737c95fee",
+        "model_state_sha256_after": "ea7af274fc3eb3edae11a0f232ae6d96aa8969734c5ed20f5e022b9737c95fee",
+        "hook_and_batch": {
+          "hook_max_abs_error": 0.0,
+          "batch_max_abs_error": 1.52587890625e-05,
+          "hook_shapes": [
+            [
+              16,
+              20,
+              8,
+              128
+            ]
+          ]
+        },
+        "intervention_restore": null,
+        "completed": [
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/G_best__train__snr5.npz",
+            "scenes": 5549,
+            "last_batch_size": 13
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/G_best__train__snr10.npz",
+            "scenes": 5549,
+            "last_batch_size": 13
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/G_best__train__snr15.npz",
+            "scenes": 5549,
+            "last_batch_size": 13
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/G_best__train__snr20.npz",
+            "scenes": 5549,
+            "last_batch_size": 13
+          },
+          {
+            "reused": true,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/G_best__V_select__snr5.npz",
+            "scenes": 400,
+            "last_batch_size": 16
+          },
+          {
+            "reused": true,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/G_best__V_select__snr10.npz",
+            "scenes": 400,
+            "last_batch_size": 16
+          },
+          {
+            "reused": true,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/G_best__V_select__snr15.npz",
+            "scenes": 400,
+            "last_batch_size": 16
+          },
+          {
+            "reused": true,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/G_best__V_select__snr20.npz",
+            "scenes": 400,
+            "last_batch_size": 16
+          }
+        ],
+        "returncode": 0,
+        "physical_device": 0
+      },
+      "G_latest": {
+        "status": "passed",
+        "label": "G_latest",
+        "scope": "matrix",
+        "pid": 4082995,
+        "started_utc": "2026-09-14T08:56:09.497541+00:00",
+        "optimizer_steps_executed": 0,
+        "finished_utc": "2026-09-14T08:56:43.062408+00:00",
+        "checkpoint_sha256_before": "05d95c4431d63dee54b2702c89c580d0cbab76be87d69a8af59ef21fab4edf37",
+        "checkpoint_sha256_after": "05d95c4431d63dee54b2702c89c580d0cbab76be87d69a8af59ef21fab4edf37",
+        "model_state_sha256_before": "8e47d589d92ac5c0dbf4954f5f5f5529f4d7152265d10cc603e58e94437e1288",
+        "model_state_sha256_after": "8e47d589d92ac5c0dbf4954f5f5f5529f4d7152265d10cc603e58e94437e1288",
+        "hook_and_batch": {
+          "hook_max_abs_error": 0.0,
+          "batch_max_abs_error": 1.52587890625e-05,
+          "hook_shapes": [
+            [
+              16,
+              20,
+              8,
+              128
+            ]
+          ]
+        },
+        "intervention_restore": null,
+        "completed": [
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/G_latest__train__snr5.npz",
+            "scenes": 5549,
+            "last_batch_size": 13
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/G_latest__train__snr10.npz",
+            "scenes": 5549,
+            "last_batch_size": 13
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/G_latest__train__snr15.npz",
+            "scenes": 5549,
+            "last_batch_size": 13
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/G_latest__train__snr20.npz",
+            "scenes": 5549,
+            "last_batch_size": 13
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/G_latest__V_select__snr5.npz",
+            "scenes": 400,
+            "last_batch_size": 16
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/G_latest__V_select__snr10.npz",
+            "scenes": 400,
+            "last_batch_size": 16
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/G_latest__V_select__snr15.npz",
+            "scenes": 400,
+            "last_batch_size": 16
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/G_latest__V_select__snr20.npz",
+            "scenes": 400,
+            "last_batch_size": 16
+          }
+        ],
+        "returncode": 0,
+        "physical_device": 1
+      }
+    },
+    "off": {
+      "A_latest": {
+        "status": "passed",
+        "label": "A_latest",
+        "scope": "off",
+        "pid": 4083541,
+        "started_utc": "2026-09-14T08:56:45.510354+00:00",
+        "optimizer_steps_executed": 0,
+        "finished_utc": "2026-09-14T08:58:27.037931+00:00",
+        "checkpoint_sha256_before": "3fa7568e7f4c9c69a82a7718c5ec633217bb5f4580dbb7577a58103e197b879b",
+        "checkpoint_sha256_after": "3fa7568e7f4c9c69a82a7718c5ec633217bb5f4580dbb7577a58103e197b879b",
+        "model_state_sha256_before": "374ec5d845d99f5eee17b9b143603aadadf4aa7c59b66cc92866bed43b742a37",
+        "model_state_sha256_after": "374ec5d845d99f5eee17b9b143603aadadf4aa7c59b66cc92866bed43b742a37",
+        "hook_and_batch": {
+          "hook_max_abs_error": 0.0,
+          "batch_max_abs_error": 1.52587890625e-05,
+          "hook_shapes": [
+            [
+              16,
+              20,
+              8,
+              128
+            ]
+          ]
+        },
+        "intervention_restore": {
+          "changed_keys": [
+            "graph.graph_layers.0.receiver_context",
+            "graph.graph_layers.0.sender_context",
+            "graph.graph_layers.1.receiver_context",
+            "graph.graph_layers.1.sender_context"
+          ],
+          "changed_elements": {
+            "graph.graph_layers.0.receiver_context": 640,
+            "graph.graph_layers.1.sender_context": 640,
+            "graph.graph_layers.0.sender_context": 640,
+            "graph.graph_layers.1.receiver_context": 640
+          },
+          "max_abs_error": 0.0
+        },
+        "completed": [
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/A_latest_off__train__snr5.npz",
+            "scenes": 5549,
+            "last_batch_size": 13
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/A_latest_off__train__snr10.npz",
+            "scenes": 5549,
+            "last_batch_size": 13
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/A_latest_off__train__snr15.npz",
+            "scenes": 5549,
+            "last_batch_size": 13
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/A_latest_off__train__snr20.npz",
+            "scenes": 5549,
+            "last_batch_size": 13
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/A_latest_off__V_select__snr5.npz",
+            "scenes": 400,
+            "last_batch_size": 16
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/A_latest_off__V_select__snr10.npz",
+            "scenes": 400,
+            "last_batch_size": 16
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/A_latest_off__V_select__snr15.npz",
+            "scenes": 400,
+            "last_batch_size": 16
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/A_latest_off__V_select__snr20.npz",
+            "scenes": 400,
+            "last_batch_size": 16
+          }
+        ],
+        "returncode": 0,
+        "physical_device": 1
+      },
+      "A_best": {
+        "status": "passed",
+        "label": "A_best",
+        "scope": "off",
+        "pid": 4083540,
+        "started_utc": "2026-09-14T08:56:45.526093+00:00",
+        "optimizer_steps_executed": 0,
+        "finished_utc": "2026-09-14T08:58:28.517039+00:00",
+        "checkpoint_sha256_before": "7dd370e44d7afc6f20628becc0d465289019afa6941d90204f0571956dbb49ec",
+        "checkpoint_sha256_after": "7dd370e44d7afc6f20628becc0d465289019afa6941d90204f0571956dbb49ec",
+        "model_state_sha256_before": "1dad46e7a4561fa65214d657f1adecd18b3a5a7ccb292e88c37c4cd0774d63fe",
+        "model_state_sha256_after": "1dad46e7a4561fa65214d657f1adecd18b3a5a7ccb292e88c37c4cd0774d63fe",
+        "hook_and_batch": {
+          "hook_max_abs_error": 0.0,
+          "batch_max_abs_error": 1.52587890625e-05,
+          "hook_shapes": [
+            [
+              16,
+              20,
+              8,
+              128
+            ]
+          ]
+        },
+        "intervention_restore": {
+          "changed_keys": [
+            "graph.graph_layers.0.receiver_context",
+            "graph.graph_layers.0.sender_context",
+            "graph.graph_layers.1.receiver_context",
+            "graph.graph_layers.1.sender_context"
+          ],
+          "changed_elements": {
+            "graph.graph_layers.0.sender_context": 640,
+            "graph.graph_layers.1.receiver_context": 640,
+            "graph.graph_layers.1.sender_context": 640,
+            "graph.graph_layers.0.receiver_context": 640
+          },
+          "max_abs_error": 0.0
+        },
+        "completed": [
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/A_best_off__train__snr5.npz",
+            "scenes": 5549,
+            "last_batch_size": 13
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/A_best_off__train__snr10.npz",
+            "scenes": 5549,
+            "last_batch_size": 13
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/A_best_off__train__snr15.npz",
+            "scenes": 5549,
+            "last_batch_size": 13
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/A_best_off__train__snr20.npz",
+            "scenes": 5549,
+            "last_batch_size": 13
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/A_best_off__V_select__snr5.npz",
+            "scenes": 400,
+            "last_batch_size": 16
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/A_best_off__V_select__snr10.npz",
+            "scenes": 400,
+            "last_batch_size": 16
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/A_best_off__V_select__snr15.npz",
+            "scenes": 400,
+            "last_batch_size": 16
+          },
+          {
+            "reused": false,
+            "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/A_best_off__V_select__snr20.npz",
+            "scenes": 400,
+            "last_batch_size": 16
+          }
+        ],
+        "returncode": 0,
+        "physical_device": 0
+      }
+    }
+  },
+  "finished_utc": "2026-09-14T09:07:46.475640+00:00",
+  "final_baseline_files": {
+    "prediction/temporal.py": {
+      "bytes": 6437,
+      "sha256": "1c5e5f45bdff854eb7ff58a25221aad03dd9db2b70a8686d0fdaefd206f62f99"
+    },
+    "prediction/training.py": {
+      "bytes": 18251,
+      "sha256": "27e746f9083bb67fc1b7cbb68d1c81672c22b6271b94861ce2c081e1ba065cb1"
+    },
+    "prediction/classical.py": {
+      "bytes": 5051,
+      "sha256": "5d9b3fe6b80350271b105ad8367c34120df090d566a81071f42ec77fa9e4e041"
+    },
+    "prediction/evaluation_cache.py": {
+      "bytes": 2687,
+      "sha256": "095274ff0af7d50fd0c54ede0b1fa0035962b71d748101caffb7f1783fec50f0"
+    },
+    "frontend/symbol_dataset.py": {
+      "bytes": 4744,
+      "sha256": "5eae742edaa773716d88544d366fb72fbaf1af1d99617484303b47317d078452"
+    },
+    "frontend/pack_symbol_dataset.py": {
+      "bytes": 11680,
+      "sha256": "f964fef067a008e4474fd03b315c4ed033a7463e616d45707c978e6c438d192d"
+    },
+    "frontend/scene_manifest.py": {
+      "bytes": 15526,
+      "sha256": "4482c0c61dd24cea6e869c35a927c013c74c9f8d82ef3755ea74b96c3b4e15a4"
+    },
+    "experiments/qgnn_inherited/graph.py": {
+      "bytes": 6242,
+      "sha256": "f950b3f5294232ccb17c4aa802b13f44114b6bc1f85470d0e7dc9169e6c23b83"
+    },
+    "experiments/qgnn_directed_context/graph.py": {
+      "bytes": 2186,
+      "sha256": "159eb9bad0a98e045db5f2a5c7a71f2e8b45b9eb60d0fb329de44bef010ead7d"
+    },
+    "experiments/qgnn_directed_context/run.py": {
+      "bytes": 11430,
+      "sha256": "7405f7c93562c5353742fa36a81d49fc89d5c887201407e100b63e8707060787"
+    },
+    "experiments/qgnn_motionframe/run.py": {
+      "bytes": 20688,
+      "sha256": "6b48355b361f1401a1f12e352014d2a5144c256f3f991c92c84d29ab0193fc54"
+    },
+    "experiments/qgnn_bottleneck/diagnose.py": {
+      "bytes": 76529,
+      "sha256": "b2219251d1602b41e443e9b59c3491aaac81d20d71ee23df809734677441af60"
+    },
+    "experiments/qgnn_bottleneck/metrics.py": {
+      "bytes": 8354,
+      "sha256": "0ae0454ed24400995335e3e1ad3d1f4b3e63f933f1ca188366d70b8b81a943dc"
+    },
+    "experiments/qgnn_bottleneck/analysis.py": {
+      "bytes": 8416,
+      "sha256": "a1516ac44a10bb86b19292209e7b0d7860a78079bb4b021f044879ff7cc67146"
+    },
+    "experiments/qgnn_bottleneck/plot_results.py": {
+      "bytes": 12613,
+      "sha256": "6102c8af0799f50138b8f84358bf3a09e85c6c92f8b2a62844f5b6906db22a5f"
+    },
+    "experiments/qgnn_bottleneck/tests/test_metrics.py": {
+      "bytes": 2618,
+      "sha256": "0127907e65c462983086130d878984224bc28833e5270434fc1cf84cf84e7b5c"
+    },
+    "configs/qgnn_bottleneck_diagnostic.json": {
+      "bytes": 1658,
+      "sha256": "e9da27ba2b383fe172a51c0141415957ebe5113ab8997a4e5acd648b8552abb5"
+    },
+    "docs/QGNN_性能瓶颈定位工单_BDX01.md": {
+      "bytes": 31846,
+      "sha256": "7a5ab6990054b06ee91aab6125ad64b8a154837d5d9e89dd528d52436a468317"
+    },
+    "data/f01d/normalization.json": {
+      "bytes": 1376,
+      "sha256": "bb2d8173a8b7c852a4142deab4f5cc786359bf202517612e75414ee3b70f3a53"
+    },
+    "data/f01_source/source_states.npy": {
+      "bytes": 96439460,
+      "sha256": "2190ddf95b0517d592fd770cf0d381b6004c00258092e12c3e5f28f95f65472d"
+    },
+    "models/gpt2/config.json": {
+      "bytes": 665,
+      "sha256": "0daed7749b4f02b8f76240d5444551d7b08712dab4d0adb8239c56ba823bb7b4"
+    },
+    "models/gpt2/model.safetensors": {
+      "bytes": 548105171,
+      "sha256": "248dfc3911869ec493c76e65bf2fcf7f615828b0254c12b473182f0f81d3a707"
+    },
+    "data/f01d/labels/train.npz": {
+      "bytes": 978973,
+      "sha256": "488b2623185cdd697927881dec5ff4556aeed14aeaee0b8d8874197cf5a0f950"
+    },
+    "data/f01d/metadata/train.json": {
+      "bytes": 3038757,
+      "sha256": "e472c757fbf5925320867c1825b77a1f35f5419d015045456b6cede18014b6f1"
+    },
+    "data/f01d/inputs/train_snr_5.npz": {
+      "bytes": 1986040,
+      "sha256": "3d627fb2061e44d17feeb820ca8f89f63b5474c3e99d41e108a0bf96b3dc11c8"
+    },
+    "data/f01d/inputs/train_snr_10.npz": {
+      "bytes": 1977463,
+      "sha256": "ae097d7b6047cf5b60025d94f359b730011944c185db71b6b869f795bd5a8726"
+    },
+    "data/f01d/inputs/train_snr_15.npz": {
+      "bytes": 1972820,
+      "sha256": "739a510788901b97215cc7e867651ab1af7c2350a0b74eefa7c60688999b7f72"
+    },
+    "data/f01d/inputs/train_snr_20.npz": {
+      "bytes": 1970294,
+      "sha256": "5b7111202d7c823c3d150e56ed3ea147aac3a9a6dc0e863cf23c5780df81afca"
+    },
+    "data/f01d/labels/V_select.npz": {
+      "bytes": 157330,
+      "sha256": "f31a840311223d8eedb0e33d8c53df3064dc7175cfe8509e98369bef074c980e"
+    },
+    "data/f01d/metadata/V_select.json": {
+      "bytes": 230869,
+      "sha256": "32d12c2fe091fde226fa50f7a69be444c26593e9cce9942f617d37c60a15b1ed"
+    },
+    "data/f01d/inputs/V_select_snr_5.npz": {
+      "bytes": 285874,
+      "sha256": "2bb0204aa49e2930a7db2d13ce299b6d4cbfca86b80562cada4069bfedba9fd3"
+    },
+    "data/f01d/inputs/V_select_snr_10.npz": {
+      "bytes": 284306,
+      "sha256": "8f692d43693b726a4cda361e2e7201d7c867a19dae3ecd92a2f01a22164eed33"
+    },
+    "data/f01d/inputs/V_select_snr_15.npz": {
+      "bytes": 283284,
+      "sha256": "6e99e986a994baedd58fa80bc22e9964ea7c2586302a1c3394dc9c8dbe58e522"
+    },
+    "data/f01d/inputs/V_select_snr_20.npz": {
+      "bytes": 282558,
+      "sha256": "42749735f9fe9b3fbd9651ce74a8957589ddaeada195fa0caf39152715bbe8d5"
+    },
+    "results/qgnn_directed_context/seed2026/original/best.pt": {
+      "bytes": 10429011,
+      "sha256": "6853008762325fc18f8e0503feb9bc1d9e8f181f063829800c115436850288ab"
+    },
+    "results/qgnn_directed_context/seed2026/original/latest.pt": {
+      "bytes": 10502979,
+      "sha256": "97731e2715e0e995a6d74dbd4f5c4167394bf1bca81d1b577da95d86181591b5"
+    },
+    "results/qgnn_directed_context/seed2026/directed_context/best.pt": {
+      "bytes": 10395587,
+      "sha256": "7dd370e44d7afc6f20628becc0d465289019afa6941d90204f0571956dbb49ec"
+    },
+    "results/qgnn_directed_context/seed2026/directed_context/latest.pt": {
+      "bytes": 10470227,
+      "sha256": "3fa7568e7f4c9c69a82a7718c5ec633217bb5f4580dbb7577a58103e197b879b"
+    },
+    "results/qgnn_motionframe/seed2026/gnn/best.pt": {
+      "bytes": 11705275,
+      "sha256": "30154a753f756b462c37e1893fdf7934b3eef0c152f26bd47fbae60cc546d191"
+    },
+    "results/qgnn_motionframe/seed2026/gnn/latest.pt": {
+      "bytes": 11779611,
+      "sha256": "05d95c4431d63dee54b2702c89c580d0cbab76be87d69a8af59ef21fab4edf37"
+    }
+  },
+  "post_run_reporting_refinement": {
+    "finished_utc": "2026-09-14T09:19:03.018620+00:00",
+    "scope": "Narrative report clarification and figure-02 legend/title spacing only; inference caches and numerical tables unchanged.",
+    "optimizer_steps_executed": 0
+  }
+}

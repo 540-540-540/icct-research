@@ -1,0 +1,34 @@
+{
+  "schema_version": "BDX-01-v1",
+  "run_id": "bdx01_20260914_01",
+  "repository_reference_commit": "6652c7df09c47401e7685540b8618e6887564965",
+  "allowed_splits": ["train", "V_select"],
+  "snr_db": [5, 10, 15, 20],
+  "prediction_steps": 20,
+  "time_step_seconds": 0.1,
+  "horizons": [5, 10, 20],
+  "inference_batch": 16,
+  "devices": [0, 1],
+  "archive_metric_atol_m": 0.00001,
+  "output_atol": 0.00002,
+  "output_rtol": 0.00002,
+  "identity_atol": 1e-8,
+  "identity_rtol": 1e-10,
+  "source_rows": "data/f01_source/source_states.npy",
+  "report_root": "reports/qgnn_bottleneck",
+  "cache_root": "results/qgnn_bottleneck",
+  "checkpoints": {
+    "Q_best": {"family": "Q", "kind": "original", "path": "results/qgnn_directed_context/seed2026/original/best.pt", "epoch": 75},
+    "Q_latest": {"family": "Q", "kind": "original", "path": "results/qgnn_directed_context/seed2026/original/latest.pt", "epoch": 95},
+    "A_best": {"family": "A", "kind": "directed_context", "path": "results/qgnn_directed_context/seed2026/directed_context/best.pt", "epoch": 54},
+    "A_latest": {"family": "A", "kind": "directed_context", "path": "results/qgnn_directed_context/seed2026/directed_context/latest.pt", "epoch": 74},
+    "G_best": {"family": "G", "kind": "gnn", "path": "results/qgnn_motionframe/seed2026/gnn/best.pt", "epoch": 82},
+    "G_latest": {"family": "G", "kind": "gnn", "path": "results/qgnn_motionframe/seed2026/gnn/latest.pt", "epoch": 102}
+  },
+  "directed_context_keys": [
+    "graph.graph_layers.0.receiver_context",
+    "graph.graph_layers.0.sender_context",
+    "graph.graph_layers.1.receiver_context",
+    "graph.graph_layers.1.sender_context"
+  ]
+}

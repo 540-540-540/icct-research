@@ -1,0 +1,76 @@
+{
+  "status": "passed",
+  "label": "G_best",
+  "scope": "matrix",
+  "pid": 4082795,
+  "started_utc": "2026-09-14T08:55:57.484111+00:00",
+  "optimizer_steps_executed": 0,
+  "finished_utc": "2026-09-14T08:56:28.987415+00:00",
+  "checkpoint_sha256_before": "30154a753f756b462c37e1893fdf7934b3eef0c152f26bd47fbae60cc546d191",
+  "checkpoint_sha256_after": "30154a753f756b462c37e1893fdf7934b3eef0c152f26bd47fbae60cc546d191",
+  "model_state_sha256_before": "ea7af274fc3eb3edae11a0f232ae6d96aa8969734c5ed20f5e022b9737c95fee",
+  "model_state_sha256_after": "ea7af274fc3eb3edae11a0f232ae6d96aa8969734c5ed20f5e022b9737c95fee",
+  "hook_and_batch": {
+    "hook_max_abs_error": 0.0,
+    "batch_max_abs_error": 1.52587890625e-05,
+    "hook_shapes": [
+      [
+        16,
+        20,
+        8,
+        128
+      ]
+    ]
+  },
+  "intervention_restore": null,
+  "completed": [
+    {
+      "reused": false,
+      "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/G_best__train__snr5.npz",
+      "scenes": 5549,
+      "last_batch_size": 13
+    },
+    {
+      "reused": false,
+      "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/G_best__train__snr10.npz",
+      "scenes": 5549,
+      "last_batch_size": 13
+    },
+    {
+      "reused": false,
+      "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/G_best__train__snr15.npz",
+      "scenes": 5549,
+      "last_batch_size": 13
+    },
+    {
+      "reused": false,
+      "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/G_best__train__snr20.npz",
+      "scenes": 5549,
+      "last_batch_size": 13
+    },
+    {
+      "reused": true,
+      "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/G_best__V_select__snr5.npz",
+      "scenes": 400,
+      "last_batch_size": 16
+    },
+    {
+      "reused": true,
+      "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/G_best__V_select__snr10.npz",
+      "scenes": 400,
+      "last_batch_size": 16
+    },
+    {
+      "reused": true,
+      "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/G_best__V_select__snr15.npz",
+      "scenes": 400,
+      "last_batch_size": 16
+    },
+    {
+      "reused": true,
+      "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/G_best__V_select__snr20.npz",
+      "scenes": 400,
+      "last_batch_size": 16
+    }
+  ]
+}

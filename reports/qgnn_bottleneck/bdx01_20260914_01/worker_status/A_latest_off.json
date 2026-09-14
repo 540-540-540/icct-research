@@ -1,0 +1,90 @@
+{
+  "status": "passed",
+  "label": "A_latest",
+  "scope": "off",
+  "pid": 4083541,
+  "started_utc": "2026-09-14T08:56:45.510354+00:00",
+  "optimizer_steps_executed": 0,
+  "finished_utc": "2026-09-14T08:58:27.037931+00:00",
+  "checkpoint_sha256_before": "3fa7568e7f4c9c69a82a7718c5ec633217bb5f4580dbb7577a58103e197b879b",
+  "checkpoint_sha256_after": "3fa7568e7f4c9c69a82a7718c5ec633217bb5f4580dbb7577a58103e197b879b",
+  "model_state_sha256_before": "374ec5d845d99f5eee17b9b143603aadadf4aa7c59b66cc92866bed43b742a37",
+  "model_state_sha256_after": "374ec5d845d99f5eee17b9b143603aadadf4aa7c59b66cc92866bed43b742a37",
+  "hook_and_batch": {
+    "hook_max_abs_error": 0.0,
+    "batch_max_abs_error": 1.52587890625e-05,
+    "hook_shapes": [
+      [
+        16,
+        20,
+        8,
+        128
+      ]
+    ]
+  },
+  "intervention_restore": {
+    "changed_keys": [
+      "graph.graph_layers.0.receiver_context",
+      "graph.graph_layers.0.sender_context",
+      "graph.graph_layers.1.receiver_context",
+      "graph.graph_layers.1.sender_context"
+    ],
+    "changed_elements": {
+      "graph.graph_layers.0.receiver_context": 640,
+      "graph.graph_layers.1.sender_context": 640,
+      "graph.graph_layers.0.sender_context": 640,
+      "graph.graph_layers.1.receiver_context": 640
+    },
+    "max_abs_error": 0.0
+  },
+  "completed": [
+    {
+      "reused": false,
+      "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/A_latest_off__train__snr5.npz",
+      "scenes": 5549,
+      "last_batch_size": 13
+    },
+    {
+      "reused": false,
+      "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/A_latest_off__train__snr10.npz",
+      "scenes": 5549,
+      "last_batch_size": 13
+    },
+    {
+      "reused": false,
+      "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/A_latest_off__train__snr15.npz",
+      "scenes": 5549,
+      "last_batch_size": 13
+    },
+    {
+      "reused": false,
+      "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/A_latest_off__train__snr20.npz",
+      "scenes": 5549,
+      "last_batch_size": 13
+    },
+    {
+      "reused": false,
+      "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/A_latest_off__V_select__snr5.npz",
+      "scenes": 400,
+      "last_batch_size": 16
+    },
+    {
+      "reused": false,
+      "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/A_latest_off__V_select__snr10.npz",
+      "scenes": 400,
+      "last_batch_size": 16
+    },
+    {
+      "reused": false,
+      "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/A_latest_off__V_select__snr15.npz",
+      "scenes": 400,
+      "last_batch_size": 16
+    },
+    {
+      "reused": false,
+      "path": "/home/dell/YrM/ICCT/results/qgnn_bottleneck/bdx01_20260914_01/cache/A_latest_off__V_select__snr20.npz",
+      "scenes": 400,
+      "last_batch_size": 16
+    }
+  ]
+}

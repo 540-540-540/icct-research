@@ -1,0 +1,236 @@
+{
+  "schema_version": "BDX-01-v1",
+  "run_id": "bdx01_20260914_01",
+  "created_utc": "2026-09-14T08:52:00.225729+00:00",
+  "metric_unit_tests": {
+    "status": "passed",
+    "measured": {
+      "status": "passed",
+      "point_weighted_ADE": 1.4,
+      "target_macro_ADE": 2.0,
+      "FDE_does_not_use_last_valid": true,
+      "empty_scene_retained": true,
+      "horizons_seconds": [
+        0.5,
+        1.0,
+        2.0
+      ],
+      "explicit_paired_key_test": true,
+      "episode_weighted_recovers_target_overall": 1.5,
+      "equal_episode_mean": 2.0
+    },
+    "tolerance": 0.0,
+    "evidence_path": "experiments/qgnn_bottleneck/tests/test_metrics.py"
+  },
+  "D0_existing_diagnostics": {
+    "status": "reused_verified",
+    "measured": {
+      "source_exact": true,
+      "optimizer_created": false,
+      "optimizer_steps_executed": 0
+    },
+    "tolerance": 0.0,
+    "evidence_path": "reports/qgnn_directed_context/d0.json"
+  },
+  "checkpoint_identity": {
+    "status": "passed",
+    "measured": {
+      "Q_best": {
+        "epoch": 75,
+        "keys": 84
+      },
+      "Q_latest": {
+        "epoch": 95,
+        "keys": 84
+      },
+      "A_best": {
+        "epoch": 54,
+        "keys": 88
+      },
+      "A_latest": {
+        "epoch": 74,
+        "keys": 88
+      },
+      "G_best": {
+        "epoch": 82,
+        "keys": 82
+      },
+      "G_latest": {
+        "epoch": 102,
+        "keys": 82
+      }
+    },
+    "tolerance": 0.0,
+    "evidence_path": "run_manifest.json:checkpoint_manifest"
+  },
+  "archive_reproduction": {
+    "Q_best": {
+      "status": "passed",
+      "measured": {
+        "max_scene_metric_abs_error_m": 3.3446595093522546e-07,
+        "max_aggregate_abs_error_m": 1.7021688503149335e-09,
+        "denominator_mismatches": 0,
+        "recomputed": {
+          "ADE": 0.5427669759968079,
+          "FDE": 1.0954215559507763,
+          "J": 1.090477753972196
+        },
+        "archived": {
+          "ADE": 0.5427669768666965,
+          "FDE": 1.0954215576153365,
+          "J": 1.0904777556743648
+        }
+      },
+      "tolerance": 1e-05,
+      "evidence_path": "results/qgnn_directed_context/seed2026/original/validation_epoch_75.json"
+    },
+    "G_best": {
+      "status": "passed",
+      "measured": {
+        "max_scene_metric_abs_error_m": 3.145273077542754e-07,
+        "max_aggregate_abs_error_m": 2.8838558208121867e-09,
+        "denominator_mismatches": 0,
+        "recomputed": {
+          "ADE": 0.5502231628749332,
+          "FDE": 1.1182830305794709,
+          "J": 1.1093646781646687
+        },
+        "archived": {
+          "ADE": 0.550223161285976,
+          "FDE": 1.1182830279896736,
+          "J": 1.1093646752808128
+        }
+      },
+      "tolerance": 1e-05,
+      "evidence_path": "results/qgnn_motionframe/seed2026/gnn/validation_epoch_82.json"
+    },
+    "A_best": {
+      "status": "passed",
+      "measured": {
+        "max_scene_metric_abs_error_m": 2.9788115840645446e-07,
+        "max_aggregate_abs_error_m": 1.0978433717667713e-09,
+        "denominator_mismatches": 0,
+        "recomputed": {
+          "ADE": 0.5424865825630953,
+          "FDE": 1.0967859734587213,
+          "J": 1.0908795692924558
+        },
+        "archived": {
+          "ADE": 0.5424865836609387,
+          "FDE": 1.096785972834914,
+          "J": 1.0908795700783958
+        }
+      },
+      "tolerance": 1e-05,
+      "evidence_path": "results/qgnn_directed_context/seed2026/directed_context/validation_epoch_54.json"
+    }
+  },
+  "hook_and_batch_equivalence": {
+    "status": "passed",
+    "measured": {
+      "workers": 11,
+      "max_abs_error": 1.52587890625e-05
+    },
+    "tolerance": {
+      "atol": 2e-05,
+      "rtol": 2e-05
+    },
+    "evidence_path": "worker_status/*.json"
+  },
+  "mask_denominator_horizon_pairing_aggregation": {
+    "status": "passed",
+    "measured": {
+      "metric_unit_tests_passed": true,
+      "explicit_join_key": "(split,origin,snr,slot)",
+      "horizons": [
+        5,
+        10,
+        20
+      ]
+    },
+    "tolerance": 0.0,
+    "evidence_path": "tables/"
+  },
+  "read_only": {
+    "status": "passed",
+    "measured": {
+      "optimizer_steps_executed": 0,
+      "baseline_files_changed": [],
+      "checkpoint_hashes_unchanged": true,
+      "new_training_started": false
+    },
+    "tolerance": 0.0,
+    "evidence_path": "run_manifest.json"
+  },
+  "access_audit": {
+    "status": "passed",
+    "measured": {
+      "actual_splits": [
+        "V_select",
+        "train"
+      ],
+      "forbidden_records": [],
+      "records": 223
+    },
+    "tolerance": 0.0,
+    "evidence_path": "access_log.json"
+  },
+  "resume_equivalence": {
+    "status": "passed",
+    "measured": {
+      "status": "passed",
+      "fixed_origins": [
+        0,
+        1
+      ],
+      "simulated_interruption_after_origins": 1,
+      "resumed_equals_uninterrupted": true,
+      "max_abs_error": 0.0,
+      "optimizer_steps_executed": 0
+    },
+    "tolerance": 0.0,
+    "evidence_path": "resume_check.json"
+  },
+  "directed_context_restore": {
+    "status": "passed",
+    "measured": {
+      "workers": 2,
+      "max_abs_error": 0.0,
+      "changed_keys": [
+        [
+          "graph.graph_layers.0.receiver_context",
+          "graph.graph_layers.0.sender_context",
+          "graph.graph_layers.1.receiver_context",
+          "graph.graph_layers.1.sender_context"
+        ],
+        [
+          "graph.graph_layers.0.receiver_context",
+          "graph.graph_layers.0.sender_context",
+          "graph.graph_layers.1.receiver_context",
+          "graph.graph_layers.1.sender_context"
+        ]
+      ]
+    },
+    "tolerance": {
+      "atol": 2e-05,
+      "rtol": 2e-05
+    },
+    "evidence_path": "worker_status/"
+  },
+  "reference_identity": {
+    "status": "passed",
+    "measured": {
+      "max_abs_error": 1.7763568394002505e-15,
+      "coverage": {
+        "train": 1.0,
+        "V_select": 1.0
+      }
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-10
+    },
+    "evidence_path": "tables/source_alignment.json"
+  },
+  "finished_utc": "2026-09-14T09:07:46.475096+00:00"
+}
