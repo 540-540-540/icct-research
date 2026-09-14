@@ -1,0 +1,16 @@
+{
+  "exact_probability_normalization": true,
+  "unique_detection_marginals": true,
+  "murty_vs_exhaustive_cases": 5,
+  "murty_hypotheses_unique": true,
+  "mixture_contains_between_hypothesis_covariance": true,
+  "mixture_psd": true,
+  "tracker_mixture_spread_verified": true,
+  "half_probability_does_not_hit_or_birth": true,
+  "legacy_hungarian_regression": true,
+  "no_observations": true,
+  "jpda_tracker_three_cycle_integration": true,
+  "hit_and_birth_probability_threshold": "strictly greater than 0.5",
+  "large_component_rule": "actual Murty top50; posterior conditional on retained set",
+  "small_component_rule": "exhaustive if max(track_count,detection_count)<=4"
+}

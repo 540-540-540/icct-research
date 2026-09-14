@@ -1,0 +1,195 @@
+{
+  "stage": "F03",
+  "status": "passed",
+  "profile_sources": {
+    "q": "reports/f03/optimized_qgnn/qgnn.json",
+    "g": "reports/f03/optimized_gnn/gnn.json",
+    "old": "reports/f03/optimized_legacy/qgnn_legacy.json",
+    "qs": "reports/f03/optimized_small_qgnn/qgnn.json",
+    "gs": "reports/f03/optimized_small_gnn/gnn.json"
+  },
+  "median_step_seconds": {
+    "q": 20.302391363307834,
+    "g": 0.4154860023409128,
+    "old": 17.442284900695086,
+    "qs": 16.88770025037229,
+    "gs": 0.13383801840245724
+  },
+  "inference_max_seconds_per_origin": {
+    "q": 0.34165219217538834,
+    "g": 0.01006997935473919,
+    "old": 0.36798073165118694,
+    "qs": 0.3637367766350508,
+    "gs": 0.004434401169419289
+  },
+  "inference_budget": "Uncached sampled maximum; evaluated cache speedup deliberately not deducted",
+  "full_model_speedup": 9.768713354398825,
+  "peak_allocated_GiB": {
+    "q": 8.235583305358887,
+    "g": 0.6511087417602539,
+    "old": 8.2304368019104,
+    "qs": 7.691978931427002,
+    "gs": 0.036548614501953125
+  },
+  "quantum_precision": "float64/complex128",
+  "temporal_precision": "float32",
+  "reduced_measurement_reason": "Previous serial 6-step run required 19.4 minutes. Equivalent optimizer-step probes now use 3-5 measured steps after warmup, plus worst-case N8 and independent correctness tests; not a long-run steady-state claim.",
+  "quantum_check": "reports/quantum_speed/correctness-20260912-233015.json",
+  "evaluation_cache_check": "reports/evaluation_cache/check-20260912-233612.json",
+  "unmeasured": {
+    "separate_pauli_readout_seconds": null,
+    "long_run_steady_state": null
+  },
+  "limitations": [
+    "Cost projections use short samples; actual costs logged and F04 cap enforced.",
+    "Readout is included in measured graph forward/backward, not separately timed.",
+    "Checkpoint IO covered by contingency, not falsely reported as directly measured."
+  ],
+  "estimated_line_items": [
+    {
+      "stage": "F04_selection_Q",
+      "cost_model": "qs",
+      "optimizer_steps": 768,
+      "evaluation_origin_conditions": 38400,
+      "estimated_gpu_hours": 7.482568337519964,
+      "notes": "L2 candidate charged at measured L3 cost; all max epochs; early stopping may reduce cost"
+    },
+    {
+      "stage": "F04_selection_G",
+      "cost_model": "gs",
+      "optimizer_steps": 512,
+      "evaluation_origin_conditions": 25600,
+      "estimated_gpu_hours": 0.05056825982199775,
+      "notes": ""
+    },
+    {
+      "stage": "F04_confirmation_Q",
+      "cost_model": "qs",
+      "optimizer_steps": 3072,
+      "evaluation_origin_conditions": 41216,
+      "estimated_gpu_hours": 18.575219487481647,
+      "notes": ""
+    },
+    {
+      "stage": "F04_confirmation_G",
+      "cost_model": "gs",
+      "optimizer_steps": 3072,
+      "evaluation_origin_conditions": 41216,
+      "estimated_gpu_hours": 0.16497740864753724,
+      "notes": ""
+    },
+    {
+      "stage": "F04_review_own",
+      "cost_model": "g",
+      "optimizer_steps": 512,
+      "evaluation_origin_conditions": 6400,
+      "estimated_gpu_hours": 0.07699352807468839,
+      "notes": "Conservative measured G full-model proxy; own-only omits graph"
+    },
+    {
+      "stage": "F04_review_Q",
+      "cost_model": "q",
+      "optimizer_steps": 768,
+      "evaluation_origin_conditions": 12416,
+      "estimated_gpu_hours": 5.509497273630566,
+      "notes": ""
+    },
+    {
+      "stage": "F04_review_G",
+      "cost_model": "g",
+      "optimizer_steps": 768,
+      "evaluation_origin_conditions": 12416,
+      "estimated_gpu_hours": 0.12336725374062855,
+      "notes": ""
+    },
+    {
+      "stage": "F05_own",
+      "cost_model": "g",
+      "optimizer_steps": 3123,
+      "evaluation_origin_conditions": 14400,
+      "estimated_gpu_hours": 0.4007140244496986,
+      "notes": "Shared per seed, not repeated per model; conservative G full-model proxy"
+    },
+    {
+      "stage": "F05_Q",
+      "cost_model": "q",
+      "optimizer_steps": 17697,
+      "evaluation_origin_conditions": 81600,
+      "estimated_gpu_hours": 107.54728856610289,
+      "notes": ""
+    },
+    {
+      "stage": "F05_G",
+      "cost_model": "g",
+      "optimizer_steps": 17697,
+      "evaluation_origin_conditions": 81600,
+      "estimated_gpu_hours": 2.2707128052149588,
+      "notes": ""
+    },
+    {
+      "stage": "F06_D_oldQ",
+      "cost_model": "old",
+      "optimizer_steps": 17697,
+      "evaluation_origin_conditions": 81600,
+      "estimated_gpu_hours": 94.08426210842717,
+      "notes": ""
+    },
+    {
+      "stage": "F06_E_representation",
+      "cost_model": "qs",
+      "optimizer_steps": 4164,
+      "evaluation_origin_conditions": 19200,
+      "estimated_gpu_hours": 21.473369431650887,
+      "notes": "Budget fresh representation preparation; eligible reuse can reduce cost"
+    },
+    {
+      "stage": "F06_E_features",
+      "cost_model": "qs",
+      "optimizer_steps": 0,
+      "evaluation_origin_conditions": 25204,
+      "estimated_gpu_hours": 2.546561588419394,
+      "notes": "Conservative full small-model inference proxy for frozen graph feature extraction"
+    },
+    {
+      "stage": "F06_E_four_heads",
+      "cost_model": "gs",
+      "optimizer_steps": 16656,
+      "evaluation_origin_conditions": 82432,
+      "estimated_gpu_hours": 0.7207618310302496,
+      "notes": "Conservative small G full-model proxy for heads on frozen features"
+    },
+    {
+      "stage": "F06_A_Q_perturbations",
+      "cost_model": "q",
+      "optimizer_steps": 0,
+      "evaluation_origin_conditions": 51840,
+      "estimated_gpu_hours": 4.919791567325592,
+      "notes": "Reserved five evaluation passes per seed; no test data opened"
+    },
+    {
+      "stage": "F07_locked_q",
+      "cost_model": "q",
+      "optimizer_steps": 0,
+      "evaluation_origin_conditions": 10368,
+      "estimated_gpu_hours": 0.9839583134651184,
+      "notes": "Counts only from prior F01D report; no locked inputs/labels opened"
+    },
+    {
+      "stage": "F07_locked_g",
+      "cost_model": "g",
+      "optimizer_steps": 0,
+      "evaluation_origin_conditions": 10368,
+      "estimated_gpu_hours": 0.029001540541648864,
+      "notes": "Counts only from prior F01D report; no locked inputs/labels opened"
+    },
+    {
+      "stage": "F07_locked_old",
+      "cost_model": "old",
+      "optimizer_steps": 0,
+      "evaluation_origin_conditions": 10368,
+      "estimated_gpu_hours": 1.0597845071554184,
+      "notes": "Counts only from prior F01D report; no locked inputs/labels opened"
+    }
+  ],
+  "formal_training_started": false
+}

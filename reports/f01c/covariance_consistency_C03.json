@@ -1,0 +1,29 @@
+{
+  "scope": "C03 JPDA q4 fixed12train scored matched selected origins only; 5m binding truncates errors, not an unbiased calibration test",
+  "state_nees": {
+    "n": 2269,
+    "mean": 14.871955888764159,
+    "median": 5.4079994140920205,
+    "fraction_above_chi95": 0.38034376377258705
+  },
+  "position_nees": {
+    "n": 2269,
+    "mean": 12.506281532698578,
+    "median": 4.123982778034229,
+    "fraction_above_chi95": 0.4235345967386514
+  },
+  "association_weighted_nis": {
+    "mean": 1.475567884555062,
+    "effective_weight": 18437.987790379666,
+    "qualification": "gated posterior branches"
+  },
+  "jpda": {
+    "components": 62216,
+    "truncated_components": 0,
+    "max_tracks": 5,
+    "max_detections": 3,
+    "min_ESS": 1.0,
+    "qualification": "top50 probabilities conditional on retained hypotheses; omitted mass unknown"
+  },
+  "interpretation": "Diagnostic only; does not establish calibrated posterior uncertainty or override engineering gate failure"
+}

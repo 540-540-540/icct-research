@@ -1,0 +1,14 @@
+{
+  "removed_obsolete_cache": "data/f01d_before_solver_fix",
+  "removed_cache_bytes": 32930521,
+  "archived_directories": [
+    "reports/snr_positive_before",
+    "reports/handoff_f02_before",
+    "reports/f01d_before_solver_fix",
+    "reports/f01d_negative_snr_archive"
+  ],
+  "archive": "archive/F01D_阶段备份_20260912.tar.gz",
+  "archive_file_count": 89,
+  "current_F01D_status": "complete",
+  "historical_experiments_preserved": true
+}

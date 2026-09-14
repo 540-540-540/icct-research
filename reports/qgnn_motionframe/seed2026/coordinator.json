@@ -1,0 +1,10 @@
+{
+  "status": "complete",
+  "pid": 3710695,
+  "started_at": 1789350633.330865,
+  "devices": {
+    "motion_frame": "cuda:0",
+    "gnn": "cuda:1"
+  },
+  "finished_at": 1789355275.8571496
+}

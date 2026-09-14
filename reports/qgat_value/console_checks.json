@@ -1,0 +1,90 @@
+{
+  "passed": true,
+  "scope": "Local CPU stubs only; no training, GPU, inference, server process or checkpoint loads",
+  "source": "experiments/qgat_relation/console.py",
+  "python": "3.11.5",
+  "checks": {
+    "legacy_qgat_pair": {
+      "passed": true,
+      "cells": [
+        "original_D",
+        "relation_D"
+      ],
+      "epochs": 40,
+      "runner": "run.py"
+    },
+    "legacy_gnn": {
+      "passed": true,
+      "cells": [
+        "gnn"
+      ],
+      "epochs": 40,
+      "runner": "run_gnn.py"
+    },
+    "legacy_gnn-fast": {
+      "passed": true,
+      "cells": [
+        "gnn"
+      ],
+      "epochs": 40,
+      "runner": "run_gnn_fast.py"
+    },
+    "fresh100_initial": {
+      "passed": true,
+      "optimizer_steps": "0/34700",
+      "inherited_epochs": 0,
+      "devices": {
+        "relation_D": "cuda:0",
+        "relation_value": "cuda:1"
+      },
+      "no_parent_checkpoint_text": true
+    },
+    "fresh100_early_eta": {
+      "passed": true,
+      "train_available_before_first_validation": true,
+      "total_after_first_validation_seconds": 69795.0,
+      "validation_seconds": 11.0
+    },
+    "extend100_compatibility": {
+      "passed": true,
+      "inherited_epochs": 40,
+      "parent_timing_excluded": true,
+      "continuation_validation_seconds": 11.0,
+      "continuation_total_seconds": 41595.0
+    },
+    "no_start_read_only": {
+      "passed": true,
+      "modes": [
+        "default",
+        "--gnn",
+        "--gnn-fast",
+        "--value",
+        "--extend100"
+      ],
+      "subprocess_calls": 0,
+      "checkpoint_loads": 0,
+      "filesystem_writes": 0
+    },
+    "one_second_refresh": {
+      "passed": true,
+      "sleep_seconds": [
+        1
+      ],
+      "no_start_process_calls": 0
+    },
+    "value_start_resume_mapping": {
+      "passed": true,
+      "runner": "experiments/qgat_value/run.py",
+      "start_args": [
+        "--run"
+      ],
+      "resume_args": [
+        "--run",
+        "--resume"
+      ],
+      "launches_stubbed": true
+    }
+  },
+  "fresh100_initial_snapshot": "QGAT 新鲜配对 · 从头训练 100 轮 · seed 2026 · 总批次 16 · 各一 GPU（基线 0 / 关系消息 1）\n北京时间 2026-09-13 22:00:01  |  每 1 秒刷新\n整体状态：等待从头训练。\n\n当前 QGAT（关系匹配）  |  cuda:0  |  等待启动\n  [------------------------]   0.0%  |  第 1/100 轮  |  本轮 0/5549\n  优化步 0/34700  |  当前轮平均损失 —\n  预计剩余：训练 ≈ 估算中；验证耗时待首轮测得\n  验证结果：尚未完成第一轮验证\n\nQGAT（关系匹配＋关系消息）  |  cuda:1  |  等待启动\n  [------------------------]   0.0%  |  第 1/100 轮  |  本轮 0/5549\n  优化步 0/34700  |  当前轮平均损失 —\n  预计剩余：训练 ≈ 估算中；验证耗时待首轮测得\n  验证结果：尚未完成第一轮验证\n\n预计时间会随速度和验证耗时更新。两组并行，整体取较慢一组。\n只读监视：Ctrl+C 仅关闭面板。\n",
+  "extend100_initial_snapshot": "两卡各一模型 · 续训到100轮 · seed 2026 · 总批次 16\n北京时间 2026-09-13 22:00:01  |  每 1 秒刷新\n整体状态：等待从40轮断点续训；首次启动会建立独立分支。\n\nGNN  |  cuda:0  |  等待从40轮续训\n  等待载入40轮父断点；目标共100轮，续训60轮。\n\n新 QGAT（关系旋转）  |  cuda:1  |  等待从40轮续训\n  等待载入40轮父断点；目标共100轮，续训60轮。\n\n预计时间会随速度和验证耗时更新。两组并行，整体取较慢一组。\n只读监视：Ctrl+C 仅关闭面板。\n"
+}

@@ -1,0 +1,52 @@
+{
+  "status": "READY_WAITING_FOR_USER",
+  "checked_at": "2026-09-13T01:11:23.1146676+08:00",
+  "runtime": "/home/dell/YrM/ICCT",
+  "entry": "experiments/qgat_candidate/run_formal.py",
+  "config": "configs/qgat_formal.json",
+  "check_only": {
+    "optimizer_steps_executed": 0,
+    "models": [
+      "qgat",
+      "gnn"
+    ],
+    "confirmation_opened": false,
+    "devices": [
+      "cuda:0",
+      "cuda:1"
+    ],
+    "existing_run": false,
+    "ready": true,
+    "seeds": [
+      2023,
+      2024,
+      2025
+    ],
+    "validation_origins": 400,
+    "snr_db": [
+      5,
+      10,
+      15,
+      20
+    ],
+    "patience": 4,
+    "max_epochs": 20,
+    "training_origins": 5549,
+    "test_opened": false
+  },
+  "cpu_checks_passed": 5,
+  "smoke": {
+    "status": "complete",
+    "training_origins_per_model": 16,
+    "final_gate_changes_after_smoke": "Only provenance and pre-confirmation seal strengthened; final gates separately CPU-checked",
+    "report": "reports/qgat_formal/smoke/20260913-010737/summary.json",
+    "validation_origins": 4,
+    "validation_snrs": 4,
+    "optimizer_steps_per_model": 1,
+    "temporary_weights_cleaned": true,
+    "model_count": 2
+  },
+  "formal_training_started": false,
+  "old_f04_running": false,
+  "scheduled_monitor": "PAUSED"
+}

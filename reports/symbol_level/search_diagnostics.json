@@ -1,0 +1,26 @@
+{
+  "snr_m10": {
+    "outputs": 776,
+    "search_failures": 0,
+    "position_boundary": 0,
+    "velocity_boundary": 0
+  },
+  "snr_m15": {
+    "outputs": 776,
+    "search_failures": 0,
+    "position_boundary": 0,
+    "velocity_boundary": 0
+  },
+  "snr_m20": {
+    "outputs": 776,
+    "search_failures": 0,
+    "position_boundary": 0,
+    "velocity_boundary": 0
+  },
+  "snr_m5": {
+    "outputs": 776,
+    "search_failures": 0,
+    "position_boundary": 0,
+    "velocity_boundary": 0
+  }
+}

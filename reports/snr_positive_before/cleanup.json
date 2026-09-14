@@ -1,0 +1,11 @@
+{
+  "deleted": "/home/dell/YrM/ICCT/data/f01d_negative_snr_archive",
+  "files": 874,
+  "bytes": 6383459,
+  "reason": "User requested removal of stopped incomplete negative-SNR process cache; source data and validation reports retained",
+  "additional_obsolete_negative_snapshot_cache": {
+    "path": "/home/dell/YrM/ICCT/data/symbol_frontend_negative_snr_archive",
+    "files": 296,
+    "bytes": 13289544
+  }
+}

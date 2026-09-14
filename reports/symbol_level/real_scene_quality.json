@@ -1,0 +1,86 @@
+{
+  "revision": "A03-symbol-v1",
+  "config_sha256": "fd21a6fa2b168bf439be2f6efcd55618a3c47c9770ef809eb22a0028d4b7ffef",
+  "results": [
+    {
+      "split": "train",
+      "snr_db": -20,
+      "episodes": 12,
+      "targets": 233,
+      "outputs": 233,
+      "position_rmse_m": 0.036309441103712065,
+      "velocity_rmse_mps": 0.042330860707393725
+    },
+    {
+      "split": "train",
+      "snr_db": -15,
+      "episodes": 12,
+      "targets": 233,
+      "outputs": 233,
+      "position_rmse_m": 0.02233554381087175,
+      "velocity_rmse_mps": 0.02460712651386083
+    },
+    {
+      "split": "train",
+      "snr_db": -10,
+      "episodes": 12,
+      "targets": 233,
+      "outputs": 233,
+      "position_rmse_m": 0.015236917379085021,
+      "velocity_rmse_mps": 0.015486680884168765
+    },
+    {
+      "split": "train",
+      "snr_db": -5,
+      "episodes": 12,
+      "targets": 233,
+      "outputs": 233,
+      "position_rmse_m": 0.012077250137868707,
+      "velocity_rmse_mps": 0.010481165843298258
+    },
+    {
+      "split": "V_select",
+      "snr_db": -20,
+      "episodes": 25,
+      "targets": 543,
+      "outputs": 543,
+      "position_rmse_m": 0.03597456577508298,
+      "velocity_rmse_mps": 0.045139933615443606
+    },
+    {
+      "split": "V_select",
+      "snr_db": -15,
+      "episodes": 25,
+      "targets": 543,
+      "outputs": 543,
+      "position_rmse_m": 0.021456681610755056,
+      "velocity_rmse_mps": 0.025939707070199648
+    },
+    {
+      "split": "V_select",
+      "snr_db": -10,
+      "episodes": 25,
+      "targets": 543,
+      "outputs": 543,
+      "position_rmse_m": 0.014916031593080794,
+      "velocity_rmse_mps": 0.01673351929814296
+    },
+    {
+      "split": "V_select",
+      "snr_db": -5,
+      "episodes": 25,
+      "targets": 543,
+      "outputs": 543,
+      "position_rmse_m": 0.01181991003610324,
+      "velocity_rmse_mps": 0.011201228841291813
+    }
+  ],
+  "scope": "Fixed snapshots for current upstream model validation; not F01-D complete temporal predictor cache",
+  "qualification": "Output availability follows assumed known separated targets; not detection recall. Errors include every produced estimate, no5m censoring",
+  "not_run": [
+    "V_confirm",
+    "test",
+    "F01-D full predictor packing",
+    "prediction training"
+  ]
+}

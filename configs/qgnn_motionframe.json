@@ -1,0 +1,23 @@
+{
+  "revision": "qgnn-motion-frame-and-fresh-gnn-seed2026-v1",
+  "seed": 2026,
+  "cells": ["motion_frame", "gnn"],
+  "devices": {"motion_frame": "cuda:0", "gnn": "cuda:1"},
+  "graph_seed_offset": 200000,
+  "temporal_seed_offset": 100000,
+  "epochs": 150,
+  "patience": 20,
+  "min_delta": 0,
+  "selection": "minimum V_select ADE + 0.5 * FDE; strict improvement",
+  "train_origins": 5549,
+  "validation_origins": 400,
+  "batch_size": 16,
+  "micro_batch": 16,
+  "validation_micro_batch": 16,
+  "graph_lr": 0.0003,
+  "snr_db": [5, 10, 15, 20],
+  "allowed_splits": ["train", "V_select"],
+  "low_speed_fallback_mps": 1.0,
+  "original_reference": "results/qgnn_readout/seed2026/original",
+  "limitation": "Single-seed V_select development trial. Motion-frame QGNN and strong GNN train fresh; unchanged original Q is reused only after complete source/data/training-rule checks. Strong GNN is a performance control, not an isolated test of quantum necessity. No V_confirm/test access or QGAT training."
+}

@@ -1,0 +1,22 @@
+{
+  "revision": "qgnn-x6-paired-seed2026-v1",
+  "seed": 2026,
+  "cells": ["original", "x_readout"],
+  "devices": {"original": "cuda:0", "x_readout": "cuda:1"},
+  "graph_seed_offset": 200000,
+  "temporal_seed_offset": 100000,
+  "epochs": 150,
+  "patience": 20,
+  "min_delta": 0,
+  "selection": "minimum V_select ADE + 0.5 * FDE; strict improvement",
+  "train_origins": 5549,
+  "validation_origins": 400,
+  "batch_size": 16,
+  "micro_batch": 16,
+  "validation_micro_batch": 16,
+  "graph_lr": 0.0003,
+  "snr_db": [5, 10, 15, 20],
+  "allowed_splits": ["train", "V_select"],
+  "historical_gnn_reference": "results/qgat_extend100/seed2026/gnn",
+  "limitation": "Single-seed development comparison of inherited QGNN versus X6 readout. Strong GNN remains a historical reference with a different first-40-epoch batching history. No V_confirm/test access and no QGAT training."
+}

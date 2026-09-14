@@ -1,0 +1,16 @@
+{
+  "status": "complete",
+  "pid": 2261407,
+  "started_at": 1789262952.006812,
+  "queues": {
+    "cuda:0": [
+      "A",
+      "C"
+    ],
+    "cuda:1": [
+      "B",
+      "D"
+    ]
+  },
+  "finished_at": 1789263424.495051
+}

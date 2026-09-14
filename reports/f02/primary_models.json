@@ -1,0 +1,48 @@
+{
+  "passed": true,
+  "checks": {
+    "QGNN": {
+      "passed": true,
+      "display_name": "QGNN",
+      "implementation": "PennyLane QuantumGraph plus numeric GPT-2 temporal model",
+      "prediction_shape": [
+        1,
+        20,
+        8,
+        2
+      ],
+      "parameter_count": 124965720,
+      "common_LLM": [
+        12,
+        12,
+        768
+      ],
+      "LLM_trainable_parameters": 294912,
+      "gradient_max": 5.712635517120361
+    },
+    "GNN": {
+      "passed": true,
+      "display_name": "GNN",
+      "implementation": "Original Plain graph-attention core and common numeric GPT-2 temporal model",
+      "prediction_shape": [
+        1,
+        20,
+        8,
+        2
+      ],
+      "parameter_count": 125365300,
+      "common_LLM": [
+        12,
+        12,
+        768
+      ],
+      "LLM_trainable_parameters": 294912,
+      "gradient_max": 9.177343368530273
+    }
+  },
+  "split": "train",
+  "sample_index": 97,
+  "snr_db": 20,
+  "device": "cuda:1",
+  "optimizer_steps": 0
+}

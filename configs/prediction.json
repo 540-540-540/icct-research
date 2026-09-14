@@ -1,0 +1,30 @@
+{
+  "revision": "A04",
+  "entrypoint": "prediction.model.build_model",
+  "primary_models": {
+    "qgnn": {
+      "display_name": "QGNN",
+      "class": "prediction.model.QGNN",
+      "quantum_backend": "pennylane.default.qubit",
+      "quantum_precision": "float64/complex128",
+      "graph_depth": 3,
+      "temporal_model": "GPT-2 base with frozen base and QKV LoRA r8 alpha16"
+    },
+    "gnn": {
+      "display_name": "GNN",
+      "class": "prediction.model.GNN",
+      "graph_class": "prediction.classical.GNNGraph",
+      "source": "code/00_remote_shared_dependencies/target_interaction_graph.py:DenseEdgeGraphAttention and build_edge_features",
+      "graph_depth": 2,
+      "hidden_dim": 128,
+      "heads": 4,
+      "edge_dim": 7,
+      "node_adapter": "standardized_state and detected/exists: 6->128->128 MLP per frame",
+      "temporal_model": "same GPT-2 base, frozen base and QKV LoRA r8 alpha16 as QGNN",
+      "llm": true
+    }
+  },
+  "historical_reference_only": ["prediction.quantum_torch_reference", "prediction.classical.ClassicalGNN"],
+  "formal_training_started": false,
+  "new_connection_and_width_isolation_experiments": "cancelled"
+}

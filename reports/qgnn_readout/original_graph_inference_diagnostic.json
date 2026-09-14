@@ -1,0 +1,213 @@
+{
+  "status": "complete",
+  "checkpoint_epoch": 75,
+  "split": "V_select",
+  "validation_origins": 400,
+  "snr_db": [
+    5,
+    10,
+    15,
+    20
+  ],
+  "optimizer_steps": 0,
+  "checkpoint_files_modified": false,
+  "rows": [
+    {
+      "mode": "unchanged",
+      "epoch": 75,
+      "metrics": {
+        "ADE": 0.5427669768666965,
+        "FDE": 1.0954215576153365,
+        "J": 1.0904777556743648
+      },
+      "difference_from_unchanged": {
+        "ADE": 0.0,
+        "FDE": 0.0,
+        "J": 0.0
+      },
+      "change_percent": {
+        "ADE": 0.0,
+        "FDE": 0.0
+      },
+      "by_snr": {
+        "5": {
+          "ADE": 0.542815959919244,
+          "FDE": 1.0954868549655656,
+          "J": 1.0905593874020267,
+          "ade_sum": 217.12638396769762,
+          "fde_sum": 438.1947419862263,
+          "ade_scenes": 400,
+          "fde_scenes": 400,
+          "total_scenes": 400,
+          "graph_evaluation_cache": null
+        },
+        "10": {
+          "ADE": 0.5428032646758948,
+          "FDE": 1.0954927905090153,
+          "J": 1.0905496599304025,
+          "ade_sum": 217.1213058703579,
+          "fde_sum": 438.19711620360613,
+          "ade_scenes": 400,
+          "fde_scenes": 400,
+          "total_scenes": 400,
+          "graph_evaluation_cache": null
+        },
+        "15": {
+          "ADE": 0.5427322538848967,
+          "FDE": 1.0954069433046971,
+          "J": 1.0904357255372452,
+          "ade_sum": 217.09290155395865,
+          "fde_sum": 438.1627773218788,
+          "ade_scenes": 400,
+          "fde_scenes": 400,
+          "total_scenes": 400,
+          "graph_evaluation_cache": null
+        },
+        "20": {
+          "ADE": 0.5427164289867505,
+          "FDE": 1.095299641682068,
+          "J": 1.0903662498277846,
+          "ade_sum": 217.08657159470022,
+          "fde_sum": 438.11985667282715,
+          "ade_scenes": 400,
+          "fde_scenes": 400,
+          "total_scenes": 400,
+          "graph_evaluation_cache": null
+        }
+      }
+    },
+    {
+      "mode": "neutral_quantum_weights",
+      "epoch": 75,
+      "metrics": {
+        "ADE": 0.6673788371187401,
+        "FDE": 1.376163658638252,
+        "J": 1.3554606664378661
+      },
+      "difference_from_unchanged": {
+        "ADE": 0.12461186025204363,
+        "FDE": 0.2807421010229154,
+        "J": 0.26498291076350133
+      },
+      "change_percent": {
+        "ADE": 22.958629681453214,
+        "FDE": 25.628681403173516
+      },
+      "by_snr": {
+        "5": {
+          "ADE": 0.6673664194974117,
+          "FDE": 1.376146650633309,
+          "J": 1.3554397448140663,
+          "ade_sum": 266.9465677989647,
+          "fde_sum": 550.4586602533236,
+          "ade_scenes": 400,
+          "fde_scenes": 400,
+          "total_scenes": 400,
+          "graph_evaluation_cache": null
+        },
+        "10": {
+          "ADE": 0.6674004377028905,
+          "FDE": 1.3761381850019097,
+          "J": 1.3554695302038453,
+          "ade_sum": 266.9601750811562,
+          "fde_sum": 550.4552740007639,
+          "ade_scenes": 400,
+          "fde_scenes": 400,
+          "total_scenes": 400,
+          "graph_evaluation_cache": null
+        },
+        "15": {
+          "ADE": 0.6673472445108928,
+          "FDE": 1.3761794095509685,
+          "J": 1.3554369492863771,
+          "ade_sum": 266.9388978043571,
+          "fde_sum": 550.4717638203874,
+          "ade_scenes": 400,
+          "fde_scenes": 400,
+          "total_scenes": 400,
+          "graph_evaluation_cache": null
+        },
+        "20": {
+          "ADE": 0.6674012467637658,
+          "FDE": 1.3761903893668204,
+          "J": 1.355496441447176,
+          "ade_sum": 266.9604987055063,
+          "fde_sum": 550.4761557467282,
+          "ade_scenes": 400,
+          "fde_scenes": 400,
+          "total_scenes": 400,
+          "graph_evaluation_cache": null
+        }
+      }
+    },
+    {
+      "mode": "self_edges_only",
+      "epoch": 75,
+      "metrics": {
+        "ADE": 0.657118867461686,
+        "FDE": 1.3944424412975787,
+        "J": 1.3543400881104755
+      },
+      "difference_from_unchanged": {
+        "ADE": 0.11435189059498951,
+        "FDE": 0.2990208836822421,
+        "J": 0.2638623324361107
+      },
+      "change_percent": {
+        "ADE": 21.068321299708394,
+        "FDE": 27.297334218361712
+      },
+      "by_snr": {
+        "5": {
+          "ADE": 0.6572357465745882,
+          "FDE": 1.3945895359269342,
+          "J": 1.3545305145380553,
+          "ade_sum": 262.89429862983525,
+          "fde_sum": 557.8358143707737,
+          "ade_scenes": 400,
+          "fde_scenes": 400,
+          "total_scenes": 400,
+          "graph_evaluation_cache": null
+        },
+        "10": {
+          "ADE": 0.6571153878886252,
+          "FDE": 1.3943619280215354,
+          "J": 1.354296351899393,
+          "ade_sum": 262.8461551554501,
+          "fde_sum": 557.7447712086141,
+          "ade_scenes": 400,
+          "fde_scenes": 400,
+          "total_scenes": 400,
+          "graph_evaluation_cache": null
+        },
+        "15": {
+          "ADE": 0.6570155201526359,
+          "FDE": 1.394314225651324,
+          "J": 1.354172632978298,
+          "ade_sum": 262.80620806105435,
+          "fde_sum": 557.7256902605295,
+          "ade_scenes": 400,
+          "fde_scenes": 400,
+          "total_scenes": 400,
+          "graph_evaluation_cache": null
+        },
+        "20": {
+          "ADE": 0.6571088152308948,
+          "FDE": 1.3945040755905211,
+          "J": 1.3543608530261553,
+          "ade_sum": 262.84352609235793,
+          "fde_sum": 557.8016302362084,
+          "ade_scenes": 400,
+          "fde_scenes": 400,
+          "total_scenes": 400,
+          "graph_evaluation_cache": null
+        }
+      }
+    }
+  ],
+  "definitions": {
+    "neutral_quantum_weights": "Keep all classical message/value/FFN paths; zero trained score/gate matrices in memory, yielding uniform attention over existing neighbors and gate=1.",
+    "self_edges_only": "Keep all learned weights and node/value/FFN paths, restrict adjacency to existing self edges in both graph layers."
+  },
+  "limitation": "Frozen-model inference interventions measure sensitivity of this checkpoint. No retraining, no causal attribution of training-time benefits, no independent confirmation."
+}

@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "checks": [
+    "one real origin per epoch and four-condition cycle",
+    "evaluation target-first ADE differs correctly from training valid-point ADE",
+    "locked test loader rejected before filesystem access",
+    "adapt freezes head and keeps gradients to graph through frozen head",
+    "phase lock rejects concurrent training or resume without stale PID files",
+    "interrupted resume exactly matches uninterrupted weights and validation J with dropout",
+    "resume rejects changed seed/config",
+    "own checkpoint copies common temporal weights and preserves independently initialized graph projection",
+    "F05 gate verifies sealed hashes and rejects implementation drift",
+    "F05 provenance refuses locked test paths before access"
+  ],
+  "count": 10
+}

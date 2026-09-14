@@ -1,0 +1,29 @@
+{
+  "frontend_revision": "C06",
+  "frontend_config_sha256": "0726ec086c0d71099cb0230abf530f7e0136b029230b6f755868b8404490c355",
+  "passed": true,
+  "tests": [
+    {
+      "episode_index": 0,
+      "cutoff_ms": 1118935685200,
+      "compared_cubes": 150,
+      "compared_cycles": 50,
+      "detections_exact": true,
+      "tracks_exact": true,
+      "selected_keys_exact": true
+    },
+    {
+      "episode_index": 95,
+      "cutoff_ms": 1118936325200,
+      "compared_cubes": 150,
+      "compared_cycles": 50,
+      "detections_exact": true,
+      "tracks_exact": true,
+      "selected_keys_exact": true
+    }
+  ],
+  "frozen_parameters": "F01-A geometry/episodes, F01-B seeds/waveform, trained angular mixture/R, CFAR threshold, q_a=9.0, max_missed_cycles=7",
+  "mutation": "Delete all rows after cutoff for every cohort source; do not refit train parameters",
+  "scope": "Complete <=t detector and tracker prefix. F01-D model-input serialization is a separate gate.",
+  "maximum_absolute_difference": 0.0
+}

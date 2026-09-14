@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "backend": "PennyLane default.qubit backprop complex128",
+  "qubits": 5,
+  "output_error": 3.3306690738754696e-16,
+  "gradient_error": 7.105427357601002e-15,
+  "permutation_error": 3.3306690738754696e-16,
+  "full_circuit_output_error": 6.661338147750939e-16,
+  "full_circuit_gradient_error": 1.4210854715202004e-14,
+  "padding_error": 0.0,
+  "quantum_gradient_l1": 12.72312399005633,
+  "empty_and_variable_nodes": true,
+  "near_zero_threshold": 1e-12,
+  "nonempty_near_zero_fallback_and_recovery": true,
+  "graph_forward_backward_seconds": [
+    0.015475604683160782,
+    0.014200367033481598,
+    0.014253230765461922
+  ],
+  "peak_allocated_gib": 0.017068862915039062
+}

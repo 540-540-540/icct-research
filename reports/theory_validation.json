@@ -1,0 +1,140 @@
+{
+  "stage": "F02",
+  "status": "passed",
+  "passed": true,
+  "formula_version": "研究方案书1.4 / A04 / A02 Q24 / A03-symbol-v4-cuda-stable-solver",
+  "primary_models": {
+    "QGNN": "PennyLane quantum graph and common GPT-2",
+    "GNN": "original Plain graph-attention core and common GPT-2"
+  },
+  "main_entrypoint": "prediction.model.build_model",
+  "retained_A02_GNN_checks": "Auxiliary legacy checks only; not the primary GNN",
+  "sections": {
+    "F02-A": {
+      "passed": true,
+      "check_count": 13,
+      "report": "reports/f02/quantum_checks.json",
+      "failed_checks": []
+    },
+    "F02-B": {
+      "passed": true,
+      "check_count": 5,
+      "report": "reports/f02/quantum_checks.json",
+      "failed_checks": []
+    },
+    "F02-C": {
+      "passed": true,
+      "check_count": 7,
+      "report": "reports/f02/quantum_checks.json",
+      "failed_checks": []
+    },
+    "F02-D": {
+      "passed": true,
+      "check_count": 5,
+      "report": "reports/f02/quantum_checks.json",
+      "failed_checks": []
+    },
+    "F02-E": {
+      "passed": true,
+      "check_count": 2,
+      "report": "reports/f02/quantum_checks.json",
+      "failed_checks": []
+    },
+    "F02-F": {
+      "passed": true,
+      "check_count": 22,
+      "report": [
+        "reports/f02/interface.json",
+        "reports/f02/plain_baseline.json",
+        "reports/f02/primary_models.json"
+      ],
+      "failed_checks": []
+    },
+    "F02-G": {
+      "passed": true,
+      "check_count": 4,
+      "report": "reports/f02/quantum_checks.json",
+      "failed_checks": []
+    },
+    "F02-H": {
+      "passed": true,
+      "check_count": 12,
+      "report": "reports/f02/quantum_checks.json",
+      "failed_checks": []
+    }
+  },
+  "total_checks": 70,
+  "reference_precision": "float64/complex128",
+  "time_model_precision": "float32 pretrained GPT-2",
+  "quantum_output_tolerance": 1e-10,
+  "quantum_gradient_absolute_tolerance": 1e-08,
+  "real_input": {
+    "split": "train",
+    "snr_db": 20,
+    "sample_index": 97,
+    "max_active_nodes": 3,
+    "input_hash": "3b52520590b7c9a2158593631ce91af11170e86cd12ef62c22c51cae2a909208"
+  },
+  "frontend_status": "complete",
+  "environment": {
+    "python": "3.11.15",
+    "torch": "2.13.0+cu130",
+    "transformers": "4.57.6"
+  },
+  "code_files": {
+    "code/00_remote_shared_dependencies/target_interaction_graph.py": {
+      "bytes": 9422,
+      "mtime_ns": 1789034606000000000
+    },
+    "frontend/symbol_dataset.py": {
+      "bytes": 4744,
+      "mtime_ns": 1789215884020044654
+    },
+    "prediction/check_interfaces.py": {
+      "bytes": 13500,
+      "mtime_ns": 1789219973255862148
+    },
+    "prediction/check_plain_baseline.py": {
+      "bytes": 6235,
+      "mtime_ns": 1789223161101084632
+    },
+    "prediction/check_primary_models.py": {
+      "bytes": 3749,
+      "mtime_ns": 1789223218575377267
+    },
+    "prediction/check_quantum.py": {
+      "bytes": 14511,
+      "mtime_ns": 1789219867331084982
+    },
+    "prediction/classical.py": {
+      "bytes": 5051,
+      "mtime_ns": 1789223180033936076
+    },
+    "prediction/model.py": {
+      "bytes": 1729,
+      "mtime_ns": 1789223218545376650
+    },
+    "prediction/quantum.py": {
+      "bytes": 13148,
+      "mtime_ns": 1789222487354579953
+    },
+    "prediction/reference.py": {
+      "bytes": 5004,
+      "mtime_ns": 1789219867305085029
+    },
+    "prediction/temporal.py": {
+      "bytes": 6437,
+      "mtime_ns": 1789219551935333127
+    }
+  },
+  "assembled_unix": 1789223241.015038,
+  "formal_training_started": false,
+  "optimizer_steps": 0,
+  "limitations": [
+    "Finite deterministic numerical examples; no prediction accuracy or quantum advantage claim.",
+    "complex64 circuit production has not been qualified.",
+    "F03 cost and F04 predictive preflight remain unexecuted.",
+    "New connection and readout-width isolation experiments cancelled by user."
+  ],
+  "rerun_stage_seconds": {}
+}

@@ -1,0 +1,19 @@
+{
+  "status": "complete",
+  "pid": 1863388,
+  "started_at": 1789233195.773525,
+  "jobs": [
+    "qgat-2023",
+    "gnn-2023",
+    "qgat-2024",
+    "gnn-2024",
+    "qgat-2025",
+    "gnn-2025"
+  ],
+  "devices": [
+    "cuda:0",
+    "cuda:1"
+  ],
+  "smoke": false,
+  "finished_at": 1789242902.3432271
+}

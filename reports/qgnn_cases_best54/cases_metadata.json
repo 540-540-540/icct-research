@@ -1,0 +1,219 @@
+{
+  "status": "complete",
+  "checkpoint_epochs": {
+    "qgnn": 54,
+    "gnn": 97
+  },
+  "split": "V_select",
+  "snr_db": 20,
+  "selection": "minimum and maximum absolute QGNN target ADE among targets with true 2-second displacement >=5m",
+  "candidate_rule": "same official origin eligibility; complete 20 future labels; finite predictions; exact raw-source t0 and t0+2s available; displacement >=5m",
+  "candidate_count": 1338,
+  "full_population_candidate_count": 2808,
+  "threshold_m": 5.0,
+  "seconds": 2.0,
+  "displacement_definition": "Euclidean distance between raw source xy at exact origin_ms and origin_ms + 2000; no estimated-origin position",
+  "true_displacement_distribution": {
+    "split": "V_select",
+    "snr_db": 20,
+    "origins": 400,
+    "common_complete_future_targets": 2808,
+    "source_exact_endpoints_available": 2808,
+    "missing_source_endpoints": 0,
+    "displacement_definition": "Euclidean distance between raw source xy at exact origin_ms and origin_ms + 2000; no estimated-origin position",
+    "seconds": 2.0,
+    "threshold_m": 5.0,
+    "candidate_count": 1338,
+    "candidate_fraction": 0.47649572649572647,
+    "quantiles_m": {
+      "0.0": 0.0,
+      "0.1": 0.0,
+      "0.25": 0.0021552614690543872,
+      "0.5": 2.498429676726543,
+      "0.75": 22.667183080951453,
+      "0.9": 27.9125977990788,
+      "0.95": 30.874227538650636,
+      "0.99": 35.09665897907237,
+      "1.0": 40.74979573665453
+    },
+    "bins": [
+      {
+        "low": 0,
+        "high": 1,
+        "count": 1344
+      },
+      {
+        "low": 1,
+        "high": 3,
+        "count": 71
+      },
+      {
+        "low": 3,
+        "high": 5,
+        "count": 55
+      },
+      {
+        "low": 5,
+        "high": 10,
+        "count": 106
+      },
+      {
+        "low": 10,
+        "high": 20,
+        "count": 345
+      },
+      {
+        "low": 20,
+        "high": 30,
+        "count": 700
+      },
+      {
+        "low": 30,
+        "high": null,
+        "count": 187
+      }
+    ],
+    "moving_quantiles_m": {
+      "0.0": 5.086618643853877,
+      "0.25": 17.804138278348873,
+      "0.5": 22.994071795671378,
+      "0.75": 27.24896285685099,
+      "1.0": 40.74979573665453
+    },
+    "old_worst_displacement_m": 17.659464017190547,
+    "old_worst_passes": true,
+    "source_path": "/home/dell/YrM/ICCT/data/f01_source/source_states.npy"
+  },
+  "worst_preserved_from_full_population": true,
+  "q_scene_reproduction_max_abs_error": 2.5033950805664062e-06,
+  "g_cached_scene_reproduction_max_abs_error": 4.172325134277344e-06,
+  "q_checkpoint": "/home/dell/YrM/ICCT/results/qgnn_inherited100/seed2026/qgnn/best.pt",
+  "g_checkpoint": "/home/dell/YrM/ICCT/results/qgat_extend100/seed2026/gnn/best.pt",
+  "full_cache": "cases_full_cache.npz",
+  "rankings": "cases_rankings.csv",
+  "full_cache_note": "All 400 origins, all 8 slots; masks stored. True source motion only used for posthoc case selection, never provided to prediction model.",
+  "cases": [
+    {
+      "name": "best",
+      "origin": 98,
+      "slot": 4,
+      "metrics": {
+        "qgnn": {
+          "ADE": 0.09179450273513794,
+          "FDE": 0.12976157665252686
+        },
+        "gnn": {
+          "ADE": 1.607834815979004,
+          "FDE": 4.300939083099365
+        }
+      },
+      "valid_future_frames": 20,
+      "history_frames": 20,
+      "metadata": {
+        "sample_index": 98,
+        "episode_index": 185,
+        "origin_ms": 1118936985100,
+        "source_keys": [
+          1561,
+          1505,
+          1480,
+          1479,
+          1482,
+          1524,
+          1498,
+          1447
+        ],
+        "episode_id": "s1_t1118936980200_a1561",
+        "source_block": 21,
+        "source_groups": [
+          1561,
+          1505,
+          1480,
+          1479,
+          1482,
+          1524,
+          1498,
+          1447
+        ],
+        "track_keys": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "true_displacement_2s_m": 23.397667994122177,
+      "average_displacement_speed_mps": 11.698833997061088,
+      "all_ADE_rank": 1263,
+      "moving_ADE_rank": 1
+    },
+    {
+      "name": "worst",
+      "origin": 398,
+      "slot": 1,
+      "metrics": {
+        "qgnn": {
+          "ADE": 7.457711791992187,
+          "FDE": 10.471327781677246
+        },
+        "gnn": {
+          "ADE": 5.434944534301758,
+          "FDE": 5.902055740356445
+        }
+      },
+      "valid_future_frames": 20,
+      "history_frames": 20,
+      "metadata": {
+        "sample_index": 398,
+        "episode_index": 203,
+        "origin_ms": 1118937117100,
+        "source_keys": [
+          1745,
+          1674,
+          1696,
+          1610,
+          1623,
+          1709,
+          1676,
+          1685
+        ],
+        "episode_id": "s1_t1118937100200_a1745",
+        "source_block": 23,
+        "source_groups": [
+          1745,
+          1674,
+          1696,
+          1610,
+          1623,
+          1709,
+          1676,
+          1685
+        ],
+        "track_keys": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "true_displacement_2s_m": 17.659464017190547,
+      "average_displacement_speed_mps": 8.829732008595274,
+      "all_ADE_rank": 2808,
+      "moving_ADE_rank": 1338,
+      "preserved_from_previous_full_population_worst": true
+    }
+  ],
+  "replaces_near_stationary_best": {
+    "origin": 227,
+    "slot": 2,
+    "reason": "User requested a moving target instead of the nearly stationary absolute-ADE minimum."
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "model": "GNN",
+  "device": "cuda:1",
+  "split": "train",
+  "origins": 1,
+  "phase": "adapt",
+  "optimizer_steps": 1,
+  "loss": 3.2765984535217285,
+  "graph_gradient_abs_sum": 57.57739199697971,
+  "frozen_gradients_absent": true,
+  "graph_projection_gradient_nonzero": true,
+  "disposable": true
+}

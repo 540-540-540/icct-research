@@ -1,0 +1,157 @@
+{
+  "status": "complete",
+  "diagnostic": "Frozen X model with incremental X score/gate matrices zeroed in memory",
+  "optimizer_steps": 0,
+  "checkpoint_files_modified": false,
+  "split": "V_select",
+  "best_on_metrics_reproduced": true,
+  "rows": [
+    {
+      "checkpoint": "best",
+      "epoch": 54,
+      "on": {
+        "ADE": 0.5465124406846007,
+        "FDE": 1.1039378626146936,
+        "J": 1.0984813719919475
+      },
+      "off": {
+        "ADE": 0.5466015893191798,
+        "FDE": 1.1040134137115092,
+        "J": 1.0986082961749344
+      },
+      "off_minus_on": {
+        "ADE": 8.914863457909483e-05,
+        "FDE": 7.55510968155626e-05,
+        "J": 0.00012692418298687613
+      },
+      "head_frobenius_norms": {
+        "graph.graph_layers.0.x_score": 0.6882057189941406,
+        "graph.graph_layers.0.x_gate": 0.8098607659339905,
+        "graph.graph_layers.1.x_score": 0.9324944615364075,
+        "graph.graph_layers.1.x_gate": 0.9692919850349426
+      },
+      "per_snr_off": {
+        "5": {
+          "ADE": 0.546643772854004,
+          "FDE": 1.104125794202555,
+          "J": 1.0987066699552814,
+          "ade_sum": 218.65750914160162,
+          "fde_sum": 441.650317681022,
+          "ade_scenes": 400,
+          "fde_scenes": 400,
+          "total_scenes": 400,
+          "graph_evaluation_cache": null
+        },
+        "10": {
+          "ADE": 0.5466473467997275,
+          "FDE": 1.104129311296856,
+          "J": 1.0987120024481554,
+          "ade_sum": 218.658938719891,
+          "fde_sum": 441.6517245187424,
+          "ade_scenes": 400,
+          "fde_scenes": 400,
+          "total_scenes": 400,
+          "graph_evaluation_cache": null
+        },
+        "15": {
+          "ADE": 0.5465708888391965,
+          "FDE": 1.1039627757563721,
+          "J": 1.0985522767173825,
+          "ade_sum": 218.62835553567857,
+          "fde_sum": 441.58511030254886,
+          "ade_scenes": 400,
+          "fde_scenes": 400,
+          "total_scenes": 400,
+          "graph_evaluation_cache": null
+        },
+        "20": {
+          "ADE": 0.5465443487837911,
+          "FDE": 1.1038357735902538,
+          "J": 1.098462235578918,
+          "ade_sum": 218.61773951351643,
+          "fde_sum": 441.53430943610147,
+          "ade_scenes": 400,
+          "fde_scenes": 400,
+          "total_scenes": 400,
+          "graph_evaluation_cache": null
+        }
+      },
+      "same_denominators": true,
+      "eval_wall_seconds": 7.7058422565460205
+    },
+    {
+      "checkpoint": "latest",
+      "epoch": 74,
+      "on": {
+        "ADE": 0.5712998845352558,
+        "FDE": 1.1692083163536153,
+        "J": 1.1559040427120635
+      },
+      "off": {
+        "ADE": 0.5714078936120495,
+        "FDE": 1.169432186804479,
+        "J": 1.156123987014289
+      },
+      "off_minus_on": {
+        "ADE": 0.00010800907679364702,
+        "FDE": 0.00022387045086369461,
+        "J": 0.00021994430222549433
+      },
+      "head_frobenius_norms": {
+        "graph.graph_layers.0.x_score": 0.7674168944358826,
+        "graph.graph_layers.0.x_gate": 0.910563051700592,
+        "graph.graph_layers.1.x_score": 1.0086853504180908,
+        "graph.graph_layers.1.x_gate": 0.9960482716560364
+      },
+      "per_snr_off": {
+        "5": {
+          "ADE": 0.5714123581163585,
+          "FDE": 1.169424425016623,
+          "J": 1.15612457062467,
+          "ade_sum": 228.5649432465434,
+          "fde_sum": 467.7697700066492,
+          "ade_scenes": 400,
+          "fde_scenes": 400,
+          "total_scenes": 400,
+          "graph_evaluation_cache": null
+        },
+        "10": {
+          "ADE": 0.5714283651206642,
+          "FDE": 1.1694156052242033,
+          "J": 1.156136167732766,
+          "ade_sum": 228.5713460482657,
+          "fde_sum": 467.7662420896813,
+          "ade_scenes": 400,
+          "fde_scenes": 400,
+          "total_scenes": 400,
+          "graph_evaluation_cache": null
+        },
+        "15": {
+          "ADE": 0.5714041328337044,
+          "FDE": 1.1694893653597682,
+          "J": 1.1561488155135886,
+          "ade_sum": 228.56165313348174,
+          "fde_sum": 467.7957461439073,
+          "ade_scenes": 400,
+          "fde_scenes": 400,
+          "total_scenes": 400,
+          "graph_evaluation_cache": null
+        },
+        "20": {
+          "ADE": 0.571386718377471,
+          "FDE": 1.1693993516173213,
+          "J": 1.1560863941861317,
+          "ade_sum": 228.5546873509884,
+          "fde_sum": 467.75974064692855,
+          "ade_scenes": 400,
+          "fde_scenes": 400,
+          "total_scenes": 400,
+          "graph_evaluation_cache": null
+        }
+      },
+      "same_denominators": true,
+      "eval_wall_seconds": 7.824381589889526
+    }
+  ],
+  "limitation": "Inference intervention measures dependence on the learned branch; it is not a retrained ablation or independent confirmation."
+}

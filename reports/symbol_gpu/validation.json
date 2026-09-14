@@ -1,0 +1,432 @@
+{
+  "device": "cuda:0",
+  "device_name": "NVIDIA GeForce RTX 4090",
+  "waveform": {
+    "K": 256,
+    "N": 256,
+    "B": 93100000.0,
+    "fc": 24000000000.0,
+    "T": 1.2375e-05
+  },
+  "all_required_float64_checks_passed": true,
+  "physics": {
+    "equation6_relative_error": 5.661048867003674e-16,
+    "feature_reference_errors": {
+      "E": 0.0,
+      "F": 0.0,
+      "G_lag1": 3.722145839155689e-16,
+      "G_lag2": 5.402578411571407e-16,
+      "G_lag128": 5.333694441429198e-16,
+      "G_lag255": 9.937224201164444e-14,
+      "I_lag1": 5.33022779161163e-16,
+      "I_lag2": 7.114200454335089e-16,
+      "I_lag128": 7.325106791913656e-16,
+      "I_lag255": 1.1791086817648964e-13
+    },
+    "equation26_37_score_relative_errors": {
+      "position_search": 1.114616220129167e-16,
+      "velocity_search": 1.1145768404080128e-16
+    },
+    "noiseless_state_hat": [
+      [
+        2.3763781478956467,
+        -3.154975054917517,
+        3.2290085516056015,
+        -1.4526073517084526
+      ],
+      [
+        0.0012890612976573235,
+        0.010698937318799229,
+        0.0,
+        0.0
+      ],
+      [
+        -7.11910756705688,
+        5.231459696219236,
+        -4.189621608836808,
+        2.9083439193489076
+      ],
+      [
+        8.852951842778046,
+        -6.623784633095513,
+        6.129835267651366,
+        -5.440582252657817
+      ]
+    ],
+    "noiseless_errors": [
+      [
+        0.005378147895646723,
+        -0.005975054917517042,
+        0.012008551605601436,
+        0.010392648291547513
+      ],
+      [
+        0.0012890612976573235,
+        0.010698937318799229,
+        0.0,
+        0.0
+      ],
+      [
+        0.0058924329431198075,
+        0.006459696219236477,
+        0.010378391163191836,
+        0.008343919348907658
+      ],
+      [
+        0.0029518427780459433,
+        0.001215366904487425,
+        0.009835267651365776,
+        -0.010582252657817648
+      ]
+    ],
+    "constant_phase_invariance": true,
+    "saved_CPU_reference_difference": [
+      3.96677979352944e-09,
+      -3.190135267061578e-09,
+      -8.177281074495113e-11,
+      2.0194512728721747e-11
+    ],
+    "reference_qualification": "Previously saved CPU result only; CPU estimator not called"
+  },
+  "noise_and_reproducibility": {
+    "per_SNR": [
+      {
+        "requested_snr_db": 5,
+        "measured_snr_db": [
+          [
+            4.981882283453404,
+            4.999803344709139,
+            4.995202349367619
+          ],
+          [
+            5.015688971915928,
+            4.971855628358775,
+            5.008226263708587
+          ],
+          [
+            5.010318613973559,
+            5.012906521741455,
+            4.994423992228915
+          ],
+          [
+            5.030363668138175,
+            4.997085545393887,
+            5.01317547608668
+          ],
+          [
+            5.015073358002842,
+            4.998417692046942,
+            5.0018853993918055
+          ],
+          [
+            5.004421098252227,
+            5.004736790618511,
+            5.0184066498859465
+          ],
+          [
+            5.000490584234216,
+            5.027740515824242,
+            4.999793801900859
+          ],
+          [
+            5.002787390120767,
+            5.000497249019191,
+            4.990957505137732
+          ]
+        ],
+        "position_rmse_m": 0.008176087520451233,
+        "velocity_rmse_mps": 0.013876290426455868,
+        "batch_grouping_max_state_difference": 0.0,
+        "search_failures": 0
+      },
+      {
+        "requested_snr_db": 10,
+        "measured_snr_db": [
+          [
+            9.981882283453402,
+            9.99980334470914,
+            9.995202349367618
+          ],
+          [
+            10.015688971915928,
+            9.971855628358773,
+            10.008226263708586
+          ],
+          [
+            10.010318613973556,
+            10.012906521741453,
+            9.994423992228912
+          ],
+          [
+            10.030363668138175,
+            9.997085545393885,
+            10.013175476086678
+          ],
+          [
+            10.01507335800284,
+            9.998417692046942,
+            10.001885399391803
+          ],
+          [
+            10.004421098252225,
+            10.004736790618509,
+            10.018406649885947
+          ],
+          [
+            10.000490584234216,
+            10.027740515824242,
+            9.999793801900859
+          ],
+          [
+            10.002787390120766,
+            10.00049724901919,
+            9.99095750513773
+          ]
+        ],
+        "position_rmse_m": 0.008176087520451233,
+        "velocity_rmse_mps": 0.012631913992952364,
+        "batch_grouping_max_state_difference": 0.0,
+        "search_failures": 0
+      },
+      {
+        "requested_snr_db": 15,
+        "measured_snr_db": [
+          [
+            14.9818822834534,
+            14.999803344709138,
+            14.995202349367618
+          ],
+          [
+            15.015688971915926,
+            14.971855628358773,
+            15.008226263708584
+          ],
+          [
+            15.010318613973554,
+            15.012906521741451,
+            14.994423992228912
+          ],
+          [
+            15.030363668138174,
+            14.997085545393885,
+            15.013175476086678
+          ],
+          [
+            15.015073358002839,
+            14.998417692046942,
+            15.001885399391803
+          ],
+          [
+            15.004421098252225,
+            15.004736790618509,
+            15.018406649885945
+          ],
+          [
+            15.000490584234214,
+            15.02774051582424,
+            14.999793801900855
+          ],
+          [
+            15.002787390120764,
+            15.000497249019187,
+            14.990957505137729
+          ]
+        ],
+        "position_rmse_m": 0.008176087520451233,
+        "velocity_rmse_mps": 0.012631913992952364,
+        "batch_grouping_max_state_difference": 0.0,
+        "search_failures": 0
+      },
+      {
+        "requested_snr_db": 20,
+        "measured_snr_db": [
+          [
+            19.981882283453402,
+            19.99980334470914,
+            19.99520234936762
+          ],
+          [
+            20.015688971915928,
+            19.971855628358774,
+            20.008226263708586
+          ],
+          [
+            20.010318613973553,
+            20.012906521741453,
+            19.994423992228914
+          ],
+          [
+            20.030363668138172,
+            19.997085545393887,
+            20.01317547608668
+          ],
+          [
+            20.01507335800284,
+            19.998417692046942,
+            20.001885399391806
+          ],
+          [
+            20.004421098252227,
+            20.004736790618512,
+            20.018406649885947
+          ],
+          [
+            20.000490584234218,
+            20.02774051582424,
+            19.999793801900857
+          ],
+          [
+            20.002787390120766,
+            20.000497249019187,
+            19.990957505137732
+          ]
+        ],
+        "position_rmse_m": 0.008176087520451233,
+        "velocity_rmse_mps": 0.012631913992952364,
+        "batch_grouping_max_state_difference": 0.0,
+        "search_failures": 0
+      }
+    ],
+    "seed_reproducibility_exact": true,
+    "grouping_symbol_samples_exact": true,
+    "grouping_estimates_tolerance_1e8": true
+  },
+  "real_source_check": {
+    "episodes": [
+      0,
+      95
+    ],
+    "targets": 10,
+    "routes": [
+      [
+        0,
+        0,
+        1118935682200
+      ],
+      [
+        0,
+        1,
+        1118935682200
+      ],
+      [
+        95,
+        0,
+        1118936322200
+      ],
+      [
+        95,
+        1,
+        1118936322200
+      ],
+      [
+        95,
+        2,
+        1118936322200
+      ],
+      [
+        95,
+        3,
+        1118936322200
+      ],
+      [
+        95,
+        4,
+        1118936322200
+      ],
+      [
+        95,
+        5,
+        1118936322200
+      ],
+      [
+        95,
+        6,
+        1118936322200
+      ],
+      [
+        95,
+        7,
+        1118936322200
+      ]
+    ],
+    "position_rmse_m": 0.011716355003685947,
+    "velocity_rmse_mps": 0.008610560267307112,
+    "search_failures": 0
+  },
+  "precision_and_performance": {
+    "float32_vs_float64": {
+      "position_max_l2_m": 0.005006464128978242,
+      "velocity_max_l2_mps": 3.4348810103444945e-06,
+      "search_failure_flags_equal": true,
+      "predeclared_limits": {
+        "position_l2_m": 0.025,
+        "velocity_l2_mps": 0.025
+      },
+      "passed": true,
+      "qualification": "Same B explicitly cast to complex64; finite sampled real states, not universal precision guarantee",
+      "all_search_edge_flags_equal": true,
+      "output_dtypes": [
+        "torch.float64",
+        "torch.float32"
+      ]
+    },
+    "recommended_precision": "float64 until main accepts this bounded numerical evidence",
+    "synchronized_estimator_only_timings": [
+      {
+        "batch_size": 1,
+        "elapsed_seconds": [
+          0.012370927259325981,
+          0.012297373265028,
+          0.012287743389606476
+        ],
+        "median_batch_seconds": 0.012297373265028,
+        "median_seconds_per_target": 0.012297373265028,
+        "targets_per_second": 81.31817896784993,
+        "peak_allocated_bytes": 161110016,
+        "peak_reserved_bytes": 1048576000
+      },
+      {
+        "batch_size": 4,
+        "elapsed_seconds": [
+          0.014306973665952682,
+          0.014260353520512581,
+          0.014318391680717468
+        ],
+        "median_batch_seconds": 0.014306973665952682,
+        "median_seconds_per_target": 0.0035767434164881706,
+        "targets_per_second": 279.5839353167388,
+        "peak_allocated_bytes": 255629312,
+        "peak_reserved_bytes": 1048576000
+      },
+      {
+        "batch_size": 8,
+        "elapsed_seconds": [
+          0.015086786821484566,
+          0.015602003782987595,
+          0.015073960646986961
+        ],
+        "median_batch_seconds": 0.015086786821484566,
+        "median_seconds_per_target": 0.0018858483526855707,
+        "targets_per_second": 530.2653304948592,
+        "peak_allocated_bytes": 381655040,
+        "peak_reserved_bytes": 1048576000
+      },
+      {
+        "batch_size": 16,
+        "elapsed_seconds": [
+          0.01755566895008087,
+          0.017725704237818718,
+          0.01766808331012726
+        ],
+        "median_batch_seconds": 0.01766808331012726,
+        "median_seconds_per_target": 0.0011042552068829536,
+        "targets_per_second": 905.5877606615585,
+        "peak_allocated_bytes": 633705984,
+        "peak_reserved_bytes": 1451229184
+      }
+    ],
+    "old_CPU_reference_seconds_per_target": 0.0764,
+    "timing_qualification": "CPU value was measured earlier on another workload; no new CPU run and no strict same-batch speedup claim; CUDA timings include synchronization and host orchestration, exclude synthesis/source IO"
+  },
+  "scope": "GPU-only heavy numerical operations; ideal separated target symbol model; no prediction training or real sensor performance claim"
+}

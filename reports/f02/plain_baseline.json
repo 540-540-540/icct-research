@@ -1,0 +1,48 @@
+{
+  "passed": true,
+  "device": "cuda:1",
+  "formal_training": false,
+  "model": "GNN",
+  "scope": "original attention core with common six-input MLP and shared downstream LLM",
+  "source": "code/00_remote_shared_dependencies/target_interaction_graph.py",
+  "excluded_source_modules": [
+    "history_encoder",
+    "node_projection",
+    "time_embedding",
+    "decoder"
+  ],
+  "graph_trainable_parameters": 319756,
+  "checks": {
+    "graph_core_source_output_and_gradients": {
+      "passed": true,
+      "output_max_abs": 0.0,
+      "physical_gradient_max_abs": 0.0,
+      "standardized_gradient_max_abs": 0.0,
+      "all_parameter_gradient_max_abs": 0.0,
+      "parameter_tensors": 50,
+      "nonzero_gates_exercised": true,
+      "graph_layers": 2,
+      "graph_heads": 4,
+      "hidden_dim": 128,
+      "edge_dim": 7
+    },
+    "seven_SI_edges_radius_and_self_loops": {
+      "passed": true,
+      "directed_edge_max_abs": 0.0,
+      "within_45m": true,
+      "outside_45m_excluded": true,
+      "self_loops": true
+    },
+    "permutation_padding_and_masked_gradients": {
+      "passed": true,
+      "permutation_abs": 3.3306690738754696e-16,
+      "permutation_gradient_abs": 2.6645352591003757e-15,
+      "padding_abs": 0.0,
+      "masked_NaN_ignored": true,
+      "missing_input_gradients_zero": true
+    },
+    "all_missing": {
+      "passed": true
+    }
+  }
+}

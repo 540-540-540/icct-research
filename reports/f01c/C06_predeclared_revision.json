@@ -1,0 +1,23 @@
+{
+  "revision": "C06",
+  "hypothesis": "With robust angular noise, remaining coverage loss may include temporary detection gaps outliving the original fixed5-miss rule",
+  "calibration": "Conditional positive inter-detection gap99th percentile from fixed12train=7cycles; delete on next miss, max_missed_cycles=8",
+  "source": "training_detection_gaps.json",
+  "selection": "Original finite q_a1/4/9; accept only jointtrain+V_select gates; maximize V_select coverage among passing candidates, lower false tie-break",
+  "scope": "Adaptive engineering development; V_select repeatedly used; no V_confirm/test",
+  "unchanged": "mixture fit frozen, detector,2of3 confirmation,8slots,5m matching,quality thresholds",
+  "qualification": "Training gap rule is engineering calibration, not proof of target existence",
+  "bounded_lifetime_calibration": {
+    "reason": "8miss recovers development coverage but fails training false gate; determine shortest sufficient persistence within training gap95..99 percentile bracket",
+    "allowed_max_missed_cycles": [
+      5,
+      6,
+      7,
+      8
+    ],
+    "q_a": 9,
+    "scope": "Only6/7 remain untried; fit on fixedtrain jointgate first, then selected candidate all25V_select; no new angle/noise fits",
+    "selection": "Among6/7 passing fixedtrain all4 gates, highesttrain coverage then lowerfalse; fail if chosen candidate failsV_select",
+    "timing": "declared before6/7 replays; previous5 and8 failed cases preserved"
+  }
+}

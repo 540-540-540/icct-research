@@ -1,0 +1,176 @@
+{
+  "sealed": true,
+  "sealed_at": "2026-09-12T23:38:21+0800",
+  "revision": "A05-execution",
+  "authorization": "User: no hard deadline; both GPUs continuously available",
+  "capacity_basis": "Finite planning horizon derived from estimated work; not a user deadline",
+  "planning_days": 13,
+  "gpu_count": 2,
+  "hours_per_gpu_per_day": 24,
+  "available_gpu_hours": 624,
+  "total_planned_gpu_hours": 413,
+  "f04_reserved_gpu_hours": 48,
+  "review_reserved_gpu_hours": 9,
+  "batch_size": 16,
+  "micro_batch": 1,
+  "history_frame_batch": 20,
+  "history_checkpoint": "auto: disabled for B*T<=20, enabled otherwise",
+  "gates": {
+    "data": "passed",
+    "numerical": "passed",
+    "cost": "passed"
+  },
+  "cost_profile": "reports/cost_profile.json",
+  "expected_gpu_hours_without_contingency": 268.01939783270007,
+  "contingency_factor": 1.5,
+  "paper_and_additional_checks_reserved_gpu_hours": 10,
+  "optional_LLM_ablation_included": false,
+  "optional_LLM_claim": "No additional LLM-effect claim without separately budgeted F06-B",
+  "preexisting_frontend": "Completed; future production cost zero, historical consumption not inferred",
+  "rows": [
+    {
+      "stage": "F04_selection_Q",
+      "cost_model": "qs",
+      "optimizer_steps": 768,
+      "evaluation_origin_conditions": 38400,
+      "estimated_gpu_hours": 7.482568337519964,
+      "notes": "L2 candidate charged at measured L3 cost; all max epochs; early stopping may reduce cost"
+    },
+    {
+      "stage": "F04_selection_G",
+      "cost_model": "gs",
+      "optimizer_steps": 512,
+      "evaluation_origin_conditions": 25600,
+      "estimated_gpu_hours": 0.05056825982199775,
+      "notes": ""
+    },
+    {
+      "stage": "F04_confirmation_Q",
+      "cost_model": "qs",
+      "optimizer_steps": 3072,
+      "evaluation_origin_conditions": 41216,
+      "estimated_gpu_hours": 18.575219487481647,
+      "notes": ""
+    },
+    {
+      "stage": "F04_confirmation_G",
+      "cost_model": "gs",
+      "optimizer_steps": 3072,
+      "evaluation_origin_conditions": 41216,
+      "estimated_gpu_hours": 0.16497740864753724,
+      "notes": ""
+    },
+    {
+      "stage": "F04_review_own",
+      "cost_model": "g",
+      "optimizer_steps": 512,
+      "evaluation_origin_conditions": 6400,
+      "estimated_gpu_hours": 0.07699352807468839,
+      "notes": "Conservative measured G full-model proxy; own-only omits graph"
+    },
+    {
+      "stage": "F04_review_Q",
+      "cost_model": "q",
+      "optimizer_steps": 768,
+      "evaluation_origin_conditions": 12416,
+      "estimated_gpu_hours": 5.509497273630566,
+      "notes": ""
+    },
+    {
+      "stage": "F04_review_G",
+      "cost_model": "g",
+      "optimizer_steps": 768,
+      "evaluation_origin_conditions": 12416,
+      "estimated_gpu_hours": 0.12336725374062855,
+      "notes": ""
+    },
+    {
+      "stage": "F05_own",
+      "cost_model": "g",
+      "optimizer_steps": 3123,
+      "evaluation_origin_conditions": 14400,
+      "estimated_gpu_hours": 0.4007140244496986,
+      "notes": "Shared per seed, not repeated per model; conservative G full-model proxy"
+    },
+    {
+      "stage": "F05_Q",
+      "cost_model": "q",
+      "optimizer_steps": 17697,
+      "evaluation_origin_conditions": 81600,
+      "estimated_gpu_hours": 107.54728856610289,
+      "notes": ""
+    },
+    {
+      "stage": "F05_G",
+      "cost_model": "g",
+      "optimizer_steps": 17697,
+      "evaluation_origin_conditions": 81600,
+      "estimated_gpu_hours": 2.2707128052149588,
+      "notes": ""
+    },
+    {
+      "stage": "F06_D_oldQ",
+      "cost_model": "old",
+      "optimizer_steps": 17697,
+      "evaluation_origin_conditions": 81600,
+      "estimated_gpu_hours": 94.08426210842717,
+      "notes": ""
+    },
+    {
+      "stage": "F06_E_representation",
+      "cost_model": "qs",
+      "optimizer_steps": 4164,
+      "evaluation_origin_conditions": 19200,
+      "estimated_gpu_hours": 21.473369431650887,
+      "notes": "Budget fresh representation preparation; eligible reuse can reduce cost"
+    },
+    {
+      "stage": "F06_E_features",
+      "cost_model": "qs",
+      "optimizer_steps": 0,
+      "evaluation_origin_conditions": 25204,
+      "estimated_gpu_hours": 2.546561588419394,
+      "notes": "Conservative full small-model inference proxy for frozen graph feature extraction"
+    },
+    {
+      "stage": "F06_E_four_heads",
+      "cost_model": "gs",
+      "optimizer_steps": 16656,
+      "evaluation_origin_conditions": 82432,
+      "estimated_gpu_hours": 0.7207618310302496,
+      "notes": "Conservative small G full-model proxy for heads on frozen features"
+    },
+    {
+      "stage": "F06_A_Q_perturbations",
+      "cost_model": "q",
+      "optimizer_steps": 0,
+      "evaluation_origin_conditions": 51840,
+      "estimated_gpu_hours": 4.919791567325592,
+      "notes": "Reserved five evaluation passes per seed; no test data opened"
+    },
+    {
+      "stage": "F07_locked_q",
+      "cost_model": "q",
+      "optimizer_steps": 0,
+      "evaluation_origin_conditions": 10368,
+      "estimated_gpu_hours": 0.9839583134651184,
+      "notes": "Counts only from prior F01D report; no locked inputs/labels opened"
+    },
+    {
+      "stage": "F07_locked_g",
+      "cost_model": "g",
+      "optimizer_steps": 0,
+      "evaluation_origin_conditions": 10368,
+      "estimated_gpu_hours": 0.029001540541648864,
+      "notes": "Counts only from prior F01D report; no locked inputs/labels opened"
+    },
+    {
+      "stage": "F07_locked_old",
+      "cost_model": "old",
+      "optimizer_steps": 0,
+      "evaluation_origin_conditions": 10368,
+      "estimated_gpu_hours": 1.0597845071554184,
+      "notes": "Counts only from prior F01D report; no locked inputs/labels opened"
+    }
+  ]
+}

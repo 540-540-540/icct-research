@@ -1,0 +1,82 @@
+[
+  {
+    "seed": "2023",
+    "arm": "own_only",
+    "passed": true,
+    "best_epoch": 8,
+    "ADE": 0.5813281463937949,
+    "FDE": 1.2707139374554457
+  },
+  {
+    "seed": "2023",
+    "arm": "PV24",
+    "passed": true,
+    "best_epoch": 5,
+    "ADE": 0.5887105115031623,
+    "FDE": 1.294036732330897
+  },
+  {
+    "seed": "2023",
+    "arm": "VP24",
+    "passed": true,
+    "best_epoch": 5,
+    "ADE": 0.5888332480454218,
+    "FDE": 1.2887766370710372
+  },
+  {
+    "seed": "2023",
+    "arm": "PV48_square",
+    "passed": true,
+    "best_epoch": 3,
+    "ADE": 0.5924400750516077,
+    "FDE": 1.2917985817960773
+  },
+  {
+    "seed": "2023",
+    "arm": "PV48_relation",
+    "passed": true,
+    "best_epoch": 3,
+    "ADE": 0.5946067157648715,
+    "FDE": 1.2991978534358157
+  },
+  {
+    "seed": "2024",
+    "arm": "own_only",
+    "passed": true,
+    "best_epoch": 5,
+    "ADE": 0.5945812024670721,
+    "FDE": 1.3058086510322153
+  },
+  {
+    "seed": "2024",
+    "arm": "PV24",
+    "passed": true,
+    "best_epoch": 2,
+    "ADE": 0.5919434762175726,
+    "FDE": 1.3014023020761838
+  },
+  {
+    "seed": "2024",
+    "arm": "VP24",
+    "passed": true,
+    "best_epoch": 2,
+    "ADE": 0.593088523474243,
+    "FDE": 1.3036714902968245
+  },
+  {
+    "seed": "2024",
+    "arm": "PV48_square",
+    "passed": true,
+    "best_epoch": 2,
+    "ADE": 0.593543586668448,
+    "FDE": 1.304382195401851
+  },
+  {
+    "seed": "2024",
+    "arm": "PV48_relation",
+    "passed": true,
+    "best_epoch": 2,
+    "ADE": 0.5928255554346504,
+    "FDE": 1.3010983411195933
+  }
+]

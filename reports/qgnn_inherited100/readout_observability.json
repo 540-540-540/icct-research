@@ -1,0 +1,63 @@
+{
+  "status": "passed",
+  "checkpoint": "/home/dell/YrM/ICCT/results/qgnn_inherited100/seed2026/qgnn/best.pt",
+  "diagnostic_seed": 20814,
+  "checkpoint_epoch": 54,
+  "scope": "CPU; four synthetic relation vectors; trained graph weights; float64 gate comparison.",
+  "optimizer_steps": 0,
+  "dataset_access": false,
+  "prediction_evaluation": false,
+  "architecture_changes_applied": false,
+  "layers": [
+    {
+      "layer": 0,
+      "reconstruction_max_error": 4.440892098500626e-16,
+      "old_terminal_omega_derivatives": [
+        1.3382168135321477e-16,
+        1.144805443566645e-16,
+        8.61049059796965e-17,
+        1.631977984620075e-16,
+        9.44384497990176e-17,
+        4.3823629915279275e-17
+      ],
+      "x_terminal_omega_derivatives": [
+        0.124450723191469,
+        0.23680273162431598,
+        0.1575877198564919,
+        0.11011466675829634,
+        0.12696503815615684,
+        0.11570663773628574
+      ],
+      "old_readout_phase_shift_max": 7.771561172376096e-16,
+      "x_readout_phase_shift_max": 0.22671479732664304,
+      "zero_extension_head_error": 0.0,
+      "zero_extension_head_gradient_max": 0.8659046278557343
+    },
+    {
+      "layer": 1,
+      "reconstruction_max_error": 4.440892098500626e-16,
+      "old_terminal_omega_derivatives": [
+        4.158616587767206e-16,
+        3.994491946115926e-16,
+        2.493359757449621e-16,
+        1.8000976261676483e-16,
+        2.167253702796703e-16,
+        2.565837030879284e-17
+      ],
+      "x_terminal_omega_derivatives": [
+        0.10810533154425872,
+        0.18948928840420515,
+        0.11211984866886181,
+        0.08807266723924166,
+        0.16660818372457484,
+        0.0541730222859079
+      ],
+      "old_readout_phase_shift_max": 7.216449660063518e-16,
+      "x_readout_phase_shift_max": 0.11769537352929449,
+      "zero_extension_head_error": 0.0,
+      "zero_extension_head_gradient_max": 1.034372912375793
+    }
+  ],
+  "proposed_extra_parameters": 96,
+  "limitation": "Observability and zero-extension checks only; no ADE/FDE or quantum-advantage evidence."
+}

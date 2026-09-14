@@ -1,0 +1,28 @@
+{
+  "ready": true,
+  "checked_at": 1789298426.6254442,
+  "formal_training_started": false,
+  "formal_optimizer_steps_executed": 0,
+  "parent_epochs": 40,
+  "target_epochs": 100,
+  "remaining_epochs": 60,
+  "additional_updates_per_model": 20820,
+  "full_remaining_schedule_checked": true,
+  "each_origin_exposures_per_snr": 15,
+  "parent_state_identity_checks_passed": true,
+  "completed_branch_resume_passed": true,
+  "missing_best_or_latest_and_wrong_config_rejected": true,
+  "console_refresh_seconds": 1,
+  "console_read_only_snapshot_passed": true,
+  "devices": {
+    "gnn": "cuda:0",
+    "relation_D": "cuda:1"
+  },
+  "new_formal_results_absent": true,
+  "temporary_cleanup": {
+    "path": "/home/dell/YrM/ICCT/.codex-work/qgat-extend100-prep-20260913",
+    "removed_files": 29,
+    "removed_bytes": 39452915,
+    "exists_after": false
+  }
+}

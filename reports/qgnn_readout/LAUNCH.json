@@ -1,0 +1,47 @@
+{
+  "status": "running_verified",
+  "pid": 3277954,
+  "started_at": "2026-09-14T00:53:21.256713+08:00",
+  "command": [
+    "/home/dell/YrM/envs/ICCT/bin/python",
+    "-u",
+    "/home/dell/YrM/ICCT/experiments/qgnn_readout/run.py",
+    "--run"
+  ],
+  "root": "/home/dell/YrM/ICCT",
+  "epochs": 150,
+  "patience": 20,
+  "seed": 2026,
+  "devices": {
+    "original": "cuda:0",
+    "x_readout": "cuda:1"
+  },
+  "instruction": "Agent stops after confirming actual optimizer updates; remote process completes independently.",
+  "verified_at": 1789318437.3098617,
+  "workers": {
+    "original": {
+      "epoch": 0,
+      "cursor": 2592,
+      "optimizer_steps": 162,
+      "gradient_norm": 1.572309136390686,
+      "graph_gradient_norm": 0.18087433278560638,
+      "pid": 3278208,
+      "status": "training",
+      "latest_bytes": 10163139,
+      "age_seconds": 0.020835399627685547,
+      "finite_model": true
+    },
+    "x_readout": {
+      "epoch": 0,
+      "cursor": 2336,
+      "optimizer_steps": 146,
+      "gradient_norm": 1.1014907360076904,
+      "graph_gradient_norm": 0.1566566675901413,
+      "pid": 3278209,
+      "status": "training",
+      "latest_bytes": 10168723,
+      "age_seconds": 0.03081488609313965,
+      "finite_model": true
+    }
+  }
+}

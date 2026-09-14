@@ -1,0 +1,23 @@
+{
+  "revision": "inherited-qgnn-current-interface-100-two-gpu-v1",
+  "seed": 2026,
+  "graph_seed_offset": 200000,
+  "temporal_seed_offset": 100000,
+  "epochs": 100,
+  "patience": 101,
+  "train_origins": 5549,
+  "validation_origins": 400,
+  "batch_size": 16,
+  "micro_batch": 16,
+  "validation_micro_batch": 16,
+  "graph_lr": 0.0003,
+  "snr_db": [5, 10, 15, 20],
+  "device": "cuda:0",
+  "devices": ["cuda:0", "cuda:1"],
+  "per_device_batch": 8,
+  "cuda_rng_offsets": [0, 1000000],
+  "allowed_splits": ["train", "V_select"],
+  "baseline": "results/qgat_extend100/seed2026/gnn",
+  "expected_optimizer_steps": 34700,
+  "limitation": "Inherited two-layer quantum edge/message module on current per-frame inputs and shared temporal model; fresh joint training, not reproduction of the senior's full GRU/future-token/trust architecture. Existing GNN was continued 40+60 epochs with different physical batching. Single seed, V_select only; formal launch is manual."
+}

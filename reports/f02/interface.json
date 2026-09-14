@@ -1,0 +1,140 @@
+{
+  "device": "cuda:1",
+  "formal_training": false,
+  "checks": {
+    "GNN_literal_edge_formula": {
+      "passed": true,
+      "output_max_abs": 2.4424906541753444e-15,
+      "input_gradient_max_abs": 4.996003610813204e-16,
+      "message_input_width": 260,
+      "edge_features": 4
+    },
+    "GNN_permutation_padding": {
+      "passed": true,
+      "permutation_abs": 0.0,
+      "permutation_gradient_abs": 0.0
+    },
+    "Q21_Q24_token_nesting": {
+      "passed": true,
+      "output_max_abs": 0.0,
+      "token_shape": [
+        8,
+        20,
+        768
+      ],
+      "original_columns_nonzero": true
+    },
+    "censoring_and_loss_denominators": {
+      "passed": true,
+      "max_abs": 2.220446049250313e-16,
+      "training_scene0_ADE": 1.380952380952381,
+      "evaluation_scene0_target_mean_ADE": 5.0,
+      "no_last_visible_substitution": true,
+      "zero_supervision_optimizer_skip": true
+    },
+    "actual_24_LoRA_and_base_freeze": {
+      "passed": true,
+      "trainable_LLM_tensors": 24,
+      "trainable_LLM_parameters": 294912,
+      "rank": 8,
+      "alpha": 16
+    },
+    "actual_24_token_and_positions": {
+      "passed": true,
+      "tokens_shape": [
+        8,
+        20,
+        768
+      ],
+      "prediction_shape": [
+        1,
+        20,
+        8,
+        2
+      ],
+      "active_sequences": 3,
+      "position_embedding_calls": 1,
+      "token_error": 0.0
+    },
+    "actual_24_supervision_sidecar": {
+      "passed": true,
+      "valid_future_points": 60,
+      "valid_final_step_targets": 3,
+      "labels_path": "data/f01d/labels/train.npz",
+      "labels_passed_to_model": false
+    },
+    "actual_24_frozen_LLM_input_backprop": {
+      "passed": true,
+      "graph_feature_gradient_max": 0.12341928482055664,
+      "graph_parameter_gradient_max": 0.04818257799572234,
+      "frozen_parameter_gradients_absent": true
+    },
+    "actual_24_vehicle_routing": {
+      "passed": true,
+      "permutation_abs": 0.0,
+      "other_vehicle_change_abs": 0.0,
+      "precision": "float32 GPT-2; quantum math independently float64/complex128"
+    },
+    "actual_24_estimated_origin_and_missing": {
+      "passed": true,
+      "constant_velocity_error": 0.0,
+      "all_missing_no_prediction": true
+    },
+    "actual_128_LoRA_and_base_freeze": {
+      "passed": true,
+      "trainable_LLM_tensors": 24,
+      "trainable_LLM_parameters": 294912,
+      "rank": 8,
+      "alpha": 16
+    },
+    "actual_128_token_and_positions": {
+      "passed": true,
+      "tokens_shape": [
+        8,
+        20,
+        768
+      ],
+      "prediction_shape": [
+        1,
+        20,
+        8,
+        2
+      ],
+      "active_sequences": 3,
+      "position_embedding_calls": 1,
+      "token_error": 0.0
+    },
+    "actual_128_supervision_sidecar": {
+      "passed": true,
+      "valid_future_points": 60,
+      "valid_final_step_targets": 3,
+      "labels_path": "data/f01d/labels/train.npz",
+      "labels_passed_to_model": false
+    },
+    "actual_128_frozen_LLM_input_backprop": {
+      "passed": true,
+      "graph_feature_gradient_max": 0.010240822099149227,
+      "graph_parameter_gradient_max": 0.11674851179122925,
+      "frozen_parameter_gradients_absent": true
+    },
+    "actual_128_vehicle_routing": {
+      "passed": true,
+      "permutation_abs": 0.0,
+      "other_vehicle_change_abs": 0.0,
+      "precision": "float32 GPT-2; quantum math independently float64/complex128"
+    },
+    "actual_128_estimated_origin_and_missing": {
+      "passed": true,
+      "constant_velocity_error": 0.0,
+      "all_missing_no_prediction": true
+    }
+  },
+  "real_cache": {
+    "split": "train",
+    "snr_db": 20,
+    "sample_index": 97,
+    "max_active_nodes": 3,
+    "input_hash": "3b52520590b7c9a2158593631ce91af11170e86cd12ef62c22c51cae2a909208"
+  },
+  "passed": true
+}

@@ -1,0 +1,138 @@
+{
+  "passed": true,
+  "seed": 2026,
+  "checks": [
+    "actual common temporal tensors across four cells",
+    "actual A/C and B/D graph tensors identical",
+    "theta weight decay zero",
+    "full 5549 train/400 V_select",
+    "every origin sees each SNR five times; each epoch counts differ at most one",
+    "347 batches with tail 13; no discarded origins",
+    "patience 21 prevents early stopping in fixed 20 epochs"
+  ],
+  "epoch_snr_counts": [
+    [
+      1388,
+      1387,
+      1387,
+      1387
+    ],
+    [
+      1387,
+      1388,
+      1387,
+      1387
+    ],
+    [
+      1387,
+      1387,
+      1388,
+      1387
+    ],
+    [
+      1387,
+      1387,
+      1387,
+      1388
+    ],
+    [
+      1388,
+      1387,
+      1387,
+      1387
+    ],
+    [
+      1387,
+      1388,
+      1387,
+      1387
+    ],
+    [
+      1387,
+      1387,
+      1388,
+      1387
+    ],
+    [
+      1387,
+      1387,
+      1387,
+      1388
+    ],
+    [
+      1388,
+      1387,
+      1387,
+      1387
+    ],
+    [
+      1387,
+      1388,
+      1387,
+      1387
+    ],
+    [
+      1387,
+      1387,
+      1388,
+      1387
+    ],
+    [
+      1387,
+      1387,
+      1387,
+      1388
+    ],
+    [
+      1388,
+      1387,
+      1387,
+      1387
+    ],
+    [
+      1387,
+      1388,
+      1387,
+      1387
+    ],
+    [
+      1387,
+      1387,
+      1388,
+      1387
+    ],
+    [
+      1387,
+      1387,
+      1387,
+      1388
+    ],
+    [
+      1388,
+      1387,
+      1387,
+      1387
+    ],
+    [
+      1387,
+      1388,
+      1387,
+      1387
+    ],
+    [
+      1387,
+      1387,
+      1388,
+      1387
+    ],
+    [
+      1387,
+      1387,
+      1387,
+      1388
+    ]
+  ],
+  "steps_per_cell": 6940,
+  "cuda_work_executed": false,
+  "optimizer_steps_executed": 0
+}
