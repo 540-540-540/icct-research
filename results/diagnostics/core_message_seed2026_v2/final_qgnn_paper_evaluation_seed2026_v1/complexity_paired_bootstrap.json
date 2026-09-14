@@ -1,0 +1,88 @@
+{
+  "seed": 2026,
+  "bootstrap_repetitions": 10000,
+  "definition": "Outcome-blind tertiles of the fixed interaction-complexity composite; paired resampling of scenes within each stratum and four-SNR macro averaging.",
+  "strata": {
+    "low": {
+      "scenes": 400,
+      "ade": {
+        "point_improvement_percent": -0.8890717681599019,
+        "bootstrap_median_percent": -0.8851794731403928,
+        "ci95_percent": [
+          -2.1654490046135875,
+          0.3553587324508524
+        ],
+        "bootstrap_probability_improvement": 0.0842
+      },
+      "fde": {
+        "point_improvement_percent": -1.5459743082007102,
+        "bootstrap_median_percent": -1.5511834030737257,
+        "ci95_percent": [
+          -3.318369895595012,
+          0.15080245712713866
+        ],
+        "bootstrap_probability_improvement": 0.0377
+      }
+    },
+    "medium": {
+      "scenes": 400,
+      "ade": {
+        "point_improvement_percent": -1.2427484649393468,
+        "bootstrap_median_percent": -1.2394190502725109,
+        "ci95_percent": [
+          -2.482934993625359,
+          -0.025543469293896982
+        ],
+        "bootstrap_probability_improvement": 0.0223
+      },
+      "fde": {
+        "point_improvement_percent": -2.196505763816446,
+        "bootstrap_median_percent": -2.2020060356892515,
+        "ci95_percent": [
+          -3.7719547151351063,
+          -0.647959220368258
+        ],
+        "bootstrap_probability_improvement": 0.0025
+      }
+    },
+    "high": {
+      "scenes": 400,
+      "ade": {
+        "point_improvement_percent": 0.24411430067927456,
+        "bootstrap_median_percent": 0.24776958833386376,
+        "ci95_percent": [
+          -0.9451564924188891,
+          1.4352647896728659
+        ],
+        "bootstrap_probability_improvement": 0.6531
+      },
+      "fde": {
+        "point_improvement_percent": 0.6253878939878746,
+        "bootstrap_median_percent": 0.6351747066089164,
+        "ci95_percent": [
+          -0.8288039277059396,
+          2.06736617891971
+        ],
+        "bootstrap_probability_improvement": 0.7961
+      }
+    }
+  },
+  "high_minus_low_interaction": {
+    "ade": {
+      "median_percentage_points": 1.1347408907972647,
+      "ci95_percentage_points": [
+        -0.622179661172839,
+        2.874043149350804
+      ],
+      "bootstrap_probability_positive": 0.9018
+    },
+    "fde": {
+      "median_percentage_points": 2.1741893664907836,
+      "ci95_percentage_points": [
+        -0.04867497541070159,
+        4.389840884784013
+      ],
+      "bootstrap_probability_positive": 0.972
+    }
+  }
+}

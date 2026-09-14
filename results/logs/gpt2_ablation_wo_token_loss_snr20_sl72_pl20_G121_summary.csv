@@ -1,0 +1,2 @@
+ablation,method,best_val_ade,best_val_fde,step5_ade,step10_ade,step15_ade,step20_ade,val_token_acc,val_token_temp,checkpoint
+wo_token_loss,w/o Token Loss,0.749781230655277,1.165645520403528,0.5847849025612786,0.6849329218977973,0.932626702955791,1.165645512512752,0.0010119047783692147,0.22915854085059392,./checkpoints/gpt2_ablation_wo_token_loss_snr20_sl72_pl20_G121/wo_token_loss_snr20/checkpoint.pth

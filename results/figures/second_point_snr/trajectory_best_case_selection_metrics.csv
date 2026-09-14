@@ -1,0 +1,9 @@
+panel,snr_db,scene_index,target_index,target_id,motion_type,method,ade_m,fde_m
+1,20,113,4,1190,left_curve,lstm,0.688482,2.526951
+1,20,113,4,1190,left_curve,transformer,0.766633,2.786978
+1,20,113,4,1190,left_curve,target_interaction_gnn,0.601235,1.545833
+1,20,113,4,1190,left_curve,proposed,0.397302,1.211918
+2,20,1149,7,1536,left_curve,lstm,0.596933,0.298392
+2,20,1149,7,1536,left_curve,transformer,0.487715,1.011189
+2,20,1149,7,1536,left_curve,target_interaction_gnn,0.451203,1.640634
+2,20,1149,7,1536,left_curve,proposed,0.391953,0.266552

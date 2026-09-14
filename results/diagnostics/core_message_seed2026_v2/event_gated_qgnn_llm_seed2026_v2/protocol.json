@@ -1,0 +1,15 @@
+{
+  "seed": 2026,
+  "arm": "quantum",
+  "epochs": 6,
+  "event": "per-target per-future-step distance<=12m and closing",
+  "train_sampling": {
+    "high": 0.5,
+    "medium": 0.25,
+    "low": 0.25
+  },
+  "selection": "fixed 256-scene set; ADE+.35FDE",
+  "confirmation": "all outcome-blind high-complexity dev scenes disjoint from the fixed selection bank",
+  "confirmation_scenes": 234,
+  "no_test": true
+}

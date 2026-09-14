@@ -1,0 +1,11 @@
+{
+  "verdict": "PASS",
+  "issues": [],
+  "preview": "/home/js_cn/sensing/diagnostics/core_message_seed2026_v2/final_qgnn_paper_evaluation_seed2026_v1/figures/final_qgnn_performance_preview.png",
+  "exports": [
+    "/home/js_cn/sensing/diagnostics/core_message_seed2026_v2/final_qgnn_paper_evaluation_seed2026_v1/figures/final_qgnn_performance.pdf",
+    "/home/js_cn/sensing/diagnostics/core_message_seed2026_v2/final_qgnn_paper_evaluation_seed2026_v1/figures/final_qgnn_performance.svg",
+    "/home/js_cn/sensing/diagnostics/core_message_seed2026_v2/final_qgnn_paper_evaluation_seed2026_v1/figures/final_qgnn_performance.png",
+    "/home/js_cn/sensing/diagnostics/core_message_seed2026_v2/final_qgnn_paper_evaluation_seed2026_v1/figures/final_qgnn_performance_grayscale.png"
+  ]
+}

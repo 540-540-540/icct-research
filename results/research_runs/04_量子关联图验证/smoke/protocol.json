@@ -1,0 +1,23 @@
+{
+  "source_sha256": {
+    "/home/js_cn/sensing/双图研究框架/02_量测航迹关联图_方案/checkpoints/association_gnn.pt": "f445578ffc7421e812c56543d86c2d879fd588982e17be102fba3808b20f2a14",
+    "双图研究框架/04_量子关联图验证/code/run.py": "2d580bfdd52c9541c7098f44cd18f87c9720d05511f52ee218fefd865e1c2d20",
+    "/home/js_cn/sensing/双图研究框架/04_量子关联图验证/code/model.py": "92fcbc047fa66a55f5f188fae3ee4f20210c009f3120a44f6bc314ea9e35df7b",
+    "/home/js_cn/sensing/双图研究框架/04_量子关联图验证/验证方案.md": "e1440076c7a87b31eada2f80e798c79ef42a413c78d5688b9f7d5f5905d92e3d",
+    "/home/js_cn/sensing/双图研究框架/02_量测航迹关联图_方案/code_snapshot/measurement_track_dataset.py": "31577a84a1049810c9effd80d6751090aa5eaead0ee693f78e637cec9e070743",
+    "/home/js_cn/sensing/双图研究框架/02_量测航迹关联图_方案/code_snapshot/measurement_track_association.py": "95e32d360ddeb1b437207f5ee08267d8428151fc3574ac54fbe0e2ea1124b14b",
+    "/home/js_cn/sensing/双图研究框架/02_量测航迹关联图_方案/code_snapshot/run_measurement_track_experiment.py": "cfbaf3002720ffb47a22f8ed2047f7dab03100a7997cc3c18ee187108fb070ec"
+  },
+  "seed": 2026,
+  "epochs": 2,
+  "train_frames": 128,
+  "selection_frames": 64,
+  "test_loaded": false,
+  "circuit_checks": {
+    "norm_and_matrix_verified": true,
+    "input_gradcheck": true,
+    "parameter_gradient_nonzero": true
+  },
+  "cache_sha256": "8b1f53eb83a15f6fd4d85a1941a2cb3d955b1514327542a4349c2bab04a9e99d",
+  "calibration_sha256": "d33366a9c0ac1b588c3acab208887da6cce2d7dea8ba4b132f66fd2f65f9edee"
+}

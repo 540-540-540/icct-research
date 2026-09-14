@@ -1,0 +1,486 @@
+{
+  "selected_epoch": 6,
+  "metrics": {
+    "aggregate": {
+      "ade_m": 0.7304514516580562,
+      "fde_m": 1.4250877323142062
+    },
+    "by_snr": {
+      "5": {
+        "ade_m": 0.8197853150386316,
+        "fde_m": 1.5275297315723702
+      },
+      "10": {
+        "ade_m": 0.7225550276919831,
+        "fde_m": 1.4145342730752795
+      },
+      "15": {
+        "ade_m": 0.7121347166936969,
+        "fde_m": 1.4030096843363082
+      },
+      "20": {
+        "ade_m": 0.6673307472079132,
+        "fde_m": 1.3552772402728668
+      }
+    }
+  },
+  "gradient_max": {
+    "future_queries": 0.0001362216571578756,
+    "graph_backbone.history_encoder.weight_ih_l0": 0.7918644547462463,
+    "graph_backbone.history_encoder.weight_hh_l0": 0.12921476364135742,
+    "graph_backbone.history_encoder.bias_ih_l0": 1.1899480819702148,
+    "graph_backbone.history_encoder.bias_hh_l0": 0.6796554327011108,
+    "graph_backbone.node_projection.0.weight": 0.5702751278877258,
+    "graph_backbone.node_projection.0.bias": 0.6216979026794434,
+    "graph_backbone.node_projection.1.weight": 0.16932980716228485,
+    "graph_backbone.node_projection.1.bias": 0.07035718113183975,
+    "graph_backbone.graph_layers.0.message_gate": 1.824458360671997,
+    "graph_backbone.graph_layers.0.feed_forward_gate": 0.6332401037216187,
+    "graph_backbone.graph_layers.0.query.weight": 0.02794460766017437,
+    "graph_backbone.graph_layers.0.key.weight": 0.016107451170682907,
+    "graph_backbone.graph_layers.0.value.weight": 0.015095483511686325,
+    "graph_backbone.graph_layers.0.edge_bias.0.weight": 0.0034449247177690268,
+    "graph_backbone.graph_layers.0.edge_bias.0.bias": 0.0010322013404220343,
+    "graph_backbone.graph_layers.0.edge_bias.2.weight": 0.006619896274060011,
+    "graph_backbone.graph_layers.0.edge_bias.2.bias": 2.3865140974521637e-09,
+    "graph_backbone.graph_layers.0.edge_value.0.weight": 0.005596118047833443,
+    "graph_backbone.graph_layers.0.edge_value.0.bias": 0.00316085247322917,
+    "graph_backbone.graph_layers.0.edge_value.2.weight": 0.002211369341239333,
+    "graph_backbone.graph_layers.0.edge_value.2.bias": 0.003603145480155945,
+    "graph_backbone.graph_layers.0.output.weight": 0.006480669602751732,
+    "graph_backbone.graph_layers.0.output.bias": 0.003495203098282218,
+    "graph_backbone.graph_layers.0.norm1.weight": 0.01987757720053196,
+    "graph_backbone.graph_layers.0.norm1.bias": 0.017636273056268692,
+    "graph_backbone.graph_layers.0.norm2.weight": 0.01063547469675541,
+    "graph_backbone.graph_layers.0.norm2.bias": 0.0052794176153838634,
+    "graph_backbone.graph_layers.0.feed_forward.0.weight": 0.01448087953031063,
+    "graph_backbone.graph_layers.0.feed_forward.0.bias": 0.0028608141001313925,
+    "graph_backbone.graph_layers.0.feed_forward.3.weight": 0.0072910357266664505,
+    "graph_backbone.graph_layers.0.feed_forward.3.bias": 0.0059877242892980576,
+    "graph_backbone.graph_layers.1.input_norm.weight": 0.0844382494688034,
+    "graph_backbone.graph_layers.1.input_norm.bias": 0.052151672542095184,
+    "graph_backbone.graph_layers.1.encoder.weight": 1.482854962348938,
+    "graph_backbone.graph_layers.1.encoder.bias": 0.29021716117858887,
+    "graph_backbone.graph_layers.1.core.weights": 0.1300041526556015,
+    "graph_backbone.graph_layers.1.latent_norm.weight": 0.042568139731884,
+    "graph_backbone.graph_layers.1.latent_norm.bias": 0.02594761922955513,
+    "graph_backbone.graph_layers.1.score.weight": 0.055467262864112854,
+    "graph_backbone.graph_layers.1.gate.weight": 0.06690974533557892,
+    "graph_backbone.graph_layers.1.value_norm.weight": 0.0797429233789444,
+    "graph_backbone.graph_layers.1.value_norm.bias": 0.03284040093421936,
+    "graph_backbone.graph_layers.1.value.weight": 0.23070761561393738,
+    "graph_backbone.graph_layers.1.edge_value.0.weight": 0.03387784585356712,
+    "graph_backbone.graph_layers.1.edge_value.0.bias": 0.033293649554252625,
+    "graph_backbone.graph_layers.1.edge_value.2.weight": 0.02550571784377098,
+    "graph_backbone.graph_layers.1.output_norm.weight": 0.11642420291900635,
+    "graph_backbone.graph_layers.1.output_norm.bias": 0.03851289674639702,
+    "graph_backbone.graph_layers.1.ffn.0.weight": 0.07449010759592056,
+    "graph_backbone.graph_layers.1.ffn.0.bias": 0.013669909909367561,
+    "graph_backbone.graph_layers.1.ffn.3.weight": 0.03573960065841675,
+    "graph_backbone.graph_layers.1.ffn.3.bias": 0.03467102348804474,
+    "graph_backbone.graph_layers.1.final_norm.weight": 0.06417208164930344,
+    "graph_backbone.graph_layers.1.final_norm.bias": 0.03666069731116295,
+    "graph_backbone.time_embedding.weight": 0.02090095356106758,
+    "graph_backbone.decoder.0.weight": 0.08044151961803436,
+    "graph_backbone.decoder.0.bias": 0.01684335246682167,
+    "graph_backbone.decoder.3.weight": 0.09022858738899231,
+    "graph_backbone.decoder.3.bias": 0.0920255109667778,
+    "graph_backbone.decoder.5.weight": 0.45096853375434875,
+    "graph_backbone.decoder.5.bias": 1.3714966773986816,
+    "gpt2.base_model.model.h.0.attn.c_attn.lora_A.default.weight": 0.00023857844644226134,
+    "gpt2.base_model.model.h.0.attn.c_attn.lora_B.default.weight": 0.0009538469021208584,
+    "gpt2.base_model.model.h.0.attn.c_proj.lora_A.default.weight": 0.0003011282824445516,
+    "gpt2.base_model.model.h.0.attn.c_proj.lora_B.default.weight": 0.0016450638649985194,
+    "gpt2.base_model.model.h.0.mlp.c_proj.lora_A.default.weight": 0.0003904131008312106,
+    "gpt2.base_model.model.h.0.mlp.c_proj.lora_B.default.weight": 0.010941906832158566,
+    "gpt2.base_model.model.h.1.attn.c_attn.lora_A.default.weight": 0.0005276853335089982,
+    "gpt2.base_model.model.h.1.attn.c_attn.lora_B.default.weight": 0.0034996983595192432,
+    "gpt2.base_model.model.h.1.attn.c_proj.lora_A.default.weight": 0.00017521603149361908,
+    "gpt2.base_model.model.h.1.attn.c_proj.lora_B.default.weight": 0.0021353131160140038,
+    "gpt2.base_model.model.h.1.mlp.c_proj.lora_A.default.weight": 0.0004841744666919112,
+    "gpt2.base_model.model.h.1.mlp.c_proj.lora_B.default.weight": 0.0054769027046859264,
+    "gpt2.base_model.model.h.2.attn.c_attn.lora_A.default.weight": 0.001164703629910946,
+    "gpt2.base_model.model.h.2.attn.c_attn.lora_B.default.weight": 0.0011927407467737794,
+    "gpt2.base_model.model.h.2.attn.c_proj.lora_A.default.weight": 0.0003797988756559789,
+    "gpt2.base_model.model.h.2.attn.c_proj.lora_B.default.weight": 0.002763810334727168,
+    "gpt2.base_model.model.h.2.mlp.c_proj.lora_A.default.weight": 0.0005207597278058529,
+    "gpt2.base_model.model.h.2.mlp.c_proj.lora_B.default.weight": 0.003759088460355997,
+    "gpt2.base_model.model.h.3.attn.c_attn.lora_A.default.weight": 0.000224335613893345,
+    "gpt2.base_model.model.h.3.attn.c_attn.lora_B.default.weight": 0.0003977355663664639,
+    "gpt2.base_model.model.h.3.attn.c_proj.lora_A.default.weight": 7.582412945339456e-05,
+    "gpt2.base_model.model.h.3.attn.c_proj.lora_B.default.weight": 0.0011327920947223902,
+    "gpt2.base_model.model.h.3.mlp.c_proj.lora_A.default.weight": 0.0003286557912360877,
+    "gpt2.base_model.model.h.3.mlp.c_proj.lora_B.default.weight": 0.0015835141530260444,
+    "motion_embedding.weight": 0.00770120695233345,
+    "graph_projection.0.weight": 0.010360176675021648,
+    "graph_projection.0.bias": 0.003535659983754158,
+    "graph_projection.1.weight": 0.008124097250401974,
+    "graph_projection.1.bias": 0.0015829387120902538,
+    "uncertainty_head.0.weight": 0.0004731770895887166,
+    "uncertainty_head.0.bias": 0.00032041314989328384,
+    "uncertainty_head.1.weight": 0.002300175139680505,
+    "uncertainty_head.1.bias": 0.0004481625510379672,
+    "uncertainty_head.3.weight": 0.004691106267273426,
+    "uncertainty_head.3.bias": 0.006393991410732269,
+    "token_adapter.0.weight": 0.0010190948378294706,
+    "token_adapter.0.bias": 0.0014216880081221461,
+    "token_adapter.1.weight": 0.0022919820621609688,
+    "token_adapter.1.bias": 0.0005743525689467788,
+    "token_adapter.4.weight": 0.002715327776968479,
+    "token_adapter.4.bias": 0.0014262993354350328,
+    "token_head.0.weight": 0.0053209043107926846,
+    "token_head.0.bias": 0.0007463161018677056,
+    "token_head.1.weight": 0.18291965126991272,
+    "token_head.1.bias": 0.012435687705874443,
+    "coordinate_head.0.weight": 0.00402767863124609,
+    "coordinate_head.0.bias": 0.0008485226426273584,
+    "coordinate_head.1.weight": 0.04323470592498779,
+    "coordinate_head.1.bias": 0.0045389640145003796,
+    "coordinate_head.4.weight": 0.11765275150537491,
+    "coordinate_head.4.bias": 0.13953368365764618
+  },
+  "parameter_max_change": {
+    "future_queries": 0.2162715643644333,
+    "graph_backbone.history_encoder.weight_ih_l0": 0.012098945677280426,
+    "graph_backbone.history_encoder.weight_hh_l0": 0.013648301362991333,
+    "graph_backbone.history_encoder.bias_ih_l0": 0.009648283012211323,
+    "graph_backbone.history_encoder.bias_hh_l0": 0.009648274630308151,
+    "graph_backbone.node_projection.0.weight": 0.01017058826982975,
+    "graph_backbone.node_projection.0.bias": 0.002394050359725952,
+    "graph_backbone.node_projection.1.weight": 0.006480693817138672,
+    "graph_backbone.node_projection.1.bias": 0.0027451240457594395,
+    "graph_backbone.graph_layers.0.message_gate": 2.8967857360839844e-05,
+    "graph_backbone.graph_layers.0.feed_forward_gate": 0.01467178389430046,
+    "graph_backbone.graph_layers.0.query.weight": 0.010477975010871887,
+    "graph_backbone.graph_layers.0.key.weight": 0.011662140488624573,
+    "graph_backbone.graph_layers.0.value.weight": 0.0104005616158247,
+    "graph_backbone.graph_layers.0.edge_bias.0.weight": 0.015838027000427246,
+    "graph_backbone.graph_layers.0.edge_bias.0.bias": 0.010481871664524078,
+    "graph_backbone.graph_layers.0.edge_bias.2.weight": 0.009733587503433228,
+    "graph_backbone.graph_layers.0.edge_bias.2.bias": 0.00015918724238872528,
+    "graph_backbone.graph_layers.0.edge_value.0.weight": 0.0061794668436050415,
+    "graph_backbone.graph_layers.0.edge_value.0.bias": 0.0027810484170913696,
+    "graph_backbone.graph_layers.0.edge_value.2.weight": 0.010381974279880524,
+    "graph_backbone.graph_layers.0.edge_value.2.bias": 0.001681637018918991,
+    "graph_backbone.graph_layers.0.output.weight": 0.011850221082568169,
+    "graph_backbone.graph_layers.0.output.bias": 0.003047047182917595,
+    "graph_backbone.graph_layers.0.norm1.weight": 0.01015549898147583,
+    "graph_backbone.graph_layers.0.norm1.bias": 0.0035758838057518005,
+    "graph_backbone.graph_layers.0.norm2.weight": 0.011545658111572266,
+    "graph_backbone.graph_layers.0.norm2.bias": 0.004521273076534271,
+    "graph_backbone.graph_layers.0.feed_forward.0.weight": 0.013997286558151245,
+    "graph_backbone.graph_layers.0.feed_forward.0.bias": 0.006627213209867477,
+    "graph_backbone.graph_layers.0.feed_forward.3.weight": 0.010877437889575958,
+    "graph_backbone.graph_layers.0.feed_forward.3.bias": 0.0029308870434761047,
+    "graph_backbone.graph_layers.1.input_norm.weight": 0.005155742168426514,
+    "graph_backbone.graph_layers.1.input_norm.bias": 0.0012203706428408623,
+    "graph_backbone.graph_layers.1.encoder.weight": 0.006454542279243469,
+    "graph_backbone.graph_layers.1.encoder.bias": 0.0008301436901092529,
+    "graph_backbone.graph_layers.1.core.weights": 0.0011558979749679565,
+    "graph_backbone.graph_layers.1.latent_norm.weight": 0.009894371032714844,
+    "graph_backbone.graph_layers.1.latent_norm.bias": 0.007601992692798376,
+    "graph_backbone.graph_layers.1.score.weight": 0.01061752438545227,
+    "graph_backbone.graph_layers.1.gate.weight": 0.01422177255153656,
+    "graph_backbone.graph_layers.1.value_norm.weight": 0.004895567893981934,
+    "graph_backbone.graph_layers.1.value_norm.bias": 0.0024825111031532288,
+    "graph_backbone.graph_layers.1.value.weight": 0.01026058942079544,
+    "graph_backbone.graph_layers.1.edge_value.0.weight": 0.007126335054636002,
+    "graph_backbone.graph_layers.1.edge_value.0.bias": 0.002236664295196533,
+    "graph_backbone.graph_layers.1.edge_value.2.weight": 0.009232625365257263,
+    "graph_backbone.graph_layers.1.output_norm.weight": 0.007706344127655029,
+    "graph_backbone.graph_layers.1.output_norm.bias": 0.003230139147490263,
+    "graph_backbone.graph_layers.1.ffn.0.weight": 0.01131562888622284,
+    "graph_backbone.graph_layers.1.ffn.0.bias": 0.004459235817193985,
+    "graph_backbone.graph_layers.1.ffn.3.weight": 0.008642766624689102,
+    "graph_backbone.graph_layers.1.ffn.3.bias": 0.002179384231567383,
+    "graph_backbone.graph_layers.1.final_norm.weight": 0.009582936763763428,
+    "graph_backbone.graph_layers.1.final_norm.bias": 0.0029720980674028397,
+    "graph_backbone.time_embedding.weight": 0.030921220779418945,
+    "graph_backbone.decoder.0.weight": 0.01190657913684845,
+    "graph_backbone.decoder.0.bias": 0.004034865647554398,
+    "graph_backbone.decoder.3.weight": 0.0042924582958221436,
+    "graph_backbone.decoder.3.bias": 0.000902893953025341,
+    "graph_backbone.decoder.5.weight": 0.0032193362712860107,
+    "graph_backbone.decoder.5.bias": 0.00037674233317375183,
+    "gpt2.base_model.model.h.0.attn.c_attn.lora_A.default.weight": 0.0192815363407135,
+    "gpt2.base_model.model.h.0.attn.c_attn.lora_B.default.weight": 0.01492383237928152,
+    "gpt2.base_model.model.h.0.attn.c_proj.lora_A.default.weight": 0.02198009379208088,
+    "gpt2.base_model.model.h.0.attn.c_proj.lora_B.default.weight": 0.01582256145775318,
+    "gpt2.base_model.model.h.0.mlp.c_proj.lora_A.default.weight": 0.02926906757056713,
+    "gpt2.base_model.model.h.0.mlp.c_proj.lora_B.default.weight": 0.021655676886439323,
+    "gpt2.base_model.model.h.1.attn.c_attn.lora_A.default.weight": 0.027516065165400505,
+    "gpt2.base_model.model.h.1.attn.c_attn.lora_B.default.weight": 0.01970277912914753,
+    "gpt2.base_model.model.h.1.attn.c_proj.lora_A.default.weight": 0.02723386511206627,
+    "gpt2.base_model.model.h.1.attn.c_proj.lora_B.default.weight": 0.020323459059000015,
+    "gpt2.base_model.model.h.1.mlp.c_proj.lora_A.default.weight": 0.02366434410214424,
+    "gpt2.base_model.model.h.1.mlp.c_proj.lora_B.default.weight": 0.024333473294973373,
+    "gpt2.base_model.model.h.2.attn.c_attn.lora_A.default.weight": 0.024098388850688934,
+    "gpt2.base_model.model.h.2.attn.c_attn.lora_B.default.weight": 0.02013322524726391,
+    "gpt2.base_model.model.h.2.attn.c_proj.lora_A.default.weight": 0.019708683714270592,
+    "gpt2.base_model.model.h.2.attn.c_proj.lora_B.default.weight": 0.02384847216308117,
+    "gpt2.base_model.model.h.2.mlp.c_proj.lora_A.default.weight": 0.023903071880340576,
+    "gpt2.base_model.model.h.2.mlp.c_proj.lora_B.default.weight": 0.031003806740045547,
+    "gpt2.base_model.model.h.3.attn.c_attn.lora_A.default.weight": 0.01806112751364708,
+    "gpt2.base_model.model.h.3.attn.c_attn.lora_B.default.weight": 0.013835410587489605,
+    "gpt2.base_model.model.h.3.attn.c_proj.lora_A.default.weight": 0.018601305782794952,
+    "gpt2.base_model.model.h.3.attn.c_proj.lora_B.default.weight": 0.038201697170734406,
+    "gpt2.base_model.model.h.3.mlp.c_proj.lora_A.default.weight": 0.02796371839940548,
+    "gpt2.base_model.model.h.3.mlp.c_proj.lora_B.default.weight": 0.03509478271007538,
+    "motion_embedding.weight": 0.03696654736995697,
+    "graph_projection.0.weight": 0.04381108283996582,
+    "graph_projection.0.bias": 0.014415611512959003,
+    "graph_projection.1.weight": 0.06978324055671692,
+    "graph_projection.1.bias": 0.028123818337917328,
+    "uncertainty_head.0.weight": 0.044853925704956055,
+    "uncertainty_head.0.bias": 0.05431368947029114,
+    "uncertainty_head.1.weight": 0.05245792865753174,
+    "uncertainty_head.1.bias": 0.04379365220665932,
+    "uncertainty_head.3.weight": 0.04008840024471283,
+    "uncertainty_head.3.bias": 0.015997588634490967,
+    "token_adapter.0.weight": 0.0575251579284668,
+    "token_adapter.0.bias": 0.02260298654437065,
+    "token_adapter.1.weight": 0.0726442039012909,
+    "token_adapter.1.bias": 0.009719678200781345,
+    "token_adapter.4.weight": 0.046118058264255524,
+    "token_adapter.4.bias": 0.018440060317516327,
+    "token_head.0.weight": 0.0719292163848877,
+    "token_head.0.bias": 0.026035049930214882,
+    "token_head.1.weight": 0.07469995319843292,
+    "token_head.1.bias": 0.01675426959991455,
+    "coordinate_head.0.weight": 0.04990804195404053,
+    "coordinate_head.0.bias": 0.021560171619057655,
+    "coordinate_head.1.weight": 0.06076682731509209,
+    "coordinate_head.1.bias": 0.01618015207350254,
+    "coordinate_head.4.weight": 0.027106432244181633,
+    "coordinate_head.4.bias": 0.0019093039445579052
+  },
+  "never_received_gradient": [],
+  "records": [
+    {
+      "epoch": 0,
+      "metrics": {
+        "aggregate": {
+          "ade_m": 0.7460317665446858,
+          "fde_m": 1.4533402287521606
+        },
+        "by_snr": {
+          "5": {
+            "ade_m": 0.8389060974302049,
+            "fde_m": 1.5622297296271845
+          },
+          "10": {
+            "ade_m": 0.7378954576327529,
+            "fde_m": 1.4421503785229624
+          },
+          "15": {
+            "ade_m": 0.727082998003141,
+            "fde_m": 1.429984833855021
+          },
+          "20": {
+            "ade_m": 0.6802425131126444,
+            "fde_m": 1.3789959730034749
+          }
+        }
+      }
+    },
+    {
+      "arm": "quantum_depth1",
+      "phase": "llm",
+      "epoch": 1,
+      "train_loss": 0.8050401721349577,
+      "metrics": {
+        "aggregate": {
+          "ade_m": 0.7539834616492818,
+          "fde_m": 1.4627404423740886
+        },
+        "by_snr": {
+          "5": {
+            "ade_m": 0.843960394019849,
+            "fde_m": 1.5680312223948067
+          },
+          "10": {
+            "ade_m": 0.7456873663339668,
+            "fde_m": 1.451744516583005
+          },
+          "15": {
+            "ade_m": 0.7352606599107296,
+            "fde_m": 1.439947909521706
+          },
+          "20": {
+            "ade_m": 0.6910254263325812,
+            "fde_m": 1.391238120996837
+          }
+        }
+      },
+      "best_epoch": 0,
+      "seconds": 23.094680786132812,
+      "input_sha256": "a31e2212da1023f8912136eeeea91d73f6805d5272189d3dcdc38d29ee2ca0ea"
+    },
+    {
+      "arm": "quantum_depth1",
+      "phase": "llm",
+      "epoch": 2,
+      "train_loss": 0.7872788946803023,
+      "metrics": {
+        "aggregate": {
+          "ade_m": 0.7462230820012151,
+          "fde_m": 1.4568659917199467
+        },
+        "by_snr": {
+          "5": {
+            "ade_m": 0.8390516212353656,
+            "fde_m": 1.5670276140318549
+          },
+          "10": {
+            "ade_m": 0.738002969827772,
+            "fde_m": 1.4458949002350545
+          },
+          "15": {
+            "ade_m": 0.7271347462778655,
+            "fde_m": 1.433266836653662
+          },
+          "20": {
+            "ade_m": 0.6807029906638573,
+            "fde_m": 1.3812746159592157
+          }
+        }
+      },
+      "best_epoch": 0,
+      "seconds": 23.48051142692566,
+      "input_sha256": "994413146a9613c3417d44598070e04f1543b296b3a3e04144090997125eeb9a"
+    },
+    {
+      "arm": "quantum_depth1",
+      "phase": "llm",
+      "epoch": 3,
+      "train_loss": 0.7777957758089391,
+      "metrics": {
+        "aggregate": {
+          "ade_m": 0.7425372136990671,
+          "fde_m": 1.445437984025286
+        },
+        "by_snr": {
+          "5": {
+            "ade_m": 0.8337675397190872,
+            "fde_m": 1.5514730892731252
+          },
+          "10": {
+            "ade_m": 0.7344159624399362,
+            "fde_m": 1.4345663722582074
+          },
+          "15": {
+            "ade_m": 0.7237960498741728,
+            "fde_m": 1.4226903775642115
+          },
+          "20": {
+            "ade_m": 0.6781693027630721,
+            "fde_m": 1.3730220970056
+          }
+        }
+      },
+      "best_epoch": 3,
+      "seconds": 23.991950750350952,
+      "input_sha256": "e58cbc3c1ab0ea35a82e5f15c14d1e6e1e4b7e22534013813fd2c78764860017"
+    },
+    {
+      "arm": "quantum_depth1",
+      "phase": "llm",
+      "epoch": 4,
+      "train_loss": 0.7651710061910676,
+      "metrics": {
+        "aggregate": {
+          "ade_m": 0.7376447013243592,
+          "fde_m": 1.4395554670728306
+        },
+        "by_snr": {
+          "5": {
+            "ade_m": 0.8268439194489577,
+            "fde_m": 1.5409726388021467
+          },
+          "10": {
+            "ade_m": 0.7297599649031722,
+            "fde_m": 1.4291049025046476
+          },
+          "15": {
+            "ade_m": 0.7193729643659253,
+            "fde_m": 1.4177393580089896
+          },
+          "20": {
+            "ade_m": 0.6746019565793815,
+            "fde_m": 1.3704049689755384
+          }
+        }
+      },
+      "best_epoch": 4,
+      "seconds": 23.277225732803345,
+      "input_sha256": "6833c3a446a16d5030e70f418b757f5ee8bd19b9d5a6f3937cbfd4cfc9379d85"
+    },
+    {
+      "arm": "quantum_depth1",
+      "phase": "llm",
+      "epoch": 5,
+      "train_loss": 0.7582330442637932,
+      "metrics": {
+        "aggregate": {
+          "ade_m": 0.7325194557203569,
+          "fde_m": 1.4272487861338758
+        },
+        "by_snr": {
+          "5": {
+            "ade_m": 0.8215650097393169,
+            "fde_m": 1.5302366281013382
+          },
+          "10": {
+            "ade_m": 0.7247476783632779,
+            "fde_m": 1.4168261764357093
+          },
+          "15": {
+            "ade_m": 0.714313622223616,
+            "fde_m": 1.4051836517737077
+          },
+          "20": {
+            "ade_m": 0.6694515125552167,
+            "fde_m": 1.3567486882247484
+          }
+        }
+      },
+      "best_epoch": 5,
+      "seconds": 23.372910261154175,
+      "input_sha256": "d110d498f94579692cf9f7633ad30c5d057c57d842374102ee9347d09f8925f3"
+    },
+    {
+      "arm": "quantum_depth1",
+      "phase": "llm",
+      "epoch": 6,
+      "train_loss": 0.7540415506246614,
+      "metrics": {
+        "aggregate": {
+          "ade_m": 0.7304514516580562,
+          "fde_m": 1.4250877323142062
+        },
+        "by_snr": {
+          "5": {
+            "ade_m": 0.8197853150386316,
+            "fde_m": 1.5275297315723702
+          },
+          "10": {
+            "ade_m": 0.7225550276919831,
+            "fde_m": 1.4145342730752795
+          },
+          "15": {
+            "ade_m": 0.7121347166936969,
+            "fde_m": 1.4030096843363082
+          },
+          "20": {
+            "ade_m": 0.6673307472079132,
+            "fde_m": 1.3552772402728668
+          }
+        }
+      },
+      "best_epoch": 6,
+      "seconds": 23.270921230316162,
+      "input_sha256": "5b7cb449e8653beb66c9e5ab289fd6f16447d9a1c3dc3ca688229e108ffcf57e"
+    }
+  ],
+  "checkpoint_sha256": "c26de6d9b175e4a81368612d6495385a2a4d74400b3d05eed4d0125d7e491934"
+}

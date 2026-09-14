@@ -1,0 +1,42 @@
+{
+  "status": "completed",
+  "seed": 2026,
+  "arms": [
+    "quantum_no_entanglement",
+    "quantum_depth1",
+    "quantum_no_reupload"
+  ],
+  "graph_epochs": 12,
+  "llm_epochs": 6,
+  "selection": "four-SNR macro ADE + 0.35 FDE; checkpoints 0..budget; no early stopping",
+  "training_indices_sha256": "8f83aaaa9ee12d443ab4a7fecfd1ba05d302273bd142180b2010df19f9ded84f",
+  "selection_indices_sha256": "98fdc2cd766c1704f0e84ec5e7a3e256564a7d6f24ae2baa45655c44b412b3d2",
+  "full_dev_indices_sha256": "f1b88e48491e6e806543360ad424aec905e5922b3d3f16c7101df6644a14cd92",
+  "full_quantum_reference_checkpoint_sha256": {
+    "graph": "7361350d2af4ec28c170ff2728ab8901fc30e97d06d2d64e57d90957d33fb357",
+    "llm": "590282b962c519fc19b849ce2174d8b938a3bc90b04df059a1d0a13c36733cb3"
+  },
+  "variants": {
+    "quantum_no_entanglement": {
+      "n_qubits": 6,
+      "depth": 3,
+      "data_reuploading": true,
+      "entanglement": false
+    },
+    "quantum_depth1": {
+      "n_qubits": 6,
+      "depth": 1,
+      "data_reuploading": true,
+      "entanglement": true
+    },
+    "quantum_no_reupload": {
+      "n_qubits": 6,
+      "depth": 3,
+      "data_reuploading": false,
+      "entanglement": true
+    }
+  },
+  "scope": "Development-only mechanism ablation; original test arrays are not loaded.",
+  "script_sha256": "e510555df5bdec70be1ad3cf4619a8fdb1530d8c3ca41198d1bed1d07380415f",
+  "model_script_sha256": "4444f67904e6df31517f4dc696fd646422956ec195096f6a9904452a3b874ed2"
+}

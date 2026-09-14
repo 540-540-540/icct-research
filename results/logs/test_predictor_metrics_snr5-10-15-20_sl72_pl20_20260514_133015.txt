@@ -1,0 +1,31 @@
+====================================================================================================
+Predictor evaluation on split=test | snrs=[5, 10, 15, 20] | models=['gpt2_soft', 'lstm', 'tcn', 'transformer'] | device=cuda
+====================================================================================================
+[Cache] loaded localized trajectories from ./logs/localized_cache_dataset_lankershim_v3_localize_snr5_g61_s5_t0p25_e0_sl72_pl20.npz
+----------------------------------------------------------------------------------------------------
+SNR=5dB | split=test | samples=22400 | grid=61 | smooth=5 | cache=./logs/localized_cache_dataset_lankershim_v3_localize_snr5_g61_s5_t0p25_e0_sl72_pl20.npz
+Ours         | ADE=1.034 FDE=1.504 | S5=0.824 S10=0.965 S15=1.215 S20=1.504 | Turn=3.346 | TokenAcc=53.50%
+LSTM         | ADE=1.123 FDE=1.666 | S5=0.847 S10=1.048 S15=1.337 S20=1.666 | Turn=3.539
+TCN          | ADE=1.136 FDE=1.692 | S5=0.859 S10=1.063 S15=1.356 S20=1.692 | Turn=3.494
+Transformer  | ADE=1.357 FDE=1.752 | S5=1.179 S10=1.282 S15=1.488 S20=1.752 | Turn=3.806
+[Cache] loaded localized trajectories from ./logs/localized_cache_dataset_lankershim_v3_localize_snr10_g81_s3_t0p15_e0_sl72_pl20.npz
+----------------------------------------------------------------------------------------------------
+SNR=10dB | split=test | samples=22400 | grid=81 | smooth=3 | cache=./logs/localized_cache_dataset_lankershim_v3_localize_snr10_g81_s3_t0p15_e0_sl72_pl20.npz
+Ours         | ADE=0.945 FDE=1.379 | S5=0.729 S10=0.869 S15=1.135 S20=1.379 | Turn=2.993 | TokenAcc=48.59%
+LSTM         | ADE=1.011 FDE=1.532 | S5=0.734 S10=0.935 S15=1.218 S20=1.532 | Turn=3.044
+TCN          | ADE=1.019 FDE=1.535 | S5=0.748 S10=0.942 S15=1.226 S20=1.535 | Turn=3.060
+Transformer  | ADE=1.252 FDE=1.645 | S5=1.061 S10=1.173 S15=1.409 S20=1.645 | Turn=3.343
+[Cache] loaded localized trajectories from ./logs/localized_cache_dataset_lankershim_v3_localize_snr15_g91_s3_t0p12_e0_sl72_pl20.npz
+----------------------------------------------------------------------------------------------------
+SNR=15dB | split=test | samples=22400 | grid=91 | smooth=3 | cache=./logs/localized_cache_dataset_lankershim_v3_localize_snr15_g91_s3_t0p12_e0_sl72_pl20.npz
+Ours         | ADE=0.893 FDE=1.293 | S5=0.689 S10=0.836 S15=1.075 S20=1.293 | Turn=2.893 | TokenAcc=56.90%
+LSTM         | ADE=0.977 FDE=1.428 | S5=0.753 S10=0.891 S15=1.149 S20=1.428 | Turn=2.942
+TCN          | ADE=0.996 FDE=1.500 | S5=0.731 S10=0.921 S15=1.205 S20=1.500 | Turn=3.139
+Transformer  | ADE=1.198 FDE=1.586 | S5=1.016 S10=1.118 S15=1.350 S20=1.586 | Turn=3.308
+[Cache] loaded localized trajectories from ./logs/localized_cache_dataset_lankershim_v3_localize_snr20_g121_s3_t0p06_e1_sl72_pl20.npz
+----------------------------------------------------------------------------------------------------
+SNR=20dB | split=test | samples=22400 | grid=121 | smooth=3 | cache=./logs/localized_cache_dataset_lankershim_v3_localize_snr20_g121_s3_t0p06_e1_sl72_pl20.npz
+Ours         | ADE=0.591 FDE=0.998 | S5=0.374 S10=0.546 S15=0.782 S20=0.998 | Turn=2.444 | TokenAcc=65.18%
+LSTM         | ADE=0.682 FDE=1.112 | S5=0.451 S10=0.605 S15=0.844 S20=1.112 | Turn=2.559
+TCN          | ADE=0.737 FDE=1.175 | S5=0.518 S10=0.646 S15=0.893 S20=1.175 | Turn=2.878
+Transformer  | ADE=1.131 FDE=1.439 | S5=0.991 S10=1.052 S15=1.237 S20=1.439 | Turn=2.932

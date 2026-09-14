@@ -1,0 +1,10 @@
+{
+  "seed": 2026,
+  "arm": "quantum",
+  "interface": "QGNN attention routes LLM future states; joint trust gate scales the retained LLM correction from 0 to 2 per target and time",
+  "epochs": 8,
+  "selection": "fixed 256 scenes ADE+.35FDE",
+  "confirmation_scenes": 234,
+  "confirmation_disjoint_from_selection": true,
+  "no_test": true
+}

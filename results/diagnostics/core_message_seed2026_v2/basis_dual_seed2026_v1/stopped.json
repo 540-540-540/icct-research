@@ -1,0 +1,7 @@
+{
+  "status": "stopped_after_diagnostic",
+  "reason": "The from-scratch classical branch underperformed the retained model on full development data, and concurrent PennyLane execution slowed the two higher-priority experiments.",
+  "classical_full_dev_available": true,
+  "quantum_last_completed_epoch": 6,
+  "retain_as_negative_optimization_ablation": true
+}

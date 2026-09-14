@@ -1,0 +1,312 @@
+{
+  "data/f01d/labels/train.npz": {
+    "future_position": {
+      "shape": [
+        5549,
+        20,
+        8,
+        2
+      ],
+      "dtype": "float32"
+    },
+    "label_valid": {
+      "shape": [
+        5549,
+        20,
+        8
+      ],
+      "dtype": "bool"
+    }
+  },
+  "data/f01d/inputs/train_snr_5.npz": {
+    "state_hat": {
+      "shape": [
+        5549,
+        20,
+        8,
+        4
+      ],
+      "dtype": "float32"
+    },
+    "track_exists": {
+      "shape": [
+        5549,
+        20,
+        8
+      ],
+      "dtype": "bool"
+    },
+    "detected": {
+      "shape": [
+        5549,
+        20,
+        8
+      ],
+      "dtype": "bool"
+    },
+    "timestamp": {
+      "shape": [
+        5549,
+        20
+      ],
+      "dtype": "float64"
+    }
+  },
+  "data/f01d/inputs/train_snr_10.npz": {
+    "state_hat": {
+      "shape": [
+        5549,
+        20,
+        8,
+        4
+      ],
+      "dtype": "float32"
+    },
+    "track_exists": {
+      "shape": [
+        5549,
+        20,
+        8
+      ],
+      "dtype": "bool"
+    },
+    "detected": {
+      "shape": [
+        5549,
+        20,
+        8
+      ],
+      "dtype": "bool"
+    },
+    "timestamp": {
+      "shape": [
+        5549,
+        20
+      ],
+      "dtype": "float64"
+    }
+  },
+  "data/f01d/inputs/train_snr_15.npz": {
+    "state_hat": {
+      "shape": [
+        5549,
+        20,
+        8,
+        4
+      ],
+      "dtype": "float32"
+    },
+    "track_exists": {
+      "shape": [
+        5549,
+        20,
+        8
+      ],
+      "dtype": "bool"
+    },
+    "detected": {
+      "shape": [
+        5549,
+        20,
+        8
+      ],
+      "dtype": "bool"
+    },
+    "timestamp": {
+      "shape": [
+        5549,
+        20
+      ],
+      "dtype": "float64"
+    }
+  },
+  "data/f01d/inputs/train_snr_20.npz": {
+    "state_hat": {
+      "shape": [
+        5549,
+        20,
+        8,
+        4
+      ],
+      "dtype": "float32"
+    },
+    "track_exists": {
+      "shape": [
+        5549,
+        20,
+        8
+      ],
+      "dtype": "bool"
+    },
+    "detected": {
+      "shape": [
+        5549,
+        20,
+        8
+      ],
+      "dtype": "bool"
+    },
+    "timestamp": {
+      "shape": [
+        5549,
+        20
+      ],
+      "dtype": "float64"
+    }
+  },
+  "data/f01d/labels/V_select.npz": {
+    "future_position": {
+      "shape": [
+        400,
+        20,
+        8,
+        2
+      ],
+      "dtype": "float32"
+    },
+    "label_valid": {
+      "shape": [
+        400,
+        20,
+        8
+      ],
+      "dtype": "bool"
+    }
+  },
+  "data/f01d/inputs/V_select_snr_5.npz": {
+    "state_hat": {
+      "shape": [
+        400,
+        20,
+        8,
+        4
+      ],
+      "dtype": "float32"
+    },
+    "track_exists": {
+      "shape": [
+        400,
+        20,
+        8
+      ],
+      "dtype": "bool"
+    },
+    "detected": {
+      "shape": [
+        400,
+        20,
+        8
+      ],
+      "dtype": "bool"
+    },
+    "timestamp": {
+      "shape": [
+        400,
+        20
+      ],
+      "dtype": "float64"
+    }
+  },
+  "data/f01d/inputs/V_select_snr_10.npz": {
+    "state_hat": {
+      "shape": [
+        400,
+        20,
+        8,
+        4
+      ],
+      "dtype": "float32"
+    },
+    "track_exists": {
+      "shape": [
+        400,
+        20,
+        8
+      ],
+      "dtype": "bool"
+    },
+    "detected": {
+      "shape": [
+        400,
+        20,
+        8
+      ],
+      "dtype": "bool"
+    },
+    "timestamp": {
+      "shape": [
+        400,
+        20
+      ],
+      "dtype": "float64"
+    }
+  },
+  "data/f01d/inputs/V_select_snr_15.npz": {
+    "state_hat": {
+      "shape": [
+        400,
+        20,
+        8,
+        4
+      ],
+      "dtype": "float32"
+    },
+    "track_exists": {
+      "shape": [
+        400,
+        20,
+        8
+      ],
+      "dtype": "bool"
+    },
+    "detected": {
+      "shape": [
+        400,
+        20,
+        8
+      ],
+      "dtype": "bool"
+    },
+    "timestamp": {
+      "shape": [
+        400,
+        20
+      ],
+      "dtype": "float64"
+    }
+  },
+  "data/f01d/inputs/V_select_snr_20.npz": {
+    "state_hat": {
+      "shape": [
+        400,
+        20,
+        8,
+        4
+      ],
+      "dtype": "float32"
+    },
+    "track_exists": {
+      "shape": [
+        400,
+        20,
+        8
+      ],
+      "dtype": "bool"
+    },
+    "detected": {
+      "shape": [
+        400,
+        20,
+        8
+      ],
+      "dtype": "bool"
+    },
+    "timestamp": {
+      "shape": [
+        400,
+        20
+      ],
+      "dtype": "float64"
+    }
+  }
+}

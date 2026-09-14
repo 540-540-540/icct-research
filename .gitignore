@@ -1,34 +1,59 @@
-# Local tooling and caches
+# Local tooling and Python caches
 .codex-work/
 .stfolder/
 __pycache__/
-.pytest_cache/
 *.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
 
-# Large or regenerable research assets
+# Local secrets and machine-specific settings
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Raw datasets and downloaded model assets
 data/
 models/
-results/
-archive/
-reports/qgat_model_handoff_20260913/
 
-# Model checkpoints, packaged handoffs, and array dumps
+# Training checkpoints and large generated arrays
 *.pt
 *.pth
 *.ckpt
 *.bin
-*.zip
-*.7z
-*.tar
-*.tar.gz
+*.safetensors
+*.onnx
 *.npy
 *.npz
+*.pkl
+*.pickle
+*.joblib
+*.parquet
+*.whl
 
-# Runtime noise
+# Locally bundled fonts are unnecessary for repository analysis
+*.ttf
+*.ttc
+*.otf
+
+# Bundles, archives, logs, and transient outputs
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.7z
+*.rar
 *.log
-*.tmp
-desktop.ini
-Thumbs.db
+wandb/
+runs/
+
+# OS/editor noise
 .DS_Store
-*.aux
-*.synctex.gz
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/

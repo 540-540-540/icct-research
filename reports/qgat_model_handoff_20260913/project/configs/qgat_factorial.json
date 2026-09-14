@@ -1,0 +1,53 @@
+{
+  "revision": "qgat-factorial-v1",
+  "seed": 2026,
+  "cells": {
+    "A": {
+      "qubits": 1,
+      "radius": null
+    },
+    "B": {
+      "qubits": 2,
+      "radius": null
+    },
+    "C": {
+      "qubits": 1,
+      "radius": 45
+    },
+    "D": {
+      "qubits": 2,
+      "radius": 45
+    }
+  },
+  "device_queues": {
+    "cuda:0": [
+      "A",
+      "C"
+    ],
+    "cuda:1": [
+      "B",
+      "D"
+    ]
+  },
+  "train_origins": 512,
+  "validation_origins": 128,
+  "epochs": 8,
+  "patience": 9,
+  "batch_size": 16,
+  "micro_batch": 1,
+  "graph_lr": 0.0003,
+  "temporal_seed_offset": 100000,
+  "graph_seed_offset": 200000,
+  "snr_db": [
+    5,
+    10,
+    15,
+    20
+  ],
+  "origin_selection": "unique(round(linspace(0,n-1,count))); no label/score selection",
+  "allowed_splits": [
+    "train",
+    "V_select"
+  ],
+  "limitation": "Development single-seed factorial trial. Two-qubit cells also change encoding, parameter count and readout; dimensionality alone is not causally isolated. Fixed eight-epoch budget is diagnostic only, not a final performance threshold or elimination rule. Speed does not break performance ties or select a winner."
+}

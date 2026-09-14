@@ -1,0 +1,16 @@
+{
+  "seed": 2026,
+  "history_steps": 20,
+  "prediction_steps": 40,
+  "dt_s": 0.1,
+  "horizon_s": 4.0,
+  "matched_cache": "/home/js_cn/sensing/data/multitarget_lankershim_h20_p40_matched_v1.npz",
+  "train_scenes": 3450,
+  "dev_scenes": 861,
+  "selection_scenes": 256,
+  "graph_epochs": 8,
+  "llm_epochs": 8,
+  "llm_warmup": 2,
+  "selection": "fixed 256 ADE+0.50FDE",
+  "no_test": true
+}

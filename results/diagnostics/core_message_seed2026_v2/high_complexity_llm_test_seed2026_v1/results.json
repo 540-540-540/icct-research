@@ -1,0 +1,167 @@
+{
+  "status": "completed",
+  "seed": 2026,
+  "split": "official test; historically used by prior project phases and not described as blind",
+  "summaries": {
+    "physics_classical_dual": {
+      "selected_epoch": 8,
+      "metrics": {
+        "aggregate": {
+          "ade_m": 0.6432234319664004,
+          "fde_m": 1.2465098692935412
+        },
+        "by_snr": {
+          "5": {
+            "ade_m": 0.7286355670749808,
+            "fde_m": 1.3409860818793682
+          },
+          "10": {
+            "ade_m": 0.6361484481119204,
+            "fde_m": 1.2375835635339432
+          },
+          "15": {
+            "ade_m": 0.626097967592842,
+            "fde_m": 1.2268239712807767
+          },
+          "20": {
+            "ade_m": 0.5820117450858584,
+            "fde_m": 1.1806458604800767
+          }
+        }
+      },
+      "parameters": 70542882,
+      "evaluation_seconds": 5.634811162948608
+    },
+    "physics_quantum_dual": {
+      "selected_epoch": 1,
+      "metrics": {
+        "aggregate": {
+          "ade_m": 0.6457509227621093,
+          "fde_m": 1.2549352944792407
+        },
+        "by_snr": {
+          "5": {
+            "ade_m": 0.7309650323036178,
+            "fde_m": 1.3514442423552115
+          },
+          "10": {
+            "ade_m": 0.6385970932644757,
+            "fde_m": 1.2456414278986316
+          },
+          "15": {
+            "ade_m": 0.6286279584454525,
+            "fde_m": 1.2346415478011872
+          },
+          "20": {
+            "ade_m": 0.5848136070348914,
+            "fde_m": 1.1880139598619324
+          }
+        }
+      },
+      "parameters": 70542870,
+      "evaluation_seconds": 56.46737813949585
+    }
+  },
+  "paired_scene_bootstrap_repetitions": 10000,
+  "complexity_bootstrap": {
+    "all": {
+      "ade": {
+        "point_improvement_percent": -0.392941343567368,
+        "bootstrap_median_percent": -0.3924585216446824,
+        "ci95_percent": [
+          -1.1224676850319508,
+          0.32166587613393105
+        ],
+        "bootstrap_probability_improvement": 0.141
+      },
+      "fde": {
+        "point_improvement_percent": -0.6759212576852317,
+        "bootstrap_median_percent": -0.6757576790045551,
+        "ci95_percent": [
+          -1.5964871669468823,
+          0.22284701070610788
+        ],
+        "bootstrap_probability_improvement": 0.0719
+      }
+    },
+    "low": {
+      "ade": {
+        "point_improvement_percent": -0.8584318516481768,
+        "bootstrap_median_percent": -0.852824542509339,
+        "ci95_percent": [
+          -2.1446509919095176,
+          0.42043274819929005
+        ],
+        "bootstrap_probability_improvement": 0.0896
+      },
+      "fde": {
+        "point_improvement_percent": -1.516867436575923,
+        "bootstrap_median_percent": -1.5201433272322826,
+        "ci95_percent": [
+          -3.2773020361314797,
+          0.1864500654563925
+        ],
+        "bootstrap_probability_improvement": 0.0397
+      }
+    },
+    "medium": {
+      "ade": {
+        "point_improvement_percent": -0.9481048623872822,
+        "bootstrap_median_percent": -0.9521876675309136,
+        "ci95_percent": [
+          -2.151740328935529,
+          0.278188460003938
+        ],
+        "bootstrap_probability_improvement": 0.0661
+      },
+      "fde": {
+        "point_improvement_percent": -1.8649492626564845,
+        "bootstrap_median_percent": -1.8520208294749265,
+        "ci95_percent": [
+          -3.4070567759085124,
+          -0.30000646763383676
+        ],
+        "bootstrap_probability_improvement": 0.0102
+      }
+    },
+    "high": {
+      "ade": {
+        "point_improvement_percent": 0.29271276187605083,
+        "bootstrap_median_percent": 0.2854691867945185,
+        "ci95_percent": [
+          -0.9317050224849743,
+          1.5208323196628413
+        ],
+        "bootstrap_probability_improvement": 0.6739
+      },
+      "fde": {
+        "point_improvement_percent": 0.6305731135530882,
+        "bootstrap_median_percent": 0.6279788601937517,
+        "ci95_percent": [
+          -0.8486355043469952,
+          2.0968286113871626
+        ],
+        "bootstrap_probability_improvement": 0.7974
+      }
+    },
+    "high_minus_low_interaction": {
+      "ade": {
+        "median_percentage_points": 1.1479064736423006,
+        "ci95_percentage_points": [
+          -0.5896006244720211,
+          2.94070881295154
+        ],
+        "bootstrap_probability_positive": 0.9
+      },
+      "fde": {
+        "median_percentage_points": 2.1474756683192826,
+        "ci95_percentage_points": [
+          -0.09439973511246892,
+          4.4848785458999085
+        ],
+        "bootstrap_probability_positive": 0.9699
+      }
+    }
+  },
+  "no_multiple_seeds": true
+}

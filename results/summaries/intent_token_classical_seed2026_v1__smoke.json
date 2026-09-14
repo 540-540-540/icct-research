@@ -1,0 +1,9 @@
+{
+  "epoch0_exact_max_abs_m": 0.0,
+  "gradients": {
+    "longitudinal_head": 0.2552790939807892,
+    "residual_head": 0.27410951256752014
+  },
+  "source": "/home/js_cn/sensing/diagnostics/core_message_seed2026_v2/future_token_classical_llm_seed2026_v1/future_token_qgnn_llm_selected.pt",
+  "source_epoch": 10
+}

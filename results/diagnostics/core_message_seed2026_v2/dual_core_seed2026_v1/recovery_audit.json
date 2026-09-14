@@ -1,0 +1,9 @@
+{
+  "reason": "disk full while writing quantum selected checkpoint after epoch 6",
+  "action": "discard corrupted checkpoint and restart quantum arm from identical seed; retain completed classical arm",
+  "interrupted_records": 6,
+  "last_completed_epoch_in_interrupted_log": 6,
+  "archived_interrupted_log": "quantum_dual_graph_interrupted_disk_full_epoch6.jsonl",
+  "quantum_restart_from_epoch_zero": true,
+  "classical_not_retrained": true
+}

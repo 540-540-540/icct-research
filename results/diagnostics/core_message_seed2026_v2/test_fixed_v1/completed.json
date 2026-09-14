@@ -1,0 +1,8 @@
+{
+  "status": "completed",
+  "prediction_test": "prediction_completed.json",
+  "paired_test": "paired_block_analysis.json",
+  "association_test": "association_test_full.json",
+  "association_scenes": 1200,
+  "supersedes_association_test_json_debug_scenes": 24
+}

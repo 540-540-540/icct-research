@@ -1,0 +1,377 @@
+{
+  "status": "exploratory_sensitivity_after_primary_composite_analysis",
+  "policy": "all four prespecified components are reported; none selected using model outcomes",
+  "components": {
+    "active_targets": {
+      "low": {
+        "scenes": 330,
+        "component": {
+          "mean": 7.581818181818182,
+          "median": 8.0,
+          "min": 2.0,
+          "max": 8.0,
+          "finite_fraction": 1.0
+        },
+        "quantum_vs_classical_reduction_percent": {
+          "ade_m": -0.5654615067225215,
+          "fde_m": -0.3864395794989682
+        },
+        "quantum_vs_plain_reduction_percent": {
+          "ade_m": 1.59846839024203,
+          "fde_m": 1.4685808145646515
+        },
+        "quantum_vs_classical_paired_time_block_bootstrap_95_ci": {
+          "unique_time_blocks": 12,
+          "repetitions": 10000,
+          "ade_m": [
+            -2.4074274843271795,
+            0.7564858588449823
+          ],
+          "fde_m": [
+            -2.734642245989833,
+            1.2010666131808199
+          ]
+        }
+      },
+      "medium": {
+        "scenes": 330,
+        "component": {
+          "mean": 8.0,
+          "median": 8.0,
+          "min": 8.0,
+          "max": 8.0,
+          "finite_fraction": 1.0
+        },
+        "quantum_vs_classical_reduction_percent": {
+          "ade_m": 0.5896990163664916,
+          "fde_m": 0.1402982340875333
+        },
+        "quantum_vs_plain_reduction_percent": {
+          "ade_m": 1.3330486718490202,
+          "fde_m": 1.318139196021207
+        },
+        "quantum_vs_classical_paired_time_block_bootstrap_95_ci": {
+          "unique_time_blocks": 12,
+          "repetitions": 10000,
+          "ade_m": [
+            -0.8400058151070532,
+            1.9610696166829646
+          ],
+          "fde_m": [
+            -1.8176517850610487,
+            1.9539493020728798
+          ]
+        }
+      },
+      "high": {
+        "scenes": 331,
+        "component": {
+          "mean": 8.0,
+          "median": 8.0,
+          "min": 8.0,
+          "max": 8.0,
+          "finite_fraction": 1.0
+        },
+        "quantum_vs_classical_reduction_percent": {
+          "ade_m": -0.04562162031569827,
+          "fde_m": 0.13855402054142257
+        },
+        "quantum_vs_plain_reduction_percent": {
+          "ade_m": 0.9179268682661289,
+          "fde_m": 1.4748957611343962
+        },
+        "quantum_vs_classical_paired_time_block_bootstrap_95_ci": {
+          "unique_time_blocks": 12,
+          "repetitions": 10000,
+          "ade_m": [
+            -1.8762234832161757,
+            1.8096044022580022
+          ],
+          "fde_m": [
+            -2.2665552905666604,
+            2.4646775698864554
+          ]
+        }
+      }
+    },
+    "mean_neighbor_degree": {
+      "low": {
+        "scenes": 330,
+        "component": {
+          "mean": 5.930151515151516,
+          "median": 6.25,
+          "min": 1.0,
+          "max": 7.0,
+          "finite_fraction": 1.0
+        },
+        "quantum_vs_classical_reduction_percent": {
+          "ade_m": -0.13932783084586736,
+          "fde_m": 0.029189775043485616
+        },
+        "quantum_vs_plain_reduction_percent": {
+          "ade_m": 0.5720224540825478,
+          "fde_m": 0.5834274812930151
+        },
+        "quantum_vs_classical_paired_time_block_bootstrap_95_ci": {
+          "unique_time_blocks": 12,
+          "repetitions": 10000,
+          "ade_m": [
+            -1.0805348235605299,
+            0.5976995501723555
+          ],
+          "fde_m": [
+            -1.1837060758619475,
+            1.0524307483497632
+          ]
+        }
+      },
+      "medium": {
+        "scenes": 330,
+        "component": {
+          "mean": 7.0,
+          "median": 7.0,
+          "min": 7.0,
+          "max": 7.0,
+          "finite_fraction": 1.0
+        },
+        "quantum_vs_classical_reduction_percent": {
+          "ade_m": 0.324847249244875,
+          "fde_m": 0.08141249224873454
+        },
+        "quantum_vs_plain_reduction_percent": {
+          "ade_m": 1.4253246613828825,
+          "fde_m": 1.2490458417153965
+        },
+        "quantum_vs_classical_paired_time_block_bootstrap_95_ci": {
+          "unique_time_blocks": 12,
+          "repetitions": 10000,
+          "ade_m": [
+            -0.860836654186509,
+            1.3658214198846186
+          ],
+          "fde_m": [
+            -1.9153174623151796,
+            1.7194756472690074
+          ]
+        }
+      },
+      "high": {
+        "scenes": 331,
+        "component": {
+          "mean": 7.0,
+          "median": 7.0,
+          "min": 7.0,
+          "max": 7.0,
+          "finite_fraction": 1.0
+        },
+        "quantum_vs_classical_reduction_percent": {
+          "ade_m": -0.17475377826916555,
+          "fde_m": -0.2629124359224538
+        },
+        "quantum_vs_plain_reduction_percent": {
+          "ade_m": 2.1872795353255334,
+          "fde_m": 2.8446253363986256
+        },
+        "quantum_vs_classical_paired_time_block_bootstrap_95_ci": {
+          "unique_time_blocks": 12,
+          "repetitions": 10000,
+          "ade_m": [
+            -1.7589379807936352,
+            1.5206669716112056
+          ],
+          "fde_m": [
+            -2.335205393946121,
+            1.738074461128263
+          ]
+        }
+      }
+    },
+    "nearest_pair_proximity": {
+      "low": {
+        "scenes": 330,
+        "component": {
+          "mean": 0.8696549822145926,
+          "median": 0.8822370582346858,
+          "min": 0.4500416669405125,
+          "max": 0.912141917936215,
+          "finite_fraction": 1.0
+        },
+        "quantum_vs_classical_reduction_percent": {
+          "ade_m": 0.39504073785498417,
+          "fde_m": 0.9083991085910973
+        },
+        "quantum_vs_plain_reduction_percent": {
+          "ade_m": 0.4263095350292455,
+          "fde_m": 0.9279087276905628
+        },
+        "quantum_vs_classical_paired_time_block_bootstrap_95_ci": {
+          "unique_time_blocks": 12,
+          "repetitions": 10000,
+          "ade_m": [
+            -1.2010885651372867,
+            1.2921851762105574
+          ],
+          "fde_m": [
+            -1.3024892383427482,
+            2.1817727932073665
+          ]
+        }
+      },
+      "medium": {
+        "scenes": 330,
+        "component": {
+          "mean": 0.9225610054305858,
+          "median": 0.9233387766292184,
+          "min": 0.9123067118912116,
+          "max": 0.9299790238211455,
+          "finite_fraction": 1.0
+        },
+        "quantum_vs_classical_reduction_percent": {
+          "ade_m": 0.27538609706866873,
+          "fde_m": -0.24534998120630294
+        },
+        "quantum_vs_plain_reduction_percent": {
+          "ade_m": 2.0305709676781776,
+          "fde_m": 1.8699721092496495
+        },
+        "quantum_vs_classical_paired_time_block_bootstrap_95_ci": {
+          "unique_time_blocks": 12,
+          "repetitions": 10000,
+          "ade_m": [
+            -0.6119000734465013,
+            1.1431334782778817
+          ],
+          "fde_m": [
+            -1.2289351985165091,
+            0.7712595046725476
+          ]
+        }
+      },
+      "high": {
+        "scenes": 331,
+        "component": {
+          "mean": 0.940872719265803,
+          "median": 0.938895285650518,
+          "min": 0.9299796280315398,
+          "max": 0.9978663645191421,
+          "finite_fraction": 1.0
+        },
+        "quantum_vs_classical_reduction_percent": {
+          "ade_m": -1.0767931930159964,
+          "fde_m": -1.4724029611241627
+        },
+        "quantum_vs_plain_reduction_percent": {
+          "ade_m": 1.7495096609830847,
+          "fde_m": 1.7080212831404789
+        },
+        "quantum_vs_classical_paired_time_block_bootstrap_95_ci": {
+          "unique_time_blocks": 12,
+          "repetitions": 10000,
+          "ade_m": [
+            -2.235191092671067,
+            0.18789273260336928
+          ],
+          "fde_m": [
+            -3.091478011649364,
+            0.15178190558946755
+          ]
+        }
+      }
+    },
+    "closing_ttc_risk": {
+      "low": {
+        "scenes": 330,
+        "component": {
+          "mean": 0.30597564653705456,
+          "median": 0.2603318644713614,
+          "min": 0.0,
+          "max": 0.656461836158722,
+          "finite_fraction": 1.0
+        },
+        "quantum_vs_classical_reduction_percent": {
+          "ade_m": 0.24848559803514905,
+          "fde_m": 0.560818843133885
+        },
+        "quantum_vs_plain_reduction_percent": {
+          "ade_m": 2.692190757944842,
+          "fde_m": 3.2610734107687174
+        },
+        "quantum_vs_classical_paired_time_block_bootstrap_95_ci": {
+          "unique_time_blocks": 12,
+          "repetitions": 10000,
+          "ade_m": [
+            -0.6364541711390705,
+            1.397276712637688
+          ],
+          "fde_m": [
+            -0.5650378737791454,
+            2.0420758678803463
+          ]
+        }
+      },
+      "medium": {
+        "scenes": 330,
+        "component": {
+          "mean": 0.7493943980314886,
+          "median": 0.7558324569231885,
+          "min": 0.6567299335486889,
+          "max": 0.8133646119176254,
+          "finite_fraction": 1.0
+        },
+        "quantum_vs_classical_reduction_percent": {
+          "ade_m": -0.2815245082982305,
+          "fde_m": -0.39721067873059107
+        },
+        "quantum_vs_plain_reduction_percent": {
+          "ade_m": 1.2081444525363831,
+          "fde_m": 0.839167195710125
+        },
+        "quantum_vs_classical_paired_time_block_bootstrap_95_ci": {
+          "unique_time_blocks": 12,
+          "repetitions": 10000,
+          "ade_m": [
+            -2.2989687989086507,
+            1.4069841815986774
+          ],
+          "fde_m": [
+            -2.932134680996993,
+            1.5443194106561788
+          ]
+        }
+      },
+      "high": {
+        "scenes": 331,
+        "component": {
+          "mean": 0.8600154048052427,
+          "median": 0.8555805878088255,
+          "min": 0.8137796843106465,
+          "max": 0.9722284540872862,
+          "finite_fraction": 1.0
+        },
+        "quantum_vs_classical_reduction_percent": {
+          "ade_m": 0.06542449968136721,
+          "fde_m": -0.011518107625880533
+        },
+        "quantum_vs_plain_reduction_percent": {
+          "ade_m": 0.6514931826978279,
+          "fde_m": 1.0773652945433516
+        },
+        "quantum_vs_classical_paired_time_block_bootstrap_95_ci": {
+          "unique_time_blocks": 12,
+          "repetitions": 10000,
+          "ade_m": [
+            -0.9816458195042393,
+            0.9388255318513329
+          ],
+          "fde_m": [
+            -1.3753656779587373,
+            1.3086153154667832
+          ]
+        }
+      }
+    }
+  },
+  "no_retraining": true,
+  "no_llm": true,
+  "no_test": true
+}

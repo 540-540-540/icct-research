@@ -1,0 +1,58 @@
+{
+  "threshold_multiplier": 1.0379822661928502,
+  "target_false_alarms_per_cpi": 0.1,
+  "spatial_fft_size": 64,
+  "max_candidates": 32,
+  "p_D": 0.9,
+  "device": "cuda:0",
+  "R": [
+    [
+      2.25,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.007615435494667714,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "training_half_width": [
+    4,
+    4,
+    8
+  ],
+  "guard_half_width": [
+    1,
+    1,
+    4
+  ],
+  "revision": "C01",
+  "nms_half_width": [
+    1,
+    1,
+    1
+  ],
+  "sidelobe_power_margin": 1.5,
+  "lambda_c": 1.6133007847442656e-06,
+  "revision_reason": "Array mainlobe guard4/outer8; local NMS1/1/1 avoids deleting measured resolved peaks; ULA sidelobe suppression and waveform unchanged",
+  "calibration_design_cpis": 1024,
+  "calibration_holdout_cpis": 1024,
+  "calibration_design_seed_start": 6202600,
+  "calibration_holdout_seed_start": 7202600,
+  "design_false_alarms": 102,
+  "design_false_alarms_per_cpi": 0.099609375,
+  "p_D_status": "initial value; training detection calibration pending",
+  "window_description": "periodic Hann range/slow, rectangular 16-element array, scan FFT64",
+  "backend": "torch CUDA with scipy CPU reference/fallback",
+  "noise_model": "unit-variance circular CN frequency noise; CFAR scale invariant",
+  "calibration_note": "NMS and interpolation geometry filtering included; no source traffic or target truth used",
+  "lambda_c_units": "detections/(m rad m/s)",
+  "lambda_c_source": "design mean divided by continuous valid measurement-domain volume",
+  "measurement_domain_volume": 61742.59378159895
+}

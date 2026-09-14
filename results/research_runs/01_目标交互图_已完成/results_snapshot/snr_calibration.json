@@ -1,0 +1,60 @@
+{
+  "snr_db": [
+    5,
+    10,
+    15,
+    20
+  ],
+  "source": "first-point RF localization caches",
+  "source_dt_s": 0.05,
+  "calibration": {
+    "5": {
+      "cache": "logs/localized_cache_dataset_lankershim_v3_localize_snr5_g61_s5_t0p25_e0_sl72_pl20.npz",
+      "trajectories": 1344,
+      "frames_per_trajectory": 300,
+      "position_per_axis_rmse_m": 0.7557223877999647,
+      "position_per_axis_robust_sigma_m": 0.45545111846923825,
+      "position_radial_mae_m": 0.5856164320862967,
+      "position_radial_median_m": 0.5266667140715289,
+      "position_radial_p95_m": 1.0638610465394864,
+      "velocity_per_axis_rmse_mps": 15.809850770790058,
+      "velocity_per_axis_robust_sigma_mps": 3.970506683349609
+    },
+    "10": {
+      "cache": "logs/localized_cache_dataset_lankershim_v3_localize_snr10_g81_s3_t0p15_e0_sl72_pl20.npz",
+      "trajectories": 1344,
+      "frames_per_trajectory": 300,
+      "position_per_axis_rmse_m": 0.5123031086987804,
+      "position_per_axis_robust_sigma_m": 0.41797523403167725,
+      "position_radial_mae_m": 0.5138855046422541,
+      "position_radial_median_m": 0.4797621342165065,
+      "position_radial_p95_m": 0.9254047970235391,
+      "velocity_per_axis_rmse_mps": 10.764957277717373,
+      "velocity_per_axis_robust_sigma_mps": 4.767729949951172
+    },
+    "15": {
+      "cache": "logs/localized_cache_dataset_lankershim_v3_localize_snr15_g91_s3_t0p12_e0_sl72_pl20.npz",
+      "trajectories": 1344,
+      "frames_per_trajectory": 300,
+      "position_per_axis_rmse_m": 0.48241662565787996,
+      "position_per_axis_robust_sigma_m": 0.37863580627441407,
+      "position_radial_mae_m": 0.4649763842756518,
+      "position_radial_median_m": 0.4357366645536501,
+      "position_radial_p95_m": 0.820796795955346,
+      "velocity_per_axis_rmse_mps": 10.346154984879307,
+      "velocity_per_axis_robust_sigma_mps": 3.8641800842285154
+    },
+    "20": {
+      "cache": "logs/localized_cache_dataset_lankershim_v3_localize_snr20_g121_s3_t0p06_e1_sl72_pl20.npz",
+      "trajectories": 1344,
+      "frames_per_trajectory": 300,
+      "position_per_axis_rmse_m": 0.3391253806298064,
+      "position_per_axis_robust_sigma_m": 0.07606310806274413,
+      "position_radial_mae_m": 0.11711842625103548,
+      "position_radial_median_m": 0.09304962723075065,
+      "position_radial_p95_m": 0.21282705396978555,
+      "velocity_per_axis_rmse_mps": 9.385117707926412,
+      "velocity_per_axis_robust_sigma_mps": 1.01711572265625
+    }
+  }
+}

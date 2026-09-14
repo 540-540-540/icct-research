@@ -1,0 +1,14 @@
+{
+  "source_epoch": 14,
+  "epoch0_exact_max_abs_m": 0.0,
+  "fusion_strength": 0.0,
+  "gradient_max": {
+    "future_queries": 0.006073612719774246,
+    "token_head": 0.46545717120170593,
+    "token_residual": 0.022737868130207062,
+    "fusion_strength": 0.5009720325469971,
+    "future_lora": 0.06884820014238358
+  },
+  "source_checkpoint_sha256": "55176fd8e9b3f2857c28df38bd5f60aca9c1e3122a4c1d40877c34fbbcf0f56a",
+  "graph_checkpoint_sha256": "28e73d52d09aa4e4df620a8e79307cb612603c4857d45426f5e56c0f3ab94b93"
+}

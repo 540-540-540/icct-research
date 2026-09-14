@@ -1,0 +1,48 @@
+{
+  "experiment": "joint_vs_independent_strong_interaction_scene",
+  "device": "NVIDIA GeForce RTX 4090",
+  "test_scene_count": 1200,
+  "strong_interaction_definition": {
+    "future_minimum_distance_m": "1.5 to 8.0",
+    "distance_reduction_m": ">= 2.0",
+    "closest_future_step": "3 to 19",
+    "each_interacting_target_displacement_m": ">= 3.0",
+    "maximum_interacting_target_displacement_m": "<= 20.0",
+    "interacting_displacement_length_ratio": "<= 1.5",
+    "interacting_heading_angle_deg": "10.0 to 170.0"
+  },
+  "independent_baseline": "Transformer processing each target separately",
+  "selection_rule": "strong interaction; Proposed improves ADE/FDE by >10% and pair-distance error by >20%",
+  "candidate_count": 3,
+  "eligible_count": 2,
+  "selected_scene_index": 1044,
+  "selected_metrics": {
+    "scene_index": 1044.0,
+    "ground_truth_min_distance_m": 4.566208839416504,
+    "closest_future_step": 12.0,
+    "closing_gain_m": 2.429290771484375,
+    "heading_angle_deg": 13.386805534362793,
+    "interaction_path_length_1_m": 8.718477249145508,
+    "interaction_path_length_2_m": 10.681388854980469,
+    "interaction_path_length_ratio": 1.2251438582382428,
+    "independent_ade_m": 2.2414138317108154,
+    "independent_fde_m": 4.646609306335449,
+    "proposed_ade_m": 1.7860924005508423,
+    "proposed_fde_m": 3.4213755130767822,
+    "independent_pair_distance_error_m": 0.9659038782119751,
+    "proposed_pair_distance_error_m": 0.713095486164093,
+    "ade_gain_pct": 20.314027901417813,
+    "fde_gain_pct": 26.368341138303023,
+    "pair_distance_error_gain_pct": 26.173245366388446
+  },
+  "noise": {
+    "snr_db": 20,
+    "position_sigma_m": 0.3391253806298064,
+    "velocity_sigma_mps": 0.2,
+    "seed": 4026
+  },
+  "outputs": {
+    "trajectory": "/home/js_cn/sensing/results/multitarget_snr/joint_vs_independent_scene.npz",
+    "candidates": "/home/js_cn/sensing/results/multitarget_snr/joint_vs_independent_candidates.csv"
+  }
+}

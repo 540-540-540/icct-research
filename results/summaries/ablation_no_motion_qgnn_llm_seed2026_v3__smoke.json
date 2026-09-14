@@ -1,0 +1,7 @@
+{
+  "variant": "no_motion",
+  "epoch0_exact_max_abs_m": 0.0,
+  "ablated_branch_max_logit_change": 4.547579765319824,
+  "fusion_gradient": 213.5850067138672,
+  "future_token_model_source": "/home/js_cn/sensing/双图研究框架/未来词QGNN_LLM实验_2026-09-09/future_token_model.py"
+}

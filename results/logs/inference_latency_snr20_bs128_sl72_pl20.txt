@@ -1,0 +1,8 @@
+Inference latency benchmark
+snr=20dB, device=cuda, batch_size=128, repeat=100
+cache=./logs/localized_cache_dataset_lankershim_v3_localize_snr20_g121_s3_t0p06_e1_sl72_pl20.npz
+
+Ours         | params=  84.83M | trainable=   2.92M | latency=  1.1502 ms/sample | ADE= 1.0382 m | batch= 147.220 ms | throughput=   869.4 samples/s
+LSTM         | params=   0.87M | trainable=   0.87M | latency=  0.0154 ms/sample | ADE= 1.1441 m | batch=   1.965 ms | throughput= 65139.5 samples/s
+TCN          | params=   0.50M | trainable=   0.50M | latency=  0.0096 ms/sample | ADE= 1.1947 m | batch=   1.234 ms | throughput=103751.5 samples/s
+Transformer  | params=  43.14M | trainable=  43.14M | latency=  0.1863 ms/sample | ADE= 1.9666 m | batch=  23.844 ms | throughput=  5368.2 samples/s
