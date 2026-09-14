@@ -1,0 +1,23 @@
+{
+  "revision": "qgnn-directed-context-paired-seed2026-v1",
+  "seed": 2026,
+  "cells": ["original", "directed_context"],
+  "devices": {"original": "cuda:0", "directed_context": "cuda:1"},
+  "graph_seed_offset": 200000,
+  "temporal_seed_offset": 100000,
+  "epochs": 150,
+  "patience": 20,
+  "min_delta": 0,
+  "selection": "minimum V_select ADE + 0.5 * FDE; strict improvement",
+  "development_gate": "Directed-context must improve both ADE and FDE from the same best-J checkpoint before multi-seed confirmation.",
+  "train_origins": 5549,
+  "validation_origins": 400,
+  "batch_size": 16,
+  "micro_batch": 16,
+  "validation_micro_batch": 16,
+  "graph_lr": 0.0003,
+  "snr_db": [5, 10, 15, 20],
+  "allowed_splits": ["train", "V_select"],
+  "historical_gnn_reference": "results/qgnn_motionframe/seed2026/gnn",
+  "limitation": "Single-seed V_select development comparison of fresh inherited QGNN versus fresh directed-context QGNN. J selects one checkpoint; ADE and FDE are reported separately. Strong GNN is historical matched-protocol context only. No V_confirm/test access, QGAT training, or quantum-advantage claim."
+}

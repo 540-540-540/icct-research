@@ -6,13 +6,13 @@
 
 当前研究目标是：在保留强GNN对照和可比实验条件的前提下，研究如何扩大师兄双层QGNN在ADE、FDE上的优势，并使改善能够稳定复现。优先定位限制收益的关系表示、消息门控及后期泛化问题，再选择少量有机制依据的改动进行验证；不预设改动必然提升。QGAT继续暂停训练投入。
 
-用户已确定：**当前主方案依然是师兄双层 QGNN；两轮改进效果不佳，不替换原方案；QGAT 暂停训练资源投入。** 主方案为 `experiments/qgnn_inherited/graph.py` 的 `InheritedQGNNGraph`，将师兄两层量子关系/消息模块接入当前逐帧输入和公共 GPT-2/LoRA 时间预测器；不是恢复旧16比特A02路线，也不是完整复现师兄原GRU、未来词和信任融合架构。结构与复跑条件见[QGNN协议](reports/qgnn_inherited100/PROTOCOL.md)。
+用户已确定：**当前主方案依然是师兄双层 QGNN；三轮改进均不替换原方案；QGAT 暂停训练资源投入。** 主方案为 `experiments/qgnn_inherited/graph.py` 的 `InheritedQGNNGraph`，将师兄两层量子关系/消息模块接入当前逐帧输入和公共 GPT-2/LoRA 时间预测器；不是恢复旧16比特A02路线，也不是完整复现师兄原GRU、未来词和信任融合架构。结构与复跑条件见[QGNN协议](reports/qgnn_inherited100/PROTOCOL.md)。
 
 QGNN单种子100轮已完成：按最佳J检查点同时报告的ADE/FDE为0.547521/1.095579，较现有GNN改善0.742%/2.323%；共同第100轮排序反转。现阶段为seed2026、V_select开发证据，尚无这条QGNN候选的多种子或独立确认结论，见[比较记录](reports/qgnn_inherited100/comparison.json)。强GNN继续保留为主要对照。
 
-围绕主方案的两轮改进均已完成，结果都不理想，当前不继续扩展这两个分支。第一次为X读出：最佳ADE/FDE为0.546512/1.103938，较同轮原QGNN退步0.690%/0.777%，见[结果](reports/qgnn_readout/seed2026/RESULT.md)。第二次为行驶方向关系编码：最佳ADE/FDE为0.551578/1.114769，较复用的同协议原QGNN退步1.623%/1.766%；相对本轮从头训练强GNN则ADE退步0.246%、FDE改善0.314%，未形成ADE和FDE同时改善，见[结果](reports/qgnn_motionframe/seed2026/RESULT.md)。两轮均只是seed2026、V_select开发证据，未读取V_confirm/test。
+围绕主方案的三轮改进均已完成，当前均不替换原方案。第一次X读出最佳ADE/FDE为0.546512/1.103938，较同轮原Q退步0.690%/0.777%。第二次行驶方向关系编码最佳ADE/FDE为0.551578/1.114769，较同协议原Q退步1.623%/1.766%。第三次可学习有向上下文残差最佳ADE/FDE为0.542487/1.096786；相对本轮从头训练原Q，ADE改善0.052%、FDE退步0.125%，未通过两项同时改善的开发门槛。见[X读出结果](reports/qgnn_readout/seed2026/RESULT.md)、[行驶方向结果](reports/qgnn_motionframe/seed2026/RESULT.md)和[有向上下文状态](reports/qgnn_directed_context/STATUS.md)。三轮均只是seed2026、V_select开发证据，未读取V_confirm/test。
 
-因此当前基线保持不变：继续采用师兄双层QGNN作为主方案，强GNN作为主要对照；X读出和行驶方向编码仅作为已完成但未带来收益的改进记录。后续[案例诊断](reports/qgnn_cases/REPORT.md)也未支持简单删除后方或远距离邻居，门控强度与邻居间差异须区分。
+因此当前基线保持不变：继续采用师兄双层QGNN作为主方案、强GNN作为主要对照；三项改进仅作为已完成的开发记录。后续计划尚未确定，也未授权新训练。此前[案例诊断](reports/qgnn_cases/REPORT.md)未支持简单删除后方或远距离邻居，门控强度与邻居间差异须区分。
 
 QGAT现有代码、配置、日志、检查点和报告保留，不新增试跑、重训、加训或自动恢复。最新relation_D/relation_value两组均已完成100轮、34700次更新。完整决策见[修订记录](amendment_log.md)。
 
