@@ -5,10 +5,10 @@
 
 本节依据用户最新决定，优先于下方历史路线、候选优先级及训练启动安排。
 
-- **主候选：师兄双层QGNN。** 当前实现为`experiments/qgnn_inherited/graph.py`的`InheritedQGNNGraph`，接公共GPT-2/LoRA预测器；复跑协议见`reports/qgnn_inherited100/PROTOCOL.md`，配置为`configs/qgnn_inherited100.json`。这不是旧16比特A02路线的恢复，也不是师兄完整原系统的复现。
+- **主方案：师兄双层QGNN，保持不变。** 当前实现为`experiments/qgnn_inherited/graph.py`的`InheritedQGNNGraph`，接公共GPT-2/LoRA预测器；复跑协议见`reports/qgnn_inherited100/PROTOCOL.md`，配置为`configs/qgnn_inherited100.json`。这不是旧16比特A02路线的恢复，也不是师兄完整原系统的复现。
 - **QGAT：暂停训练投入。** 所有现有QGAT分支保留代码、结果和检查点；不新增试跑、重训、加训或自动恢复。最新Value对照两组均已完成100轮，服务器2026-09-14 00:06北京时间核查无活动模型训练进程。
 - **对照与证据：** 强GNN继续保留。QGNN最佳检查点ADE/FDE为0.547521/1.095579，较现有GNN改善0.742%/2.323%，但共同100轮排序反转；仅为seed2026、V_select开发证据，训练分批差异见复跑协议。主候选身份不等于已证明稳定优势。
-- **当前试跑：** X读出配对已完成，最佳ADE/FDE较原版退步0.690%/0.777%，停止扩展该分支。案例诊断后，用户要求开始下一轮；2026-09-14 09:50已发起行驶方向关系编码QGNN与从头训练强GNN的后台运行，seed2026、最多150轮、patience=20。编码新增参数0，原QGNN同协议结果通过校验后复用；确认两组正式更新后Codex停止工作。见`reports/qgnn_cases/REPORT.md`与`reports/qgnn_motionframe/PROTOCOL.md`。不访问V_confirm/test，历史自动化继续暂停。
+- **两轮改进结果：效果不佳，均不替换原QGNN。** 第一轮X读出最佳ADE/FDE较同轮原QGNN退步0.690%/0.777%；第二轮行驶方向关系编码最佳ADE/FDE为0.551578/1.114769，较同协议原QGNN退步1.623%/1.766%。第二轮相对从头训练强GNN为ADE退步0.246%、FDE改善0.314%，也未实现两项指标同时改善。两轮均为seed2026、V_select开发结果；见`reports/qgnn_readout/seed2026/RESULT.md`、`reports/qgnn_motionframe/seed2026/RESULT.md`与`reports/qgnn_cases/REPORT.md`。不访问V_confirm/test，历史自动化继续暂停。
 
 下方版本1.4及A06/A07内容为历史协议与当时状态，保留用于溯源；与本节冲突的当前路线及资源安排不再执行。
 

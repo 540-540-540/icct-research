@@ -6,13 +6,13 @@
 
 当前研究目标是：在保留强GNN对照和可比实验条件的前提下，研究如何扩大师兄双层QGNN在ADE、FDE上的优势，并使改善能够稳定复现。优先定位限制收益的关系表示、消息门控及后期泛化问题，再选择少量有机制依据的改动进行验证；不预设改动必然提升。QGAT继续暂停训练投入。
 
-用户已确定：**师兄双层 QGNN 为主候选；QGAT 暂停训练资源投入。** 主候选为 `experiments/qgnn_inherited/graph.py` 的 `InheritedQGNNGraph`，将师兄两层量子关系/消息模块接入当前逐帧输入和公共 GPT-2/LoRA 时间预测器；不是恢复旧16比特A02路线，也不是完整复现师兄原GRU、未来词和信任融合架构。结构与复跑条件见[QGNN协议](reports/qgnn_inherited100/PROTOCOL.md)。
+用户已确定：**当前主方案依然是师兄双层 QGNN；两轮改进效果不佳，不替换原方案；QGAT 暂停训练资源投入。** 主方案为 `experiments/qgnn_inherited/graph.py` 的 `InheritedQGNNGraph`，将师兄两层量子关系/消息模块接入当前逐帧输入和公共 GPT-2/LoRA 时间预测器；不是恢复旧16比特A02路线，也不是完整复现师兄原GRU、未来词和信任融合架构。结构与复跑条件见[QGNN协议](reports/qgnn_inherited100/PROTOCOL.md)。
 
 QGNN单种子100轮已完成：按最佳J检查点同时报告的ADE/FDE为0.547521/1.095579，较现有GNN改善0.742%/2.323%；共同第100轮排序反转。现阶段为seed2026、V_select开发证据，尚无这条QGNN候选的多种子或独立确认结论，见[比较记录](reports/qgnn_inherited100/comparison.json)。强GNN继续保留为主要对照。
 
-X读出配对试跑已完成：原QGNN在第95轮早停、最佳第75轮ADE/FDE为0.542767/1.095422；X版在第74轮早停、最佳第54轮为0.546512/1.103938，分别退步0.690%/0.777%，见[结果](reports/qgnn_readout/seed2026/RESULT.md)。后续[案例诊断](reports/qgnn_cases/REPORT.md)未支持简单删除后方或远距离邻居，门控强度与邻居间差异也须区分。
+围绕主方案的两轮改进均已完成，结果都不理想，当前不继续扩展这两个分支。第一次为X读出：最佳ADE/FDE为0.546512/1.103938，较同轮原QGNN退步0.690%/0.777%，见[结果](reports/qgnn_readout/seed2026/RESULT.md)。第二次为行驶方向关系编码：最佳ADE/FDE为0.551578/1.114769，较复用的同协议原QGNN退步1.623%/1.766%；相对本轮从头训练强GNN则ADE退步0.246%、FDE改善0.314%，未形成ADE和FDE同时改善，见[结果](reports/qgnn_motionframe/seed2026/RESULT.md)。两轮均只是seed2026、V_select开发证据，未读取V_confirm/test。
 
-当前轮次为**行驶方向关系编码QGNN与从头训练的强GNN**：2026-09-14 09:50已发起服务器后台运行；seed2026、最多150轮、patience=20，两张GPU各跑一组。新编码仅改变量子分支前四个物理关系通道的坐标，新增参数0；原QGNN已完成的同协议结果经来源、数据和训练规则校验后复用。配置、检查和结果位置见[本轮协议](reports/qgnn_motionframe/PROTOCOL.md)。确认两组实际更新后Codex停止工作，运行状态以服务器记录为准；未读取V_confirm/test。
+因此当前基线保持不变：继续采用师兄双层QGNN作为主方案，强GNN作为主要对照；X读出和行驶方向编码仅作为已完成但未带来收益的改进记录。后续[案例诊断](reports/qgnn_cases/REPORT.md)也未支持简单删除后方或远距离邻居，门控强度与邻居间差异须区分。
 
 QGAT现有代码、配置、日志、检查点和报告保留，不新增试跑、重训、加训或自动恢复。最新relation_D/relation_value两组均已完成100轮、34700次更新。完整决策见[修订记录](amendment_log.md)。
 
