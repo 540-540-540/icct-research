@@ -102,7 +102,8 @@ grid_index: int32[3]
 def fuse_frame(detections_by_bs: dict[int, list[Detection]], config) -> list[Observation]
 // P0-5 冻结唯一算法：检测按 (peak_power 降序, grid_index 升序) 确定性排序；
 // 顺序 Hungarian grouping：BS0↔BS1 → groups↔BS2；Mahalanobis² + χ²(2,0.99) 门控，
-// 出格项 BIG；group state = 逆协方差融合；全程不使用 GT。
+// 出格项 BIG；每次 assignment 后显式 post-filter：仅 Mahalanobis²<=9.21 接受，
+// BIG/超门限一律恢复 unmatched；group state = 逆协方差融合；全程不使用 GT。
 
 Observation = {
   "time_ns": int64, "x_m": float64, "y_m": float64, "C_xy": float64[2,2],

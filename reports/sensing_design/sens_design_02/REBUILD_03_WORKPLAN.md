@@ -97,8 +97,9 @@ T2：AST/签名/import 哨兵/置换测试全部落 `check_no_gt.py`。
 文件：`frontend/fusion/association.py`、`code/07_shared_frontend/check_association.py`。
 
 实现（P0-5 冻结的唯一算法）：检测按 `(peak_power 降序, grid_index 升序)` 排序 →
-BS0↔BS1 Hungarian（χ²(2,0.99) 门控，出格 BIG）→ group state = 逆协方差融合 →
-groups↔BS2 Hungarian → 最终 1/2/3-BS groups → 逆协方差融合观测；
+BS0↔BS1 Hungarian（χ²(2,0.99) 门控，出格 BIG）→ **assignment 后显式 post-filter**
+（仅 `Mahalanobis² ≤ 9.21` 接受，BIG/超门限恢复 unmatched）→ group state = 逆协方差融合 →
+groups↔BS2 Hungarian（同样 post-filter）→ 最终 1/2/3-BS groups → 逆协方差融合观测；
 配置 `sensor_order=[0,1,2]`；观测 schema（INTERFACE_SPEC §3.3）。
 
 单元：两 BS/三 BS 合成检测的融合位置误差应 ≈ 单站误差/√n（within 20%）；

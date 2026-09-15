@@ -134,8 +134,8 @@ Z_b = Y_b / X_b                                      （去调制，噪声方差
 
 - 主路径**不再构造** `[Nr,Nv,Na]`（约 1.68e7 单元）的全尺寸 3D 功率立方；
   AoA 只对 CFAR/NMS 后的少量 RD 峰（≤`max_candidates`）各做一次 64 点 FFT。
-- 非相干阵列合并带来阵列增益：期望上 `E[P_RD] ≈ A·(|s|²+σ²)`，
-  对目标分量约 `10log10(A) = 12 dB`（A=16），这是 SNR 预算的一部分。
+- 非相干阵列积累改善检测统计/处理性能；具体收益由 calibration 实测确定，
+  本文不给出解析 SNR gain 数值。
 - AoA 每 RD 峰允许输出多个显著峰（`aoa_max_peaks`）；V1 冻结为 **1（最强 AoA 峰）**，
   1D NMS 与上限保护已就位，多散点/多 AoA 峰留 V1.1（T5 记录该限制）。
 - 不采用旧实现的 static-clutter mean subtraction：本场景没有静态杂波模型，减均值会削弱目标自身。
@@ -190,8 +190,9 @@ Jacobian（`frontend/sensing/coords.py` 实现并单测）：
 
 ```text
 ρ = sqrt(r² − h²),  φ = boresight_b + asin(u)
-x = x_b + ρ·cos φ,  y = y_b + ρ·sin φ
-∂(x,y)/∂r = (ρ/r)·[cos φ, sin φ]
+x = x_b + ρ·cos φ,   y = y_b + ρ·sin φ
+∂ρ/∂r = r/ρ
+∂(x,y)/∂r = (r/ρ)·[cos φ, sin φ]
 ∂(x,y)/∂u = ρ·[−sin φ, cos φ] / sqrt(1 − u²)
 J = [[∂x/∂r, ∂x/∂u], [∂y/∂r, ∂y/∂u]]
 ```
@@ -222,6 +223,9 @@ Stage 2：groups ↔ BS2
 ```
 
 - Hungarian 用 `scipy.optimize.linear_sum_assignment`；出格项设 BIG，保证不会强行匹配。
+- **assignment 后必须显式 post-filter（Stage 1/Stage 2 各自执行）**：对每个被分配的 pair
+  重新核验 `Mahalanobis² ≤ 9.21`；凡代价为 BIG 或超门限的 assignment 一律恢复为 unmatched
+  （检测回到 singleton group），不得把 BIG 匹配带入 group 或融合。
 - 固定 BS0→BS1→BS2 的理由：BS0/BS2 在道路同侧、BS1 在另一侧；BS0–BS2 直接配对的视差在
   道路纵向几何上更弱，先配 BS1（异侧站）再补 BS2 在观测几何上最稳。
   顺序只依赖站点几何与检测质量，不含 GT。

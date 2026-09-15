@@ -69,6 +69,8 @@ Stage 1 BS0↔BS1 Hungarian（Mahalanobis² + χ²(2,0.99)=9.21 门控，出格 
 Stage 2 groups↔BS2 再 Hungarian；最终每组每 BS 至多 1 检测；
 `n_bs≥2` → `C_f=(ΣC⁻¹)⁻¹`，`p_f=C_fΣC⁻¹p`；`n_bs=1` 保留单站观测。
 匹配器只用 `scipy.optimize.linear_sum_assignment`；不用 PHD/MHT/JPDA；不用 GT。
+每次 Hungarian 后必须显式 post-filter：逐对复核 `Mahalanobis² ≤ 9.21`，
+BIG/超门限 assignment 一律恢复为 unmatched（回到 singleton），Stage 1/Stage 2 都要执行。
 理由：唯一、可直接编码、确定性；固定顺序只依赖站点几何与观测排序（BS0/BS2 同侧视差弱，
 先配异侧 BS1 最稳）。
 已知局限：Stage 1 局部最优不可回溯（T4/T5 量化；V1.1 可全三元枚举）。
