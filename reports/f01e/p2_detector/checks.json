@@ -1,0 +1,43 @@
+{
+  "test": "P2 sanity",
+  "passed": true,
+  "checks": {
+    "detection_rate": {
+      "passed": true,
+      "detail": {
+        "detected": 105,
+        "total": 105
+      }
+    },
+    "range_accuracy": {
+      "passed": true,
+      "detail": {
+        "median_abs_e_r_m": 0.08077644053685162,
+        "max_abs_e_r_m": 0.4221828480930334
+      }
+    },
+    "aoa_accuracy": {
+      "passed": true,
+      "detail": {
+        "median_abs_e_u": 4.29986812328087e-05,
+        "max_abs_e_u": 0.003515970799106538
+      }
+    },
+    "radial_velocity_accuracy": {
+      "passed": true,
+      "detail": {
+        "median_abs_e_vr_mps": 0.003844622280807286,
+        "max_abs_e_vr_mps": 34.51679542175474
+      }
+    },
+    "cartesian_consistency": {
+      "passed": true,
+      "detail": {
+        "max_consistency_m": 0.0
+      }
+    },
+    "finite_outputs": {
+      "passed": true
+    }
+  }
+}

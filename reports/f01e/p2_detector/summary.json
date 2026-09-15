@@ -1,0 +1,13 @@
+{
+  "test": "P2 single-target sanity",
+  "snr_ref_db": 20.0,
+  "cfar_multiplier": 0.19,
+  "cases": 35,
+  "realizations": 3,
+  "median_abs_e_r_m": 0.08077644053685162,
+  "median_abs_e_u": 4.29986812328087e-05,
+  "median_abs_e_vr_mps": 0.003844622280807286,
+  "max_position_error_m": 0.42832805120621054,
+  "coords_hash": "caf8457e859ce7a2693be41ede57b5709ca8c59fe89a410d202ecc18f4e4a98b",
+  "detector_hash": "c9ba4188eac881b2cc75b5b69d2e3049cdbbfe6fb5a38df2331ba082918a0058"
+}

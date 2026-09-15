@@ -1,0 +1,119 @@
+{
+  "test": "T2",
+  "passed": true,
+  "checks": {
+    "static_imports_and_api": {
+      "passed": true,
+      "detail": {
+        "frontend/sensing/detector.py": {
+          "bad_imports": [],
+          "forbidden_text": [],
+          "bad_params": [],
+          "imports": [
+            "__future__",
+            "math",
+            "torch",
+            "torch.nn.functional",
+            "",
+            "waveform",
+            "os",
+            "simulator"
+          ]
+        },
+        "frontend/sensing/coords.py": {
+          "bad_imports": [],
+          "forbidden_text": [],
+          "bad_params": [],
+          "imports": [
+            "__future__",
+            "math",
+            "typing",
+            "torch"
+          ]
+        }
+      }
+    },
+    "import_sentinel": {
+      "passed": true,
+      "detail": {
+        "detections": 1
+      }
+    },
+    "permutation_invariance": {
+      "passed": true,
+      "detail": {
+        "count_a": 2,
+        "count_b": 2,
+        "sets_equal": true
+      }
+    },
+    "detection_payload_whitelist": {
+      "passed": true,
+      "detail": {
+        "fields": [
+          "C_xy",
+          "bearing_rad",
+          "cfar_score",
+          "grid_index",
+          "noise_floor",
+          "peak_power",
+          "peak_to_noise_db",
+          "r_m",
+          "station_id",
+          "time_ns",
+          "u",
+          "vr_mps",
+          "x_m",
+          "y_m"
+        ],
+        "forbidden": []
+      }
+    },
+    "count_follows_observation": {
+      "passed": true,
+      "detail": {
+        "noise_only": 0,
+        "one_target": 1,
+        "three_targets": 2
+      }
+    },
+    "covariance_depends_only_on_observed_q": {
+      "passed": true,
+      "detail": [
+        {
+          "q_db": 24.44290698836989,
+          "matches_lut": true
+        },
+        {
+          "q_db": 25.800259688557,
+          "matches_lut": true
+        }
+      ]
+    },
+    "lut_sigma_monotone_conservative": {
+      "passed": true,
+      "detail": [
+        [
+          6.0,
+          0.13190860325084078,
+          0.0016185089810431146
+        ],
+        [
+          12.0,
+          0.04212251373491913,
+          0.00013844352920746214
+        ],
+        [
+          20.0,
+          0.04212251373491913,
+          0.00013844352920746214
+        ],
+        [
+          null,
+          0.041295299295789005,
+          0.00013697902517262016
+        ]
+      ]
+    }
+  }
+}

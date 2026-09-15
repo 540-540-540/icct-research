@@ -1,0 +1,31 @@
+{
+  "revision": "B01-shared-3bs-v1",
+  "waveform": {"fc": 24000000000.0, "B": 93100000.0, "K": 256, "N": 256, "T": 1.2375e-05, "c": 299792458.0},
+  "array": {"elements": 16, "spacing_wavelengths": 0.5, "fft_size": 64, "window": "rect",
+            "aoa_max_peaks": 1, "aoa_nms_radius": 4},
+  "geometry_source": "reports/f01a/geometry.json",
+  "visibility": {"half_angle_deg": 70.0, "range_m": [10.0, 300.0], "height_difference_m": 5.0},
+  "power": {"snr_ref_db": null, "reference_range_m": 100.0, "reference_rcs_m2": 10.0,
+            "fixed_rcs_m2": 10.0, "noise_variance": 1.0},
+  "detector": {
+    "oversample": 2,
+    "cfar_train": [6, 6],
+    "cfar_guard": [2, 2],
+    "target_false_alarms_per_bs_frame": 0.5,
+    "max_candidates": 32,
+    "nms_radius": [2, 2],
+    "interpolation": true,
+    "cfar_threshold_multiplier": null,
+    "aoa_fft_size": 64,
+    "aoa_max_peaks": 1,
+    "aoa_nms_radius": 4,
+    "covariance_lut": "reports/f01e/covariance_calibration.json",
+    "covariance_floor_m2": 0.01
+  },
+  "association": {"sensor_order": [0, 1, 2], "gate_chi2_2dof": 9.21, "max_detections_per_bs": 32},
+  "tracker": {"dt": 0.1, "q_a_m2_s3": null, "birth_inflation": 4.0,
+              "confirm_hits": 2, "confirm_window": 3, "confirm_requires_nbs2": true,
+              "max_missed": 5, "max_confirmed": 8, "slot_cooldown_cycles": 10},
+  "snr_levels_db": null,
+  "calibration": {"status": "pending", "report": null}
+}
