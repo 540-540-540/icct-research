@@ -1,0 +1,14 @@
+{
+  "train_targets": 2671,
+  "range_m": {
+    "p10": 65.1474637858738,
+    "p50": 129.39605031434624,
+    "p90": 218.02096777956987
+  },
+  "received_snr_relative_to_ref_db": {
+    "p10": -13.5399305245631,
+    "p50": -4.4768408051268205,
+    "p90": 7.444099474488612
+  },
+  "note": "received_snr relative to snr_ref (40 log10(100/r)); add snr_ref for absolute dB"
+}
