@@ -1,0 +1,126 @@
+{
+  "audit": "SENS-AUDIT-01",
+  "config_revision": "A03-symbol-v4-cuda-stable-solver",
+  "official_snr_db": [5, 10, 15, 20],
+  "nominal_snr_db": 20,
+  "snr_definition_declared": "Per complex received OFDM symbol entry before processing: E|a X|^2/E|noise|^2; unit QPSK; received amplitude 10^(SNR/20), complex noise variance 1; each BS same controlled received SNR (configs/symbol_frontend.json:57)",
+  "path": [
+    {
+      "stage": "config",
+      "file": "configs/symbol_frontend.json",
+      "lines": "50-57",
+      "fact": "snr_db=[5,10,15,20], nominal 20; per-entry received-SNR definition; same scalar for all three BS"
+    },
+    {
+      "stage": "generation call",
+      "file": "frontend/generate_symbol_gpu.py",
+      "lines": "35-47",
+      "fact": "snr loop outside the batch loop; snr_db passed unchanged to synthesize_batch for every target and station"
+    },
+    {
+      "stage": "signal amplitude",
+      "file": "frontend/symbol_level_gpu.py",
+      "lines": "93",
+      "fact": "clean = 10**(snr_db/20) * polar(phase) * delay_channel * doppler_channel * X; |X|=1"
+    },
+    {
+      "stage": "noise",
+      "file": "frontend/symbol_level_gpu.py",
+      "lines": "82-85",
+      "fact": "noise = (randn + j randn)/sqrt(2) per received entry, E|n|^2=1; drawn per target from the target seed"
+    },
+    {
+      "stage": "combination",
+      "file": "frontend/symbol_level_gpu.py",
+      "lines": "76-94",
+      "fact": "Y = clean + noise for each batch element (one target); there is no target-dimension summation and no shared receiver noise"
+    },
+    {
+      "stage": "demodulation",
+      "file": "frontend/symbol_level_gpu.py",
+      "lines": "98-103",
+      "fact": "B = Y / X removes the unit-modulus modulation; noise variance unchanged"
+    },
+    {
+      "stage": "detection",
+      "file": "frontend/generate_symbol_gpu.py",
+      "lines": "52",
+      "fact": "no detector in the path; detected[frame,slot]=True is assigned for every oracle-present target"
+    },
+    {
+      "stage": "estimation",
+      "file": "frontend/symbol_level_gpu.py",
+      "lines": "263-337",
+      "fact": "coarse range/Doppler FFT (288), rough localization from measured ranges (296-301), bounded Gauss-Newton, then grid search with steps 0.25 m/0.25 m/s and fine 0.025 (302-311)"
+    }
+  ],
+  "noise_added_to": "per-target isolated echo (batch element), before any target combination",
+  "multi_target_summation": false,
+  "shared_receiver_noise": false,
+  "all_three_bs_same_snr": true,
+  "path_loss_modeled": false,
+  "rcs_or_reflectivity_modeled": false,
+  "occlusion_or_fov_gating": false,
+  "multipath_or_fading": false,
+  "mutual_interference_between_targets": false,
+  "noise_variance_domain": "post-FFT complex received symbol entry",
+  "integration_gain": {
+    "mechanism": "coherent 2D FFT (256 range x 256 Doppler) plus steering maximization; no explicit post-integration SNR is computed by the code",
+    "theoretical_10log10_K_times_N_db": 48.16479930623699,
+    "measured_rd_peak_to_floor_offset_db_at_0db": 47.56069343053289,
+    "measured_slope_db_per_db": 0.9830700693322529
+  },
+  "search_quantization": {
+    "coarse_position_step_m": 0.25,
+    "fine_position_step_m": 0.025,
+    "coarse_velocity_step_mps": 0.25,
+    "fine_velocity_step_mps": 0.025,
+    "observed_error_ceiling_m": 0.0269,
+    "observed_error_ceiling_mps": 0.0272,
+    "interpretation": "cache-level max |estimate-truth| is one fine search cell; error is lattice-dominated, not noise-dominated"
+  },
+  "paired_across_snr": {
+    "seed_recipe": "SHA256(ASCII 2026:episode:frame:slot:101) first 8 bytes little-endian & 2^63-1; independent of SNR",
+    "measured_identical_noise": "max spread of per-target noise_rms across -20..20 dB = 2.22e-16",
+    "consequence": "SNR reruns are paired; only signal amplitude changes"
+  },
+  "measured": {
+    "probe_snrs_db": [-20, -15, -10, -5, 0, 5, 10, 15, 20],
+    "probe_targets": 80,
+    "probe_episodes": [["train", 0], ["train", 1], ["V_select", 179], ["V_select", 180]],
+    "probe_frames": [30, 90, 150, 190],
+    "empirical_snr_median_db_by_snr": {
+      "5": 5.001646292670995, "10": 10.001646292670996, "15": 15.001646292670996, "20": 20.001646292670998,
+      "0": 0.0016462926709958543, "-5": -4.998353707329005, "-10": -9.998353707329004,
+      "-15": -14.998353707329004, "-20": -19.998353707329002
+    },
+    "rd_peak_floor_median_db_by_snr": {
+      "5": 52.438238571994646, "10": 57.244986930825625, "15": 62.10210225415524, "20": 66.93739208599398,
+      "0": 47.56069343053289, "-5": 42.62013277293953, "-10": 37.63628604583252,
+      "-15": 32.63877044230989, "-20": 27.613430144716546
+    },
+    "probe_position_error_median_m": {
+      "5": 0.009574675294539984, "10": 0.009442576979258474, "15": 0.009442576979258474,
+      "20": 0.009442576979258474, "0": 0.009574675294539984, "-5": 0.00973272560878589,
+      "-10": 0.011249930367439551, "-15": 0.02046014518849768, "-20": 0.0309240777221539
+    },
+    "probe_search_failures_by_snr": {"-20": 0, "-15": 0, "-10": 0, "-5": 0, "0": 0, "5": 0, "10": 0, "15": 0, "20": 0},
+    "probe_identical_to_20db_fraction": {
+      "5": 0.825, "10": 0.925, "15": 0.9625, "-5": 0.525, "-10": 0.3, "-15": 0.075, "-20": 0.0375
+    },
+    "cache_identical_fraction_vs_20db": {"train": {"5": 0.8640894699795675, "10": 0.9352100675099954, "15": 0.9766963703047211},
+                                          "V_select": {"5": 0.8530487594464957, "10": 0.925290727768384, "15": 0.9725663411435868}},
+    "cache_position_rmse_m": {"train": {"5": 0.010631318255078995, "10": 0.010510523101617996, "15": 0.010476164300190402, "20": 0.010467580721573076},
+                               "V_select": {"5": 0.010630518224201583, "10": 0.010501406193123328, "15": 0.01047577826961528, "20": 0.010482734024019481}},
+    "cache_max_abs_component_delta_m": {"5": 0.03184700012207031, "10": 0.026679471135139465, "15": 0.02552032470703125},
+    "mask_mismatch_entries_across_snr": 0,
+    "detected_changes_across_snr": 0
+  },
+  "why_official_range_is_flat": [
+    "no detection threshold exists: detected is an oracle presence assignment (generate_symbol_gpu.py:52)",
+    "each target is estimated from its own isolated echo with its own noise; there is no multi-target noise-limited competition",
+    "the 256x256 coherent transform supplies about 48 dB processing gain, so 5 dB per-entry SNR becomes roughly 53 dB effective at the range-Doppler peak",
+    "the estimator error is bounded by one fine search step (0.025 m / 0.025 m/s); measured max errors 0.022-0.032 m and 0.023-0.027 m/s in the official range",
+    "the same noise realization is reused across SNR (paired seeds), so only the deterministic amplitude changes"
+  ]
+}
