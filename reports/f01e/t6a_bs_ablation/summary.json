@@ -43,8 +43,8 @@
             1
           ],
           "recall": 1.0,
-          "false_alarms_per_frame": 0.75,
-          "position_rmse_m": 0.013313761730751527
+          "false_alarms_per_frame": 0.7083333333333334,
+          "position_rmse_m": 0.014871233714914656
         },
         {
           "subset": [
@@ -52,8 +52,8 @@
             2
           ],
           "recall": 0.9513888888888888,
-          "false_alarms_per_frame": 1.3125,
-          "position_rmse_m": 0.029513965307115093
+          "false_alarms_per_frame": 1.25,
+          "position_rmse_m": 0.03262324640798208
         },
         {
           "subset": [
@@ -61,13 +61,13 @@
             2
           ],
           "recall": 1.0,
-          "false_alarms_per_frame": 1.3541666666666667,
-          "position_rmse_m": 0.014598527875912818
+          "false_alarms_per_frame": 1.3333333333333333,
+          "position_rmse_m": 0.012809458817373044
         }
       ],
       "mean_recall": 0.9837962962962963,
-      "mean_false_alarms_per_frame": 1.138888888888889,
-      "mean_position_rmse_m": 0.019142084971259812
+      "mean_false_alarms_per_frame": 1.0972222222222223,
+      "mean_position_rmse_m": 0.020101312980089926
     },
     "3bs": {
       "runs": [
@@ -78,13 +78,13 @@
             2
           ],
           "recall": 1.0,
-          "false_alarms_per_frame": 1.7083333333333333,
-          "position_rmse_m": 0.014019343263966814
+          "false_alarms_per_frame": 1.6458333333333333,
+          "position_rmse_m": 0.014404490855715662
         }
       ],
       "mean_recall": 1.0,
-      "mean_false_alarms_per_frame": 1.7083333333333333,
-      "mean_position_rmse_m": 0.014019343263966814
+      "mean_false_alarms_per_frame": 1.6458333333333333,
+      "mean_position_rmse_m": 0.014404490855715662
     }
   },
   "note": "averages over all single/pair subsets for 1/2 BS; no formal SNR conclusion"

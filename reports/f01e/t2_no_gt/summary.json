@@ -27,6 +27,28 @@
             "typing",
             "torch"
           ]
+        },
+        "frontend/fusion/association.py": {
+          "bad_imports": [],
+          "forbidden_text": [],
+          "bad_params": [],
+          "imports": [
+            "__future__",
+            "math",
+            "numpy",
+            "scipy.optimize"
+          ]
+        },
+        "frontend/tracking/cv_kf.py": {
+          "bad_imports": [],
+          "forbidden_text": [],
+          "bad_params": [],
+          "imports": [
+            "__future__",
+            "math",
+            "numpy",
+            "scipy.optimize"
+          ]
         }
       }
     },
@@ -104,29 +126,31 @@
       "detail": [
         [
           6.0,
-          0.002571769654149635,
-          0.00013992976274495458
+          0.07180847903062611,
+          0.008574983246436997
         ],
         [
           12.0,
-          0.002571769654149635,
-          0.00013992976274495458
+          0.07180847903062611,
+          0.004751724409206673
         ],
         [
           20.0,
-          0.002571769654149635,
-          0.00013992976274495458
+          0.027950305657415353,
+          0.0018622499679523394
         ],
         [
           null,
-          0.002571769654149635,
-          0.00013992976274495458
+          0.0026872558588068272,
+          0.0001727148345477119
         ]
       ]
     }
   },
   "source_hashes": {
     "frontend/sensing/detector.py": "eefebbe67973f4e2374cf0d151d383ace03f9b43261471926b8dc54b2785efdb",
-    "frontend/sensing/coords.py": "caf8457e859ce7a2693be41ede57b5709ca8c59fe89a410d202ecc18f4e4a98b"
+    "frontend/sensing/coords.py": "318d401f6ec318ed1d69bf84d75913a4a5a5d502acca8e814d02f1fba3a0fe63",
+    "frontend/fusion/association.py": "d0c9362d378eb7c55a99738bf3beccd4378474fc29e23a04309679aa384f90f6",
+    "frontend/tracking/cv_kf.py": "9d3d3338350ff2c438505bab67aeffba36fc66bb5b966dc915b1f12b48e54dd5"
   }
 }

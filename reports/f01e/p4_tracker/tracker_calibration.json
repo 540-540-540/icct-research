@@ -1,5 +1,5 @@
 {
-  "method": "synthetic CV + mild-CA trajectories at 10 Hz with LUT-derived measurement covariance; q_a selected for CA velocity/position accuracy while CV position RMSE stays within 1.5x of its best candidate; no downstream metric used",
+  "method": "synthetic CV + mild-CA trajectories at 10 Hz with analytic truth positions/velocities and LUT-derived measurement covariance; q_a selected by minimizing (CA position RMSE + CA velocity RMSE + CV velocity RMSE); no downstream metric used",
   "candidates_m2_s3": [
     0.01,
     0.03,
@@ -13,88 +13,100 @@
   "table": {
     "0.01": {
       "cv": {
-        "position_rmse_m": 0.11574384101403648,
-        "velocity_rmse_mps": 1.1346620145841662,
+        "position_rmse_m": 0.06774772223828236,
+        "velocity_rmse_mps": 0.14691076654136542,
         "track_keys": [
-          0
+          0,
+          1
         ],
         "finite": true
       },
       "ca": {
-        "position_rmse_m": 4.6020724923128755,
-        "velocity_rmse_mps": 1.5045636908891467,
+        "position_rmse_m": 0.12740235469584865,
+        "velocity_rmse_mps": 1.9038482337723186,
         "track_keys": [
-          0
+          0,
+          1,
+          2
         ],
         "finite": true
       }
     },
     "0.03": {
       "cv": {
-        "position_rmse_m": 0.14044317357332717,
-        "velocity_rmse_mps": 1.1322805157798255,
+        "position_rmse_m": 0.08478752125877904,
+        "velocity_rmse_mps": 0.1682932893998607,
         "track_keys": [
-          0
+          0,
+          1
         ],
         "finite": true
       },
       "ca": {
-        "position_rmse_m": 3.0092574148893103,
-        "velocity_rmse_mps": 1.5083245910119338,
+        "position_rmse_m": 0.15484841111160075,
+        "velocity_rmse_mps": 1.9542156403723019,
         "track_keys": [
-          0
+          0,
+          1,
+          2,
+          3
         ],
         "finite": true
       }
     },
     "0.1": {
       "cv": {
-        "position_rmse_m": 0.16561595078929245,
-        "velocity_rmse_mps": 1.1201180570343323,
+        "position_rmse_m": 0.09493688788702032,
+        "velocity_rmse_mps": 0.18985879912110534,
         "track_keys": [
-          0
+          0,
+          1
         ],
         "finite": true
       },
       "ca": {
-        "position_rmse_m": 2.3526953353979043,
-        "velocity_rmse_mps": 1.6076958584309973,
+        "position_rmse_m": 0.14600747564050034,
+        "velocity_rmse_mps": 1.9244004721215393,
         "track_keys": [
-          0
+          0,
+          1,
+          2
         ],
         "finite": true
       }
     },
     "0.3": {
       "cv": {
-        "position_rmse_m": 0.13608827097346177,
-        "velocity_rmse_mps": 1.110519682920071,
+        "position_rmse_m": 0.10481338252414331,
+        "velocity_rmse_mps": 0.2283200596002769,
         "track_keys": [
-          0
+          0,
+          1
         ],
         "finite": true
       },
       "ca": {
-        "position_rmse_m": 4.069612162864143,
-        "velocity_rmse_mps": 2.004744072268481,
+        "position_rmse_m": 0.13816324381278386,
+        "velocity_rmse_mps": 1.4370550139009648,
         "track_keys": [
-          0
+          0,
+          1
         ],
         "finite": true
       }
     },
     "1.0": {
       "cv": {
-        "position_rmse_m": 0.11113638192599906,
-        "velocity_rmse_mps": 1.1706488746077477,
+        "position_rmse_m": 0.11416226578679102,
+        "velocity_rmse_mps": 0.28464201088525415,
         "track_keys": [
           0
         ],
         "finite": true
       },
       "ca": {
-        "position_rmse_m": 0.12964196830202568,
-        "velocity_rmse_mps": 1.281392331907108,
+        "position_rmse_m": 0.1334927817858327,
+        "velocity_rmse_mps": 0.33683257687182155,
         "track_keys": [
           0
         ],
@@ -103,16 +115,17 @@
     },
     "3.0": {
       "cv": {
-        "position_rmse_m": 0.13642015756685028,
-        "velocity_rmse_mps": 1.1632219910865793,
+        "position_rmse_m": 0.13165286648588131,
+        "velocity_rmse_mps": 0.4908832136577607,
         "track_keys": [
-          0
+          0,
+          1
         ],
         "finite": true
       },
       "ca": {
-        "position_rmse_m": 0.13331323568323986,
-        "velocity_rmse_mps": 1.3138707934930425,
+        "position_rmse_m": 0.13730100268115503,
+        "velocity_rmse_mps": 0.4323259760550181,
         "track_keys": [
           0
         ],
@@ -121,16 +134,16 @@
     },
     "10.0": {
       "cv": {
-        "position_rmse_m": 0.13348008872959266,
-        "velocity_rmse_mps": 1.3566084465772277,
+        "position_rmse_m": 0.13686854626171346,
+        "velocity_rmse_mps": 0.646159026047939,
         "track_keys": [
           0
         ],
         "finite": true
       },
       "ca": {
-        "position_rmse_m": 0.1396999610006223,
-        "velocity_rmse_mps": 1.3842889492553827,
+        "position_rmse_m": 0.1439384165169771,
+        "velocity_rmse_mps": 0.6211992355821027,
         "track_keys": [
           0
         ],
@@ -140,12 +153,12 @@
   },
   "measurement_covariance": [
     [
-      0.010052960208054807,
-      -0.00022240317628320933
+      0.010109350257584587,
+      -0.00045920976347054967
     ],
     [
-      -0.00022240317628320936,
-      0.011275055617761015
+      -0.0004592097634705496,
+      0.012632687169441454
     ]
   ],
   "frames": 80,

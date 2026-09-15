@@ -101,16 +101,16 @@
       "passed": true,
       "detail": {
         "cv": {
-          "position_rmse_m": 0.11113638192599906,
-          "velocity_rmse_mps": 1.1706488746077477,
+          "position_rmse_m": 0.11416226578679102,
+          "velocity_rmse_mps": 0.28464201088525415,
           "track_keys": [
             0
           ],
           "finite": true
         },
         "ca": {
-          "position_rmse_m": 0.12964196830202568,
-          "velocity_rmse_mps": 1.281392331907108,
+          "position_rmse_m": 0.1334927817858327,
+          "velocity_rmse_mps": 0.33683257687182155,
           "track_keys": [
             0
           ],
@@ -120,7 +120,7 @@
       "bounds": {
         "position_rmse_m": 0.5,
         "velocity_rmse_mps": 2.0,
-        "note": "position bound below range resolution 1.61 m; velocity bound one Doppler resolution cell 1.97 m/s; q_a comes from calibrate_tracker.py and was not retuned for this test"
+        "note": "position bound below range resolution 1.61 m; velocity bound one Doppler resolution cell 1.97 m/s; q_a comes from calibrate_tracker.py and was not retuned for this test; metrics follow the nearest record to truth and require the original track_key 0 to stay alive; extra keys are reported diagnostically because this test config uses confirm_hits=1"
       }
     }
   }

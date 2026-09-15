@@ -37,8 +37,11 @@
 - 总体可见检测率 0.950（按 SNR：0.940 @ -20 dB → 0.972 @ 20 dB）
 - 低 q 样本仍偏少：`6–12 dB` 85 条、`<6 dB` 5 条。**如实声明**：该区间 detector 有效检出本身稀疏，
   covariance 使用保守 pooled/上包络回退，未制造假样本、未降低 detector 标准。
-- 真实同目标跨站对的 gating 统计（13 491 对）：固定 χ²(2, 0.99)=9.21 门下命中率 97.40%；
-  p99(D²)=17.51 → 由此标定 **covariance inflation = 1.90**，命中率提升至 **99.01%**。
+- 真实同目标跨站对的 gating 统计（Phase A 修正后：pair key = scenario+realization+snr_ref，
+  仅同目标/同 realization/同 SNR 才成为 true pair；true pairs **1499**，等于组合数理论上限）：
+  固定 χ²(2, 0.99)=9.21 门下，inflation=1.0 命中率 97.40%（不足）；
+  以真实 `covariance_from_lut()` 逐候选重算 D²（不使用除法近似），采用 倍增+二分 搜索
+  **最小 inflation = 3.9255**，命中率 **99.07%**，p99(D²)=9.21。
   inflation 写入 LUT（`covariance_inflation`），由 `coords.covariance_from_lut` 应用；
   **gate 数值保持冻结的 9.21**，只校准协方差尺度。
 - B 域 inference 仍只按 observed `peak_to_noise_db` 查表（T2 `covariance_depends_only_on_observed_q` 通过）。
@@ -64,8 +67,8 @@ Stage 1 BS0↔BS1 Hungarian（Mahalanobis² + 9.21 门控，出格 BIG）→ 每
 | 档位 | detection recall | false alarms / frame | observation RMSE (m) |
 |---|---:|---:|---:|
 | 1 BS | 0.875 | 0.50 | 0.509 |
-| 2 BS | 0.984 | 1.14 | 0.0191 |
-| 3 BS | 1.000 | 1.71 | 0.0140 |
+| 2 BS | 0.984 | 1.10 | 0.0201 |
+| 3 BS | 1.000 | 1.65 | 0.0144 |
 
 - 结论：多站信息没有系统性恶化；融合后位置精度提升约 36×（1BS→3BS），recall 提升。
 - 1 BS 的 0.509 m 主要来自单站跨距/角度量化，未出现异常。
@@ -74,9 +77,9 @@ T6-B（tracker sanity，三档统一 `confirm_requires_nbs2=false`，仅诊断�
 
 | 档位 | track RMSE (m) | continuity (frame≥3) | ID switches |
 |---|---:|---:|---:|
-| 1 BS | 0.168 | 93.2% | 0 |
-| 2 BS | 0.014 | 100% | 0 |
-| 3 BS | 0.013 | 100% | 0 |
+| 1 BS | 0.181 | 93.2% | 0 |
+| 2 BS | 0.0157 | 100% | 0 |
+| 3 BS | 0.0142 | 100% | 0 |
 
 - **ablation mode 不改变正式 3-BS mainline tracker**（报告与 summary 均已标注）。
 - 弱测量开发点（非正式 SNR sweep）：`snr_ref=5 dB` 与 `-10 dB` 下，检测/融合/跟踪均保持
@@ -86,23 +89,35 @@ T6-B（tracker sanity，三档统一 `confirm_requires_nbs2=false`，仅诊断�
 ## 5. P4 CV-KF 跟踪与 8-slot
 
 - 状态 `[x,y,vx,vy]`、`F`/`H` 按冻结式，`R=C_xy`；CV white-noise acceleration `Q(q_a)`
-- `q_a` 独立合成标定（CV + 温和 CA，10 Hz，LUT 派生量测协方差；无下游指标）：
-  **q_a = 1.0 m²/s³**（`reports/f01e/p4_tracker/tracker_calibration.json`，来源可复现）
+- `q_a` 独立合成标定（Phase A 修正后：合成轨迹直接保存解析 position+velocity，不再差分；
+  10 Hz，LUT 派生量测协方差；选择准则 = min(CA position RMSE + CA velocity RMSE + CV velocity RMSE)，
+  无下游指标）：**q_a = 1.0 m²/s³**（`reports/f01e/p4_tracker/tracker_calibration.json`，来源可复现）
+  候选表（CV pos/vel, CA pos/vel）：0.01→0.068/0.147, 0.127/1.904；0.3→0.105/0.228, 0.138/1.437；
+  1.0→0.114/0.285, 0.134/0.337；3.0→0.132/0.491, 0.137/0.432；10→0.137/0.646, 0.144/0.621
 - 生命周期：birth→tentative→confirmed（3 帧内 ≥2 次更新且 ≥1 次 `n_bs≥2`）→coast（≤5）→delete（>5）；
   tentative 3 帧未确认即删除；tentative 不输出、不占 slot
 - coast 语义：`track_exists=1, detected=0`；全流程恒有 `not (detected and not track_exists)`
 - 8-slot：confirmed 时分配最小空闲 slot；删除后冷却 10 帧回收；
   confirmed>8 时只输出持 slot 的 8 条，slotless confirmed 按 `(misses↑, trace(P_xy)↑, age↓, track_key↑)`
   在 slot 可用时回收（全部为非 GT 信息）
-- 合成精度（同 `q_a`，量测协方差来自 LUT）：CV 位置 RMSE 0.111 m / 速度 1.17 m/s；
-  温和 CA 位置 0.130 m / 速度 1.28 m/s；无 NaN、单一 track key。
+- 合成精度（同 `q_a`，量测协方差来自 LUT）：CV 位置 RMSE 0.114 m / 速度 0.285 m/s；
+  温和 CA 位置 0.134 m / 速度 0.337 m/s；无 NaN、原始 track_key 0 全程存活。
   判定界以物理分辨率为准：位置 <0.5 m（<距离分辨 1.61 m）、速度 <2 m/s（<一个多普勒分辨格 1.97 m/s）
 
 ## 6. 实现中发现的问题与处理（非静默重设计）
 
-1. **真对 gating 命中率不足（实现级）**：固定 9.21 门下真实同目标对命中 97.4%，p99(D²)=17.5。
-   处理：按 P2.5 gating 统计标定 covariance inflation=1.90（gate 不变），命中率 99.0%；
-   记录于 LUT 与 `p25_covariance/summary.json`。**非阻断**。
+0. **Phase A 修正（SENS-SNR-AUDIT-04 前置）**：
+   a. covariance true-pair pool 之前遗漏 `snr_ref_db`，导致跨 SNR pairing；已改为
+      `(scenario, realization, snr_ref)`，修正后 pairs=1499=组合数上限；
+   b. inflation 重标定改为对每个候选 inflation 调用真实 `covariance_from_lut()` 重算 D²
+      （不再用 D²/inflation 近似），倍增+二分求最小必要值 = **3.9255**（1.0 不足）；
+   c. tracker 标定真值改为解析 position+velocity（删除末帧差分=0 的 `truth_velocities`），
+      选择准则与候选表见 §5，最终 **q_a=1.0**；
+   d. `check_no_gt.py` B 域审计扩展到 detector/coords/association/cv_kf 四个文件，
+      禁止 A 域 import、GT/truth/source/vehicle/target-count/source_key/future 参数与文本，T2 8/8 PASS；
+   e. 冻结文档 `DECISIONS.md` D13 修订为 sticky-slot 策略（alive 期 slot 固定 + slotless 按排名补位），
+      `SYSTEM_MODEL.md` §8 同步，原因：保证下游 20-frame 时序输入中 slot identity 稳定。
+1. **真对 gating 命中率不足（实现级）**：见 §0a/§0b；**非阻断**。
 2. **tracker gate 未在冻结文档给数值**：采用与 association 相同的 χ²(2,0.99)=9.21，
    记录为 implementation calibration。**非阻断**。
 3. **矩形 Hungarian 未匹配行未记 miss（实现 bug）**：修复为对未分配行显式记 miss；

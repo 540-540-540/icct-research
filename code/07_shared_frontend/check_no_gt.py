@@ -17,10 +17,13 @@ sys.path.insert(0, str(ROOT))
 import _common  # noqa: E402
 
 OUT = ROOT / "reports/f01e/t2_no_gt"
-B_DOMAIN_FILES = ["frontend/sensing/detector.py", "frontend/sensing/coords.py"]
-FORBIDDEN_IMPORTS = ("echo_source", "scene_manifest", "source_states", "source_key", "simulator")
+B_DOMAIN_FILES = ["frontend/sensing/detector.py", "frontend/sensing/coords.py",
+                  "frontend/fusion/association.py", "frontend/tracking/cv_kf.py"]
+FORBIDDEN_IMPORTS = ("echo_source", "scene_manifest", "source_states", "source_key", "simulator", "f01_source")
 FORBIDDEN_PARAMS = ("target", "targets", "truth", "gt", "vehicle", "vehicles", "source_key",
-                    "source_keys", "target_count", "n_t")
+                    "source_keys", "target_count", "n_t", "future", "future_position", "label",
+                    "label_valid")
+FORBIDDEN_TEXT = ("source_states", "f01_source", "source_keys", "future_position", "label_valid")
 
 
 def static_audit() -> dict:
@@ -35,11 +38,11 @@ def static_audit() -> dict:
             elif isinstance(node, ast.ImportFrom):
                 imports.append(node.module or "")
         bad_imports = [module for module in imports if any(token in module for token in FORBIDDEN_IMPORTS)]
-        bad_text = [token for token in ("source_states",) if token in text]
+        bad_text = [token for token in FORBIDDEN_TEXT if token in text]
         bad_params = []
-        for node in tree.body:
+        for node in ast.walk(tree):
             if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)) and not node.name.startswith("_"):
-                for argument in [*node.args.args, *node.args.kwonlyargs]:
+                for argument in [*node.args.args, *node.args.kwonlyargs, *node.args.posonlyargs]:
                     lowered = argument.arg.lower()
                     if any(token == lowered for token in FORBIDDEN_PARAMS):
                         bad_params.append({"function": node.name, "parameter": argument.arg})

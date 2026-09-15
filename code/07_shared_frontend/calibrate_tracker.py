@@ -56,12 +56,14 @@ def make_observations(truth: list[tuple[float, float]], covariance: np.ndarray, 
     return observations
 
 
-def trajectory(kind: str) -> list[tuple[float, float]]:
+def trajectory(kind: str) -> tuple[list[tuple[float, float]], list[tuple[float, float]]]:
+    """Analytic synthetic truth: positions and velocities are integrated together."""
     position = np.array([-20.0, 0.0])
     velocity = np.array([12.0, -6.0])
-    points = []
+    positions, velocities = [], []
     for frame in range(FRAMES):
-        points.append(tuple(position.tolist()))
+        positions.append(tuple(position.tolist()))
+        velocities.append(tuple(velocity.tolist()))
         if kind == "cv":
             acceleration = np.zeros(2)
         elif frame < 26:
@@ -72,16 +74,7 @@ def trajectory(kind: str) -> list[tuple[float, float]]:
             acceleration = np.zeros(2)
         position = position + velocity * 0.1 + 0.5 * acceleration * 0.1 ** 2
         velocity = velocity + acceleration * 0.1
-    return points
-
-
-def truth_velocities(points: list[tuple[float, float]]) -> list[tuple[float, float]]:
-    velocities = []
-    for index in range(len(points)):
-        following = points[min(index + 1, len(points) - 1)]
-        previous = points[index]
-        velocities.append(((following[0] - previous[0]) / 0.1, (following[1] - previous[1]) / 0.1))
-    return velocities
+    return positions, velocities
 
 
 def run_candidate(q_a: float, observations_by_kind: dict, truth_by_kind: dict, config: dict,
@@ -95,21 +88,22 @@ def run_candidate(q_a: float, observations_by_kind: dict, truth_by_kind: dict, c
     metrics = {}
     for kind, observations in observations_by_kind.items():
         tracker = CvKalmanTracker(local)
-        truth_points = truth_by_kind[kind]
-        truth_v = truth_velocities(truth_points)
+        truth_points = truth_by_kind[kind]["positions"]
+        truth_velocity = truth_by_kind[kind]["velocities"]
         position_errors, velocity_errors = [], []
         keys = set()
         for frame, observation in enumerate(observations):
             records = tracker.step([observation], observation["time_ns"])
             if not records:
                 continue
-            record = records[0]
+            truth_position = truth_points[frame]
+            record = min(records, key=lambda entry: math.hypot(entry["state_hat"][0] - truth_position[0],
+                                                               entry["state_hat"][1] - truth_position[1]))
             keys.add(record["track_key"])
             if frame >= WARMUP:
-                truth_position = truth_points[frame]
                 position_errors.append(math.hypot(record["state_hat"][0] - truth_position[0],
                                                   record["state_hat"][1] - truth_position[1]))
-                velocity_errors.append(np.array(record["state_hat"][2:]) - np.array(truth_v[frame]))
+                velocity_errors.append(np.array(record["state_hat"][2:]) - np.array(truth_velocity[frame]))
         metrics[kind] = {
             "position_rmse_m": float(np.sqrt(np.mean(np.square(position_errors)))) if position_errors else None,
             "velocity_rmse_mps": float(np.sqrt(np.mean(np.square(np.asarray(velocity_errors)))))
@@ -125,25 +119,27 @@ def main() -> None:
         raise SystemExit("calibration requires CUDA only for the LUT-derived covariance")
     config = _common.load_frontend_config()
     covariance = representative_covariance(config)
-    cv_truth = trajectory("cv")
-    ca_truth = trajectory("ca")
-    observations_by_kind = {"cv": make_observations(cv_truth, covariance, 2026),
-                            "ca": make_observations(ca_truth, covariance, 2027)}
-    truth_by_kind = {"cv": cv_truth, "ca": ca_truth}
+    cv_points, cv_velocities = trajectory("cv")
+    ca_points, ca_velocities = trajectory("ca")
+    observations_by_kind = {"cv": make_observations(cv_points, covariance, 2026),
+                            "ca": make_observations(ca_points, covariance, 2027)}
+    truth_by_kind = {"cv": {"positions": cv_points, "velocities": cv_velocities},
+                     "ca": {"positions": ca_points, "velocities": ca_velocities}}
     table = {}
     for candidate in CANDIDATES:
         table[str(candidate)] = run_candidate(candidate, observations_by_kind, truth_by_kind, config, covariance)
-    best_cv = min(entry["cv"]["position_rmse_m"] for entry in table.values())
-    eligible = [candidate for candidate in CANDIDATES
-                if table[str(candidate)]["cv"]["position_rmse_m"] <= best_cv * 1.5]
-    chosen = min(eligible, key=lambda candidate: (table[str(candidate)]["ca"]["velocity_rmse_mps"]
-                                                  + table[str(candidate)]["ca"]["position_rmse_m"]))
+
+    def score(entry: dict) -> float:
+        return (entry["ca"]["position_rmse_m"] + entry["ca"]["velocity_rmse_mps"]
+                + entry["cv"]["velocity_rmse_mps"])
+
+    chosen = min(CANDIDATES, key=lambda candidate: score(table[str(candidate)]))
     updated = copy.deepcopy(config)
     updated["tracker"]["q_a_m2_s3"] = chosen
     _common.write_json(ROOT / "configs/shared_frontend.json", updated)
-    report = {"method": "synthetic CV + mild-CA trajectories at 10 Hz with LUT-derived measurement covariance; "
-                        "q_a selected for CA velocity/position accuracy while CV position RMSE stays within "
-                        "1.5x of its best candidate; no downstream metric used",
+    report = {"method": "synthetic CV + mild-CA trajectories at 10 Hz with analytic truth positions/velocities "
+                        "and LUT-derived measurement covariance; q_a selected by minimizing "
+                        "(CA position RMSE + CA velocity RMSE + CV velocity RMSE); no downstream metric used",
               "candidates_m2_s3": CANDIDATES, "chosen_q_a_m2_s3": chosen, "table": table,
               "measurement_covariance": covariance.tolist(), "frames": FRAMES, "warmup_frames": WARMUP,
               "config_hash": hashlib.sha256((ROOT / "configs/shared_frontend.json").read_bytes()).hexdigest()}

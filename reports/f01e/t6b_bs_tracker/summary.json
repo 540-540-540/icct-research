@@ -8,7 +8,7 @@
       "canonical_subset": [
         0
       ],
-      "track_position_rmse_m": 0.1675884942247657,
+      "track_position_rmse_m": 0.1811246297681145,
       "continuity_after_warmup": 0.9316239316239316,
       "id_switches": 0,
       "coastal_records": 0,
@@ -19,7 +19,7 @@
         0,
         1
       ],
-      "track_position_rmse_m": 0.014003199348622205,
+      "track_position_rmse_m": 0.015736022864357792,
       "continuity_after_warmup": 1.0,
       "id_switches": 0,
       "coastal_records": 0,
@@ -31,7 +31,7 @@
         1,
         2
       ],
-      "track_position_rmse_m": 0.01323464275059744,
+      "track_position_rmse_m": 0.014176244855436608,
       "continuity_after_warmup": 1.0,
       "id_switches": 0,
       "coastal_records": 0,
@@ -46,7 +46,7 @@
         "1": 3.375,
         "2": 2.9375
       },
-      "mean_observations_per_frame": 4.6875,
+      "mean_observations_per_frame": 4.625,
       "records_detected": 129,
       "records_coasting": 0
     },
@@ -57,7 +57,7 @@
         "1": 3.375,
         "2": 2.9375
       },
-      "mean_observations_per_frame": 4.6875,
+      "mean_observations_per_frame": 4.625,
       "records_detected": 129,
       "records_coasting": 0
     }

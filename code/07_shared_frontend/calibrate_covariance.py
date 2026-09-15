@@ -46,6 +46,55 @@ def bin_index(q_db: float) -> int:
     return len(BIN_EDGES_DB)
 
 
+def pairwise_statistics(pair_pool: dict, boresights, provisional: dict, inflation: float) -> dict:
+    from frontend.sensing import coords
+
+    lut = dict(provisional)
+    lut["covariance_inflation"] = float(inflation)
+    distances = []
+    pair_upper_bound = 0
+    for entries in pair_pool.values():
+        pair_upper_bound += len(entries) * (len(entries) - 1) // 2
+        for first in range(len(entries)):
+            for second in range(first + 1, len(entries)):
+                a, b = entries[first], entries[second]
+                if a["bs"] == b["bs"]:
+                    continue
+                ca = coords.covariance_from_lut(a["r_m"], a["u"], a["q_db"], float(boresights[a["bs"]]), lut, 0.01)
+                cb = coords.covariance_from_lut(b["r_m"], b["u"], b["q_db"], float(boresights[b["bs"]]), lut, 0.01)
+                delta = torch.tensor([a["x"] - b["x"], a["y"] - b["y"]], dtype=torch.float64)
+                distances.append(float(delta @ torch.linalg.solve(ca + cb, delta)))
+    ordered = sorted(distances)
+    def quantile(fraction: float) -> float:
+        return ordered[min(len(ordered) - 1, int(fraction * len(ordered)))] if ordered else float("nan")
+    return {"inflation": float(inflation), "pairs": len(distances), "pair_upper_bound": pair_upper_bound,
+            "gate_chi2_2dof": GATE_CHI2,
+            "pass_rate": sum(1 for value in distances if value <= GATE_CHI2) / len(distances) if distances else None,
+            "d2_p50": quantile(0.50), "d2_p90": quantile(0.90), "d2_p95": quantile(0.95), "d2_p99": quantile(0.99)}
+
+
+def find_minimal_inflation(pair_pool: dict, boresights, provisional: dict, target: float = 0.99):
+    cache = {}
+
+    def rate(candidate: float) -> float:
+        if candidate not in cache:
+            cache[candidate] = pairwise_statistics(pair_pool, boresights, provisional, candidate)["pass_rate"]
+        return cache[candidate]
+
+    if rate(1.0) >= target:
+        return 1.0, cache
+    low, high = 1.0, 2.0
+    while rate(high) < target and high < 64.0:
+        low, high = high, high * 2
+    for _ in range(14):
+        middle = (low + high) / 2
+        if rate(middle) >= target:
+            high = middle
+        else:
+            low = middle
+    return high, cache
+
+
 def main() -> None:
     if not torch.cuda.is_available():
         raise SystemExit("covariance calibration requires CUDA per frozen design")
@@ -99,7 +148,7 @@ def main() -> None:
                         per_snr[snr][0] += 1
                         rows.append({"q_db": match["peak_to_noise_db"], "e_r": match["r_m"] - r_gt,
                                      "e_u": match["u"] - u_gt, "station_id": bs, "snr_ref_db": snr})
-                        pair_pool.setdefault((combo_index, realization), []).append(
+                        pair_pool.setdefault((combo_index, realization, snr), []).append(
                             {"bs": bs, "q_db": match["peak_to_noise_db"], "x": match["x_m"], "y": match["y_m"],
                              "r_m": match["r_m"], "u": match["u"]})
 
@@ -143,25 +192,15 @@ def main() -> None:
                             "sigma_u": entry["sigma_u"]} for entry in binned],
                    "floor_m2": 0.01, "height_difference_m": height}
 
-    pairwise = []
-    for entries in pair_pool.values():
-        for first in range(len(entries)):
-            for second in range(first + 1, len(entries)):
-                a, b = entries[first], entries[second]
-                if a["bs"] == b["bs"]:
-                    continue
-                ca = coords.covariance_from_lut(a["r_m"], a["u"], a["q_db"], float(boresights[a["bs"]]),
-                                                provisional, 0.01)
-                cb = coords.covariance_from_lut(b["r_m"], b["u"], b["q_db"], float(boresights[b["bs"]]),
-                                                provisional, 0.01)
-                delta = torch.tensor([a["x"] - b["x"], a["y"] - b["y"]], dtype=torch.float64)
-                s = ca + cb
-                pairwise.append(float(delta @ torch.linalg.solve(s, delta)))
-    pairwise_sorted = sorted(pairwise)
-    p99 = pairwise_sorted[min(len(pairwise_sorted) - 1, int(0.99 * len(pairwise_sorted)))] if pairwise else float("nan")
-    inflation = max(1.0, p99 / GATE_CHI2) if math.isfinite(p99) else 1.0
-    pass_rate_before = sum(1 for value in pairwise if value <= GATE_CHI2) / len(pairwise) if pairwise else None
-    pass_rate_after = sum(1 for value in pairwise if value / inflation <= GATE_CHI2) / len(pairwise) if pairwise else None
+    inflation, rate_cache = find_minimal_inflation(pair_pool, boresights, provisional, target=0.99)
+    stats = [cache_entry for _, cache_entry in sorted(rate_cache.items())]
+    chosen_stats = pairwise_statistics(pair_pool, boresights, provisional, inflation)
+    pairwise_gate = {**chosen_stats, "target_pass_rate": 0.99, "candidate_table": stats,
+                     "pass_rate_before_inflation": pairwise_statistics(pair_pool, boresights, provisional,
+                                                                        1.0)["pass_rate"],
+                     "pass_rate_after_inflation": chosen_stats["pass_rate"],
+                     "p99_d2": chosen_stats["d2_p99"],
+                     "search": "minimal inflation with pass_rate >= 0.99 via doubling + bisection"}
 
     total_attempts = len(attempts)
     detection_rate = (sum(attempts) / total_attempts) if total_attempts else 0.0
@@ -189,11 +228,8 @@ def main() -> None:
                   "median_abs_e_r_m": entry["median_abs_e_r_m"],
                   "median_abs_e_u": entry["median_abs_e_u"]} for entry in binned],
         "pooled_sigma_r_m": pooled_r, "pooled_sigma_u": pooled_u,
-        "pairwise_true_pairs": len(pairwise),
-        "pairwise_gate": {"gate_chi2_2dof": GATE_CHI2, "p99_d2": p99,
-                          "pass_rate_before_inflation": pass_rate_before,
-                          "covariance_inflation": inflation,
-                          "pass_rate_after_inflation": pass_rate_after},
+        "pairwise_true_pairs": chosen_stats["pairs"],
+        "pairwise_gate": pairwise_gate,
         "covariance_inflation": inflation,
         "floor_m2": 0.01,
         "height_difference_m": height,
@@ -209,10 +245,10 @@ def main() -> None:
     summary = {"test": "P2.5 covariance extension", "rows": len(rows), "visible_attempts": total_attempts,
                "overall_detection_rate": detection_rate,
                "detection_rate_by_snr": report["detection_rate_by_snr"],
-               "pairwise_true_pairs": len(pairwise), "pairwise_gate": report["pairwise_gate"],
+               "pairwise_true_pairs": chosen_stats["pairs"], "pairwise_gate": report["pairwise_gate"],
                "fallback_bins": [entry["q_max_db"] for entry in binned if entry["fallback_used"]],
                "note": "low-q bins with too few detections use conservative pooled envelope; no fabricated samples",
-               "passed": bool(len(rows) > 0 and pairwise)}
+               "passed": bool(len(rows) > 0 and chosen_stats["pairs"])}
     _common.write_json(P25_DIR / "summary.json", summary)
     with (P25_DIR / "bin_coverage.csv").open("w", newline="", encoding="utf-8") as handle:
         writer = csv.writer(handle)

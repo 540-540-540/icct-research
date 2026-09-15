@@ -95,10 +95,13 @@ misses>5 删除；只输出 confirmed alive 航迹。
 （3 帧 ≥2 hits 即可确认）；正式 mainline 恒为 true，报告须标注 ablation mode。
 替代被否：立即确认、无 coast 直接删除。
 
-**D13 8 槽策略**
-FROZEN：slot 在**确认时**分配（最小空闲号）；删除后冷却 10 帧再回收；
-confirmed>8 时按 `(misses↑, trace(P_xy)↑, age↓, track_key↑)` 保留 8 个（全部为非真值信息）。
-理由：接口固定 8 槽；车辆会进出生灭，必须回收；排槽不得用 GT。
+**D13 8 槽策略（SENS-SNR-AUDIT-04 Phase A 修订：sticky slot）**
+FROZEN：slot 在**确认时**分配（最小空闲号）；confirmed track 一旦获得 slot，
+alive 期间**保持 slot identity 不变**。若 confirmed tracks > 8：已有 slot 的 track 保持 slot；
+其余 confirmed tracks 内部保持 slotless。当某 slot-holder 删除并完成 10 帧 cooldown 后，
+从 slotless confirmed tracks 中按 `(misses↑, trace(P_xy)↑, age↓, track_key↑)` 选择下一条补位。
+理由：为保证下游 20-frame 时序输入中 slot identity 稳定，禁止每帧动态 top-8 导致车辆在不同 slot
+之间跳变；全程不得使用 GT。
 
 **D14 `detected` / `track_exists` 新语义**
 FROZEN：`detected=1 ⇔ 本帧获得真实量测更新`；`track_exists=1 ⇔ 航迹 alive`；
@@ -171,5 +174,5 @@ B 域 inference 只用 q 查表，禁止 GT/SNR truth；样本不足时取相邻
 - target model：**单主散射点，固定 RCS=10 m²，随机相位** — D22
 - velocity source：**融合位置序列 → 恒速卡尔曼滤波** — D11
 - SNR/power definition：**雷达方程简化（1/r⁴ × 固定 RCS），`snr_ref`@100 m，每 BS 单噪声底** — D05
-- track slot policy：**确认时分配、死亡冷却回收、非真值评分淘汰超 8** — D13
+- track slot policy：**sticky slot（alive 期固定）+ 删除冷却后从 slotless confirmed 按非真值排名补位** — D13
 - GT label matching policy：**离线逐 origin 历史平均距离 + Hungarian，≥3 公共帧、5 m 门控** — D15

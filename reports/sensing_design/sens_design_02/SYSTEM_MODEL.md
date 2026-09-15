@@ -270,9 +270,10 @@ velocity:   由 KF 状态给出；早期（<4 帧更新）速度先验为 0、�
 
 ```text
 track_key:        内部自增整数，永不复用；无 GT 输入
-slot:             0..7；confirmed 时分配最小空闲 slot；删除后冷却 10 帧再回收
-容量控制:         confirmed >8 时按非 GT 打分保留 8 个：
-                  (misses 升序, trace(P_xy) 升序, age 降序, track_key 升序)
+slot:             0..7；confirmed 时分配最小空闲 slot；alive 期间 slot identity 固定（sticky）；
+                  删除后冷却 10 帧再回收
+容量控制:         confirmed >8 时，已持 slot 者保持；slotless confirmed 在 slot 冷却结束后
+                  按 (misses 升序, trace(P_xy) 升序, age 降序, track_key 升序) 补位
 每帧输出:         对 slot 0..7：state_hat[4] float32（缺失填 0）、track_exists、detected
 ```
 
