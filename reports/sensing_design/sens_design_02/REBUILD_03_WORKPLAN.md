@@ -23,9 +23,9 @@ for episode in A01 episodes (split-based):
   for frame (199 deadlines):
     A: position/velocity from SourceEpisodes.at_time(deadline)          # 仅 simulator 内部
     for snr_ref in level_set:                                            # 校准阶段为 sweep 子集
-      simulator.synthesize_shared(...) -> Y[3,A,K,N], X[3,K,N]           # 求和后一次噪声
+      simulator.synthesize_shared(...) -> Y[3,A,K,N], X[3,K,N]           # 求和后一次噪声；三类种子
       for b in 0..2:
-        detector.process_baseline(Y[b], X[b], b) -> detections[b]        # CFAR/NMS/几何
+        detector.process_baseline(Y[b], X[b], b) -> detections[b]        # 2D RD CFAR/NMS + 逐峰 AoA
       observations = association.fuse_frame(detections_by_bs)            # 门控+匹配+融合
       tracker.step(observations, time_ns) -> TrackRecords                # CV-KF + slot
     write sequences/snr_{s}/episode_{NNN}.npz（199 帧槽位表）
@@ -59,39 +59,51 @@ cd /home/dell/YrM/ICCT
 文件：`frontend/sensing/waveform.py`、`frontend/sensing/simulator.py`、
 `code/07_shared_frontend/check_shared_echo.py`。
 
-实现：SYSTEM_MODEL §2-3 公式；种子流 `waveform/phase/noise` 分离；
-`x/y/‖` 全部 float64 torch；可见性硬门控；`snr_ref_db` 由 config 传入（可为任意值）。
+实现：SYSTEM_MODEL §2-3 公式；三类种子分离（waveform/noise 按 (episode,frame,bs)，
+phase 按 (episode,frame,bs,source_key)）；`x/y/‖` 全部 float64 torch；可见性硬门控；
+`snr_ref_db` 由 config 传入（可为任意值）。
 
-T1 断言（`check_shared_echo.py`）：求和线性、噪声一次、顺序无关、经验噪声方差。
+T1 断言（`check_shared_echo.py`）：求和线性、噪声一次、经验噪声方差、
+目标顺序置换不变、slot/顺序置换下 waveform/noise 逐比特不变。
 诊断：把 1 帧 3 BS 的 Y/X 存 `reports/f01e/diagnostics/shared_echo_frame.npz`（小样本）。
 
 验收：T1 全过；单帧生成 GPU 时间 <50 ms/BS。
 
-### P2 detector + T2 + CFAR 底噪标定（2–3 会话）
+### P2 detector + T2 + CFAR/协方差标定（2–3 会话）
 
 文件：`frontend/sensing/detector.py`、`frontend/sensing/coords.py`、
-`code/07_shared_frontend/calibrate_cfar.py`、`code/07_shared_frontend/check_no_gt.py`。
+`code/07_shared_frontend/calibrate_cfar.py`、`code/07_shared_frontend/calibrate_covariance.py`、
+`code/07_shared_frontend/check_no_gt.py`。
 
-实现：3D CA-CFAR（torch 盒滤波，需 float64 累加）、NMS、抛物线插值、单站几何、
-检测记录 schema（INTERFACE_SPEC §3.2）。
+实现：逐元素 range/doppler 处理 → 非相干阵列合并 `P_RD` → **2D CA-CFAR** → 2D NMS →
+RD 抛物线插值 → **逐峰 64 点 AoA**（1D NMS，V1 `aoa_max_peaks=1`）→ 单站几何 →
+LUT 协方差 `C_xy`（SYSTEM_MODEL §5.1）；检测记录 schema（INTERFACE_SPEC §3.2）。
 
-标定：**噪声-only**（不注入目标，Y=W）跑 ≥512 帧/BS，测量不同 `Pfa_cell` 下的虚警数，
+CFAR 标定：**噪声-only**（不注入目标，Y=W）跑 ≥512 帧/BS，`N_cells = 512×512 = 262 144`；
 选定使目标虚警 ≈ `target_false_alarms_per_bs_frame`（默认 0.5）的阈乘数；
 输出 `reports/f01e/cfar_calibration.json`（不含 GT）。
 
+协方差标定（P0-3）：单目标合成场景扫 range/angle/snr_ref，统计 `e_r/e_u`，
+按 observed `peak_to_noise_db` 分箱取 MAD 稳健 σ，写 `reports/f01e/covariance_calibration.json`；
+**必须在 P3 association 参数冻结前完成**；B 域只按 q 查表。
+
 T2：AST/签名/import 哨兵/置换测试全部落 `check_no_gt.py`。
 
-验收：单目标合成场景（已知解析位置）检测误差在栅格内；T2 全过；噪声-only 虚警率符合目标。
+验收：单目标合成场景（已知解析位置）检测误差在栅格内；T2 全过；噪声-only 虚警率符合目标；
+协方差 LUT 报告生成，`C_xy` 随 q 单调不增、与 GT 无关。
 
 ### P3 association/fusion（1–2 会话）
 
 文件：`frontend/fusion/association.py`、`code/07_shared_frontend/check_association.py`。
 
-实现：Mahalanobis χ²(2) 门控、分量枚举、分量内最大基数/最小代价匹配（scipy）、
-逆协方差融合；观测 schema（INTERFACE_SPEC §3.3）。
+实现（P0-5 冻结的唯一算法）：检测按 `(peak_power 降序, grid_index 升序)` 排序 →
+BS0↔BS1 Hungarian（χ²(2,0.99) 门控，出格 BIG）→ group state = 逆协方差融合 →
+groups↔BS2 Hungarian → 最终 1/2/3-BS groups → 逆协方差融合观测；
+配置 `sensor_order=[0,1,2]`；观测 schema（INTERFACE_SPEC §3.3）。
 
 单元：两 BS/三 BS 合成检测的融合位置误差应 ≈ 单站误差/√n（within 20%）；
-漏一站时用剩余站；同站两个近邻检测不串配（构造 2×1 案例）。
+漏一站时用剩余站（含"BS0 漏、BS1+BS2 存活"案例）；BS0–BS1 近邻冲突案例验证确定性消解；
+检测输入顺序打乱后输出 groups 不变（确定性排序）。
 
 验收：合成用例全过；T6 的 1/2/3 BS 消融脚本可运行（数字待 P5 汇总）。
 
@@ -103,6 +115,9 @@ T2：AST/签名/import 哨兵/置换测试全部落 `check_no_gt.py`。
 slot 分配/回收（冷却 10 帧）；>8 时的非 GT 淘汰；`detected`/`track_exists` 语义。
 
 T7 用例：丢弃检测、恢复、删除、slot 复用、mask 关系断言。
+
+T6-B 消融支持（P0-4）：诊断脚本可把 `confirm_requires_nbs2` 覆盖为 false（只对消融运行生效，
+正式配置恒为 true；报告标注 ablation mode）。
 
 验收：T7 全过；单目标恒速合成场景速度收敛（10 帧后速度误差 <0.5 m/s，配置待标定）。
 
@@ -151,9 +166,9 @@ ADE_oracle vs ADE_sensing（T8）与 GNN/QGNN 重训在独立任务中决策；�
 | 阶段 | 工作量 | 估计 |
 |---|---|---|
 | P1 单帧生成 | 199 帧×3 BS×280 episodes×1 档 | ~0.5–1.5 h/档 |
-| P2 检测（含 3D CFAR） | 同上，主导开销 | ~1–3 h/档（oversample=2） |
+| P2 检测（2D RD CFAR + 逐峰 AoA） | 同上 | ~0.3–1 h/档（oversample=2；3D→2D 后开销显著下降） |
 | P6 校准 sweep | 11 档×子集（3 episodes） | ~20–60 min |
-| P7 正式全量 | 4–6 档×280 episodes | ~6–20 h（可双卡并行） |
+| P7 正式全量 | 4–6 档×280 episodes | ~4–12 h（可双卡并行） |
 
 若超标：先降 CSV 诊断输出频率、再降 CFAR 训练窗；不得降低 float64 或跳过 NMS。
 
@@ -163,6 +178,7 @@ ADE_oracle vs ADE_sensing（T8）与 GNN/QGNN 重训在独立任务中决策；�
 |---|---|---|
 | 角度分辨率不足（16 元 6.35°） | 远端横向位置误差大 | 3 BS 融合 + KF；T6 量化；必要时 V1.1 增大阵列 |
 | CFAR 虚警目标值标定不稳 | 假航迹/确认率异常 | P2 噪声-only 标定；T3/T4 回归 |
+| 协方差 LUT 样本不足 | 关联门控过松/过紧，融合权重失真 | P2 分箱样本下限 + 相邻箱上包络；T6 回归；报告中声明 |
 | 近邻目标合并 | 短时少检 | 记录为预期局限（T5）；V1.1 DBSCAN/多散点 |
 | Doppler 分辨率 1.97 m/s | 径向速度粗 | V1 不用 vr；V1.1 WLS 再用 |
 | 运行时间 | 全量延迟 | 流式、双卡、诊断降频 |
@@ -177,7 +193,7 @@ frontend/tracking/cv_kf.py
 frontend/{pack_shared_dataset,check_shared_dataset}.py
 scripts/{run_f01e_shared,calibrate_f01e_snr}.py
 configs/shared_frontend.json
-code/07_shared_frontend/*（诊断与测试）
+code/07_shared_frontend/{check_shared_echo,calibrate_cfar,calibrate_covariance,check_no_gt,check_association,check_tracker}.py（诊断与测试）
 reports/f01e/{calibration/**, F01E_REPORT.md, run_status.json, baseline_hashes.json}
 data/f01e/**（正式缓存，用户启动生成）
 ```

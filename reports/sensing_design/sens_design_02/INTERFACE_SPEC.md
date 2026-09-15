@@ -11,10 +11,10 @@ frontend/
     __init__.py
     waveform.py        PaperWaveform（沿用现有 dataclass）+ 阵列/几何常量
     simulator.py       shared echo 生成（A 域调用；输入仅 GT 状态 + 波形/阵列/功率配置）
-    detector.py        3D CA-CFAR + NMS + 峰值参数 + 单站几何换算（B 域）
+    detector.py        2D RD CA-CFAR + NMS + 逐峰 AoA + 单站几何换算 + LUT 协方差（B 域）
     coords.py          polar↔Cartesian、协方差传播、角度 wrap（B 域）
   fusion/
-    association.py     Mahalanobis 门控 + 分量匹配 + 融合（B 域）
+    association.py     顺序 Hungarian grouping + Mahalanobis 门控 + 逆协方差融合（B 域）
   tracking/
     cv_kf.py           CV Kalman + 航迹状态机 + slot 管理（B 域）
   pack_shared_dataset.py   缓存打包（B 产物 → inputs/labels/metadata）
@@ -35,8 +35,12 @@ configs/
 - 落盘缓存：`float32`（state_hat/labels）与 `bool`（masks），与 F01-D 完全一致。
 - 时间：毫秒整数 `time_ms`（A01 全局时钟）；序列内 timestamp 为 float64 秒，`Δt=0.1 s`。
 - 坐标：全局局部笛卡尔（A01 原点），米；角度以 BS 视轴为 0，逆时针为正，弧度。
-- 种子：`seed = int.from_bytes(SHA256(f"2026:{episode}:{frame}:{slot}:{aspect}")[:8],'little') & (2^63−1)`；
-  `aspect` 用于区分波形/相位/噪声流；同一目标跨 SNR 复用同一组种子（配对比较），
+- 种子（三类独立，P0-2 修订）：
+  `seed_waveform = SHA256("2026:{episode}:{frame}:{bs}:waveform")`（每 BS 每帧一份共享波形）；
+  `seed_noise = SHA256("2026:{episode}:{frame}:{bs}:noise")`（每 BS 每帧一份共享噪声）；
+  `seed_phase = SHA256("2026:{episode}:{frame}:{bs}:{source_key}:phase")`（逐目标散射相位）。
+  三类种子均取 SHA256 前 8 字节 little-endian 与 `2^63−1`；waveform/noise **不含** target slot/source_key；
+  `source_key` 只在 A 域 simulator 内部可见。同一车辆跨 SNR 复用同一组种子（配对比较）。
   与旧规则（`...:101`）的差异在 `DECISIONS.md` D18 记录。
 - 任何 B 域函数**不得**接受 target list / GT ID / 真值位置速度参数。
 
@@ -46,16 +50,16 @@ configs/
 
 ```python
 def synthesize_shared(
-    positions: Tensor[N_t, 2],      # 真值，模拟器内部
+    positions: Tensor[N_t, 2],      # A 域真值，模拟器内部
     velocities: Tensor[N_t, 2],
+    source_keys: Tensor[N_t],       # A 域真实车辆键：仅用于 phase 种子派生；不进入信道/输出
     stations: Tensor[3, 2],
     boresights: Tensor[3],          # rad
     waveform: PaperWaveform,
     array: ArrayConfig,             # elements=16, spacing_wavelengths=0.5
     rcs_m2: Tensor[N_t],
     snr_ref_db: float,
-    episode: int, frame: int,       # 目标 ID 仅用于种子派生，不进入信道模型
-    slots: Tensor[N_t],             # 同上，仅种子派生
+    episode: int, frame: int,       # waveform/noise 种子：每 BS 每帧一份（不含 target slot）
 ) -> dict:
     "Y": Tensor[3, A, K, N] complex128   # 共享多目标回波（求和后噪声）
     "X": Tensor[3, K, N] complex128      # 每 BS 自己的 QPSK 网格（含符号约定）
@@ -68,9 +72,10 @@ def synthesize_shared(
 ```python
 def process_baseline(Y_b: Tensor[A,K,N], X_b: Tensor[K,N], station_id: int,
                      waveform, array, config) -> dict:
-    "power": Tensor[Nr,Nv,Na] float64          # 诊断/CFAR 中间量
+    "power_rd": Tensor[Nr,Nv] float64         # 2D RD 非相干功率（CFAR 主输入，P0-1 修订）
+    "snapshots": Tensor[n_peaks,A] complex128 # 仅对 RD 峰保存，供 AoA/诊断
     "detections": list[Detection]
-    "counters": dict                            # candidates_before_cap, suppressed, overflow, ...
+    "counters": dict                           # candidates_before_cap, suppressed, overflow, ...
 ```
 
 `Detection`（Python dict / npz 记录，字段冻结）：
@@ -83,7 +88,8 @@ vr_mps: float64             # 径向速度（诊断/V1.1）
 u: float64                  # 方向余弦
 bearing_rad: float64        # 相对视轴
 x_m, y_m: float64           # 单站局部笛卡尔
-C_xy: float64[2,2]          # 位置协方差（polar→Cartesian 传播，标定参数）
+C_xy: float64[2,2]          # = J·diag(σ_r(q)², σ_u(q)²)·Jᵀ + εI；q=peak_to_noise_db；
+                            #   LUT 与 Jacobian 见 SYSTEM_MODEL.md §5.1（D23）
 peak_power, noise_floor: float64
 peak_to_noise_db: float64
 cfar_score: float64
@@ -94,6 +100,9 @@ grid_index: int32[3]
 
 ```python
 def fuse_frame(detections_by_bs: dict[int, list[Detection]], config) -> list[Observation]
+// P0-5 冻结唯一算法：检测按 (peak_power 降序, grid_index 升序) 确定性排序；
+// 顺序 Hungarian grouping：BS0↔BS1 → groups↔BS2；Mahalanobis² + χ²(2,0.99) 门控，
+// 出格项 BIG；group state = 逆协方差融合；全程不使用 GT。
 
 Observation = {
   "time_ns": int64, "x_m": float64, "y_m": float64, "C_xy": float64[2,2],
@@ -147,11 +156,13 @@ data/f01e/
   "power": {"snr_ref_db": null, "reference_range_m": 100.0, "reference_rcs_m2": 10.0,
             "fixed_rcs_m2": 10.0, "noise_variance": 1.0},
   "detector": {
-    "oversample": 2, "cfar_train": [6, 6, 8], "cfar_guard": [2, 2, 4],
+    "oversample": 2, "cfar_train": [6, 6], "cfar_guard": [2, 2],
     "target_false_alarms_per_bs_frame": 0.5, "max_candidates": 32,
-    "nms_radius": [2, 2, 4], "interpolation": true
+    "nms_radius": [2, 2], "interpolation": true,
+    "aoa_fft_size": 64, "aoa_max_peaks": 1, "aoa_nms_radius": 4,
+    "covariance_lut": "reports/f01e/covariance_calibration.json", "covariance_floor_m2": 0.01
   },
-  "association": {"gate_chi2_2dof": 9.21, "max_detections_per_bs": 32},
+  "association": {"sensor_order": [0, 1, 2], "gate_chi2_2dof": 9.21, "max_detections_per_bs": 32},
   "tracker": {"dt": 0.1, "q_a_m2_s3": null, "birth_inflation": 4.0,
               "confirm_hits": 2, "confirm_window": 3, "confirm_requires_nbs2": true,
               "max_missed": 5, "max_confirmed": 8, "slot_cooldown_cycles": 10},
@@ -193,6 +204,9 @@ detected     = 1  ⇔ 本帧该航迹获得了真实 measurement update（任意
 允许且预期出现：track_exists=1, detected=0（coast/漏检）
 tentative 航迹：两者都写 0（不输出、不占 slot）
 ```
+
+T6-B 消融可临时覆盖 `confirm_requires_nbs2=false`（仅 1/2/3-BS 公平比较；
+正式配置恒为 true，报告须标注 ablation mode）。
 
 ## 7. 契约与校验规则（写入时强制）
 

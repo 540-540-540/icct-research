@@ -33,10 +33,10 @@ C. Supervision / Evaluation Domain（监督/评估域）
 | GT 信息 | A 域用途 | 是否进入 B 域 | 隔离要求 |
 |---|---|---|---|
 | 目标数量 `N_t` | 生成回波求和项 | 否 | detector 只从 CFAR 峰计数；API 无 count 参数 |
-| 车辆 ID / source_key | 种子派生、episode 路由、C 域匹配 | 否 | 种子派生发生在 simulator 内部；track_key 独立自增 |
+| 车辆 ID / source_key | phase 种子派生（仅散射相位）、episode 路由、C 域匹配 | 否 | `seed_phase` 派生只发生在 simulator 内部；waveform/noise 种子不含它；track_key 独立自增 |
 | 真值位置 `x,y` | 信道距离相位、可见性门控 | 否 | B 域只见 Y/X/几何常量 |
 | 真值速度 `vx,vy` | 多普勒相位、径向速度 | 否 | 同上 |
-| slot（A01 source_keys 下标） | 仅用于种子派生与 C 域标签 | 否 | 新 slot 由 tracker 分配；A01 slot 不出现在 B 域 |
+| slot（A01 source_keys 下标） | 仅 C 域标签匹配路由 | 否 | A01 slot 不参与种子派生（P0-2）；新 slot 由 tracker 分配，不出现在 B 域 |
 | 未来轨迹 | C 域标签 | 否 | labels 与 inputs 分离；loader 白名单 |
 | 场景边界/几何 | A01 一次性场景常量（非逐目标） | 是（L1，声明） | `xy_bounds`/`v_bounds`/站点坐标视为公开几何先验 |
 | SNR/功率 | 由配置 `snr_ref` + 距离/RCS 决定 | 否 | 不传逐目标 SNR；检测质量字段仅来自观测 |

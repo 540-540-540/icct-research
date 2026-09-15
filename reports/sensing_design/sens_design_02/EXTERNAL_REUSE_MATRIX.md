@@ -13,11 +13,11 @@
 | 5GNRad 文件 | 做什么 | V1 采用方式 | 不采用的部分 |
 |---|---|---|---|
 | `src/+nrRadar/+sens/getRangeDoppler.m` | PRS 提取 → 加窗 range IFFT → 慢时间去均值 → 加窗 Doppler FFT | **结构参考**：同序处理，但我们的 X 是全网格 QPSK，无 PRS destaggering；clutter 去均值关闭（无静态杂波模型） | PRS 资源映射、destaggering、range bin 截断、MATLAB 实现 |
-| `src/+nrRadar/+sens/cfar2D.m` | 2D CA-CFAR，边缘自适应训练窗 | **移植**到 3D（range/doppler/angle），保留"训练环 - 保护环"与自适应计数 | 2D 投影做法（我们保留 3D） |
+| `src/+nrRadar/+sens/cfar2D.m` | 2D CA-CFAR，边缘自适应训练窗 | **直接移植**为 RD map（range/doppler）上的 2D CA-CFAR，保留"训练环 - 保护环"与自适应计数（P0-1 后与 NIST 主链一致） | — |
 | `src/+nrRadar/+sens/pick_peaks_nms.m` | CFAR 掩码上的局部极大 + 贪心 NMS | **移植**：本地极大 + 物理抑制半径贪心 | — |
-| `src/+nrRadar/+sens/rdmDetection.m` | 检测流水线组织：CFAR→NMS→每峰 AoA（beamspace FFT / Bartlett）→DBSCAN→旁瓣抑制→几何定位→径向速度 | **组织参考**：同阶段划分；AoA 采用 FFT/Bartlett 扫描；DBSCAN 推迟（V1 单散点） | DBSCAN、4D 聚类、sidelobe 细节、elevation、beamforming 架构 |
+| `src/+nrRadar/+sens/rdmDetection.m` | 检测流水线组织：2D RD 投影 CFAR → NMS → **每峰 AoA**（beamspace FFT / Bartlett）→DBSCAN→旁瓣抑制→几何定位→径向速度 | **主链直接对齐**：2D RD CFAR + 每峰 AoA 已成 V1 主路径（P0-1）；几何定位/径向速度字段同构；DBSCAN 推迟（V1 单散点） | DBSCAN、4D 聚类、sidelobe 细节、elevation、beamforming 架构 |
 | `src/+nrRadar/+sens/estimateRxAngle.m` | 波束/角度选择：ideal/nearest/scan | 支持我们"FFT/Bartlett、不用 MUSIC"的选择（该文件对 MUSIC 直接未实现） | ideal/nearest 模式（那是 oracle 辅助，禁止） |
-| `src/+nrRadar/+util/scoreAssociationsPos.m` | 3D Mahalanobis + χ²(3) 门控 + Munkres(Hungarian) + TP/FN/FP 指标 | **两点采用**：(a) 检测-检测门控/匹配数学（换成 χ²(2) 位置门）；(b) C 域 track↔GT 匹配与指标模板 | 用 GT 的 3D 位置关联本身（只允许存在于 C 域） |
+| `src/+nrRadar/+util/scoreAssociationsPos.m` | 3D Mahalanobis + χ²(3) 门控 + Munkres(Hungarian) + TP/FN/FP 指标 | **三点采用**：(a) 检测-检测门控/匹配数学（换成 χ²(2) 位置门）；(b) C 域 track↔GT 匹配与指标模板；(c) 其可配置协方差（SigmaXYZ/Cov）对应我们的 `C_xy` calibration LUT；顺序 Hungarian grouping 沿用其 Munkres 风格实现 | 用 GT 的 3D 位置关联本身（只允许存在于 C 域） |
 | `src/+nrRadar/+channel/getSigmaRCS.m` | 3GPP TR 38.901 车辆 RCS（方向性 + 对数正态） | **V1.1 备选**：V1 固定 RCS=10 m²；该文件作为后续起伏/方向性模型入口 | 角度表全量复刻（超 V1 范围） |
 | `src/+nrRadar/+channel/getTargetPower.m` | 目标信道功率求和 | 概念参考（Σ 目标贡献） | 结构耦合 |
 | `src/+nrRadar/+sens/suppressSidelobes.m`、`cluster_peaks_4d.m` | 旁瓣抑制、4D 聚类 | V1 不做（NMS 足够；DBSCAN 触发条件见 D07） | — |
@@ -61,7 +61,7 @@
 | 来源 | 复用内容 | 目标文件 | 等级 |
 |---|---|---|---|
 | `frontend/ofdm_echo.py` | 目标求和回波式、(100/r)² 幅度、FoV/range 可见性、噪声方差定义 | `frontend/sensing/simulator.py` | 公式移植 |
-| `frontend/detector.py` | 3D CA-CFAR（torch 盒滤波）、NMS、旁瓣抑制、抛物线插值、越界几何剔除、逐检测质量字段 | `frontend/sensing/detector.py` | 算法移植+适配 |
+| `frontend/detector.py` | CA-CFAR（torch 盒滤波）、NMS、旁瓣抑制、抛物线插值、越界几何剔除、逐检测质量字段（旧实现为 3D，主路径改为 2D RD + 逐峰 AoA） | `frontend/sensing/detector.py` | 算法移植+适配 |
 | `frontend/tracker.py` | F/Q、门控更新、birth/confirm/coast/delete、`detected` vs `exists`、非 GT top-8 选择 | `frontend/tracking/cv_kf.py` | 状态机移植（改为位置-only 量测） |
 | `frontend/station_geometry.py` | 3-BS 坐标/视轴/可见性 | 新模块直接 import | 直接 KEEP |
 | `frontend/scene_manifest.py` | episodes/splits/origins/source_states | 不变 | 直接 KEEP |

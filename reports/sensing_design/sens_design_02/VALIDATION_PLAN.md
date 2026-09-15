@@ -14,9 +14,13 @@
 4. 生成共享噪声回波（noise=True）：`N = Y_noisy − Y_shared`。
    断言 `E|N|²` 与配置噪声方差一致（样本估计，±5%），且噪声在各目标位置处不可区分
    （不存在"逐目标噪声"：同一 (b,a,k,n) 只有一份噪声实现）。
-5. 交换目标顺序生成两次，断言共享 clean 回波（除浮点求和顺序误差）一致。
+5. 置换不变性（P0-2）：
+   - 目标顺序置换 → clean 共享回波不变（仅浮点求和顺序容差）；
+   - 输出 slot / 目标列表顺序置换 → `X_b`、`W_b` 逐比特不变；
+   - 同一 source_key 两次调用相位一致；不同 source_key 相位独立。
 
-**通过条件**：线性求和成立；噪声只加一次；目标顺序不影响共享观测。
+**通过条件**：线性求和成立；噪声只加一次；目标顺序与 slot 置换不影响共享观测；
+waveform/noise 与 target 解耦。
 **失败即架构错误**（退回 oracle 分离假设）。
 
 ## T2 No-GT detection test（检测器无 GT 输入）
@@ -33,6 +37,8 @@
    （未排序集合意义下）不变；输出中不含任何 GT 字段。
 5. 用"数量相同但内容不同"的目标集合（如同数量随机状态）生成观测：检测数量随观测质量变化，
    而不是恒定等于目标数。
+6. 协方差 LUT（P0-3）：`C_xy` 只能由检测的 observed `peak_to_noise_db` 查表得到；
+   更换 GT 内容/顺序不影响同一观测的 `C_xy`；不同 q 分箱给出单调不增的 σ（保守性检查）。
 
 **通过条件**：四类检查全部通过；检测数为观测的函数，不是 GT 的函数。
 
@@ -74,13 +80,31 @@ NMS 半径与 CFAR 保护单元是否与理论分辨率（1.61 m / 6.35° / 1.97
 **通过条件**：合并发生在理论分辨极限附近（±1 个栅格）；不产生由旁瓣引起的稳定假航迹；
 结果写入报告作为已知局限。
 
-## T6 3-BS ablation（多站消融）
+**V1 限制声明（P0-1）**：每个 RD 峰只取最强 AoA 峰（`aoa_max_peaks=1`），因此同一
+距离-速度单元内的多目标必然合并为 1 个检测；T5 必须把该合并曲线写入报告。
 
-**方法**：同一共享回波数据下，分别只用 1 BS、2 BS、3 BS 融合跑完整跟踪链；
-对同一 GT 评估位置 RMSE、召回、航迹连续性。
+## T6 3-BS ablation（多站消融，P0-4 修订为两层）
 
-**通过条件**：3 BS ≥ 2 BS ≥ 1 BS（位置 RMSE 与召回），收益可解释；
-若某档无收益，需给出几何解释（覆盖/角度退化）而不是静默通过。
+### T6-A sensing/fusion ablation（tracker 之前）
+同一共享回波数据，分别只用 1 / 2 / 3 BS 做检测+关联+融合（不进 tracker），比较：
+per-frame detection recall、false alarms、单站/融合位置 RMSE。
+**通过条件**：3 BS ≥ 2 BS ≥ 1 BS（RMSE 与召回），差异可解释（几何/角度覆盖）。
+
+### T6-B tracking ablation（公平比较传感器数量的信息增益）
+1/2/3 BS 三档使用**同一套消融确认规则**：
+
+```text
+最近 3 帧内 >=2 次 measurement hit（忽略 n_bs>=2 要求）
+```
+
+实现方式：仅 T6-B 允许 `confirm_requires_nbs2=false`；
+正式 mainline tracker 始终保留 D12（`>=2 hits/3 frames + 至少 1 次 n_bs>=2`）。
+报告必须标注：
+
+> ablation mode 只用于公平比较传感器数量，不改变正式 mainline tracker。
+
+**通过条件**：三档均能形成完整航迹并给出位置/速度 RMSE 与连续性；
+3 BS ≥ 2 BS ≥ 1 BS（个别几何退化档位可例外并解释）。
 
 ## T7 Tracking dropout（漏检/丢帧）
 
@@ -113,6 +137,7 @@ NMS 半径与 CFAR 保护单元是否与理论分辨率（1.61 m / 6.35° / 1.97
 | T3 | P6 | calibrate_f01e_snr | 全链 + 少量 train |
 | T4 | P5 | diagnostics densify | 全链 |
 | T5 | P5 | diagnostics close-target | 全链 |
-| T6 | P4 | diagnostics ablation | fusion |
+| T6-A | P3/P5 | diagnostics ablation | detector+fusion |
+| T6-B | P4/P5 | diagnostics ablation（`confirm_requires_nbs2=false`） | tracker |
 | T7 | P4 | unit/integration | tracker |
 | T8 | REBUILD-04 | prediction 训练协议 | 新 cache + 用户批准 |

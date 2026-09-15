@@ -12,16 +12,20 @@ FROZEN：每个 BS 每帧一份共享观测 `Y_b:[A,K,N]`；先对所有目标�
 替代被否：逐目标信号（现状）、共享求和但保留每目标噪声（物理不一致）。
 
 **D02 AoA V1**
-FROZEN：**采用 Candidate A**。每 BS `A=16` 元 ULA（λ/2），零填充 FFT 64 点扫描
-（Bartlett/beamspace FFT，逐峰取最大），不使用 MUSIC。
+FROZEN：**采用 Candidate A**。每 BS `A=16` 元 ULA（λ/2）；**只对 2D CFAR/NMS 后的 RD 峰**
+做零填充 64 点 FFT/Bartlett AoA 扫描（逐峰取最大），不使用 MUSIC；
+`aoa_max_peaks` 预留多峰接口，V1 冻结为 1（最强 AoA 峰，T5 记录该限制）。
 理由：每 BS 直接得到局部 (x,y)，跨站关联退化为空间门控；NIST 与旧码均有可复用实现；
 3 BS × ≤32 检测规模下 A 的总代价低于 B（三站 range 组合关联）。
 替代被否：Candidate B（仅 range/Doppler + 三站几何联合定位）——匿名多目标组合爆炸、
-无 AoA 时单站无法形成局部点、关联与虚警控制更难。V1.1 可加 MUSIC/更大阵列。
+无 AoA 时单站无法形成局部点、关联与虚警控制更难。V1.1 可加 MUSIC/更大阵列/多 AoA 峰。
 
 **D03 波形**
 FROZEN：沿用 A03 冻结常量 `fc=24 GHz, B=93.1 MHz, K=N=256, T=12.375 µs`；
-不模拟 CP/ICI；`T` 与 `df` 独立声明为建模简化。
+不模拟 CP/ICI。
+**T 语义（P1 澄清）**：`1/df = 2.75 µs` 是子载波间隔对应的 useful-time 尺度；
+`T` 是 slow-time 采样间隔 / PRI，**不是** "OFDM useful symbol duration"；
+模型为可分离简化 OFDM sensing，不声称复刻 5G NR numerology。
 理由：距离分辨率 1.61 m、无模糊距离 412 m（> 场景 376 m）、无模糊速度 252 m/s（> 57 m/s）
 全部满足；换波形会改变所有几何/边界与缓存语义，收益不足。
 替代被否：5G NR PRS 标准链（NIST 风格）、30 GHz/50 MHz 等新参数。
@@ -42,24 +46,33 @@ FROZEN：几何硬门控 `10 ≤ r ≤ 300 m`、`|θ| ≤ 70°`（沿用 A01/旧
 无多径、无阴影；不做均值去杂波。
 理由：最小模型；本场景无杂波真值，硬造杂波反而不可信。
 
-**D07 检测器**
-FROZEN：3D（range, doppler, angle）CA-CFAR（边缘自适应）+ NMS + log 抛物线插值；
-检测数即目标数来源；候选上限 32/BS。**DBSCAN V1 不启用**；触发条件：若 T4/T5 显示
+**D07 检测器（P0-1 修订）**
+FROZEN：**2D Range-Doppler CA-CFAR**（边缘自适应）→ 2D NMS → RD 抛物线插值 →
+**逐 RD 峰 64 点 AoA**（1D NMS + 抛物线插值，`aoa_max_peaks=1`）；
+检测数即目标数来源；候选上限 32/BS。主路径不再构造全尺寸 3D 功率立方（约 1.68e7 单元），
+AoA 只作用于少量 RD 峰。**DBSCAN V1 不启用**；触发条件：若 T4/T5 显示
 单目标平均产生 >1.5 个 NMS 后检测（旁瓣/扩散），则在 V1.1 启用 DBSCAN 聚类。
-理由：CA-CFAR/NMS 是审计推荐的最小实现；旧码与 NIST 都有现成算法结构。
-替代被否：学习式检测、2D 投影 CFAR + 逐峰角度（保留为可选，不默认）。
+理由：与 NIST 5GNRad 主链一致（2D RD CFAR + peak-wise AoA），成本低约一个量级，
+仍保留真实检测与 AoA。
+替代被否：全尺寸 3D CFAR（成本不成比例）、学习式检测、每 RD 峰多 AoA（V1 先限制，T5 声明）。
 
 **D08 CFAR 虚警标定**
 FROZEN：按"目标虚警数/BS/帧"反算 cell 级 `Pfa_cell = target_false_alarms / N_cells`
 （默认目标 0.5），用**噪声-only** CPI 标定阈乘数；禁止用 GT 标定。
-理由：`N_cells≈1.68e7`，直接设 cell Pfa 会得到上千虚警。
+`N_cells = Nr·Nv = 512·512 = 262 144`（2D RD map；P0-1 后不再使用 1.68e7 的 3D 单元数）。
+理由：直接设 cell Pfa 会得到大量虚警；2D 后单元数下降 64 倍。
 
-**D09 跨 BS 关联**
-FROZEN：检测→全局 (x,y)+协方差；两两 Mahalanobis 门控 `χ²(2,0.99)=9.21`；
-连通分量内做"最大基数、最小总代价"一对一匹配；≥2 站匹配→逆协方差加权融合
-（`C=(ΣC⁻¹)⁻¹`）；落单检测保留为单站观测。不设参考传感器，不用 PHD/MHT/JPDA。
-理由：规模小、可枚举、可测试；门限来自测量协方差而非 GT。
-替代被否：JPDA/MHT（超 V1 范围）、单纯 Hungarian 跨三站（冲突消解复杂）。
+**D09 跨 BS 关联（P0-5 修订：顺序 Hungarian grouping）**
+FROZEN：检测按 `(peak_power 降序, grid_index 升序)` 确定性排序；固定传感器顺序 `[0,1,2]`：
+Stage 1 BS0↔BS1 Hungarian（Mahalanobis² + χ²(2,0.99)=9.21 门控，出格 BIG）；
+未匹配者成为 singleton group；group state = 逆协方差融合 `(p_g,C_g)`；
+Stage 2 groups↔BS2 再 Hungarian；最终每组每 BS 至多 1 检测；
+`n_bs≥2` → `C_f=(ΣC⁻¹)⁻¹`，`p_f=C_fΣC⁻¹p`；`n_bs=1` 保留单站观测。
+匹配器只用 `scipy.optimize.linear_sum_assignment`；不用 PHD/MHT/JPDA；不用 GT。
+理由：唯一、可直接编码、确定性；固定顺序只依赖站点几何与观测排序（BS0/BS2 同侧视差弱，
+先配异侧 BS1 最稳）。
+已知局限：Stage 1 局部最优不可回溯（T4/T5 量化；V1.1 可全三元枚举）。
+替代被否：连通分量+枚举（实现细节仍需临场决定）、JPDA/MHT（超 V1 范围）。
 
 **D10 单站观测策略**
 FROZEN：单站观测可用于**更新已有航迹**；但**不能单独确认新航迹**（D12）。
@@ -76,6 +89,8 @@ V1.1 触发：若 T3/T6 显示速度 RMSE 明显不达标，再启用
 FROZEN：birth→tentative；最近 3 帧 ≥2 次更新且有 ≥1 次 `n_bs≥2` → confirmed；
 tentative 3 帧未确认即删除；coast 最多 5 帧（`detected=0`，`track_exists=1`）；
 misses>5 删除；只输出 confirmed alive 航迹。
+**T6-B 消融例外（P0-4）**：仅 1/2/3-BS 公平比较的诊断模式允许 `confirm_requires_nbs2=false`
+（3 帧 ≥2 hits 即可确认）；正式 mainline 恒为 true，报告须标注 ablation mode。
 替代被否：立即确认、无 coast 直接删除。
 
 **D13 8 槽策略**
@@ -102,10 +117,14 @@ FROZEN：见 `GT_ISOLATION_SPEC.md`；B 域不得 import A 域；C 域在 B 封�
 FROZEN：仿真/检测/融合 float64（CUDA）；缓存 float32/bool；
 原始 Y 不落盘（仅少量诊断样本）；流式逐帧处理；序列/诊断落 `data/f01e`。
 
-**D18 种子与配对**
-FROZEN：`seed(aspect) = SHA256("2026:{episode}:{frame}:{slot}:{aspect}")`，
-`aspect ∈ {waveform, phase, noise}`；同一目标跨 SNR 复用同组种子（配对比较）。
-与旧 `...:101` 单一流不同，但新旧缓存不要求逐样本一致。
+**D18 种子合同（P0-2 修订：三类独立）**
+FROZEN：
+`seed_waveform = SHA256("2026:{episode}:{frame}:{bs}:waveform")`（每 BS 每帧一份共享波形）；
+`seed_noise = SHA256("2026:{episode}:{frame}:{bs}:noise")`（每 BS 每帧一份共享噪声）；
+`seed_phase = SHA256("2026:{episode}:{frame}:{bs}:{source_key}:phase")`（逐目标散射相位）。
+waveform/noise **不含** target slot 或 source_key；`source_key` 仅 A 域 simulator 内部；
+同一车辆跨 SNR 复用同一 phase 种子（配对比较）。与旧 `...:101` 单一流不同，
+新旧缓存不要求逐样本一致。
 
 **D19 数据路径与兼容**
 FROZEN：新 config `configs/shared_frontend.json`（`revision=B01-shared-3bs-v1`）；
@@ -126,14 +145,28 @@ FROZEN：V1 假设每 BS 单基地自观测、无跨 BS 干扰与自干扰残留
 FROZEN：每辆车 V1 为**单主散射点**（固定 RCS=10 m²，逐 (BS,目标,帧) 随机相位）；
 扩展目标（多散点/长度）留 V1.1+。理由：最小可信、可解释；近邻合并作为已知局限由 T5 量化。
 
+**D23 测量协方差 `C_xy` 标定 LUT（P0-3 新增）**
+FROZEN：`C_xy` 由离线 calibration LUT 产生：单目标合成扫 range/angle/snr_ref，
+按 detector 可观察量 `q = peak_to_noise_db` 分箱，取残差 MAD 稳健 σ：
+`sigma_r(q), sigma_u(q)`；`R_ru = diag(σ_r², σ_u²)`；
+`C_xy = J·R_ru·Jᵀ + εI`，`ε = 0.01 m²`；Jacobian 见 `SYSTEM_MODEL.md` §5.1（`coords.py` 实现并单测）。
+B 域 inference 只用 q 查表，禁止 GT/SNR truth；样本不足时取相邻箱上包络常数并在报告声明。
+标定必须在 association 参数冻结前完成（`REBUILD_03_WORKPLAN.md` P2）。
+理由：关联/融合/KF 的 R 必须有可追溯、可复现来源；这是实现阻断项。
+
 ---
 
-## GitHub 回传速查（对应工单 §17）
+## 回传速查（SENS-DESIGN-02-R1）
 
-- AoA V1：**采用**（16 元 ULA，FFT/Bartlett 扫描）— D02
+- detector path：**2D RD CA-CFAR + 2D NMS + 逐峰 64 点 AoA（V1 最强单峰）** — D07
+- seed contract：**waveform/noise 按 (episode,frame,bs)；phase 按 (episode,frame,bs,source_key)** — D18
+- covariance calibration：**离线 σ_r(q)/σ_u(q) LUT（按 observed peak_to_noise_db 分箱）+ Jacobian 传播** — D23
+- T6 ablation rule：**T6-A 融合前消融；T6-B 三档统一 `confirm_requires_nbs2=false`（仅诊断）** — D12 + VALIDATION_PLAN
+- 3-BS association：**顺序 Hungarian grouping：BS0↔BS1 → groups↔BS2，逆协方差融合** — D09
+- OFDM T semantic：**`1/df` 为 useful-time 尺度；`T` 为 slow-time/PRI；可分离简化模型，不声称 5G NR numerology** — D03
+- AoA V1：**采用**（16 元 ULA，逐 RD 峰 FFT/Bartlett）— D02
 - DBSCAN V1：**不启用**（触发条件已定义）— D07
 - target model：**单主散射点，固定 RCS=10 m²，随机相位** — D22
-- cross-BS association：**Mahalanobis 门控 + 分量匹配 + 逆协方差融合** — D09
 - velocity source：**融合位置序列 → 恒速卡尔曼滤波** — D11
 - SNR/power definition：**雷达方程简化（1/r⁴ × 固定 RCS），`snr_ref`@100 m，每 BS 单噪声底** — D05
 - track slot policy：**确认时分配、死亡冷却回收、非真值评分淘汰超 8** — D13
