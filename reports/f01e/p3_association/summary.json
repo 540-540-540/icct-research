@@ -1,0 +1,366 @@
+{
+  "test": "P3 association/fusion",
+  "passed": true,
+  "checks": {
+    "A_two_bs_fusion": {
+      "passed": true,
+      "detail": {
+        "observations": [
+          {
+            "time_ns": 0,
+            "x_m": 100.15,
+            "y_m": 0.0,
+            "C_xy": [
+              [
+                0.020000000000000004,
+                0.0
+              ],
+              [
+                0.0,
+                0.020000000000000004
+              ]
+            ],
+            "bs_mask": 3,
+            "n_bs": 2,
+            "quality_db": 25.0
+          }
+        ],
+        "diagnostics": {
+          "gate_rejections": 0,
+          "postfilter_rejections": 0,
+          "input_count_by_bs": {
+            "0": 1,
+            "1": 1,
+            "2": 0
+          },
+          "groups_2bs": 1,
+          "groups_3bs": 0,
+          "singletons": 0,
+          "observations": 1
+        }
+      }
+    },
+    "B_three_bs_fusion": {
+      "passed": true,
+      "detail": {
+        "observations": [
+          {
+            "time_ns": 0,
+            "x_m": 100.03333333333333,
+            "y_m": -50.0,
+            "C_xy": [
+              [
+                0.013333333333333336,
+                0.0
+              ],
+              [
+                0.0,
+                0.013333333333333336
+              ]
+            ],
+            "bs_mask": 7,
+            "n_bs": 3,
+            "quality_db": 25.0
+          }
+        ],
+        "diagnostics": {
+          "gate_rejections": 0,
+          "postfilter_rejections": 0,
+          "input_count_by_bs": {
+            "0": 1,
+            "1": 1,
+            "2": 1
+          },
+          "groups_2bs": 0,
+          "groups_3bs": 1,
+          "singletons": 0,
+          "observations": 1
+        }
+      }
+    },
+    "C_gate_rejection": {
+      "passed": true,
+      "detail": {
+        "observations": [
+          {
+            "time_ns": 0,
+            "x_m": 0.0,
+            "y_m": 0.0,
+            "C_xy": [
+              [
+                0.04000000000000001,
+                0.0
+              ],
+              [
+                0.0,
+                0.04000000000000001
+              ]
+            ],
+            "bs_mask": 1,
+            "n_bs": 1,
+            "quality_db": 25.0
+          },
+          {
+            "time_ns": 0,
+            "x_m": 50.0,
+            "y_m": 0.0,
+            "C_xy": [
+              [
+                0.04000000000000001,
+                0.0
+              ],
+              [
+                0.0,
+                0.04000000000000001
+              ]
+            ],
+            "bs_mask": 2,
+            "n_bs": 1,
+            "quality_db": 25.0
+          }
+        ],
+        "diagnostics": {
+          "gate_rejections": 1,
+          "postfilter_rejections": 1,
+          "input_count_by_bs": {
+            "0": 1,
+            "1": 1,
+            "2": 0
+          },
+          "groups_2bs": 0,
+          "groups_3bs": 0,
+          "singletons": 2,
+          "observations": 2
+        }
+      }
+    },
+    "D_bs0_missing": {
+      "passed": true,
+      "detail": {
+        "observations": [
+          {
+            "time_ns": 0,
+            "x_m": 10.1,
+            "y_m": 10.0,
+            "C_xy": [
+              [
+                0.020000000000000004,
+                0.0
+              ],
+              [
+                0.0,
+                0.020000000000000004
+              ]
+            ],
+            "bs_mask": 6,
+            "n_bs": 2,
+            "quality_db": 25.0
+          }
+        ],
+        "diagnostics": {
+          "gate_rejections": 0,
+          "postfilter_rejections": 0,
+          "input_count_by_bs": {
+            "0": 0,
+            "1": 1,
+            "2": 1
+          },
+          "groups_2bs": 1,
+          "groups_3bs": 0,
+          "singletons": 0,
+          "observations": 1
+        }
+      }
+    },
+    "E_bs1_missing": {
+      "passed": true,
+      "detail": {
+        "observations": [
+          {
+            "time_ns": 0,
+            "x_m": 20.150000000000002,
+            "y_m": 20.0,
+            "C_xy": [
+              [
+                0.020000000000000004,
+                0.0
+              ],
+              [
+                0.0,
+                0.020000000000000004
+              ]
+            ],
+            "bs_mask": 5,
+            "n_bs": 2,
+            "quality_db": 25.0
+          }
+        ],
+        "diagnostics": {
+          "gate_rejections": 0,
+          "postfilter_rejections": 0,
+          "input_count_by_bs": {
+            "0": 1,
+            "1": 0,
+            "2": 1
+          },
+          "groups_2bs": 1,
+          "groups_3bs": 0,
+          "singletons": 0,
+          "observations": 1
+        }
+      }
+    },
+    "F_all_singleton": {
+      "passed": true,
+      "detail": {
+        "observations": [
+          {
+            "time_ns": 0,
+            "x_m": 0.0,
+            "y_m": 0.0,
+            "C_xy": [
+              [
+                0.04000000000000001,
+                0.0
+              ],
+              [
+                0.0,
+                0.04000000000000001
+              ]
+            ],
+            "bs_mask": 1,
+            "n_bs": 1,
+            "quality_db": 25.0
+          },
+          {
+            "time_ns": 0,
+            "x_m": 100.0,
+            "y_m": 0.0,
+            "C_xy": [
+              [
+                0.04000000000000001,
+                0.0
+              ],
+              [
+                0.0,
+                0.04000000000000001
+              ]
+            ],
+            "bs_mask": 2,
+            "n_bs": 1,
+            "quality_db": 25.0
+          },
+          {
+            "time_ns": 0,
+            "x_m": 0.0,
+            "y_m": 100.0,
+            "C_xy": [
+              [
+                0.04000000000000001,
+                0.0
+              ],
+              [
+                0.0,
+                0.04000000000000001
+              ]
+            ],
+            "bs_mask": 4,
+            "n_bs": 1,
+            "quality_db": 25.0
+          }
+        ],
+        "diagnostics": {
+          "gate_rejections": 3,
+          "postfilter_rejections": 2,
+          "input_count_by_bs": {
+            "0": 1,
+            "1": 1,
+            "2": 1
+          },
+          "groups_2bs": 0,
+          "groups_3bs": 0,
+          "singletons": 3,
+          "observations": 3
+        }
+      }
+    },
+    "G_near_neighbor_conflict": {
+      "passed": true,
+      "detail": {
+        "observations": [
+          {
+            "time_ns": 0,
+            "x_m": 0.10000000000000002,
+            "y_m": -0.03333333333333334,
+            "C_xy": [
+              [
+                0.013333333333333336,
+                0.0
+              ],
+              [
+                0.0,
+                0.013333333333333336
+              ]
+            ],
+            "bs_mask": 7,
+            "n_bs": 3,
+            "quality_db": 25.0
+          },
+          {
+            "time_ns": 0,
+            "x_m": 2.0,
+            "y_m": 0.06666666666666668,
+            "C_xy": [
+              [
+                0.013333333333333336,
+                0.0
+              ],
+              [
+                0.0,
+                0.013333333333333336
+              ]
+            ],
+            "bs_mask": 7,
+            "n_bs": 3,
+            "quality_db": 25.0
+          }
+        ],
+        "diagnostics": {
+          "gate_rejections": 4,
+          "postfilter_rejections": 0,
+          "input_count_by_bs": {
+            "0": 2,
+            "1": 2,
+            "2": 2
+          },
+          "groups_2bs": 0,
+          "groups_3bs": 2,
+          "singletons": 0,
+          "observations": 2
+        }
+      }
+    },
+    "H_permutation_invariance": {
+      "passed": true,
+      "detail": {
+        "reference": [
+          [
+            3,
+            7,
+            0.1,
+            -0.033333
+          ],
+          [
+            3,
+            7,
+            2.0,
+            0.066667
+          ]
+        ]
+      }
+    }
+  },
+  "source_hashes": {
+    "frontend/fusion/association.py": "d0c9362d378eb7c55a99738bf3beccd4378474fc29e23a04309679aa384f90f6"
+  }
+}

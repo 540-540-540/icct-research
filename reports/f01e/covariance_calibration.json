@@ -1,10 +1,9 @@
 {
-  "method": "single-target synthetic sweep; C-domain residuals e_r=r_hat-r_gt, e_u=u_hat-u_gt; binned by observed peak_to_noise_db; robust MAD sigma; no GT at inference",
+  "method": "single-target synthetic sweep; C-domain residuals e_r=r_hat-r_gt, e_u=u_hat-u_gt; binned by observed peak_to_noise_db; robust MAD sigma; conservative envelope; covariance inflation calibrated from true-pair gating statistics",
   "sweep": {
     "ranges_m": [
       30.0,
-      50.0,
-      80.0,
+      60.0,
       100.0,
       150.0,
       200.0,
@@ -12,25 +11,41 @@
       300.0
     ],
     "bearings_deg": [
-      -60.0,
-      -30.0,
+      -69.0,
+      -45.0,
       0.0,
-      30.0,
-      60.0
+      45.0,
+      69.0
     ],
     "snr_ref_db": [
+      -20.0,
+      -15.0,
+      -10.0,
+      -5.0,
+      0.0,
       5.0,
       10.0,
       15.0,
-      20.0,
-      25.0,
-      30.0
+      20.0
     ],
-    "realizations": 6,
+    "realizations": 4,
     "stations_used": 3
   },
   "cfar_multiplier_used": 0.19,
-  "rows": 2896,
+  "rows": 2428,
+  "visible_attempts": 2556,
+  "overall_detection_rate": 0.9499217527386542,
+  "detection_rate_by_snr": {
+    "-20.0": 0.9401408450704225,
+    "-15.0": 0.9401408450704225,
+    "-10.0": 0.9436619718309859,
+    "-5.0": 0.9436619718309859,
+    "0.0": 0.9436619718309859,
+    "5.0": 0.9507042253521126,
+    "10.0": 0.9507042253521126,
+    "15.0": 0.9647887323943662,
+    "20.0": 0.971830985915493
+  },
   "bin_edges_db": [
     6.0,
     12.0,
@@ -40,58 +55,67 @@
   "bins": [
     {
       "q_max_db": 6.0,
-      "sigma_r_m": 0.002571769654149635,
-      "sigma_u": 0.00013992976274495458,
-      "raw_sigma_r_m": null,
-      "raw_sigma_u": null,
-      "samples": 0,
-      "median_abs_e_r_m": null,
-      "median_abs_e_u": null
+      "sigma_r_m": 0.07180847903062611,
+      "sigma_u": 0.008574983246436997,
+      "raw_sigma_r_m": 0.0418409613096441,
+      "raw_sigma_u": 0.008574983246436997,
+      "samples": 5,
+      "detection_rate": 0.0019561815336463224,
+      "fallback_used": true,
+      "median_abs_e_r_m": 0.11677489886608328,
+      "median_abs_e_u": 0.005383625539203796
     },
     {
       "q_max_db": 12.0,
-      "sigma_r_m": 0.002571769654149635,
-      "sigma_u": 0.00013992976274495458,
-      "raw_sigma_r_m": null,
-      "raw_sigma_u": null,
-      "samples": 0,
-      "median_abs_e_r_m": null,
-      "median_abs_e_u": null
+      "sigma_r_m": 0.07180847903062611,
+      "sigma_u": 0.004751724409206673,
+      "raw_sigma_r_m": 0.07180847903062611,
+      "raw_sigma_u": 0.004751724409206673,
+      "samples": 85,
+      "detection_rate": 0.03325508607198748,
+      "fallback_used": false,
+      "median_abs_e_r_m": 0.04989324244650106,
+      "median_abs_e_u": 0.003177109704026293
     },
     {
       "q_max_db": 20.0,
-      "sigma_r_m": 0.002571769654149635,
-      "sigma_u": 0.00013992976274495458,
-      "raw_sigma_r_m": null,
-      "raw_sigma_u": null,
-      "samples": 0,
-      "median_abs_e_r_m": null,
-      "median_abs_e_u": null
+      "sigma_r_m": 0.027950305657415353,
+      "sigma_u": 0.0018622499679523394,
+      "raw_sigma_r_m": 0.027950305657415353,
+      "raw_sigma_u": 0.0018622499679523394,
+      "samples": 316,
+      "detection_rate": 0.12363067292644757,
+      "fallback_used": false,
+      "median_abs_e_r_m": 0.019345994469603056,
+      "median_abs_e_u": 0.0012491768345225251
     },
     {
       "q_max_db": null,
-      "sigma_r_m": 0.002571769654149635,
-      "sigma_u": 0.00013992976274495458,
-      "raw_sigma_r_m": 0.002571769654149635,
-      "raw_sigma_u": 0.00013992976274495458,
-      "samples": 2896,
-      "median_abs_e_r_m": 0.002129191375374262,
-      "median_abs_e_u": 9.435483797765043e-05
+      "sigma_r_m": 0.0026872558588068272,
+      "sigma_u": 0.0001727148345477119,
+      "raw_sigma_r_m": 0.0026872558588068272,
+      "raw_sigma_u": 0.0001727148345477119,
+      "samples": 2022,
+      "detection_rate": 0.7910798122065728,
+      "fallback_used": false,
+      "median_abs_e_r_m": 0.002317219749073729,
+      "median_abs_e_u": 0.00011622004794653584
     }
   ],
-  "pooled_sigma_r_m": 0.002571769654149635,
-  "pooled_sigma_u": 0.00013992976274495458,
-  "detection_rate_by_snr": {
-    "5.0": 0.6583333333333333,
-    "10.0": 0.6666666666666666,
-    "15.0": 0.6722222222222223,
-    "20.0": 0.675,
-    "25.0": 0.675,
-    "30.0": 0.675
+  "pooled_sigma_r_m": 0.003266473653172972,
+  "pooled_sigma_u": 0.0001991974250973524,
+  "pairwise_true_pairs": 13491,
+  "pairwise_gate": {
+    "gate_chi2_2dof": 9.21,
+    "p99_d2": 17.51009851898565,
+    "pass_rate_before_inflation": 0.9739826551034023,
+    "covariance_inflation": 1.9012050509213516,
+    "pass_rate_after_inflation": 0.9900674523756579
   },
+  "covariance_inflation": 1.9012050509213516,
   "floor_m2": 0.01,
   "height_difference_m": 5.0,
-  "conservative_rule": "bins with fewer than min_samples inherit the next-higher-q sigma; sigma enforced non-increasing with q",
+  "conservative_rule": "bins with fewer than min_samples inherit the next-higher-q sigma and the pooled envelope; sigma enforced non-increasing with q; gating covariance inflated by the calibrated factor so >=99% of true same-target pairs pass the frozen chi2 gate",
   "config_hash": "a57a47bb82e79bb98afbe59f63e75245d41921695ea0f203696f856006a1fca4",
-  "coords_hash": "caf8457e859ce7a2693be41ede57b5709ca8c59fe89a410d202ecc18f4e4a98b"
+  "coords_hash": "318d401f6ec318ed1d69bf84d75913a4a5a5d502acca8e814d02f1fba3a0fe63"
 }

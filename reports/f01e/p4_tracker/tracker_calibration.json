@@ -1,0 +1,154 @@
+{
+  "method": "synthetic CV + mild-CA trajectories at 10 Hz with LUT-derived measurement covariance; q_a selected for CA velocity/position accuracy while CV position RMSE stays within 1.5x of its best candidate; no downstream metric used",
+  "candidates_m2_s3": [
+    0.01,
+    0.03,
+    0.1,
+    0.3,
+    1.0,
+    3.0,
+    10.0
+  ],
+  "chosen_q_a_m2_s3": 1.0,
+  "table": {
+    "0.01": {
+      "cv": {
+        "position_rmse_m": 0.11574384101403648,
+        "velocity_rmse_mps": 1.1346620145841662,
+        "track_keys": [
+          0
+        ],
+        "finite": true
+      },
+      "ca": {
+        "position_rmse_m": 4.6020724923128755,
+        "velocity_rmse_mps": 1.5045636908891467,
+        "track_keys": [
+          0
+        ],
+        "finite": true
+      }
+    },
+    "0.03": {
+      "cv": {
+        "position_rmse_m": 0.14044317357332717,
+        "velocity_rmse_mps": 1.1322805157798255,
+        "track_keys": [
+          0
+        ],
+        "finite": true
+      },
+      "ca": {
+        "position_rmse_m": 3.0092574148893103,
+        "velocity_rmse_mps": 1.5083245910119338,
+        "track_keys": [
+          0
+        ],
+        "finite": true
+      }
+    },
+    "0.1": {
+      "cv": {
+        "position_rmse_m": 0.16561595078929245,
+        "velocity_rmse_mps": 1.1201180570343323,
+        "track_keys": [
+          0
+        ],
+        "finite": true
+      },
+      "ca": {
+        "position_rmse_m": 2.3526953353979043,
+        "velocity_rmse_mps": 1.6076958584309973,
+        "track_keys": [
+          0
+        ],
+        "finite": true
+      }
+    },
+    "0.3": {
+      "cv": {
+        "position_rmse_m": 0.13608827097346177,
+        "velocity_rmse_mps": 1.110519682920071,
+        "track_keys": [
+          0
+        ],
+        "finite": true
+      },
+      "ca": {
+        "position_rmse_m": 4.069612162864143,
+        "velocity_rmse_mps": 2.004744072268481,
+        "track_keys": [
+          0
+        ],
+        "finite": true
+      }
+    },
+    "1.0": {
+      "cv": {
+        "position_rmse_m": 0.11113638192599906,
+        "velocity_rmse_mps": 1.1706488746077477,
+        "track_keys": [
+          0
+        ],
+        "finite": true
+      },
+      "ca": {
+        "position_rmse_m": 0.12964196830202568,
+        "velocity_rmse_mps": 1.281392331907108,
+        "track_keys": [
+          0
+        ],
+        "finite": true
+      }
+    },
+    "3.0": {
+      "cv": {
+        "position_rmse_m": 0.13642015756685028,
+        "velocity_rmse_mps": 1.1632219910865793,
+        "track_keys": [
+          0
+        ],
+        "finite": true
+      },
+      "ca": {
+        "position_rmse_m": 0.13331323568323986,
+        "velocity_rmse_mps": 1.3138707934930425,
+        "track_keys": [
+          0
+        ],
+        "finite": true
+      }
+    },
+    "10.0": {
+      "cv": {
+        "position_rmse_m": 0.13348008872959266,
+        "velocity_rmse_mps": 1.3566084465772277,
+        "track_keys": [
+          0
+        ],
+        "finite": true
+      },
+      "ca": {
+        "position_rmse_m": 0.1396999610006223,
+        "velocity_rmse_mps": 1.3842889492553827,
+        "track_keys": [
+          0
+        ],
+        "finite": true
+      }
+    }
+  },
+  "measurement_covariance": [
+    [
+      0.010052960208054807,
+      -0.00022240317628320933
+    ],
+    [
+      -0.00022240317628320936,
+      0.011275055617761015
+    ]
+  ],
+  "frames": 80,
+  "warmup_frames": 10,
+  "config_hash": "3de8301704dcee99927677b23fee2a475d485a432597fb4a8bc1f2b17c5484b3"
+}

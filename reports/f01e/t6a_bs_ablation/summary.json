@@ -1,0 +1,91 @@
+{
+  "test": "T6-A 1/2/3-BS sensing/fusion sanity",
+  "snr_ref_db": 25.0,
+  "scenes": 3,
+  "frames_per_scene": 16,
+  "results": {
+    "1bs": {
+      "runs": [
+        {
+          "subset": [
+            0
+          ],
+          "recall": 0.9166666666666666,
+          "false_alarms_per_frame": 0.2916666666666667,
+          "position_rmse_m": 0.4758473064518082
+        },
+        {
+          "subset": [
+            1
+          ],
+          "recall": 1.0,
+          "false_alarms_per_frame": 0.3958333333333333,
+          "position_rmse_m": 0.008948858881175975
+        },
+        {
+          "subset": [
+            2
+          ],
+          "recall": 0.7083333333333334,
+          "false_alarms_per_frame": 0.8125,
+          "position_rmse_m": 1.0421606668694727
+        }
+      ],
+      "mean_recall": 0.875,
+      "mean_false_alarms_per_frame": 0.5,
+      "mean_position_rmse_m": 0.5089856107341523
+    },
+    "2bs": {
+      "runs": [
+        {
+          "subset": [
+            0,
+            1
+          ],
+          "recall": 1.0,
+          "false_alarms_per_frame": 0.75,
+          "position_rmse_m": 0.013313761730751527
+        },
+        {
+          "subset": [
+            0,
+            2
+          ],
+          "recall": 0.9513888888888888,
+          "false_alarms_per_frame": 1.3125,
+          "position_rmse_m": 0.029513965307115093
+        },
+        {
+          "subset": [
+            1,
+            2
+          ],
+          "recall": 1.0,
+          "false_alarms_per_frame": 1.3541666666666667,
+          "position_rmse_m": 0.014598527875912818
+        }
+      ],
+      "mean_recall": 0.9837962962962963,
+      "mean_false_alarms_per_frame": 1.138888888888889,
+      "mean_position_rmse_m": 0.019142084971259812
+    },
+    "3bs": {
+      "runs": [
+        {
+          "subset": [
+            0,
+            1,
+            2
+          ],
+          "recall": 1.0,
+          "false_alarms_per_frame": 1.7083333333333333,
+          "position_rmse_m": 0.014019343263966814
+        }
+      ],
+      "mean_recall": 1.0,
+      "mean_false_alarms_per_frame": 1.7083333333333333,
+      "mean_position_rmse_m": 0.014019343263966814
+    }
+  },
+  "note": "averages over all single/pair subsets for 1/2 BS; no formal SNR conclusion"
+}

@@ -67,7 +67,8 @@ def lut_sigmas(q_db: float, lut: Mapping) -> tuple[float, float]:
 def covariance_from_lut(r, u, q_db: float, boresight, lut: Mapping, floor_m2: float | None = None):
     sigma_r, sigma_u = lut_sigmas(q_db, lut)
     jacobian = jacobian_ru_to_xy(r, u, boresight, float(lut.get("height_difference_m", H_M)))
-    r_ru = torch.diag(torch.tensor([sigma_r ** 2, sigma_u ** 2], dtype=torch.float64))
+    inflation = float(lut.get("covariance_inflation", 1.0))
+    r_ru = torch.diag(torch.tensor([sigma_r ** 2, sigma_u ** 2], dtype=torch.float64)) * inflation
     floor = float(lut.get("floor_m2", 0.01) if floor_m2 is None else floor_m2)
     covariance = jacobian @ r_ru @ jacobian.T + floor * torch.eye(2, dtype=torch.float64)
     return covariance

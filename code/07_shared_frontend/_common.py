@@ -15,13 +15,20 @@ def read_json(path) -> dict:
 
 
 def _sanitize(value):
-    if isinstance(value, float):
-        return value if math.isfinite(value) else None
     if isinstance(value, dict):
         return {key: _sanitize(item) for key, item in value.items()}
     if isinstance(value, (list, tuple)):
         return [_sanitize(item) for item in value]
-    return value
+    if callable(getattr(value, "item", None)) and not isinstance(value, (int, float, bool, str, bytes)):
+        try:
+            value = value.item()
+        except Exception:  # noqa: BLE001
+            pass
+    if isinstance(value, float):
+        return value if math.isfinite(value) else None
+    if isinstance(value, (int, bool, str)) or value is None:
+        return value
+    return str(value)
 
 
 def write_json(path, value) -> None:
