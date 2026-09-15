@@ -1,43 +1,51 @@
 {
   "test": "T1",
+  "passed": true,
   "episode": 9000,
   "frame": 0,
   "snr_ref_db": 20.0,
-  "linearity_max_relative_error": 3.489250897527681e-16,
+  "height_difference_m": 5.0,
+  "linearity_max_relative_error": 3.7628383183836414e-16,
   "noise_power_per_bs": [
-    1.000562234465614,
+    1.0005622344656138,
     1.0007108715775919,
     1.0009613431820048
   ],
   "source_hashes": {
     "frontend/sensing/waveform.py": "ff4bb81f305e86f38cc7dc14d461f69beb2d3d09f40bc0e93b8ecb392dacf17e",
-    "frontend/sensing/simulator.py": "3d66cc2170ab9a46b4ff6040bd908dd0f1f0a226498b2d8602b4bee2a3212b7b",
-    "configs/shared_frontend.json": "b1e0437ca82bdf8cbf0ce3ab38dc1ee9560101e88be24115fa538e5101510d34"
+    "frontend/sensing/simulator.py": "46970810a3425159abb83cdcbc80662c1b770f935358532f42ea03dcff22805d",
+    "configs/shared_frontend.json": "a57a47bb82e79bb98afbe59f63e75245d41921695ea0f203696f856006a1fca4"
   },
   "checks": {
     "clean_shared_equals_sum_of_single_clean": {
       "passed": true,
-      "max_relative_error": 3.489250897527681e-16
+      "max_relative_error": 3.7628383183836414e-16
     },
     "single_receiver_noise_with_unit_variance": {
       "passed": true,
       "mean_power_per_bs": [
-        1.000562234465614,
+        1.0005622344656138,
         1.0007108715775919,
         1.0009613431820048
       ]
     },
-    "waveform_and_noise_independent_of_target_order": {
+    "noise_added_exactly_once_after_summation": {
+      "passed": true,
+      "detail": "Y equals clean + one shared W realization bitwise"
+    },
+    "waveform_and_raw_noise_independent_of_target_order": {
       "passed": true,
       "X_bitwise_identical": true,
-      "max_noise_difference": 5.0242958677880805e-15,
-      "max_relative_clean_error": 4.447939603578697e-16,
-      "note": "noise realization is target-order independent; residual equals clean summation-order rounding"
+      "W_bitwise_identical": true,
+      "max_relative_clean_error": 3.9610162517395036e-16
     },
     "phase_seeded_by_source_key": {
       "passed": true,
       "same_key_bitwise": true,
       "different_key_changes_echo": true
+    },
+    "bitwise_determinism_same_call": {
+      "passed": true
     },
     "no_target_dimension_in_observation": {
       "passed": true,
@@ -53,9 +61,6 @@
         256,
         256
       ]
-    },
-    "bitwise_determinism_same_call": {
-      "passed": true
     },
     "diagnostic_frame_saved": {
       "passed": true,

@@ -1,29 +1,36 @@
 {
   "test": "T1",
-  "passed": false,
+  "passed": true,
   "checks": {
     "clean_shared_equals_sum_of_single_clean": {
       "passed": true,
-      "max_relative_error": 3.489250897527681e-16
+      "max_relative_error": 3.7628383183836414e-16
     },
     "single_receiver_noise_with_unit_variance": {
       "passed": true,
       "mean_power_per_bs": [
-        1.000562234465614,
+        1.0005622344656138,
         1.0007108715775919,
         1.0009613431820048
       ]
     },
-    "waveform_and_noise_independent_of_target_order": {
-      "passed": false,
+    "noise_added_exactly_once_after_summation": {
+      "passed": true,
+      "detail": "Y equals clean + one shared W realization bitwise"
+    },
+    "waveform_and_raw_noise_independent_of_target_order": {
+      "passed": true,
       "X_bitwise_identical": true,
-      "W_bitwise_identical": false,
-      "max_relative_error": 4.447939603578697e-16
+      "W_bitwise_identical": true,
+      "max_relative_clean_error": 3.9610162517395036e-16
     },
     "phase_seeded_by_source_key": {
       "passed": true,
       "same_key_bitwise": true,
       "different_key_changes_echo": true
+    },
+    "bitwise_determinism_same_call": {
+      "passed": true
     },
     "no_target_dimension_in_observation": {
       "passed": true,

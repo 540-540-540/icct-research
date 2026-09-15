@@ -18,7 +18,7 @@ import _common  # noqa: E402
 
 OUT = ROOT / "reports/f01e/t2_no_gt"
 B_DOMAIN_FILES = ["frontend/sensing/detector.py", "frontend/sensing/coords.py"]
-FORBIDDEN_IMPORTS = ("echo_source", "scene_manifest", "source_states", "source_key")
+FORBIDDEN_IMPORTS = ("echo_source", "scene_manifest", "source_states", "source_key", "simulator")
 FORBIDDEN_PARAMS = ("target", "targets", "truth", "gt", "vehicle", "vehicles", "source_key",
                     "source_keys", "target_count", "n_t")
 
@@ -52,8 +52,10 @@ def build_echo(positions, velocities, keys, episode, frame, snr_ref=25.0):
     config = _common.load_frontend_config()
     waveform, array = _common.build_objects(config)
     geometry = _common.load_geometry_config()
+    _common.assert_height_alignment(config, geometry)
     echo = _common.synthesize(positions, velocities, keys, geometry["stations"], geometry["boresights"],
-                              waveform, array, config, snr_ref, episode, frame, "cuda:0")
+                              waveform, array, config, snr_ref, episode, frame, "cuda:0",
+                              height_m=geometry["height_difference_m"])
     return config, waveform, array, geometry, echo
 
 
@@ -109,12 +111,14 @@ def main() -> None:
     config, waveform, array, geometry, echo_a = build_echo(order_a, velocity, [11, 22, 33], 9301, 0)
     _, _, _, _, echo_b = build_echo(order_b, velocity[::-1], [33, 22, 11], 9301, 0)
     station, boresight = geometry["stations"][0], float(geometry["boresights"][0])
-    detections_a = detector_module.process_baseline(echo_a["Y"][0], echo_a["X"][0], 0, waveform, array, config,
-                                                    station=station, boresight=boresight,
-                                                    covariance_lut=lut)["detections"]
-    detections_b = detector_module.process_baseline(echo_b["Y"][0], echo_b["X"][0], 0, waveform, array, config,
-                                                    station=station, boresight=boresight,
-                                                    covariance_lut=lut)["detections"]
+    result_a = detector_module.process_baseline(echo_a["Y"][0], echo_a["X"][0], 0, waveform, array, config,
+                                                station=station, boresight=boresight, covariance_lut=lut,
+                                                height=geometry["height_difference_m"])
+    result_b = detector_module.process_baseline(echo_b["Y"][0], echo_b["X"][0], 0, waveform, array, config,
+                                                station=station, boresight=boresight, covariance_lut=lut,
+                                                height=geometry["height_difference_m"])
+    detections_a = result_a["detections"]
+    detections_b = result_b["detections"]
     keys_a = {detection_key(detection) for detection in detections_a}
     keys_b = {detection_key(detection) for detection in detections_b}
     permutation_ok = len(keys_a) == len(detections_a) and keys_a == keys_b
@@ -129,6 +133,12 @@ def main() -> None:
     checks["detection_payload_whitelist"] = {"passed": keys_clean and not forbidden_keys,
                                              "detail": {"fields": sorted(set().union(*[set(d) for d in detections_a]))
                                                         if detections_a else [], "forbidden": forbidden_keys}}
+
+    counters = result_a["counters"]
+    counters_ok = (counters["returned_count"] == len(detections_a)
+                   and counters["candidates_before_cap"] >= counters["returned_count"]
+                   and counters["overflow"] == counters["candidates_before_cap"] - counters["returned_count"])
+    checks["counter_semantics"] = {"passed": bool(counters_ok), "detail": counters}
 
     _, _, _, _, noise_echo = build_echo([], [], [], 9302, 0, snr_ref=25.0)
     noise_detections = detector_module.process_baseline(noise_echo["Y"][0], noise_echo["X"][0], 0, waveform,

@@ -15,7 +15,7 @@
     "max_candidates": 32,
     "nms_radius": [2, 2],
     "interpolation": true,
-    "cfar_threshold_multiplier": null,
+    "cfar_threshold_multiplier": 0.19,
     "aoa_fft_size": 64,
     "aoa_max_peaks": 1,
     "aoa_nms_radius": 4,

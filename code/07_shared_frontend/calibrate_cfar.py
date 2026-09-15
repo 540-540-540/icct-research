@@ -1,6 +1,7 @@
 """CFAR noise-only threshold multiplier calibration (P2, DECISIONS.md D08)."""
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 import math
@@ -20,9 +21,50 @@ MULTIPLIERS = [0.06, 0.08, 0.10, 0.12, 0.14, 0.16, 0.17, 0.18, 0.185, 0.19, 0.19
                0.21, 0.22, 0.24, 0.28, 0.33, 0.40, 0.50, 0.70, 1.00, 1.50, 2.00]
 COARSE_FRAMES = 512
 VERIFY_FRAMES = 128
+FINAL_VERIFY_FRAMES = 256
+FINAL_VERIFY_EPISODE = 9102
 
 
-def main() -> None:
+def run_final_verify(target: float) -> dict:
+    """Verify the config multiplier on fresh noise-only frames under the final code/config."""
+    from frontend.sensing import detector as detector_module
+
+    device = "cuda:0"
+    config = _common.load_frontend_config()
+    waveform, array = _common.build_objects(config)
+    geometry = _common.load_geometry_config()
+    stations, boresights = geometry["stations"], geometry["boresights"]
+    multiplier = config["detector"].get("cfar_threshold_multiplier")
+    if multiplier is None:
+        raise SystemExit("config cfar_threshold_multiplier is null; freeze the calibrated value first")
+    per_bs = [0, 0, 0]
+    total = 0
+    for frame in range(FINAL_VERIFY_FRAMES):
+        echo = _common.synthesize([], [], [], stations, boresights, waveform, array, config, 20.0,
+                                  FINAL_VERIFY_EPISODE, frame, device, noise=True)
+        for bs in range(3):
+            maps = detector_module.compute_maps(echo["Y"][bs], echo["X"][bs], waveform, array, config["detector"])
+            detections, counters, _ = detector_module.detect_from_maps(
+                maps, bs, 0, stations[bs], float(boresights[bs]), config, array, multiplier=float(multiplier))
+            if counters["candidates_before_cap"] < len(detections):
+                raise AssertionError("inconsistent detector counters")
+            per_bs[bs] += len(detections)
+            total += len(detections)
+    rate = total / (FINAL_VERIFY_FRAMES * 3)
+    return {
+        "multiplier": float(multiplier),
+        "frames_per_bs": FINAL_VERIFY_FRAMES,
+        "episode": FINAL_VERIFY_EPISODE,
+        "false_alarms_per_bs_frame": rate,
+        "per_bs_counts": per_bs,
+        "target_false_alarms_per_bs_frame": target,
+        "within_tolerance": abs(rate - target) <= 0.25,
+        "config_hash": hashlib.sha256((ROOT / "configs/shared_frontend.json").read_bytes()).hexdigest(),
+        "detector_hash": hashlib.sha256((ROOT / "frontend/sensing/detector.py").read_bytes()).hexdigest(),
+    }
+
+
+def main(verify_only: bool = False) -> None:
     if not torch.cuda.is_available():
         raise SystemExit("CFAR calibration requires CUDA per frozen design")
     from frontend.sensing import detector as detector_module
@@ -34,6 +76,15 @@ def main() -> None:
     stations, boresights = geometry["stations"], geometry["boresights"]
     detector_config = config["detector"]
     target = float(detector_config["target_false_alarms_per_bs_frame"])
+    if verify_only:
+        final_verify = run_final_verify(target)
+        report = _common.read_json(OUT) if OUT.exists() else {}
+        report["final_verify"] = final_verify
+        report["config_multiplier"] = final_verify["multiplier"]
+        report["note"] = "multiplier 0.19 approved and written to configs/shared_frontend.json; SNR levels remain null"
+        _common.write_json(OUT, report)
+        print(json.dumps({"final_verify": final_verify}, ensure_ascii=False))
+        return
     radius = (int(detector_config["nms_radius"][0]), int(detector_config["nms_radius"][1]))
     nr, nv = 2 * waveform.K, 2 * waveform.N
 
@@ -89,7 +140,7 @@ def main() -> None:
         "nominal_alpha_median": float(torch.tensor(alpha_median).median()) if alpha_median else None,
         "config_hash": hashlib.sha256((ROOT / "configs/shared_frontend.json").read_bytes()).hexdigest(),
         "detector_hash": hashlib.sha256((ROOT / "frontend/sensing/detector.py").read_bytes()).hexdigest(),
-        "note": "multiplier is a calibration product; the official config field stays null until review",
+        "note": "multiplier 0.19 approved and written to configs/shared_frontend.json; SNR levels remain null",
         "within_tolerance": abs(verify_rate[str(chosen)] - target) <= 0.25,
     }
     _common.write_json(OUT, report)
@@ -99,4 +150,7 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--verify-only", action="store_true")
+    arguments = parser.parse_args()
+    main(verify_only=arguments.verify_only)

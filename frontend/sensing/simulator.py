@@ -14,8 +14,6 @@ import torch
 
 from .waveform import ArrayConfig, PaperWaveform
 
-H_M = 5.0
-
 
 def derive_seed(text: str) -> int:
     digest = hashlib.sha256(text.encode()).digest()
@@ -52,12 +50,15 @@ def synthesize_shared(
     snr_ref_db: float,
     episode: int,
     frame: int,
+    height_m: float | None = None,
     noise: bool = True,
     device: str = "cuda:0",
     dtype: torch.dtype = torch.float64,
 ) -> dict:
     if dtype not in (torch.float64, torch.float32):
         raise ValueError("dtype must be float64 or float32")
+    if height_m is None or not math.isfinite(float(height_m)) or float(height_m) < 0:
+        raise ValueError("height_m must be the finite A01/config height difference (5 m)")
     p = torch.as_tensor(positions, device=device, dtype=dtype)
     v = torch.as_tensor(velocities, device=device, dtype=dtype)
     if p.numel() == 0:
@@ -79,9 +80,11 @@ def synthesize_shared(
 
     delta = s[None] - p[:, None]
     to_target = p[:, None] - s[None]
-    radii = torch.linalg.vector_norm(delta, dim=-1)
-    if len(p) and torch.any(radii <= 0):
+    rho = torch.linalg.vector_norm(delta, dim=-1)
+    if len(p) and torch.any(rho <= 0):
         raise ValueError("Target coincides with station")
+    height = rho.new_tensor(float(height_m))
+    radii = torch.sqrt(rho ** 2 + height ** 2)
     radial = (delta * v[:, None]).sum(-1) / radii
     bearing = (torch.remainder(torch.atan2(to_target[..., 1], to_target[..., 0]) - b[None] + math.pi,
                                2 * math.pi) - math.pi)
@@ -91,7 +94,7 @@ def synthesize_shared(
     amplitude = 10 ** (float(snr_ref_db) / 20) * (100.0 / radii.clamp_min(1e-9)) ** 2 * torch.sqrt(sigma / 10.0)
     amplitude = torch.where(visibility, amplitude, torch.zeros_like(amplitude))
 
-    xs, ys = [], []
+    xs, ys, noise_cubes = [], [], []
     k = torch.arange(waveform.K, device=device, dtype=dtype)
     n = torch.arange(waveform.N, device=device, dtype=dtype)
     a = torch.arange(array.elements, device=device, dtype=dtype)
@@ -112,29 +115,28 @@ def synthesize_shared(
             contribution = torch.zeros((array.elements, waveform.K, waveform.N), device=device, dtype=torch.complex128)
             contribution = contribution.to(torch.complex64 if dtype == torch.float32 else torch.complex128)
         clean = contribution * x[None, :, :]
-        if noise:
-            seed_noise = derive_seed(f"2026:{episode}:{frame}:{bs}:noise")
-            noise_generator = _generator(seed_noise, device)
-            real = torch.randn((array.elements, waveform.K, waveform.N), device=device, dtype=dtype,
-                               generator=noise_generator)
-            imag = torch.randn((array.elements, waveform.K, waveform.N), device=device, dtype=dtype,
-                               generator=noise_generator)
-            clean = clean + torch.complex(real, imag) / math.sqrt(2)
+        seed_noise = derive_seed(f"2026:{episode}:{frame}:{bs}:noise")
+        noise_generator = _generator(seed_noise, device)
+        real = torch.randn((array.elements, waveform.K, waveform.N), device=device, dtype=dtype,
+                           generator=noise_generator)
+        imag = torch.randn((array.elements, waveform.K, waveform.N), device=device, dtype=dtype,
+                           generator=noise_generator)
+        noise_cube = torch.complex(real, imag) / math.sqrt(2)
         xs.append(x)
-        ys.append(clean)
+        ys.append(clean + noise_cube if noise else clean)
+        noise_cubes.append(noise_cube)
 
     output_dtype = torch.complex64 if dtype == torch.float32 else torch.complex128
     return {
         "Y": torch.stack(ys).to(output_dtype),
         "X": torch.stack(xs).to(output_dtype),
+        "W": torch.stack(noise_cubes).to(output_dtype),
         "alpha": amplitude.T.contiguous(),
         "visible": visibility.T.contiguous(),
     }
 
 
 if __name__ == "__main__":
-    import os
-
     device = "cuda:0" if torch.cuda.is_available() else "cpu"
     if device == "cpu":
         raise SystemExit("synthesize_shared requires CUDA per frozen design")
@@ -143,8 +145,9 @@ if __name__ == "__main__":
     stations = [[-64.23372566, -106.90678644], [114.23372566, 0.0], [-64.23372566, 106.90678644]]
     boresights = [0.0, math.pi, 0.0]
     out = synthesize_shared([[0.0, 0.0]], [[5.0, -3.0]], [7], stations, boresights, w, array, [10.0], 20.0,
-                            episode=0, frame=0, device=device)
+                            episode=0, frame=0, height_m=5.0, device=device)
     assert out["Y"].shape == (3, array.elements, w.K, w.N)
     assert out["X"].shape == (3, w.K, w.N)
+    assert out["W"].shape == out["Y"].shape
     assert out["Y"].dtype == torch.complex128 and out["alpha"].shape == (3, 1)
     print({"Y": list(out["Y"].shape), "alpha": out["alpha"].tolist(), "visible": out["visible"].tolist()})

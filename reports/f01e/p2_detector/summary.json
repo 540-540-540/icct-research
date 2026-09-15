@@ -2,12 +2,73 @@
   "test": "P2 single-target sanity",
   "snr_ref_db": 20.0,
   "cfar_multiplier": 0.19,
+  "height_difference_m": 5.0,
   "cases": 35,
   "realizations": 3,
-  "median_abs_e_r_m": 0.08077644053685162,
-  "median_abs_e_u": 4.29986812328087e-05,
-  "median_abs_e_vr_mps": 0.003844622280807286,
-  "max_position_error_m": 0.42832805120621054,
+  "median_abs_e_r_m": 0.0022433803455328416,
+  "median_abs_e_u": 4.0077155397638675e-05,
+  "median_abs_e_vr_mps": 0.001162507085755493,
+  "max_position_error_m": 0.18690605329241483,
+  "range_bias_by_range_m": {
+    "30.0": {
+      "samples": 15,
+      "median_e_r_m": 0.0025944512693598654
+    },
+    "60.0": {
+      "samples": 15,
+      "median_e_r_m": -0.0007761816014095757
+    },
+    "100.0": {
+      "samples": 15,
+      "median_e_r_m": 0.0023775389931159907
+    },
+    "150.0": {
+      "samples": 15,
+      "median_e_r_m": 0.002634972734568919
+    },
+    "200.0": {
+      "samples": 15,
+      "median_e_r_m": 0.0012227496561649787
+    },
+    "250.0": {
+      "samples": 15,
+      "median_e_r_m": -0.0012443846798362301
+    },
+    "300.0": {
+      "samples": 14,
+      "median_e_r_m": -0.0024685710794472016
+    }
+  },
+  "worst_radial_velocity_rows": [
+    {
+      "r_gt_m": 249.99999999999997,
+      "u_gt": -0.8660254037844385,
+      "vr_gt_mps": -7.462608645502832,
+      "vr_hat_mps": -7.45848926997129,
+      "e_vr_mps": 0.004119375531542069,
+      "e_r_m": -0.0005933067278647286,
+      "peak_to_noise_db": 23.312498662651777
+    },
+    {
+      "r_gt_m": 300.0,
+      "u_gt": 0.0,
+      "vr_gt_mps": -7.998888811717676,
+      "vr_hat_mps": -8.00256672667894,
+      "e_vr_mps": -0.0036779149612646833,
+      "e_r_m": -0.0025958425613339386,
+      "peak_to_noise_db": 25.06702159553807
+    },
+    {
+      "r_gt_m": 250.0,
+      "u_gt": 0.8660254037844385,
+      "vr_gt_mps": -0.5357911944651623,
+      "vr_hat_mps": -0.5323048697730264,
+      "e_vr_mps": 0.0034863246921359448,
+      "e_r_m": -0.0006427345311976751,
+      "peak_to_noise_db": 23.140371758805994
+    }
+  ],
   "coords_hash": "caf8457e859ce7a2693be41ede57b5709ca8c59fe89a410d202ecc18f4e4a98b",
-  "detector_hash": "c9ba4188eac881b2cc75b5b69d2e3049cdbbfe6fb5a38df2331ba082918a0058"
+  "detector_hash": "eefebbe67973f4e2374cf0d151d383ace03f9b43261471926b8dc54b2785efdb",
+  "passed": true
 }

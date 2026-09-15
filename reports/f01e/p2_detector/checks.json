@@ -5,29 +5,29 @@
     "detection_rate": {
       "passed": true,
       "detail": {
-        "detected": 105,
+        "detected": 104,
         "total": 105
       }
     },
     "range_accuracy": {
       "passed": true,
       "detail": {
-        "median_abs_e_r_m": 0.08077644053685162,
-        "max_abs_e_r_m": 0.4221828480930334
+        "median_abs_e_r_m": 0.0022433803455328416,
+        "max_abs_e_r_m": 0.005491075034115056
       }
     },
     "aoa_accuracy": {
       "passed": true,
       "detail": {
-        "median_abs_e_u": 4.29986812328087e-05,
-        "max_abs_e_u": 0.003515970799106538
+        "median_abs_e_u": 4.0077155397638675e-05,
+        "max_abs_e_u": 0.00031166672654137084
       }
     },
     "radial_velocity_accuracy": {
       "passed": true,
       "detail": {
-        "median_abs_e_vr_mps": 0.003844622280807286,
-        "max_abs_e_vr_mps": 34.51679542175474
+        "median_abs_e_vr_mps": 0.001162507085755493,
+        "max_abs_e_vr_mps": 0.004119375531542069
       }
     },
     "cartesian_consistency": {

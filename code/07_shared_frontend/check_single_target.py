@@ -36,13 +36,15 @@ def main() -> None:
     config = _common.load_frontend_config()
     waveform, array = _common.build_objects(config)
     geometry = _common.load_geometry_config()
+    _common.assert_height_alignment(config, geometry)
     stations, boresights = geometry["stations"], geometry["boresights"]
     station, boresight = stations[0], float(boresights[0])
     height = geometry["height_difference_m"]
-    multiplier = 1.0
-    cfar_report = ROOT / "reports/f01e/cfar_calibration.json"
-    if cfar_report.exists():
-        multiplier = float(_common.read_json(cfar_report)["chosen_multiplier"])
+    multiplier = config["detector"].get("cfar_threshold_multiplier")
+    if multiplier is None:
+        cfar_report = ROOT / "reports/f01e/cfar_calibration.json"
+        multiplier = float(_common.read_json(cfar_report)["chosen_multiplier"]) if cfar_report.exists() else 1.0
+    multiplier = float(multiplier)
     lut = _common.load_lut(ROOT)
     if lut is None:
         raise SystemExit("covariance LUT missing; run calibrate_covariance before the sanity check")
@@ -57,10 +59,12 @@ def main() -> None:
             vr_gt = float((delta @ torch.tensor(velocity, dtype=torch.float64)) / r_gt)
             for realization in range(REALIZATIONS):
                 echo = _common.synthesize([position], [velocity], [1], stations, boresights, waveform, array,
-                                          config, SNR_REF_DB, 9400 + case_index, realization, device)
+                                          config, SNR_REF_DB, 9400 + case_index, realization, device,
+                                          height_m=float(height))
                 maps = detector_module.compute_maps(echo["Y"][0], echo["X"][0], waveform, array, config["detector"])
                 detections, _, _ = detector_module.detect_from_maps(
-                    maps, 0, 0, station, boresight, config, array, multiplier=multiplier, covariance_lut=lut)
+                    maps, 0, 0, station, boresight, config, array, multiplier=multiplier, covariance_lut=lut,
+                    height=float(height))
                 match = _common.nearest_truth_detection(detections, float(r_gt), float(u_gt))
                 row = {"r_gt_m": float(r_gt), "u_gt": float(u_gt), "vr_gt_mps": vr_gt,
                        "detected": match is not None}
@@ -110,14 +114,28 @@ def main() -> None:
         for row in rows:
             writer.writerow(row)
 
+    range_bias = {}
+    for range_m in RANGES_M:
+        selected = [row["e_r_m"] for row in detected if abs(row["r_gt_m"] - range_m) < 0.01]
+        range_bias[str(range_m)] = {"samples": len(selected),
+                                    "median_e_r_m": statistics.median(selected) if selected else None}
+    worst_radial = sorted([row for row in detected if "e_vr_mps" in row],
+                          key=lambda row: -abs(row["e_vr_mps"]))[:3]
+
     summary = {"test": "P2 single-target sanity", "snr_ref_db": SNR_REF_DB, "cfar_multiplier": multiplier,
+               "height_difference_m": float(height),
                "cases": len(RANGES_M) * len(BEARINGS_DEG), "realizations": REALIZATIONS,
                "median_abs_e_r_m": statistics.median(errors_r), "median_abs_e_u": statistics.median(errors_u),
                "median_abs_e_vr_mps": statistics.median(errors_vr),
                "max_position_error_m": max(row["position_error_m"] for row in detected),
+               "range_bias_by_range_m": range_bias,
+               "worst_radial_velocity_rows": [{k: row.get(k) for k in
+                                               ("r_gt_m", "u_gt", "vr_gt_mps", "vr_hat_mps", "e_vr_mps",
+                                                "e_r_m", "peak_to_noise_db")} for row in worst_radial],
                "coords_hash": hashlib.sha256((ROOT / "frontend/sensing/coords.py").read_bytes()).hexdigest(),
                "detector_hash": hashlib.sha256((ROOT / "frontend/sensing/detector.py").read_bytes()).hexdigest()}
     passed = all(entry["passed"] for entry in checks.values())
+    summary["passed"] = passed
     _common.write_json(OUT / "summary.json", summary)
     _common.write_json(OUT / "checks.json", {"test": "P2 sanity", "passed": passed, "checks": checks})
     print(json.dumps({"P2_sanity": "PASS" if passed else "FAIL", "summary": summary,

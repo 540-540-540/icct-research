@@ -181,6 +181,22 @@
   "nominal_alpha_median": 13.790818214416504,
   "config_hash": "b1e0437ca82bdf8cbf0ce3ab38dc1ee9560101e88be24115fa538e5101510d34",
   "detector_hash": "c9ba4188eac881b2cc75b5b69d2e3049cdbbfe6fb5a38df2331ba082918a0058",
-  "note": "multiplier is a calibration product; the official config field stays null until review",
-  "within_tolerance": true
+  "note": "multiplier 0.19 approved and written to configs/shared_frontend.json; SNR levels remain null",
+  "within_tolerance": true,
+  "final_verify": {
+    "multiplier": 0.19,
+    "frames_per_bs": 256,
+    "episode": 9102,
+    "false_alarms_per_bs_frame": 0.3971354166666667,
+    "per_bs_counts": [
+      107,
+      96,
+      102
+    ],
+    "target_false_alarms_per_bs_frame": 0.5,
+    "within_tolerance": true,
+    "config_hash": "a57a47bb82e79bb98afbe59f63e75245d41921695ea0f203696f856006a1fca4",
+    "detector_hash": "eefebbe67973f4e2374cf0d151d383ace03f9b43261471926b8dc54b2785efdb"
+  },
+  "config_multiplier": 0.19
 }

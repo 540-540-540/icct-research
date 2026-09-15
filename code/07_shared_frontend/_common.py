@@ -48,12 +48,21 @@ def build_objects(config: dict):
 
 
 def synthesize(positions, velocities, keys, stations, boresights, waveform, array, config, snr_ref_db,
-               episode: int, frame: int, device: str, noise: bool = True) -> dict:
+               episode: int, frame: int, device: str, noise: bool = True, height_m: float | None = None) -> dict:
     from frontend.sensing.simulator import synthesize_shared
 
+    if height_m is None:
+        height_m = float(config["visibility"]["height_difference_m"])
     rcs = [float(config["power"]["fixed_rcs_m2"])] * len(positions)
     return synthesize_shared(positions, velocities, keys, stations, boresights, waveform, array, rcs,
-                             snr_ref_db, episode, frame, noise=noise, device=device)
+                             snr_ref_db, episode, frame, height_m=float(height_m), noise=noise, device=device)
+
+
+def assert_height_alignment(config: dict, geometry: dict) -> None:
+    config_height = float(config["visibility"]["height_difference_m"])
+    geometry_height = float(geometry["height_difference_m"])
+    if config_height != geometry_height:
+        raise ValueError(f"height mismatch: config {config_height} vs A01 geometry {geometry_height}")
 
 
 def load_lut(root: Path = ROOT, path: str | None = None) -> dict | None:

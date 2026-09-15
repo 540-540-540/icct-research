@@ -161,13 +161,16 @@ def detect_from_maps(maps: dict, station_id: int, time_ns: int, station, boresig
     detections, snapshots = [], []
     rejected_interpolation = 0
     suppressed_count = 0
+    candidates_before_cap = 0
+    overflow_count = 0
     for position in order:
         index = indices[position]
         if suppressed[index[0], index[1]]:
             suppressed_count += 1
             continue
-        if len(detections) >= max_candidates:
-            break
+        r0, r1 = max(0, index[0] - hh), min(maps["nr"] - 1, index[0] + hh)
+        v0, v1 = max(0, index[1] - hw), min(maps["nv"] - 1, index[1] + hw)
+        suppressed[r0:r1 + 1, v0:v1 + 1] = True
         fraction_r = _parabolic(log_power, (index[0], index[1]), 0)
         fraction_v = _parabolic(log_power, (index[0], index[1]), 1)
         r_hat = float(maps["ranges"][index[0]]) + fraction_r * d_r
@@ -177,6 +180,10 @@ def detect_from_maps(maps: dict, station_id: int, time_ns: int, station, boresig
         bearing = math.asin(u_hat)
         if r_hat <= height or not (10.0 <= r_hat <= 300.0) or abs(bearing) > math.radians(70.0):
             rejected_interpolation += 1
+            continue
+        candidates_before_cap += 1
+        if len(detections) >= max_candidates:
+            overflow_count += 1
             continue
         x_m, y_m = coords.polar_to_cartesian(r_hat, u_hat, station, boresight, height)
         peak_power = float(power[index[0], index[1]])
@@ -204,15 +211,12 @@ def detect_from_maps(maps: dict, station_id: int, time_ns: int, station, boresig
         }
         detections.append(detection)
         snapshots.append(snapshot)
-        r0, r1 = max(0, index[0] - hh), min(maps["nr"] - 1, index[0] + hh)
-        v0, v1 = max(0, index[1] - hw), min(maps["nv"] - 1, index[1] + hw)
-        suppressed[r0:r1 + 1, v0:v1 + 1] = True
     counters = {
-        "candidates_before_cap": len(detections),
+        "candidates_before_cap": candidates_before_cap,
         "local_maxima": len(indices),
         "nms_suppressed": suppressed_count,
         "interpolation_geometry_rejected": rejected_interpolation,
-        "overflow": max(0, len(detections) - max_candidates),
+        "overflow": overflow_count,
         "returned_count": len(detections),
         "multiplier": float(multiplier),
     }
@@ -230,26 +234,3 @@ def process_baseline(Y_b: torch.Tensor, X_b: torch.Tensor, station_id: int, wave
                                                        covariance_lut=covariance_lut, height=height)
     return {"power_rd": maps["P_RD"], "detections": detections,
             "snapshots": snapshots, "counters": counters}
-
-
-if __name__ == "__main__":
-    import os
-
-    device = "cuda:0" if torch.cuda.is_available() else "cpu"
-    if device == "cpu":
-        raise SystemExit("detector requires CUDA per frozen design")
-    from .simulator import synthesize_shared
-
-    waveform = PaperWaveform()
-    array = ArrayConfig()
-    stations = [[-64.23372566, -106.90678644], [114.23372566, 0.0], [-64.23372566, 106.90678644]]
-    boresights = [0.0, math.pi, 0.0]
-    config = {"detector": {"cfar_train": [6, 6], "cfar_guard": [2, 2],
-                           "target_false_alarms_per_bs_frame": 0.5, "max_candidates": 32,
-                           "nms_radius": [2, 2], "cfar_threshold_multiplier": 0.2}}
-    echo = synthesize_shared([[0.0, 0.0]], [[5.0, -3.0]], [7], stations, boresights, waveform, array,
-                             [10.0], 20.0, episode=0, frame=0, device=device)
-    result = process_baseline(echo["Y"][0], echo["X"][0], 0, waveform, array, config,
-                              station=stations[0], boresight=boresights[0])
-    print({"detections": len(result["detections"]), "counters": result["counters"],
-           "first": result["detections"][0] if result["detections"] else None})

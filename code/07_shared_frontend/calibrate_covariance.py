@@ -43,10 +43,14 @@ def main() -> None:
     config = _common.load_frontend_config()
     waveform, array = _common.build_objects(config)
     geometry = _common.load_geometry_config()
+    _common.assert_height_alignment(config, geometry)
     stations, boresights = geometry["stations"], geometry["boresights"]
-    multiplier = 1.0
-    if CFAR_REPORT.exists():
-        multiplier = float(_common.read_json(CFAR_REPORT)["chosen_multiplier"])
+    multiplier = config["detector"].get("cfar_threshold_multiplier")
+    if multiplier is None:
+        multiplier = 1.0
+        if CFAR_REPORT.exists():
+            multiplier = float(_common.read_json(CFAR_REPORT)["chosen_multiplier"])
+    multiplier = float(multiplier)
     detector_config = config["detector"]
 
     rows = []
@@ -68,7 +72,8 @@ def main() -> None:
                         maps = detector_module.compute_maps(echo["Y"][bs], echo["X"][bs], waveform, array,
                                                             detector_config)
                         detections, _, _ = detector_module.detect_from_maps(
-                            maps, bs, 0, stations[bs], float(boresights[bs]), config, array, multiplier=multiplier)
+                            maps, bs, 0, stations[bs], float(boresights[bs]), config, array, multiplier=multiplier,
+                            height=float(geometry["height_difference_m"]))
                         truth_r, truth_u = float(r_gt), float(u_gt)
                         match = _common.nearest_truth_detection(detections, truth_r, truth_u)
                         per_snr_detection[snr][1] += 1

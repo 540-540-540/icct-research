@@ -30,7 +30,7 @@
     "stations_used": 3
   },
   "cfar_multiplier_used": 0.19,
-  "rows": 2880,
+  "rows": 2896,
   "bin_edges_db": [
     6.0,
     12.0,
@@ -40,18 +40,18 @@
   "bins": [
     {
       "q_max_db": 6.0,
-      "sigma_r_m": 0.13190860325084078,
-      "sigma_u": 0.0016185089810431146,
-      "raw_sigma_r_m": 0.13190860325084078,
-      "raw_sigma_u": 0.0016185089810431146,
-      "samples": 22,
-      "median_abs_e_r_m": 0.15882590797819418,
-      "median_abs_e_u": 0.0010916693518434606
+      "sigma_r_m": 0.002571769654149635,
+      "sigma_u": 0.00013992976274495458,
+      "raw_sigma_r_m": null,
+      "raw_sigma_u": null,
+      "samples": 0,
+      "median_abs_e_r_m": null,
+      "median_abs_e_u": null
     },
     {
       "q_max_db": 12.0,
-      "sigma_r_m": 0.04212251373491913,
-      "sigma_u": 0.00013844352920746214,
+      "sigma_r_m": 0.002571769654149635,
+      "sigma_u": 0.00013992976274495458,
       "raw_sigma_r_m": null,
       "raw_sigma_u": null,
       "samples": 0,
@@ -60,8 +60,8 @@
     },
     {
       "q_max_db": 20.0,
-      "sigma_r_m": 0.04212251373491913,
-      "sigma_u": 0.00013844352920746214,
+      "sigma_r_m": 0.002571769654149635,
+      "sigma_u": 0.00013992976274495458,
       "raw_sigma_r_m": null,
       "raw_sigma_u": null,
       "samples": 0,
@@ -70,28 +70,28 @@
     },
     {
       "q_max_db": null,
-      "sigma_r_m": 0.041295299295789005,
-      "sigma_u": 0.00013697902517262016,
-      "raw_sigma_r_m": 0.041295299295789005,
-      "raw_sigma_u": 0.00013697902517262016,
-      "samples": 2858,
-      "median_abs_e_r_m": 0.08014772639752721,
-      "median_abs_e_u": 9.261726841497397e-05
+      "sigma_r_m": 0.002571769654149635,
+      "sigma_u": 0.00013992976274495458,
+      "raw_sigma_r_m": 0.002571769654149635,
+      "raw_sigma_u": 0.00013992976274495458,
+      "samples": 2896,
+      "median_abs_e_r_m": 0.002129191375374262,
+      "median_abs_e_u": 9.435483797765043e-05
     }
   ],
-  "pooled_sigma_r_m": 0.04212251373491913,
-  "pooled_sigma_u": 0.00013844352920746214,
+  "pooled_sigma_r_m": 0.002571769654149635,
+  "pooled_sigma_u": 0.00013992976274495458,
   "detection_rate_by_snr": {
-    "5.0": 0.6666666666666666,
+    "5.0": 0.6583333333333333,
     "10.0": 0.6666666666666666,
-    "15.0": 0.6666666666666666,
-    "20.0": 0.6666666666666666,
-    "25.0": 0.6666666666666666,
-    "30.0": 0.6666666666666666
+    "15.0": 0.6722222222222223,
+    "20.0": 0.675,
+    "25.0": 0.675,
+    "30.0": 0.675
   },
   "floor_m2": 0.01,
   "height_difference_m": 5.0,
   "conservative_rule": "bins with fewer than min_samples inherit the next-higher-q sigma; sigma enforced non-increasing with q",
-  "config_hash": "b1e0437ca82bdf8cbf0ce3ab38dc1ee9560101e88be24115fa538e5101510d34",
+  "config_hash": "a57a47bb82e79bb98afbe59f63e75245d41921695ea0f203696f856006a1fca4",
   "coords_hash": "caf8457e859ce7a2693be41ede57b5709ca8c59fe89a410d202ecc18f4e4a98b"
 }

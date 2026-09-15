@@ -15,9 +15,7 @@
             "torch",
             "torch.nn.functional",
             "",
-            "waveform",
-            "os",
-            "simulator"
+            "waveform"
           ]
         },
         "frontend/sensing/coords.py": {
@@ -69,6 +67,18 @@
         "forbidden": []
       }
     },
+    "counter_semantics": {
+      "passed": true,
+      "detail": {
+        "candidates_before_cap": 2,
+        "local_maxima": 2,
+        "nms_suppressed": 0,
+        "interpolation_geometry_rejected": 0,
+        "overflow": 0,
+        "returned_count": 2,
+        "multiplier": 0.19
+      }
+    },
     "count_follows_observation": {
       "passed": true,
       "detail": {
@@ -81,11 +91,11 @@
       "passed": true,
       "detail": [
         {
-          "q_db": 24.44290698836989,
+          "q_db": 24.819028006807148,
           "matches_lut": true
         },
         {
-          "q_db": 25.800259688557,
+          "q_db": 26.055315853343274,
           "matches_lut": true
         }
       ]
@@ -95,23 +105,23 @@
       "detail": [
         [
           6.0,
-          0.13190860325084078,
-          0.0016185089810431146
+          0.002571769654149635,
+          0.00013992976274495458
         ],
         [
           12.0,
-          0.04212251373491913,
-          0.00013844352920746214
+          0.002571769654149635,
+          0.00013992976274495458
         ],
         [
           20.0,
-          0.04212251373491913,
-          0.00013844352920746214
+          0.002571769654149635,
+          0.00013992976274495458
         ],
         [
           null,
-          0.041295299295789005,
-          0.00013697902517262016
+          0.002571769654149635,
+          0.00013992976274495458
         ]
       ]
     }
