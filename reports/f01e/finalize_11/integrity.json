@@ -1,0 +1,84 @@
+{
+  "stage": "F01E-FINALIZE-11",
+  "decision": "IDENTITY_SWITCH_PM1_MASK",
+  "inputs": {
+    "before": {
+      "files": 24,
+      "bytes": 23161913,
+      "combined_sha256": "c0ed9c6486f575331c199b8733115168e23ebac658ba0a2089d43cfe038d3919"
+    },
+    "after": {
+      "files": 24,
+      "bytes": 23161913,
+      "combined_sha256": "c0ed9c6486f575331c199b8733115168e23ebac658ba0a2089d43cfe038d3919"
+    },
+    "unchanged": true
+  },
+  "sequences": {
+    "before": {
+      "files": 1680,
+      "bytes": 27339004,
+      "combined_sha256": "7f98768925581b3c444b1341b0721ae28463fcb2bf521e9c8326ebeb0f7b4267"
+    },
+    "after": {
+      "files": 1680,
+      "bytes": 27339004,
+      "combined_sha256": "7f98768925581b3c444b1341b0721ae28463fcb2bf521e9c8326ebeb0f7b4267"
+    },
+    "unchanged": true
+  },
+  "labels": {
+    "before": {
+      "files": 28,
+      "bytes": 11638927,
+      "combined_sha256": "2e26ece2861559508477568f363deb81b7ac7e6fcc3551f1097660ac2d3b6371"
+    },
+    "after": {
+      "files": 28,
+      "bytes": 11191980,
+      "combined_sha256": "02aa013d5500d2053ef4e1f77fe2c88922beaa73fe5b8bc0ebc00bf3d38e83ce"
+    },
+    "rewritten": true
+  },
+  "metadata": {
+    "before": {
+      "files": 4,
+      "bytes": 78330070,
+      "combined_sha256": "c8938d507f40d2da40b18e87b13c2ecc1c5dc74398c87fda6d5ad6896daa2689"
+    },
+    "after": {
+      "files": 4,
+      "bytes": 78331937,
+      "combined_sha256": "60bfb468436e416d7e27631224af2c25ab48e8544e766d87d4341c9d45fd6c8d"
+    },
+    "rewritten": true
+  },
+  "by_split": {
+    "train": {
+      "switches": 4676,
+      "masked_label_cells": 10548,
+      "masked_valid_frames": 210251
+    },
+    "V_select": {
+      "switches": 610,
+      "masked_label_cells": 1277,
+      "masked_valid_frames": 25538
+    },
+    "V_confirm": {
+      "switches": 352,
+      "masked_label_cells": 755,
+      "masked_valid_frames": 15050
+    },
+    "test": {
+      "switches": 1033,
+      "masked_label_cells": 2207,
+      "masked_valid_frames": 43972
+    }
+  },
+  "script_sha256": "1131c29d7b0f5d9af331ddaa76b019d16897ef1d09d611051ab633c7d0dffa5a",
+  "environment": {
+    "python": "3.11.15",
+    "numpy": "2.4.6"
+  },
+  "runtime_seconds": 9.1
+}

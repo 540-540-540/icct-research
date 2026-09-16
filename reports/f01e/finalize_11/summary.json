@@ -1,0 +1,335 @@
+{
+  "stage": "F01E-FINALIZE-11",
+  "dataset": "F01E",
+  "decision": "IDENTITY_SWITCH_PM1_MASK",
+  "baseline_branch": "f01e-identity-audit-10",
+  "baseline_commit": "30f899a8b05be9ec0b5b06364ce53bb935e11fc8",
+  "policy_rule": "mask the affected slot label at every origin-safe same-segment identity switch origin and its +/-1 neighbour origins; frozen F01E-IDENTITY-AUDIT-10 switch definition, no split-specific tuning",
+  "f01d_used": false,
+  "production_sensing_modified": false,
+  "inputs_unchanged": true,
+  "sequences_unchanged": true,
+  "labels_rewritten": true,
+  "metadata_rewritten": true,
+  "split_scope": [
+    "train",
+    "V_select",
+    "V_confirm",
+    "test"
+  ],
+  "by_split": {
+    "train": {
+      "switches": 4676,
+      "eligible_slots": 173862,
+      "masked_label_cells": 10548,
+      "masked_valid_frames": 210251,
+      "labels_before": {
+        "valid_slot_labels": 3168589,
+        "labelled_slots": 161703
+      },
+      "labels_after": {
+        "valid_slot_labels": 2958338,
+        "labelled_slots": 151155
+      },
+      "coverage_before": 0.9300652241432861,
+      "coverage_after": 0.8693964178486385,
+      "masked_by_snr": {
+        "-5": 1811,
+        "0": 1722,
+        "5": 1738,
+        "10": 1753,
+        "15": 1791,
+        "20": 1733
+      },
+      "masked_by_density": {
+        "low": 0,
+        "mid": 648,
+        "high": 9900
+      }
+    },
+    "V_select": {
+      "switches": 610,
+      "eligible_slots": 13665,
+      "masked_label_cells": 1277,
+      "masked_valid_frames": 25538,
+      "labels_before": {
+        "valid_slot_labels": 254442,
+        "labelled_slots": 12891
+      },
+      "labels_after": {
+        "valid_slot_labels": 228904,
+        "labelled_slots": 11614
+      },
+      "coverage_before": 0.9433589462129528,
+      "coverage_after": 0.8499085254299305,
+      "masked_by_snr": {
+        "-5": 237,
+        "0": 227,
+        "5": 201,
+        "10": 223,
+        "15": 192,
+        "20": 197
+      },
+      "masked_by_density": {
+        "low": 0,
+        "mid": 50,
+        "high": 1227
+      }
+    },
+    "V_confirm": {
+      "switches": 352,
+      "eligible_slots": 12221,
+      "masked_label_cells": 755,
+      "masked_valid_frames": 15050,
+      "labels_before": {
+        "valid_slot_labels": 227375,
+        "labelled_slots": 11521
+      },
+      "labels_after": {
+        "valid_slot_labels": 212325,
+        "labelled_slots": 10766
+      },
+      "coverage_before": 0.9427215448817609,
+      "coverage_after": 0.8809426397185173,
+      "masked_by_snr": {
+        "-5": 94,
+        "0": 141,
+        "5": 133,
+        "10": 127,
+        "15": 135,
+        "20": 125
+      },
+      "masked_by_density": {
+        "low": 0,
+        "mid": 0,
+        "high": 755
+      }
+    },
+    "test": {
+      "switches": 1033,
+      "eligible_slots": 25971,
+      "masked_label_cells": 2207,
+      "masked_valid_frames": 43972,
+      "labels_before": {
+        "valid_slot_labels": 480502,
+        "labelled_slots": 24353
+      },
+      "labels_after": {
+        "valid_slot_labels": 436530,
+        "labelled_slots": 22146
+      },
+      "coverage_before": 0.9376997420199453,
+      "coverage_after": 0.8527203419198337,
+      "masked_by_snr": {
+        "-5": 313,
+        "0": 363,
+        "5": 395,
+        "10": 394,
+        "15": 357,
+        "20": 385
+      },
+      "masked_by_density": {
+        "low": 0,
+        "mid": 4,
+        "high": 2203
+      }
+    }
+  },
+  "train_reconciliation_vs_audit_10": {
+    "source": "reports/f01e/identity_audit_10/policy_impact.json",
+    "policy": "P2_pm1",
+    "expected_masked_label_cells": 10548,
+    "observed_masked_label_cells": 10548,
+    "expected_remaining_labelled_slots": 151155,
+    "observed_remaining_labelled_slots": 151155,
+    "expected_coverage_ratio": 0.8693964178486385,
+    "observed_coverage_ratio": 0.8693964178486385,
+    "expected_masked_by_snr": {
+      "-5": 1811,
+      "0": 1722,
+      "5": 1738,
+      "10": 1753,
+      "15": 1791,
+      "20": 1733
+    },
+    "observed_masked_by_snr": {
+      "-5": 1811,
+      "0": 1722,
+      "5": 1738,
+      "10": 1753,
+      "15": 1791,
+      "20": 1733
+    },
+    "expected_masked_by_density": {
+      "low": 0,
+      "mid": 648,
+      "high": 9900
+    },
+    "observed_masked_by_density": {
+      "low": 0,
+      "mid": 648,
+      "high": 9900
+    },
+    "pass": true
+  },
+  "loader_smoke": {
+    "train_-5": {
+      "samples": 5549,
+      "shapes_ok": true,
+      "finite": true,
+      "binding_ok": true
+    },
+    "train_0": {
+      "samples": 5549,
+      "shapes_ok": true,
+      "finite": true,
+      "binding_ok": true
+    },
+    "train_5": {
+      "samples": 5549,
+      "shapes_ok": true,
+      "finite": true,
+      "binding_ok": true
+    },
+    "train_10": {
+      "samples": 5549,
+      "shapes_ok": true,
+      "finite": true,
+      "binding_ok": true
+    },
+    "train_15": {
+      "samples": 5549,
+      "shapes_ok": true,
+      "finite": true,
+      "binding_ok": true
+    },
+    "train_20": {
+      "samples": 5549,
+      "shapes_ok": true,
+      "finite": true,
+      "binding_ok": true
+    },
+    "V_select_-5": {
+      "samples": 400,
+      "shapes_ok": true,
+      "finite": true,
+      "binding_ok": true
+    },
+    "V_select_0": {
+      "samples": 400,
+      "shapes_ok": true,
+      "finite": true,
+      "binding_ok": true
+    },
+    "V_select_5": {
+      "samples": 400,
+      "shapes_ok": true,
+      "finite": true,
+      "binding_ok": true
+    },
+    "V_select_10": {
+      "samples": 400,
+      "shapes_ok": true,
+      "finite": true,
+      "binding_ok": true
+    },
+    "V_select_15": {
+      "samples": 400,
+      "shapes_ok": true,
+      "finite": true,
+      "binding_ok": true
+    },
+    "V_select_20": {
+      "samples": 400,
+      "shapes_ok": true,
+      "finite": true,
+      "binding_ok": true
+    },
+    "V_confirm_-5": {
+      "samples": 352,
+      "shapes_ok": true,
+      "finite": true,
+      "binding_ok": true
+    },
+    "V_confirm_0": {
+      "samples": 352,
+      "shapes_ok": true,
+      "finite": true,
+      "binding_ok": true
+    },
+    "V_confirm_5": {
+      "samples": 352,
+      "shapes_ok": true,
+      "finite": true,
+      "binding_ok": true
+    },
+    "V_confirm_10": {
+      "samples": 352,
+      "shapes_ok": true,
+      "finite": true,
+      "binding_ok": true
+    },
+    "V_confirm_15": {
+      "samples": 352,
+      "shapes_ok": true,
+      "finite": true,
+      "binding_ok": true
+    },
+    "V_confirm_20": {
+      "samples": 352,
+      "shapes_ok": true,
+      "finite": true,
+      "binding_ok": true
+    },
+    "test_-5": {
+      "samples": 864,
+      "shapes_ok": true,
+      "finite": true,
+      "binding_ok": true
+    },
+    "test_0": {
+      "samples": 864,
+      "shapes_ok": true,
+      "finite": true,
+      "binding_ok": true
+    },
+    "test_5": {
+      "samples": 864,
+      "shapes_ok": true,
+      "finite": true,
+      "binding_ok": true
+    },
+    "test_10": {
+      "samples": 864,
+      "shapes_ok": true,
+      "finite": true,
+      "binding_ok": true
+    },
+    "test_15": {
+      "samples": 864,
+      "shapes_ok": true,
+      "finite": true,
+      "binding_ok": true
+    },
+    "test_20": {
+      "samples": 864,
+      "shapes_ok": true,
+      "finite": true,
+      "binding_ok": true
+    }
+  },
+  "hard_checks": {
+    "inputs_byte_identical": true,
+    "sequences_byte_identical": true,
+    "train_reconciliation_vs_audit_10": true,
+    "labels_rewritten": true,
+    "metadata_rewritten": true,
+    "labels_on_origin_ineligible_slot": true,
+    "unused_future_position_zeroed": true,
+    "loader_smoke_pass": true,
+    "f01d_free": true,
+    "production_sensing_unmodified": true
+  },
+  "next_action": "REVIEW_REQUIRED",
+  "overall": "PASS"
+}
