@@ -1,8 +1,9 @@
-"""F01-E formal SNR-aware dataset loader (F01E-AUDIT-08).
+"""F01-E formal SNR-aware dataset loader (F01E-AUDIT-08, final guard F01E-FINALIZE-11R2).
 
 The caller selects only (root, split, snr_db); the loader binds the matching per-SNR input and
 label files and hard-rejects mismatched-SNR pairing, the legacy generic labels and any F01-D path.
-Model inputs, labels and evaluation-only metadata are returned in separate containers.
+The full metadata header must additionally carry the finalized IDENTITY_SWITCH_PM1_MASK
+sanitization contract; pre-final F01-E roots are rejected instead of being silently accepted.
 """
 from __future__ import annotations
 
@@ -17,6 +18,22 @@ INPUT_FIELDS = ("state_hat", "track_exists", "detected", "timestamp")
 LABEL_FIELDS = ("future_position", "label_valid")
 MODEL_INPUT_KEYS = ("state_hat", "track_exists", "detected", "timestamp", "origin_eligible")
 LEGACY_LABEL_PATTERN = "labels/{split}.npz"
+FINAL_METADATA_CONTRACT = {
+    "finalized": True,
+    "label_alignment": "origin-safe contiguous segment",
+    "label_sanitization": "IDENTITY_SWITCH_PM1_MASK",
+    "mask_radius_origins": 1,
+    "mask_scope": "same_continuous_segment_only",
+}
+
+
+def require_final_metadata(document: dict, path) -> None:
+    """Formal F01-E path only accepts the finalized, sanitized dataset (F01E-FINALIZE-11R2)."""
+    failures = [f"{key}={document.get(key)!r} (expected {value!r})"
+                for key, value in FINAL_METADATA_CONTRACT.items() if document.get(key) != value]
+    if failures:
+        raise RuntimeError(f"F01-E metadata is not the finalized contract ({path}): "
+                           + "; ".join(failures))
 
 
 def snr_name(snr_db: float) -> str:
@@ -117,7 +134,11 @@ class F01EDataset:
         if not input_path.exists() or not label_path.exists():
             raise FileNotFoundError(f"Missing F01-E cache files: {input_path} / {label_path}")
         metadata_path = root / "metadata" / f"{split}.json"
-        metadata = json.loads(metadata_path.read_text())["samples"] if metadata_path.exists() else []
+        if not metadata_path.exists():
+            raise RuntimeError(f"Missing F01-E finalized metadata header: {metadata_path}")
+        document = json.loads(metadata_path.read_text())
+        require_final_metadata(document, metadata_path)
+        metadata = document["samples"]
         return cls(root, split, snr_db, label_snr_db, _read_inputs(input_path), _read_labels(label_path),
                    metadata)
 

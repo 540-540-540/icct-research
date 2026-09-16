@@ -3,7 +3,12 @@
 Stage E1 (``generate``): one process per SNR writes data/f01e/sequences/snr_{s}/episode_{i:03d}.npz
 plus per-episode diagnostics, streaming frame by frame (no RD maps or raw Y cached).
 Stage E2 (``pack``): reads the sequences and writes inputs/{split}_{snr}.npz, labels/{split}.npz
-and metadata/{split}.json under the frozen F01-D container schema.
+and metadata/{split}.json under the frozen F01-D container schema. The formal pack applies the
+frozen IDENTITY_SWITCH_PM1_MASK sanitization (F01E-IDENTITY-AUDIT-10) to the aligned labels, so
+repacking from the frozen sequences always yields the final sanitized F01-E.
+
+Stage E2 with ``--labels-only`` rewrites labels and metadata only; inputs and sequences are
+never written.
 
 Slot semantics follow the frozen shared frontend: anonymous sticky tracker slots 0..7. Future
 labels are built by offline C-domain slot<->source-vehicle alignment over the 20 history frames
@@ -310,13 +315,90 @@ def alignment_map(entries: list) -> dict:
     return {int(entry["slot"]): int(entry["source_key"]) for entry in entries}
 
 
+def identity_switch_pm1_plan(sequence: dict, origins_ms, alignment_maps: list, radius: int = 1) -> dict:
+    """Frozen IDENTITY_SWITCH_PM1_MASK plan (single shared implementation, F01E-IDENTITY-AUDIT-10).
+
+    Detects origin-safe same-segment identity switches between consecutive prediction origins
+    (no ``track_exists=0`` gap, the frozen ``origin_eligibility``/contiguous-run rule) and returns
+    the slot labels to mask. A masked neighbour must belong to the same continuous tracker segment
+    as the switch origin; slot death, rebirth or any gap make the neighbour cross-segment and it is
+    never masked. ``alignment_maps`` is the per-window ``{slot: source_key}`` map from the frozen
+    matcher.
+    """
+    origins = [int(origin) for origin in origins_ms]
+    window_count = len(origins)
+    segments_by_window = []
+    for origin in origins:
+        _, _, segments = origin_eligibility(sequence, origin)
+        segments_by_window.append(segments)
+    edge = np.zeros((max(window_count - 1, 0), 8), bool)
+    for window in range(1, window_count):
+        gap_frames = (origins[window] - origins[window - 1]) // 100
+        for slot, info in segments_by_window[window].items():
+            if info["contiguous_alive_length"] >= gap_frames + 1:
+                edge[window - 1, slot] = True
+    chain_of = {slot: {} for slot in range(8)}
+    for slot in range(8):
+        current = None
+        for window in range(window_count):
+            if slot not in segments_by_window[window]:
+                current = None
+                continue
+            if current is None or not edge[window - 1, slot]:
+                current = window
+            chain_of[slot][window] = current
+    cells = set()
+    switches = []
+    for window in range(1, window_count):
+        gap_frames = (origins[window] - origins[window - 1]) // 100
+        for slot, info in segments_by_window[window].items():
+            if info["contiguous_alive_length"] < gap_frames + 1:
+                continue
+            if slot not in alignment_maps[window - 1] or slot not in alignment_maps[window]:
+                continue
+            key_before = int(alignment_maps[window - 1][slot])
+            key_after = int(alignment_maps[window][slot])
+            if key_before == key_after:
+                continue
+            chain = chain_of[slot][window]
+            masked_windows, cross_segment = [], []
+            for offset in range(-radius, radius + 1):
+                neighbour = window + offset
+                if not 0 <= neighbour < window_count:
+                    continue
+                if chain_of[slot].get(neighbour) == chain:
+                    masked_windows.append(neighbour)
+                    cells.add((neighbour, slot))
+                else:
+                    cross_segment.append(neighbour)
+            switches.append({"window": int(window), "slot": int(slot),
+                             "gt_before": key_before, "gt_after": key_after,
+                             "masked_windows": masked_windows,
+                             "cross_segment_windows": cross_segment,
+                             "same_segment_chain_start": int(chain)})
+    return {"cells": cells, "switches": switches}
+
+
+def apply_identity_switch_pm1_mask(labels: dict, cells) -> int:
+    """Mask the planned slot labels; returns the number of cells that carried any valid frame."""
+    masked_valid_cells = 0
+    for window, slot in cells:
+        if labels["label_valid"][window, :, slot].any():
+            masked_valid_cells += 1
+        labels["label_valid"][window, :, slot] = False
+        labels["future_position"][window, :, slot] = 0.0
+    return masked_valid_cells
+
+
 def pack(args) -> None:
     from frontend.echo_source import SourceEpisodes
 
     out = Path(args.out)
     config = _common.load_frontend_config()
     config_hash = hashlib.sha256(CONFIG_PATH.read_bytes()).hexdigest()
-    allowed_provenance = set(getattr(args, "allowed_provenance_hashes", None) or []) | {config_hash}
+    allowed_provenance = set(getattr(args, "allowed_provenance_hashes", None) or []) \
+        | set(getattr(args, "allowed_provenance_hash", None) or []) | {config_hash}
+    labels_only = bool(getattr(args, "labels_only", False))
     source = SourceEpisodes()
     reference_snr = max(args.snr_list)
     totals = {}
@@ -332,6 +414,8 @@ def pack(args) -> None:
         packed = {snr: {key: [] for key in KEYS} for snr in args.snr_list}
         empty = {snr: 0 for snr in args.snr_list}
         alignment_mismatch = {snr: 0 for snr in args.snr_list}
+        pm1 = {snr: {"switch_events": 0, "masked_windows": 0, "masked_valid_cells": 0,
+                     "cross_segment_positions": 0} for snr in args.snr_list}
         alignment_windows = 0
         for index in episode_indices:
             episode = source.episodes[index]
@@ -357,7 +441,15 @@ def pack(args) -> None:
                     if alignment_map(alignments[snr][window]) != reference_map:
                         alignment_mismatch[snr] += 1
             for snr in args.snr_list:
-                label_parts[snr].append(aligned_labels(source, index, origins, alignments[snr]))
+                alignment_maps = [alignment_map(entries) for entries in alignments[snr]]
+                plan = identity_switch_pm1_plan(sequences[snr], origins, alignment_maps)
+                part = aligned_labels(source, index, origins, alignments[snr])
+                pm1[snr]["masked_valid_cells"] += apply_identity_switch_pm1_mask(part, plan["cells"])
+                pm1[snr]["switch_events"] += len(plan["switches"])
+                pm1[snr]["masked_windows"] += len(plan["cells"])
+                pm1[snr]["cross_segment_positions"] += sum(len(switch["cross_segment_windows"])
+                                                           for switch in plan["switches"])
+                label_parts[snr].append(part)
             base_sample = len(metadata)
             for window, origin in enumerate(origins):
                 for snr in args.snr_list:
@@ -389,20 +481,30 @@ def pack(args) -> None:
             write_npz(out / "labels" / f"{split}_{snr_name(snr)}.npz", labels)
             if snr == reference_snr:
                 write_npz(out / "labels" / f"{split}.npz", labels)
-        for snr in args.snr_list:
-            write_npz(out / "inputs" / f"{split}_{snr_name(snr)}.npz",
-                      {key: np.stack(packed[snr][key]) for key in KEYS})
+        if not labels_only:
+            for snr in args.snr_list:
+                write_npz(out / "inputs" / f"{split}_{snr_name(snr)}.npz",
+                          {key: np.stack(packed[snr][key]) for key in KEYS})
         write_json(out / "metadata" / f"{split}.json",
                    dict(split=split, config_sha256=config_hash,
                         revision=json.loads(CONFIG_PATH.read_text()).get("revision"),
                         source="Frozen A01 prediction_grid_ms; B64 production chain",
                         schema="F01-D container schema; anonymous sticky slots with origin-safe offline alignment",
+                        finalized=True,
+                        label_alignment="origin-safe contiguous segment",
+                        label_sanitization="IDENTITY_SWITCH_PM1_MASK",
+                        mask_radius_origins=1,
+                        mask_scope="same_continuous_segment_only",
+                        policy_source="F01E-IDENTITY-AUDIT-10 train-only frozen decision",
+                        identity_switch_mask={snr_name(snr): dict(pm1[snr]) for snr in args.snr_list},
                         label_files={snr_name(snr): f"labels/{split}_{snr_name(snr)}.npz"
                                      for snr in args.snr_list},
                         label_reference_file=f"labels/{split}.npz (aligned to {reference_snr} dB)",
                         label_alignment_snr=reference_snr,
                         label_rule="labels only for origin-eligible slots (origin alive and contiguous "
-                                   "alive run >= 3) matched by the origin-segment matcher",
+                                   "alive run >= 3) matched by the origin-segment matcher; identity "
+                                   "supervision masked at same-segment identity-switch origins and "
+                                   "their +/-1 origins (IDENTITY_SWITCH_PM1_MASK)",
                         contract_note="F01-D used identity-fixed source slots; B64 sticky slots drift per "
                                       "SNR, so each SNR has its own aligned label file plus the reference file",
                         alignment_mismatch_windows={snr: alignment_mismatch[snr] for snr in args.snr_list},
@@ -410,7 +512,10 @@ def pack(args) -> None:
         totals[split] = dict(samples=len(metadata), episodes=len(episode_indices), all_input_unavailable=empty,
                              alignment_windows=alignment_windows,
                              alignment_mismatch_windows={snr: alignment_mismatch[snr]
-                                                         for snr in args.snr_list})
+                                                         for snr in args.snr_list},
+                             identity_switch_pm1_mask={snr_name(snr): dict(pm1[snr])
+                                                       for snr in args.snr_list},
+                             labels_only=labels_only)
         print(json.dumps({split: totals[split]}, ensure_ascii=False), flush=True)
     print(json.dumps({"totals": totals}, ensure_ascii=False))
 
@@ -425,6 +530,10 @@ def main() -> None:
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--dry-out", default=None)
     parser.add_argument("--force", action="store_true")
+    parser.add_argument("--labels-only", action="store_true",
+                        help="rewrite labels and metadata only; never write inputs or sequences")
+    parser.add_argument("--allowed-provenance-hash", nargs="*", default=None,
+                        help="extra accepted sequence diagnostic config hashes")
     args = parser.parse_args()
     if args.action == "generate":
         generate(args)

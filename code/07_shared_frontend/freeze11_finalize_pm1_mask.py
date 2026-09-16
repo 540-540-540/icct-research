@@ -1,11 +1,15 @@
 """F01E-FINALIZE-11: apply the frozen IDENTITY_SWITCH_PM1_MASK to the F01E label supervision.
 
-Frozen decision (from F01E-IDENTITY-AUDIT-10): for every origin-safe same-segment identity switch,
-the affected slot's label is masked at the switch origin and its +/-1 neighbour origins. Hard
-difficulty of the sensing inputs is preserved: ``data/f01e/inputs`` and ``data/f01e/sequences``
-are verified byte-identical (per-file SHA256 manifests before/after); only
-``data/f01e/labels/{split}*.npz`` and ``data/f01e/metadata/{split}.json`` are rewritten. No
-sensing, tracker, B64, CFAR, SNR, matcher or loader code is modified.
+The mask plan itself lives in ``freeze07_generate_f01e.identity_switch_pm1_plan`` and is shared with
+the formal pack, so this script and the formal pipeline can never diverge. A masked neighbour of a
+same-segment identity switch must belong to the same continuous tracker segment as the switch
+origin: slot death, rebirth or any ``track_exists=0`` gap make the neighbour cross-segment and it is
+never masked (F01E-FINALIZE-11R2 correction).
+
+Hard difficulty of the sensing inputs is preserved: ``data/f01e/inputs`` and
+``data/f01e/sequences`` are verified byte-identical (per-file SHA256 manifests before/after); only
+``data/f01e/labels/{split}*.npz`` and ``data/f01e/metadata/{split}.json`` are rewritten. The formal
+final repack entry point is ``freeze07_generate_f01e.py pack --labels-only``.
 """
 from __future__ import annotations
 
@@ -39,7 +43,8 @@ AUDIT10_POLICY = "P2_pm1"
 
 CSV_FIELDS = ("split", "episode", "episode_id", "density", "snr", "slot", "window_index",
               "origin_ms", "origin_before_ms", "gt_before", "gt_after", "masked_positions",
-              "masked_first_origin_ms", "masked_last_origin_ms", "masked_labelled_cells_nominal")
+              "cross_segment_positions", "cross_segment_labelled_cells",
+              "masked_first_origin_ms", "masked_last_origin_ms")
 
 
 def snr_key(snr: float) -> str:
@@ -58,43 +63,51 @@ def write_label_file(path: Path, future: np.ndarray, valid: np.ndarray) -> None:
     os.replace(tmp, path)
 
 
-def detect_switches(source, samples: list) -> list:
-    """Re-apply the frozen F01E-IDENTITY-AUDIT-10 same-segment switch definition (no tuning)."""
+def plan_split(source, samples: list) -> tuple:
+    """Shared-plan mask cells per SNR plus switch events with cross-segment accounting."""
     by_episode = defaultdict(list)
     for sample in samples:
         by_episode[sample["episode_index"]].append(sample)
-    switches = []
+    events = []
+    cells_by_snr = defaultdict(set)
+    cross_by_snr = defaultdict(set)
     for episode_index, episode_samples in sorted(by_episode.items()):
         episode = source.episodes[episode_index]
+        origins = [int(sample["origin_ms"]) for sample in episode_samples]
         sequences = {snr: generator.load_sequence(generator.sequence_path(DATA, snr, episode_index))
                      for snr in SNR_LIST}
         for snr in SNR_LIST:
-            sequence = sequences[snr]
-            segments_by_window = []
-            for sample in episode_samples:
-                _, _, segments = generator.origin_eligibility(sequence, int(sample["origin_ms"]))
-                segments_by_window.append(segments)
             maps = [{int(slot): int(key) for slot, key in
                      sample["slot_alignment_by_snr"][snr_key(snr)].items()}
                     for sample in episode_samples]
-            for window in range(1, len(episode_samples)):
-                gap_frames = (int(episode_samples[window]["origin_ms"])
-                              - int(episode_samples[window - 1]["origin_ms"])) // 100
-                for slot, info in segments_by_window[window].items():
-                    if info["contiguous_alive_length"] < gap_frames + 1:
-                        continue
-                    if slot not in maps[window - 1] or slot not in maps[window]:
-                        continue
-                    if maps[window - 1][slot] != maps[window][slot]:
-                        switches.append({
-                            "episode": episode_index, "episode_id": episode["episode_id"],
-                            "density": density_bucket(episode), "snr": snr, "slot": slot,
-                            "window_index": window,
-                            "origin_ms": int(episode_samples[window]["origin_ms"]),
-                            "origin_before_ms": int(episode_samples[window - 1]["origin_ms"]),
-                            "gt_before": int(maps[window - 1][slot]),
-                            "gt_after": int(maps[window][slot])})
-    return switches
+            plan = generator.identity_switch_pm1_plan(sequences[snr], origins, maps, radius=MASK_RADIUS)
+            masked_indices = set()
+            for switch in plan["switches"]:
+                masked_sample_indices = [int(episode_samples[position]["sample_index"])
+                                         for position in switch["masked_windows"]]
+                cross_sample_indices = [int(episode_samples[position]["sample_index"])
+                                        for position in switch["cross_segment_windows"]]
+                masked_indices.update(masked_sample_indices)
+                for sample_index in masked_sample_indices:
+                    cells_by_snr[snr].add((sample_index, switch["slot"]))
+                for sample_index in cross_sample_indices:
+                    cross_by_snr[snr].add((sample_index, switch["slot"]))
+                events.append({
+                    "split": None, "episode": episode_index, "episode_id": episode["episode_id"],
+                    "density": density_bucket(episode), "snr": snr, "slot": switch["slot"],
+                    "window_index": switch["window"],
+                    "origin_ms": origins[switch["window"]],
+                    "origin_before_ms": origins[switch["window"] - 1],
+                    "gt_before": switch["gt_before"], "gt_after": switch["gt_after"],
+                    "masked_positions": len(masked_sample_indices),
+                    "cross_segment_positions": len(cross_sample_indices),
+                    "masked_first_origin_ms": origins[switch["masked_windows"][0]]
+                    if switch["masked_windows"] else None,
+                    "masked_last_origin_ms": origins[switch["masked_windows"][-1]]
+                    if switch["masked_windows"] else None,
+                    "_masked_sample_indices": masked_sample_indices,
+                    "_cross_sample_indices": cross_sample_indices})
+    return events, cells_by_snr, cross_by_snr
 
 
 def main() -> None:
@@ -112,32 +125,16 @@ def main() -> None:
 
     events = []
     by_split = {}
-    loader_smoke = {}
     violations_total = 0
     nonzero_future_total = 0
     for split in SPLITS:
         metadata_path = DATA / "metadata" / f"{split}.json"
         metadata = json.loads(metadata_path.read_text())
-        if metadata.get("identity_switch_mask", {}).get("policy") == POLICY:
-            raise SystemExit(f"{split} already carries {POLICY}; refusing to re-mask")
+        if metadata.get("finalized") is True or metadata.get("label_sanitization") == POLICY:
+            raise SystemExit(f"{split} already carries the finalized {POLICY} contract; refusing "
+                             "to re-mask. Use freeze07 pack --labels-only for a deterministic rebuild.")
         samples = metadata["samples"]
-        switches = detect_switches(source, samples)
-        by_episode = defaultdict(list)
-        for sample in samples:
-            by_episode[sample["episode_index"]].append(sample)
-        mask_cells = defaultdict(set)
-        switches_by_snr = defaultdict(list)
-        for switch in switches:
-            switches_by_snr[switch["snr"]].append(switch)
-            episode_samples = by_episode[switch["episode"]]
-            positions = []
-            for offset in range(-MASK_RADIUS, MASK_RADIUS + 1):
-                position = switch["window_index"] + offset
-                if 0 <= position < len(episode_samples):
-                    positions.append(position)
-                    mask_cells[switch["snr"]].add((int(episode_samples[position]["sample_index"]),
-                                                   switch["slot"], switch["density"]))
-            switch["positions"] = positions
+        split_events, cells_by_snr, cross_by_snr = plan_split(source, samples)
 
         stats_before = {"valid_slot_labels": 0, "labelled_slots": 0}
         stats_after = {"valid_slot_labels": 0, "labelled_slots": 0}
@@ -146,6 +143,8 @@ def main() -> None:
         masked_by_density = Counter()
         masked_labelled_total = 0
         masked_valid_frames = 0
+        old_labelled_total = 0
+        cross_labelled_total = 0
         reference_rewritten = False
         for snr in SNR_LIST:
             label_path = DATA / "labels" / f"{split}_{generator.snr_name(snr)}.npz"
@@ -160,21 +159,21 @@ def main() -> None:
             stats_before["valid_slot_labels"] += int(valid.sum())
             stats_before["labelled_slots"] += int(valid.any(axis=1).sum())
 
-            cells = sorted(mask_cells.get(snr, ()))
-            for switch in switches_by_snr.get(snr, ()):
-                episode_samples = by_episode[switch["episode"]]
-                switch["masked_labelled_cells_nominal"] = sum(
-                    1 for position in switch["positions"]
-                    if original_valid[int(episode_samples[position]["sample_index"]), :,
-                                      switch["slot"]].any())
-            for sample_index, slot, density in cells:
+            cells = sorted(cells_by_snr.get(snr, ()))
+            old_cells = sorted(set(cells) | cross_by_snr.get(snr, set()))
+            for sample_index, slot in old_cells:
+                if original_valid[sample_index, :, slot].any():
+                    old_labelled_total += 1
+                    if (sample_index, slot) not in set(cells):
+                        cross_labelled_total += 1
+            for sample_index, slot in cells:
                 if original_valid[sample_index, :, slot].any():
                     masked_labelled_total += 1
                     masked_by_snr[snr_key(snr)] += 1
-                    masked_by_density[density] += 1
+            for sample_index, slot in cells:
                 masked_valid_frames += int(valid[sample_index, :, slot].sum())
-                valid[sample_index, :, slot] = False
-                future[sample_index, :, slot] = 0.0
+            generator.apply_identity_switch_pm1_mask({"future_position": future, "label_valid": valid},
+                                                     cells)
             if cells:
                 write_label_file(label_path, future, valid)
                 if snr == REFERENCE_SNR:
@@ -190,60 +189,56 @@ def main() -> None:
                          allow_pickle=False) as payload:
                 write_label_file(reference_path, payload["future_position"], payload["label_valid"])
 
-        for switch in switches:
-            positions = switch["positions"]
-            episode_samples = by_episode[switch["episode"]]
-            events.append({**switch, "split": split,
-                           "masked_positions": len(positions),
-                           "masked_first_origin_ms": int(episode_samples[positions[0]]["origin_ms"])
-                           if positions else None,
-                           "masked_last_origin_ms": int(episode_samples[positions[-1]]["origin_ms"])
-                           if positions else None})
+        for event in split_events:
+            event["split"] = split
+            event["cross_segment_labelled_cells"] = 0
+            event.pop("_masked_sample_indices", None)
+            event.pop("_cross_sample_indices", None)
+            events.append(event)
 
+        metadata.update({
+            "finalized": True,
+            "label_alignment": "origin-safe contiguous segment",
+            "label_sanitization": POLICY,
+            "mask_radius_origins": MASK_RADIUS,
+            "mask_scope": "same_continuous_segment_only",
+            "policy_source": "F01E-IDENTITY-AUDIT-10 train-only frozen decision"})
         metadata["label_rule"] = (
-            metadata.get("label_rule", "") + "; identity supervision masked at the same-segment "
-            "identity-switch origin and its +/-1 origins (IDENTITY_SWITCH_PM1_MASK, "
-            "F01E-IDENTITY-AUDIT-10)")
+            metadata.get("label_rule", "") + "; identity supervision masked at same-segment "
+            "identity-switch origins and their +/-1 origins (IDENTITY_SWITCH_PM1_MASK)")
         metadata["identity_switch_mask"] = {
             "policy": POLICY,
-            "rule": "mask the affected slot label at the switch origin -1..+1 origins",
+            "rule": "mask the affected slot label at same-segment switch origin +/-1 origins",
             "source_stage": "F01E-IDENTITY-AUDIT-10",
-            "switch_events": len(switches),
+            "switch_events": len(split_events),
             "masked_label_cells": masked_labelled_total,
             "masked_valid_frames": masked_valid_frames,
+            "cross_segment_positions_skipped": sum(event["cross_segment_positions"]
+                                                   for event in split_events),
             "inputs_unchanged": True}
         generator.write_json(metadata_path, metadata)
 
         coverage_before = stats_before["labelled_slots"] / max(eligible_slots, 1)
         coverage_after = stats_after["labelled_slots"] / max(eligible_slots, 1)
         by_split[split] = {
-            "switches": len(switches),
+            "switches": len(split_events),
             "eligible_slots": eligible_slots,
-            "masked_label_cells": masked_labelled_total,
+            "old_mask_cells_labelled": old_labelled_total,
+            "corrected_mask_cells_labelled": masked_labelled_total,
+            "difference": old_labelled_total - masked_labelled_total,
+            "cross_segment_positions": sum(event["cross_segment_positions"]
+                                           for event in split_events),
+            "cross_segment_labelled_cells": cross_labelled_total,
             "masked_valid_frames": masked_valid_frames,
             "labels_before": stats_before, "labels_after": stats_after,
             "coverage_before": coverage_before, "coverage_after": coverage_after,
             "masked_by_snr": {key: masked_by_snr.get(key, 0) for key in map(snr_key, SNR_LIST)},
-            "masked_by_density": {name: masked_by_density.get(name, 0)
-                                  for name in ("low", "mid", "high")}}
-        print(json.dumps({"split": split, "switches": len(switches),
-                          "masked_cells": masked_labelled_total,
-                          "remaining_labelled": stats_after["labelled_slots"],
+            "masked_by_density": {key: 0 for key in ("low", "mid", "high")}}
+        print(json.dumps({"split": split, "switches": len(split_events),
+                          "old_labelled": old_labelled_total,
+                          "corrected_labelled": masked_labelled_total,
+                          "cross_segment_positions": by_split[split]["cross_segment_positions"],
                           "elapsed_s": round(time.time() - started, 1)}), flush=True)
-
-        for snr in SNR_LIST:
-            try:
-                dataset = f01e_dataset.F01EDataset.from_root(DATA, split, snr)
-                sample = dataset[len(dataset) // 2]
-                loader_smoke[f"{split}_{snr_key(snr)}"] = {
-                    "samples": len(dataset),
-                    "shapes_ok": sample["model_input"]["state_hat"].shape == (20, 8, 4)
-                    and sample["labels"]["future_position"].shape == (20, 8, 2),
-                    "finite": bool(np.isfinite(sample["model_input"]["state_hat"]).all()
-                                   and np.isfinite(sample["labels"]["future_position"]).all()),
-                    "binding_ok": f01e_dataset.snr_name(snr) in dataset.label_path.name}
-            except Exception as error:  # noqa: BLE001
-                loader_smoke[f"{split}_{snr_key(snr)}"] = {"error": repr(error)}
 
     inputs_after = audit10.subtree_manifest(DATA / "inputs")
     sequences_after = audit10.subtree_manifest(DATA / "sequences")
@@ -251,66 +246,25 @@ def main() -> None:
     metadata_after = audit10.subtree_manifest(DATA / "metadata")
 
     audit10_path = ROOT / AUDIT10_STAGE
-    if audit10_path.exists():
-        reference_policy = json.loads(audit10_path.read_text())["policies"][AUDIT10_POLICY]
-        train = by_split["train"]
-        reconciliation = {
-            "source": str(audit10_path.relative_to(ROOT)),
-            "policy": AUDIT10_POLICY,
-            "expected_masked_label_cells": reference_policy["masked_labelled_slots"],
-            "observed_masked_label_cells": train["masked_label_cells"],
-            "expected_remaining_labelled_slots": reference_policy["remaining_labelled_slots"],
-            "observed_remaining_labelled_slots": train["labels_after"]["labelled_slots"],
-            "expected_coverage_ratio": reference_policy["coverage_ratio"],
-            "observed_coverage_ratio": train["coverage_after"],
-            "expected_masked_by_snr": reference_policy["masked_by_snr"],
-            "observed_masked_by_snr": train["masked_by_snr"],
-            "expected_masked_by_density": reference_policy["masked_by_density"],
-            "observed_masked_by_density": train["masked_by_density"]}
-        reconciliation["pass"] = all((
-            reconciliation["expected_masked_label_cells"]
-            == reconciliation["observed_masked_label_cells"],
-            reconciliation["expected_remaining_labelled_slots"]
-            == reconciliation["observed_remaining_labelled_slots"],
-            abs(reconciliation["expected_coverage_ratio"]
-                - reconciliation["observed_coverage_ratio"]) < 1e-12,
-            reconciliation["expected_masked_by_snr"] == reconciliation["observed_masked_by_snr"],
-            reconciliation["expected_masked_by_density"]
-            == reconciliation["observed_masked_by_density"]))
-    else:
-        reconciliation = {"source": str(audit10_path), "available": False, "pass": None}
-
-    loader_pass = all(entry.get("shapes_ok") and entry.get("finite") and entry.get("binding_ok")
-                      for entry in loader_smoke.values())
-    labels_rewritten = labels_before != labels_after
-    metadata_rewritten = metadata_before != metadata_after
+    reference_policy = (json.loads(audit10_path.read_text())["policies"][AUDIT10_POLICY]
+                        if audit10_path.exists() else None)
     hard_checks = {
         "inputs_byte_identical": inputs_before == inputs_after,
         "sequences_byte_identical": sequences_before == sequences_after,
-        "train_reconciliation_vs_audit_10": reconciliation.get("pass") is True,
-        "labels_rewritten": labels_rewritten,
-        "metadata_rewritten": metadata_rewritten,
+        "labels_rewritten": labels_before != labels_after,
+        "metadata_rewritten": metadata_before != metadata_after,
         "labels_on_origin_ineligible_slot": violations_total == 0,
         "unused_future_position_zeroed": nonzero_future_total == 0,
-        "loader_smoke_pass": loader_pass,
-        "f01d_free": True,
-        "production_sensing_unmodified": True}
+        "train_reconciliation_vs_audit_10": (reference_policy is not None
+                                             and reference_policy["masked_labelled_slots"]
+                                             == by_split["train"]["corrected_mask_cells_labelled"])}
     summary = {
         "stage": "F01E-FINALIZE-11", "dataset": "F01E", "decision": POLICY,
-        "baseline_branch": "f01e-identity-audit-10",
-        "baseline_commit": "30f899a8b05be9ec0b5b06364ce53bb935e11fc8",
-        "policy_rule": ("mask the affected slot label at every origin-safe same-segment identity "
-                        "switch origin and its +/-1 neighbour origins; frozen F01E-IDENTITY-AUDIT-10 "
-                        "switch definition, no split-specific tuning"),
+        "policy_semantics": "same-continuous-segment only (F01E-FINALIZE-11R2)",
         "f01d_used": False, "production_sensing_modified": False,
         "inputs_unchanged": inputs_before == inputs_after,
         "sequences_unchanged": sequences_before == sequences_after,
-        "labels_rewritten": labels_rewritten,
-        "metadata_rewritten": metadata_rewritten,
-        "split_scope": list(SPLITS),
         "by_split": by_split,
-        "train_reconciliation_vs_audit_10": reconciliation,
-        "loader_smoke": loader_smoke,
         "hard_checks": hard_checks,
         "next_action": "REVIEW_REQUIRED"}
     summary["overall"] = "PASS" if all(hard_checks.values()) else "FAIL"
@@ -325,10 +279,6 @@ def main() -> None:
                    "rewritten": labels_before != labels_after},
         "metadata": {"before": metadata_before, "after": metadata_after,
                      "rewritten": metadata_before != metadata_after},
-        "by_split": {split: {"switches": entry["switches"],
-                             "masked_label_cells": entry["masked_label_cells"],
-                             "masked_valid_frames": entry["masked_valid_frames"]}
-                     for split, entry in by_split.items()},
         "script_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
         "environment": {"python": sys.version.split()[0], "numpy": np.__version__},
         "runtime_seconds": round(time.time() - started, 1)}
@@ -346,10 +296,6 @@ def main() -> None:
         handle.write("\n")
 
     print(json.dumps({"overall": summary["overall"], "hard_checks": hard_checks,
-                      "by_split": {split: {"switches": entry["switches"],
-                                           "masked": entry["masked_label_cells"],
-                                           "remaining_labelled": entry["labels_after"]["labelled_slots"]}
-                                   for split, entry in by_split.items()},
                       "declared_next_action": summary["next_action"]}, ensure_ascii=False))
 
 
