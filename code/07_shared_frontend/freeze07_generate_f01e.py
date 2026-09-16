@@ -216,38 +216,71 @@ def gt_track_xy(track, times_ms: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
     return xy, exact
 
 
+def origin_eligibility(sequence: dict, origin_ms: int) -> tuple:
+    """Origin-safe eligibility: the origin frame must be alive and the contiguous alive run ending
+    at the origin must cover at least 3 history frames (never a sum across separate track lives)."""
+    indices = history_indices(sequence, origin_ms)
+    exists = sequence["track_exists"][indices]
+    segments = {}
+    for slot in range(8):
+        if not exists[19, slot]:
+            continue
+        length = 0
+        for frame in range(19, -1, -1):
+            if exists[frame, slot]:
+                length += 1
+            else:
+                break
+        if length >= 3:
+            segments[slot] = {"segment_start_history_index": int(20 - length),
+                              "contiguous_alive_length": int(length)}
+    return indices, exists, segments
+
+
 def align_window(sequence: dict, episode: dict, origin_ms: int, source, gate_m: float = 5.0) -> list:
-    """Offline C-domain slot <-> source-vehicle alignment over the 20 history frames."""
+    """Origin-safe C-domain slot <-> source-vehicle alignment (SENS-FREEZE-09).
+
+    Only origin-eligible slots enter the Hungarian assignment, and each slot's cost uses only its
+    current contiguous alive segment (frames from ``segment_start_history_index`` to the origin).
+    States from an earlier life of the same slot never participate; identical cost/gate rules as
+    the frozen matcher (mean Euclidean xy distance, >=3 common frames, 5 m gate).
+    """
     from scipy.optimize import linear_sum_assignment
 
-    indices = history_indices(sequence, origin_ms)
+    indices, exists, segments = origin_eligibility(sequence, origin_ms)
+    if not segments:
+        return []
     times = (int(origin_ms) + np.arange(-19, 1, dtype=np.int64) * 100).astype(np.int64)
-    exists = sequence["track_exists"][indices]
     states = sequence["state_hat"][indices]
     vehicles = [int(key) for key in episode["source_keys"]]
     gt_xy = np.full((len(vehicles), 20, 2), np.nan)
     for vehicle_index, key in enumerate(vehicles):
         gt_xy[vehicle_index], _ = gt_track_xy(source.tracks[key], times)
-    cost = np.full((8, len(vehicles)), 1e9)
-    common = np.zeros((8, len(vehicles)), np.int64)
-    for slot in range(8):
+    slots = sorted(segments)
+    cost = np.full((len(slots), len(vehicles)), 1e9)
+    common = np.zeros((len(slots), len(vehicles)), np.int64)
+    for row, slot in enumerate(slots):
+        start = segments[slot]["segment_start_history_index"]
         for vehicle_index in range(len(vehicles)):
-            mask = exists[:, slot] & np.isfinite(gt_xy[vehicle_index, :, 0])
-            common[slot, vehicle_index] = int(mask.sum())
-            if common[slot, vehicle_index] >= 3:
-                distance = np.linalg.norm(states[mask, slot, :2] - gt_xy[vehicle_index, mask], axis=1)
-                cost[slot, vehicle_index] = float(distance.mean())
+            mask = exists[start:, slot] & np.isfinite(gt_xy[vehicle_index, start:, 0])
+            common[row, vehicle_index] = int(mask.sum())
+            if common[row, vehicle_index] >= 3:
+                distance = np.linalg.norm(states[start:, slot, :2][mask] - gt_xy[vehicle_index, start:][mask],
+                                          axis=1)
+                cost[row, vehicle_index] = float(distance.mean())
     small = np.where(cost <= gate_m, cost, 1e9)
     rows, columns = linear_sum_assignment(small) if small.size else ([], [])
     alignment = []
-    used = set()
-    for slot, vehicle_index in zip(np.asarray(rows).tolist(), np.asarray(columns).tolist()):
-        if small[slot, vehicle_index] < 1e9:
+    for row, vehicle_index in zip(np.asarray(rows).tolist(), np.asarray(columns).tolist()):
+        if small[row, vehicle_index] < 1e9:
+            slot = slots[row]
             alignment.append({"slot": int(slot), "source_key": int(vehicles[vehicle_index]),
                               "source_slot": int(vehicle_index),
-                              "common_frames": int(common[slot, vehicle_index]),
-                              "cost_m": float(cost[slot, vehicle_index])})
-            used.add(vehicle_index)
+                              "common_frames": int(common[row, vehicle_index]),
+                              "cost_m": float(cost[row, vehicle_index]),
+                              "segment_start_history_index":
+                                  segments[slot]["segment_start_history_index"],
+                              "contiguous_alive_length": segments[slot]["contiguous_alive_length"]})
     return alignment
 
 
@@ -283,6 +316,7 @@ def pack(args) -> None:
     out = Path(args.out)
     config = _common.load_frontend_config()
     config_hash = hashlib.sha256(CONFIG_PATH.read_bytes()).hexdigest()
+    allowed_provenance = set(getattr(args, "allowed_provenance_hashes", None) or []) | {config_hash}
     source = SourceEpisodes()
     reference_snr = max(args.snr_list)
     totals = {}
@@ -309,7 +343,7 @@ def pack(args) -> None:
                 if not (path.exists() and diagnostic_path.exists()):
                     raise ValueError(f"Missing F01-E sequence: {path}")
                 report = json.loads(diagnostic_path.read_text())
-                if report.get("config_sha256") != config_hash or report.get("complete") is not True \
+                if report.get("config_sha256") not in allowed_provenance or report.get("complete") is not True \
                         or report.get("failures"):
                     raise ValueError(f"Invalid F01-E sequence provenance: {path}")
                 sequences[snr] = load_sequence(path)
@@ -343,10 +377,12 @@ def pack(args) -> None:
                     sample_index=base_sample + window, episode_index=index, origin_ms=int(origin),
                     source_keys=episode["source_keys"], episode_id=episode["episode_id"],
                     source_block=episode["source_block"], source_groups=episode["source_groups"],
-                    label_alignment_snr=reference_snr,
+                    label_alignment_snr=reference_snr, label_rule="origin-safe contiguous segment",
                     slot_alignment=reference[window],
                     slot_alignment_by_snr={str(snr): alignment_map(alignments[snr][window])
-                                           for snr in args.snr_list}))
+                                           for snr in args.snr_list},
+                    slot_alignment_detail_by_snr={str(snr): alignments[snr][window]
+                                                  for snr in args.snr_list}))
         for snr in args.snr_list:
             labels = {key: np.concatenate([part[key] for part in label_parts[snr]])
                       for key in ("future_position", "label_valid")}
@@ -360,11 +396,13 @@ def pack(args) -> None:
                    dict(split=split, config_sha256=config_hash,
                         revision=json.loads(CONFIG_PATH.read_text()).get("revision"),
                         source="Frozen A01 prediction_grid_ms; B64 production chain",
-                        schema="F01-D container schema; anonymous sticky slots with offline alignment",
+                        schema="F01-D container schema; anonymous sticky slots with origin-safe offline alignment",
                         label_files={snr_name(snr): f"labels/{split}_{snr_name(snr)}.npz"
                                      for snr in args.snr_list},
                         label_reference_file=f"labels/{split}.npz (aligned to {reference_snr} dB)",
                         label_alignment_snr=reference_snr,
+                        label_rule="labels only for origin-eligible slots (origin alive and contiguous "
+                                   "alive run >= 3) matched by the origin-segment matcher",
                         contract_note="F01-D used identity-fixed source slots; B64 sticky slots drift per "
                                       "SNR, so each SNR has its own aligned label file plus the reference file",
                         alignment_mismatch_windows={snr: alignment_mismatch[snr] for snr in args.snr_list},

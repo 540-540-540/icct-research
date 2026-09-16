@@ -23,6 +23,18 @@ def snr_name(snr_db: float) -> str:
     return "snr_" + str(int(snr_db)).replace("-", "m")
 
 
+def origin_eligibility(exists: np.ndarray) -> np.ndarray:
+    """[S,20,8] -> [S,8] origin eligibility (SENS-FREEZE-09).
+
+    Eligible iff the origin frame is alive and the contiguous alive run ending at the origin covers
+    at least 3 history frames. Separate lives of the same slot are never summed.
+    """
+    if exists.shape != (exists.shape[0], 20, 8):
+        raise ValueError("exists must be [S,20,8]")
+    run = np.cumprod(exists[:, ::-1, :], axis=1).sum(axis=1)
+    return exists[:, -1, :] & (run >= 3)
+
+
 def _read_inputs(path: Path) -> dict:
     with np.load(path, allow_pickle=False) as payload:
         if set(payload.files) != set(INPUT_FIELDS):
@@ -75,6 +87,13 @@ class F01EDataset:
         self.arrays = inputs
         self.label_arrays = labels
         self.metadata = metadata
+        self.eligible = origin_eligibility(inputs["track_exists"])
+        label_any = labels["label_valid"].any(axis=1)
+        violations = label_any & ~self.eligible
+        if np.any(violations):
+            sample, slot = np.argwhere(violations)[0]
+            raise RuntimeError(f"Label exists on an origin-ineligible slot: sample {int(sample)}, "
+                               f"slot {int(slot)}; dead-slot labels are forbidden")
 
     @classmethod
     def from_paths(cls, root, split: str, snr_db: float, label_snr_db: float | None = None) -> "F01EDataset":
@@ -115,8 +134,7 @@ class F01EDataset:
         detected = self.arrays["detected"][index].copy()
         timestamp = self.arrays["timestamp"][index].copy()
         model_input = {"state_hat": state, "track_exists": exists, "detected": detected,
-                       "timestamp": timestamp,
-                       "origin_eligible": exists[-1] & (exists.sum(axis=0) >= 3)}
+                       "timestamp": timestamp, "origin_eligible": self.eligible[index].copy()}
         labels = {"future_position": self.label_arrays["future_position"][index].copy(),
                   "label_valid": self.label_arrays["label_valid"][index].copy()}
         evaluation_only = self.metadata[index] if index < len(self.metadata) else {}

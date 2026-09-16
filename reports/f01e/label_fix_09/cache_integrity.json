@@ -1,0 +1,77 @@
+{
+  "stage": "SENS-FREEZE-09 repack",
+  "inputs_files": 24,
+  "sequences_files": 1680,
+  "inputs_before_sha256": "3cae3a8b2905d66dda7b84e607c05c95b5bc65b3a77c172b3f9a784f1cfd8dc4",
+  "inputs_after_sha256": "3cae3a8b2905d66dda7b84e607c05c95b5bc65b3a77c172b3f9a784f1cfd8dc4",
+  "sequences_before_sha256": "b6985b6b4d1bbdfdfd162aa24221d27f39be2afcefd2d97b072d16a0eaae6da8",
+  "sequences_after_sha256": "b6985b6b4d1bbdfdfd162aa24221d27f39be2afcefd2d97b072d16a0eaae6da8",
+  "inputs_unchanged": true,
+  "sequences_unchanged": true,
+  "labels_before": {
+    "train": {
+      "valid_slot_labels": 3509153,
+      "labelled_slots": 178984,
+      "dead_slot_labels": 26176,
+      "origin_ineligible_labels": 29275,
+      "eligible_slots": 173862
+    },
+    "V_select": {
+      "valid_slot_labels": 287661,
+      "labelled_slots": 14563,
+      "dead_slot_labels": 2503,
+      "origin_ineligible_labels": 2820,
+      "eligible_slots": 13665
+    },
+    "V_confirm": {
+      "valid_slot_labels": 250524,
+      "labelled_slots": 12686,
+      "dead_slot_labels": 1777,
+      "origin_ineligible_labels": 2003,
+      "eligible_slots": 12221
+    },
+    "test": {
+      "valid_slot_labels": 541032,
+      "labelled_slots": 27405,
+      "dead_slot_labels": 4298,
+      "origin_ineligible_labels": 4851,
+      "eligible_slots": 25971
+    }
+  },
+  "labels_after": {
+    "train": {
+      "valid_slot_labels": 3168589,
+      "labelled_slots": 161703,
+      "dead_slot_labels": 0,
+      "origin_ineligible_labels": 0,
+      "eligible_slots": 173862
+    },
+    "V_select": {
+      "valid_slot_labels": 254442,
+      "labelled_slots": 12891,
+      "dead_slot_labels": 0,
+      "origin_ineligible_labels": 0,
+      "eligible_slots": 13665
+    },
+    "V_confirm": {
+      "valid_slot_labels": 227375,
+      "labelled_slots": 11521,
+      "dead_slot_labels": 0,
+      "origin_ineligible_labels": 0,
+      "eligible_slots": 12221
+    },
+    "test": {
+      "valid_slot_labels": 480502,
+      "labelled_slots": 24353,
+      "dead_slot_labels": 0,
+      "origin_ineligible_labels": 0,
+      "eligible_slots": 25971
+    }
+  },
+  "labels_metadata_rewritten": true,
+  "sequence_provenance": {
+    "generation_config_sha256": "d831f4673cc5dd593a41214347c61df88355b734226f23dd9bb8300c4f64f108",
+    "current_config_sha256": "5c86e3b19e5ad860dc9965fcffc9c715f7320c35626499fffce3d83725b0b4fd",
+    "note": "generation hash equals commit f319faf config; current equals 9473d17 config; the only diff is snr_levels_db and calibration metadata (no sensing numerics), so the existing sequences are accepted without regeneration"
+  }
+}
