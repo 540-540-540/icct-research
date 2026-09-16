@@ -1,0 +1,130 @@
+{
+  "stage": "ISAC-REDESIGN-PROBE-01",
+  "split": "train",
+  "cross_bs": {
+    "-5": {
+      "accuracy": 0.999208435207824,
+      "pairs": 654400,
+      "crowded_accuracy": 0.9992141688258557,
+      "crowded_pairs": 586640,
+      "normal_accuracy": 0.9991587957497048,
+      "normal_pairs": 67760
+    },
+    "0": {
+      "accuracy": 0.9998533007334963,
+      "pairs": 654400,
+      "crowded_accuracy": 0.9998534024273831,
+      "crowded_pairs": 586640,
+      "normal_accuracy": 0.9998524203069658,
+      "normal_pairs": 67760
+    },
+    "5": {
+      "accuracy": 0.9999709657701712,
+      "pairs": 654400,
+      "crowded_accuracy": 0.9999676121641893,
+      "crowded_pairs": 586640,
+      "normal_accuracy": 1.0,
+      "normal_pairs": 67760
+    },
+    "10": {
+      "accuracy": 1.0,
+      "pairs": 654400,
+      "crowded_accuracy": 1.0,
+      "crowded_pairs": 586640,
+      "normal_accuracy": 1.0,
+      "normal_pairs": 67760
+    },
+    "15": {
+      "accuracy": 1.0,
+      "pairs": 654400,
+      "crowded_accuracy": 1.0,
+      "crowded_pairs": 586640,
+      "normal_accuracy": 1.0,
+      "normal_pairs": 67760
+    },
+    "20": {
+      "accuracy": 1.0,
+      "pairs": 654400,
+      "crowded_accuracy": 1.0,
+      "crowded_pairs": 586640,
+      "normal_accuracy": 1.0,
+      "normal_pairs": 67760
+    }
+  },
+  "temporal": {
+    "-5": {
+      "accuracy": 1.0,
+      "targets": 654164,
+      "id_switches": 0
+    },
+    "0": {
+      "accuracy": 1.0,
+      "targets": 654362,
+      "id_switches": 0
+    },
+    "5": {
+      "accuracy": 1.0,
+      "targets": 654381,
+      "id_switches": 0
+    },
+    "10": {
+      "accuracy": 1.0,
+      "targets": 654400,
+      "id_switches": 0
+    },
+    "15": {
+      "accuracy": 1.0,
+      "targets": 654400,
+      "id_switches": 0
+    },
+    "20": {
+      "accuracy": 1.0,
+      "targets": 654400,
+      "id_switches": 0
+    }
+  },
+  "no_smoothing": {
+    "position_max_abs_diff": 7.6293910638014495e-06,
+    "velocity_max_abs_diff": 1.8803772050546286e-06,
+    "position_float32_exact": true,
+    "velocity_float32_exact": true,
+    "requirement": "final state equals the current-frame fusion result up to slot permutation; state_hat is stored float32 so the copy is exact in float32 (max float64 diff ~1e-5 m)"
+  },
+  "discipline": {
+    "births": {
+      "-5": 537,
+      "0": 93,
+      "5": 18,
+      "10": 0,
+      "15": 0,
+      "20": 0
+    },
+    "deaths": {
+      "-5": 559,
+      "0": 57,
+      "5": 19,
+      "10": 0,
+      "15": 0,
+      "20": 0
+    },
+    "rank_deficient_velocity_frames": {
+      "-5": 947,
+      "0": 196,
+      "5": 38,
+      "10": 0,
+      "15": 0,
+      "20": 0
+    },
+    "ill_conditioned_velocity_frames": {
+      "-5": 14878,
+      "0": 14128,
+      "5": 13982,
+      "10": 13954,
+      "15": 13967,
+      "20": 13963
+    },
+    "velocity_estimator": "MAP with weakly informative 30 m/s speed prior (regularizes near-collinear BS geometry; the prior is negligible for well-conditioned geometry)",
+    "crowded_definition": "window with >= 5 participating vehicles"
+  },
+  "gt_usage": "GT identity used only for offline accuracy audit, slot canonicalization and future labels; never inside association"
+}

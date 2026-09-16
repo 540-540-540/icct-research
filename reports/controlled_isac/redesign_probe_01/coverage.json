@@ -1,0 +1,51 @@
+{
+  "train": {
+    "episodes": 179,
+    "origins": 5549,
+    "candidate_windows": 5237,
+    "two_bs_windows": 5213,
+    "recoverable_windows": 3537,
+    "covered_windows": 5213,
+    "vehicle_count_histogram": {
+      "2": 281,
+      "5": 445,
+      "4": 411,
+      "3": 394,
+      "8": 1975,
+      "7": 1112,
+      "6": 619
+    },
+    "retention_ratio": 0.9954172236012985,
+    "recoverable_retention_ratio": 0.6753866717586404
+  },
+  "v_select": {
+    "episodes": 25,
+    "origins": 400,
+    "candidate_windows": 400,
+    "two_bs_windows": 400,
+    "recoverable_windows": 253,
+    "covered_windows": 400,
+    "vehicle_count_histogram": {
+      "8": 196,
+      "7": 114,
+      "6": 36,
+      "5": 24,
+      "3": 14,
+      "4": 16
+    },
+    "retention_ratio": 1.0,
+    "recoverable_retention_ratio": 0.6325
+  },
+  "rule": "official rule: each participating vehicle visible to >=2 BS in every one of the 20 history frames (range 10-300 m, |bearing| <= 70 deg)",
+  "candidate_windows": 5637,
+  "two_bs_windows": 5613,
+  "covered_windows": 5613,
+  "recoverable_windows": 3790,
+  "retention_ratio": 0.9957424161788185,
+  "recoverable_retention_ratio": 0.6723434450949086,
+  "diagnostic_recoverability": {
+    "definition": "visible-BS geometry has lambda_min/lambda_max of sum(u u^T) >= 0.01 (2D velocity recoverable); counted on the same candidate windows",
+    "note": "diagnostic only; the official >=2-BS selection rule is used for the dataset. The recoverability condition would retain below the 70% policy threshold, so it was not adopted unilaterally (section 4 policy)"
+  },
+  "stopped": false
+}

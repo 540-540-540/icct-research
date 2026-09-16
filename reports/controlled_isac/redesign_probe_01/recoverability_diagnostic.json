@@ -1,0 +1,54 @@
+{
+  "stage": "ISAC-REDESIGN-PROBE-01 recoverability diagnostic",
+  "split": "train",
+  "windows_sampled": 800,
+  "snr_db": [
+    -5.0,
+    20.0
+  ],
+  "definition": "ill-conditioned = lambda_min/lambda_max of sum(u u^T) over associated BS members < 1e-3 (transverse velocity unobservable)",
+  "by_snr": {
+    "-5": {
+      "all": {
+        "n": 95784,
+        "rmse": 0.8040864325217099,
+        "p90": 0.17042741026850397,
+        "fraction_gt_5mps": 0.002808402238369665
+      },
+      "ill_conditioned": {
+        "n": 1559,
+        "rmse": 6.190903125178456,
+        "p90": 7.7884961372857555,
+        "fraction_gt_5mps": 0.1725465041693393
+      },
+      "well_conditioned": {
+        "n": 94225,
+        "rmse": 0.15201455669661826,
+        "p90": 0.15477208208510093,
+        "fraction_gt_5mps": 0.0
+      },
+      "ill_conditioned_share": 0.016276204794120102
+    },
+    "20": {
+      "all": {
+        "n": 95780,
+        "rmse": 0.524530007390545,
+        "p90": 0.056417665327114376,
+        "fraction_gt_5mps": 0.0009709751513885988
+      },
+      "ill_conditioned": {
+        "n": 1462,
+        "rmse": 4.223467649417431,
+        "p90": 3.453251223843978,
+        "fraction_gt_5mps": 0.06361149110807114
+      },
+      "well_conditioned": {
+        "n": 94318,
+        "rmse": 0.05384259991910719,
+        "p90": 0.05069433441865351,
+        "fraction_gt_5mps": 0.0
+      },
+      "ill_conditioned_share": 0.015264147003549802
+    }
+  }
+}
