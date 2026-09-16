@@ -1,0 +1,308 @@
+{
+  "dataset": "F01E",
+  "split": "train",
+  "snr_levels": [
+    -5,
+    0,
+    5,
+    10,
+    15,
+    20
+  ],
+  "f01d_used": false,
+  "alive_states_total": 3681477,
+  "valid_states": 3155960,
+  "missing_alive_states": {
+    "assigned_gt": 500603,
+    "gt_sample_unavailable": 24914
+  },
+  "unassigned_alive_states": {
+    "alive_states": 500603,
+    "fraction_of_alive": 0.13597884762012638,
+    "nearest_gt_error_fractions": {
+      "gt_0.5m": 0.7520630120075189,
+      "gt_1.0m": 0.610635573498361,
+      "gt_2.0m": 0.3639890292307477,
+      "gt_4.0m": 0.15473938430253115
+    },
+    "note": "alive states whose slot has no current alignment entry; they carry no assigned identity and are reported separately, not forced into the four tail causes"
+  },
+  "assigned_gt_out_of_simulator_fov_states": 0,
+  "tail_thresholds": {
+    "gt_0.5m": {
+      "count": 925704,
+      "fraction": 0.29331930696206543
+    },
+    "gt_1.0m": {
+      "count": 641680,
+      "fraction": 0.20332323603594468
+    },
+    "gt_2.0m": {
+      "count": 364762,
+      "fraction": 0.11557877793127923
+    },
+    "gt_4.0m": {
+      "count": 94607,
+      "fraction": 0.029977249394795877
+    }
+  },
+  "tail_gt_1m": {
+    "count": 641680,
+    "fraction_all_valid_states": 0.20332323603594468,
+    "cause_fraction_of_tail": {
+      "alignment_suspect": 0.03306009225782321,
+      "true_tracking_tail": 0.9193647924198978,
+      "ambiguous_close_vehicle": 8.103727714748784e-05,
+      "unresolved": 0.04749407804513153
+    }
+  },
+  "cause_detail": {
+    "alignment_suspect": {
+      "count_of_tail": 21214,
+      "fraction_of_tail": 0.03306009225782321,
+      "fraction_of_all_valid": 0.006721884941507497
+    },
+    "true_tracking_tail": {
+      "count_of_tail": 589938,
+      "fraction_of_tail": 0.9193647924198978,
+      "fraction_of_all_valid": 0.18692822469232817
+    },
+    "ambiguous_close_vehicle": {
+      "count_of_tail": 52,
+      "fraction_of_tail": 8.103727714748784e-05,
+      "fraction_of_all_valid": 1.647676142916894e-05
+    },
+    "unresolved": {
+      "count_of_tail": 30476,
+      "fraction_of_tail": 0.04749407804513153,
+      "fraction_of_all_valid": 0.009656649640679856
+    }
+  },
+  "by_detection_state": {
+    "detected": {
+      "alive_states": 2671632,
+      "valid_states": 2491245,
+      "tail_gt_1": 250025,
+      "tail_gt_1_fraction": 0.10036146585341867,
+      "cause_count": {
+        "alignment_suspect": 13617,
+        "true_tracking_tail": 222897,
+        "ambiguous_close_vehicle": 45,
+        "unresolved": 13466
+      },
+      "cause_fraction_of_tail": {
+        "alignment_suspect": 0.05446255374462554,
+        "true_tracking_tail": 0.8914988501149885,
+        "ambiguous_close_vehicle": 0.00017998200179982003,
+        "unresolved": 0.05385861413858614
+      }
+    },
+    "coast": {
+      "alive_states": 1009845,
+      "valid_states": 664715,
+      "tail_gt_1": 391655,
+      "tail_gt_1_fraction": 0.5892074046771925,
+      "cause_count": {
+        "alignment_suspect": 7597,
+        "true_tracking_tail": 367041,
+        "ambiguous_close_vehicle": 7,
+        "unresolved": 17010
+      },
+      "cause_fraction_of_tail": {
+        "alignment_suspect": 0.01939717353282864,
+        "true_tracking_tail": 0.9371538726685475,
+        "ambiguous_close_vehicle": 1.7872872808977288e-05,
+        "unresolved": 0.04343108092581481
+      }
+    }
+  },
+  "by_snr": {
+    "-5": {
+      "alive_states": 613564,
+      "valid_states": 517773,
+      "tail_gt_1": 106356,
+      "tail_gt_1_fraction": 0.2054104791095712,
+      "cause_count": {
+        "alignment_suspect": 3374,
+        "true_tracking_tail": 97783,
+        "ambiguous_close_vehicle": 5,
+        "unresolved": 5194
+      }
+    },
+    "0": {
+      "alive_states": 617054,
+      "valid_states": 522489,
+      "tail_gt_1": 107577,
+      "tail_gt_1_fraction": 0.2058933298117281,
+      "cause_count": {
+        "alignment_suspect": 3463,
+        "true_tracking_tail": 99096,
+        "ambiguous_close_vehicle": 5,
+        "unresolved": 5013
+      }
+    },
+    "5": {
+      "alive_states": 612749,
+      "valid_states": 528631,
+      "tail_gt_1": 106225,
+      "tail_gt_1_fraction": 0.20094356933286167,
+      "cause_count": {
+        "alignment_suspect": 3420,
+        "true_tracking_tail": 97613,
+        "ambiguous_close_vehicle": 9,
+        "unresolved": 5183
+      }
+    },
+    "10": {
+      "alive_states": 612960,
+      "valid_states": 528903,
+      "tail_gt_1": 106480,
+      "tail_gt_1_fraction": 0.20132235967653805,
+      "cause_count": {
+        "alignment_suspect": 3532,
+        "true_tracking_tail": 98023,
+        "ambiguous_close_vehicle": 11,
+        "unresolved": 4914
+      }
+    },
+    "15": {
+      "alive_states": 612345,
+      "valid_states": 529689,
+      "tail_gt_1": 107180,
+      "tail_gt_1_fraction": 0.202345149701051,
+      "cause_count": {
+        "alignment_suspect": 3788,
+        "true_tracking_tail": 98329,
+        "ambiguous_close_vehicle": 11,
+        "unresolved": 5052
+      }
+    },
+    "20": {
+      "alive_states": 612805,
+      "valid_states": 528475,
+      "tail_gt_1": 107862,
+      "tail_gt_1_fraction": 0.20410047778986706,
+      "cause_count": {
+        "alignment_suspect": 3637,
+        "true_tracking_tail": 99094,
+        "ambiguous_close_vehicle": 11,
+        "unresolved": 5120
+      }
+    }
+  },
+  "by_density": {
+    "low": {
+      "alive_states": 41760,
+      "valid_states": 32209,
+      "tail_gt_1": 352,
+      "tail_gt_1_fraction": 0.010928622434723215,
+      "cause_fraction_of_tail": {
+        "alignment_suspect": 0.0,
+        "true_tracking_tail": 1.0,
+        "ambiguous_close_vehicle": 0.0,
+        "unresolved": 0.0
+      }
+    },
+    "mid": {
+      "alive_states": 272794,
+      "valid_states": 213432,
+      "tail_gt_1": 34732,
+      "tail_gt_1_fraction": 0.16273098691855017,
+      "cause_fraction_of_tail": {
+        "alignment_suspect": 0.015173327191062997,
+        "true_tracking_tail": 0.9457560750892549,
+        "ambiguous_close_vehicle": 0.0,
+        "unresolved": 0.03907059771968214
+      }
+    },
+    "high": {
+      "alive_states": 3366923,
+      "valid_states": 2910319,
+      "tail_gt_1": 606596,
+      "tail_gt_1_fraction": 0.2084293852323405,
+      "cause_fraction_of_tail": {
+        "alignment_suspect": 0.03410342303608992,
+        "true_tracking_tail": 0.917806909376257,
+        "ambiguous_close_vehicle": 8.572427117884061e-05,
+        "unresolved": 0.04800394331647423
+      }
+    }
+  },
+  "problematic_window_decomposition": {
+    "-5": {
+      "position_only": 860,
+      "coast_only": 372,
+      "both": 2128,
+      "sticky_slot_violation": 0,
+      "neither": 2189,
+      "windows": 5549,
+      "problematic_fraction": 0.6055145071183997,
+      "position_p90_assigned_median": 1.1565912702164465,
+      "position_p90_nearest_median": 1.0904357786512906
+    },
+    "0": {
+      "position_only": 929,
+      "coast_only": 338,
+      "both": 2083,
+      "sticky_slot_violation": 0,
+      "neither": 2199,
+      "windows": 5549,
+      "problematic_fraction": 0.6037123806091188,
+      "position_p90_assigned_median": 1.1926297169685816,
+      "position_p90_nearest_median": 1.1059109775359792
+    },
+    "5": {
+      "position_only": 1054,
+      "coast_only": 273,
+      "both": 1896,
+      "sticky_slot_violation": 0,
+      "neither": 2326,
+      "windows": 5549,
+      "problematic_fraction": 0.5808253739412507,
+      "position_p90_assigned_median": 1.1460311485269696,
+      "position_p90_nearest_median": 1.0737794626806287
+    },
+    "10": {
+      "position_only": 1042,
+      "coast_only": 252,
+      "both": 1867,
+      "sticky_slot_violation": 0,
+      "neither": 2388,
+      "windows": 5549,
+      "problematic_fraction": 0.5696521895837088,
+      "position_p90_assigned_median": 1.1287586638283655,
+      "position_p90_nearest_median": 1.0527819338505642
+    },
+    "15": {
+      "position_only": 1074,
+      "coast_only": 236,
+      "both": 1853,
+      "sticky_slot_violation": 0,
+      "neither": 2386,
+      "windows": 5549,
+      "problematic_fraction": 0.570012614885565,
+      "position_p90_assigned_median": 1.1246995225642584,
+      "position_p90_nearest_median": 1.042891475728176
+    },
+    "20": {
+      "position_only": 1104,
+      "coast_only": 245,
+      "both": 1860,
+      "sticky_slot_violation": 0,
+      "neither": 2340,
+      "windows": 5549,
+      "problematic_fraction": 0.5783023968282573,
+      "position_p90_assigned_median": 1.1644670950061726,
+      "position_p90_nearest_median": 1.0772178920180973
+    }
+  },
+  "alignment_suspect_subtypes": {
+    "slot_rebirth_inside_window": 7463,
+    "alignment_suspect_total": 21214,
+    "rule": "a slot whose track_exists run starts inside the 20-frame window was reused by a new track; the window matcher then cannot represent both tracks"
+  },
+  "notes": {
+    "cause_rules": "true_tracking_tail: nearest>1; alignment_suspect: nearest!=assigned, nearest<0.5, margin>=0.5; ambiguous_close_vehicle: nearest<=1 and (margin<0.5 or another visible GT<=1); else unresolved",
+    "coast_is_a_state_dimension_not_a_cause": true
+  }
+}

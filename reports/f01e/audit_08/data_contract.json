@@ -1,0 +1,70 @@
+{
+  "facts": {
+    "generator_path": "code/07_shared_frontend/freeze07_generate_f01e.py",
+    "generator_sha256": "6057febd58e437196b4c0db3fb06e5cd079aed6d8dc086744be0bbc70719e2aa",
+    "input_path_pattern": "inputs/{split}_snr_{s}.npz",
+    "label_path_pattern": "labels/{split}_snr_{s}.npz",
+    "reference_label_write_lines": [
+      355
+    ],
+    "alignment_function_lines": [
+      219
+    ],
+    "hungarian_lines": [
+      221,
+      241
+    ],
+    "gate_lines": [
+      219,
+      240
+    ],
+    "common_frames_rule_lines": [
+      237
+    ],
+    "history_window_lines": [
+      202,
+      224
+    ],
+    "sequence_frames": 199,
+    "sequence_grid": "episode start + (1..199)*100 ms",
+    "snr_name_convention": "snr_m5",
+    "slot_track_key_written": false,
+    "assigned_gt_saved": true,
+    "assigned_gt_storage": "metadata/{split}.json samples[].slot_alignment_by_snr (per window and SNR)",
+    "introspection_complete": true
+  },
+  "answers": {
+    "Q1_input_paths_per_snr": {
+      "-5": "data/f01e/inputs/{split}_snr_m5.npz",
+      "0": "data/f01e/inputs/{split}_snr_0.npz",
+      "5": "data/f01e/inputs/{split}_snr_5.npz",
+      "10": "data/f01e/inputs/{split}_snr_10.npz",
+      "15": "data/f01e/inputs/{split}_snr_15.npz",
+      "20": "data/f01e/inputs/{split}_snr_20.npz"
+    },
+    "Q2_label_paths_per_snr": {
+      "-5": "data/f01e/labels/{split}_snr_m5.npz",
+      "0": "data/f01e/labels/{split}_snr_0.npz",
+      "5": "data/f01e/labels/{split}_snr_5.npz",
+      "10": "data/f01e/labels/{split}_snr_10.npz",
+      "15": "data/f01e/labels/{split}_snr_15.npz",
+      "20": "data/f01e/labels/{split}_snr_20.npz"
+    },
+    "Q3_generic_labels": "labels/{split}.npz is written by freeze07_generate_f01e.pack from the max-SNR reference alignment",
+    "Q4_reference_snr": 20,
+    "Q5_mapping_granularity": "per window (20 history frames) and per SNR; Hungarian over slots x source vehicles",
+    "Q6_cost": "mean Euclidean distance over frames where the slot is alive and the GT sample exists (>=3 common frames)",
+    "Q7_hungarian": true,
+    "Q8_gate_m": 5.0,
+    "Q9_identity_changes_within_track": "assignment is recomputed independently per window and per SNR; nothing enforces temporal identity across windows, and true track_key is not persisted",
+    "Q10_future_labels": "aligned_labels() copies the aligned source vehicle's raw future xy (origin+1..20 frames, exact samples) into the slot row",
+    "Q11_slot_track_key_in_cache": false,
+    "Q12_assigned_gt_saved": true,
+    "Q13_assignment_reproducible": true,
+    "Q13_reproduction_route": "read metadata/{split}.json samples[].slot_alignment_by_snr"
+  },
+  "formal_dataset": "F01E",
+  "f01d_used_for_audit": false,
+  "train_windows": 5549,
+  "train_episodes": 179
+}
