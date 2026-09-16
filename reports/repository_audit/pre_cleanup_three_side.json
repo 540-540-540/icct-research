@@ -1,0 +1,433 @@
+{
+  "stage": "ICCT pre-cleanup three-side audit (no deletion performed)",
+  "frozen_history": {
+    "stage0-senior-original": "ca1682a47e9129fbaf50dab4e2a6abc574b60098",
+    "stage1-meeting-freeze-20260915": "8adc24c5791daaa6a27c986c9aeb1915e1c5e7c7",
+    "stage0_pure_tracked_files": 1222,
+    "stage0_parent_count": 0
+  },
+  "github": {
+    "remote": "https://github.com/540-540-540/icct-research",
+    "stage2_baseline": "efb53ed524d706b93fba69cf8702f4a7e1f904e8",
+    "source_dirs_files": 348,
+    "branch_count": 19
+  },
+  "windows": {
+    "repo_path": "E:\\NJUPT\\ICCT会议",
+    "branch": "maintenance/repo-cleanup",
+    "head": "0a70e9021f062a7c83d4c8c16bff08f27f011ae5",
+    "tracked_files": 2658,
+    "status_entries": 9,
+    "status_counts": {
+      "D": 3,
+      "??": 6
+    },
+    "ignored_entries": 477,
+    "dirty": true,
+    "status_lines": [
+      " D \"reports/2026_09_15_QGNN\\347\\273\\204\\344\\274\\232\\346\\261\\207\\346\\212\\245_\\344\\277\\256\\350\\256\\242\\347\\211\\210.pptx\"",
+      " D \"reports/2026_09_15_QGNN\\347\\273\\204\\344\\274\\232\\346\\261\\207\\346\\212\\245_\\345\\210\\235\\347\\250\\277.pptx\"",
+      " D \"reports/~$2026_09_15_QGNN\\347\\273\\204\\344\\274\\232\\346\\261\\207\\346\\212\\245_\\344\\277\\256\\350\\256\\242\\347\\211\\210.pptx\"",
+      "?? configs/qgnn_final_test.json",
+      "?? experiments/qgnn_final_test/",
+      "?? experiments/qgnn_hzy/",
+      "?? \"reports/2026_09_15_QGNN\\347\\273\\204\\344\\274\\232\\346\\261\\207\\346\\212\\245_\\347\\224\\265\\350\\267\\257\\346\\233\\264\\346\\226\\260\\347\\211\\210.pptx\"",
+      "?? \"reports/QGNN_\\345\\256\\241\\350\\256\\241\\344\\270\\216\\346\\224\\271\\350\\277\\233\\346\\211\\247\\350\\241\\214\\346\\226\\271\\346\\241\\210.md\"",
+      "?? reports/qgnn_hzy/"
+    ],
+    "untracked_files": 9
+  },
+  "server": {
+    "path": "/home/dell/YrM/ICCT",
+    "git_repository": false,
+    "note": "Syncthing mirror only; no .git directory",
+    "dir_file_counts": {
+      "code": 256,
+      "configs": 23,
+      "frontend": 89,
+      "prediction": 29,
+      "experiments": 93,
+      "scripts": 14,
+      "docs": 31
+    },
+    "dir_sizes": {
+      "data": "3.3G",
+      "models": "526M",
+      "checkpoints": "88M",
+      "results": "990M",
+      "reports": "1.5G",
+      "archive": "356K"
+    }
+  },
+  "source_consistency": {
+    "directories": [
+      "code",
+      "configs",
+      "frontend",
+      "prediction",
+      "experiments",
+      "scripts",
+      "docs"
+    ],
+    "union_paths": 422,
+    "classification_counts": {
+      "A": 348,
+      "D": 61,
+      "B": 13
+    },
+    "newline_only_differences": 11,
+    "legend": {
+      "A": "three-side identical",
+      "B": "GitHub missing (disk copies exist)",
+      "C": "Windows only",
+      "D": "Server only",
+      "E": "same path different content",
+      "F": "historical only (in Git history, no current disk copy)",
+      "G": "unresolved"
+    }
+  },
+  "unique_important_assets": [
+    {
+      "path": "scripts/check_environment.py",
+      "location": "server",
+      "category": "source",
+      "size": 2595,
+      "sha256": "25964f51eab2136d1b5f33dbb50e86a42d6ea9b1b4c97010f492a9a7a239f70d",
+      "recommended_action": "REVIEW",
+      "reason": "only known copy of an important file (not in Git)"
+    },
+    {
+      "path": "scripts/check_evaluation_cache.py",
+      "location": "server",
+      "category": "source",
+      "size": 3850,
+      "sha256": "e0047feef36e1ee3b70d73b7726f335ff24053fb639e440c46e6c3a80dd79fea",
+      "recommended_action": "REVIEW",
+      "reason": "only known copy of an important file (not in Git)"
+    },
+    {
+      "path": "scripts/check_quantum_speed.py",
+      "location": "server",
+      "category": "source",
+      "size": 7467,
+      "sha256": "69ff43e23e1f4fd2a3a06c8924dfff6db8fc149374bfad3d78d6515072a8da51",
+      "recommended_action": "REVIEW",
+      "reason": "only known copy of an important file (not in Git)"
+    },
+    {
+      "path": "scripts/run_f02.py",
+      "location": "server",
+      "category": "source",
+      "size": 7492,
+      "sha256": "8aa23d4e329471d7e964b27caaab325c2c9a51ff57e683a40b04930f1b106f6b",
+      "recommended_action": "REVIEW",
+      "reason": "only known copy of an important file (not in Git)"
+    },
+    {
+      "path": "scripts/run_f03_short.py",
+      "location": "server",
+      "category": "source",
+      "size": 13017,
+      "sha256": "4bf6d6905c08f5cb5cec428ef2f83f70a72f680c07b35ba0ad7728082fcccfc8",
+      "recommended_action": "REVIEW",
+      "reason": "only known copy of an important file (not in Git)"
+    },
+    {
+      "path": "scripts/run_f04.py",
+      "location": "server",
+      "category": "source",
+      "size": 19816,
+      "sha256": "a086a6fcaf78878fbaf9af7346b239536f1b4d5682061ff9a5fa4a3d49a164a4",
+      "recommended_action": "REVIEW",
+      "reason": "only known copy of an important file (not in Git)"
+    },
+    {
+      "path": "scripts/run_f05.py",
+      "location": "server",
+      "category": "source",
+      "size": 10393,
+      "sha256": "8a3718c85f333b09a743acf623dbf2da812103c4784c8f0ee5debe2ec9d130ae",
+      "recommended_action": "REVIEW",
+      "reason": "only known copy of an important file (not in Git)"
+    },
+    {
+      "path": "reports/2026_09_15_QGNN组会汇报_电路更新版.pptx",
+      "location": "windows",
+      "category": "result",
+      "size": 316247,
+      "sha256": "bedf83cce7e0c3ae946ce8be40c5e7273e4e59245ffca05ad5ac771dc84b66c5",
+      "recommended_action": "REVIEW",
+      "reason": "untracked Stage-1 meeting artifact; no copy on the server; not in Git"
+    },
+    {
+      "path": "reports/QGNN_审计与改进执行方案.md",
+      "location": "windows",
+      "category": "docs",
+      "size": 18773,
+      "sha256": "bbf23bd53e2bcd65310f7398405d9c72528c580ab59c2f01a12ebc0f92a7557a",
+      "recommended_action": "REVIEW",
+      "reason": "untracked Stage-1 QGNN plan; no copy on the server; not in Git"
+    }
+  ],
+  "large_assets": [
+    {
+      "path": "data/",
+      "location": "server",
+      "size": "3.3G",
+      "classification": "KEEP_SERVER_ONLY",
+      "note": "raw + formal datasets (f01e/f01d/f01_source/cleaned NGSIM); formal experiment assets"
+    },
+    {
+      "path": "data/",
+      "location": "windows",
+      "size": "2.57G",
+      "classification": "KEEP_LOCAL_ONLY",
+      "note": "partial local dataset copies (raw CSV, cleaned dataset, multitarget npz, prompt bank)"
+    },
+    {
+      "path": "models/gpt2",
+      "location": "server",
+      "size": "526M",
+      "classification": "KEEP_SERVER_ONLY",
+      "note": "GPT-2 base weights; content also in Git only as config/merges"
+    },
+    {
+      "path": "models/gpt2",
+      "location": "windows",
+      "size": "526M",
+      "classification": "DUPLICATE_CAN_REMOVE_LATER",
+      "note": "duplicate of the server model weights"
+    },
+    {
+      "path": "checkpoints/",
+      "location": "server",
+      "size": "88M",
+      "classification": "KEEP_SERVER_ONLY",
+      "note": "Stage-1 QGAT candidate training checkpoints"
+    },
+    {
+      "path": "results/",
+      "location": "server",
+      "size": "990M",
+      "classification": "KEEP_SERVER_ONLY",
+      "note": "Stage-0/1 training runs; tracked subset also in Git"
+    },
+    {
+      "path": "results/",
+      "location": "windows",
+      "size": "3.16G",
+      "classification": "REVIEW",
+      "note": "local results include tracked files + duplicates; unique checkpoints present"
+    },
+    {
+      "path": "reports/",
+      "location": "server",
+      "size": "1.5G",
+      "classification": "KEEP_SERVER_ONLY",
+      "note": "current + historical reports; tracked subset in Git"
+    },
+    {
+      "path": "reports/",
+      "location": "windows",
+      "size": "663M",
+      "classification": "REVIEW",
+      "note": "local reports; only copy of two untracked Stage-1 artifacts (see CSV)"
+    },
+    {
+      "path": "archive/",
+      "location": "windows",
+      "size": "447M",
+      "classification": "REVIEW",
+      "note": "senior archive verification + bundles; manifests tracked in Git"
+    },
+    {
+      "path": "archive/",
+      "location": "server",
+      "size": "356K",
+      "classification": "KEEP_SERVER_ONLY",
+      "note": "small archive mirror"
+    }
+  ],
+  "branch_final_audit": [
+    {
+      "branch": "f01e-audit-08",
+      "head": "03b3ca2c4dbb080b0e0e3bee27b6ab8c2dbc3487",
+      "last_commit": "2026-09-16T15:58:26+08:00",
+      "subject": "Audit F01E tail attribution and label integrity",
+      "ancestor_of_stage2": true,
+      "unique_commits_vs_stage2": 0,
+      "classification": "DELETE_AFTER_APPROVAL"
+    },
+    {
+      "branch": "f01e-finalize-11",
+      "head": "0e592367fbcacaf616a740be3e1f4782eb557680",
+      "last_commit": "2026-09-16T17:48:29+08:00",
+      "subject": "Complete reproducible F01E final freeze",
+      "ancestor_of_stage2": true,
+      "unique_commits_vs_stage2": 0,
+      "classification": "DELETE_AFTER_APPROVAL"
+    },
+    {
+      "branch": "f01e-identity-audit-10",
+      "head": "30f899a8b05be9ec0b5b06364ce53bb935e11fc8",
+      "last_commit": "2026-09-16T17:07:56+08:00",
+      "subject": "Audit F01E continuous-track identity switches",
+      "ancestor_of_stage2": true,
+      "unique_commits_vs_stage2": 0,
+      "classification": "DELETE_AFTER_APPROVAL"
+    },
+    {
+      "branch": "f01e-label-fix-09",
+      "head": "a6fae04291dd6e96c93f58f69977e69e09d57d27",
+      "last_commit": "2026-09-16T16:30:15+08:00",
+      "subject": "Fix origin-safe F01E trajectory labels",
+      "ancestor_of_stage2": true,
+      "unique_commits_vs_stage2": 0,
+      "classification": "DELETE_AFTER_APPROVAL"
+    },
+    {
+      "branch": "f01e-snr-smoke-01",
+      "head": "e35f905f13745ff67adfb511d74d7d69237a5770",
+      "last_commit": "2026-09-16T18:39:39+08:00",
+      "subject": "Probe downstream SNR sensitivity on frozen F01E",
+      "ancestor_of_stage2": true,
+      "unique_commits_vs_stage2": 0,
+      "classification": "DELETE_AFTER_APPROVAL"
+    },
+    {
+      "branch": "f01e-snr-transition-02",
+      "head": "a145be6749bc87353a4d8b5919754558df4cc464",
+      "last_commit": "2026-09-16T19:00:38+08:00",
+      "subject": "Probe low-SNR transition region",
+      "ancestor_of_stage2": true,
+      "unique_commits_vs_stage2": 0,
+      "classification": "DELETE_AFTER_APPROVAL"
+    },
+    {
+      "branch": "isac-redesign-probe-01",
+      "head": "efb53ed524d706b93fba69cf8702f4a7e1f904e8",
+      "last_commit": "2026-09-16T21:32:46+08:00",
+      "subject": "Prototype controlled ISAC frontend",
+      "ancestor_of_stage2": true,
+      "unique_commits_vs_stage2": 0,
+      "classification": "KEEP"
+    },
+    {
+      "branch": "main",
+      "head": "8adc24c5791daaa6a27c986c9aeb1915e1c5e7c7",
+      "last_commit": "2026-09-14T17:27:13+08:00",
+      "subject": "Add BDX-01 QGNN bottleneck diagnostics",
+      "ancestor_of_stage2": true,
+      "unique_commits_vs_stage2": 0,
+      "classification": "KEEP"
+    },
+    {
+      "branch": "maintenance/repo-cleanup",
+      "head": "0a70e9021f062a7c83d4c8c16bff08f27f011ae5",
+      "last_commit": "2026-09-17T00:21:31+08:00",
+      "subject": "Audit repository assets branches and documents",
+      "ancestor_of_stage2": false,
+      "unique_commits_vs_stage2": null,
+      "classification": "KEEP"
+    },
+    {
+      "branch": "maintenance/stage0-reconstruction",
+      "head": "13e7127e84cf12ca36a1fe21197ab09768c07f07",
+      "last_commit": "2026-09-17T00:44:19+08:00",
+      "subject": "Reconstruct senior-original project snapshot",
+      "ancestor_of_stage2": false,
+      "unique_commits_vs_stage2": null,
+      "classification": "TEMP_KEEP"
+    },
+    {
+      "branch": "maintenance/stage0-reconstruction-v2",
+      "head": "0372437c35cd95b6fc6349e5b4325abe24d638c6",
+      "last_commit": "2026-09-17T01:03:54+08:00",
+      "subject": "Rebuild pure senior-original snapshot from 2026-09-10 archive",
+      "ancestor_of_stage2": false,
+      "unique_commits_vs_stage2": null,
+      "classification": "KEEP"
+    },
+    {
+      "branch": "sens-audit-01",
+      "head": "0cac17ba21c32e5c28548d7bc7f391f9e0345760",
+      "last_commit": "2026-09-15T17:02:45+08:00",
+      "subject": "Audit multi-target ISAC sensing frontend",
+      "ancestor_of_stage2": true,
+      "unique_commits_vs_stage2": 0,
+      "classification": "DELETE_AFTER_APPROVAL"
+    },
+    {
+      "branch": "sens-design-02",
+      "head": "d04403005230574e362f863bf234ee9c65c4cd68",
+      "last_commit": "2026-09-15T19:43:35+08:00",
+      "subject": "Fix final sensing design math details",
+      "ancestor_of_stage2": true,
+      "unique_commits_vs_stage2": 0,
+      "classification": "DELETE_AFTER_APPROVAL"
+    },
+    {
+      "branch": "sens-freeze-07",
+      "head": "9473d177078277891c776d80896b7353103077b3",
+      "last_commit": "2026-09-16T15:16:43+08:00",
+      "subject": "Freeze B64 sensing frontend and F01E interface",
+      "ancestor_of_stage2": true,
+      "unique_commits_vs_stage2": 0,
+      "classification": "DELETE_AFTER_APPROVAL"
+    },
+    {
+      "branch": "sens-rebuild-03a",
+      "head": "e93a9875eef6d613df3735aea383f9fe77067725",
+      "last_commit": "2026-09-15T22:28:18+08:00",
+      "subject": "Fix shared echo geometry and calibration freeze",
+      "ancestor_of_stage2": true,
+      "unique_commits_vs_stage2": 0,
+      "classification": "DELETE_AFTER_APPROVAL"
+    },
+    {
+      "branch": "sens-rebuild-03b",
+      "head": "71a9abfeff056345e59dbe2c9576335b8c146643",
+      "last_commit": "2026-09-16T01:56:01+08:00",
+      "subject": "Fix 03B calibration and audit scope",
+      "ancestor_of_stage2": true,
+      "unique_commits_vs_stage2": 0,
+      "classification": "DELETE_AFTER_APPROVAL"
+    },
+    {
+      "branch": "sens-snr-audit-04",
+      "head": "495af522ebaea5140067abdea4f62d68c34e59fc",
+      "last_commit": "2026-09-16T08:42:17+08:00",
+      "subject": "Fix SNR audit evaluator to strict one-to-one matching",
+      "ancestor_of_stage2": true,
+      "unique_commits_vs_stage2": 0,
+      "classification": "DELETE_AFTER_APPROVAL"
+    },
+    {
+      "branch": "sens-snr-design-05",
+      "head": "e2d59976f065b07bf7f5a761e8482bf0e329a749",
+      "last_commit": "2026-09-16T12:38:39+08:00",
+      "subject": "Probe contiguous sensing bursts",
+      "ancestor_of_stage2": true,
+      "unique_commits_vs_stage2": 0,
+      "classification": "DELETE_AFTER_APPROVAL"
+    },
+    {
+      "branch": "sens-snr-rebuild-06",
+      "head": "f319faf357ee152a1ee1d4984d8eb33e19965ab1",
+      "last_commit": "2026-09-16T13:50:14+08:00",
+      "subject": "Implement B64 production sensing frontend",
+      "ancestor_of_stage2": true,
+      "unique_commits_vs_stage2": 0,
+      "classification": "DELETE_AFTER_APPROVAL"
+    }
+  ],
+  "summary": {
+    "three_side_inconsistency": 0,
+    "github_missing_important": 13,
+    "windows_only_important": 2,
+    "server_only_important": 7,
+    "unique_important_assets": 9,
+    "branches_delete_after_approval": 14,
+    "files_rows": 1144
+  }
+}
