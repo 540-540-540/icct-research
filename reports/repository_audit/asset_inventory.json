@@ -1,0 +1,730 @@
+{
+  "stage": "ICCT repository governance phase 1 (read-only audit)",
+  "base_branch": "maintenance/repo-cleanup",
+  "base_commit": "efb53ed524d706b93fba69cf8702f4a7e1f904e8",
+  "sources": {
+    "github": {
+      "repo": "https://github.com/540-540-540/icct-research",
+      "tracked_files_at_stage2": 2653,
+      "top_level_dirs": [
+        "archive",
+        "code",
+        "configs",
+        "docs",
+        "experiments",
+        "frontend",
+        "reports",
+        "results"
+      ],
+      "note": "tracked tree at the Stage-2 commit; reports/results/archive are versioned in Git"
+    },
+    "server": {
+      "path": "/home/dell/YrM/ICCT",
+      "heavy_dir_sizes": {
+        "data": "3.3G",
+        "models": "526M",
+        "results": "990M",
+        "checkpoints": "88M",
+        "reports": "1.5G",
+        "archive": "356K"
+      },
+      "note": "Syncthing synchronizes code/, docs/, configs/ only; data/models/results/reports exist only on the server (and partially on local disk)"
+    },
+    "local": {
+      "path": "E:\\NJUPT\\ICCT会议",
+      "note": "Git worktree; reports/ and results/ are versioned in Git but not Syncthing-synced to the server"
+    }
+  },
+  "differences": {
+    "server_only_source_files": [
+      {
+        "path": "code/figure_tools/fonts/times.ttf",
+        "size_bytes": 1190736,
+        "classification": "C",
+        "rationale": "environment/build artifact (fonts intentionally gitignored; .zip/.log/.DS_Store)",
+        "in_tracked_handoff_snapshot": false
+      },
+      {
+        "path": "code/figure_tools/fonts/timesbd.ttf",
+        "size_bytes": 1170096,
+        "classification": "C",
+        "rationale": "environment/build artifact (fonts intentionally gitignored; .zip/.log/.DS_Store)",
+        "in_tracked_handoff_snapshot": false
+      },
+      {
+        "path": "code/figure_tools/fonts/timesbi.ttf",
+        "size_bytes": 904204,
+        "classification": "C",
+        "rationale": "environment/build artifact (fonts intentionally gitignored; .zip/.log/.DS_Store)",
+        "in_tracked_handoff_snapshot": false
+      },
+      {
+        "path": "code/figure_tools/fonts/timesi.ttf",
+        "size_bytes": 962864,
+        "classification": "C",
+        "rationale": "environment/build artifact (fonts intentionally gitignored; .zip/.log/.DS_Store)",
+        "in_tracked_handoff_snapshot": false
+      },
+      {
+        "path": "configs/qgnn_final_test.json",
+        "size_bytes": 1136,
+        "classification": "A",
+        "rationale": "required by tracked root code (frozen F01-E chain or QGNN module scripts)",
+        "in_tracked_handoff_snapshot": false
+      },
+      {
+        "path": "docs/ICCT2026官方模板/conference-latex-template_10-17-19/.DS_Store",
+        "size_bytes": 6148,
+        "classification": "C",
+        "rationale": "environment/build artifact (fonts intentionally gitignored; .zip/.log/.DS_Store)",
+        "in_tracked_handoff_snapshot": false
+      },
+      {
+        "path": "docs/ICCT2026官方模板/conference-latex-template_10-17-19/conference_101719.log",
+        "size_bytes": 15588,
+        "classification": "C",
+        "rationale": "environment/build artifact (fonts intentionally gitignored; .zip/.log/.DS_Store)",
+        "in_tracked_handoff_snapshot": false
+      },
+      {
+        "path": "docs/ICCT2026官方模板/ieee-conference-latex-template.zip",
+        "size_bytes": 836939,
+        "classification": "C",
+        "rationale": "environment/build artifact (fonts intentionally gitignored; .zip/.log/.DS_Store)",
+        "in_tracked_handoff_snapshot": false
+      },
+      {
+        "path": "experiments/qgnn_final_test/__init__.py",
+        "size_bytes": 61,
+        "classification": "A",
+        "rationale": "required by tracked root code (frozen F01-E chain or QGNN module scripts)",
+        "in_tracked_handoff_snapshot": false
+      },
+      {
+        "path": "experiments/qgnn_final_test/evaluate.py",
+        "size_bytes": 21042,
+        "classification": "A",
+        "rationale": "required by tracked root code (frozen F01-E chain or QGNN module scripts)",
+        "in_tracked_handoff_snapshot": false
+      },
+      {
+        "path": "experiments/qgnn_hzy/README.md",
+        "size_bytes": 1688,
+        "classification": "A",
+        "rationale": "required by tracked root code (frozen F01-E chain or QGNN module scripts)",
+        "in_tracked_handoff_snapshot": false
+      },
+      {
+        "path": "experiments/qgnn_hzy/check_graph.py",
+        "size_bytes": 8839,
+        "classification": "A",
+        "rationale": "required by tracked root code (frozen F01-E chain or QGNN module scripts)",
+        "in_tracked_handoff_snapshot": false
+      },
+      {
+        "path": "experiments/qgnn_hzy/graph.py",
+        "size_bytes": 2195,
+        "classification": "A",
+        "rationale": "required by tracked root code (frozen F01-E chain or QGNN module scripts)",
+        "in_tracked_handoff_snapshot": false
+      },
+      {
+        "path": "frontend/calibrate_angular_mixture.py",
+        "size_bytes": 2980,
+        "classification": "D",
+        "rationale": "Stage-0 legacy frontend tooling; preserved in tracked handoff snapshot; retention channel to decide with stage0 tag",
+        "in_tracked_handoff_snapshot": true
+      },
+      {
+        "path": "frontend/calibrate_detector.py",
+        "size_bytes": 8114,
+        "classification": "D",
+        "rationale": "Stage-0 legacy frontend tooling; preserved in tracked handoff snapshot; retention channel to decide with stage0 tag",
+        "in_tracked_handoff_snapshot": true
+      },
+      {
+        "path": "frontend/check_covariance_consistency.py",
+        "size_bytes": 2495,
+        "classification": "D",
+        "rationale": "Stage-0 legacy frontend tooling; preserved in tracked handoff snapshot; retention channel to decide with stage0 tag",
+        "in_tracked_handoff_snapshot": true
+      },
+      {
+        "path": "frontend/check_frontend_causality.py",
+        "size_bytes": 2914,
+        "classification": "D",
+        "rationale": "Stage-0 legacy frontend tooling; preserved in tracked handoff snapshot; retention channel to decide with stage0 tag",
+        "in_tracked_handoff_snapshot": true
+      },
+      {
+        "path": "frontend/check_ofdm.py",
+        "size_bytes": 12782,
+        "classification": "D",
+        "rationale": "Stage-0 legacy frontend tooling; preserved in tracked handoff snapshot; retention channel to decide with stage0 tag",
+        "in_tracked_handoff_snapshot": true
+      },
+      {
+        "path": "frontend/check_symbol_causality.py",
+        "size_bytes": 2130,
+        "classification": "D",
+        "rationale": "Stage-0 legacy frontend tooling; preserved in tracked handoff snapshot; retention channel to decide with stage0 tag",
+        "in_tracked_handoff_snapshot": true
+      },
+      {
+        "path": "frontend/check_symbol_dataset.py",
+        "size_bytes": 15184,
+        "classification": "D",
+        "rationale": "Stage-0 legacy frontend tooling; preserved in tracked handoff snapshot; retention channel to decide with stage0 tag",
+        "in_tracked_handoff_snapshot": true
+      },
+      {
+        "path": "frontend/check_symbol_gpu.py",
+        "size_bytes": 13257,
+        "classification": "D",
+        "rationale": "Stage-0 legacy frontend tooling; preserved in tracked handoff snapshot; retention channel to decide with stage0 tag",
+        "in_tracked_handoff_snapshot": true
+      },
+      {
+        "path": "frontend/check_symbol_level.py",
+        "size_bytes": 18909,
+        "classification": "D",
+        "rationale": "Stage-0 legacy frontend tooling; preserved in tracked handoff snapshot; retention channel to decide with stage0 tag",
+        "in_tracked_handoff_snapshot": true
+      },
+      {
+        "path": "frontend/detector.py",
+        "size_bytes": 11057,
+        "classification": "D",
+        "rationale": "Stage-0 legacy frontend tooling; preserved in tracked handoff snapshot; retention channel to decide with stage0 tag",
+        "in_tracked_handoff_snapshot": true
+      },
+      {
+        "path": "frontend/diagnose_detector.py",
+        "size_bytes": 12186,
+        "classification": "D",
+        "rationale": "Stage-0 legacy frontend tooling; preserved in tracked handoff snapshot; retention channel to decide with stage0 tag",
+        "in_tracked_handoff_snapshot": true
+      },
+      {
+        "path": "frontend/diagnose_false_tracks.py",
+        "size_bytes": 7462,
+        "classification": "D",
+        "rationale": "Stage-0 legacy frontend tooling; preserved in tracked handoff snapshot; retention channel to decide with stage0 tag",
+        "in_tracked_handoff_snapshot": true
+      },
+      {
+        "path": "frontend/diagnose_tracking_coverage.py",
+        "size_bytes": 2894,
+        "classification": "D",
+        "rationale": "Stage-0 legacy frontend tooling; preserved in tracked handoff snapshot; retention channel to decide with stage0 tag",
+        "in_tracked_handoff_snapshot": true
+      },
+      {
+        "path": "frontend/echo_source.py",
+        "size_bytes": 5841,
+        "classification": "A",
+        "rationale": "required by tracked root code (frozen F01-E chain or QGNN module scripts)",
+        "in_tracked_handoff_snapshot": true
+      },
+      {
+        "path": "frontend/finalize_frontend.py",
+        "size_bytes": 25197,
+        "classification": "D",
+        "rationale": "Stage-0 legacy frontend tooling; preserved in tracked handoff snapshot; retention channel to decide with stage0 tag",
+        "in_tracked_handoff_snapshot": true
+      },
+      {
+        "path": "frontend/generate_symbol_gpu.py",
+        "size_bytes": 6626,
+        "classification": "D",
+        "rationale": "Stage-0 legacy frontend tooling; preserved in tracked handoff snapshot; retention channel to decide with stage0 tag",
+        "in_tracked_handoff_snapshot": true
+      },
+      {
+        "path": "frontend/jpda.py",
+        "size_bytes": 8716,
+        "classification": "D",
+        "rationale": "Stage-0 legacy frontend tooling; preserved in tracked handoff snapshot; retention channel to decide with stage0 tag",
+        "in_tracked_handoff_snapshot": true
+      },
+      {
+        "path": "frontend/measurement_mixture.py",
+        "size_bytes": 5546,
+        "classification": "D",
+        "rationale": "Stage-0 legacy frontend tooling; preserved in tracked handoff snapshot; retention channel to decide with stage0 tag",
+        "in_tracked_handoff_snapshot": true
+      },
+      {
+        "path": "frontend/ofdm_echo.py",
+        "size_bytes": 9282,
+        "classification": "A",
+        "rationale": "required by tracked root code (frozen F01-E chain or QGNN module scripts)",
+        "in_tracked_handoff_snapshot": true
+      },
+      {
+        "path": "frontend/pack_symbol_dataset.py",
+        "size_bytes": 11680,
+        "classification": "D",
+        "rationale": "Stage-0 legacy frontend tooling; preserved in tracked handoff snapshot; retention channel to decide with stage0 tag",
+        "in_tracked_handoff_snapshot": true
+      },
+      {
+        "path": "frontend/review_source.py",
+        "size_bytes": 5406,
+        "classification": "D",
+        "rationale": "Stage-0 legacy frontend tooling; preserved in tracked handoff snapshot; retention channel to decide with stage0 tag",
+        "in_tracked_handoff_snapshot": true
+      },
+      {
+        "path": "frontend/run_echo_audit.py",
+        "size_bytes": 15924,
+        "classification": "D",
+        "rationale": "Stage-0 legacy frontend tooling; preserved in tracked handoff snapshot; retention channel to decide with stage0 tag",
+        "in_tracked_handoff_snapshot": true
+      },
+      {
+        "path": "frontend/run_frontend.py",
+        "size_bytes": 16282,
+        "classification": "D",
+        "rationale": "Stage-0 legacy frontend tooling; preserved in tracked handoff snapshot; retention channel to decide with stage0 tag",
+        "in_tracked_handoff_snapshot": true
+      },
+      {
+        "path": "frontend/run_symbol_frontend.py",
+        "size_bytes": 7323,
+        "classification": "D",
+        "rationale": "Stage-0 legacy frontend tooling; preserved in tracked handoff snapshot; retention channel to decide with stage0 tag",
+        "in_tracked_handoff_snapshot": true
+      },
+      {
+        "path": "frontend/scene_manifest.py",
+        "size_bytes": 15526,
+        "classification": "D",
+        "rationale": "Stage-0 legacy frontend tooling; preserved in tracked handoff snapshot; retention channel to decide with stage0 tag",
+        "in_tracked_handoff_snapshot": true
+      },
+      {
+        "path": "frontend/station_geometry.py",
+        "size_bytes": 2483,
+        "classification": "D",
+        "rationale": "Stage-0 legacy frontend tooling; preserved in tracked handoff snapshot; retention channel to decide with stage0 tag",
+        "in_tracked_handoff_snapshot": true
+      },
+      {
+        "path": "frontend/symbol_level.py",
+        "size_bytes": 12124,
+        "classification": "D",
+        "rationale": "Stage-0 legacy frontend tooling; preserved in tracked handoff snapshot; retention channel to decide with stage0 tag",
+        "in_tracked_handoff_snapshot": true
+      },
+      {
+        "path": "frontend/symbol_level_gpu.py",
+        "size_bytes": 20065,
+        "classification": "D",
+        "rationale": "Stage-0 legacy frontend tooling; preserved in tracked handoff snapshot; retention channel to decide with stage0 tag",
+        "in_tracked_handoff_snapshot": true
+      },
+      {
+        "path": "frontend/tracker.py",
+        "size_bytes": 17244,
+        "classification": "D",
+        "rationale": "Stage-0 legacy frontend tooling; preserved in tracked handoff snapshot; retention channel to decide with stage0 tag",
+        "in_tracked_handoff_snapshot": true
+      },
+      {
+        "path": "prediction/check_interfaces.py",
+        "size_bytes": 13500,
+        "classification": "A",
+        "rationale": "imported by tracked experiments/*/run.py; only copy is the reports/qgat_model_handoff snapshot",
+        "in_tracked_handoff_snapshot": true
+      },
+      {
+        "path": "prediction/check_pennylane.py",
+        "size_bytes": 14142,
+        "classification": "A",
+        "rationale": "imported by tracked experiments/*/run.py; only copy is the reports/qgat_model_handoff snapshot",
+        "in_tracked_handoff_snapshot": true
+      },
+      {
+        "path": "prediction/check_plain_baseline.py",
+        "size_bytes": 6235,
+        "classification": "A",
+        "rationale": "imported by tracked experiments/*/run.py; only copy is the reports/qgat_model_handoff snapshot",
+        "in_tracked_handoff_snapshot": true
+      },
+      {
+        "path": "prediction/check_primary_models.py",
+        "size_bytes": 3749,
+        "classification": "A",
+        "rationale": "imported by tracked experiments/*/run.py; only copy is the reports/qgat_model_handoff snapshot",
+        "in_tracked_handoff_snapshot": true
+      },
+      {
+        "path": "prediction/check_quantum.py",
+        "size_bytes": 14511,
+        "classification": "A",
+        "rationale": "imported by tracked experiments/*/run.py; only copy is the reports/qgat_model_handoff snapshot",
+        "in_tracked_handoff_snapshot": true
+      },
+      {
+        "path": "prediction/check_training.py",
+        "size_bytes": 8808,
+        "classification": "A",
+        "rationale": "imported by tracked experiments/*/run.py; only copy is the reports/qgat_model_handoff snapshot",
+        "in_tracked_handoff_snapshot": true
+      },
+      {
+        "path": "prediction/classical.py",
+        "size_bytes": 5051,
+        "classification": "A",
+        "rationale": "imported by tracked experiments/*/run.py; only copy is the reports/qgat_model_handoff snapshot",
+        "in_tracked_handoff_snapshot": true
+      },
+      {
+        "path": "prediction/evaluation_cache.py",
+        "size_bytes": 2687,
+        "classification": "A",
+        "rationale": "imported by tracked experiments/*/run.py; only copy is the reports/qgat_model_handoff snapshot",
+        "in_tracked_handoff_snapshot": true
+      },
+      {
+        "path": "prediction/model.py",
+        "size_bytes": 1729,
+        "classification": "A",
+        "rationale": "imported by tracked experiments/*/run.py; only copy is the reports/qgat_model_handoff snapshot",
+        "in_tracked_handoff_snapshot": true
+      },
+      {
+        "path": "prediction/preflight.py",
+        "size_bytes": 11370,
+        "classification": "A",
+        "rationale": "imported by tracked experiments/*/run.py; only copy is the reports/qgat_model_handoff snapshot",
+        "in_tracked_handoff_snapshot": true
+      },
+      {
+        "path": "prediction/quantum.py",
+        "size_bytes": 13914,
+        "classification": "A",
+        "rationale": "imported by tracked experiments/*/run.py; only copy is the reports/qgat_model_handoff snapshot",
+        "in_tracked_handoff_snapshot": true
+      },
+      {
+        "path": "prediction/quantum_torch_reference.py",
+        "size_bytes": 11623,
+        "classification": "A",
+        "rationale": "imported by tracked experiments/*/run.py; only copy is the reports/qgat_model_handoff snapshot",
+        "in_tracked_handoff_snapshot": true
+      },
+      {
+        "path": "prediction/reference.py",
+        "size_bytes": 5004,
+        "classification": "A",
+        "rationale": "imported by tracked experiments/*/run.py; only copy is the reports/qgat_model_handoff snapshot",
+        "in_tracked_handoff_snapshot": true
+      },
+      {
+        "path": "prediction/temporal.py",
+        "size_bytes": 6437,
+        "classification": "A",
+        "rationale": "imported by tracked experiments/*/run.py; only copy is the reports/qgat_model_handoff snapshot",
+        "in_tracked_handoff_snapshot": true
+      },
+      {
+        "path": "prediction/training.py",
+        "size_bytes": 18251,
+        "classification": "A",
+        "rationale": "imported by tracked experiments/*/run.py; only copy is the reports/qgat_model_handoff snapshot",
+        "in_tracked_handoff_snapshot": true
+      },
+      {
+        "path": "scripts/check_environment.py",
+        "size_bytes": 2595,
+        "classification": "A",
+        "rationale": "only surviving copy of Stage-0 F01-F05 runner scripts (not in any commit or snapshot)",
+        "in_tracked_handoff_snapshot": false
+      },
+      {
+        "path": "scripts/check_evaluation_cache.py",
+        "size_bytes": 3850,
+        "classification": "A",
+        "rationale": "only surviving copy of Stage-0 F01-F05 runner scripts (not in any commit or snapshot)",
+        "in_tracked_handoff_snapshot": false
+      },
+      {
+        "path": "scripts/check_quantum_speed.py",
+        "size_bytes": 7467,
+        "classification": "A",
+        "rationale": "only surviving copy of Stage-0 F01-F05 runner scripts (not in any commit or snapshot)",
+        "in_tracked_handoff_snapshot": false
+      },
+      {
+        "path": "scripts/rebuild_f01d_gpu.py",
+        "size_bytes": 1287,
+        "classification": "A",
+        "rationale": "only surviving copy of Stage-0 F01-F05 runner scripts (not in any commit or snapshot)",
+        "in_tracked_handoff_snapshot": false
+      },
+      {
+        "path": "scripts/run_f01d_gpu.py",
+        "size_bytes": 4141,
+        "classification": "A",
+        "rationale": "only surviving copy of Stage-0 F01-F05 runner scripts (not in any commit or snapshot)",
+        "in_tracked_handoff_snapshot": false
+      },
+      {
+        "path": "scripts/run_f02.py",
+        "size_bytes": 7492,
+        "classification": "A",
+        "rationale": "only surviving copy of Stage-0 F01-F05 runner scripts (not in any commit or snapshot)",
+        "in_tracked_handoff_snapshot": false
+      },
+      {
+        "path": "scripts/run_f03_short.py",
+        "size_bytes": 13017,
+        "classification": "A",
+        "rationale": "only surviving copy of Stage-0 F01-F05 runner scripts (not in any commit or snapshot)",
+        "in_tracked_handoff_snapshot": false
+      },
+      {
+        "path": "scripts/run_f04.py",
+        "size_bytes": 19816,
+        "classification": "A",
+        "rationale": "only surviving copy of Stage-0 F01-F05 runner scripts (not in any commit or snapshot)",
+        "in_tracked_handoff_snapshot": false
+      },
+      {
+        "path": "scripts/run_f05.py",
+        "size_bytes": 10393,
+        "classification": "A",
+        "rationale": "only surviving copy of Stage-0 F01-F05 runner scripts (not in any commit or snapshot)",
+        "in_tracked_handoff_snapshot": false
+      }
+    ],
+    "server_only_generated": {
+      "pycache_pyc_count": 113,
+      "syncthing_tmp_count": 8,
+      "classification": "C",
+      "examples": [
+        "code/07_shared_frontend/.syncthing.audit_snr_response.py.tmp",
+        "code/07_shared_frontend/.syncthing.freeze07_error_decomposition.py.tmp",
+        "code/07_shared_frontend/.syncthing.freeze07_finalize.py.tmp"
+      ]
+    },
+    "local_only_files": [
+      {
+        "path": "code/figure_tools/fonts/times.ttf",
+        "size_bytes": 1190736,
+        "classification": "C",
+        "rationale": "environment/build artifact (fonts intentionally gitignored; .zip/.log/.DS_Store)"
+      },
+      {
+        "path": "code/figure_tools/fonts/timesbd.ttf",
+        "size_bytes": 1170096,
+        "classification": "C",
+        "rationale": "environment/build artifact (fonts intentionally gitignored; .zip/.log/.DS_Store)"
+      },
+      {
+        "path": "code/figure_tools/fonts/timesbi.ttf",
+        "size_bytes": 904204,
+        "classification": "C",
+        "rationale": "environment/build artifact (fonts intentionally gitignored; .zip/.log/.DS_Store)"
+      },
+      {
+        "path": "code/figure_tools/fonts/timesi.ttf",
+        "size_bytes": 962864,
+        "classification": "C",
+        "rationale": "environment/build artifact (fonts intentionally gitignored; .zip/.log/.DS_Store)"
+      },
+      {
+        "path": "configs/qgnn_final_test.json",
+        "size_bytes": 1136,
+        "classification": "A",
+        "rationale": "required by tracked root code (frozen F01-E chain or QGNN module scripts)"
+      },
+      {
+        "path": "docs/ICCT2026官方模板/conference-latex-template_10-17-19/.DS_Store",
+        "size_bytes": 6148,
+        "classification": "C",
+        "rationale": "environment/build artifact (fonts intentionally gitignored; .zip/.log/.DS_Store)"
+      },
+      {
+        "path": "docs/ICCT2026官方模板/conference-latex-template_10-17-19/conference_101719.log",
+        "size_bytes": 15588,
+        "classification": "C",
+        "rationale": "environment/build artifact (fonts intentionally gitignored; .zip/.log/.DS_Store)"
+      },
+      {
+        "path": "docs/ICCT2026官方模板/ieee-conference-latex-template.zip",
+        "size_bytes": 836939,
+        "classification": "C",
+        "rationale": "environment/build artifact (fonts intentionally gitignored; .zip/.log/.DS_Store)"
+      },
+      {
+        "path": "experiments/qgnn_final_test/__init__.py",
+        "size_bytes": 61,
+        "classification": "A",
+        "rationale": "required by tracked root code (frozen F01-E chain or QGNN module scripts)"
+      },
+      {
+        "path": "experiments/qgnn_final_test/evaluate.py",
+        "size_bytes": 21042,
+        "classification": "A",
+        "rationale": "required by tracked root code (frozen F01-E chain or QGNN module scripts)"
+      },
+      {
+        "path": "experiments/qgnn_hzy/README.md",
+        "size_bytes": 1688,
+        "classification": "A",
+        "rationale": "required by tracked root code (frozen F01-E chain or QGNN module scripts)"
+      },
+      {
+        "path": "experiments/qgnn_hzy/check_graph.py",
+        "size_bytes": 8839,
+        "classification": "A",
+        "rationale": "required by tracked root code (frozen F01-E chain or QGNN module scripts)"
+      },
+      {
+        "path": "experiments/qgnn_hzy/graph.py",
+        "size_bytes": 2195,
+        "classification": "A",
+        "rationale": "required by tracked root code (frozen F01-E chain or QGNN module scripts)"
+      }
+    ],
+    "tracked_missing_on_disk": [],
+    "tracked_missing_on_disk_note": "three tracked 2026-09-15 meeting deck files are deleted in the local worktree (two decks + one Office temp file); content survives in Git only"
+  },
+  "heavy_assets": [
+    {
+      "path": "data/f01e",
+      "size": "144M",
+      "classification": "B",
+      "purpose": "frozen formal F01-E ISAC dataset (inputs/sequences/labels/metadata)",
+      "generator": "code/07_shared_frontend/freeze07_generate_f01e.py + freeze11 finalize",
+      "still_used": true,
+      "sha256": {
+        "inputs": "c0ed9c64",
+        "sequences": "7f987689",
+        "labels": "02aa013d",
+        "metadata": "f30a3ac0",
+        "note": "per-subtree manifests in reports/f01e/final_freeze_11/integrity.json"
+      }
+    },
+    {
+      "path": "data/f01_source",
+      "size": "93M",
+      "classification": "B",
+      "purpose": "A01 episode source states consumed by frontend.echo_source at runtime",
+      "generator": "reports/f01a pipeline (Stage-0/1)",
+      "still_used": true,
+      "sha256": null
+    },
+    {
+      "path": "data/Lankershim_Vehicle_Trajectories.csv",
+      "size": "202M",
+      "classification": "B",
+      "purpose": "raw NGSIM Lankershim trajectory CSV",
+      "generator": "external dataset",
+      "still_used": true,
+      "sha256": null
+    },
+    {
+      "path": "data/dataset_lankershim_clean_v1",
+      "size": "2.3G",
+      "classification": "B",
+      "purpose": "cleaned Lankershim source dataset",
+      "generator": "Stage-0 cleaning scripts",
+      "still_used": "indirect (source of f01_source)",
+      "sha256": null
+    },
+    {
+      "path": "data/f01d",
+      "size": "38M",
+      "classification": "B",
+      "purpose": "archived oracle/noise F01-D dataset (historical reference only)",
+      "generator": "Stage-1 F01-D pipeline",
+      "still_used": false,
+      "sha256": null
+    },
+    {
+      "path": "data/f01_frontend, data/f01_frontend_baseline, data/f01_echo_audit",
+      "size": "457M",
+      "classification": "B",
+      "purpose": "Stage-0/1 frontend and echo audit caches",
+      "generator": "Stage-0 run_frontend family",
+      "still_used": false,
+      "sha256": null
+    },
+    {
+      "path": "data/multitarget_lankershim_v1.npz, data/multitarget_lankershim_h20_p40_matched_v1.npz",
+      "size": "56M",
+      "classification": "B",
+      "purpose": "Stage-0 multitarget scene caches",
+      "generator": "Stage-0 scene builders",
+      "still_used": false,
+      "sha256": null
+    },
+    {
+      "path": "data/f01e_dryrun",
+      "size": "1.2M",
+      "classification": "C",
+      "purpose": "F01-E dry-run cache",
+      "generator": "freeze07 dry run",
+      "still_used": false,
+      "sha256": null
+    },
+    {
+      "path": "models/gpt2",
+      "size": "526M",
+      "classification": "B",
+      "purpose": "GPT-2 base weights for the temporal predictor",
+      "generator": "external download",
+      "still_used": true,
+      "sha256": null
+    },
+    {
+      "path": "checkpoints/qgat_candidate",
+      "size": "88M",
+      "classification": "B",
+      "purpose": "Stage-1 QGAT candidate training checkpoints",
+      "generator": "experiments/qgat_candidate",
+      "still_used": false,
+      "sha256": null
+    },
+    {
+      "path": "results",
+      "size": "990M",
+      "classification": "B",
+      "purpose": "Stage-0/1 training runs, checkpoints and logs (qgat_*, qgnn_*)",
+      "generator": "experiments/* runners",
+      "still_used": "partial (frozen QGNN checkpoints)",
+      "sha256": null
+    },
+    {
+      "path": "reports",
+      "size": "1.5G",
+      "classification": "B",
+      "purpose": "experiment reports/figures; current stage evidence is tracked, rest historical",
+      "generator": "research scripts",
+      "still_used": "current-stage subset",
+      "sha256": null
+    },
+    {
+      "path": "code/figure_tools/fonts",
+      "size": "4.1M",
+      "classification": "C",
+      "purpose": "Times fonts for figure rendering (gitignored intentionally)",
+      "generator": "old-office-format-handler / manual",
+      "still_used": "figure scripts on server",
+      "sha256": null
+    }
+  ],
+  "summary": {
+    "server_only_real_files": 66,
+    "server_only_A": 32,
+    "server_only_C": 121,
+    "server_only_D": 27,
+    "local_only_real_files": 13,
+    "heavy_B_assets": 11,
+    "heavy_C_assets": 2
+  }
+}
