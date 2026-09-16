@@ -1,0 +1,141 @@
+{
+  "stage": "SENS-FREEZE-07",
+  "production_base_commit": "f319faf357ee152a1ee1d4984d8eb33e19965ab1",
+  "production": {
+    "resource": "B64_contiguous_burst",
+    "active_symbols": 64,
+    "start_symbol": 96,
+    "cfar_multiplier": 0.19929921825469216,
+    "covariance_inflation": 2.5028076171875,
+    "tracker_q_a": 2.0
+  },
+  "snr_levels_db": [
+    -5,
+    0,
+    5,
+    10,
+    15,
+    20
+  ],
+  "checks": {
+    "rebuild06_regression": true,
+    "no_gt": true,
+    "f01d_unchanged": true,
+    "all_caches_generated": true,
+    "cache_hashes_complete": true,
+    "sticky_slot_continuity": true,
+    "interface_compatible": true,
+    "no_future_leakage": true,
+    "split_integrity": true,
+    "train_quality_noncatastrophic": false
+  },
+  "train_quality": {
+    "problematic_window_fraction_overall": 0.5846699104943833,
+    "problematic_window_fraction_by_snr": {
+      "-5": 0.6055145071183997,
+      "0": 0.6037123806091188,
+      "5": 0.5808253739412507,
+      "10": 0.5696521895837088,
+      "15": 0.570012614885565,
+      "20": 0.5783023968282573
+    },
+    "coast_ratio_by_snr": {
+      "-5": 0.2902256325338514,
+      "0": 0.2880963416491912,
+      "5": 0.2702607429795887,
+      "10": 0.2658444270425476,
+      "15": 0.2641974703802595,
+      "20": 0.2670800662527231
+    },
+    "density_strata_at_minus5": {
+      "low": {
+        "position_p50": 0.05232577591688928,
+        "position_p90": 0.1480750785423265,
+        "velocity_p50": 0.24904722814352936,
+        "velocity_p90": 0.7548911606414175,
+        "samples": 5316
+      },
+      "mid": {
+        "position_p50": 0.0824286052682891,
+        "position_p90": 1.8659758235664667,
+        "velocity_p50": 0.2897589801320486,
+        "velocity_p90": 2.0675063428494687,
+        "samples": 35008
+      },
+      "high": {
+        "position_p50": 0.13139563467295032,
+        "position_p90": 2.273555665401803,
+        "velocity_p50": 0.3629088655893789,
+        "velocity_p90": 2.347794064581184,
+        "samples": 477449
+      }
+    },
+    "position_error_overall": {
+      "p50": 0.09890552868229967,
+      "p90": 2.272104109956911,
+      "p95": 3.3618080738518037,
+      "p99": 5.461747847088156
+    },
+    "velocity_error_overall": null,
+    "error_decomposition": {
+      "alignment_cost": {
+        "-5": {
+          "median": 0.2636450913140747,
+          "p90": 2.8067711248241003,
+          "fraction_gt1m": 0.2612187825182102
+        },
+        "0": {
+          "median": 0.24547939144114234,
+          "p90": 2.819898566297258,
+          "fraction_gt1m": 0.2603418139444552
+        },
+        "5": {
+          "median": 0.21304358182195304,
+          "p90": 2.8501265816944943,
+          "fraction_gt1m": 0.2588408959630319
+        },
+        "10": {
+          "median": 0.2037352257593728,
+          "p90": 2.8530936630343198,
+          "fraction_gt1m": 0.257105153046445
+        },
+        "15": {
+          "median": 0.20274474736519849,
+          "p90": 2.8516224596655277,
+          "fraction_gt1m": 0.25752175448736475
+        },
+        "20": {
+          "median": 0.20762330351105912,
+          "p90": 2.886364128422242,
+          "fraction_gt1m": 0.25772963939062804
+        }
+      },
+      "window_p90_gt1_fraction": {
+        "-5": 0.5384754009731483,
+        "0": 0.5428005045954226,
+        "5": 0.5316273202378807,
+        "10": 0.5242386015498288,
+        "15": 0.5274824292665345,
+        "20": 0.534150297350874
+      },
+      "window_p90_detected_only_gt1_fraction": {
+        "-5": 0.367453595242386,
+        "0": 0.36601189403496126,
+        "5": 0.36132636511083077,
+        "10": 0.35880338799783745,
+        "15": 0.36619210668588936,
+        "20": 0.37285997477022886
+      },
+      "note": "SNR-independent structural tail; coast frames are a minor contributor"
+    },
+    "blocking_issue": "predeclared train-quality gate (problematic window fraction > 0.50) triggered; driven by dense-scene coast frames (26-29% of alive frames, SNR-independent structural association merging); freeze withheld for independent judgement"
+  },
+  "cache": {
+    "schema_version": "F01-E v1 (F01-D container schema; anonymous sticky slots; per-SNR labels)",
+    "total_files": 3417,
+    "total_bytes": 80221440,
+    "total_windows": 42990
+  },
+  "upstream_isac_frozen": false,
+  "overall_status": "FAIL"
+}

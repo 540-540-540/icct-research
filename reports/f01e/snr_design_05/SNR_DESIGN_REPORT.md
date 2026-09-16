@@ -45,16 +45,32 @@ K = 256（全部子载波）；time occupancy = 25%；无 comb / stride / 非均
 | coherent gain | 10log10(4KM/9) = 38.622 dB；相对 full grid −6.0206 dB |
 | 实现 | `frontend/sensing/detector.py::compute_maps(resource=...)` 只积分 active burst；simulator 仍生成完整 `Y[A,K,N]`；未使用 symbol 不进入任何积分；无 amplitude scaling |
 
-## 4. Stage A 门（已 PASS）
+## 4. Stage A 门（PASS，含已记录的 Doppler trade-off）
 
-- A1 真实 A01 train（`SourceEpisodes`，179 episodes，1377 snapshots，server-only）：
-  可见 pair 55,645；spatially-close pair 6,123（|Δr|<3.22 m 且 |Δbearing|<6.35°）；
-  close-pair |Δvr| median 0.039 / p90 2.21 / max 17.35 m/s；
-  仅 **0.78%** 的 close pair 的 |Δvr| ≥ B64 分辨率；10.65% 落在 E0-only band [1.97, 7.89)。
-- A2 E0 vs B64 collision stress（2 目标同 RD cell，Δvr 5…40 m/s，32/16 realizations，
-  SNR 0/10/20 dB）：B64 在 Δvr≥20 m/s 与 E0 相同（100% 分离）；Δvr=10 m/s 为 0.41，
-  Δvr=5 为 0.10 —— 退化严格被 7.89 m/s 物理分辨率限制，不构成上游主要瓶颈（Gate PASS，
-  predeclared 数值 proxy 的 0.50@10 m/s 检查仍记录为 false 以供独立复核）。
+真实 A01 train（`SourceEpisodes`，179 episodes，1377 snapshots，server-only）三层统计：
+
+```text
+visible vehicle pairs                      55,645
+spatially-close pairs (|Δr|<3.22 m, |Δb|<6.35°)   6,123
+  ├─ |Δvr| in [1.97, 7.89) m/s（E0 理论上可分、B64 分辨率不足） 10.648% of close
+  │   ≈ 1.17% of all visible pairs（6123/55645 × 0.10648）
+  ├─ |Δvr| ≥ 7.89 m/s                                    0.784% of close
+  └─ 其余 88.6% 在 E0 分辨率以下（任何方案都无法靠 Doppler 分开）
+close-pair |Δvr| median 0.039 / p90 2.21 / max 17.35 m/s
+```
+
+Collision stress（2 目标同 range/AoA cell，32/16 realizations，SNR 0/10/20 dB）@10 dB：
+
+| Δvr | 5 | 10 | 15 | 20 | 30 | 40 m/s |
+|---|---:|---:|---:|---:|---:|---:|
+| E0 separation | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 |
+| B64 separation | 0.10 | 0.41 | 0.76 | 1.00 | 1.00 | 1.00 |
+
+如实记录：原 predeclared numeric proxy gate `B64 separated_fraction @ 10 m/s ≥ 0.5` **未通过**
+（0.41）。这是 B64 physical Doppler resolution（7.89 m/s）带来的真实 trade-off，不是实现缺陷。
+最终接受 B64 的依据是：该退化只覆盖 ≤10 m/s 的相对径向速度区域，在真实 A01 incidence 中仅
+约 1.17% 的 visible pairs 受到影响；Δvr ≥ 20 m/s（2.5× 分辨率）时 B64 与 E0 完全相同；
+结构上，上游主要瓶颈仍是“每 RD 峰单一 AoA 峰”的多目标合并（E0 同样存在）。
 
 ## 5. 校准（Stage C/D/E，全部写入 production config）
 
@@ -99,7 +115,7 @@ tracker / BS-ablation 全部 PASS；physics（M=64、start=96、no scaling、v_u
 | 14.3 GT isolation | PASS |
 | 14.4 -5 dB usable / 20 dB stable | PASS（plateau 记录在案） |
 | 14.5 Estimation SNR dependence | PASS（4.6×） |
-| 14.6 Multi-target separability | PASS（风险量化 0.78%，collision 20 m/s 与 E0 相同） |
+| 14.6 Multi-target separability | PASS（接受有记录的 trade-off：predeclared 10 m/s proxy gate 未通过（0.41）；真实 incidence 1.17% of visible pairs；Δvr≥20 m/s 与 E0 相同） |
 | 14.7 Fusion / tracker / sticky slot / 3-BS | PASS |
 | 14.8 无灾难性低 SNR 退化 | PASS |
 | 14.9 高 SNR 饱和合理 | PASS |

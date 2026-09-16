@@ -1,0 +1,1283 @@
+{
+  "stage": "SENS-FREEZE-07 Stage G",
+  "loader": "frontend.symbol_dataset",
+  "snr_levels": [
+    -5,
+    0,
+    5,
+    10,
+    15,
+    20
+  ],
+  "splits": {
+    "train": {
+      "samples": 5549,
+      "episodes": 179,
+      "episode_partition_ok": true,
+      "by_snr": {
+        "-5": {
+          "samples": 5549,
+          "state_shape": [
+            5549,
+            20,
+            8,
+            4
+          ],
+          "masks_shape": [
+            5549,
+            20,
+            8
+          ],
+          "timestamp_shape": [
+            5549,
+            20
+          ],
+          "dtype_ok": true,
+          "finite": true,
+          "zero_padding_ok": true,
+          "coast_state_frames": 178072,
+          "unavailable_state_frames": 274276,
+          "input_keys": [
+            "detected",
+            "origin_eligible",
+            "standardized_state",
+            "state_hat",
+            "timestamp",
+            "track_exists"
+          ],
+          "forbidden_input_keys": [],
+          "origin_eligible_ratio": 0.25,
+          "standardized_zero_where_missing": true
+        },
+        "0": {
+          "samples": 5549,
+          "state_shape": [
+            5549,
+            20,
+            8,
+            4
+          ],
+          "masks_shape": [
+            5549,
+            20,
+            8
+          ],
+          "timestamp_shape": [
+            5549,
+            20
+          ],
+          "dtype_ok": true,
+          "finite": true,
+          "zero_padding_ok": true,
+          "coast_state_frames": 177771,
+          "unavailable_state_frames": 270786,
+          "input_keys": [
+            "detected",
+            "origin_eligible",
+            "standardized_state",
+            "state_hat",
+            "timestamp",
+            "track_exists"
+          ],
+          "forbidden_input_keys": [],
+          "origin_eligible_ratio": 0.375,
+          "standardized_zero_where_missing": true
+        },
+        "5": {
+          "samples": 5549,
+          "state_shape": [
+            5549,
+            20,
+            8,
+            4
+          ],
+          "masks_shape": [
+            5549,
+            20,
+            8
+          ],
+          "timestamp_shape": [
+            5549,
+            20
+          ],
+          "dtype_ok": true,
+          "finite": true,
+          "zero_padding_ok": true,
+          "coast_state_frames": 165602,
+          "unavailable_state_frames": 275091,
+          "input_keys": [
+            "detected",
+            "origin_eligible",
+            "standardized_state",
+            "state_hat",
+            "timestamp",
+            "track_exists"
+          ],
+          "forbidden_input_keys": [],
+          "origin_eligible_ratio": 0.25,
+          "standardized_zero_where_missing": true
+        },
+        "10": {
+          "samples": 5549,
+          "state_shape": [
+            5549,
+            20,
+            8,
+            4
+          ],
+          "masks_shape": [
+            5549,
+            20,
+            8
+          ],
+          "timestamp_shape": [
+            5549,
+            20
+          ],
+          "dtype_ok": true,
+          "finite": true,
+          "zero_padding_ok": true,
+          "coast_state_frames": 162952,
+          "unavailable_state_frames": 274880,
+          "input_keys": [
+            "detected",
+            "origin_eligible",
+            "standardized_state",
+            "state_hat",
+            "timestamp",
+            "track_exists"
+          ],
+          "forbidden_input_keys": [],
+          "origin_eligible_ratio": 0.25,
+          "standardized_zero_where_missing": true
+        },
+        "15": {
+          "samples": 5549,
+          "state_shape": [
+            5549,
+            20,
+            8,
+            4
+          ],
+          "masks_shape": [
+            5549,
+            20,
+            8
+          ],
+          "timestamp_shape": [
+            5549,
+            20
+          ],
+          "dtype_ok": true,
+          "finite": true,
+          "zero_padding_ok": true,
+          "coast_state_frames": 161780,
+          "unavailable_state_frames": 275495,
+          "input_keys": [
+            "detected",
+            "origin_eligible",
+            "standardized_state",
+            "state_hat",
+            "timestamp",
+            "track_exists"
+          ],
+          "forbidden_input_keys": [],
+          "origin_eligible_ratio": 0.25,
+          "standardized_zero_where_missing": true
+        },
+        "20": {
+          "samples": 5549,
+          "state_shape": [
+            5549,
+            20,
+            8,
+            4
+          ],
+          "masks_shape": [
+            5549,
+            20,
+            8
+          ],
+          "timestamp_shape": [
+            5549,
+            20
+          ],
+          "dtype_ok": true,
+          "finite": true,
+          "zero_padding_ok": true,
+          "coast_state_frames": 163668,
+          "unavailable_state_frames": 275035,
+          "input_keys": [
+            "detected",
+            "origin_eligible",
+            "standardized_state",
+            "state_hat",
+            "timestamp",
+            "track_exists"
+          ],
+          "forbidden_input_keys": [],
+          "origin_eligible_ratio": 0.25,
+          "standardized_zero_where_missing": true
+        }
+      },
+      "labels": {
+        "reference_is_snr_20": true,
+        "by_snr": {
+          "-5": {
+            "shape": [
+              5549,
+              20,
+              8,
+              2
+            ],
+            "valid": 579729,
+            "finite_where_valid": true,
+            "zero_where_invalid": true,
+            "matches_reference": false
+          },
+          "0": {
+            "shape": [
+              5549,
+              20,
+              8,
+              2
+            ],
+            "valid": 582732,
+            "finite_where_valid": true,
+            "zero_where_invalid": true,
+            "matches_reference": false
+          },
+          "5": {
+            "shape": [
+              5549,
+              20,
+              8,
+              2
+            ],
+            "valid": 587497,
+            "finite_where_valid": true,
+            "zero_where_invalid": true,
+            "matches_reference": false
+          },
+          "10": {
+            "shape": [
+              5549,
+              20,
+              8,
+              2
+            ],
+            "valid": 585217,
+            "finite_where_valid": true,
+            "zero_where_invalid": true,
+            "matches_reference": false
+          },
+          "15": {
+            "shape": [
+              5549,
+              20,
+              8,
+              2
+            ],
+            "valid": 587171,
+            "finite_where_valid": true,
+            "zero_where_invalid": true,
+            "matches_reference": false
+          },
+          "20": {
+            "shape": [
+              5549,
+              20,
+              8,
+              2
+            ],
+            "valid": 586807,
+            "finite_where_valid": true,
+            "zero_where_invalid": true,
+            "matches_reference": true
+          }
+        },
+        "label_keys": [
+          "future_position",
+          "label_valid"
+        ]
+      },
+      "model_input_keys": [
+        "detected",
+        "origin_eligible",
+        "standardized_state",
+        "state_hat",
+        "timestamp",
+        "track_exists"
+      ],
+      "evaluation_only_keys": [
+        "episode_id",
+        "episode_index",
+        "label_alignment_snr",
+        "origin_ms",
+        "sample_index",
+        "slot_alignment",
+        "slot_alignment_by_snr",
+        "source_block",
+        "source_groups",
+        "source_keys"
+      ]
+    },
+    "V_select": {
+      "samples": 400,
+      "episodes": 25,
+      "episode_partition_ok": true,
+      "by_snr": {
+        "-5": {
+          "samples": 400,
+          "state_shape": [
+            400,
+            20,
+            8,
+            4
+          ],
+          "masks_shape": [
+            400,
+            20,
+            8
+          ],
+          "timestamp_shape": [
+            400,
+            20
+          ],
+          "dtype_ok": true,
+          "finite": true,
+          "zero_padding_ok": true,
+          "coast_state_frames": 16289,
+          "unavailable_state_frames": 16100,
+          "input_keys": [
+            "detected",
+            "origin_eligible",
+            "standardized_state",
+            "state_hat",
+            "timestamp",
+            "track_exists"
+          ],
+          "forbidden_input_keys": [],
+          "origin_eligible_ratio": 0.625,
+          "standardized_zero_where_missing": true
+        },
+        "0": {
+          "samples": 400,
+          "state_shape": [
+            400,
+            20,
+            8,
+            4
+          ],
+          "masks_shape": [
+            400,
+            20,
+            8
+          ],
+          "timestamp_shape": [
+            400,
+            20
+          ],
+          "dtype_ok": true,
+          "finite": true,
+          "zero_padding_ok": true,
+          "coast_state_frames": 15924,
+          "unavailable_state_frames": 16435,
+          "input_keys": [
+            "detected",
+            "origin_eligible",
+            "standardized_state",
+            "state_hat",
+            "timestamp",
+            "track_exists"
+          ],
+          "forbidden_input_keys": [],
+          "origin_eligible_ratio": 0.75,
+          "standardized_zero_where_missing": true
+        },
+        "5": {
+          "samples": 400,
+          "state_shape": [
+            400,
+            20,
+            8,
+            4
+          ],
+          "masks_shape": [
+            400,
+            20,
+            8
+          ],
+          "timestamp_shape": [
+            400,
+            20
+          ],
+          "dtype_ok": true,
+          "finite": true,
+          "zero_padding_ok": true,
+          "coast_state_frames": 15272,
+          "unavailable_state_frames": 16383,
+          "input_keys": [
+            "detected",
+            "origin_eligible",
+            "standardized_state",
+            "state_hat",
+            "timestamp",
+            "track_exists"
+          ],
+          "forbidden_input_keys": [],
+          "origin_eligible_ratio": 0.625,
+          "standardized_zero_where_missing": true
+        },
+        "10": {
+          "samples": 400,
+          "state_shape": [
+            400,
+            20,
+            8,
+            4
+          ],
+          "masks_shape": [
+            400,
+            20,
+            8
+          ],
+          "timestamp_shape": [
+            400,
+            20
+          ],
+          "dtype_ok": true,
+          "finite": true,
+          "zero_padding_ok": true,
+          "coast_state_frames": 15115,
+          "unavailable_state_frames": 15908,
+          "input_keys": [
+            "detected",
+            "origin_eligible",
+            "standardized_state",
+            "state_hat",
+            "timestamp",
+            "track_exists"
+          ],
+          "forbidden_input_keys": [],
+          "origin_eligible_ratio": 0.875,
+          "standardized_zero_where_missing": true
+        },
+        "15": {
+          "samples": 400,
+          "state_shape": [
+            400,
+            20,
+            8,
+            4
+          ],
+          "masks_shape": [
+            400,
+            20,
+            8
+          ],
+          "timestamp_shape": [
+            400,
+            20
+          ],
+          "dtype_ok": true,
+          "finite": true,
+          "zero_padding_ok": true,
+          "coast_state_frames": 15013,
+          "unavailable_state_frames": 15954,
+          "input_keys": [
+            "detected",
+            "origin_eligible",
+            "standardized_state",
+            "state_hat",
+            "timestamp",
+            "track_exists"
+          ],
+          "forbidden_input_keys": [],
+          "origin_eligible_ratio": 0.625,
+          "standardized_zero_where_missing": true
+        },
+        "20": {
+          "samples": 400,
+          "state_shape": [
+            400,
+            20,
+            8,
+            4
+          ],
+          "masks_shape": [
+            400,
+            20,
+            8
+          ],
+          "timestamp_shape": [
+            400,
+            20
+          ],
+          "dtype_ok": true,
+          "finite": true,
+          "zero_padding_ok": true,
+          "coast_state_frames": 15129,
+          "unavailable_state_frames": 15953,
+          "input_keys": [
+            "detected",
+            "origin_eligible",
+            "standardized_state",
+            "state_hat",
+            "timestamp",
+            "track_exists"
+          ],
+          "forbidden_input_keys": [],
+          "origin_eligible_ratio": 0.625,
+          "standardized_zero_where_missing": true
+        }
+      },
+      "labels": {
+        "reference_is_snr_20": true,
+        "by_snr": {
+          "-5": {
+            "shape": [
+              400,
+              20,
+              8,
+              2
+            ],
+            "valid": 47541,
+            "finite_where_valid": true,
+            "zero_where_invalid": true,
+            "matches_reference": false
+          },
+          "0": {
+            "shape": [
+              400,
+              20,
+              8,
+              2
+            ],
+            "valid": 47421,
+            "finite_where_valid": true,
+            "zero_where_invalid": true,
+            "matches_reference": false
+          },
+          "5": {
+            "shape": [
+              400,
+              20,
+              8,
+              2
+            ],
+            "valid": 47763,
+            "finite_where_valid": true,
+            "zero_where_invalid": true,
+            "matches_reference": false
+          },
+          "10": {
+            "shape": [
+              400,
+              20,
+              8,
+              2
+            ],
+            "valid": 48198,
+            "finite_where_valid": true,
+            "zero_where_invalid": true,
+            "matches_reference": false
+          },
+          "15": {
+            "shape": [
+              400,
+              20,
+              8,
+              2
+            ],
+            "valid": 48339,
+            "finite_where_valid": true,
+            "zero_where_invalid": true,
+            "matches_reference": false
+          },
+          "20": {
+            "shape": [
+              400,
+              20,
+              8,
+              2
+            ],
+            "valid": 48399,
+            "finite_where_valid": true,
+            "zero_where_invalid": true,
+            "matches_reference": true
+          }
+        },
+        "label_keys": [
+          "future_position",
+          "label_valid"
+        ]
+      },
+      "model_input_keys": [
+        "detected",
+        "origin_eligible",
+        "standardized_state",
+        "state_hat",
+        "timestamp",
+        "track_exists"
+      ],
+      "evaluation_only_keys": [
+        "episode_id",
+        "episode_index",
+        "label_alignment_snr",
+        "origin_ms",
+        "sample_index",
+        "slot_alignment",
+        "slot_alignment_by_snr",
+        "source_block",
+        "source_groups",
+        "source_keys"
+      ]
+    },
+    "V_confirm": {
+      "samples": 352,
+      "episodes": 22,
+      "episode_partition_ok": true,
+      "by_snr": {
+        "-5": {
+          "samples": 352,
+          "state_shape": [
+            352,
+            20,
+            8,
+            4
+          ],
+          "masks_shape": [
+            352,
+            20,
+            8
+          ],
+          "timestamp_shape": [
+            352,
+            20
+          ],
+          "dtype_ok": true,
+          "finite": true,
+          "zero_padding_ok": true,
+          "coast_state_frames": 10848,
+          "unavailable_state_frames": 13823,
+          "input_keys": [
+            "detected",
+            "origin_eligible",
+            "standardized_state",
+            "state_hat",
+            "timestamp",
+            "track_exists"
+          ],
+          "forbidden_input_keys": [],
+          "origin_eligible_ratio": 0.625,
+          "standardized_zero_where_missing": true
+        },
+        "0": {
+          "samples": 352,
+          "state_shape": [
+            352,
+            20,
+            8,
+            4
+          ],
+          "masks_shape": [
+            352,
+            20,
+            8
+          ],
+          "timestamp_shape": [
+            352,
+            20
+          ],
+          "dtype_ok": true,
+          "finite": true,
+          "zero_padding_ok": true,
+          "coast_state_frames": 11235,
+          "unavailable_state_frames": 13470,
+          "input_keys": [
+            "detected",
+            "origin_eligible",
+            "standardized_state",
+            "state_hat",
+            "timestamp",
+            "track_exists"
+          ],
+          "forbidden_input_keys": [],
+          "origin_eligible_ratio": 0.5,
+          "standardized_zero_where_missing": true
+        },
+        "5": {
+          "samples": 352,
+          "state_shape": [
+            352,
+            20,
+            8,
+            4
+          ],
+          "masks_shape": [
+            352,
+            20,
+            8
+          ],
+          "timestamp_shape": [
+            352,
+            20
+          ],
+          "dtype_ok": true,
+          "finite": true,
+          "zero_padding_ok": true,
+          "coast_state_frames": 10336,
+          "unavailable_state_frames": 13641,
+          "input_keys": [
+            "detected",
+            "origin_eligible",
+            "standardized_state",
+            "state_hat",
+            "timestamp",
+            "track_exists"
+          ],
+          "forbidden_input_keys": [],
+          "origin_eligible_ratio": 0.625,
+          "standardized_zero_where_missing": true
+        },
+        "10": {
+          "samples": 352,
+          "state_shape": [
+            352,
+            20,
+            8,
+            4
+          ],
+          "masks_shape": [
+            352,
+            20,
+            8
+          ],
+          "timestamp_shape": [
+            352,
+            20
+          ],
+          "dtype_ok": true,
+          "finite": true,
+          "zero_padding_ok": true,
+          "coast_state_frames": 10084,
+          "unavailable_state_frames": 13885,
+          "input_keys": [
+            "detected",
+            "origin_eligible",
+            "standardized_state",
+            "state_hat",
+            "timestamp",
+            "track_exists"
+          ],
+          "forbidden_input_keys": [],
+          "origin_eligible_ratio": 0.625,
+          "standardized_zero_where_missing": true
+        },
+        "15": {
+          "samples": 352,
+          "state_shape": [
+            352,
+            20,
+            8,
+            4
+          ],
+          "masks_shape": [
+            352,
+            20,
+            8
+          ],
+          "timestamp_shape": [
+            352,
+            20
+          ],
+          "dtype_ok": true,
+          "finite": true,
+          "zero_padding_ok": true,
+          "coast_state_frames": 10029,
+          "unavailable_state_frames": 14001,
+          "input_keys": [
+            "detected",
+            "origin_eligible",
+            "standardized_state",
+            "state_hat",
+            "timestamp",
+            "track_exists"
+          ],
+          "forbidden_input_keys": [],
+          "origin_eligible_ratio": 0.625,
+          "standardized_zero_where_missing": true
+        },
+        "20": {
+          "samples": 352,
+          "state_shape": [
+            352,
+            20,
+            8,
+            4
+          ],
+          "masks_shape": [
+            352,
+            20,
+            8
+          ],
+          "timestamp_shape": [
+            352,
+            20
+          ],
+          "dtype_ok": true,
+          "finite": true,
+          "zero_padding_ok": true,
+          "coast_state_frames": 10200,
+          "unavailable_state_frames": 14151,
+          "input_keys": [
+            "detected",
+            "origin_eligible",
+            "standardized_state",
+            "state_hat",
+            "timestamp",
+            "track_exists"
+          ],
+          "forbidden_input_keys": [],
+          "origin_eligible_ratio": 0.5,
+          "standardized_zero_where_missing": true
+        }
+      },
+      "labels": {
+        "reference_is_snr_20": true,
+        "by_snr": {
+          "-5": {
+            "shape": [
+              352,
+              20,
+              8,
+              2
+            ],
+            "valid": 41840,
+            "finite_where_valid": true,
+            "zero_where_invalid": true,
+            "matches_reference": false
+          },
+          "0": {
+            "shape": [
+              352,
+              20,
+              8,
+              2
+            ],
+            "valid": 41091,
+            "finite_where_valid": true,
+            "zero_where_invalid": true,
+            "matches_reference": false
+          },
+          "5": {
+            "shape": [
+              352,
+              20,
+              8,
+              2
+            ],
+            "valid": 41859,
+            "finite_where_valid": true,
+            "zero_where_invalid": true,
+            "matches_reference": false
+          },
+          "10": {
+            "shape": [
+              352,
+              20,
+              8,
+              2
+            ],
+            "valid": 42084,
+            "finite_where_valid": true,
+            "zero_where_invalid": true,
+            "matches_reference": false
+          },
+          "15": {
+            "shape": [
+              352,
+              20,
+              8,
+              2
+            ],
+            "valid": 41763,
+            "finite_where_valid": true,
+            "zero_where_invalid": true,
+            "matches_reference": false
+          },
+          "20": {
+            "shape": [
+              352,
+              20,
+              8,
+              2
+            ],
+            "valid": 41887,
+            "finite_where_valid": true,
+            "zero_where_invalid": true,
+            "matches_reference": true
+          }
+        },
+        "label_keys": [
+          "future_position",
+          "label_valid"
+        ]
+      },
+      "model_input_keys": [
+        "detected",
+        "origin_eligible",
+        "standardized_state",
+        "state_hat",
+        "timestamp",
+        "track_exists"
+      ],
+      "evaluation_only_keys": [
+        "episode_id",
+        "episode_index",
+        "label_alignment_snr",
+        "origin_ms",
+        "sample_index",
+        "slot_alignment",
+        "slot_alignment_by_snr",
+        "source_block",
+        "source_groups",
+        "source_keys"
+      ]
+    },
+    "test": {
+      "samples": 864,
+      "episodes": 54,
+      "episode_partition_ok": true,
+      "by_snr": {
+        "-5": {
+          "samples": 864,
+          "state_shape": [
+            864,
+            20,
+            8,
+            4
+          ],
+          "masks_shape": [
+            864,
+            20,
+            8
+          ],
+          "timestamp_shape": [
+            864,
+            20
+          ],
+          "dtype_ok": true,
+          "finite": true,
+          "zero_padding_ok": true,
+          "coast_state_frames": 27359,
+          "unavailable_state_frames": 48114,
+          "input_keys": [
+            "detected",
+            "origin_eligible",
+            "standardized_state",
+            "state_hat",
+            "timestamp",
+            "track_exists"
+          ],
+          "forbidden_input_keys": [],
+          "origin_eligible_ratio": 0.5,
+          "standardized_zero_where_missing": true
+        },
+        "0": {
+          "samples": 864,
+          "state_shape": [
+            864,
+            20,
+            8,
+            4
+          ],
+          "masks_shape": [
+            864,
+            20,
+            8
+          ],
+          "timestamp_shape": [
+            864,
+            20
+          ],
+          "dtype_ok": true,
+          "finite": true,
+          "zero_padding_ok": true,
+          "coast_state_frames": 27794,
+          "unavailable_state_frames": 46523,
+          "input_keys": [
+            "detected",
+            "origin_eligible",
+            "standardized_state",
+            "state_hat",
+            "timestamp",
+            "track_exists"
+          ],
+          "forbidden_input_keys": [],
+          "origin_eligible_ratio": 0.75,
+          "standardized_zero_where_missing": true
+        },
+        "5": {
+          "samples": 864,
+          "state_shape": [
+            864,
+            20,
+            8,
+            4
+          ],
+          "masks_shape": [
+            864,
+            20,
+            8
+          ],
+          "timestamp_shape": [
+            864,
+            20
+          ],
+          "dtype_ok": true,
+          "finite": true,
+          "zero_padding_ok": true,
+          "coast_state_frames": 25948,
+          "unavailable_state_frames": 46956,
+          "input_keys": [
+            "detected",
+            "origin_eligible",
+            "standardized_state",
+            "state_hat",
+            "timestamp",
+            "track_exists"
+          ],
+          "forbidden_input_keys": [],
+          "origin_eligible_ratio": 0.625,
+          "standardized_zero_where_missing": true
+        },
+        "10": {
+          "samples": 864,
+          "state_shape": [
+            864,
+            20,
+            8,
+            4
+          ],
+          "masks_shape": [
+            864,
+            20,
+            8
+          ],
+          "timestamp_shape": [
+            864,
+            20
+          ],
+          "dtype_ok": true,
+          "finite": true,
+          "zero_padding_ok": true,
+          "coast_state_frames": 26125,
+          "unavailable_state_frames": 46614,
+          "input_keys": [
+            "detected",
+            "origin_eligible",
+            "standardized_state",
+            "state_hat",
+            "timestamp",
+            "track_exists"
+          ],
+          "forbidden_input_keys": [],
+          "origin_eligible_ratio": 0.25,
+          "standardized_zero_where_missing": true
+        },
+        "15": {
+          "samples": 864,
+          "state_shape": [
+            864,
+            20,
+            8,
+            4
+          ],
+          "masks_shape": [
+            864,
+            20,
+            8
+          ],
+          "timestamp_shape": [
+            864,
+            20
+          ],
+          "dtype_ok": true,
+          "finite": true,
+          "zero_padding_ok": true,
+          "coast_state_frames": 26015,
+          "unavailable_state_frames": 46621,
+          "input_keys": [
+            "detected",
+            "origin_eligible",
+            "standardized_state",
+            "state_hat",
+            "timestamp",
+            "track_exists"
+          ],
+          "forbidden_input_keys": [],
+          "origin_eligible_ratio": 0.25,
+          "standardized_zero_where_missing": true
+        },
+        "20": {
+          "samples": 864,
+          "state_shape": [
+            864,
+            20,
+            8,
+            4
+          ],
+          "masks_shape": [
+            864,
+            20,
+            8
+          ],
+          "timestamp_shape": [
+            864,
+            20
+          ],
+          "dtype_ok": true,
+          "finite": true,
+          "zero_padding_ok": true,
+          "coast_state_frames": 26139,
+          "unavailable_state_frames": 46646,
+          "input_keys": [
+            "detected",
+            "origin_eligible",
+            "standardized_state",
+            "state_hat",
+            "timestamp",
+            "track_exists"
+          ],
+          "forbidden_input_keys": [],
+          "origin_eligible_ratio": 0.25,
+          "standardized_zero_where_missing": true
+        }
+      },
+      "labels": {
+        "reference_is_snr_20": true,
+        "by_snr": {
+          "-5": {
+            "shape": [
+              864,
+              20,
+              8,
+              2
+            ],
+            "valid": 88678,
+            "finite_where_valid": true,
+            "zero_where_invalid": true,
+            "matches_reference": false
+          },
+          "0": {
+            "shape": [
+              864,
+              20,
+              8,
+              2
+            ],
+            "valid": 89924,
+            "finite_where_valid": true,
+            "zero_where_invalid": true,
+            "matches_reference": false
+          },
+          "5": {
+            "shape": [
+              864,
+              20,
+              8,
+              2
+            ],
+            "valid": 90350,
+            "finite_where_valid": true,
+            "zero_where_invalid": true,
+            "matches_reference": false
+          },
+          "10": {
+            "shape": [
+              864,
+              20,
+              8,
+              2
+            ],
+            "valid": 90856,
+            "finite_where_valid": true,
+            "zero_where_invalid": true,
+            "matches_reference": false
+          },
+          "15": {
+            "shape": [
+              864,
+              20,
+              8,
+              2
+            ],
+            "valid": 90616,
+            "finite_where_valid": true,
+            "zero_where_invalid": true,
+            "matches_reference": false
+          },
+          "20": {
+            "shape": [
+              864,
+              20,
+              8,
+              2
+            ],
+            "valid": 90608,
+            "finite_where_valid": true,
+            "zero_where_invalid": true,
+            "matches_reference": true
+          }
+        },
+        "label_keys": [
+          "future_position",
+          "label_valid"
+        ]
+      },
+      "model_input_keys": [
+        "detected",
+        "origin_eligible",
+        "standardized_state",
+        "state_hat",
+        "timestamp",
+        "track_exists"
+      ],
+      "evaluation_only_keys": [
+        "episode_id",
+        "episode_index",
+        "label_alignment_snr",
+        "origin_ms",
+        "sample_index",
+        "slot_alignment",
+        "slot_alignment_by_snr",
+        "source_block",
+        "source_groups",
+        "source_keys"
+      ]
+    }
+  },
+  "checks": {
+    "all_splits_all_snr_load": true,
+    "shapes_20_8_4": true,
+    "future_20_frames": true,
+    "no_forbidden_input_keys": true,
+    "structural": true,
+    "split_integrity": true,
+    "split_overlaps": [],
+    "label_files_per_snr": true,
+    "normalization_fit_split": "train",
+    "normalization_snr_db": [
+      -5,
+      0,
+      5,
+      10,
+      15,
+      20
+    ],
+    "model_inputs_and_labels_separated": true
+  },
+  "passed": true
+}

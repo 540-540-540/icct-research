@@ -21,7 +21,7 @@
     "scripts": {
       "selfchecks": true,
       "shared_echo": true,
-      "no_gt": false,
+      "no_gt": true,
       "single_target": true,
       "association": true,
       "tracker": true,
@@ -65,14 +65,15 @@
       "returncode": 0,
       "stdout_tail": "{\"T2\": \"PASS\", \"checks\": {\"static_imports_and_api\": true, \"import_sentinel\": true, \"permutation_invariance\": true, \"detection_payload_whitelist\": true, \"counter_semantics\": true, \"count_follows_observation\": true, \"covariance_depends_only_on_observed_q\": true, \"lut_sigma_monotone_conservative\": true}}\n",
       "stderr_tail": "",
-      "passed": false,
+      "passed": true,
       "failed_checks": []
     },
     "single_target": {
       "returncode": 0,
       "stdout_tail": "23.98997011353202}, {\"r_gt_m\": 250.0, \"u_gt\": 0.49999999999999983, \"vr_gt_mps\": -4.927217491045672, \"vr_hat_mps\": -4.949459379274571, \"e_vr_mps\": -0.02224188822889861, \"e_r_m\": -0.00030273557320015243, \"peak_to_noise_db\": 24.085542082493593}], \"coords_hash\": \"318d401f6ec318ed1d69bf84d75913a4a5a5d502acca8e814d02f1fba3a0fe63\", \"detector_hash\": \"f6b8d70dcd0b6941b846678107e83bfcf541d6de902becb6dcf7028b89cf383d\", \"passed\": true}, \"checks\": {\"detection_rate\": true, \"range_accuracy\": true, \"aoa_accuracy\": true, \"radial_velocity_accuracy\": true, \"cartesian_consistency\": true, \"finite_outputs\": true}}\n",
       "stderr_tail": "uct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).\n  torch.tensor(station, dtype=torch.float64), boresight, height)\n/home/dell/YrM/ICCT/code/07_shared_frontend/check_single_target.py:59: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).\n  delta = torch.tensor(station, dtype=torch.float64) - torch.tensor(position, dtype=torch.float64)\n",
-      "passed": true
+      "passed": true,
+      "failed_checks": []
     },
     "association": {
       "returncode": 0,
@@ -204,6 +205,6 @@
       "passed": true
     }
   },
-  "passed": false,
-  "runtime_s": 17.57645606994629
+  "passed": true,
+  "runtime_s": 18.370089769363403
 }

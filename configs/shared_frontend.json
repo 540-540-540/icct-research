@@ -82,9 +82,16 @@
     "max_confirmed": 8,
     "slot_cooldown_cycles": 10
   },
-  "snr_levels_db": null,
+  "snr_levels_db": [
+    -5,
+    0,
+    5,
+    10,
+    15,
+    20
+  ],
   "calibration": {
-    "status": "pending",
-    "report": null
+    "status": "frozen",
+    "report": "reports/f01e/snr_rebuild_06/snr_audit_summary.json"
   }
 }
