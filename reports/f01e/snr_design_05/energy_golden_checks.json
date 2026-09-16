@@ -1,55 +1,70 @@
 {
-  "test": "SENS-SNR-DESIGN-05 energy golden test",
+  "test": "SENS-SNR-DESIGN-05 rev2 energy golden test",
   "checks": {
-    "test1_fixed_symbol_power_energy_invariant": true,
-    "test2_current_energy_scales_with_K": true,
-    "test3_fixed_power_CPI_energy_scales_with_N": true,
-    "test4_theory_matches_monte_carlo": true,
-    "test4_e2_shift_is_10log10_K": true,
-    "test5_e2_rows_consistent_with_current_gain_and_reduced_input": true
+    "test1_unitary_mean_power_is_K_independent": true,
+    "test1b_TB_product_equals_K": true,
+    "test2_nist_boost_preserves_symbol_energy": true,
+    "test2b_sparse_losses": true,
+    "test3_theory_matches_monte_carlo": true
   },
-  "symbol_energy_ledger": [
+  "unitary_iffT_ledger": [
     {
       "K": 64,
-      "current_E_symbol": 64.0,
-      "fixed_power_E_symbol": 1.0
+      "E_f": 64,
+      "T_useful_s": 6.874328678839958e-07,
+      "B_T_useful": 64.0,
+      "time_mean_power_unitary": 1.0,
+      "DFT_gain_K": 64
     },
     {
       "K": 128,
-      "current_E_symbol": 128.0,
-      "fixed_power_E_symbol": 1.0
+      "E_f": 128,
+      "T_useful_s": 1.3748657357679915e-06,
+      "B_T_useful": 128.0,
+      "time_mean_power_unitary": 1.0,
+      "DFT_gain_K": 128
     },
     {
       "K": 256,
-      "current_E_symbol": 256.0,
-      "fixed_power_E_symbol": 1.0
+      "E_f": 256,
+      "T_useful_s": 2.749731471535983e-06,
+      "B_T_useful": 256.0,
+      "time_mean_power_unitary": 1.0,
+      "DFT_gain_K": 256
     },
     {
       "K": 512,
-      "current_E_symbol": 512.0,
-      "fixed_power_E_symbol": 1.0
+      "E_f": 512,
+      "T_useful_s": 5.499462943071966e-06,
+      "B_T_useful": 512.0,
+      "time_mean_power_unitary": 1.0,
+      "DFT_gain_K": 512
     }
   ],
-  "cpi_energy_ledger": [
-    {
-      "N": 128,
-      "E_CPI_fixed_power": 128.0
+  "sparse_energy": {
+    "comb2": {
+      "boosted_symbol_energy": 1.0,
+      "unboosted_symbol_energy": 0.5
     },
-    {
-      "N": 256,
-      "E_CPI_fixed_power": 256.0
-    },
-    {
-      "N": 512,
-      "E_CPI_fixed_power": 512.0
+    "comb4": {
+      "boosted_symbol_energy": 1.0,
+      "unboosted_symbol_energy": 0.25
     }
-  ],
-  "processing_gain": {
-    "hann_gain_K": 170.66666666666666,
-    "hann_gain_N": 170.66666666666666,
-    "rd_gain_current_db": 44.64297412512337,
-    "rd_gain_symbol_power_db": 22.321487062561683,
-    "rd_gain_cpi_energy_db": -3.521825181113625
   },
-  "cfar_threshold_db_reference": 4.183178671286787
+  "sparse_losses_db": {
+    "A_comb4_destagger": -6.020599913279624,
+    "B_comb2_destagger": -3.010299956639812
+  },
+  "processing_gain_db": {
+    "full_grid_Hann": 44.64297412512337,
+    "A": 38.62237421184374,
+    "B": 41.632674168483554
+  },
+  "cfar_threshold_db_reference": 4.183178671286787,
+  "measured_E0": {
+    "-10.0": 34.43276947816278,
+    "0.0": 44.432769478162776,
+    "10.0": 54.43276947816278,
+    "20.0": 64.43276947816278
+  }
 }
