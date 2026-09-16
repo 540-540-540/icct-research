@@ -1,17 +1,78 @@
 {
-  "source": "local reconstruction of the frozen A01 3-BS geometry (not a server artifact; not committed)",
+  "fit_split": "retained training episode source rows only; de-duplicated across anchors",
+  "training_rows": 193898,
+  "source_local_bounds_5_95_m": [
+    [
+      -13.46519532,
+      38.09045976
+    ],
+    [
+      15.002256000000001,
+      465.71760552
+    ]
+  ],
+  "source_origin_m": [
+    0.7685303400000008,
+    251.90403264
+  ],
+  "W_m": 28.467451320000002,
+  "L_m": 427.62714576,
   "stations_xy_m": [
-    [-64.23372566, -106.90678644],
-    [114.23372566, 0.0],
-    [-64.23372566, 106.90678644]
+    [
+      -64.23372566,
+      -106.90678644
+    ],
+    [
+      114.23372566,
+      0.0
+    ],
+    [
+      -64.23372566,
+      106.90678644
+    ]
   ],
   "boresight_rad": [
     0.0,
     3.141592653589793,
     0.0
   ],
-  "station_height_m": 6.0,
-  "vehicle_height_m": 1.0,
-  "fov_half_angle_deg": 70.0,
-  "range_m": [10.0, 300.0]
+  "boresight_deg": [
+    0.0,
+    180.0,
+    0.0
+  ],
+  "revision": "A01",
+  "station_height_m": 6,
+  "vehicle_height_m": 1,
+  "fov_half_angle_deg": 70,
+  "range_m": [
+    10,
+    300
+  ],
+  "coverage_is_geometry_not_detection": {
+    "train": {
+      "rows": 805964,
+      "at_least_one_station": 1.0,
+      "at_least_two_stations": 0.9994788849129738,
+      "all_three_stations": 0.17931197919510053
+    },
+    "V_select": {
+      "rows": 212865,
+      "at_least_one_station": 1.0,
+      "at_least_two_stations": 0.9998966481103047,
+      "all_three_stations": 0.17293120052615507
+    },
+    "V_confirm": {
+      "rows": 208504,
+      "at_least_one_station": 1.0,
+      "at_least_two_stations": 0.9992901814833288,
+      "all_three_stations": 0.19382361969074935
+    },
+    "test": {
+      "rows": 294465,
+      "at_least_one_station": 1.0,
+      "at_least_two_stations": 0.999891328341229,
+      "all_three_stations": 0.18922792182432546
+    }
+  }
 }

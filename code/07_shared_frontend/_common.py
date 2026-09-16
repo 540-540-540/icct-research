@@ -79,6 +79,17 @@ def load_lut(root: Path = ROOT, path: str | None = None) -> dict | None:
     return read_json(lut_path)
 
 
+def load_production_lut(config: dict, root: Path = ROOT) -> dict | None:
+    """Load the covariance LUT referenced by the production config."""
+    return load_lut(root, config.get("detector", {}).get("covariance_lut"))
+
+
+def load_resource(config: dict):
+    from frontend.sensing.waveform import SensingResource
+
+    return SensingResource.from_config(config)
+
+
 def place_target(station, boresight: float, r_m: float, bearing_deg: float, velocity, height: float = 5.0):
     """C-domain helper: build one truth target at a requested polar location."""
     rho = math.sqrt(r_m ** 2 - height ** 2)

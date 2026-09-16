@@ -1,0 +1,118 @@
+{
+  "stage": "SENS-SNR-REBUILD-06 Stage E",
+  "method": "B64 production detection -> association/fusion -> CV-KF over 6 multi-frame streams (3 synthetic + 3 A01 train, 12 frames each) at 0 and 10 dB; one-to-one GT<->track matching with 5 m gate; predeclared selection: min(mean position RMSE + mean velocity RMSE), ties by continuity",
+  "candidates_m2_s3": [
+    0.25,
+    0.5,
+    1.0,
+    2.0,
+    4.0
+  ],
+  "chosen_q_a_m2_s3": 2.0,
+  "selection_score_position_plus_velocity": {
+    "0.25": 1.3360437276631167,
+    "0.5": 1.326551030662265,
+    "1.0": 1.3215843849034845,
+    "2.0": 1.285014692214388,
+    "4.0": 1.3196115290791108
+  },
+  "snr_points": [
+    0.0,
+    10.0
+  ],
+  "streams": [
+    "stream_count3",
+    "stream_count5",
+    "stream_count8",
+    "train_stream_low",
+    "train_stream_mid",
+    "train_stream_high"
+  ],
+  "table": {
+    "0.25": {
+      "0.0": {
+        "mean_position_rmse_m": 0.3053237175377875,
+        "mean_velocity_rmse_mps": 1.050147617276399,
+        "mean_continuity": 0.8093750000000001,
+        "mean_coast_ratio": 0.05598845598845598,
+        "streams": 6
+      },
+      "10.0": {
+        "mean_position_rmse_m": 0.29300448765664283,
+        "mean_velocity_rmse_mps": 1.0236116328554041,
+        "mean_continuity": 0.8093750000000001,
+        "mean_coast_ratio": 0.04992784992784993,
+        "streams": 6
+      }
+    },
+    "0.5": {
+      "0.0": {
+        "mean_position_rmse_m": 0.308997041884851,
+        "mean_velocity_rmse_mps": 1.042507748843054,
+        "mean_continuity": 0.8093750000000001,
+        "mean_coast_ratio": 0.05598845598845598,
+        "streams": 6
+      },
+      "10.0": {
+        "mean_position_rmse_m": 0.2996176662626118,
+        "mean_velocity_rmse_mps": 1.0019796043340135,
+        "mean_continuity": 0.8093750000000001,
+        "mean_coast_ratio": 0.04992784992784993,
+        "streams": 6
+      }
+    },
+    "1.0": {
+      "0.0": {
+        "mean_position_rmse_m": 0.3057252589626763,
+        "mean_velocity_rmse_mps": 1.0421699677317424,
+        "mean_continuity": 0.8093750000000001,
+        "mean_coast_ratio": 0.05598845598845598,
+        "streams": 6
+      },
+      "10.0": {
+        "mean_position_rmse_m": 0.29588272140609834,
+        "mean_velocity_rmse_mps": 0.9993908217064522,
+        "mean_continuity": 0.8093750000000001,
+        "mean_coast_ratio": 0.04992784992784993,
+        "streams": 6
+      }
+    },
+    "2.0": {
+      "0.0": {
+        "mean_position_rmse_m": 0.2971418191774277,
+        "mean_velocity_rmse_mps": 1.011541877472223,
+        "mean_continuity": 0.8093750000000001,
+        "mean_coast_ratio": 0.04083694083694083,
+        "streams": 6
+      },
+      "10.0": {
+        "mean_position_rmse_m": 0.28651324505385717,
+        "mean_velocity_rmse_mps": 0.9748324427252678,
+        "mean_continuity": 0.8093750000000001,
+        "mean_coast_ratio": 0.03477633477633477,
+        "streams": 6
+      }
+    },
+    "4.0": {
+      "0.0": {
+        "mean_position_rmse_m": 0.2943698133435929,
+        "mean_velocity_rmse_mps": 1.0532899249933252,
+        "mean_continuity": 0.8093750000000001,
+        "mean_coast_ratio": 0.04083694083694083,
+        "streams": 6
+      },
+      "10.0": {
+        "mean_position_rmse_m": 0.2802584170411662,
+        "mean_velocity_rmse_mps": 1.0113049027801377,
+        "mean_continuity": 0.8093750000000001,
+        "mean_coast_ratio": 0.031746031746031744,
+        "streams": 6
+      }
+    }
+  },
+  "cfar_multiplier": 0.19929921825469216,
+  "resource_mode": "contiguous_burst",
+  "active_symbols": 64,
+  "config_hash": "d831f4673cc5dd593a41214347c61df88355b734226f23dd9bb8300c4f64f108",
+  "runtime_s": 12.123627185821533
+}

@@ -60,7 +60,8 @@ def main() -> None:
     stations, boresights = geometry["stations"], geometry["boresights"]
     height = float(geometry["height_difference_m"])
     multiplier = float(config["detector"]["cfar_threshold_multiplier"])
-    lut = _common.load_lut(ROOT)
+    resource = _common.load_resource(config)
+    lut = _common.load_production_lut(config)
     if lut is None:
         raise SystemExit("covariance LUT missing")
 
@@ -78,7 +79,7 @@ def main() -> None:
                 detections_by_bs = {}
                 for bs in range(3):
                     maps = detector_module.compute_maps(echo["Y"][bs], echo["X"][bs], waveform, array,
-                                                        config["detector"])
+                                                        config["detector"], resource=resource)
                     detections, _, _ = detector_module.detect_from_maps(
                         maps, bs, frame, stations[bs], float(boresights[bs]), config, array, multiplier=multiplier,
                         covariance_lut=lut, height=height)

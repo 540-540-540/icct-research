@@ -78,6 +78,47 @@ class ArrayConfig:
             raise ValueError("V1 freezes aoa_max_peaks=1")
 
 
+@dataclass(frozen=True)
+class SensingResource:
+    """Slow-time sensing resource schedule (SENS-SNR-REBUILD-06, B64 contiguous burst).
+
+    ``full`` activates every symbol of the block; ``contiguous_burst`` activates
+    ``active_symbols`` consecutive slow-time symbols starting at ``start_symbol``.
+    Only the active symbols enter the Doppler integration; no amplitude scaling is applied.
+    """
+
+    mode: str = "full"
+    total_symbols: int = 256
+    active_symbols: int = 256
+    start_symbol: int = 0
+
+    def __post_init__(self):
+        if self.mode not in ("full", "contiguous_burst"):
+            raise ValueError("V1 supports only 'full' and 'contiguous_burst' sensing resources")
+        if int(self.total_symbols) != self.total_symbols or self.total_symbols < 2:
+            raise ValueError("total_symbols must be an integer >= 2")
+        if self.mode == "full":
+            if self.active_symbols != self.total_symbols or self.start_symbol != 0:
+                raise ValueError("full resource must activate all symbols from 0")
+            return
+        if int(self.active_symbols) != self.active_symbols or not 2 <= self.active_symbols <= self.total_symbols:
+            raise ValueError("active_symbols must be an integer in [2, total_symbols]")
+        if int(self.start_symbol) != self.start_symbol or self.start_symbol < 0:
+            raise ValueError("start_symbol must be a non-negative integer")
+        if self.start_symbol + self.active_symbols > self.total_symbols:
+            raise ValueError("active burst must fit inside the slow-time block")
+
+    @classmethod
+    def from_config(cls, config: dict) -> "SensingResource":
+        payload = config.get("sensing_resource") or {}
+        mode = str(payload.get("mode", "full"))
+        total = int(payload.get("total_symbols", config.get("waveform", {}).get("N", 256)))
+        if mode == "full":
+            return cls(mode="full", total_symbols=total, active_symbols=total, start_symbol=0)
+        return cls(mode=mode, total_symbols=total, active_symbols=int(payload["active_symbols"]),
+                   start_symbol=int(payload["start_symbol"]))
+
+
 def load_geometry(root: Path | str = ROOT, path: str = "reports/f01a/geometry.json") -> dict:
     payload = json.loads((Path(root) / path).read_text())
     stations = torch.tensor(payload["stations_xy_m"], dtype=torch.float64)
@@ -105,6 +146,12 @@ if __name__ == "__main__":
     assert abs(w.unambiguous_velocity - 252.35055387205387) < 1e-9
     array = ArrayConfig()
     assert array.elements == 16 and array.fft_size == 64
+    burst = SensingResource.from_config({"sensing_resource": {"mode": "contiguous_burst",
+                                                              "total_symbols": 256,
+                                                              "active_symbols": 64,
+                                                              "start_symbol": 96}})
+    assert burst.active_symbols == 64 and burst.start_symbol == 96
+    assert SensingResource.from_config({}).mode == "full"
     print({"waveform": {"df": w.df, "range_resolution": w.range_resolution,
                         "unambiguous_velocity": w.unambiguous_velocity, "cpi": w.cpi},
            "array": array.__dict__})

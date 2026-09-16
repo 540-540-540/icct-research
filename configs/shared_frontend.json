@@ -8,6 +8,12 @@
     "T": 1.2375e-05,
     "c": 299792458.0
   },
+  "sensing_resource": {
+    "mode": "contiguous_burst",
+    "total_symbols": 256,
+    "active_symbols": 64,
+    "start_symbol": 96
+  },
   "array": {
     "elements": 16,
     "spacing_wavelengths": 0.5,
@@ -49,11 +55,11 @@
       2
     ],
     "interpolation": true,
-    "cfar_threshold_multiplier": 0.19,
+    "cfar_threshold_multiplier": 0.19929921825469216,
     "aoa_fft_size": 64,
     "aoa_max_peaks": 1,
     "aoa_nms_radius": 4,
-    "covariance_lut": "reports/f01e/covariance_calibration.json",
+    "covariance_lut": "reports/f01e/snr_rebuild_06/covariance_calibration.json",
     "covariance_floor_m2": 0.01
   },
   "association": {
@@ -67,7 +73,7 @@
   },
   "tracker": {
     "dt": 0.1,
-    "q_a_m2_s3": 1.0,
+    "q_a_m2_s3": 2.0,
     "birth_inflation": 4.0,
     "confirm_hits": 2,
     "confirm_window": 3,

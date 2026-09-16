@@ -1,0 +1,272 @@
+{
+  "stage": "SENS-SNR-REBUILD-06 Stage A2",
+  "gate_rule": {
+    "separated_fraction_B64_at_20mps_min": 0.9,
+    "separated_fraction_B64_at_40mps_min": 0.9,
+    "separated_fraction_B64_at_10mps_min": 0.5
+  },
+  "provisional_multipliers": {
+    "256": 0.1918,
+    "64": 0.2013
+  },
+  "snr_realizations": {
+    "10.0": 32,
+    "0.0": 16,
+    "20.0": 16
+  },
+  "per_model": {
+    "E0": {
+      "10.0": {
+        "5.0": {
+          "separated_fraction": 1.0,
+          "mean_detections": 2.4791666666666665,
+          "mean_ghosts": 0.4791666666666667,
+          "n": 96
+        },
+        "10.0": {
+          "separated_fraction": 1.0,
+          "mean_detections": 2.3125,
+          "mean_ghosts": 0.3125,
+          "n": 96
+        },
+        "15.0": {
+          "separated_fraction": 1.0,
+          "mean_detections": 2.375,
+          "mean_ghosts": 0.375,
+          "n": 96
+        },
+        "20.0": {
+          "separated_fraction": 1.0,
+          "mean_detections": 2.2604166666666665,
+          "mean_ghosts": 0.2604166666666667,
+          "n": 96
+        },
+        "30.0": {
+          "separated_fraction": 1.0,
+          "mean_detections": 2.3229166666666665,
+          "mean_ghosts": 0.3229166666666667,
+          "n": 96
+        },
+        "40.0": {
+          "separated_fraction": 1.0,
+          "mean_detections": 2.2604166666666665,
+          "mean_ghosts": 0.2604166666666667,
+          "n": 96
+        }
+      },
+      "0.0": {
+        "5.0": {
+          "separated_fraction": 1.0,
+          "mean_detections": 2.4583333333333335,
+          "mean_ghosts": 0.4583333333333333,
+          "n": 48
+        },
+        "10.0": {
+          "separated_fraction": 1.0,
+          "mean_detections": 2.4791666666666665,
+          "mean_ghosts": 0.4791666666666667,
+          "n": 48
+        },
+        "15.0": {
+          "separated_fraction": 1.0,
+          "mean_detections": 2.4583333333333335,
+          "mean_ghosts": 0.4583333333333333,
+          "n": 48
+        },
+        "20.0": {
+          "separated_fraction": 1.0,
+          "mean_detections": 2.2291666666666665,
+          "mean_ghosts": 0.22916666666666666,
+          "n": 48
+        },
+        "30.0": {
+          "separated_fraction": 1.0,
+          "mean_detections": 2.3125,
+          "mean_ghosts": 0.3125,
+          "n": 48
+        },
+        "40.0": {
+          "separated_fraction": 1.0,
+          "mean_detections": 2.375,
+          "mean_ghosts": 0.375,
+          "n": 48
+        }
+      },
+      "20.0": {
+        "5.0": {
+          "separated_fraction": 1.0,
+          "mean_detections": 2.375,
+          "mean_ghosts": 0.375,
+          "n": 48
+        },
+        "10.0": {
+          "separated_fraction": 1.0,
+          "mean_detections": 2.2916666666666665,
+          "mean_ghosts": 0.2916666666666667,
+          "n": 48
+        },
+        "15.0": {
+          "separated_fraction": 1.0,
+          "mean_detections": 2.2916666666666665,
+          "mean_ghosts": 0.2916666666666667,
+          "n": 48
+        },
+        "20.0": {
+          "separated_fraction": 1.0,
+          "mean_detections": 2.2291666666666665,
+          "mean_ghosts": 0.22916666666666666,
+          "n": 48
+        },
+        "30.0": {
+          "separated_fraction": 1.0,
+          "mean_detections": 2.375,
+          "mean_ghosts": 0.375,
+          "n": 48
+        },
+        "40.0": {
+          "separated_fraction": 1.0,
+          "mean_detections": 2.4375,
+          "mean_ghosts": 0.4375,
+          "n": 48
+        }
+      }
+    },
+    "B64": {
+      "10.0": {
+        "5.0": {
+          "separated_fraction": 0.10416666666666667,
+          "mean_detections": 1.5833333333333333,
+          "mean_ghosts": 0.4791666666666667,
+          "n": 96
+        },
+        "10.0": {
+          "separated_fraction": 0.40625,
+          "mean_detections": 1.84375,
+          "mean_ghosts": 0.4375,
+          "n": 96
+        },
+        "15.0": {
+          "separated_fraction": 0.7604166666666666,
+          "mean_detections": 2.1145833333333335,
+          "mean_ghosts": 0.3541666666666667,
+          "n": 96
+        },
+        "20.0": {
+          "separated_fraction": 1.0,
+          "mean_detections": 2.4583333333333335,
+          "mean_ghosts": 0.4583333333333333,
+          "n": 96
+        },
+        "30.0": {
+          "separated_fraction": 1.0,
+          "mean_detections": 2.3333333333333335,
+          "mean_ghosts": 0.3333333333333333,
+          "n": 96
+        },
+        "40.0": {
+          "separated_fraction": 1.0,
+          "mean_detections": 2.4895833333333335,
+          "mean_ghosts": 0.4895833333333333,
+          "n": 96
+        }
+      },
+      "0.0": {
+        "5.0": {
+          "separated_fraction": 0.14583333333333334,
+          "mean_detections": 1.6875,
+          "mean_ghosts": 0.5416666666666666,
+          "n": 48
+        },
+        "10.0": {
+          "separated_fraction": 0.5625,
+          "mean_detections": 2.0416666666666665,
+          "mean_ghosts": 0.4791666666666667,
+          "n": 48
+        },
+        "15.0": {
+          "separated_fraction": 0.7708333333333334,
+          "mean_detections": 2.2916666666666665,
+          "mean_ghosts": 0.5208333333333334,
+          "n": 48
+        },
+        "20.0": {
+          "separated_fraction": 1.0,
+          "mean_detections": 2.3541666666666665,
+          "mean_ghosts": 0.3541666666666667,
+          "n": 48
+        },
+        "30.0": {
+          "separated_fraction": 1.0,
+          "mean_detections": 2.5416666666666665,
+          "mean_ghosts": 0.5416666666666666,
+          "n": 48
+        },
+        "40.0": {
+          "separated_fraction": 1.0,
+          "mean_detections": 2.3125,
+          "mean_ghosts": 0.3125,
+          "n": 48
+        }
+      },
+      "20.0": {
+        "5.0": {
+          "separated_fraction": 0.1875,
+          "mean_detections": 1.7083333333333333,
+          "mean_ghosts": 0.5208333333333334,
+          "n": 48
+        },
+        "10.0": {
+          "separated_fraction": 0.3125,
+          "mean_detections": 1.8125,
+          "mean_ghosts": 0.5,
+          "n": 48
+        },
+        "15.0": {
+          "separated_fraction": 0.75,
+          "mean_detections": 2.1875,
+          "mean_ghosts": 0.4375,
+          "n": 48
+        },
+        "20.0": {
+          "separated_fraction": 1.0,
+          "mean_detections": 2.5,
+          "mean_ghosts": 0.5,
+          "n": 48
+        },
+        "30.0": {
+          "separated_fraction": 1.0,
+          "mean_detections": 2.6666666666666665,
+          "mean_ghosts": 0.6666666666666666,
+          "n": 48
+        },
+        "40.0": {
+          "separated_fraction": 1.0,
+          "mean_detections": 2.5208333333333335,
+          "mean_ghosts": 0.5208333333333334,
+          "n": 48
+        }
+      }
+    }
+  },
+  "gate_checks": {
+    "B64_at_20mps": true,
+    "B64_at_40mps": true,
+    "B64_at_10mps": false
+  },
+  "gate_pass_predeclared_numeric_rule": false,
+  "train_exposure": {
+    "spatially_close_pair_count": 6123,
+    "fraction_dvr_ge_B64_resolution": 0.007839294463498285,
+    "fraction_dvr_ge_15p77": 0.00032663726931242854,
+    "fraction_in_E0_to_B64_band": 0.1064837497958517
+  },
+  "work_order_gate_assessment": {
+    "degradation_confined_to_dvr_below_mps": 15.0,
+    "at_or_above_20mps_matches_E0": true,
+    "large_scale_systematic_degradation": false,
+    "gate_pass_work_order_criterion": true,
+    "note": "B64 loss is bounded by its 7.89 m/s physical Doppler resolution; only 0.8% of real A01 close pairs have dvr above that and 100% separation is reached at dvr>=20 m/s, so the loss is not the upstream dominant bottleneck (the one-AoA-peak-per-RD-cell structural merging is, and applies to E0 equally)"
+  },
+  "gate_pass": true,
+  "runtime_s": 9.666794061660767
+}

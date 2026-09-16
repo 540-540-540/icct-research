@@ -11,7 +11,7 @@ import torch
 import torch.nn.functional as TF
 
 from . import coords
-from .waveform import ArrayConfig, PaperWaveform, periodic_hann
+from .waveform import ArrayConfig, PaperWaveform, SensingResource, periodic_hann
 
 DETECTION_FIELDS = (
     "station_id", "time_ns", "r_m", "vr_mps", "u", "bearing_rad", "x_m", "y_m", "C_xy",
@@ -39,18 +39,31 @@ def box_sum(x: torch.Tensor, half_h: int, half_w: int) -> torch.Tensor:
 
 @torch.no_grad()
 def compute_maps(Y_b: torch.Tensor, X_b: torch.Tensor, waveform: PaperWaveform, array: ArrayConfig,
-                 detector: dict) -> dict:
+                 detector: dict, resource: SensingResource | None = None) -> dict:
+    """2D RD map over the active sensing resource.
+
+    ``resource=None`` keeps the frozen full-grid oracle path (all N symbols). A
+    ``contiguous_burst`` resource integrates only the active consecutive symbols; the range
+    grid stays at nr=2K and the velocity grid becomes nv=2*active_symbols with the slow-time
+    spacing still T, so the unambiguous velocity is unchanged.
+    """
     if Y_b.ndim != 3 or Y_b.shape != (array.elements, waveform.K, waveform.N):
         raise ValueError("Y_b must be [A,K,N]")
     if X_b.shape != (waveform.K, waveform.N):
         raise ValueError("X_b must be [K,N]")
     if not torch.isfinite(Y_b).all() or not torch.isfinite(X_b).all() or torch.any(X_b.abs() == 0):
         raise ValueError("Finite aligned Y/X symbols are required")
+    resource = resource if resource is not None else SensingResource()
+    if resource.total_symbols != waveform.N:
+        raise ValueError("sensing resource total_symbols must match the waveform block N")
+    samples = waveform.N if resource.mode == "full" else resource.active_symbols
     device, dtype = Y_b.device, Y_b.real.dtype
-    nr, nv = 2 * waveform.K, 2 * waveform.N
+    nr, nv = 2 * waveform.K, 2 * samples
     range_window = periodic_hann(waveform.K, device, dtype)[None, :, None]
-    doppler_window = periodic_hann(waveform.N, device, dtype)[None, None, :]
+    doppler_window = periodic_hann(samples, device, dtype)[None, None, :]
     z = Y_b / X_b[None]
+    if resource.mode != "full":
+        z = z[:, :, resource.start_symbol:resource.start_symbol + resource.active_symbols]
     spectrum = torch.fft.ifft(z * range_window, n=nr, dim=1)
     spectrum = torch.fft.fftshift(torch.fft.fft(spectrum * doppler_window, n=nv, dim=2), dim=2)
     power = spectrum.abs().square().sum(dim=0)
@@ -227,8 +240,9 @@ def detect_from_maps(maps: dict, station_id: int, time_ns: int, station, boresig
 def process_baseline(Y_b: torch.Tensor, X_b: torch.Tensor, station_id: int, waveform: PaperWaveform,
                      array: ArrayConfig, config: dict, time_ns: int = 0, multiplier: float | None = None,
                      covariance_lut: dict | None = None, station=None, boresight: float = 0.0,
-                     height: float = 5.0) -> dict:
-    maps = compute_maps(Y_b, X_b, waveform, array, config["detector"])
+                     height: float = 5.0, resource: SensingResource | None = None) -> dict:
+    resource = resource if resource is not None else SensingResource.from_config(config)
+    maps = compute_maps(Y_b, X_b, waveform, array, config["detector"], resource=resource)
     detections, counters, snapshots = detect_from_maps(maps, station_id, time_ns, station, boresight,
                                                        config, array, multiplier=multiplier,
                                                        covariance_lut=covariance_lut, height=height)

@@ -42,10 +42,11 @@ def main() -> None:
     height = geometry["height_difference_m"]
     multiplier = config["detector"].get("cfar_threshold_multiplier")
     if multiplier is None:
-        cfar_report = ROOT / "reports/f01e/cfar_calibration.json"
+        cfar_report = ROOT / "reports/f01e/snr_rebuild_06/cfar_calibration.json"
         multiplier = float(_common.read_json(cfar_report)["chosen_multiplier"]) if cfar_report.exists() else 1.0
     multiplier = float(multiplier)
-    lut = _common.load_lut(ROOT)
+    resource = _common.load_resource(config)
+    lut = _common.load_production_lut(config)
     if lut is None:
         raise SystemExit("covariance LUT missing; run calibrate_covariance before the sanity check")
 
@@ -61,7 +62,8 @@ def main() -> None:
                 echo = _common.synthesize([position], [velocity], [1], stations, boresights, waveform, array,
                                           config, SNR_REF_DB, 9400 + case_index, realization, device,
                                           height_m=float(height))
-                maps = detector_module.compute_maps(echo["Y"][0], echo["X"][0], waveform, array, config["detector"])
+                maps = detector_module.compute_maps(echo["Y"][0], echo["X"][0], waveform, array, config["detector"],
+                                           resource=resource)
                 detections, _, _ = detector_module.detect_from_maps(
                     maps, 0, 0, station, boresight, config, array, multiplier=multiplier, covariance_lut=lut,
                     height=float(height))
@@ -98,9 +100,14 @@ def main() -> None:
         "aoa_accuracy": {"passed": statistics.median(errors_u) <= 0.02,
                          "detail": {"median_abs_e_u": statistics.median(errors_u),
                                     "max_abs_e_u": max(errors_u)}},
-        "radial_velocity_accuracy": {"passed": statistics.median(errors_vr) <= 0.5,
+        "radial_velocity_accuracy": {"passed": statistics.median(errors_vr) <= 1.5,
                                      "detail": {"median_abs_e_vr_mps": statistics.median(errors_vr),
-                                                "max_abs_e_vr_mps": max(errors_vr)}},
+                                                "max_abs_e_vr_mps": max(errors_vr),
+                                                "b64_physical_resolution_mps":
+                                                    waveform.c / (2 * waveform.fc * 64 * waveform.T),
+                                                "tolerance_note": "B64 Doppler resolution is ~7.89 m/s; "
+                                                                  "the 1.5 m/s median gate checks alias/offset, "
+                                                                  "not E0-level accuracy"}},
         "cartesian_consistency": {"passed": max(consistency) <= 1e-9,
                                   "detail": {"max_consistency_m": max(consistency)}},
         "finite_outputs": {"passed": all(all(math.isfinite(value) for key, value in row.items()

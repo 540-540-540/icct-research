@@ -20,8 +20,8 @@ sys.path.insert(0, str(HERE))
 sys.path.insert(0, str(ROOT))
 import _common  # noqa: E402
 
-OUT = ROOT / "reports/f01e/covariance_calibration.json"
-P25_DIR = ROOT / "reports/f01e/p25_covariance"
+OUT = ROOT / "reports/f01e/snr_rebuild_06/covariance_calibration.json"
+P25_DIR = ROOT / "reports/f01e/snr_rebuild_06"
 RANGES_M = [30.0, 60.0, 100.0, 150.0, 200.0, 250.0, 300.0]
 BEARINGS_DEG = [-69.0, -45.0, 0.0, 45.0, 69.0]
 SNR_LEVELS_DB = [-20.0, -15.0, -10.0, -5.0, 0.0, 5.0, 10.0, 15.0, 20.0]
@@ -109,6 +109,7 @@ def main() -> None:
     height = float(geometry["height_difference_m"])
     multiplier = float(config["detector"]["cfar_threshold_multiplier"])
     detector_config = config["detector"]
+    resource = _common.load_resource(config)
 
     rows, attempts = [], []
     per_snr = {level: [0, 0] for level in SNR_LEVELS_DB}
@@ -137,7 +138,7 @@ def main() -> None:
                             continue
                         per_snr[snr][1] += 1
                         maps = detector_module.compute_maps(echo["Y"][bs], echo["X"][bs], waveform, array,
-                                                            detector_config)
+                                                            detector_config, resource=resource)
                         detections, _, _ = detector_module.detect_from_maps(
                             maps, bs, 0, stations[bs], float(boresights[bs]), config, array, multiplier=multiplier,
                             height=height)
@@ -239,18 +240,24 @@ def main() -> None:
         "config_hash": hashlib.sha256((ROOT / "configs/shared_frontend.json").read_bytes()).hexdigest(),
         "coords_hash": hashlib.sha256((ROOT / "frontend/sensing/coords.py").read_bytes()).hexdigest(),
     }
+    report["production_lut_path"] = "reports/f01e/snr_rebuild_06/covariance_calibration.json"
     _common.write_json(OUT, report)
 
+    updated = json.loads((ROOT / "configs/shared_frontend.json").read_text())
+    updated["detector"]["covariance_lut"] = report["production_lut_path"]
+    (ROOT / "configs/shared_frontend.json").write_text(
+        json.dumps(updated, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
     P25_DIR.mkdir(parents=True, exist_ok=True)
-    summary = {"test": "P2.5 covariance extension", "rows": len(rows), "visible_attempts": total_attempts,
+    summary = {"test": "REBUILD-06 B64 covariance calibration", "rows": len(rows), "visible_attempts": total_attempts,
                "overall_detection_rate": detection_rate,
                "detection_rate_by_snr": report["detection_rate_by_snr"],
                "pairwise_true_pairs": chosen_stats["pairs"], "pairwise_gate": report["pairwise_gate"],
                "fallback_bins": [entry["q_max_db"] for entry in binned if entry["fallback_used"]],
                "note": "low-q bins with too few detections use conservative pooled envelope; no fabricated samples",
                "passed": bool(len(rows) > 0 and chosen_stats["pairs"])}
-    _common.write_json(P25_DIR / "summary.json", summary)
-    with (P25_DIR / "bin_coverage.csv").open("w", newline="", encoding="utf-8") as handle:
+    _common.write_json(P25_DIR / "covariance_summary.json", summary)
+    with (P25_DIR / "covariance_bin_coverage.csv").open("w", newline="", encoding="utf-8") as handle:
         writer = csv.writer(handle)
         writer.writerow(["q_min_db", "q_max_db", "samples", "sigma_r_m", "sigma_u", "detection_rate",
                          "fallback_used", "median_abs_e_r_m", "median_abs_e_u"])

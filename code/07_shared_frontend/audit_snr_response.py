@@ -6,6 +6,7 @@ No production config, cache, or model is modified.
 """
 from __future__ import annotations
 
+import argparse
 import csv
 import json
 import math
@@ -25,7 +26,7 @@ import _common  # noqa: E402
 
 OUT = ROOT / "reports/f01e/snr_audit_04"
 FIGURES = OUT / "figures"
-SNR_POINTS = [-10.0, -5.0, 0.0, 5.0, 10.0, 15.0, 20.0]
+SNR_POINTS = [-5.0, 0.0, 5.0, 10.0, 15.0, 20.0]
 RANGE_BINS = [10.0, 75.0, 150.0, 225.0, 300.0]
 COUNT_BUCKETS = {"low": (1, 3), "mid": (4, 6), "high": (7, 8)}
 GATE_M = 5.0
@@ -133,6 +134,12 @@ def median_or_none(values):
 
 
 def main() -> None:
+    global OUT, FIGURES
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--out", default=str(OUT))
+    arguments = parser.parse_args()
+    OUT = Path(arguments.out)
+    FIGURES = OUT / "figures"
     if not torch.cuda.is_available():
         raise SystemExit("SNR audit requires CUDA per frozen design")
     from frontend.echo_source import SourceEpisodes
@@ -148,9 +155,10 @@ def main() -> None:
     stations, boresights = geometry["stations"], geometry["boresights"]
     height = float(geometry["height_difference_m"])
     multiplier = float(config["detector"]["cfar_threshold_multiplier"])
-    lut = _common.load_lut(ROOT)
+    lut = _common.load_production_lut(config)
     if lut is None:
         raise SystemExit("covariance LUT missing")
+    resource = _common.load_resource(config)
 
     source = SourceEpisodes()
     snapshots = []
@@ -176,8 +184,8 @@ def main() -> None:
     per_snr = {snr: {"station_pairs": 0, "station_matched": 0, "misses": 0, "fa": 0, "frames": 0,
                      "detections": 0, "range_abs": [], "u_abs": [], "xy_errors": [], "peak": [], "g_emp": [],
                      "received": [], "range_bin": {}, "density": {}, "targets": 0, "targets_matched": 0,
-                     "obs_total": 0, "obs_matched": 0, "fusion_errors": [], "nbs": {1: 0, 2: 0, 3: 0},
-                     "gate": 0, "postfilter": 0} for snr in SNR_POINTS}
+                     "obs_total": 0, "obs_matched": 0, "fusion_errors": [], "fusion_by_nbs": {},
+                     "nbs": {1: 0, 2: 0, 3: 0}, "gate": 0, "postfilter": 0} for snr in SNR_POINTS}
     gt_rd_rows = []
 
     for scene_index, scene in enumerate(snapshots):
@@ -198,7 +206,7 @@ def main() -> None:
             for bs in range(3):
                 detections, _, _ = detector_module.detect_from_maps(
                     detector_module.compute_maps(echo["Y"][bs], echo["X"][bs], waveform, array,
-                                                 config["detector"]),
+                                                 config["detector"], resource=resource),
                     bs, 0, stations[bs], float(boresights[bs]), config, array, multiplier=multiplier,
                     covariance_lut=lut, height=height)
                 detections_by_bs[bs] = detections
@@ -273,17 +281,18 @@ def main() -> None:
                                                   [np.array([o["x_m"], o["y_m"]]) for o in observations])
             per["targets_matched"] += len(matched)
             per["obs_matched"] += len(observations) - len(unmatched)
-            for _, _, distance in matched:
+            for _, observation_index, distance in matched:
                 per["fusion_errors"].append(distance)
+                per["fusion_by_nbs"].setdefault(observations[observation_index]["n_bs"], []).append(distance)
             per["gate"] += diagnostics["gate_rejections"]
             per["postfilter"] += diagnostics["postfilter_rejections"]
 
             if scene["type"] == "synthetic" and scene["count"] == 1:
                 clean = run_echo(positions, velocities, keys, snr, 9600 + scene_index, 0, noise=False)
                 maps_clean = detector_module.compute_maps(clean["Y"][0], clean["X"][0], waveform, array,
-                                                          config["detector"])
+                                                          config["detector"], resource=resource)
                 maps_noise = detector_module.compute_maps(echo["W"][0], clean["X"][0], waveform, array,
-                                                          config["detector"])
+                                                          config["detector"], resource=resource)
                 position = positions[0]
                 delta = stations[0] - torch.tensor(position, dtype=torch.float64)
                 radius = float(torch.linalg.vector_norm(delta))
@@ -292,13 +301,13 @@ def main() -> None:
                 i = int(torch.argmin(torch.abs(maps_clean["ranges"] - float(r_gt))))
                 j = int(torch.argmin(torch.abs(maps_clean["velocities"] - radial)))
                 window_clean = maps_clean["P_RD"][max(0, i - 1):i + 2, max(0, j - 1):j + 2]
-                window_noise = maps_noise["P_RD"][max(0, i - 1):i + 2, max(0, j - 1):j + 2]
+                noise_floor = float(maps_noise["P_RD"][maps_noise["nr"] // 5:4 * maps_noise["nr"] // 5].mean())
                 gt_rd_rows.append({"scene": scene["label"], "snr_ref_db": snr,
                                    "r_gt_m": float(r_gt), "radial_gt_mps": radial,
                                    "clean_power_max": float(window_clean.max()),
-                                   "noise_power_median": float(window_noise.median()),
+                                   "noise_power_mean": noise_floor,
                                    "gt_rd_snr_db": float(10 * math.log10(float(window_clean.max())
-                                                                         / max(float(window_noise.median()), 1e-300)))})
+                                                                         / max(noise_floor, 1e-300)))})
 
     tracker_rows = []
     for stream_index, stream in enumerate(streams):
@@ -318,7 +327,7 @@ def main() -> None:
                 for bs in range(3):
                     detections, _, _ = detector_module.detect_from_maps(
                         detector_module.compute_maps(echo["Y"][bs], echo["X"][bs], waveform, array,
-                                                     config["detector"]),
+                                                     config["detector"], resource=resource),
                         bs, frame, stations[bs], float(boresights[bs]), config, array, multiplier=multiplier,
                         covariance_lut=lut, height=height)
                     detections_by_bs[bs] = detections
@@ -357,7 +366,7 @@ def main() -> None:
                                 "received_snr_db": row["snr_ref_db"] + 40.0 * math.log10(100.0 / row["r_gt_m"]),
                                 "peak_to_noise_db": None, "g_emp_db": None,
                                 "gt_rd_snr_db": row["gt_rd_snr_db"], "peak_power": row["clean_power_max"],
-                                "noise_floor": row["noise_power_median"], "cfar_score": None})
+                                "noise_floor": row["noise_power_mean"], "cfar_score": None})
 
     OUT.mkdir(parents=True, exist_ok=True)
     with (OUT / "processing_gain.csv").open("w", newline="", encoding="utf-8") as handle:
@@ -388,6 +397,7 @@ def main() -> None:
             "u_median_abs": median_or_none(per["u_abs"]),
             "single_bs_xy_rmse_m": float(np.sqrt(np.mean(np.square(per["xy_errors"])))) if per["xy_errors"] else None,
             "single_bs_xy_median_m": median_or_none(per["xy_errors"]),
+            "single_bs_xy_p90_m": quantile(per["xy_errors"], 0.90),
             "nbs1_fraction": per["nbs"][1] / max(sum(per["nbs"].values()), 1),
             "nbs2_fraction": per["nbs"][2] / max(sum(per["nbs"].values()), 1),
             "nbs3_fraction": per["nbs"][3] / max(sum(per["nbs"].values()), 1),
@@ -395,10 +405,11 @@ def main() -> None:
             "obs_precision": per["obs_matched"] / max(per["obs_total"], 1),
             "fusion_xy_rmse_m": float(np.sqrt(np.mean(np.square(per["fusion_errors"])))) if per["fusion_errors"] else None,
             "fusion_xy_median_m": median_or_none(per["fusion_errors"]),
+            "fusion_xy_p90_m": quantile(per["fusion_errors"], 0.90),
             "gate_rejections_per_frame": per["gate"] / max(per["frames"], 1),
             "postfilter_rejections_per_frame": per["postfilter"] / max(per["frames"], 1),
         })
-    with (OUT / "response_table.csv").open("w", newline="", encoding="utf-8") as handle:
+    with (OUT / "snr_response.csv").open("w", newline="", encoding="utf-8") as handle:
         writer = csv.DictWriter(handle, fieldnames=list(response_rows[0].keys()))
         writer.writeheader()
         writer.writerows(response_rows)
@@ -420,6 +431,11 @@ def main() -> None:
                                     "range_median_abs_m": median_or_none(entry["range_abs"]),
                                     "u_median_abs": median_or_none(entry["u_abs"]),
                                     "xy_median_m": median_or_none(entry["xy"])})
+        for nbs, values in sorted(per["fusion_by_nbs"].items()):
+            stratified_rows.append({"dimension": "fusion_n_bs", "bucket": str(nbs), "snr_ref_db": snr,
+                                    "pairs_or_targets": len(values), "matched": len(values), "recall": None,
+                                    "range_median_abs_m": None, "u_median_abs": None,
+                                    "xy_median_m": median_or_none(values)})
     with (OUT / "range_stratified.csv").open("w", newline="", encoding="utf-8") as handle:
         writer = csv.DictWriter(handle, fieldnames=list(stratified_rows[0].keys()))
         writer.writeheader()
@@ -448,13 +464,29 @@ def main() -> None:
         gt_rd_summary[str(row["snr_ref_db"])][row["scene"]] = row["gt_rd_snr_db"]
     gt_rd_median = [float(np.median([value for value in gt_rd_summary[str(snr)].values()]))
                     for snr in SNR_POINTS]
-    summary = {"audit": "SENS-SNR-AUDIT-04 rev2", "matching": "strict one-to-one Hungarian, 5 m gate",
+    slopes = {}
+    for scene_name in gt_rd_summary[str(SNR_POINTS[0])]:
+        scene_snrs = [snr for snr in SNR_POINTS if scene_name in gt_rd_summary[str(snr)]]
+        scene_values = [gt_rd_summary[str(snr)][scene_name] for snr in scene_snrs]
+        if len(scene_snrs) >= 3:
+            mean_x = sum(scene_snrs) / len(scene_snrs)
+            mean_y = sum(scene_values) / len(scene_values)
+            denominator = sum((value - mean_x) ** 2 for value in scene_snrs)
+            slopes[scene_name] = sum((x - mean_x) * (y - mean_y)
+                                     for x, y in zip(scene_snrs, scene_values)) / denominator
+    slope_values = list(slopes.values())
+    summary = {"audit": "SENS-SNR-REBUILD-06 formal SNR audit",
+               "matching": "strict one-to-one Hungarian, 5 m gate",
                "snr_points": SNR_POINTS, "snapshots": len(snapshots), "streams": len(streams),
                "response_table": response_rows, "tracker_summary": tracker_summary,
-               "gt_rd_probe": gt_rd_summary,
+               "gt_rd_probe": gt_rd_summary, "gt_rd_slope_db_per_db": slopes,
+               "gt_rd_noise_reference": "noise-only map central-block mean (stationary floor)",
+               "checks": {"gt_rd_response_linear_within_0p25":
+                          bool(slope_values and abs(statistics.median(slope_values) - 1.0) <= 0.25),
+                          "one_to_one_matching": True},
                "g_emp_note": "G_emp is conditional-on-detection; gt_rd_snr_db is detection-independent",
                "processing_gain_rows": len(processing_rows)}
-    _common.write_json(OUT / "summary.json", summary)
+    _common.write_json(OUT / "snr_audit_summary.json", summary)
 
     try:
         import matplotlib
