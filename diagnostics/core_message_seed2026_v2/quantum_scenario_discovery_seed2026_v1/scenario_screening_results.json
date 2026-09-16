@@ -1,0 +1,802 @@
+{
+  "status": "completed",
+  "scenario_protocol_sha256": "7333a85261ea87073282db64d654a76c5afc40b0706c0e40a65832f0959b47df",
+  "outcomes_loaded_after_protocol_was_written": true,
+  "warning": "This is a single-training-seed screening study. Multiple prespecified features are all reported; a useful scenario requires the direction to replicate in confirmation blocks.",
+  "all_scenes": {
+    "discovery": {
+      "scenes": 521,
+      "metrics": {
+        "plain": {
+          "ade_m": 0.7007201265567264,
+          "fde_m": 1.3783832119559776
+        },
+        "classical": {
+          "ade_m": 0.6972836099239765,
+          "fde_m": 1.3696103078974067
+        },
+        "quantum": {
+          "ade_m": 0.6953282628222053,
+          "fde_m": 1.363675159195613
+        }
+      },
+      "quantum_vs_classical_reduction_percent": {
+        "ade_m": 0.28042349969827085,
+        "fde_m": 0.4333457967985849
+      },
+      "quantum_vs_plain_reduction_percent": {
+        "ade_m": 0.7694746490323148,
+        "fde_m": 1.0670510662628563
+      },
+      "quantum_vs_classical_block_bootstrap_95_ci": {
+        "unique_blocks": 6,
+        "ade_m": [
+          -1.006746042410129,
+          1.2383320119538632
+        ],
+        "fde_m": [
+          -1.5402015957120563,
+          1.8029742131478927
+        ]
+      }
+    },
+    "confirmation": {
+      "scenes": 470,
+      "metrics": {
+        "plain": {
+          "ade_m": 0.6676433237722937,
+          "fde_m": 1.271969212122618
+        },
+        "classical": {
+          "ade_m": 0.6526083538341403,
+          "fde_m": 1.2406040373682417
+        },
+        "quantum": {
+          "ade_m": 0.6550719473249929,
+          "fde_m": 1.2483532017888452
+        }
+      },
+      "quantum_vs_classical_reduction_percent": {
+        "ade_m": -0.37749953343053383,
+        "fde_m": -0.6246283412910932
+      },
+      "quantum_vs_plain_reduction_percent": {
+        "ade_m": 1.8829479753157057,
+        "fde_m": 1.8566495249018826
+      },
+      "quantum_vs_classical_block_bootstrap_95_ci": {
+        "unique_blocks": 6,
+        "ade_m": [
+          -1.4953376248654773,
+          0.634119228926278
+        ],
+        "fde_m": [
+          -2.0126248575496093,
+          0.692904490319929
+        ]
+      }
+    }
+  },
+  "high_interaction_groups": {
+    "small_radius_edge_turnover": {
+      "threshold": 0.013157894736842105,
+      "discovery": {
+        "scenes": 191,
+        "metrics": {
+          "plain": {
+            "ade_m": 0.8340591611635984,
+            "fde_m": 1.679472493092109
+          },
+          "classical": {
+            "ade_m": 0.8284302286010787,
+            "fde_m": 1.6487093100993044
+          },
+          "quantum": {
+            "ade_m": 0.8284198255180626,
+            "fde_m": 1.651976802753979
+          }
+        },
+        "quantum_vs_classical_reduction_percent": {
+          "ade_m": 0.0012557585004724842,
+          "fde_m": -0.1981848852711163
+        },
+        "quantum_vs_plain_reduction_percent": {
+          "ade_m": 0.6761313715046671,
+          "fde_m": 1.637162290613477
+        },
+        "quantum_vs_classical_block_bootstrap_95_ci": {
+          "unique_blocks": 6,
+          "ade_m": [
+            -1.4707184919312923,
+            1.0343156695806919
+          ],
+          "fde_m": [
+            -2.066927458249995,
+            1.433520290717908
+          ]
+        },
+        "feature_summary": {
+          "count": 191,
+          "mean": 0.01932448923355509,
+          "median": 0.016917293233082706,
+          "min": 0.013157894736842105,
+          "max": 0.039473684210526314
+        }
+      },
+      "confirmation": {
+        "scenes": 161,
+        "metrics": {
+          "plain": {
+            "ade_m": 0.7795389981982374,
+            "fde_m": 1.5624264179406686
+          },
+          "classical": {
+            "ade_m": 0.7688998189991567,
+            "fde_m": 1.5365167301438891
+          },
+          "quantum": {
+            "ade_m": 0.7693612778747263,
+            "fde_m": 1.5377681433444037
+          }
+        },
+        "quantum_vs_classical_reduction_percent": {
+          "ade_m": -0.060015474599831205,
+          "fde_m": -0.08144481449267355
+        },
+        "quantum_vs_plain_reduction_percent": {
+          "ade_m": 1.3056075894900707,
+          "fde_m": 1.5782038957562785
+        },
+        "quantum_vs_classical_block_bootstrap_95_ci": {
+          "unique_blocks": 6,
+          "ade_m": [
+            -2.3804517239452543,
+            1.1608901738552944
+          ],
+          "fde_m": [
+            -3.07879654671793,
+            1.551680485713037
+          ]
+        },
+        "feature_summary": {
+          "count": 161,
+          "mean": 0.019548093837077164,
+          "median": 0.016917293233082706,
+          "min": 0.013157894736842105,
+          "max": 0.10526315789473684
+        }
+      }
+    },
+    "small_radius_topology_entropy": {
+      "threshold": 0.16459762679934734,
+      "discovery": {
+        "scenes": 174,
+        "metrics": {
+          "plain": {
+            "ade_m": 0.7954359399519426,
+            "fde_m": 1.6073307454455497
+          },
+          "classical": {
+            "ade_m": 0.782960008585659,
+            "fde_m": 1.5632087720091203
+          },
+          "quantum": {
+            "ade_m": 0.784682802170922,
+            "fde_m": 1.5724335719433344
+          }
+        },
+        "quantum_vs_classical_reduction_percent": {
+          "ade_m": -0.22003596178240564,
+          "fde_m": -0.5901195092679713
+        },
+        "quantum_vs_plain_reduction_percent": {
+          "ade_m": 1.351854654904111,
+          "fde_m": 2.1711258619981026
+        },
+        "quantum_vs_classical_block_bootstrap_95_ci": {
+          "unique_blocks": 6,
+          "ade_m": [
+            -1.4138816378215353,
+            0.8748803465662403
+          ],
+          "fde_m": [
+            -2.4576820480355965,
+            1.503499333670686
+          ]
+        },
+        "feature_summary": {
+          "count": 174,
+          "mean": 0.2482419534672039,
+          "median": 0.2263730701020018,
+          "min": 0.16459762679934734,
+          "max": 0.5472791350348902
+        }
+      },
+      "confirmation": {
+        "scenes": 162,
+        "metrics": {
+          "plain": {
+            "ade_m": 0.7538069038985938,
+            "fde_m": 1.5211908503161633
+          },
+          "classical": {
+            "ade_m": 0.7419243353835967,
+            "fde_m": 1.4908003850921294
+          },
+          "quantum": {
+            "ade_m": 0.7440383642038242,
+            "fde_m": 1.5043831547704871
+          }
+        },
+        "quantum_vs_classical_reduction_percent": {
+          "ade_m": -0.28493860079875555,
+          "fde_m": -0.9111058605957029
+        },
+        "quantum_vs_plain_reduction_percent": {
+          "ade_m": 1.295894166562816,
+          "fde_m": 1.1049038023192739
+        },
+        "quantum_vs_classical_block_bootstrap_95_ci": {
+          "unique_blocks": 6,
+          "ade_m": [
+            -2.098139770777137,
+            0.9638270495431595
+          ],
+          "fde_m": [
+            -3.4227567814887783,
+            0.8904018545507022
+          ]
+        },
+        "feature_summary": {
+          "count": 162,
+          "mean": 0.2498152795572622,
+          "median": 0.2323961911139253,
+          "min": 0.1649789833233259,
+          "max": 0.9927744539878083
+        }
+      }
+    },
+    "two_hop_pair_fraction": {
+      "threshold": 0.25,
+      "discovery": {
+        "scenes": 197,
+        "metrics": {
+          "plain": {
+            "ade_m": 0.907374401642212,
+            "fde_m": 1.8430354920492642
+          },
+          "classical": {
+            "ade_m": 0.9135944458470961,
+            "fde_m": 1.851360813533922
+          },
+          "quantum": {
+            "ade_m": 0.9001380299539207,
+            "fde_m": 1.8172343868480976
+          }
+        },
+        "quantum_vs_classical_reduction_percent": {
+          "ade_m": 1.4729091178633995,
+          "fde_m": 1.8433158159312548
+        },
+        "quantum_vs_plain_reduction_percent": {
+          "ade_m": 0.7975067045306244,
+          "fde_m": 1.399924489380206
+        },
+        "quantum_vs_classical_block_bootstrap_95_ci": {
+          "unique_blocks": 6,
+          "ade_m": [
+            0.5658397173280539,
+            2.446489701024905
+          ],
+          "fde_m": [
+            0.4555008525011517,
+            3.008336339895755
+          ]
+        },
+        "feature_summary": {
+          "count": 197,
+          "mean": 0.3127145274353396,
+          "median": 0.32142857142857145,
+          "min": 0.25,
+          "max": 0.4642857142857143
+        }
+      },
+      "confirmation": {
+        "scenes": 143,
+        "metrics": {
+          "plain": {
+            "ade_m": 0.8956220515719823,
+            "fde_m": 1.7693721772021953
+          },
+          "classical": {
+            "ade_m": 0.8943737576970583,
+            "fde_m": 1.7745872100489255
+          },
+          "quantum": {
+            "ade_m": 0.8943546583051409,
+            "fde_m": 1.773051226930816
+          }
+        },
+        "quantum_vs_classical_reduction_percent": {
+          "ade_m": 0.0021355045083762017,
+          "fde_m": 0.08655438906646254
+        },
+        "quantum_vs_plain_reduction_percent": {
+          "ade_m": 0.14150983270418843,
+          "fde_m": -0.20792966997131326
+        },
+        "quantum_vs_classical_block_bootstrap_95_ci": {
+          "unique_blocks": 6,
+          "ade_m": [
+            -1.6702004515498168,
+            1.609864753545141
+          ],
+          "fde_m": [
+            -1.5620284819724974,
+            1.7366593506789585
+          ]
+        },
+        "feature_summary": {
+          "count": 143,
+          "mean": 0.3067099567099567,
+          "median": 0.2857142857142857,
+          "min": 0.25,
+          "max": 0.4642857142857143
+        }
+      }
+    },
+    "predicted_conflict_pairs": {
+      "threshold": 3.0,
+      "discovery": {
+        "scenes": 185,
+        "metrics": {
+          "plain": {
+            "ade_m": 0.5034500987813416,
+            "fde_m": 0.9560359883079927
+          },
+          "classical": {
+            "ade_m": 0.4929378918533549,
+            "fde_m": 0.9325611994064744
+          },
+          "quantum": {
+            "ade_m": 0.4960116921247076,
+            "fde_m": 0.9409131272251328
+          }
+        },
+        "quantum_vs_classical_reduction_percent": {
+          "ade_m": -0.6235674558909967,
+          "fde_m": -0.8955903187880755
+        },
+        "quantum_vs_plain_reduction_percent": {
+          "ade_m": 1.477486383385274,
+          "fde_m": 1.58182968714647
+        },
+        "quantum_vs_classical_block_bootstrap_95_ci": {
+          "unique_blocks": 6,
+          "ade_m": [
+            -2.1050358340664332,
+            1.9024229852572898
+          ],
+          "fde_m": [
+            -2.684320538814871,
+            2.3619812526590374
+          ]
+        },
+        "feature_summary": {
+          "count": 185,
+          "mean": 4.151351351351352,
+          "median": 4.0,
+          "min": 3.0,
+          "max": 9.0
+        }
+      },
+      "confirmation": {
+        "scenes": 209,
+        "metrics": {
+          "plain": {
+            "ade_m": 0.4535461604206782,
+            "fde_m": 0.8252339196986245
+          },
+          "classical": {
+            "ade_m": 0.43607186941712067,
+            "fde_m": 0.7839428176850203
+          },
+          "quantum": {
+            "ade_m": 0.4407063811975476,
+            "fde_m": 0.8011835429751454
+          }
+        },
+        "quantum_vs_classical_reduction_percent": {
+          "ade_m": -1.0627862298528254,
+          "fde_m": -2.1992325079317507
+        },
+        "quantum_vs_plain_reduction_percent": {
+          "ade_m": 2.830975178187215,
+          "fde_m": 2.9143708407262627
+        },
+        "quantum_vs_classical_block_bootstrap_95_ci": {
+          "unique_blocks": 6,
+          "ade_m": [
+            -1.81893345178061,
+            -0.4139133623038832
+          ],
+          "fde_m": [
+            -3.54556968360162,
+            -1.0377445439416266
+          ]
+        },
+        "feature_summary": {
+          "count": 209,
+          "mean": 4.220095693779904,
+          "median": 4.0,
+          "min": 3.0,
+          "max": 9.0
+        }
+      }
+    },
+    "maximum_competing_neighbors": {
+      "threshold": 2.0,
+      "discovery": {
+        "scenes": 208,
+        "metrics": {
+          "plain": {
+            "ade_m": 0.5532066844186987,
+            "fde_m": 1.0686071235197403
+          },
+          "classical": {
+            "ade_m": 0.5432398460202796,
+            "fde_m": 1.0453105433857617
+          },
+          "quantum": {
+            "ade_m": 0.5459012109374707,
+            "fde_m": 1.0531804685727397
+          }
+        },
+        "quantum_vs_classical_reduction_percent": {
+          "ade_m": -0.4899060583806464,
+          "fde_m": -0.7528791550774327
+        },
+        "quantum_vs_plain_reduction_percent": {
+          "ade_m": 1.3205685482460305,
+          "fde_m": 1.4436226942029737
+        },
+        "quantum_vs_classical_block_bootstrap_95_ci": {
+          "unique_blocks": 6,
+          "ade_m": [
+            -2.8073160243446367,
+            2.2071833259298392
+          ],
+          "fde_m": [
+            -4.466817140917023,
+            3.0030720454850623
+          ]
+        },
+        "feature_summary": {
+          "count": 208,
+          "mean": 2.1634615384615383,
+          "median": 2.0,
+          "min": 2.0,
+          "max": 3.0
+        }
+      },
+      "confirmation": {
+        "scenes": 230,
+        "metrics": {
+          "plain": {
+            "ade_m": 0.4870722920925058,
+            "fde_m": 0.8886795173722011
+          },
+          "classical": {
+            "ade_m": 0.47200789355833456,
+            "fde_m": 0.8594800947160408
+          },
+          "quantum": {
+            "ade_m": 0.4793997786099981,
+            "fde_m": 0.8823968236085261
+          }
+        },
+        "quantum_vs_classical_reduction_percent": {
+          "ade_m": -1.56605115137762,
+          "fde_m": -2.666347834391283
+        },
+        "quantum_vs_plain_reduction_percent": {
+          "ade_m": 1.575230947657871,
+          "fde_m": 0.706969570115974
+        },
+        "quantum_vs_classical_block_bootstrap_95_ci": {
+          "unique_blocks": 6,
+          "ade_m": [
+            -2.812958009087004,
+            -0.2868013493548978
+          ],
+          "fde_m": [
+            -4.186454243916607,
+            -0.9579315472421376
+          ]
+        },
+        "feature_summary": {
+          "count": 230,
+          "mean": 2.2,
+          "median": 2.0,
+          "min": 2.0,
+          "max": 4.0
+        }
+      }
+    },
+    "heading_diversity_on_mid_edges": {
+      "threshold": 0.07426936492403163,
+      "discovery": {
+        "scenes": 174,
+        "metrics": {
+          "plain": {
+            "ade_m": 0.9302501058882535,
+            "fde_m": 1.8958774851364604
+          },
+          "classical": {
+            "ade_m": 0.9254611474715506,
+            "fde_m": 1.8805328254552853
+          },
+          "quantum": {
+            "ade_m": 0.9287229328617126,
+            "fde_m": 1.8800457290822712
+          }
+        },
+        "quantum_vs_classical_reduction_percent": {
+          "ade_m": -0.3524497380655567,
+          "fde_m": 0.025902040444107197
+        },
+        "quantum_vs_plain_reduction_percent": {
+          "ade_m": 0.16416800351586103,
+          "fde_m": 0.8350621903740607
+        },
+        "quantum_vs_classical_block_bootstrap_95_ci": {
+          "unique_blocks": 6,
+          "ade_m": [
+            -2.8594280359168947,
+            1.5857084754330926
+          ],
+          "fde_m": [
+            -2.9714578461406553,
+            2.4065103679736395
+          ]
+        },
+        "feature_summary": {
+          "count": 174,
+          "mean": 0.1542716650452951,
+          "median": 0.11133695022701431,
+          "min": 0.07426936492403163,
+          "max": 0.8475954352141326
+        }
+      },
+      "confirmation": {
+        "scenes": 145,
+        "metrics": {
+          "plain": {
+            "ade_m": 0.8460968034791994,
+            "fde_m": 1.654942075509992
+          },
+          "classical": {
+            "ade_m": 0.8200931291360064,
+            "fde_m": 1.598843978613408
+          },
+          "quantum": {
+            "ade_m": 0.8260353162126085,
+            "fde_m": 1.6144179662309794
+          }
+        },
+        "quantum_vs_classical_reduction_percent": {
+          "ade_m": -0.7245746690820809,
+          "fde_m": -0.9740780104809117
+        },
+        "quantum_vs_plain_reduction_percent": {
+          "ade_m": 2.3710628835963976,
+          "fde_m": 2.4486723661626937
+        },
+        "quantum_vs_classical_block_bootstrap_95_ci": {
+          "unique_blocks": 6,
+          "ade_m": [
+            -1.5262101392994358,
+            0.41905462601029825
+          ],
+          "fde_m": [
+            -2.348353526071301,
+            0.44967638654950964
+          ]
+        },
+        "feature_summary": {
+          "count": 145,
+          "mean": 0.15447214376058668,
+          "median": 0.11827910523360248,
+          "min": 0.07491064431566705,
+          "max": 0.7978081937069187
+        }
+      }
+    },
+    "closing_mid_edges": {
+      "threshold": 7.0,
+      "discovery": {
+        "scenes": 203,
+        "metrics": {
+          "plain": {
+            "ade_m": 0.7858262067759533,
+            "fde_m": 1.5921803966242678
+          },
+          "classical": {
+            "ade_m": 0.7855699321879703,
+            "fde_m": 1.5960975446740167
+          },
+          "quantum": {
+            "ade_m": 0.7802839101656511,
+            "fde_m": 1.5772378563931666
+          }
+        },
+        "quantum_vs_classical_reduction_percent": {
+          "ade_m": 0.6728900643634066,
+          "fde_m": 1.1816125113269258
+        },
+        "quantum_vs_plain_reduction_percent": {
+          "ade_m": 0.705282740956272,
+          "fde_m": 0.9384954282053899
+        },
+        "quantum_vs_classical_block_bootstrap_95_ci": {
+          "unique_blocks": 6,
+          "ade_m": [
+            -0.9537985045829249,
+            2.001528224870797
+          ],
+          "fde_m": [
+            -0.814481735254684,
+            3.0357667653162332
+          ]
+        },
+        "feature_summary": {
+          "count": 203,
+          "mean": 9.379310344827585,
+          "median": 9.0,
+          "min": 7.0,
+          "max": 19.0
+        }
+      },
+      "confirmation": {
+        "scenes": 186,
+        "metrics": {
+          "plain": {
+            "ade_m": 0.6755530880340398,
+            "fde_m": 1.2898396524906373
+          },
+          "classical": {
+            "ade_m": 0.6642859688159974,
+            "fde_m": 1.2631631580756133
+          },
+          "quantum": {
+            "ade_m": 0.6648446395185905,
+            "fde_m": 1.2689103629453544
+          }
+        },
+        "quantum_vs_classical_reduction_percent": {
+          "ade_m": -0.0841009337573147,
+          "fde_m": -0.4549851563512026
+        },
+        "quantum_vs_plain_reduction_percent": {
+          "ade_m": 1.5851379714083549,
+          "fde_m": 1.62262723935251
+        },
+        "quantum_vs_classical_block_bootstrap_95_ci": {
+          "unique_blocks": 6,
+          "ade_m": [
+            -1.1687139957398454,
+            1.1830836977555572
+          ],
+          "fde_m": [
+            -1.9763728321599643,
+            1.401919578132783
+          ]
+        },
+        "feature_summary": {
+          "count": 186,
+          "mean": 9.881720430107526,
+          "median": 9.0,
+          "min": 7.0,
+          "max": 19.0
+        }
+      }
+    },
+    "equal_weight_dynamic_interaction_composite": {
+      "threshold": 0.5773351648351648,
+      "discovery": {
+        "scenes": 174,
+        "metrics": {
+          "plain": {
+            "ade_m": 0.8380561157927602,
+            "fde_m": 1.716170799280332
+          },
+          "classical": {
+            "ade_m": 0.8272698369137821,
+            "fde_m": 1.6829884514838813
+          },
+          "quantum": {
+            "ade_m": 0.8281074601893725,
+            "fde_m": 1.677199075307776
+          }
+        },
+        "quantum_vs_classical_reduction_percent": {
+          "ade_m": -0.10125151893791891,
+          "fde_m": 0.3439938147526182
+        },
+        "quantum_vs_plain_reduction_percent": {
+          "ade_m": 1.1871109124926202,
+          "fde_m": 2.2708534598595085
+        },
+        "quantum_vs_classical_block_bootstrap_95_ci": {
+          "unique_blocks": 6,
+          "ade_m": [
+            -1.8766436678746323,
+            1.2124049317465575
+          ],
+          "fde_m": [
+            -2.1361537239970674,
+            2.5048620906585146
+          ]
+        },
+        "feature_summary": {
+          "count": 174,
+          "mean": 0.6659711696349627,
+          "median": 0.6598901098901099,
+          "min": 0.5773351648351648,
+          "max": 0.8548076923076923
+        }
+      },
+      "confirmation": {
+        "scenes": 240,
+        "metrics": {
+          "plain": {
+            "ade_m": 0.7582602463436605,
+            "fde_m": 1.4858072568081608
+          },
+          "classical": {
+            "ade_m": 0.7466370152736285,
+            "fde_m": 1.4620156940249531
+          },
+          "quantum": {
+            "ade_m": 0.7494052523133868,
+            "fde_m": 1.4750080173680344
+          }
+        },
+        "quantum_vs_classical_reduction_percent": {
+          "ade_m": -0.3707607556456149,
+          "fde_m": -0.8886582679090971
+        },
+        "quantum_vs_plain_reduction_percent": {
+          "ade_m": 1.1678040716195472,
+          "fde_m": 0.726826402996949
+        },
+        "quantum_vs_classical_block_bootstrap_95_ci": {
+          "unique_blocks": 6,
+          "ade_m": [
+            -1.5669689584768067,
+            0.9716795320306436
+          ],
+          "fde_m": [
+            -2.1437342807713122,
+            0.439667264688726
+          ]
+        },
+        "feature_summary": {
+          "count": 240,
+          "mean": 0.6938888127227859,
+          "median": 0.6835755415409926,
+          "min": 0.5777351247600768,
+          "max": 0.8530298875788319
+        }
+      }
+    }
+  },
+  "confirmation_rule": "candidate only if quantum-vs-classical ADE and FDE are both positive in discovery and confirmation; strong candidate additionally requires both confirmation confidence intervals above zero",
+  "candidates": [
+    "two_hop_pair_fraction"
+  ],
+  "strong_candidates": [],
+  "no_retraining": true,
+  "no_llm": true,
+  "no_test": true
+}

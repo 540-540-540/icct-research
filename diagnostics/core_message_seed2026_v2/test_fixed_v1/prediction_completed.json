@@ -1,0 +1,236 @@
+{
+  "status": "completed",
+  "protocol": {
+    "authorization": "User requested test-set verification after reviewing development results.",
+    "training_seed": 2026,
+    "observation_noise_seed": 102026,
+    "arms": [
+      "plain",
+      "classical",
+      "quantum"
+    ],
+    "snr_db": [
+      5,
+      10,
+      15,
+      20
+    ],
+    "scenes": 1200,
+    "valid_targets": 9070,
+    "start_ranges": {
+      "train": [
+        9,
+        14427
+      ],
+      "val": [
+        14471,
+        17528
+      ],
+      "test": [
+        17568,
+        20175
+      ]
+    },
+    "temporal_windows_disjoint": true,
+    "selection": "Frozen development-selected checkpoints; no test training, tuning, calibration, or model selection.",
+    "checkpoint_sha256": {
+      "plain": {
+        "graph": "b75b9fc369f1cc01338f6158c7a498ffbe4c3a1d4919b229ffcf9be98244be14",
+        "llm": "7a17ee0b0b7864038986456ddee51d31cad793bc08ae174215c0938243711723"
+      },
+      "classical": {
+        "graph": "bfb6cefad62747336aeab33559a0fdd5cc446d78498de35b801bfab865bafbdb",
+        "llm": "616f88c1cbd04e37f1d4e9cc111c3ff5896368063bd1734dc6d8f7179225691a"
+      },
+      "quantum": {
+        "graph": "7361350d2af4ec28c170ff2728ab8901fc30e97d06d2d64e57d90957d33fb357",
+        "llm": "590282b962c519fc19b849ce2174d8b938a3bc90b04df059a1d0a13c36733cb3"
+      }
+    },
+    "cache_sha256": "8b1f53eb83a15f6fd4d85a1941a2cb3d955b1514327542a4349c2bab04a9e99d",
+    "script_sha256": "861100dd55d0986ec8895b921d72ed15f9103552e6ba5d65cd5d9abd1ba07334",
+    "limitation": "Existing project test set may have been inspected by historical experiments; it is not claimed as a new blind holdout.",
+    "device": "NVIDIA GeForce RTX 4090",
+    "python": "/home/js_cn/sensing/venv/bin/python"
+  },
+  "rows": {
+    "plain": {
+      "graph": {
+        "aggregate": {
+          "ade_m": 0.7332045266657395,
+          "fde_m": 1.4307627699063161
+        },
+        "by_snr": {
+          "5": {
+            "ade_m": 0.8316172174129534,
+            "fde_m": 1.5473819105330928
+          },
+          "10": {
+            "ade_m": 0.7255571521128071,
+            "fde_m": 1.4205323427689673
+          },
+          "15": {
+            "ade_m": 0.7138152640050269,
+            "fde_m": 1.4068947309115492
+          },
+          "20": {
+            "ade_m": 0.6618284731321706,
+            "fde_m": 1.3482420954116556
+          }
+        }
+      },
+      "llm": {
+        "aggregate": {
+          "ade_m": 0.7025754549957108,
+          "fde_m": 1.369016966278767
+        },
+        "by_snr": {
+          "5": {
+            "ade_m": 0.7948131739841854,
+            "fde_m": 1.4746601198011313
+          },
+          "10": {
+            "ade_m": 0.6949819714157883,
+            "fde_m": 1.3584683784869496
+          },
+          "15": {
+            "ade_m": 0.6841109963416453,
+            "fde_m": 1.3465244393999551
+          },
+          "20": {
+            "ade_m": 0.6363956782412246,
+            "fde_m": 1.2964149274270316
+          }
+        }
+      },
+      "graph_selected_epoch": 12,
+      "llm_selected_epoch": 6
+    },
+    "classical": {
+      "graph": {
+        "aggregate": {
+          "ade_m": 0.7190788363735869,
+          "fde_m": 1.3989274028039016
+        },
+        "by_snr": {
+          "5": {
+            "ade_m": 0.8124152080343091,
+            "fde_m": 1.5058703165368896
+          },
+          "10": {
+            "ade_m": 0.7111356059084657,
+            "fde_m": 1.3883401673971782
+          },
+          "15": {
+            "ade_m": 0.7001937641895619,
+            "fde_m": 1.3761852310583316
+          },
+          "20": {
+            "ade_m": 0.6525707673620114,
+            "fde_m": 1.3253138962232065
+          }
+        }
+      },
+      "llm": {
+        "aggregate": {
+          "ade_m": 0.6968022746291815,
+          "fde_m": 1.3583414474409343
+        },
+        "by_snr": {
+          "5": {
+            "ade_m": 0.7880300947785831,
+            "fde_m": 1.4628811949254101
+          },
+          "10": {
+            "ade_m": 0.6891836647034483,
+            "fde_m": 1.348289509854575
+          },
+          "15": {
+            "ade_m": 0.6784776156013672,
+            "fde_m": 1.3363871018418707
+          },
+          "20": {
+            "ade_m": 0.6315177234333275,
+            "fde_m": 1.2858079831418812
+          }
+        }
+      },
+      "graph_selected_epoch": 12,
+      "llm_selected_epoch": 6
+    },
+    "quantum": {
+      "graph": {
+        "aggregate": {
+          "ade_m": 0.7162621049462278,
+          "fde_m": 1.3898173763185544
+        },
+        "by_snr": {
+          "5": {
+            "ade_m": 0.8110036640734062,
+            "fde_m": 1.49852163018515
+          },
+          "10": {
+            "ade_m": 0.7085239203909581,
+            "fde_m": 1.3792536461414193
+          },
+          "15": {
+            "ade_m": 0.6973445493005066,
+            "fde_m": 1.3669077529658202
+          },
+          "20": {
+            "ade_m": 0.6481762860200405,
+            "fde_m": 1.3145864759818287
+          }
+        }
+      },
+      "llm": {
+        "aggregate": {
+          "ade_m": 0.6950427049848908,
+          "fde_m": 1.3479242713021125
+        },
+        "by_snr": {
+          "5": {
+            "ade_m": 0.7878063751317282,
+            "fde_m": 1.4553814662152198
+          },
+          "10": {
+            "ade_m": 0.6875362778719206,
+            "fde_m": 1.3377508169492396
+          },
+          "15": {
+            "ade_m": 0.6765333585198123,
+            "fde_m": 1.3253307184451408
+          },
+          "20": {
+            "ade_m": 0.6282948084161025,
+            "fde_m": 1.2732340835988503
+          }
+        }
+      },
+      "graph_selected_epoch": 12,
+      "llm_selected_epoch": 6
+    }
+  },
+  "reductions_percent": {
+    "plain": {
+      "graph": {
+        "ade_m": 2.310736104775257,
+        "fde_m": 2.861787743501514
+      },
+      "llm": {
+        "ade_m": 1.0721624214535044,
+        "fde_m": 1.5407183034398964
+      }
+    },
+    "classical": {
+      "graph": {
+        "ade_m": 0.3917138545704289,
+        "fde_m": 0.6512151000178973
+      },
+      "llm": {
+        "ade_m": 0.25252065160480225,
+        "fde_m": 0.7669040916367126
+      }
+    }
+  }
+}

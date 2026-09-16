@@ -1,0 +1,9 @@
+{
+  "seed": 2026,
+  "arm": "quantum",
+  "interface": "QGNN relation routing + LLM temporal confidence -> early/middle/late trust gains",
+  "segments": 3,
+  "selection": "fixed 256 scenes ADE+.5FDE",
+  "confirmation_scenes": 234,
+  "no_test": true
+}

@@ -1,0 +1,9 @@
+platform=Linux-5.4.0-216-generic-x86_64-with-glibc2.29
+python=3.8.10 (default, Mar 18 2025, 20:04:55) 
+[GCC 9.4.0]
+executable=/home/js_cn/sensing/venv_pennylane/bin/python
+torch=2.4.1+cu121
+torch_cuda=12.1
+pennylane=0.31.1
+cuda_available=True
+gpu=NVIDIA GeForce RTX 4090

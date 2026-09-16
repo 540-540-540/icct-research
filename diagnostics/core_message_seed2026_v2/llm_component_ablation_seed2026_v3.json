@@ -1,0 +1,93 @@
+{
+  "seed": 2026,
+  "replicates": 10000,
+  "time_blocks": 12,
+  "interpretation": "Positive improvement means the complete model outperforms the ablated model.",
+  "limitation": "Intervals condition on one trained seed and measure paired scene/time-block variation only.",
+  "comparisons": {
+    "no_motion": {
+      "full": {
+        "ade_m": 0.6700595818434697,
+        "fde_m": 1.2967187569061551
+      },
+      "ablated": {
+        "ade_m": 0.6702102319952647,
+        "fde_m": 1.2973700115705475
+      },
+      "full_improvement_percent": {
+        "ade": 0.022478044142440864,
+        "fde": 0.050198066749210235
+      },
+      "ci95_percent": {
+        "ade": [
+          -0.02545190458042414,
+          0.07855172111089102
+        ],
+        "fde": [
+          -0.020473288184417664,
+          0.13076131688725154
+        ]
+      },
+      "probability_full_better": {
+        "ade": 0.8138,
+        "fde": 0.9148
+      }
+    },
+    "no_graph": {
+      "full": {
+        "ade_m": 0.6700595818434697,
+        "fde_m": 1.2967187569061551
+      },
+      "ablated": {
+        "ade_m": 0.6711723211688314,
+        "fde_m": 1.299832193005555
+      },
+      "full_improvement_percent": {
+        "ade": 0.16579040736124234,
+        "fde": 0.23952600313743277
+      },
+      "ci95_percent": {
+        "ade": [
+          0.06016654560698369,
+          0.29728176519254473
+        ],
+        "fde": [
+          0.0928512997630711,
+          0.4258145357896742
+        ]
+      },
+      "probability_full_better": {
+        "ade": 0.9995,
+        "fde": 0.9997
+      }
+    },
+    "no_queries": {
+      "full": {
+        "ade_m": 0.6700595818434697,
+        "fde_m": 1.2967187569061551
+      },
+      "ablated": {
+        "ade_m": 0.6700813203832177,
+        "fde_m": 1.296586429107998
+      },
+      "full_improvement_percent": {
+        "ade": 0.003244164415078711,
+        "fde": -0.01020586018690016
+      },
+      "ci95_percent": {
+        "ade": [
+          -0.02380429758665468,
+          0.030616149078291733
+        ],
+        "fde": [
+          -0.044574362006099454,
+          0.026156186295225137
+        ]
+      },
+      "probability_full_better": {
+        "ade": 0.5678,
+        "fde": 0.2792
+      }
+    }
+  }
+}

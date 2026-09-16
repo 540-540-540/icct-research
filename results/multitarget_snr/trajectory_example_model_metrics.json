@@ -1,0 +1,67 @@
+{
+  "scene_index": 870,
+  "target_ids": [
+    1401,
+    1435,
+    1396,
+    1452
+  ],
+  "models": [
+    "lstm",
+    "transformer",
+    "target_interaction_gnn",
+    "proposed"
+  ],
+  "metrics": [
+    {
+      "snr_db": 5,
+      "model_key": "lstm",
+      "ade_m": 2.211890935897827,
+      "fde_m": 4.686000823974609
+    },
+    {
+      "snr_db": 5,
+      "model_key": "transformer",
+      "ade_m": 2.109694719314575,
+      "fde_m": 4.369819164276123
+    },
+    {
+      "snr_db": 5,
+      "model_key": "target_interaction_gnn",
+      "ade_m": 1.2088907957077026,
+      "fde_m": 2.431530714035034
+    },
+    {
+      "snr_db": 5,
+      "model_key": "proposed",
+      "ade_m": 1.027464747428894,
+      "fde_m": 1.8066558837890625
+    },
+    {
+      "snr_db": 20,
+      "model_key": "lstm",
+      "ade_m": 1.8161541223526,
+      "fde_m": 4.312764644622803
+    },
+    {
+      "snr_db": 20,
+      "model_key": "transformer",
+      "ade_m": 1.9872311353683472,
+      "fde_m": 4.598522186279297
+    },
+    {
+      "snr_db": 20,
+      "model_key": "target_interaction_gnn",
+      "ade_m": 1.0463327169418335,
+      "fde_m": 2.2233402729034424
+    },
+    {
+      "snr_db": 20,
+      "model_key": "proposed",
+      "ade_m": 0.880436360836029,
+      "fde_m": 1.845828890800476
+    }
+  ],
+  "noise_seed_protocol": "scene seed = base seed + snr * 100000 + scene index",
+  "output": "/home/js_cn/sensing/results/multitarget_snr/trajectory_examples_comparison.npz"
+}

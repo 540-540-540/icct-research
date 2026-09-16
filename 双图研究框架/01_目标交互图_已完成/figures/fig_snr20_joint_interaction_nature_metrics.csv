@@ -1,0 +1,7 @@
+metric,value,snr_db
+strong_interaction_scene_count,392,20
+proposed_lower_pair_error_pct,70.66326530612244,20
+median_pair_error_reduction_pct,32.491659969744674,20
+independent_pair_error_median_m,0.8408084809780121,20
+proposed_pair_error_median_m,0.5330867767333984,20
+selected_scene_index,356,20

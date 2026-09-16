@@ -1,0 +1,2 @@
+Dataset Description: ISAC (Integrated Sensing and Communication) radar measurement dataset.
+Task Description: Predict the 2D position trajectory of a moving vehicle using multi-base-station OFDM radar range and Doppler measurements. Three base stations are deployed in a triangular configuration covering a 150m x 150m area. Each base station provides range profiles and velocity profiles extracted from the Range-Doppler map. The goal is to leverage the spatial diversity of multiple base stations for accurate triangulation-based positioning and trajectory prediction.

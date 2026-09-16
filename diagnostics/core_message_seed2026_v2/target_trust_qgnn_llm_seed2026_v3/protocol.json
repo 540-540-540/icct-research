@@ -1,0 +1,8 @@
+{
+  "seed": 2026,
+  "arm": "quantum",
+  "interface": "one trajectory-level trust value from QGNN relation confidence and LLM temporal confidence",
+  "selection": "fixed 256 scenes ADE+.35FDE",
+  "confirmation_scenes": 234,
+  "no_test": true
+}

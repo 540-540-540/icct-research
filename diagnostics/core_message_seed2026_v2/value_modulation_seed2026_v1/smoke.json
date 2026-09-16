@@ -1,0 +1,16 @@
+{
+  "classical_value": {
+    "loss": 1.0649316310882568,
+    "max_epoch_zero_difference_from_retained_arm": 0.0,
+    "value_channel_gradient_max": 0.028886042535305023,
+    "core_gradient_max": 0.04531273990869522,
+    "parameters": 353714
+  },
+  "quantum_value": {
+    "loss": 1.094740390777588,
+    "max_epoch_zero_difference_from_retained_arm": 0.0,
+    "value_channel_gradient_max": 0.015553712844848633,
+    "core_gradient_max": 0.027671368792653084,
+    "parameters": 353684
+  }
+}

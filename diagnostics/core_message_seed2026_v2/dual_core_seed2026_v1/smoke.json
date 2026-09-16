@@ -1,0 +1,24 @@
+{
+  "classical_dual": {
+    "loss": 1.0830050706863403,
+    "core_gradient_max_by_layer": [
+      0.022501621395349503,
+      0.039381243288517
+    ],
+    "permutation_equivariance_max_error": 1.9073486328125e-06,
+    "layer_2_initialization_matches_retained_single_core": true,
+    "layer_core_initializations_are_independent": true,
+    "parameters": 303798
+  },
+  "quantum_dual": {
+    "loss": 1.1018720865249634,
+    "core_gradient_max_by_layer": [
+      0.028826827183365822,
+      0.01904420182108879
+    ],
+    "permutation_equivariance_max_error": 1.9073486328125e-06,
+    "layer_2_initialization_matches_retained_single_core": true,
+    "layer_core_initializations_are_independent": true,
+    "parameters": 303738
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "seed": 2026,
+  "arm": "quantum",
+  "interface": "edge QGNN latent + effective alpha*gate jointly decodes pairwise influence from per-step LLM future states",
+  "training": "only new pair interface; frozen source QGNN/GNN and LLM",
+  "sampling": "50% high, 25% medium, 25% low outcome-blind history complexity",
+  "selection": "fixed 256 overall plus its history-complexity high third; ADE+0.35FDE composite",
+  "confirmation_scenes": 234,
+  "epochs": 10,
+  "no_test": true
+}

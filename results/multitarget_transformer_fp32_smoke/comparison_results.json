@@ -1,0 +1,120 @@
+{
+  "experiment": "multi_target_conventional_model_comparison",
+  "device": "NVIDIA GeForce RTX 4090",
+  "metadata": {
+    "source_csv": "Lankershim_Vehicle_Trajectories.csv",
+    "history_length": 20,
+    "prediction_length": 20,
+    "max_targets": 8,
+    "min_targets": 2,
+    "radius_m": 45.0,
+    "stride": 3,
+    "scenes_per_time": 2,
+    "dt": 0.1,
+    "native_delta_ms": 100.0,
+    "seed": 2026,
+    "temporal_split": [
+      0.7,
+      0.15,
+      0.15
+    ],
+    "counts": {
+      "train": 6000,
+      "val": 1200,
+      "test": 1200
+    }
+  },
+  "fairness": {
+    "same_scene_cache": "data/multitarget_lankershim_v1.npz",
+    "same_temporal_split": true,
+    "same_position_noise_sigma_m": 0.35,
+    "same_velocity_noise_sigma_mps": 0.2,
+    "same_test_noise_seed": 4026,
+    "oracle_track_ids": true,
+    "independent_baselines_process_each_target_separately": true
+  },
+  "parameters": {
+    "transformer": 42929570
+  },
+  "validation": {
+    "transformer": {
+      "ade_m": 0.9821180390304983,
+      "fde_m": 1.8684516380269192,
+      "interaction_ade_m": 0.9636953908465863,
+      "interaction_fde_m": 1.8258131030313007,
+      "collision_rate": 0.0385,
+      "ground_truth_collision_rate": 0.0010833333333333333,
+      "excess_collision_rate": 0.03741666666666667
+    }
+  },
+  "test": {
+    "constant_velocity": {
+      "ade_m": 1.0562931324076625,
+      "fde_m": 2.038661457974435,
+      "interaction_ade_m": 1.0245775364643581,
+      "interaction_fde_m": 1.965723221063476,
+      "collision_rate": 0.039375,
+      "ground_truth_collision_rate": 0.000875,
+      "excess_collision_rate": 0.03904166666666667
+    },
+    "independent_gru": {
+      "ade_m": 0.7000992605257718,
+      "fde_m": 1.4685093047994764,
+      "interaction_ade_m": 0.6731028056544607,
+      "interaction_fde_m": 1.4102640870129048,
+      "collision_rate": 0.006458333333333333,
+      "ground_truth_collision_rate": 0.000875,
+      "excess_collision_rate": 0.005875
+    },
+    "transformer": {
+      "ade_m": 1.0597481596588167,
+      "fde_m": 2.0402829709626085,
+      "interaction_ade_m": 1.0282552304475203,
+      "interaction_fde_m": 1.9690401110794675,
+      "collision_rate": 0.0355,
+      "ground_truth_collision_rate": 0.000875,
+      "excess_collision_rate": 0.034833333333333334
+    },
+    "target_interaction_gnn": {
+      "ade_m": 0.6201684758734151,
+      "fde_m": 1.2528824676883785,
+      "interaction_ade_m": 0.595553206559066,
+      "interaction_fde_m": 1.2012116590492157,
+      "collision_rate": 0.002625,
+      "ground_truth_collision_rate": 0.000875,
+      "excess_collision_rate": 0.0021666666666666666
+    },
+    "graph_motion_token_gpt2": {
+      "ade_m": 0.5924500669166035,
+      "fde_m": 1.195642634920669,
+      "interaction_ade_m": 0.5673119872736012,
+      "interaction_fde_m": 1.1438801029460106,
+      "collision_rate": 0.0032916666666666667,
+      "ground_truth_collision_rate": 0.000875,
+      "excess_collision_rate": 0.0027916666666666667
+    }
+  },
+  "proposed_reduction_percent": {
+    "constant_velocity": {
+      "ade_reduction_percent": 43.91234319906994,
+      "fde_reduction_percent": 41.351584872329376,
+      "interaction_ade_reduction_percent": 44.62966763537508
+    },
+    "independent_gru": {
+      "ade_reduction_percent": 15.37627586241473,
+      "fde_reduction_percent": 18.581201289430513,
+      "interaction_ade_reduction_percent": 15.7168886375386
+    },
+    "transformer": {
+      "ade_reduction_percent": 44.095202099021215,
+      "fde_reduction_percent": 41.39819564554993,
+      "interaction_ade_reduction_percent": 44.82770712221964
+    },
+    "target_interaction_gnn": {
+      "ade_reduction_percent": 4.469496602157066,
+      "fde_reduction_percent": 4.568651429317184,
+      "interaction_ade_reduction_percent": 4.7420144790478655
+    }
+  },
+  "proposed_best_on_ade_and_fde": true
+}

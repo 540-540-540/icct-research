@@ -1,0 +1,465 @@
+{
+  "experiment": "uncertainty_aware_measurement_track_bipartite_graph",
+  "status": "initial_measurement-association_and_recursive-tracking_results",
+  "device": "NVIDIA GeForce RTX 4090",
+  "seed": 2026,
+  "data": {
+    "cache": "data/multitarget_lankershim_v1.npz",
+    "train_samples": 48000,
+    "validation_samples": 10000,
+    "test_samples_per_snr": 8000,
+    "recursive_test_scenes": 160,
+    "snr_db": [
+      5,
+      10,
+      15,
+      20
+    ],
+    "vehicle_id_used_as_model_input": false
+  },
+  "simulation": {
+    "max_tracks": 8,
+    "max_measurements": 12,
+    "dt": 0.1,
+    "miss_probability": 0.1,
+    "false_alarm_rate": 1.5,
+    "process_position_sigma_m": 0.45,
+    "process_velocity_sigma_mps": 0.3,
+    "gate_mahalanobis_sq": 25.0,
+    "gate_distance_m": 12.0,
+    "seed": 2026
+  },
+  "model": {
+    "node_types": [
+      "predicted_track",
+      "identity_free_fused_measurement"
+    ],
+    "graph_layers": 2,
+    "hidden_dim": 96,
+    "matching": "gated neural edge probabilities plus one-to-one Hungarian decoding",
+    "uncertainty_outputs": [
+      "association_probability",
+      "normalized_association_entropy"
+    ]
+  },
+  "training": {
+    "edge_mlp": {
+      "checkpoint": "results/measurement_track_association/edge_mlp.pt",
+      "best_validation_f1": 0.9979969215847513,
+      "epochs_ran": 12
+    },
+    "association_gnn": {
+      "checkpoint": "results/measurement_track_association/association_gnn.pt",
+      "best_validation_f1": 0.998862039898848,
+      "epochs_ran": 12
+    }
+  },
+  "frame_association": {
+    "5": {
+      "gated_hungarian_ekf": {
+        "association_precision": 0.9175800087680842,
+        "association_recall": 0.9599332220367279,
+        "association_f1": 0.9382789104667635,
+        "track_decision_accuracy": 0.9216165755167457,
+        "miss_class_accuracy": 0.574326571333555,
+        "wrong_real_rate": 0.03925957181382891,
+        "false_assignment_rate": 0.425673428666445,
+        "mean_association_entropy": 0.0,
+        "valid_tracks": 60523,
+        "ground_truth_associations": 54509
+      },
+      "edge_mlp": {
+        "association_precision": 0.9969960008108955,
+        "association_recall": 0.9924599607404282,
+        "association_f1": 0.9947228095982348,
+        "track_decision_accuracy": 0.9913421343951886,
+        "miss_class_accuracy": 0.9812105088127702,
+        "wrong_real_rate": 0.0009172797152763763,
+        "false_assignment_rate": 0.018789491187229796,
+        "mean_association_entropy": 0.01764846269606737,
+        "valid_tracks": 60523,
+        "ground_truth_associations": 54509
+      },
+      "association_gnn": {
+        "association_precision": 0.9972989857415846,
+        "association_recall": 0.9957438221211176,
+        "association_f1": 0.9965207971872619,
+        "track_decision_accuracy": 0.9945144820977149,
+        "miss_class_accuracy": 0.983372131692717,
+        "wrong_real_rate": 0.0008622429323597938,
+        "false_assignment_rate": 0.016627868307283005,
+        "mean_association_entropy": 0.006300683159016484,
+        "valid_tracks": 60523,
+        "ground_truth_associations": 54509
+      }
+    },
+    "10": {
+      "gated_hungarian_ekf": {
+        "association_precision": 0.9279652100722452,
+        "association_recall": 0.9708488506485168,
+        "association_f1": 0.9489227789881385,
+        "track_decision_accuracy": 0.9319762734828082,
+        "miss_class_accuracy": 0.5796474891918856,
+        "wrong_real_rate": 0.028986039002733492,
+        "false_assignment_rate": 0.4203525108081144,
+        "mean_association_entropy": 0.0,
+        "valid_tracks": 60523,
+        "ground_truth_associations": 54509
+      },
+      "edge_mlp": {
+        "association_precision": 0.9991175335061497,
+        "association_recall": 0.9969913225338934,
+        "association_f1": 0.9980532956235881,
+        "track_decision_accuracy": 0.9965302447003619,
+        "miss_class_accuracy": 0.9923511805786498,
+        "wrong_real_rate": 3.6691188611055056e-05,
+        "false_assignment_rate": 0.007648819421350183,
+        "mean_association_entropy": 0.0063883640293225215,
+        "valid_tracks": 60523,
+        "ground_truth_associations": 54509
+      },
+      "association_gnn": {
+        "association_precision": 0.9993943620613713,
+        "association_recall": 0.9990093379075015,
+        "association_f1": 0.9992018128939328,
+        "track_decision_accuracy": 0.9985625299472928,
+        "miss_class_accuracy": 0.9945128034585966,
+        "wrong_real_rate": 0.0,
+        "false_assignment_rate": 0.005487196541403392,
+        "mean_association_entropy": 0.0015643117079061689,
+        "valid_tracks": 60523,
+        "ground_truth_associations": 54509
+      }
+    },
+    "15": {
+      "gated_hungarian_ekf": {
+        "association_precision": 0.928681653982394,
+        "association_recall": 0.9715643288264323,
+        "association_f1": 0.9496391267315192,
+        "track_decision_accuracy": 0.9326702245427358,
+        "miss_class_accuracy": 0.5801463252411041,
+        "wrong_real_rate": 0.028288906419123447,
+        "false_assignment_rate": 0.4198536747588959,
+        "mean_association_entropy": 0.0,
+        "valid_tracks": 60523,
+        "ground_truth_associations": 54509
+      },
+      "edge_mlp": {
+        "association_precision": 0.9993753215256853,
+        "association_recall": 0.9978902566548643,
+        "association_f1": 0.9986322369810073,
+        "track_decision_accuracy": 0.9975546486459693,
+        "miss_class_accuracy": 0.9945128034585966,
+        "wrong_real_rate": 1.8345594305527528e-05,
+        "false_assignment_rate": 0.005487196541403392,
+        "mean_association_entropy": 0.005598556787711178,
+        "valid_tracks": 60523,
+        "ground_truth_associations": 54509
+      },
+      "association_gnn": {
+        "association_precision": 0.9996329669119671,
+        "association_recall": 0.99930286741639,
+        "association_f1": 0.999467889908257,
+        "track_decision_accuracy": 0.9990582092758125,
+        "miss_class_accuracy": 0.9968407050216163,
+        "wrong_real_rate": 1.8345594305527528e-05,
+        "false_assignment_rate": 0.003159294978383771,
+        "mean_association_entropy": 0.0014351236960836883,
+        "valid_tracks": 60523,
+        "ground_truth_associations": 54509
+      }
+    },
+    "20": {
+      "gated_hungarian_ekf": {
+        "association_precision": 0.9305942799025023,
+        "association_recall": 0.9735823442000403,
+        "association_f1": 0.9516030698608521,
+        "track_decision_accuracy": 0.9345703286353948,
+        "miss_class_accuracy": 0.5809777186564682,
+        "wrong_real_rate": 0.026380964611348586,
+        "false_assignment_rate": 0.41902228134353176,
+        "mean_association_entropy": 0.0,
+        "valid_tracks": 60523,
+        "ground_truth_associations": 54509
+      },
+      "edge_mlp": {
+        "association_precision": 0.9997796790658392,
+        "association_recall": 0.998990992313196,
+        "association_f1": 0.9993851800871759,
+        "track_decision_accuracy": 0.9988929828329726,
+        "miss_class_accuracy": 0.998004655803126,
+        "wrong_real_rate": 0.0,
+        "false_assignment_rate": 0.0019953441968739607,
+        "mean_association_entropy": 0.0031937384688339155,
+        "valid_tracks": 60523,
+        "ground_truth_associations": 54509
+      },
+      "association_gnn": {
+        "association_precision": 0.9997798488295296,
+        "association_recall": 0.9997615072740281,
+        "association_f1": 0.9997706779676564,
+        "track_decision_accuracy": 0.9995869338929002,
+        "miss_class_accuracy": 0.998004655803126,
+        "wrong_real_rate": 0.0,
+        "false_assignment_rate": 0.0019953441968739607,
+        "mean_association_entropy": 0.0006337017435681453,
+        "valid_tracks": 60523,
+        "ground_truth_associations": 54509
+      }
+    }
+  },
+  "recursive_tracking": {
+    "5": {
+      "oracle_association": {
+        "association_precision": 1.0,
+        "association_recall": 1.0,
+        "identity_f1": 1.0,
+        "id_switches": 0,
+        "id_switches_per_1000_detections": 0.0,
+        "track_fragmentations": 1758,
+        "missed_detected_targets": 0,
+        "correct_miss_decisions": 2211,
+        "position_rmse_m": 0.6115691991217084,
+        "mean_association_entropy": 0.0,
+        "evaluated_scenes": 160,
+        "detected_target_instances": 20323
+      },
+      "gated_hungarian_ekf": {
+        "association_precision": 0.8857062359128475,
+        "association_recall": 0.9281110072331841,
+        "identity_f1": 0.9064129363992407,
+        "id_switches": 2434,
+        "id_switches_per_1000_detections": 119.76578261083502,
+        "track_fragmentations": 2249,
+        "missed_detected_targets": 66,
+        "correct_miss_decisions": 1172,
+        "position_rmse_m": 1.5190155221073045,
+        "mean_association_entropy": 0.0,
+        "evaluated_scenes": 160,
+        "detected_target_instances": 20323
+      },
+      "edge_mlp": {
+        "association_precision": 0.9968323104335776,
+        "association_recall": 0.9909954239039512,
+        "identity_f1": 0.9939052977027661,
+        "id_switches": 64,
+        "id_switches_per_1000_detections": 3.149141366924175,
+        "track_fragmentations": 1845,
+        "missed_detected_targets": 157,
+        "correct_miss_decisions": 2173,
+        "position_rmse_m": 0.6703899304445222,
+        "mean_association_entropy": 0.01869130812560411,
+        "evaluated_scenes": 160,
+        "detected_target_instances": 20323
+      },
+      "association_gnn": {
+        "association_precision": 0.9977824865717242,
+        "association_recall": 0.9963095999606357,
+        "identity_f1": 0.9970454993106165,
+        "id_switches": 45,
+        "id_switches_per_1000_detections": 2.21424002361856,
+        "track_fragmentations": 1818,
+        "missed_detected_targets": 59,
+        "correct_miss_decisions": 2182,
+        "position_rmse_m": 0.6134672812434763,
+        "mean_association_entropy": 0.008531023339743926,
+        "evaluated_scenes": 160,
+        "detected_target_instances": 20323
+      }
+    },
+    "10": {
+      "oracle_association": {
+        "association_precision": 1.0,
+        "association_recall": 1.0,
+        "identity_f1": 1.0,
+        "id_switches": 0,
+        "id_switches_per_1000_detections": 0.0,
+        "track_fragmentations": 1843,
+        "missed_detected_targets": 0,
+        "correct_miss_decisions": 2289,
+        "position_rmse_m": 0.5001898899759927,
+        "mean_association_entropy": 0.0,
+        "evaluated_scenes": 160,
+        "detected_target_instances": 20245
+      },
+      "gated_hungarian_ekf": {
+        "association_precision": 0.8282228816353445,
+        "association_recall": 0.8685601383057545,
+        "identity_f1": 0.847912045520301,
+        "id_switches": 3647,
+        "id_switches_per_1000_detections": 180.14324524573968,
+        "track_fragmentations": 1963,
+        "missed_detected_targets": 150,
+        "correct_miss_decisions": 1153,
+        "position_rmse_m": 2.390915177135061,
+        "mean_association_entropy": 0.0,
+        "evaluated_scenes": 160,
+        "detected_target_instances": 20245
+      },
+      "edge_mlp": {
+        "association_precision": 0.9988620058384048,
+        "association_recall": 0.9971844899975303,
+        "identity_f1": 0.9980225430096895,
+        "id_switches": 23,
+        "id_switches_per_1000_detections": 1.1360829834527044,
+        "track_fragmentations": 1875,
+        "missed_detected_targets": 52,
+        "correct_miss_decisions": 2271,
+        "position_rmse_m": 0.5104954807099014,
+        "mean_association_entropy": 0.005283606096464251,
+        "evaluated_scenes": 160,
+        "detected_target_instances": 20245
+      },
+      "association_gnn": {
+        "association_precision": 0.9989132045645408,
+        "association_recall": 0.9988145221042233,
+        "identity_f1": 0.9988638608970559,
+        "id_switches": 22,
+        "id_switches_per_1000_detections": 1.0866880711286737,
+        "track_fragmentations": 1857,
+        "missed_detected_targets": 21,
+        "correct_miss_decisions": 2270,
+        "position_rmse_m": 0.5035844109405772,
+        "mean_association_entropy": 0.0019456657521239383,
+        "evaluated_scenes": 160,
+        "detected_target_instances": 20245
+      }
+    },
+    "15": {
+      "oracle_association": {
+        "association_precision": 1.0,
+        "association_recall": 1.0,
+        "identity_f1": 1.0,
+        "id_switches": 0,
+        "id_switches_per_1000_detections": 0.0,
+        "track_fragmentations": 1760,
+        "missed_detected_targets": 0,
+        "correct_miss_decisions": 2232,
+        "position_rmse_m": 0.4809760768982872,
+        "mean_association_entropy": 0.0,
+        "evaluated_scenes": 160,
+        "detected_target_instances": 20302
+      },
+      "gated_hungarian_ekf": {
+        "association_precision": 0.8357934449422306,
+        "association_recall": 0.87296818047483,
+        "identity_f1": 0.853976437709302,
+        "id_switches": 3482,
+        "id_switches_per_1000_detections": 171.51019603979904,
+        "track_fragmentations": 1782,
+        "missed_detected_targets": 160,
+        "correct_miss_decisions": 1169,
+        "position_rmse_m": 2.4706358600941845,
+        "mean_association_entropy": 0.0,
+        "evaluated_scenes": 160,
+        "detected_target_instances": 20302
+      },
+      "edge_mlp": {
+        "association_precision": 0.9995562130177514,
+        "association_recall": 0.9984730568416905,
+        "identity_f1": 0.9990143413335962,
+        "id_switches": 9,
+        "id_switches_per_1000_detections": 0.4433060782188947,
+        "track_fragmentations": 1773,
+        "missed_detected_targets": 30,
+        "correct_miss_decisions": 2224,
+        "position_rmse_m": 0.49077714892585267,
+        "mean_association_entropy": 0.004626149109255073,
+        "evaluated_scenes": 160,
+        "detected_target_instances": 20302
+      },
+      "association_gnn": {
+        "association_precision": 0.9997536581760851,
+        "association_recall": 0.9995074376908679,
+        "identity_f1": 0.9996305327717432,
+        "id_switches": 5,
+        "id_switches_per_1000_detections": 0.2462811545660526,
+        "track_fragmentations": 1765,
+        "missed_detected_targets": 9,
+        "correct_miss_decisions": 2228,
+        "position_rmse_m": 0.4814587000051744,
+        "mean_association_entropy": 0.0016183626675899197,
+        "evaluated_scenes": 160,
+        "detected_target_instances": 20302
+      }
+    },
+    "20": {
+      "oracle_association": {
+        "association_precision": 1.0,
+        "association_recall": 1.0,
+        "identity_f1": 1.0,
+        "id_switches": 0,
+        "id_switches_per_1000_detections": 0.0,
+        "track_fragmentations": 1800,
+        "missed_detected_targets": 0,
+        "correct_miss_decisions": 2267,
+        "position_rmse_m": 0.3901208821717504,
+        "mean_association_entropy": 0.0,
+        "evaluated_scenes": 160,
+        "detected_target_instances": 20267
+      },
+      "gated_hungarian_ekf": {
+        "association_precision": 0.7207724917569477,
+        "association_recall": 0.7550204766368974,
+        "identity_f1": 0.7374990963202159,
+        "id_switches": 5928,
+        "id_switches_per_1000_detections": 292.4951892238615,
+        "track_fragmentations": 1350,
+        "missed_detected_targets": 302,
+        "correct_miss_decisions": 1002,
+        "position_rmse_m": 4.049837705134097,
+        "mean_association_entropy": 0.0,
+        "evaluated_scenes": 160,
+        "detected_target_instances": 20267
+      },
+      "edge_mlp": {
+        "association_precision": 0.9996052696501703,
+        "association_recall": 0.9996052696501703,
+        "identity_f1": 0.9996052696501703,
+        "id_switches": 8,
+        "id_switches_per_1000_detections": 0.39473034982977256,
+        "track_fragmentations": 1807,
+        "missed_detected_targets": 7,
+        "correct_miss_decisions": 2260,
+        "position_rmse_m": 0.39044596575050744,
+        "mean_association_entropy": 0.0019409901851002258,
+        "evaluated_scenes": 160,
+        "detected_target_instances": 20267
+      },
+      "association_gnn": {
+        "association_precision": 0.999753257007501,
+        "association_recall": 0.9996052696501703,
+        "identity_f1": 0.9996792578520145,
+        "id_switches": 5,
+        "id_switches_per_1000_detections": 0.24670646864360785,
+        "track_fragmentations": 1806,
+        "missed_detected_targets": 7,
+        "correct_miss_decisions": 2263,
+        "position_rmse_m": 0.39003594314319967,
+        "mean_association_entropy": 0.0005913752554681115,
+        "evaluated_scenes": 160,
+        "detected_target_instances": 20267
+      }
+    }
+  },
+  "performance_gates": {
+    "graph_best_frame_f1_at_each_snr": {
+      "5": true,
+      "10": true,
+      "15": true,
+      "20": true
+    },
+    "graph_best_recursive_identity_and_switches_at_each_snr": {
+      "5": true,
+      "10": true,
+      "15": true,
+      "20": true
+    }
+  },
+  "limitations": [
+    "The current synchronized cache contains fixed target membership within each 40-frame window.",
+    "Birth/death lifecycle labels require a later cache with targets entering and leaving inside a window.",
+    "This stage uses fused state-space measurements rather than learning directly from raw RD/RA peak nodes.",
+    "HOTA and GOSPA are deferred until the variable-membership tracking cache is added."
+  ]
+}

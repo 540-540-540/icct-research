@@ -1,0 +1,56 @@
+{
+  "physics_classical_dual": {
+    "loss": 1.305513620376587,
+    "core_gradient_max_by_layer": [
+      0.0013358828146010637,
+      0.00051931879715994
+    ],
+    "frontend_gradient_max_by_layer": [
+      7.544093386968598e-05,
+      3.97371914004907e-05
+    ],
+    "permutation_equivariance_max_error": 1.9073486328125e-06,
+    "angle_range_by_layer": [
+      {
+        "minimum": -1.5681685209274292,
+        "maximum": 1.563045859336853
+      },
+      {
+        "minimum": -1.5681685209274292,
+        "maximum": 1.563045859336853
+      }
+    ],
+    "total_parameters": 300092,
+    "core_parameters_by_layer": [
+      60,
+      60
+    ]
+  },
+  "physics_quantum_dual": {
+    "loss": 1.3103371858596802,
+    "core_gradient_max_by_layer": [
+      0.016073621809482574,
+      0.007329097483307123
+    ],
+    "frontend_gradient_max_by_layer": [
+      0.007837534882128239,
+      0.0023912768810987473
+    ],
+    "permutation_equivariance_max_error": 1.9073486328125e-06,
+    "angle_range_by_layer": [
+      {
+        "minimum": -1.5681685209274292,
+        "maximum": 1.563045859336853
+      },
+      {
+        "minimum": -1.5681685209274292,
+        "maximum": 1.563045859336853
+      }
+    ],
+    "total_parameters": 300080,
+    "core_parameters_by_layer": [
+      54,
+      54
+    ]
+  }
+}

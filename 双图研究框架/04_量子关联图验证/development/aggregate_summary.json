@@ -1,0 +1,86 @@
+{
+  "summary": {
+    "hungarian": {
+      "mean_association_f1": 0.9252787562248345,
+      "mean_position_rmse_m": 1.3548413402625987,
+      "wrong_associations": 1144,
+      "owner_transitions": 747
+    },
+    "original_gnn": {
+      "mean_association_f1": 0.9982785049561507,
+      "mean_position_rmse_m": 0.5314947968144592,
+      "wrong_associations": 67,
+      "owner_transitions": 79
+    },
+    "plain": {
+      "mean_association_f1": 0.9985291640412363,
+      "mean_position_rmse_m": 0.5299417415650913,
+      "wrong_associations": 54,
+      "owner_transitions": 69
+    },
+    "mlp": {
+      "mean_association_f1": 0.9985291640412363,
+      "mean_position_rmse_m": 0.5299417415650913,
+      "wrong_associations": 54,
+      "owner_transitions": 69
+    },
+    "quantum": {
+      "mean_association_f1": 0.998465734805833,
+      "mean_position_rmse_m": 0.5306688350820974,
+      "wrong_associations": 56,
+      "owner_transitions": 71
+    }
+  },
+  "comparisons": {
+    "original_gnn": {
+      "rmse_reduction_percent": 0.15540354060138822,
+      "f1_difference_percentage_points": 0.018722984968233547,
+      "rmse_win_tie_loss": [
+        7,
+        4,
+        1
+      ]
+    },
+    "plain": {
+      "rmse_reduction_percent": -0.1372025375579429,
+      "f1_difference_percentage_points": -0.006342923540325618,
+      "rmse_win_tie_loss": [
+        0,
+        11,
+        1
+      ]
+    },
+    "mlp": {
+      "rmse_reduction_percent": -0.1372025375579429,
+      "f1_difference_percentage_points": -0.006342923540325618,
+      "rmse_win_tie_loss": [
+        0,
+        11,
+        1
+      ]
+    }
+  },
+  "training": {
+    "plain": {
+      "selected_epoch": 1,
+      "validation_ce": 0.006689776785074955,
+      "parameters": 223204,
+      "checkpoint_sha256": "52d1e7648e0ea9824f38c6fe18361b0d319212636475e973a5667b60c2d9072f",
+      "quantum_gradient_max": 0.0
+    },
+    "mlp": {
+      "selected_epoch": 1,
+      "validation_ce": 0.006689296267412656,
+      "parameters": 225360,
+      "checkpoint_sha256": "b113608c8fe644c000bfcd986e49c6d02582540479f7575c707f5a31a7027fe2",
+      "quantum_gradient_max": 0.0
+    },
+    "quantum": {
+      "selected_epoch": 1,
+      "validation_ce": 0.006693060762063555,
+      "parameters": 225328,
+      "checkpoint_sha256": "4c59b7d3061c689fc0ba1616d8dd57b97443a60c64b00e6d215a0313099022f8",
+      "quantum_gradient_max": 0.000246166018769145
+    }
+  }
+}

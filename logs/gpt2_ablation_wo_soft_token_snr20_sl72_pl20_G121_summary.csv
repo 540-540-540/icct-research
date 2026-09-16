@@ -1,0 +1,2 @@
+ablation,method,best_val_ade,best_val_fde,step5_ade,step10_ade,step15_ade,step20_ade,val_token_acc,val_token_temp,checkpoint
+wo_soft_token,w/o Uncertainty-aware Soft Token,0.779746060164637,1.207601160137797,0.5877860101915541,0.7246063871043069,0.9668892698628562,1.207601154985882,0.6590922730309623,0.0,./checkpoints/gpt2_ablation_wo_soft_token_snr20_sl72_pl20_G121/wo_soft_token_snr20/checkpoint.pth

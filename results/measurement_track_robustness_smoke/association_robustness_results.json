@@ -1,0 +1,3823 @@
+{
+  "experiment": "measurement_track_association_robustness_sweep",
+  "status": "formal_single_seed_robustness_without_retraining",
+  "device": "NVIDIA GeForce RTX 4090",
+  "seed": 2026,
+  "training_condition": {
+    "miss_probability": 0.1,
+    "false_alarm_rate": 1.5
+  },
+  "frame_samples_per_snr_condition": 200,
+  "recursive_scenes_per_snr_condition": 5,
+  "snr_db": [
+    5,
+    10,
+    15,
+    20
+  ],
+  "hungarian_stabilization": {
+    "explicit_null_rejection_mahalanobis_sq": 16.0,
+    "position_covariance_floor_sigma_m": 0.5,
+    "velocity_covariance_floor_sigma_mps": 0.25,
+    "track_recovery_after_consecutive_misses": 3,
+    "recovery_position_sigma_m": 3.0,
+    "recovery_velocity_sigma_mps": 1.5,
+    "uses_ground_truth_identity": false
+  },
+  "conditions": {
+    "miss_0.05__far_1.50": {
+      "setting": {
+        "miss_probability": 0.05,
+        "false_alarm_rate": 1.5
+      },
+      "snr": {
+        "5": {
+          "frame_association": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.9670836076366031,
+              "association_recall": 0.9852448021462106,
+              "association_f1": 0.9760797342192692,
+              "track_decision_accuracy": 0.9664556962025317,
+              "miss_class_accuracy": 0.651685393258427,
+              "wrong_real_rate": 0.012743125419181758,
+              "false_assignment_rate": 0.34831460674157305,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1491
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.9924502402196294,
+              "association_recall": 0.9698189134808853,
+              "association_f1": 0.9810040705563094,
+              "track_decision_accuracy": 0.9683544303797469,
+              "miss_class_accuracy": 0.9438202247191011,
+              "wrong_real_rate": 0.004024144869215292,
+              "false_assignment_rate": 0.056179775280898875,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1491
+            },
+            "edge_mlp": {
+              "association_precision": 0.9952988582941572,
+              "association_recall": 0.993963782696177,
+              "association_f1": 0.9946308724832215,
+              "track_decision_accuracy": 0.9911392405063291,
+              "miss_class_accuracy": 0.9438202247191011,
+              "wrong_real_rate": 0.0013413816230717639,
+              "false_assignment_rate": 0.056179775280898875,
+              "mean_association_entropy": 0.014322640927657173,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1491
+            },
+            "association_gnn": {
+              "association_precision": 0.9953083109919572,
+              "association_recall": 0.9959758551307847,
+              "association_f1": 0.9956419711699632,
+              "track_decision_accuracy": 0.9930379746835443,
+              "miss_class_accuracy": 0.9438202247191011,
+              "wrong_real_rate": 0.0013413816230717639,
+              "false_assignment_rate": 0.056179775280898875,
+              "mean_association_entropy": 0.004311493230781562,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1491
+            }
+          },
+          "recursive_tracking": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.9090909090909091,
+              "association_recall": 0.9228650137741047,
+              "identity_f1": 0.9159261790840738,
+              "id_switches": 67,
+              "id_switches_per_1000_detections": 92.28650137741047,
+              "track_fragmentations": 31,
+              "missed_detected_targets": 0,
+              "correct_miss_decisions": 23,
+              "position_rmse_m": 1.0623666362098034,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 726
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.9943582510578279,
+              "association_recall": 0.9710743801652892,
+              "identity_f1": 0.9825783972125435,
+              "id_switches": 4,
+              "id_switches_per_1000_detections": 5.509641873278237,
+              "track_fragmentations": 39,
+              "missed_detected_targets": 20,
+              "correct_miss_decisions": 31,
+              "position_rmse_m": 0.602573818409115,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 726
+            },
+            "edge_mlp": {
+              "association_precision": 0.9986187845303868,
+              "association_recall": 0.9958677685950413,
+              "identity_f1": 0.9972413793103448,
+              "id_switches": 1,
+              "id_switches_per_1000_detections": 1.3774104683195592,
+              "track_fragmentations": 27,
+              "missed_detected_targets": 3,
+              "correct_miss_decisions": 33,
+              "position_rmse_m": 0.6007982318068387,
+              "mean_association_entropy": 0.015977848841617723,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 726
+            },
+            "association_gnn": {
+              "association_precision": 1.0,
+              "association_recall": 0.9986225895316805,
+              "identity_f1": 0.9993108201240524,
+              "id_switches": 0,
+              "id_switches_per_1000_detections": 0.0,
+              "track_fragmentations": 26,
+              "missed_detected_targets": 1,
+              "correct_miss_decisions": 34,
+              "position_rmse_m": 0.5954082467885671,
+              "mean_association_entropy": 0.004331856230574859,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 726
+            }
+          }
+        },
+        "10": {
+          "frame_association": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.9743252139565504,
+              "association_recall": 0.9926224010731053,
+              "association_f1": 0.9833887043189369,
+              "track_decision_accuracy": 0.9753164556962025,
+              "miss_class_accuracy": 0.6853932584269663,
+              "wrong_real_rate": 0.007377598926894702,
+              "false_assignment_rate": 0.3146067415730337,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1491
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 1.0,
+              "association_recall": 0.9698189134808853,
+              "association_f1": 0.9846782431052095,
+              "track_decision_accuracy": 0.9715189873417721,
+              "miss_class_accuracy": 1.0,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.0,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1491
+            },
+            "edge_mlp": {
+              "association_precision": 0.9986577181208054,
+              "association_recall": 0.9979879275653923,
+              "association_f1": 0.9983227104998322,
+              "track_decision_accuracy": 0.9968354430379747,
+              "miss_class_accuracy": 0.9775280898876404,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.02247191011235955,
+              "mean_association_entropy": 0.004706760492685115,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1491
+            },
+            "association_gnn": {
+              "association_precision": 0.9993297587131368,
+              "association_recall": 1.0,
+              "association_f1": 0.9996647670130742,
+              "track_decision_accuracy": 0.9993670886075949,
+              "miss_class_accuracy": 0.9887640449438202,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.011235955056179775,
+              "mean_association_entropy": 0.0014360547090373653,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1491
+            }
+          },
+          "recursive_tracking": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.9242219215155616,
+              "association_recall": 0.9525801952580195,
+              "identity_f1": 0.9381868131868132,
+              "id_switches": 56,
+              "id_switches_per_1000_detections": 78.10320781032078,
+              "track_fragmentations": 48,
+              "missed_detected_targets": 2,
+              "correct_miss_decisions": 19,
+              "position_rmse_m": 1.4901136731608853,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 717
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.9956076134699854,
+              "association_recall": 0.9483960948396095,
+              "identity_f1": 0.9714285714285714,
+              "id_switches": 3,
+              "id_switches_per_1000_detections": 4.184100418410042,
+              "track_fragmentations": 56,
+              "missed_detected_targets": 34,
+              "correct_miss_decisions": 43,
+              "position_rmse_m": 0.5359173098596872,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 717
+            },
+            "edge_mlp": {
+              "association_precision": 1.0,
+              "association_recall": 1.0,
+              "identity_f1": 1.0,
+              "id_switches": 0,
+              "id_switches_per_1000_detections": 0.0,
+              "track_fragmentations": 35,
+              "missed_detected_targets": 0,
+              "correct_miss_decisions": 43,
+              "position_rmse_m": 0.5010247153262593,
+              "mean_association_entropy": 0.004152121202194616,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 717
+            },
+            "association_gnn": {
+              "association_precision": 1.0,
+              "association_recall": 1.0,
+              "identity_f1": 1.0,
+              "id_switches": 0,
+              "id_switches_per_1000_detections": 0.0,
+              "track_fragmentations": 35,
+              "missed_detected_targets": 0,
+              "correct_miss_decisions": 43,
+              "position_rmse_m": 0.5010247153262593,
+              "mean_association_entropy": 0.0008978653473958712,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 717
+            }
+          }
+        },
+        "15": {
+          "frame_association": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.9743252139565504,
+              "association_recall": 0.9926224010731053,
+              "association_f1": 0.9833887043189369,
+              "track_decision_accuracy": 0.9753164556962025,
+              "miss_class_accuracy": 0.6853932584269663,
+              "wrong_real_rate": 0.007377598926894702,
+              "false_assignment_rate": 0.3146067415730337,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1491
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 1.0,
+              "association_recall": 0.9684775318578136,
+              "association_f1": 0.9839863713798979,
+              "track_decision_accuracy": 0.970253164556962,
+              "miss_class_accuracy": 1.0,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.0,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1491
+            },
+            "edge_mlp": {
+              "association_precision": 0.9986586183769283,
+              "association_recall": 0.9986586183769283,
+              "association_f1": 0.9986586183769283,
+              "track_decision_accuracy": 0.9974683544303797,
+              "miss_class_accuracy": 0.9775280898876404,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.02247191011235955,
+              "mean_association_entropy": 0.0040812717444741065,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1491
+            },
+            "association_gnn": {
+              "association_precision": 0.9993297587131368,
+              "association_recall": 1.0,
+              "association_f1": 0.9996647670130742,
+              "track_decision_accuracy": 0.9993670886075949,
+              "miss_class_accuracy": 0.9887640449438202,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.011235955056179775,
+              "mean_association_entropy": 0.0016868298707445602,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1491
+            }
+          },
+          "recursive_tracking": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.9795361527967258,
+              "association_recall": 0.9917127071823204,
+              "identity_f1": 0.9855868222374742,
+              "id_switches": 15,
+              "id_switches_per_1000_detections": 20.718232044198896,
+              "track_fragmentations": 36,
+              "missed_detected_targets": 0,
+              "correct_miss_decisions": 27,
+              "position_rmse_m": 0.7188196170812481,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 724
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.9985795454545454,
+              "association_recall": 0.9709944751381215,
+              "identity_f1": 0.9845938375350141,
+              "id_switches": 1,
+              "id_switches_per_1000_detections": 1.3812154696132597,
+              "track_fragmentations": 39,
+              "missed_detected_targets": 20,
+              "correct_miss_decisions": 36,
+              "position_rmse_m": 0.5073418402161988,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 724
+            },
+            "edge_mlp": {
+              "association_precision": 1.0,
+              "association_recall": 1.0,
+              "identity_f1": 1.0,
+              "id_switches": 0,
+              "id_switches_per_1000_detections": 0.0,
+              "track_fragmentations": 31,
+              "missed_detected_targets": 0,
+              "correct_miss_decisions": 36,
+              "position_rmse_m": 0.4744305012728007,
+              "mean_association_entropy": 0.003631462698518471,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 724
+            },
+            "association_gnn": {
+              "association_precision": 1.0,
+              "association_recall": 1.0,
+              "identity_f1": 1.0,
+              "id_switches": 0,
+              "id_switches_per_1000_detections": 0.0,
+              "track_fragmentations": 31,
+              "missed_detected_targets": 0,
+              "correct_miss_decisions": 36,
+              "position_rmse_m": 0.4744305012728007,
+              "mean_association_entropy": 0.0008575139727337793,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 724
+            }
+          }
+        },
+        "20": {
+          "frame_association": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.9730263157894737,
+              "association_recall": 0.9919517102615694,
+              "association_f1": 0.9823978744603122,
+              "track_decision_accuracy": 0.9740506329113924,
+              "miss_class_accuracy": 0.6741573033707865,
+              "wrong_real_rate": 0.008048289738430584,
+              "false_assignment_rate": 0.3258426966292135,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1491
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 1.0,
+              "association_recall": 0.959758551307847,
+              "association_f1": 0.9794661190965093,
+              "track_decision_accuracy": 0.9620253164556962,
+              "miss_class_accuracy": 1.0,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.0,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1491
+            },
+            "edge_mlp": {
+              "association_precision": 0.9993293091884641,
+              "association_recall": 0.9993293091884641,
+              "association_f1": 0.9993293091884641,
+              "track_decision_accuracy": 0.9987341772151899,
+              "miss_class_accuracy": 0.9887640449438202,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.011235955056179775,
+              "mean_association_entropy": 0.002671170748660739,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1491
+            },
+            "association_gnn": {
+              "association_precision": 0.9993297587131368,
+              "association_recall": 1.0,
+              "association_f1": 0.9996647670130742,
+              "track_decision_accuracy": 0.9993670886075949,
+              "miss_class_accuracy": 0.9887640449438202,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.011235955056179775,
+              "mean_association_entropy": 0.0008966136677560539,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1491
+            }
+          },
+          "recursive_tracking": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.925575101488498,
+              "association_recall": 0.9421487603305785,
+              "identity_f1": 0.9337883959044369,
+              "id_switches": 55,
+              "id_switches_per_1000_detections": 75.75757575757575,
+              "track_fragmentations": 34,
+              "missed_detected_targets": 1,
+              "correct_miss_decisions": 20,
+              "position_rmse_m": 1.393077231054414,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 726
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.9985855728429985,
+              "association_recall": 0.9724517906336089,
+              "identity_f1": 0.9853454291695743,
+              "id_switches": 1,
+              "id_switches_per_1000_detections": 1.3774104683195592,
+              "track_fragmentations": 37,
+              "missed_detected_targets": 19,
+              "correct_miss_decisions": 34,
+              "position_rmse_m": 0.43255856704695883,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 726
+            },
+            "edge_mlp": {
+              "association_precision": 1.0,
+              "association_recall": 1.0,
+              "identity_f1": 1.0,
+              "id_switches": 0,
+              "id_switches_per_1000_detections": 0.0,
+              "track_fragmentations": 31,
+              "missed_detected_targets": 0,
+              "correct_miss_decisions": 34,
+              "position_rmse_m": 0.3924398704029323,
+              "mean_association_entropy": 0.0014861824739518855,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 726
+            },
+            "association_gnn": {
+              "association_precision": 1.0,
+              "association_recall": 1.0,
+              "identity_f1": 1.0,
+              "id_switches": 0,
+              "id_switches_per_1000_detections": 0.0,
+              "track_fragmentations": 31,
+              "missed_detected_targets": 0,
+              "correct_miss_decisions": 34,
+              "position_rmse_m": 0.3924398704029323,
+              "mean_association_entropy": 0.00022103060567133632,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 726
+            }
+          }
+        }
+      }
+    },
+    "miss_0.10__far_1.50": {
+      "setting": {
+        "miss_probability": 0.1,
+        "false_alarm_rate": 1.5
+      },
+      "snr": {
+        "5": {
+          "frame_association": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.9366053169734151,
+              "association_recall": 0.9717114568599717,
+              "association_f1": 0.9538354737938216,
+              "track_decision_accuracy": 0.939873417721519,
+              "miss_class_accuracy": 0.6686746987951807,
+              "wrong_real_rate": 0.026874115983026876,
+              "false_assignment_rate": 0.3313253012048193,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.9890190336749634,
+              "association_recall": 0.9554455445544554,
+              "association_f1": 0.9719424460431654,
+              "track_decision_accuracy": 0.9544303797468354,
+              "miss_class_accuracy": 0.9457831325301205,
+              "wrong_real_rate": 0.004243281471004243,
+              "false_assignment_rate": 0.05421686746987952,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "edge_mlp": {
+              "association_precision": 0.9943222143364088,
+              "association_recall": 0.9908062234794908,
+              "association_f1": 0.9925611052072263,
+              "track_decision_accuracy": 0.9879746835443038,
+              "miss_class_accuracy": 0.963855421686747,
+              "wrong_real_rate": 0.0014144271570014145,
+              "false_assignment_rate": 0.03614457831325301,
+              "mean_association_entropy": 0.01464570764071626,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "association_gnn": {
+              "association_precision": 0.9950460014154282,
+              "association_recall": 0.9943422913719944,
+              "association_f1": 0.994694021931376,
+              "track_decision_accuracy": 0.9917721518987341,
+              "miss_class_accuracy": 0.9698795180722891,
+              "wrong_real_rate": 0.0014144271570014145,
+              "false_assignment_rate": 0.030120481927710843,
+              "mean_association_entropy": 0.004672246709467601,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            }
+          },
+          "recursive_tracking": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.9132867132867133,
+              "association_recall": 0.9560761346998536,
+              "identity_f1": 0.9341917024320457,
+              "id_switches": 62,
+              "id_switches_per_1000_detections": 90.77598828696925,
+              "track_fragmentations": 74,
+              "missed_detected_targets": 2,
+              "correct_miss_decisions": 43,
+              "position_rmse_m": 1.0068116055413028,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 683
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.9910044977511244,
+              "association_recall": 0.9677891654465594,
+              "identity_f1": 0.9792592592592593,
+              "id_switches": 6,
+              "id_switches_per_1000_detections": 8.784773060029282,
+              "track_fragmentations": 71,
+              "missed_detected_targets": 20,
+              "correct_miss_decisions": 73,
+              "position_rmse_m": 0.624804302330778,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 683
+            },
+            "edge_mlp": {
+              "association_precision": 1.0,
+              "association_recall": 0.9970717423133236,
+              "identity_f1": 0.998533724340176,
+              "id_switches": 0,
+              "id_switches_per_1000_detections": 0.0,
+              "track_fragmentations": 59,
+              "missed_detected_targets": 2,
+              "correct_miss_decisions": 77,
+              "position_rmse_m": 0.6100877905330259,
+              "mean_association_entropy": 0.015048416261388016,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 683
+            },
+            "association_gnn": {
+              "association_precision": 1.0,
+              "association_recall": 0.9985358711566618,
+              "identity_f1": 0.9992673992673992,
+              "id_switches": 0,
+              "id_switches_per_1000_detections": 0.0,
+              "track_fragmentations": 58,
+              "missed_detected_targets": 1,
+              "correct_miss_decisions": 77,
+              "position_rmse_m": 0.608739363558237,
+              "mean_association_entropy": 0.005909359373415008,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 683
+            }
+          }
+        },
+        "10": {
+          "frame_association": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.9434219495569189,
+              "association_recall": 0.9787835926449788,
+              "association_f1": 0.9607775078097883,
+              "track_decision_accuracy": 0.9468354430379747,
+              "miss_class_accuracy": 0.6746987951807228,
+              "wrong_real_rate": 0.02050919377652051,
+              "false_assignment_rate": 0.3253012048192771,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.9963126843657817,
+              "association_recall": 0.9554455445544554,
+              "association_f1": 0.9754512635379061,
+              "track_decision_accuracy": 0.9569620253164557,
+              "miss_class_accuracy": 0.9698795180722891,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.030120481927710843,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "edge_mlp": {
+              "association_precision": 0.997165131112686,
+              "association_recall": 0.995049504950495,
+              "association_f1": 0.9961061946902655,
+              "track_decision_accuracy": 0.9930379746835443,
+              "miss_class_accuracy": 0.9759036144578314,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.024096385542168676,
+              "mean_association_entropy": 0.004844801629478711,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "association_gnn": {
+              "association_precision": 0.9985855728429985,
+              "association_recall": 0.9985855728429985,
+              "association_f1": 0.9985855728429985,
+              "track_decision_accuracy": 0.9974683544303797,
+              "miss_class_accuracy": 0.9879518072289156,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.012048192771084338,
+              "mean_association_entropy": 0.0015764541154643203,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            }
+          },
+          "recursive_tracking": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.8314606741573034,
+              "association_recall": 0.8744460856720827,
+              "identity_f1": 0.8524118070554356,
+              "id_switches": 120,
+              "id_switches_per_1000_detections": 177.25258493353027,
+              "track_fragmentations": 71,
+              "missed_detected_targets": 8,
+              "correct_miss_decisions": 40,
+              "position_rmse_m": 2.801409311019531,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 677
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.9952904238618524,
+              "association_recall": 0.9364844903988183,
+              "identity_f1": 0.964992389649924,
+              "id_switches": 3,
+              "id_switches_per_1000_detections": 4.431314623338257,
+              "track_fragmentations": 85,
+              "missed_detected_targets": 42,
+              "correct_miss_decisions": 81,
+              "position_rmse_m": 0.5462666623734365,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 677
+            },
+            "edge_mlp": {
+              "association_precision": 0.9970457902511078,
+              "association_recall": 0.9970457902511078,
+              "identity_f1": 0.9970457902511078,
+              "id_switches": 2,
+              "id_switches_per_1000_detections": 2.9542097488921715,
+              "track_fragmentations": 69,
+              "missed_detected_targets": 2,
+              "correct_miss_decisions": 81,
+              "position_rmse_m": 0.516382999027172,
+              "mean_association_entropy": 0.005561170549416191,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 677
+            },
+            "association_gnn": {
+              "association_precision": 0.9970501474926253,
+              "association_recall": 0.9985228951255539,
+              "identity_f1": 0.9977859778597786,
+              "id_switches": 2,
+              "id_switches_per_1000_detections": 2.9542097488921715,
+              "track_fragmentations": 68,
+              "missed_detected_targets": 1,
+              "correct_miss_decisions": 81,
+              "position_rmse_m": 0.511829796405038,
+              "mean_association_entropy": 0.0021310872537662283,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 677
+            }
+          }
+        },
+        "15": {
+          "frame_association": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.9434219495569189,
+              "association_recall": 0.9787835926449788,
+              "association_f1": 0.9607775078097883,
+              "track_decision_accuracy": 0.9468354430379747,
+              "miss_class_accuracy": 0.6746987951807228,
+              "wrong_real_rate": 0.02050919377652051,
+              "false_assignment_rate": 0.3253012048192771,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.9970457902511078,
+              "association_recall": 0.9547383309759547,
+              "association_f1": 0.9754335260115606,
+              "track_decision_accuracy": 0.9569620253164557,
+              "miss_class_accuracy": 0.9759036144578314,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.024096385542168676,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "edge_mlp": {
+              "association_precision": 0.9971671388101983,
+              "association_recall": 0.9957567185289957,
+              "association_f1": 0.9964614295824485,
+              "track_decision_accuracy": 0.9936708860759493,
+              "miss_class_accuracy": 0.9759036144578314,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.024096385542168676,
+              "mean_association_entropy": 0.004243433005346883,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "association_gnn": {
+              "association_precision": 0.9985855728429985,
+              "association_recall": 0.9985855728429985,
+              "association_f1": 0.9985855728429985,
+              "track_decision_accuracy": 0.9974683544303797,
+              "miss_class_accuracy": 0.9879518072289156,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.012048192771084338,
+              "mean_association_entropy": 0.0017588177257411813,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            }
+          },
+          "recursive_tracking": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.8497191011235955,
+              "association_recall": 0.8793604651162791,
+              "identity_f1": 0.8642857142857142,
+              "id_switches": 107,
+              "id_switches_per_1000_detections": 155.52325581395348,
+              "track_fragmentations": 56,
+              "missed_detected_targets": 5,
+              "correct_miss_decisions": 43,
+              "position_rmse_m": 2.0774582258925385,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 688
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.9924924924924925,
+              "association_recall": 0.9607558139534884,
+              "identity_f1": 0.9763663220088626,
+              "id_switches": 5,
+              "id_switches_per_1000_detections": 7.267441860465116,
+              "track_fragmentations": 66,
+              "missed_detected_targets": 24,
+              "correct_miss_decisions": 70,
+              "position_rmse_m": 0.5197250031257575,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 688
+            },
+            "edge_mlp": {
+              "association_precision": 0.998546511627907,
+              "association_recall": 0.998546511627907,
+              "identity_f1": 0.998546511627907,
+              "id_switches": 1,
+              "id_switches_per_1000_detections": 1.4534883720930232,
+              "track_fragmentations": 56,
+              "missed_detected_targets": 1,
+              "correct_miss_decisions": 71,
+              "position_rmse_m": 0.479679550363165,
+              "mean_association_entropy": 0.0030284256232721756,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 688
+            },
+            "association_gnn": {
+              "association_precision": 0.9985443959243085,
+              "association_recall": 0.997093023255814,
+              "identity_f1": 0.9978181818181817,
+              "id_switches": 1,
+              "id_switches_per_1000_detections": 1.4534883720930232,
+              "track_fragmentations": 57,
+              "missed_detected_targets": 1,
+              "correct_miss_decisions": 72,
+              "position_rmse_m": 0.493788852588856,
+              "mean_association_entropy": 0.0021337420452250217,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 688
+            }
+          }
+        },
+        "20": {
+          "frame_association": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.9468302658486708,
+              "association_recall": 0.9823196605374823,
+              "association_f1": 0.9642485248177717,
+              "track_decision_accuracy": 0.950632911392405,
+              "miss_class_accuracy": 0.6807228915662651,
+              "wrong_real_rate": 0.01768033946251768,
+              "false_assignment_rate": 0.3192771084337349,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.9985130111524163,
+              "association_recall": 0.9497878359264498,
+              "association_f1": 0.9735411380935122,
+              "track_decision_accuracy": 0.9537974683544304,
+              "miss_class_accuracy": 0.9879518072289156,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.012048192771084338,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "edge_mlp": {
+              "association_precision": 1.0,
+              "association_recall": 1.0,
+              "association_f1": 1.0,
+              "track_decision_accuracy": 1.0,
+              "miss_class_accuracy": 1.0,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.0,
+              "mean_association_entropy": 0.002786323563827079,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "association_gnn": {
+              "association_precision": 1.0,
+              "association_recall": 1.0,
+              "association_f1": 1.0,
+              "track_decision_accuracy": 1.0,
+              "miss_class_accuracy": 1.0,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.0,
+              "mean_association_entropy": 0.0009660816956717026,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            }
+          },
+          "recursive_tracking": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.768033946251768,
+              "association_recall": 0.8008849557522124,
+              "identity_f1": 0.784115523465704,
+              "id_switches": 164,
+              "id_switches_per_1000_detections": 241.88790560471978,
+              "track_fragmentations": 56,
+              "missed_detected_targets": 7,
+              "correct_miss_decisions": 46,
+              "position_rmse_m": 3.7141285136226085,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 678
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.9984615384615385,
+              "association_recall": 0.9572271386430679,
+              "identity_f1": 0.9774096385542168,
+              "id_switches": 1,
+              "id_switches_per_1000_detections": 1.4749262536873156,
+              "track_fragmentations": 79,
+              "missed_detected_targets": 29,
+              "correct_miss_decisions": 81,
+              "position_rmse_m": 0.4448957146393766,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 678
+            },
+            "edge_mlp": {
+              "association_precision": 1.0,
+              "association_recall": 0.9985250737463127,
+              "identity_f1": 0.9992619926199262,
+              "id_switches": 0,
+              "id_switches_per_1000_detections": 0.0,
+              "track_fragmentations": 69,
+              "missed_detected_targets": 1,
+              "correct_miss_decisions": 82,
+              "position_rmse_m": 0.40066872731177133,
+              "mean_association_entropy": 0.00208957902716667,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 678
+            },
+            "association_gnn": {
+              "association_precision": 1.0,
+              "association_recall": 1.0,
+              "identity_f1": 1.0,
+              "id_switches": 0,
+              "id_switches_per_1000_detections": 0.0,
+              "track_fragmentations": 68,
+              "missed_detected_targets": 0,
+              "correct_miss_decisions": 82,
+              "position_rmse_m": 0.40035252495889734,
+              "mean_association_entropy": 0.0007184062769089865,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 678
+            }
+          }
+        }
+      }
+    },
+    "miss_0.20__far_1.50": {
+      "setting": {
+        "miss_probability": 0.2,
+        "false_alarm_rate": 1.5
+      },
+      "snr": {
+        "5": {
+          "frame_association": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.8733133433283359,
+              "association_recall": 0.951797385620915,
+              "association_f1": 0.9108678655199376,
+              "track_decision_accuracy": 0.8930379746835443,
+              "miss_class_accuracy": 0.6910112359550562,
+              "wrong_real_rate": 0.04820261437908497,
+              "false_assignment_rate": 0.3089887640449438,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1224
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.9870242214532872,
+              "association_recall": 0.9321895424836601,
+              "association_f1": 0.9588235294117646,
+              "track_decision_accuracy": 0.9424050632911393,
+              "miss_class_accuracy": 0.9775280898876404,
+              "wrong_real_rate": 0.005718954248366013,
+              "false_assignment_rate": 0.02247191011235955,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1224
+            },
+            "edge_mlp": {
+              "association_precision": 0.9925986842105263,
+              "association_recall": 0.9861111111111112,
+              "association_f1": 0.989344262295082,
+              "track_decision_accuracy": 0.9867088607594937,
+              "miss_class_accuracy": 0.9887640449438202,
+              "wrong_real_rate": 0.004084967320261438,
+              "false_assignment_rate": 0.011235955056179775,
+              "mean_association_entropy": 0.015954201386625927,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1224
+            },
+            "association_gnn": {
+              "association_precision": 0.9934479934479934,
+              "association_recall": 0.9910130718954249,
+              "association_f1": 0.9922290388548057,
+              "track_decision_accuracy": 0.990506329113924,
+              "miss_class_accuracy": 0.9887640449438202,
+              "wrong_real_rate": 0.0032679738562091504,
+              "false_assignment_rate": 0.011235955056179775,
+              "mean_association_entropy": 0.005398489397414372,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1224
+            }
+          },
+          "recursive_tracking": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.8404255319148937,
+              "association_recall": 0.9155629139072847,
+              "identity_f1": 0.8763866877971473,
+              "id_switches": 105,
+              "id_switches_per_1000_detections": 173.841059602649,
+              "track_fragmentations": 114,
+              "missed_detected_targets": 5,
+              "correct_miss_decisions": 97,
+              "position_rmse_m": 1.4928151821554216,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 604
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.975736568457539,
+              "association_recall": 0.9321192052980133,
+              "identity_f1": 0.9534292972057579,
+              "id_switches": 14,
+              "id_switches_per_1000_detections": 23.178807947019866,
+              "track_fragmentations": 117,
+              "missed_detected_targets": 36,
+              "correct_miss_decisions": 147,
+              "position_rmse_m": 0.7170364223502347,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 604
+            },
+            "edge_mlp": {
+              "association_precision": 0.9966777408637874,
+              "association_recall": 0.9933774834437086,
+              "identity_f1": 0.9950248756218905,
+              "id_switches": 2,
+              "id_switches_per_1000_detections": 3.3112582781456954,
+              "track_fragmentations": 103,
+              "missed_detected_targets": 4,
+              "correct_miss_decisions": 154,
+              "position_rmse_m": 0.6448414668147051,
+              "mean_association_entropy": 0.015445517023740815,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 604
+            },
+            "association_gnn": {
+              "association_precision": 0.9983416252072969,
+              "association_recall": 0.9966887417218543,
+              "identity_f1": 0.9975144987572493,
+              "id_switches": 1,
+              "id_switches_per_1000_detections": 1.6556291390728477,
+              "track_fragmentations": 103,
+              "missed_detected_targets": 2,
+              "correct_miss_decisions": 155,
+              "position_rmse_m": 0.6422169278949776,
+              "mean_association_entropy": 0.009190663681341566,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 604
+            }
+          }
+        },
+        "10": {
+          "frame_association": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.8800599700149925,
+              "association_recall": 0.9591503267973857,
+              "association_f1": 0.9179046129788898,
+              "track_decision_accuracy": 0.8987341772151899,
+              "miss_class_accuracy": 0.6910112359550562,
+              "wrong_real_rate": 0.04084967320261438,
+              "false_assignment_rate": 0.3089887640449438,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1224
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.9947735191637631,
+              "association_recall": 0.9330065359477124,
+              "association_f1": 0.9629005059021922,
+              "track_decision_accuracy": 0.9443037974683545,
+              "miss_class_accuracy": 0.9831460674157303,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.016853932584269662,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1224
+            },
+            "edge_mlp": {
+              "association_precision": 0.9975409836065574,
+              "association_recall": 0.994281045751634,
+              "association_f1": 0.9959083469721768,
+              "track_decision_accuracy": 0.9936708860759493,
+              "miss_class_accuracy": 0.9915730337078652,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.008426966292134831,
+              "mean_association_entropy": 0.006228719643614729,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1224
+            },
+            "association_gnn": {
+              "association_precision": 0.9983660130718954,
+              "association_recall": 0.9983660130718954,
+              "association_f1": 0.9983660130718954,
+              "track_decision_accuracy": 0.9974683544303797,
+              "miss_class_accuracy": 0.9943820224719101,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.0056179775280898875,
+              "mean_association_entropy": 0.0011932136949542255,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1224
+            }
+          },
+          "recursive_tracking": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.7618320610687023,
+              "association_recall": 0.8220757825370676,
+              "identity_f1": 0.7908082408874803,
+              "id_switches": 156,
+              "id_switches_per_1000_detections": 257.001647446458,
+              "track_fragmentations": 87,
+              "missed_detected_targets": 18,
+              "correct_miss_decisions": 87,
+              "position_rmse_m": 3.076369978396558,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 607
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.989492119089317,
+              "association_recall": 0.9308072487644151,
+              "identity_f1": 0.9592529711375213,
+              "id_switches": 6,
+              "id_switches_per_1000_detections": 9.884678747940692,
+              "track_fragmentations": 112,
+              "missed_detected_targets": 38,
+              "correct_miss_decisions": 151,
+              "position_rmse_m": 0.5711328348462497,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 607
+            },
+            "edge_mlp": {
+              "association_precision": 0.9966996699669967,
+              "association_recall": 0.9950576606260296,
+              "identity_f1": 0.9958779884583676,
+              "id_switches": 2,
+              "id_switches_per_1000_detections": 3.2948929159802307,
+              "track_fragmentations": 100,
+              "missed_detected_targets": 3,
+              "correct_miss_decisions": 151,
+              "position_rmse_m": 0.5059258296189288,
+              "mean_association_entropy": 0.005299139077285359,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 607
+            },
+            "association_gnn": {
+              "association_precision": 0.9983525535420099,
+              "association_recall": 0.9983525535420099,
+              "identity_f1": 0.9983525535420099,
+              "id_switches": 1,
+              "id_switches_per_1000_detections": 1.6474464579901154,
+              "track_fragmentations": 100,
+              "missed_detected_targets": 1,
+              "correct_miss_decisions": 152,
+              "position_rmse_m": 0.5026125403082461,
+              "mean_association_entropy": 0.0014051459872164045,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 607
+            }
+          }
+        },
+        "15": {
+          "frame_association": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.881559220389805,
+              "association_recall": 0.9607843137254902,
+              "association_f1": 0.9194683346364347,
+              "track_decision_accuracy": 0.9,
+              "miss_class_accuracy": 0.6910112359550562,
+              "wrong_real_rate": 0.0392156862745098,
+              "false_assignment_rate": 0.3089887640449438,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1224
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.9965095986038395,
+              "association_recall": 0.9330065359477124,
+              "association_f1": 0.9637130801687764,
+              "track_decision_accuracy": 0.9455696202531646,
+              "miss_class_accuracy": 0.9887640449438202,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.011235955056179775,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1224
+            },
+            "edge_mlp": {
+              "association_precision": 0.9975409836065574,
+              "association_recall": 0.994281045751634,
+              "association_f1": 0.9959083469721768,
+              "track_decision_accuracy": 0.9936708860759493,
+              "miss_class_accuracy": 0.9915730337078652,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.008426966292134831,
+              "mean_association_entropy": 0.005722152037850299,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1224
+            },
+            "association_gnn": {
+              "association_precision": 0.9983660130718954,
+              "association_recall": 0.9983660130718954,
+              "association_f1": 0.9983660130718954,
+              "track_decision_accuracy": 0.9974683544303797,
+              "miss_class_accuracy": 0.9943820224719101,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.0056179775280898875,
+              "mean_association_entropy": 0.0016109821498101436,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1224
+            }
+          },
+          "recursive_tracking": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.7120980091883614,
+              "association_recall": 0.7737104825291181,
+              "identity_f1": 0.7416267942583731,
+              "id_switches": 188,
+              "id_switches_per_1000_detections": 312.81198003327785,
+              "track_fragmentations": 103,
+              "missed_detected_targets": 23,
+              "correct_miss_decisions": 84,
+              "position_rmse_m": 3.8856625175329933,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 601
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.964349376114082,
+              "association_recall": 0.9001663893510815,
+              "identity_f1": 0.9311531841652323,
+              "id_switches": 20,
+              "id_switches_per_1000_detections": 33.277870216306155,
+              "track_fragmentations": 123,
+              "missed_detected_targets": 47,
+              "correct_miss_decisions": 152,
+              "position_rmse_m": 0.7855391755176048,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 601
+            },
+            "edge_mlp": {
+              "association_precision": 0.9983361064891847,
+              "association_recall": 0.9983361064891847,
+              "identity_f1": 0.9983361064891847,
+              "id_switches": 1,
+              "id_switches_per_1000_detections": 1.663893510815308,
+              "track_fragmentations": 114,
+              "missed_detected_targets": 1,
+              "correct_miss_decisions": 158,
+              "position_rmse_m": 0.4922921988897814,
+              "mean_association_entropy": 0.004156857478391687,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 601
+            },
+            "association_gnn": {
+              "association_precision": 1.0,
+              "association_recall": 0.9983361064891847,
+              "identity_f1": 0.9991673605328892,
+              "id_switches": 0,
+              "id_switches_per_1000_detections": 0.0,
+              "track_fragmentations": 114,
+              "missed_detected_targets": 1,
+              "correct_miss_decisions": 159,
+              "position_rmse_m": 0.4924823773388674,
+              "mean_association_entropy": 0.002281732151143521,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 601
+            }
+          }
+        },
+        "20": {
+          "frame_association": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.8831460674157303,
+              "association_recall": 0.9632352941176471,
+              "association_f1": 0.921453692848769,
+              "track_decision_accuracy": 0.9012658227848102,
+              "miss_class_accuracy": 0.6882022471910112,
+              "wrong_real_rate": 0.03676470588235294,
+              "false_assignment_rate": 0.31179775280898875,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1224
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.9973614775725593,
+              "association_recall": 0.9264705882352942,
+              "association_f1": 0.9606099110546379,
+              "track_decision_accuracy": 0.9411392405063291,
+              "miss_class_accuracy": 0.9915730337078652,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.008426966292134831,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1224
+            },
+            "edge_mlp": {
+              "association_precision": 1.0,
+              "association_recall": 0.9991830065359477,
+              "association_f1": 0.9995913363302003,
+              "track_decision_accuracy": 0.9993670886075949,
+              "miss_class_accuracy": 1.0,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.0,
+              "mean_association_entropy": 0.0037718097891131287,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1224
+            },
+            "association_gnn": {
+              "association_precision": 1.0,
+              "association_recall": 1.0,
+              "association_f1": 1.0,
+              "track_decision_accuracy": 1.0,
+              "miss_class_accuracy": 1.0,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.0,
+              "mean_association_entropy": 0.00048217587777777695,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1224
+            }
+          },
+          "recursive_tracking": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.6880877742946708,
+              "association_recall": 0.7365771812080537,
+              "identity_f1": 0.7115072933549434,
+              "id_switches": 199,
+              "id_switches_per_1000_detections": 333.89261744966444,
+              "track_fragmentations": 84,
+              "missed_detected_targets": 34,
+              "correct_miss_decisions": 88,
+              "position_rmse_m": 3.7611656370425295,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 596
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.99822695035461,
+              "association_recall": 0.9446308724832215,
+              "identity_f1": 0.9706896551724139,
+              "id_switches": 1,
+              "id_switches_per_1000_detections": 1.6778523489932886,
+              "track_fragmentations": 133,
+              "missed_detected_targets": 33,
+              "correct_miss_decisions": 163,
+              "position_rmse_m": 0.45238999565429616,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 596
+            },
+            "edge_mlp": {
+              "association_precision": 1.0,
+              "association_recall": 1.0,
+              "identity_f1": 1.0,
+              "id_switches": 0,
+              "id_switches_per_1000_detections": 0.0,
+              "track_fragmentations": 120,
+              "missed_detected_targets": 0,
+              "correct_miss_decisions": 164,
+              "position_rmse_m": 0.40196065102863915,
+              "mean_association_entropy": 0.0035581164454447384,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 596
+            },
+            "association_gnn": {
+              "association_precision": 1.0,
+              "association_recall": 1.0,
+              "identity_f1": 1.0,
+              "id_switches": 0,
+              "id_switches_per_1000_detections": 0.0,
+              "track_fragmentations": 120,
+              "missed_detected_targets": 0,
+              "correct_miss_decisions": 164,
+              "position_rmse_m": 0.40196065102863915,
+              "mean_association_entropy": 0.0010256113902079483,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 596
+            }
+          }
+        }
+      }
+    },
+    "miss_0.30__far_1.50": {
+      "setting": {
+        "miss_probability": 0.3,
+        "false_alarm_rate": 1.5
+      },
+      "snr": {
+        "5": {
+          "frame_association": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.8372853638593623,
+              "association_recall": 0.9377289377289377,
+              "association_f1": 0.8846652267818574,
+              "track_decision_accuracy": 0.8734177215189873,
+              "miss_class_accuracy": 0.7295081967213115,
+              "wrong_real_rate": 0.06135531135531135,
+              "false_assignment_rate": 0.27049180327868855,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1092
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.9852652259332023,
+              "association_recall": 0.9184981684981685,
+              "association_f1": 0.9507109004739337,
+              "track_decision_accuracy": 0.9392405063291139,
+              "miss_class_accuracy": 0.985655737704918,
+              "wrong_real_rate": 0.007326007326007326,
+              "false_assignment_rate": 0.014344262295081968,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1092
+            },
+            "edge_mlp": {
+              "association_precision": 0.992626728110599,
+              "association_recall": 0.9862637362637363,
+              "association_f1": 0.9894350022967388,
+              "track_decision_accuracy": 0.9873417721518988,
+              "miss_class_accuracy": 0.9897540983606558,
+              "wrong_real_rate": 0.0027472527472527475,
+              "false_assignment_rate": 0.010245901639344262,
+              "mean_association_entropy": 0.014939181325854043,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1092
+            },
+            "association_gnn": {
+              "association_precision": 0.9935779816513761,
+              "association_recall": 0.9917582417582418,
+              "association_f1": 0.9926672777268561,
+              "track_decision_accuracy": 0.9911392405063291,
+              "miss_class_accuracy": 0.9897540983606558,
+              "wrong_real_rate": 0.0018315018315018315,
+              "false_assignment_rate": 0.010245901639344262,
+              "mean_association_entropy": 0.004834747519139506,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1092
+            }
+          },
+          "recursive_tracking": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.7084019769357496,
+              "association_recall": 0.8097928436911488,
+              "identity_f1": 0.7557117750439367,
+              "id_switches": 177,
+              "id_switches_per_1000_detections": 333.3333333333333,
+              "track_fragmentations": 127,
+              "missed_detected_targets": 16,
+              "correct_miss_decisions": 137,
+              "position_rmse_m": 2.8015627600331356,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 531
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.8924949290060852,
+              "association_recall": 0.8286252354048964,
+              "identity_f1": 0.8593749999999999,
+              "id_switches": 53,
+              "id_switches_per_1000_detections": 99.81167608286252,
+              "track_fragmentations": 129,
+              "missed_detected_targets": 58,
+              "correct_miss_decisions": 209,
+              "position_rmse_m": 2.1404356879139277,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 531
+            },
+            "edge_mlp": {
+              "association_precision": 0.9943181818181818,
+              "association_recall": 0.9887005649717514,
+              "identity_f1": 0.9915014164305949,
+              "id_switches": 3,
+              "id_switches_per_1000_detections": 5.649717514124294,
+              "track_fragmentations": 146,
+              "missed_detected_targets": 6,
+              "correct_miss_decisions": 226,
+              "position_rmse_m": 0.6582384761459087,
+              "mean_association_entropy": 0.015144049732823826,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 531
+            },
+            "association_gnn": {
+              "association_precision": 0.9962264150943396,
+              "association_recall": 0.9943502824858758,
+              "identity_f1": 0.9952874646559849,
+              "id_switches": 2,
+              "id_switches_per_1000_detections": 3.766478342749529,
+              "track_fragmentations": 144,
+              "missed_detected_targets": 3,
+              "correct_miss_decisions": 227,
+              "position_rmse_m": 0.6546731863815568,
+              "mean_association_entropy": 0.007804206983407197,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 531
+            }
+          }
+        },
+        "10": {
+          "frame_association": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.8495502861815208,
+              "association_recall": 0.9514652014652014,
+              "association_f1": 0.8976241900647948,
+              "track_decision_accuracy": 0.8835443037974684,
+              "miss_class_accuracy": 0.7315573770491803,
+              "wrong_real_rate": 0.048534798534798536,
+              "false_assignment_rate": 0.26844262295081966,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1092
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.9960668633235005,
+              "association_recall": 0.9276556776556777,
+              "association_f1": 0.9606448553816975,
+              "track_decision_accuracy": 0.9481012658227848,
+              "miss_class_accuracy": 0.9938524590163934,
+              "wrong_real_rate": 0.0009157509157509158,
+              "false_assignment_rate": 0.006147540983606557,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1092
+            },
+            "edge_mlp": {
+              "association_precision": 0.9990817263544536,
+              "association_recall": 0.9963369963369964,
+              "association_f1": 0.9977074736359468,
+              "track_decision_accuracy": 0.9968354430379747,
+              "miss_class_accuracy": 0.9979508196721312,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.0020491803278688526,
+              "mean_association_entropy": 0.005997624936367791,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1092
+            },
+            "association_gnn": {
+              "association_precision": 0.9990842490842491,
+              "association_recall": 0.9990842490842491,
+              "association_f1": 0.9990842490842491,
+              "track_decision_accuracy": 0.9987341772151899,
+              "miss_class_accuracy": 0.9979508196721312,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.0020491803278688526,
+              "mean_association_entropy": 0.0010421122511345053,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1092
+            }
+          },
+          "recursive_tracking": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.6864406779661016,
+              "association_recall": 0.7584269662921348,
+              "identity_f1": 0.7206405693950177,
+              "id_switches": 185,
+              "id_switches_per_1000_detections": 346.44194756554305,
+              "track_fragmentations": 99,
+              "missed_detected_targets": 29,
+              "correct_miss_decisions": 141,
+              "position_rmse_m": 2.9692125002839087,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 534
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.9718875502008032,
+              "association_recall": 0.9063670411985019,
+              "identity_f1": 0.937984496124031,
+              "id_switches": 14,
+              "id_switches_per_1000_detections": 26.217228464419474,
+              "track_fragmentations": 127,
+              "missed_detected_targets": 41,
+              "correct_miss_decisions": 221,
+              "position_rmse_m": 1.0700932981504958,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 534
+            },
+            "edge_mlp": {
+              "association_precision": 0.9981203007518797,
+              "association_recall": 0.9943820224719101,
+              "identity_f1": 0.99624765478424,
+              "id_switches": 1,
+              "id_switches_per_1000_detections": 1.8726591760299625,
+              "track_fragmentations": 125,
+              "missed_detected_targets": 3,
+              "correct_miss_decisions": 225,
+              "position_rmse_m": 0.5285244131221908,
+              "mean_association_entropy": 0.006812242959720383,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 534
+            },
+            "association_gnn": {
+              "association_precision": 0.9962616822429906,
+              "association_recall": 0.99812734082397,
+              "identity_f1": 0.9971936389148736,
+              "id_switches": 2,
+              "id_switches_per_1000_detections": 3.745318352059925,
+              "track_fragmentations": 125,
+              "missed_detected_targets": 1,
+              "correct_miss_decisions": 224,
+              "position_rmse_m": 0.5265087423952233,
+              "mean_association_entropy": 0.0020325088689606683,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 534
+            }
+          }
+        },
+        "15": {
+          "frame_association": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.8511856091578087,
+              "association_recall": 0.9532967032967034,
+              "association_f1": 0.8993520518358532,
+              "track_decision_accuracy": 0.8848101265822785,
+              "miss_class_accuracy": 0.7315573770491803,
+              "wrong_real_rate": 0.046703296703296704,
+              "false_assignment_rate": 0.26844262295081966,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1092
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.9970472440944882,
+              "association_recall": 0.9276556776556777,
+              "association_f1": 0.9611005692599621,
+              "track_decision_accuracy": 0.9487341772151898,
+              "miss_class_accuracy": 0.9959016393442623,
+              "wrong_real_rate": 0.0009157509157509158,
+              "false_assignment_rate": 0.004098360655737705,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1092
+            },
+            "edge_mlp": {
+              "association_precision": 0.9990817263544536,
+              "association_recall": 0.9963369963369964,
+              "association_f1": 0.9977074736359468,
+              "track_decision_accuracy": 0.9968354430379747,
+              "miss_class_accuracy": 0.9979508196721312,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.0020491803278688526,
+              "mean_association_entropy": 0.005353152078408079,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1092
+            },
+            "association_gnn": {
+              "association_precision": 0.999083409715857,
+              "association_recall": 0.9981684981684982,
+              "association_f1": 0.9986257443884562,
+              "track_decision_accuracy": 0.9981012658227848,
+              "miss_class_accuracy": 0.9979508196721312,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.0020491803278688526,
+              "mean_association_entropy": 0.0012537341092941703,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1092
+            }
+          },
+          "recursive_tracking": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.6444444444444445,
+              "association_recall": 0.7277992277992278,
+              "identity_f1": 0.6835902085222121,
+              "id_switches": 208,
+              "id_switches_per_1000_detections": 401.5444015444015,
+              "track_fragmentations": 103,
+              "missed_detected_targets": 36,
+              "correct_miss_decisions": 139,
+              "position_rmse_m": 4.161156444825456,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 518
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.8983050847457628,
+              "association_recall": 0.8185328185328186,
+              "identity_f1": 0.8565656565656566,
+              "id_switches": 48,
+              "id_switches_per_1000_detections": 92.66409266409266,
+              "track_fragmentations": 119,
+              "missed_detected_targets": 73,
+              "correct_miss_decisions": 215,
+              "position_rmse_m": 2.6600555916609174,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 518
+            },
+            "edge_mlp": {
+              "association_precision": 0.9980694980694981,
+              "association_recall": 0.9980694980694981,
+              "identity_f1": 0.9980694980694981,
+              "id_switches": 1,
+              "id_switches_per_1000_detections": 1.9305019305019304,
+              "track_fragmentations": 140,
+              "missed_detected_targets": 1,
+              "correct_miss_decisions": 241,
+              "position_rmse_m": 0.49491461236252415,
+              "mean_association_entropy": 0.0067570624423982555,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 518
+            },
+            "association_gnn": {
+              "association_precision": 0.9980657640232108,
+              "association_recall": 0.9961389961389961,
+              "identity_f1": 0.9971014492753624,
+              "id_switches": 1,
+              "id_switches_per_1000_detections": 1.9305019305019304,
+              "track_fragmentations": 141,
+              "missed_detected_targets": 2,
+              "correct_miss_decisions": 241,
+              "position_rmse_m": 0.4975763165398226,
+              "mean_association_entropy": 0.002412613654016134,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 518
+            }
+          }
+        },
+        "20": {
+          "frame_association": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.8496732026143791,
+              "association_recall": 0.9523809523809523,
+              "association_f1": 0.8981001727115717,
+              "track_decision_accuracy": 0.8835443037974684,
+              "miss_class_accuracy": 0.7295081967213115,
+              "wrong_real_rate": 0.047619047619047616,
+              "false_assignment_rate": 0.27049180327868855,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1092
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.9970119521912351,
+              "association_recall": 0.9166666666666666,
+              "association_f1": 0.9551526717557252,
+              "track_decision_accuracy": 0.9411392405063291,
+              "miss_class_accuracy": 0.9959016393442623,
+              "wrong_real_rate": 0.0009157509157509158,
+              "false_assignment_rate": 0.004098360655737705,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1092
+            },
+            "edge_mlp": {
+              "association_precision": 1.0,
+              "association_recall": 0.9990842490842491,
+              "association_f1": 0.9995419147961521,
+              "track_decision_accuracy": 0.9993670886075949,
+              "miss_class_accuracy": 1.0,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.0,
+              "mean_association_entropy": 0.003697856662154589,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1092
+            },
+            "association_gnn": {
+              "association_precision": 1.0,
+              "association_recall": 1.0,
+              "association_f1": 1.0,
+              "track_decision_accuracy": 1.0,
+              "miss_class_accuracy": 1.0,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.0,
+              "mean_association_entropy": 0.00046517465949227796,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1092
+            }
+          },
+          "recursive_tracking": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.6677852348993288,
+              "association_recall": 0.7439252336448599,
+              "identity_f1": 0.7038019451812556,
+              "id_switches": 198,
+              "id_switches_per_1000_detections": 370.0934579439252,
+              "track_fragmentations": 106,
+              "missed_detected_targets": 35,
+              "correct_miss_decisions": 129,
+              "position_rmse_m": 4.539579582547819,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 535
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.9403292181069959,
+              "association_recall": 0.8542056074766355,
+              "identity_f1": 0.8952007835455437,
+              "id_switches": 29,
+              "id_switches_per_1000_detections": 54.205607476635514,
+              "track_fragmentations": 135,
+              "missed_detected_targets": 58,
+              "correct_miss_decisions": 216,
+              "position_rmse_m": 2.501302866608002,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 535
+            },
+            "edge_mlp": {
+              "association_precision": 1.0,
+              "association_recall": 0.9981308411214953,
+              "identity_f1": 0.9990645463049579,
+              "id_switches": 0,
+              "id_switches_per_1000_detections": 0.0,
+              "track_fragmentations": 146,
+              "missed_detected_targets": 1,
+              "correct_miss_decisions": 225,
+              "position_rmse_m": 0.40800427887210183,
+              "mean_association_entropy": 0.004486774996934118,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 535
+            },
+            "association_gnn": {
+              "association_precision": 1.0,
+              "association_recall": 1.0,
+              "identity_f1": 1.0,
+              "id_switches": 0,
+              "id_switches_per_1000_detections": 0.0,
+              "track_fragmentations": 146,
+              "missed_detected_targets": 0,
+              "correct_miss_decisions": 225,
+              "position_rmse_m": 0.4079838202688767,
+              "mean_association_entropy": 0.0006794620180221682,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 535
+            }
+          }
+        }
+      }
+    },
+    "miss_0.10__far_0.50": {
+      "setting": {
+        "miss_probability": 0.1,
+        "false_alarm_rate": 0.5
+      },
+      "snr": {
+        "5": {
+          "frame_association": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.9755415793151643,
+              "association_recall": 0.9872701555869873,
+              "association_f1": 0.9813708260105448,
+              "track_decision_accuracy": 0.9746835443037974,
+              "miss_class_accuracy": 0.8674698795180723,
+              "wrong_real_rate": 0.009193776520509194,
+              "false_assignment_rate": 0.13253012048192772,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.9913294797687862,
+              "association_recall": 0.9702970297029703,
+              "association_f1": 0.9807005003573982,
+              "track_decision_accuracy": 0.9689873417721518,
+              "miss_class_accuracy": 0.9578313253012049,
+              "wrong_real_rate": 0.003536067892503536,
+              "false_assignment_rate": 0.04216867469879518,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "edge_mlp": {
+              "association_precision": 0.9950319375443577,
+              "association_recall": 0.9915134370579916,
+              "association_f1": 0.9932695713779668,
+              "track_decision_accuracy": 0.989240506329114,
+              "miss_class_accuracy": 0.9698795180722891,
+              "wrong_real_rate": 0.0014144271570014145,
+              "false_assignment_rate": 0.030120481927710843,
+              "mean_association_entropy": 0.014574490056078361,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "association_gnn": {
+              "association_precision": 0.995049504950495,
+              "association_recall": 0.995049504950495,
+              "association_f1": 0.995049504950495,
+              "track_decision_accuracy": 0.9924050632911392,
+              "miss_class_accuracy": 0.9698795180722891,
+              "wrong_real_rate": 0.0014144271570014145,
+              "false_assignment_rate": 0.030120481927710843,
+              "mean_association_entropy": 0.004528475955370293,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            }
+          },
+          "recursive_tracking": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.9382183908045977,
+              "association_recall": 0.9560761346998536,
+              "identity_f1": 0.9470630891950689,
+              "id_switches": 43,
+              "id_switches_per_1000_detections": 62.957540263543194,
+              "track_fragmentations": 68,
+              "missed_detected_targets": 4,
+              "correct_miss_decisions": 60,
+              "position_rmse_m": 1.0555980994357776,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 683
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.9939759036144579,
+              "association_recall": 0.9663250366032211,
+              "identity_f1": 0.9799554565701559,
+              "id_switches": 4,
+              "id_switches_per_1000_detections": 5.856515373352855,
+              "track_fragmentations": 72,
+              "missed_detected_targets": 20,
+              "correct_miss_decisions": 76,
+              "position_rmse_m": 0.6242744970608222,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 683
+            },
+            "edge_mlp": {
+              "association_precision": 1.0,
+              "association_recall": 0.9985358711566618,
+              "identity_f1": 0.9992673992673992,
+              "id_switches": 0,
+              "id_switches_per_1000_detections": 0.0,
+              "track_fragmentations": 58,
+              "missed_detected_targets": 1,
+              "correct_miss_decisions": 77,
+              "position_rmse_m": 0.608739363558237,
+              "mean_association_entropy": 0.014972246170493727,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 683
+            },
+            "association_gnn": {
+              "association_precision": 1.0,
+              "association_recall": 0.9985358711566618,
+              "identity_f1": 0.9992673992673992,
+              "id_switches": 0,
+              "id_switches_per_1000_detections": 0.0,
+              "track_fragmentations": 58,
+              "missed_detected_targets": 1,
+              "correct_miss_decisions": 77,
+              "position_rmse_m": 0.608739363558237,
+              "mean_association_entropy": 0.005801552411381996,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 683
+            }
+          }
+        },
+        "10": {
+          "frame_association": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.9804332634521313,
+              "association_recall": 0.9922206506364922,
+              "association_f1": 0.9862917398945518,
+              "track_decision_accuracy": 0.980379746835443,
+              "miss_class_accuracy": 0.8795180722891566,
+              "wrong_real_rate": 0.005657708628005658,
+              "false_assignment_rate": 0.12048192771084337,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.9978150036416606,
+              "association_recall": 0.9688826025459689,
+              "association_f1": 0.9831359885181199,
+              "track_decision_accuracy": 0.970253164556962,
+              "miss_class_accuracy": 0.9819277108433735,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.018072289156626505,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "edge_mlp": {
+              "association_precision": 0.9978768577494692,
+              "association_recall": 0.9971711456859972,
+              "association_f1": 0.997523876901309,
+              "track_decision_accuracy": 0.9955696202531645,
+              "miss_class_accuracy": 0.9819277108433735,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.018072289156626505,
+              "mean_association_entropy": 0.0047265851140005765,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "association_gnn": {
+              "association_precision": 0.9985855728429985,
+              "association_recall": 0.9985855728429985,
+              "association_f1": 0.9985855728429985,
+              "track_decision_accuracy": 0.9974683544303797,
+              "miss_class_accuracy": 0.9879518072289156,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.012048192771084338,
+              "mean_association_entropy": 0.0013002728641060197,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            }
+          },
+          "recursive_tracking": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.9461426491994177,
+              "association_recall": 0.9601181683899557,
+              "identity_f1": 0.9530791788856304,
+              "id_switches": 37,
+              "id_switches_per_1000_detections": 54.65288035450517,
+              "track_fragmentations": 72,
+              "missed_detected_targets": 6,
+              "correct_miss_decisions": 67,
+              "position_rmse_m": 0.9919628442582326,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 677
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.9938650306748467,
+              "association_recall": 0.9571639586410635,
+              "identity_f1": 0.9751693002257337,
+              "id_switches": 4,
+              "id_switches_per_1000_detections": 5.908419497784343,
+              "track_fragmentations": 77,
+              "missed_detected_targets": 27,
+              "correct_miss_decisions": 81,
+              "position_rmse_m": 0.5562601288991682,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 677
+            },
+            "edge_mlp": {
+              "association_precision": 0.9970457902511078,
+              "association_recall": 0.9970457902511078,
+              "identity_f1": 0.9970457902511078,
+              "id_switches": 2,
+              "id_switches_per_1000_detections": 2.9542097488921715,
+              "track_fragmentations": 69,
+              "missed_detected_targets": 2,
+              "correct_miss_decisions": 81,
+              "position_rmse_m": 0.516382999027172,
+              "mean_association_entropy": 0.005154860409589875,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 677
+            },
+            "association_gnn": {
+              "association_precision": 0.9985228951255539,
+              "association_recall": 0.9985228951255539,
+              "identity_f1": 0.9985228951255539,
+              "id_switches": 1,
+              "id_switches_per_1000_detections": 1.4771048744460857,
+              "track_fragmentations": 68,
+              "missed_detected_targets": 1,
+              "correct_miss_decisions": 82,
+              "position_rmse_m": 0.5123780088760148,
+              "mean_association_entropy": 0.001698198794922959,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 677
+            }
+          }
+        },
+        "15": {
+          "frame_association": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.9811320754716981,
+              "association_recall": 0.9929278642149929,
+              "association_f1": 0.9869947275922671,
+              "track_decision_accuracy": 0.9810126582278481,
+              "miss_class_accuracy": 0.8795180722891566,
+              "wrong_real_rate": 0.0049504950495049506,
+              "false_assignment_rate": 0.12048192771084337,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.9978150036416606,
+              "association_recall": 0.9688826025459689,
+              "association_f1": 0.9831359885181199,
+              "track_decision_accuracy": 0.970253164556962,
+              "miss_class_accuracy": 0.9819277108433735,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.018072289156626505,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "edge_mlp": {
+              "association_precision": 0.9978768577494692,
+              "association_recall": 0.9971711456859972,
+              "association_f1": 0.997523876901309,
+              "track_decision_accuracy": 0.9955696202531645,
+              "miss_class_accuracy": 0.9819277108433735,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.018072289156626505,
+              "mean_association_entropy": 0.004195678782710514,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "association_gnn": {
+              "association_precision": 0.9985855728429985,
+              "association_recall": 0.9985855728429985,
+              "association_f1": 0.9985855728429985,
+              "track_decision_accuracy": 0.9974683544303797,
+              "miss_class_accuracy": 0.9879518072289156,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.012048192771084338,
+              "mean_association_entropy": 0.001632932345562336,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            }
+          },
+          "recursive_tracking": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.9696969696969697,
+              "association_recall": 0.9767441860465116,
+              "identity_f1": 0.9732078204199854,
+              "id_switches": 21,
+              "id_switches_per_1000_detections": 30.523255813953487,
+              "track_fragmentations": 57,
+              "missed_detected_targets": 2,
+              "correct_miss_decisions": 65,
+              "position_rmse_m": 1.3574019844189589,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 688
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.9970282317979198,
+              "association_recall": 0.9752906976744186,
+              "identity_f1": 0.9860396767083028,
+              "id_switches": 2,
+              "id_switches_per_1000_detections": 2.9069767441860463,
+              "track_fragmentations": 61,
+              "missed_detected_targets": 17,
+              "correct_miss_decisions": 70,
+              "position_rmse_m": 0.5175492293917203,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 688
+            },
+            "edge_mlp": {
+              "association_precision": 0.998546511627907,
+              "association_recall": 0.998546511627907,
+              "identity_f1": 0.998546511627907,
+              "id_switches": 1,
+              "id_switches_per_1000_detections": 1.4534883720930232,
+              "track_fragmentations": 56,
+              "missed_detected_targets": 1,
+              "correct_miss_decisions": 71,
+              "position_rmse_m": 0.479679550363165,
+              "mean_association_entropy": 0.002983923386215976,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 688
+            },
+            "association_gnn": {
+              "association_precision": 1.0,
+              "association_recall": 1.0,
+              "identity_f1": 1.0,
+              "id_switches": 0,
+              "id_switches_per_1000_detections": 0.0,
+              "track_fragmentations": 56,
+              "missed_detected_targets": 0,
+              "correct_miss_decisions": 72,
+              "position_rmse_m": 0.48176200480590636,
+              "mean_association_entropy": 0.0013897787971027702,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 688
+            }
+          }
+        },
+        "20": {
+          "frame_association": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.9832285115303984,
+              "association_recall": 0.995049504950495,
+              "association_f1": 0.9891036906854129,
+              "track_decision_accuracy": 0.9841772151898734,
+              "miss_class_accuracy": 0.891566265060241,
+              "wrong_real_rate": 0.004243281471004243,
+              "false_assignment_rate": 0.10843373493975904,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.9992657856093979,
+              "association_recall": 0.9625176803394625,
+              "association_f1": 0.9805475504322767,
+              "track_decision_accuracy": 0.9658227848101266,
+              "miss_class_accuracy": 0.9939759036144579,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.006024096385542169,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "edge_mlp": {
+              "association_precision": 1.0,
+              "association_recall": 1.0,
+              "association_f1": 1.0,
+              "track_decision_accuracy": 1.0,
+              "miss_class_accuracy": 1.0,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.0,
+              "mean_association_entropy": 0.002747593748176204,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "association_gnn": {
+              "association_precision": 1.0,
+              "association_recall": 1.0,
+              "association_f1": 1.0,
+              "track_decision_accuracy": 1.0,
+              "miss_class_accuracy": 1.0,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.0,
+              "mean_association_entropy": 0.0008383919195670761,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            }
+          },
+          "recursive_tracking": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.8832853025936599,
+              "association_recall": 0.9041297935103245,
+              "identity_f1": 0.8935860058309038,
+              "id_switches": 81,
+              "id_switches_per_1000_detections": 119.46902654867256,
+              "track_fragmentations": 61,
+              "missed_detected_targets": 4,
+              "correct_miss_decisions": 62,
+              "position_rmse_m": 2.057429045648259,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 678
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 1.0,
+              "association_recall": 0.9631268436578171,
+              "identity_f1": 0.9812171299774606,
+              "id_switches": 0,
+              "id_switches_per_1000_detections": 0.0,
+              "track_fragmentations": 75,
+              "missed_detected_targets": 25,
+              "correct_miss_decisions": 82,
+              "position_rmse_m": 0.4360665358118095,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 678
+            },
+            "edge_mlp": {
+              "association_precision": 1.0,
+              "association_recall": 1.0,
+              "identity_f1": 1.0,
+              "id_switches": 0,
+              "id_switches_per_1000_detections": 0.0,
+              "track_fragmentations": 68,
+              "missed_detected_targets": 0,
+              "correct_miss_decisions": 82,
+              "position_rmse_m": 0.40035252495889734,
+              "mean_association_entropy": 0.0020026924678582993,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 678
+            },
+            "association_gnn": {
+              "association_precision": 1.0,
+              "association_recall": 1.0,
+              "identity_f1": 1.0,
+              "id_switches": 0,
+              "id_switches_per_1000_detections": 0.0,
+              "track_fragmentations": 68,
+              "missed_detected_targets": 0,
+              "correct_miss_decisions": 82,
+              "position_rmse_m": 0.40035252495889734,
+              "mean_association_entropy": 0.0005134534195500999,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 678
+            }
+          }
+        }
+      }
+    },
+    "miss_0.10__far_1.00": {
+      "setting": {
+        "miss_probability": 0.1,
+        "false_alarm_rate": 1.0
+      },
+      "snr": {
+        "5": {
+          "frame_association": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.9578146611341632,
+              "association_recall": 0.9794908062234795,
+              "association_f1": 0.9685314685314685,
+              "track_decision_accuracy": 0.9588607594936709,
+              "miss_class_accuracy": 0.7831325301204819,
+              "wrong_real_rate": 0.01768033946251768,
+              "false_assignment_rate": 0.21686746987951808,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.9898181818181818,
+              "association_recall": 0.9625176803394625,
+              "association_f1": 0.9759770527070635,
+              "track_decision_accuracy": 0.9607594936708861,
+              "miss_class_accuracy": 0.9457831325301205,
+              "wrong_real_rate": 0.003536067892503536,
+              "false_assignment_rate": 0.05421686746987952,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "edge_mlp": {
+              "association_precision": 0.9950284090909091,
+              "association_recall": 0.9908062234794908,
+              "association_f1": 0.9929128277817152,
+              "track_decision_accuracy": 0.9886075949367089,
+              "miss_class_accuracy": 0.9698795180722891,
+              "wrong_real_rate": 0.0014144271570014145,
+              "false_assignment_rate": 0.030120481927710843,
+              "mean_association_entropy": 0.014592037889034074,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "association_gnn": {
+              "association_precision": 0.995049504950495,
+              "association_recall": 0.995049504950495,
+              "association_f1": 0.995049504950495,
+              "track_decision_accuracy": 0.9924050632911392,
+              "miss_class_accuracy": 0.9698795180722891,
+              "wrong_real_rate": 0.0014144271570014145,
+              "false_assignment_rate": 0.030120481927710843,
+              "mean_association_entropy": 0.004529846648765884,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            }
+          },
+          "recursive_tracking": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.9177304964539007,
+              "association_recall": 0.9472913616398243,
+              "identity_f1": 0.9322766570605188,
+              "id_switches": 58,
+              "id_switches_per_1000_detections": 84.9194729136164,
+              "track_fragmentations": 74,
+              "missed_detected_targets": 5,
+              "correct_miss_decisions": 50,
+              "position_rmse_m": 1.1656171365264774,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 683
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.9954545454545455,
+              "association_recall": 0.9619326500732065,
+              "identity_f1": 0.9784065524944155,
+              "id_switches": 3,
+              "id_switches_per_1000_detections": 4.392386530014641,
+              "track_fragmentations": 77,
+              "missed_detected_targets": 25,
+              "correct_miss_decisions": 75,
+              "position_rmse_m": 0.6147415681060421,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 683
+            },
+            "edge_mlp": {
+              "association_precision": 1.0,
+              "association_recall": 0.9970717423133236,
+              "identity_f1": 0.998533724340176,
+              "id_switches": 0,
+              "id_switches_per_1000_detections": 0.0,
+              "track_fragmentations": 59,
+              "missed_detected_targets": 2,
+              "correct_miss_decisions": 77,
+              "position_rmse_m": 0.6079174845362414,
+              "mean_association_entropy": 0.015008973733993394,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 683
+            },
+            "association_gnn": {
+              "association_precision": 1.0,
+              "association_recall": 0.9985358711566618,
+              "identity_f1": 0.9992673992673992,
+              "id_switches": 0,
+              "id_switches_per_1000_detections": 0.0,
+              "track_fragmentations": 58,
+              "missed_detected_targets": 1,
+              "correct_miss_decisions": 77,
+              "position_rmse_m": 0.608739363558237,
+              "mean_association_entropy": 0.005853427244195756,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 683
+            }
+          }
+        },
+        "10": {
+          "frame_association": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.9654218533886584,
+              "association_recall": 0.9872701555869873,
+              "association_f1": 0.9762237762237762,
+              "track_decision_accuracy": 0.9664556962025317,
+              "miss_class_accuracy": 0.7891566265060241,
+              "wrong_real_rate": 0.010608203677510608,
+              "false_assignment_rate": 0.21084337349397592,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.9970738844184345,
+              "association_recall": 0.963932107496464,
+              "association_f1": 0.98022294138799,
+              "track_decision_accuracy": 0.9651898734177216,
+              "miss_class_accuracy": 0.9759036144578314,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.024096385542168676,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "edge_mlp": {
+              "association_precision": 0.997169143665959,
+              "association_recall": 0.9964639321074965,
+              "association_f1": 0.9968164131588256,
+              "track_decision_accuracy": 0.9943037974683544,
+              "miss_class_accuracy": 0.9759036144578314,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.024096385542168676,
+              "mean_association_entropy": 0.004753892810698144,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "association_gnn": {
+              "association_precision": 0.9985855728429985,
+              "association_recall": 0.9985855728429985,
+              "association_f1": 0.9985855728429985,
+              "track_decision_accuracy": 0.9974683544303797,
+              "miss_class_accuracy": 0.9879518072289156,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.012048192771084338,
+              "mean_association_entropy": 0.001375929677787942,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            }
+          },
+          "recursive_tracking": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.8968481375358166,
+              "association_recall": 0.9246676514032496,
+              "identity_f1": 0.9105454545454544,
+              "id_switches": 72,
+              "id_switches_per_1000_detections": 106.35155096011817,
+              "track_fragmentations": 78,
+              "missed_detected_targets": 5,
+              "correct_miss_decisions": 57,
+              "position_rmse_m": 1.7927452871364151,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 677
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.9953198127925117,
+              "association_recall": 0.9423929098966026,
+              "identity_f1": 0.9681335356600911,
+              "id_switches": 3,
+              "id_switches_per_1000_detections": 4.431314623338257,
+              "track_fragmentations": 86,
+              "missed_detected_targets": 38,
+              "correct_miss_decisions": 81,
+              "position_rmse_m": 0.5523465463052517,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 677
+            },
+            "edge_mlp": {
+              "association_precision": 0.9955686853766618,
+              "association_recall": 0.9955686853766618,
+              "identity_f1": 0.9955686853766618,
+              "id_switches": 3,
+              "id_switches_per_1000_detections": 4.431314623338257,
+              "track_fragmentations": 70,
+              "missed_detected_targets": 2,
+              "correct_miss_decisions": 81,
+              "position_rmse_m": 0.5206498501695249,
+              "mean_association_entropy": 0.0051257936323190175,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 677
+            },
+            "association_gnn": {
+              "association_precision": 0.9970414201183432,
+              "association_recall": 0.9955686853766618,
+              "identity_f1": 0.9963045084996305,
+              "id_switches": 2,
+              "id_switches_per_1000_detections": 2.9542097488921715,
+              "track_fragmentations": 70,
+              "missed_detected_targets": 2,
+              "correct_miss_decisions": 82,
+              "position_rmse_m": 0.5166731787657857,
+              "mean_association_entropy": 0.0017055267016331146,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 677
+            }
+          }
+        },
+        "15": {
+          "frame_association": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.9654218533886584,
+              "association_recall": 0.9872701555869873,
+              "association_f1": 0.9762237762237762,
+              "track_decision_accuracy": 0.9664556962025317,
+              "miss_class_accuracy": 0.7891566265060241,
+              "wrong_real_rate": 0.010608203677510608,
+              "false_assignment_rate": 0.21084337349397592,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.9978021978021978,
+              "association_recall": 0.9632248939179632,
+              "association_f1": 0.9802087081684059,
+              "track_decision_accuracy": 0.9651898734177216,
+              "miss_class_accuracy": 0.9819277108433735,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.018072289156626505,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "edge_mlp": {
+              "association_precision": 0.9978768577494692,
+              "association_recall": 0.9971711456859972,
+              "association_f1": 0.997523876901309,
+              "track_decision_accuracy": 0.9955696202531645,
+              "miss_class_accuracy": 0.9819277108433735,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.018072289156626505,
+              "mean_association_entropy": 0.004206032877378438,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "association_gnn": {
+              "association_precision": 0.9985855728429985,
+              "association_recall": 0.9985855728429985,
+              "association_f1": 0.9985855728429985,
+              "track_decision_accuracy": 0.9974683544303797,
+              "miss_class_accuracy": 0.9879518072289156,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.012048192771084338,
+              "mean_association_entropy": 0.0016556260962331574,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            }
+          },
+          "recursive_tracking": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.9386590584878745,
+              "association_recall": 0.9563953488372093,
+              "identity_f1": 0.9474442044636429,
+              "id_switches": 43,
+              "id_switches_per_1000_detections": 62.5,
+              "track_fragmentations": 57,
+              "missed_detected_targets": 3,
+              "correct_miss_decisions": 56,
+              "position_rmse_m": 1.615697342667533,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 688
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.991044776119403,
+              "association_recall": 0.9651162790697675,
+              "identity_f1": 0.9779086892488955,
+              "id_switches": 6,
+              "id_switches_per_1000_detections": 8.720930232558139,
+              "track_fragmentations": 63,
+              "missed_detected_targets": 20,
+              "correct_miss_decisions": 70,
+              "position_rmse_m": 0.5248764964068908,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 688
+            },
+            "edge_mlp": {
+              "association_precision": 0.9985443959243085,
+              "association_recall": 0.997093023255814,
+              "identity_f1": 0.9978181818181817,
+              "id_switches": 1,
+              "id_switches_per_1000_detections": 1.4534883720930232,
+              "track_fragmentations": 57,
+              "missed_detected_targets": 2,
+              "correct_miss_decisions": 71,
+              "position_rmse_m": 0.4787241903367217,
+              "mean_association_entropy": 0.002976914439859725,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 688
+            },
+            "association_gnn": {
+              "association_precision": 1.0,
+              "association_recall": 0.998546511627907,
+              "identity_f1": 0.9992727272727273,
+              "id_switches": 0,
+              "id_switches_per_1000_detections": 0.0,
+              "track_fragmentations": 57,
+              "missed_detected_targets": 1,
+              "correct_miss_decisions": 72,
+              "position_rmse_m": 0.48081078258660936,
+              "mean_association_entropy": 0.0014533746780107542,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 688
+            }
+          }
+        },
+        "20": {
+          "frame_association": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.966804979253112,
+              "association_recall": 0.9886845827439887,
+              "association_f1": 0.9776223776223776,
+              "track_decision_accuracy": 0.9689873417721518,
+              "miss_class_accuracy": 0.8012048192771084,
+              "wrong_real_rate": 0.010608203677510608,
+              "false_assignment_rate": 0.19879518072289157,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.9992609016999261,
+              "association_recall": 0.9561527581329562,
+              "association_f1": 0.9772316588362849,
+              "track_decision_accuracy": 0.960126582278481,
+              "miss_class_accuracy": 0.9939759036144579,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.006024096385542169,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "edge_mlp": {
+              "association_precision": 1.0,
+              "association_recall": 1.0,
+              "association_f1": 1.0,
+              "track_decision_accuracy": 1.0,
+              "miss_class_accuracy": 1.0,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.0,
+              "mean_association_entropy": 0.0027525036430118186,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "association_gnn": {
+              "association_precision": 1.0,
+              "association_recall": 1.0,
+              "association_f1": 1.0,
+              "track_decision_accuracy": 1.0,
+              "miss_class_accuracy": 1.0,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.0,
+              "mean_association_entropy": 0.0008537886078260969,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            }
+          },
+          "recursive_tracking": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.8839541547277937,
+              "association_recall": 0.9100294985250738,
+              "identity_f1": 0.8968023255813953,
+              "id_switches": 81,
+              "id_switches_per_1000_detections": 119.46902654867256,
+              "track_fragmentations": 66,
+              "missed_detected_targets": 3,
+              "correct_miss_decisions": 59,
+              "position_rmse_m": 1.956988814053629,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 678
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.9984662576687117,
+              "association_recall": 0.9601769911504425,
+              "identity_f1": 0.9789473684210527,
+              "id_switches": 1,
+              "id_switches_per_1000_detections": 1.4749262536873156,
+              "track_fragmentations": 77,
+              "missed_detected_targets": 27,
+              "correct_miss_decisions": 81,
+              "position_rmse_m": 0.44627594593499803,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 678
+            },
+            "edge_mlp": {
+              "association_precision": 1.0,
+              "association_recall": 0.9985250737463127,
+              "identity_f1": 0.9992619926199262,
+              "id_switches": 0,
+              "id_switches_per_1000_detections": 0.0,
+              "track_fragmentations": 69,
+              "missed_detected_targets": 1,
+              "correct_miss_decisions": 82,
+              "position_rmse_m": 0.40066872731177133,
+              "mean_association_entropy": 0.0020044100862637937,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 678
+            },
+            "association_gnn": {
+              "association_precision": 1.0,
+              "association_recall": 1.0,
+              "identity_f1": 1.0,
+              "id_switches": 0,
+              "id_switches_per_1000_detections": 0.0,
+              "track_fragmentations": 68,
+              "missed_detected_targets": 0,
+              "correct_miss_decisions": 82,
+              "position_rmse_m": 0.40035252495889734,
+              "mean_association_entropy": 0.0004230117805269367,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 678
+            }
+          }
+        }
+      }
+    },
+    "miss_0.10__far_3.00": {
+      "setting": {
+        "miss_probability": 0.1,
+        "false_alarm_rate": 3.0
+      },
+      "snr": {
+        "5": {
+          "frame_association": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.8978102189781022,
+              "association_recall": 0.9568599717114569,
+              "association_f1": 0.9263950701814447,
+              "track_decision_accuracy": 0.9012658227848102,
+              "miss_class_accuracy": 0.42771084337349397,
+              "wrong_real_rate": 0.04172560113154172,
+              "false_assignment_rate": 0.572289156626506,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.9815634218289085,
+              "association_recall": 0.9413012729844413,
+              "association_f1": 0.9610108303249097,
+              "track_decision_accuracy": 0.9379746835443038,
+              "miss_class_accuracy": 0.9096385542168675,
+              "wrong_real_rate": 0.007072135785007072,
+              "false_assignment_rate": 0.09036144578313253,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "edge_mlp": {
+              "association_precision": 0.9943222143364088,
+              "association_recall": 0.9908062234794908,
+              "association_f1": 0.9925611052072263,
+              "track_decision_accuracy": 0.9879746835443038,
+              "miss_class_accuracy": 0.963855421686747,
+              "wrong_real_rate": 0.0014144271570014145,
+              "false_assignment_rate": 0.03614457831325301,
+              "mean_association_entropy": 0.01468943147483104,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "association_gnn": {
+              "association_precision": 0.9950389794472005,
+              "association_recall": 0.9929278642149929,
+              "association_f1": 0.9939823008849556,
+              "track_decision_accuracy": 0.990506329113924,
+              "miss_class_accuracy": 0.9698795180722891,
+              "wrong_real_rate": 0.0014144271570014145,
+              "false_assignment_rate": 0.030120481927710843,
+              "mean_association_entropy": 0.004846603427820182,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            }
+          },
+          "recursive_tracking": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.8539944903581267,
+              "association_recall": 0.9077598828696926,
+              "identity_f1": 0.8800567778566359,
+              "id_switches": 106,
+              "id_switches_per_1000_detections": 155.19765739385065,
+              "track_fragmentations": 65,
+              "missed_detected_targets": 1,
+              "correct_miss_decisions": 33,
+              "position_rmse_m": 1.2951870587690142,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 683
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.990909090909091,
+              "association_recall": 0.9575402635431918,
+              "identity_f1": 0.9739389426656739,
+              "id_switches": 6,
+              "id_switches_per_1000_detections": 8.784773060029282,
+              "track_fragmentations": 67,
+              "missed_detected_targets": 27,
+              "correct_miss_decisions": 73,
+              "position_rmse_m": 0.6235626874744179,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 683
+            },
+            "edge_mlp": {
+              "association_precision": 1.0,
+              "association_recall": 0.9970717423133236,
+              "identity_f1": 0.998533724340176,
+              "id_switches": 0,
+              "id_switches_per_1000_detections": 0.0,
+              "track_fragmentations": 59,
+              "missed_detected_targets": 2,
+              "correct_miss_decisions": 77,
+              "position_rmse_m": 0.6082929172489069,
+              "mean_association_entropy": 0.015198744485812462,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 683
+            },
+            "association_gnn": {
+              "association_precision": 0.9985358711566618,
+              "association_recall": 0.9985358711566618,
+              "identity_f1": 0.9985358711566618,
+              "id_switches": 1,
+              "id_switches_per_1000_detections": 1.4641288433382138,
+              "track_fragmentations": 58,
+              "missed_detected_targets": 1,
+              "correct_miss_decisions": 76,
+              "position_rmse_m": 0.6011259314158267,
+              "mean_association_entropy": 0.006225622363047219,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 683
+            }
+          }
+        },
+        "10": {
+          "frame_association": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.9084273390842734,
+              "association_recall": 0.9681753889674681,
+              "association_f1": 0.937350222526532,
+              "track_decision_accuracy": 0.9126582278481012,
+              "miss_class_accuracy": 0.4397590361445783,
+              "wrong_real_rate": 0.03182461103253183,
+              "false_assignment_rate": 0.5602409638554217,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.9947955390334573,
+              "association_recall": 0.9462517680339463,
+              "association_f1": 0.9699166364624864,
+              "track_decision_accuracy": 0.9474683544303798,
+              "miss_class_accuracy": 0.9578313253012049,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.04216867469879518,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "edge_mlp": {
+              "association_precision": 0.997872340425532,
+              "association_recall": 0.995049504950495,
+              "association_f1": 0.9964589235127479,
+              "track_decision_accuracy": 0.9936708860759493,
+              "miss_class_accuracy": 0.9819277108433735,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.018072289156626505,
+              "mean_association_entropy": 0.004734978546232633,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "association_gnn": {
+              "association_precision": 0.9985845718329794,
+              "association_recall": 0.9978783592644979,
+              "association_f1": 0.9982313406437919,
+              "track_decision_accuracy": 0.9968354430379747,
+              "miss_class_accuracy": 0.9879518072289156,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.012048192771084338,
+              "mean_association_entropy": 0.0014970233721847363,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            }
+          },
+          "recursive_tracking": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.7616438356164383,
+              "association_recall": 0.8212703101920237,
+              "identity_f1": 0.7903340440653873,
+              "id_switches": 174,
+              "id_switches_per_1000_detections": 257.0162481536189,
+              "track_fragmentations": 59,
+              "missed_detected_targets": 6,
+              "correct_miss_decisions": 24,
+              "position_rmse_m": 2.7718667053535735,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 677
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.9922600619195047,
+              "association_recall": 0.946824224519941,
+              "identity_f1": 0.9690098261526833,
+              "id_switches": 5,
+              "id_switches_per_1000_detections": 7.385524372230428,
+              "track_fragmentations": 83,
+              "missed_detected_targets": 34,
+              "correct_miss_decisions": 80,
+              "position_rmse_m": 0.5669643294525715,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 677
+            },
+            "edge_mlp": {
+              "association_precision": 0.9941176470588236,
+              "association_recall": 0.9985228951255539,
+              "identity_f1": 0.9963154016212232,
+              "id_switches": 4,
+              "id_switches_per_1000_detections": 5.908419497784343,
+              "track_fragmentations": 68,
+              "missed_detected_targets": 1,
+              "correct_miss_decisions": 79,
+              "position_rmse_m": 0.5154597570907579,
+              "mean_association_entropy": 0.006415939311762162,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 677
+            },
+            "association_gnn": {
+              "association_precision": 0.9941176470588236,
+              "association_recall": 0.9985228951255539,
+              "identity_f1": 0.9963154016212232,
+              "id_switches": 4,
+              "id_switches_per_1000_detections": 5.908419497784343,
+              "track_fragmentations": 68,
+              "missed_detected_targets": 1,
+              "correct_miss_decisions": 79,
+              "position_rmse_m": 0.5154597570907579,
+              "mean_association_entropy": 0.0018717679676326332,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 677
+            }
+          }
+        },
+        "15": {
+          "frame_association": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.9090909090909091,
+              "association_recall": 0.9688826025459689,
+              "association_f1": 0.9380349195480999,
+              "track_decision_accuracy": 0.9132911392405063,
+              "miss_class_accuracy": 0.4397590361445783,
+              "wrong_real_rate": 0.031117397454031116,
+              "false_assignment_rate": 0.5602409638554217,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.996276991809382,
+              "association_recall": 0.9462517680339463,
+              "association_f1": 0.970620239390642,
+              "track_decision_accuracy": 0.9487341772151898,
+              "miss_class_accuracy": 0.9698795180722891,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.030120481927710843,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "edge_mlp": {
+              "association_precision": 0.9978738483345145,
+              "association_recall": 0.9957567185289957,
+              "association_f1": 0.9968141592920353,
+              "track_decision_accuracy": 0.9943037974683544,
+              "miss_class_accuracy": 0.9819277108433735,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.018072289156626505,
+              "mean_association_entropy": 0.004198513508611692,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "association_gnn": {
+              "association_precision": 0.9985855728429985,
+              "association_recall": 0.9985855728429985,
+              "association_f1": 0.9985855728429985,
+              "track_decision_accuracy": 0.9974683544303797,
+              "miss_class_accuracy": 0.9879518072289156,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.012048192771084338,
+              "mean_association_entropy": 0.0018012772011712053,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            }
+          },
+          "recursive_tracking": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.8303448275862069,
+              "association_recall": 0.875,
+              "identity_f1": 0.8520877565463553,
+              "id_switches": 123,
+              "id_switches_per_1000_detections": 178.77906976744185,
+              "track_fragmentations": 54,
+              "missed_detected_targets": 3,
+              "correct_miss_decisions": 32,
+              "position_rmse_m": 2.3308405402231007,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 688
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.9954545454545455,
+              "association_recall": 0.9549418604651163,
+              "identity_f1": 0.9747774480712166,
+              "id_switches": 3,
+              "id_switches_per_1000_detections": 4.3604651162790695,
+              "track_fragmentations": 70,
+              "missed_detected_targets": 30,
+              "correct_miss_decisions": 70,
+              "position_rmse_m": 0.5249614889327118,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 688
+            },
+            "edge_mlp": {
+              "association_precision": 1.0,
+              "association_recall": 0.998546511627907,
+              "identity_f1": 0.9992727272727273,
+              "id_switches": 0,
+              "id_switches_per_1000_detections": 0.0,
+              "track_fragmentations": 57,
+              "missed_detected_targets": 1,
+              "correct_miss_decisions": 72,
+              "position_rmse_m": 0.48081078258660936,
+              "mean_association_entropy": 0.003039515943115396,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 688
+            },
+            "association_gnn": {
+              "association_precision": 1.0,
+              "association_recall": 0.998546511627907,
+              "identity_f1": 0.9992727272727273,
+              "id_switches": 0,
+              "id_switches_per_1000_detections": 0.0,
+              "track_fragmentations": 57,
+              "missed_detected_targets": 1,
+              "correct_miss_decisions": 72,
+              "position_rmse_m": 0.48081078258660936,
+              "mean_association_entropy": 0.001547623359711725,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 688
+            }
+          }
+        },
+        "20": {
+          "frame_association": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.9124087591240876,
+              "association_recall": 0.9724186704384724,
+              "association_f1": 0.9414584046559398,
+              "track_decision_accuracy": 0.9164556962025316,
+              "miss_class_accuracy": 0.4397590361445783,
+              "wrong_real_rate": 0.027581329561527583,
+              "false_assignment_rate": 0.5602409638554217,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.9984996249062266,
+              "association_recall": 0.9413012729844413,
+              "association_f1": 0.9690571532580997,
+              "track_decision_accuracy": 0.9462025316455697,
+              "miss_class_accuracy": 0.9879518072289156,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.012048192771084338,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "edge_mlp": {
+              "association_precision": 1.0,
+              "association_recall": 0.9992927864214993,
+              "association_f1": 0.9996462681287585,
+              "track_decision_accuracy": 0.9993670886075949,
+              "miss_class_accuracy": 1.0,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.0,
+              "mean_association_entropy": 0.002649873724228007,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "association_gnn": {
+              "association_precision": 1.0,
+              "association_recall": 1.0,
+              "association_f1": 1.0,
+              "track_decision_accuracy": 1.0,
+              "miss_class_accuracy": 1.0,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.0,
+              "mean_association_entropy": 0.0009504655085159861,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            }
+          },
+          "recursive_tracking": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.6698630136986301,
+              "association_recall": 0.7212389380530974,
+              "identity_f1": 0.6946022727272726,
+              "id_switches": 241,
+              "id_switches_per_1000_detections": 355.4572271386431,
+              "track_fragmentations": 48,
+              "missed_detected_targets": 7,
+              "correct_miss_decisions": 23,
+              "position_rmse_m": 4.002443699143064,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 678
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.9920886075949367,
+              "association_recall": 0.9247787610619469,
+              "identity_f1": 0.9572519083969465,
+              "id_switches": 5,
+              "id_switches_per_1000_detections": 7.374631268436578,
+              "track_fragmentations": 85,
+              "missed_detected_targets": 49,
+              "correct_miss_decisions": 79,
+              "position_rmse_m": 0.9287538446021437,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 678
+            },
+            "edge_mlp": {
+              "association_precision": 1.0,
+              "association_recall": 1.0,
+              "identity_f1": 1.0,
+              "id_switches": 0,
+              "id_switches_per_1000_detections": 0.0,
+              "track_fragmentations": 68,
+              "missed_detected_targets": 0,
+              "correct_miss_decisions": 82,
+              "position_rmse_m": 0.40035252495889734,
+              "mean_association_entropy": 0.002052462520539417,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 678
+            },
+            "association_gnn": {
+              "association_precision": 1.0,
+              "association_recall": 1.0,
+              "identity_f1": 1.0,
+              "id_switches": 0,
+              "id_switches_per_1000_detections": 0.0,
+              "track_fragmentations": 68,
+              "missed_detected_targets": 0,
+              "correct_miss_decisions": 82,
+              "position_rmse_m": 0.40035252495889734,
+              "mean_association_entropy": 0.0005585818028865556,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 678
+            }
+          }
+        }
+      }
+    },
+    "miss_0.10__far_5.00": {
+      "setting": {
+        "miss_probability": 0.1,
+        "false_alarm_rate": 5.0
+      },
+      "snr": {
+        "5": {
+          "frame_association": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.8826597131681877,
+              "association_recall": 0.9575671852899575,
+              "association_f1": 0.9185888738127543,
+              "track_decision_accuracy": 0.8854430379746835,
+              "miss_class_accuracy": 0.2710843373493976,
+              "wrong_real_rate": 0.04172560113154172,
+              "false_assignment_rate": 0.7289156626506024,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.9808541973490427,
+              "association_recall": 0.942008486562942,
+              "association_f1": 0.961038961038961,
+              "track_decision_accuracy": 0.9373417721518987,
+              "miss_class_accuracy": 0.8975903614457831,
+              "wrong_real_rate": 0.006364922206506365,
+              "false_assignment_rate": 0.10240963855421686,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "edge_mlp": {
+              "association_precision": 0.994314143567875,
+              "association_recall": 0.9893917963224894,
+              "association_f1": 0.9918468628146048,
+              "track_decision_accuracy": 0.9867088607594937,
+              "miss_class_accuracy": 0.963855421686747,
+              "wrong_real_rate": 0.0014144271570014145,
+              "false_assignment_rate": 0.03614457831325301,
+              "mean_association_entropy": 0.014790699388363894,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "association_gnn": {
+              "association_precision": 0.9950424929178471,
+              "association_recall": 0.9936350777934936,
+              "association_f1": 0.994338287331918,
+              "track_decision_accuracy": 0.9911392405063291,
+              "miss_class_accuracy": 0.9698795180722891,
+              "wrong_real_rate": 0.0014144271570014145,
+              "false_assignment_rate": 0.030120481927710843,
+              "mean_association_entropy": 0.004943462105057931,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            }
+          },
+          "recursive_tracking": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.7801899592944369,
+              "association_recall": 0.8418740849194729,
+              "identity_f1": 0.8098591549295775,
+              "id_switches": 162,
+              "id_switches_per_1000_detections": 237.18887262079062,
+              "track_fragmentations": 72,
+              "missed_detected_targets": 2,
+              "correct_miss_decisions": 21,
+              "position_rmse_m": 1.985149021851006,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 683
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.978494623655914,
+              "association_recall": 0.9326500732064422,
+              "identity_f1": 0.9550224887556222,
+              "id_switches": 14,
+              "id_switches_per_1000_detections": 20.497803806734993,
+              "track_fragmentations": 83,
+              "missed_detected_targets": 40,
+              "correct_miss_decisions": 69,
+              "position_rmse_m": 0.6551946375251235,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 683
+            },
+            "edge_mlp": {
+              "association_precision": 0.9985315712187959,
+              "association_recall": 0.9956076134699854,
+              "identity_f1": 0.9970674486803519,
+              "id_switches": 1,
+              "id_switches_per_1000_detections": 1.4641288433382138,
+              "track_fragmentations": 60,
+              "missed_detected_targets": 3,
+              "correct_miss_decisions": 76,
+              "position_rmse_m": 0.6022043963797548,
+              "mean_association_entropy": 0.015186662262402678,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 683
+            },
+            "association_gnn": {
+              "association_precision": 0.9985358711566618,
+              "association_recall": 0.9985358711566618,
+              "identity_f1": 0.9985358711566618,
+              "id_switches": 1,
+              "id_switches_per_1000_detections": 1.4641288433382138,
+              "track_fragmentations": 58,
+              "missed_detected_targets": 1,
+              "correct_miss_decisions": 76,
+              "position_rmse_m": 0.6011259314158267,
+              "mean_association_entropy": 0.006162274046636068,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 683
+            }
+          }
+        },
+        "10": {
+          "frame_association": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.8963494132985659,
+              "association_recall": 0.9724186704384724,
+              "association_f1": 0.9328358208955223,
+              "track_decision_accuracy": 0.899367088607595,
+              "miss_class_accuracy": 0.27710843373493976,
+              "wrong_real_rate": 0.027581329561527583,
+              "false_assignment_rate": 0.7228915662650602,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.9948148148148148,
+              "association_recall": 0.9497878359264498,
+              "association_f1": 0.9717800289435601,
+              "track_decision_accuracy": 0.9512658227848101,
+              "miss_class_accuracy": 0.963855421686747,
+              "wrong_real_rate": 0.0007072135785007072,
+              "false_assignment_rate": 0.03614457831325301,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "edge_mlp": {
+              "association_precision": 0.9971671388101983,
+              "association_recall": 0.9957567185289957,
+              "association_f1": 0.9964614295824485,
+              "track_decision_accuracy": 0.9936708860759493,
+              "miss_class_accuracy": 0.9759036144578314,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.024096385542168676,
+              "mean_association_entropy": 0.004873539800740115,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "association_gnn": {
+              "association_precision": 0.9985845718329794,
+              "association_recall": 0.9978783592644979,
+              "association_f1": 0.9982313406437919,
+              "track_decision_accuracy": 0.9968354430379747,
+              "miss_class_accuracy": 0.9879518072289156,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.012048192771084338,
+              "mean_association_entropy": 0.0015624913034255846,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            }
+          },
+          "recursive_tracking": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.8077956989247311,
+              "association_recall": 0.8877400295420975,
+              "identity_f1": 0.8458831808585503,
+              "id_switches": 143,
+              "id_switches_per_1000_detections": 211.22599704579025,
+              "track_fragmentations": 75,
+              "missed_detected_targets": 1,
+              "correct_miss_decisions": 15,
+              "position_rmse_m": 2.341392948159851,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 677
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.9921875,
+              "association_recall": 0.9379615952732644,
+              "identity_f1": 0.9643128321943811,
+              "id_switches": 5,
+              "id_switches_per_1000_detections": 7.385524372230428,
+              "track_fragmentations": 80,
+              "missed_detected_targets": 39,
+              "correct_miss_decisions": 81,
+              "position_rmse_m": 0.5774063878740107,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 677
+            },
+            "edge_mlp": {
+              "association_precision": 0.9970457902511078,
+              "association_recall": 0.9970457902511078,
+              "identity_f1": 0.9970457902511078,
+              "id_switches": 2,
+              "id_switches_per_1000_detections": 2.9542097488921715,
+              "track_fragmentations": 68,
+              "missed_detected_targets": 2,
+              "correct_miss_decisions": 81,
+              "position_rmse_m": 0.5193115066685988,
+              "mean_association_entropy": 0.005945962109351813,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 677
+            },
+            "association_gnn": {
+              "association_precision": 0.9970457902511078,
+              "association_recall": 0.9970457902511078,
+              "identity_f1": 0.9970457902511078,
+              "id_switches": 2,
+              "id_switches_per_1000_detections": 2.9542097488921715,
+              "track_fragmentations": 68,
+              "missed_detected_targets": 2,
+              "correct_miss_decisions": 81,
+              "position_rmse_m": 0.5132292023027364,
+              "mean_association_entropy": 0.002966660621817244,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 677
+            }
+          }
+        },
+        "15": {
+          "frame_association": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.8963494132985659,
+              "association_recall": 0.9724186704384724,
+              "association_f1": 0.9328358208955223,
+              "track_decision_accuracy": 0.899367088607595,
+              "miss_class_accuracy": 0.27710843373493976,
+              "wrong_real_rate": 0.027581329561527583,
+              "false_assignment_rate": 0.7228915662650602,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.9955489614243324,
+              "association_recall": 0.9490806223479491,
+              "association_f1": 0.9717595944967414,
+              "track_decision_accuracy": 0.9512658227848101,
+              "miss_class_accuracy": 0.9698795180722891,
+              "wrong_real_rate": 0.0007072135785007072,
+              "false_assignment_rate": 0.030120481927710843,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "edge_mlp": {
+              "association_precision": 0.9978768577494692,
+              "association_recall": 0.9971711456859972,
+              "association_f1": 0.997523876901309,
+              "track_decision_accuracy": 0.9955696202531645,
+              "miss_class_accuracy": 0.9819277108433735,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.018072289156626505,
+              "mean_association_entropy": 0.004227986942982312,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "association_gnn": {
+              "association_precision": 0.9985855728429985,
+              "association_recall": 0.9985855728429985,
+              "association_f1": 0.9985855728429985,
+              "track_decision_accuracy": 0.9974683544303797,
+              "miss_class_accuracy": 0.9879518072289156,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.012048192771084338,
+              "mean_association_entropy": 0.001776762147051624,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            }
+          },
+          "recursive_tracking": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.7595628415300546,
+              "association_recall": 0.8081395348837209,
+              "identity_f1": 0.7830985915492958,
+              "id_switches": 176,
+              "id_switches_per_1000_detections": 255.8139534883721,
+              "track_fragmentations": 58,
+              "missed_detected_targets": 1,
+              "correct_miss_decisions": 27,
+              "position_rmse_m": 2.794583293638911,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 688
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.9909502262443439,
+              "association_recall": 0.9549418604651163,
+              "identity_f1": 0.9726128793486306,
+              "id_switches": 6,
+              "id_switches_per_1000_detections": 8.720930232558139,
+              "track_fragmentations": 70,
+              "missed_detected_targets": 30,
+              "correct_miss_decisions": 67,
+              "position_rmse_m": 0.5343403552325243,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 688
+            },
+            "edge_mlp": {
+              "association_precision": 0.998546511627907,
+              "association_recall": 0.998546511627907,
+              "identity_f1": 0.998546511627907,
+              "id_switches": 1,
+              "id_switches_per_1000_detections": 1.4534883720930232,
+              "track_fragmentations": 56,
+              "missed_detected_targets": 1,
+              "correct_miss_decisions": 71,
+              "position_rmse_m": 0.479679550363165,
+              "mean_association_entropy": 0.0030221190308297036,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 688
+            },
+            "association_gnn": {
+              "association_precision": 0.9985443959243085,
+              "association_recall": 0.997093023255814,
+              "identity_f1": 0.9978181818181817,
+              "id_switches": 1,
+              "id_switches_per_1000_detections": 1.4534883720930232,
+              "track_fragmentations": 57,
+              "missed_detected_targets": 1,
+              "correct_miss_decisions": 72,
+              "position_rmse_m": 0.493788852588856,
+              "mean_association_entropy": 0.002226674072174712,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 688
+            }
+          }
+        },
+        "20": {
+          "frame_association": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.8990228013029316,
+              "association_recall": 0.9759547383309759,
+              "association_f1": 0.935910478128179,
+              "track_decision_accuracy": 0.9018987341772152,
+              "miss_class_accuracy": 0.2710843373493976,
+              "wrong_real_rate": 0.024045261669024046,
+              "false_assignment_rate": 0.7289156626506024,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.9985041136873598,
+              "association_recall": 0.9441301272984441,
+              "association_f1": 0.970556161395856,
+              "track_decision_accuracy": 0.9487341772151898,
+              "miss_class_accuracy": 0.9879518072289156,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.012048192771084338,
+              "mean_association_entropy": 0.0,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "edge_mlp": {
+              "association_precision": 1.0,
+              "association_recall": 0.9992927864214993,
+              "association_f1": 0.9996462681287585,
+              "track_decision_accuracy": 0.9993670886075949,
+              "miss_class_accuracy": 1.0,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.0,
+              "mean_association_entropy": 0.0026506940434664235,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            },
+            "association_gnn": {
+              "association_precision": 1.0,
+              "association_recall": 1.0,
+              "association_f1": 1.0,
+              "track_decision_accuracy": 1.0,
+              "miss_class_accuracy": 1.0,
+              "wrong_real_rate": 0.0,
+              "false_assignment_rate": 0.0,
+              "mean_association_entropy": 0.0009536402773215177,
+              "valid_tracks": 1580,
+              "ground_truth_associations": 1414
+            }
+          },
+          "recursive_tracking": {
+            "gated_hungarian_ekf_legacy": {
+              "association_precision": 0.728882833787466,
+              "association_recall": 0.7890855457227138,
+              "identity_f1": 0.7577903682719547,
+              "id_switches": 199,
+              "id_switches_per_1000_detections": 293.51032448377583,
+              "track_fragmentations": 56,
+              "missed_detected_targets": 6,
+              "correct_miss_decisions": 20,
+              "position_rmse_m": 4.496195064252368,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 678
+            },
+            "gated_hungarian_ekf": {
+              "association_precision": 0.9938080495356038,
+              "association_recall": 0.9469026548672567,
+              "identity_f1": 0.9697885196374623,
+              "id_switches": 4,
+              "id_switches_per_1000_detections": 5.899705014749262,
+              "track_fragmentations": 87,
+              "missed_detected_targets": 34,
+              "correct_miss_decisions": 80,
+              "position_rmse_m": 0.46704347770227694,
+              "mean_association_entropy": 0.0,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 678
+            },
+            "edge_mlp": {
+              "association_precision": 0.9985272459499264,
+              "association_recall": 1.0,
+              "identity_f1": 0.9992630803242447,
+              "id_switches": 1,
+              "id_switches_per_1000_detections": 1.4749262536873156,
+              "track_fragmentations": 68,
+              "missed_detected_targets": 0,
+              "correct_miss_decisions": 81,
+              "position_rmse_m": 0.4020934888242408,
+              "mean_association_entropy": 0.001911390960296631,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 678
+            },
+            "association_gnn": {
+              "association_precision": 0.9985272459499264,
+              "association_recall": 1.0,
+              "identity_f1": 0.9992630803242447,
+              "id_switches": 1,
+              "id_switches_per_1000_detections": 1.4749262536873156,
+              "track_fragmentations": 68,
+              "missed_detected_targets": 0,
+              "correct_miss_decisions": 81,
+              "position_rmse_m": 0.4020934888242408,
+              "mean_association_entropy": 0.0007589982137086662,
+              "evaluated_scenes": 5,
+              "detected_target_instances": 678
+            }
+          }
+        }
+      }
+    }
+  },
+  "comparisons": {
+    "miss_0.05__far_1.50": {
+      "5": {
+        "stabilized_hungarian_reduces_id_switches": true,
+        "stabilized_hungarian_reduces_rmse": true,
+        "association_gnn_higher_idf1_than_stabilized_hungarian": true,
+        "association_gnn_fewer_id_switches_than_stabilized_hungarian": true
+      },
+      "10": {
+        "stabilized_hungarian_reduces_id_switches": true,
+        "stabilized_hungarian_reduces_rmse": true,
+        "association_gnn_higher_idf1_than_stabilized_hungarian": true,
+        "association_gnn_fewer_id_switches_than_stabilized_hungarian": true
+      },
+      "15": {
+        "stabilized_hungarian_reduces_id_switches": true,
+        "stabilized_hungarian_reduces_rmse": true,
+        "association_gnn_higher_idf1_than_stabilized_hungarian": true,
+        "association_gnn_fewer_id_switches_than_stabilized_hungarian": true
+      },
+      "20": {
+        "stabilized_hungarian_reduces_id_switches": true,
+        "stabilized_hungarian_reduces_rmse": true,
+        "association_gnn_higher_idf1_than_stabilized_hungarian": true,
+        "association_gnn_fewer_id_switches_than_stabilized_hungarian": true
+      }
+    },
+    "miss_0.10__far_1.50": {
+      "5": {
+        "stabilized_hungarian_reduces_id_switches": true,
+        "stabilized_hungarian_reduces_rmse": true,
+        "association_gnn_higher_idf1_than_stabilized_hungarian": true,
+        "association_gnn_fewer_id_switches_than_stabilized_hungarian": true
+      },
+      "10": {
+        "stabilized_hungarian_reduces_id_switches": true,
+        "stabilized_hungarian_reduces_rmse": true,
+        "association_gnn_higher_idf1_than_stabilized_hungarian": true,
+        "association_gnn_fewer_id_switches_than_stabilized_hungarian": true
+      },
+      "15": {
+        "stabilized_hungarian_reduces_id_switches": true,
+        "stabilized_hungarian_reduces_rmse": true,
+        "association_gnn_higher_idf1_than_stabilized_hungarian": true,
+        "association_gnn_fewer_id_switches_than_stabilized_hungarian": true
+      },
+      "20": {
+        "stabilized_hungarian_reduces_id_switches": true,
+        "stabilized_hungarian_reduces_rmse": true,
+        "association_gnn_higher_idf1_than_stabilized_hungarian": true,
+        "association_gnn_fewer_id_switches_than_stabilized_hungarian": true
+      }
+    },
+    "miss_0.20__far_1.50": {
+      "5": {
+        "stabilized_hungarian_reduces_id_switches": true,
+        "stabilized_hungarian_reduces_rmse": true,
+        "association_gnn_higher_idf1_than_stabilized_hungarian": true,
+        "association_gnn_fewer_id_switches_than_stabilized_hungarian": true
+      },
+      "10": {
+        "stabilized_hungarian_reduces_id_switches": true,
+        "stabilized_hungarian_reduces_rmse": true,
+        "association_gnn_higher_idf1_than_stabilized_hungarian": true,
+        "association_gnn_fewer_id_switches_than_stabilized_hungarian": true
+      },
+      "15": {
+        "stabilized_hungarian_reduces_id_switches": true,
+        "stabilized_hungarian_reduces_rmse": true,
+        "association_gnn_higher_idf1_than_stabilized_hungarian": true,
+        "association_gnn_fewer_id_switches_than_stabilized_hungarian": true
+      },
+      "20": {
+        "stabilized_hungarian_reduces_id_switches": true,
+        "stabilized_hungarian_reduces_rmse": true,
+        "association_gnn_higher_idf1_than_stabilized_hungarian": true,
+        "association_gnn_fewer_id_switches_than_stabilized_hungarian": true
+      }
+    },
+    "miss_0.30__far_1.50": {
+      "5": {
+        "stabilized_hungarian_reduces_id_switches": true,
+        "stabilized_hungarian_reduces_rmse": true,
+        "association_gnn_higher_idf1_than_stabilized_hungarian": true,
+        "association_gnn_fewer_id_switches_than_stabilized_hungarian": true
+      },
+      "10": {
+        "stabilized_hungarian_reduces_id_switches": true,
+        "stabilized_hungarian_reduces_rmse": true,
+        "association_gnn_higher_idf1_than_stabilized_hungarian": true,
+        "association_gnn_fewer_id_switches_than_stabilized_hungarian": true
+      },
+      "15": {
+        "stabilized_hungarian_reduces_id_switches": true,
+        "stabilized_hungarian_reduces_rmse": true,
+        "association_gnn_higher_idf1_than_stabilized_hungarian": true,
+        "association_gnn_fewer_id_switches_than_stabilized_hungarian": true
+      },
+      "20": {
+        "stabilized_hungarian_reduces_id_switches": true,
+        "stabilized_hungarian_reduces_rmse": true,
+        "association_gnn_higher_idf1_than_stabilized_hungarian": true,
+        "association_gnn_fewer_id_switches_than_stabilized_hungarian": true
+      }
+    },
+    "miss_0.10__far_0.50": {
+      "5": {
+        "stabilized_hungarian_reduces_id_switches": true,
+        "stabilized_hungarian_reduces_rmse": true,
+        "association_gnn_higher_idf1_than_stabilized_hungarian": true,
+        "association_gnn_fewer_id_switches_than_stabilized_hungarian": true
+      },
+      "10": {
+        "stabilized_hungarian_reduces_id_switches": true,
+        "stabilized_hungarian_reduces_rmse": true,
+        "association_gnn_higher_idf1_than_stabilized_hungarian": true,
+        "association_gnn_fewer_id_switches_than_stabilized_hungarian": true
+      },
+      "15": {
+        "stabilized_hungarian_reduces_id_switches": true,
+        "stabilized_hungarian_reduces_rmse": true,
+        "association_gnn_higher_idf1_than_stabilized_hungarian": true,
+        "association_gnn_fewer_id_switches_than_stabilized_hungarian": true
+      },
+      "20": {
+        "stabilized_hungarian_reduces_id_switches": true,
+        "stabilized_hungarian_reduces_rmse": true,
+        "association_gnn_higher_idf1_than_stabilized_hungarian": true,
+        "association_gnn_fewer_id_switches_than_stabilized_hungarian": false
+      }
+    },
+    "miss_0.10__far_1.00": {
+      "5": {
+        "stabilized_hungarian_reduces_id_switches": true,
+        "stabilized_hungarian_reduces_rmse": true,
+        "association_gnn_higher_idf1_than_stabilized_hungarian": true,
+        "association_gnn_fewer_id_switches_than_stabilized_hungarian": true
+      },
+      "10": {
+        "stabilized_hungarian_reduces_id_switches": true,
+        "stabilized_hungarian_reduces_rmse": true,
+        "association_gnn_higher_idf1_than_stabilized_hungarian": true,
+        "association_gnn_fewer_id_switches_than_stabilized_hungarian": true
+      },
+      "15": {
+        "stabilized_hungarian_reduces_id_switches": true,
+        "stabilized_hungarian_reduces_rmse": true,
+        "association_gnn_higher_idf1_than_stabilized_hungarian": true,
+        "association_gnn_fewer_id_switches_than_stabilized_hungarian": true
+      },
+      "20": {
+        "stabilized_hungarian_reduces_id_switches": true,
+        "stabilized_hungarian_reduces_rmse": true,
+        "association_gnn_higher_idf1_than_stabilized_hungarian": true,
+        "association_gnn_fewer_id_switches_than_stabilized_hungarian": true
+      }
+    },
+    "miss_0.10__far_3.00": {
+      "5": {
+        "stabilized_hungarian_reduces_id_switches": true,
+        "stabilized_hungarian_reduces_rmse": true,
+        "association_gnn_higher_idf1_than_stabilized_hungarian": true,
+        "association_gnn_fewer_id_switches_than_stabilized_hungarian": true
+      },
+      "10": {
+        "stabilized_hungarian_reduces_id_switches": true,
+        "stabilized_hungarian_reduces_rmse": true,
+        "association_gnn_higher_idf1_than_stabilized_hungarian": true,
+        "association_gnn_fewer_id_switches_than_stabilized_hungarian": true
+      },
+      "15": {
+        "stabilized_hungarian_reduces_id_switches": true,
+        "stabilized_hungarian_reduces_rmse": true,
+        "association_gnn_higher_idf1_than_stabilized_hungarian": true,
+        "association_gnn_fewer_id_switches_than_stabilized_hungarian": true
+      },
+      "20": {
+        "stabilized_hungarian_reduces_id_switches": true,
+        "stabilized_hungarian_reduces_rmse": true,
+        "association_gnn_higher_idf1_than_stabilized_hungarian": true,
+        "association_gnn_fewer_id_switches_than_stabilized_hungarian": true
+      }
+    },
+    "miss_0.10__far_5.00": {
+      "5": {
+        "stabilized_hungarian_reduces_id_switches": true,
+        "stabilized_hungarian_reduces_rmse": true,
+        "association_gnn_higher_idf1_than_stabilized_hungarian": true,
+        "association_gnn_fewer_id_switches_than_stabilized_hungarian": true
+      },
+      "10": {
+        "stabilized_hungarian_reduces_id_switches": true,
+        "stabilized_hungarian_reduces_rmse": true,
+        "association_gnn_higher_idf1_than_stabilized_hungarian": true,
+        "association_gnn_fewer_id_switches_than_stabilized_hungarian": true
+      },
+      "15": {
+        "stabilized_hungarian_reduces_id_switches": true,
+        "stabilized_hungarian_reduces_rmse": true,
+        "association_gnn_higher_idf1_than_stabilized_hungarian": true,
+        "association_gnn_fewer_id_switches_than_stabilized_hungarian": true
+      },
+      "20": {
+        "stabilized_hungarian_reduces_id_switches": true,
+        "stabilized_hungarian_reduces_rmse": true,
+        "association_gnn_higher_idf1_than_stabilized_hungarian": true,
+        "association_gnn_fewer_id_switches_than_stabilized_hungarian": true
+      }
+    }
+  }
+}

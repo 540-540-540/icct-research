@@ -1,0 +1,21 @@
+{
+  "status": "completed",
+  "correction": "The earlier debug association call passed 24 as number_scenes. This run passes all 1200 test scenes.",
+  "training_seed": 2026,
+  "scenes": 1200,
+  "valid_targets": 9070,
+  "snr_db": [
+    5,
+    10,
+    15,
+    20
+  ],
+  "association_model": "frozen classic association GNN",
+  "shared_reconstructed_histories_across_forecasters": true,
+  "checkpoint_sha256": {
+    "plain": "7a17ee0b0b7864038986456ddee51d31cad793bc08ae174215c0938243711723",
+    "classical": "616f88c1cbd04e37f1d4e9cc111c3ff5896368063bd1734dc6d8f7179225691a",
+    "quantum": "590282b962c519fc19b849ce2174d8b938a3bc90b04df059a1d0a13c36733cb3"
+  },
+  "script_sha256": "d24af481b87ea1c035d05c353f4c9274fe23bba95a4526d6e19212ef2bf45e01"
+}

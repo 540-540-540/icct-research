@@ -1,0 +1,30 @@
+[
+  {
+    "arm": "plain",
+    "epoch": 1,
+    "training_ce": 0.006217771683599656,
+    "validation_ce": 0.006689776785074955,
+    "seconds": 3.2275891304016113
+  },
+  {
+    "arm": "plain",
+    "epoch": 2,
+    "training_ce": 0.005762604529572692,
+    "validation_ce": 0.006897708255912839,
+    "seconds": 2.9187710285186768
+  },
+  {
+    "arm": "plain",
+    "epoch": 3,
+    "training_ce": 0.005586023376635439,
+    "validation_ce": 0.0067405045041954775,
+    "seconds": 3.006535530090332
+  },
+  {
+    "arm": "plain",
+    "epoch": 4,
+    "training_ce": 0.0053953332332383145,
+    "validation_ce": 0.0072818879318747795,
+    "seconds": 2.962381601333618
+  }
+]

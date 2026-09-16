@@ -1,0 +1,61 @@
+{
+  "format_version": 1,
+  "seed": 2021,
+  "csv_path": "/home/js_cn/sensing/Lankershim_Vehicle_Trajectories.csv",
+  "T": 300,
+  "dt": 0.05,
+  "snr_list": [
+    5,
+    10,
+    15,
+    20
+  ],
+  "split_ratios": {
+    "train": 0.7,
+    "val": 0.15,
+    "test": 0.15000000000000005
+  },
+  "split_file_ids": {
+    "train": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+    ],
+    "val": [
+      18,
+      19
+    ],
+    "test": [
+      20,
+      21
+    ]
+  },
+  "trajectory_counts": {
+    "train": 1142,
+    "val": 83,
+    "test": 85
+  },
+  "source_vehicle_counts": {
+    "train": 388,
+    "val": 83,
+    "test": 85
+  },
+  "augmentation_policy": "train_only",
+  "synthetic_policy": "train_only",
+  "padding_policy": "none"
+}

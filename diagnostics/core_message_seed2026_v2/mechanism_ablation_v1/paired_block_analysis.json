@@ -1,0 +1,128 @@
+{
+  "bootstrap_repetitions": 10000,
+  "block_width_frames": 200,
+  "warning": "Intervals condition on one trained seed and quantify paired development time-block variation only.",
+  "comparisons": {
+    "quantum_no_entanglement_graph": {
+      "ablation_error_increase_percent": {
+        "ade_m": 2.877037035104892,
+        "fde_m": 3.6506211180595893
+      },
+      "block_bootstrap_95_percentile_ci": {
+        "ade_m": [
+          2.2736686933134727,
+          3.4283070129261803
+        ],
+        "fde_m": [
+          2.663196418383101,
+          4.661830287945941
+        ]
+      },
+      "full_circuit_scene_win_fraction": {
+        "ade_m": 0.579212916246216,
+        "fde_m": 0.5953582240161454
+      }
+    },
+    "quantum_depth1_graph": {
+      "ablation_error_increase_percent": {
+        "ade_m": 1.11008918911958,
+        "fde_m": 1.0136052649713791
+      },
+      "block_bootstrap_95_percentile_ci": {
+        "ade_m": [
+          0.7496926909188082,
+          1.5151198454350154
+        ],
+        "fde_m": [
+          0.5280597342623319,
+          1.4843229229707142
+        ]
+      },
+      "full_circuit_scene_win_fraction": {
+        "ade_m": 0.557013118062563,
+        "fde_m": 0.5338042381432896
+      }
+    },
+    "quantum_no_reupload_graph": {
+      "ablation_error_increase_percent": {
+        "ade_m": 1.5610988904795142,
+        "fde_m": 2.375173421376421
+      },
+      "block_bootstrap_95_percentile_ci": {
+        "ade_m": [
+          0.9091178277104406,
+          2.3329295166491444
+        ],
+        "fde_m": [
+          1.431922884867242,
+          3.6445703191641616
+        ]
+      },
+      "full_circuit_scene_win_fraction": {
+        "ade_m": 0.5782038345105953,
+        "fde_m": 0.6004036326942482
+      }
+    },
+    "quantum_no_entanglement_llm": {
+      "ablation_error_increase_percent": {
+        "ade_m": 2.7983999166748634,
+        "fde_m": 3.666344265399066
+      },
+      "block_bootstrap_95_percentile_ci": {
+        "ade_m": [
+          2.1203687664978186,
+          3.486336951077055
+        ],
+        "fde_m": [
+          2.5830716488548804,
+          4.899127939539486
+        ]
+      },
+      "full_circuit_scene_win_fraction": {
+        "ade_m": 0.6014127144298688,
+        "fde_m": 0.6084762865792129
+      }
+    },
+    "quantum_depth1_llm": {
+      "ablation_error_increase_percent": {
+        "ade_m": 0.9722577590515182,
+        "fde_m": 1.0541043690420944
+      },
+      "block_bootstrap_95_percentile_ci": {
+        "ade_m": [
+          0.519213408898803,
+          1.4881852310723427
+        ],
+        "fde_m": [
+          0.5114762061010418,
+          1.6864918064558971
+        ]
+      },
+      "full_circuit_scene_win_fraction": {
+        "ade_m": 0.5529767911200807,
+        "fde_m": 0.5297679112008072
+      }
+    },
+    "quantum_no_reupload_llm": {
+      "ablation_error_increase_percent": {
+        "ade_m": 1.0740406430111782,
+        "fde_m": 1.648890346371262
+      },
+      "block_bootstrap_95_percentile_ci": {
+        "ade_m": [
+          0.5186180217470641,
+          1.7907699190647002
+        ],
+        "fde_m": [
+          0.9125190155987795,
+          2.7040816001376893
+        ]
+      },
+      "full_circuit_scene_win_fraction": {
+        "ade_m": 0.5650857719475277,
+        "fde_m": 0.5812310797174571
+      }
+    }
+  },
+  "unique_blocks": 12
+}

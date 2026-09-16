@@ -1,0 +1,38 @@
+{
+  "variant": "without_token_loss",
+  "description": "Remove the future motion-token auxiliary cross-entropy loss.",
+  "model_options": {
+    "graph_backbone": "TargetInteractionGNN",
+    "config": "ForecasterConfig",
+    "llm_layers": 4,
+    "lora_rank": 8
+  },
+  "token_loss_weight": 0.0,
+  "training_noise": {
+    "snr_db": 20,
+    "position_sigma_m": 0.3391253806298064,
+    "velocity_sigma_mps": 0.2
+  },
+  "parameter_summary": {
+    "trainable": 2505958,
+    "total": 70643348
+  },
+  "validation": {
+    "ade_m": 0.5607699280137738,
+    "fde_m": 1.1405399748412843,
+    "interaction_ade_m": 0.5475653432485219,
+    "interaction_fde_m": 1.1115580642287795,
+    "collision_rate": 0.0040416666666666665,
+    "ground_truth_collision_rate": 0.0010833333333333333,
+    "excess_collision_rate": 0.003125
+  },
+  "test_20db": {
+    "ade_m": 0.6038845949688189,
+    "fde_m": 1.2324528619499164,
+    "interaction_ade_m": 0.578993115437802,
+    "interaction_fde_m": 1.1807287300285567,
+    "collision_rate": 0.003416666666666667,
+    "ground_truth_collision_rate": 0.000875,
+    "excess_collision_rate": 0.002916666666666667
+  }
+}

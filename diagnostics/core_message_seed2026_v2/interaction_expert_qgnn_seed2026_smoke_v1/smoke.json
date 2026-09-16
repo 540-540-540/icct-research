@@ -1,0 +1,6 @@
+{
+  "epoch0_exact_max_abs_m": 0.0,
+  "pair_decoder_gradient": 23.977005004882812,
+  "source": "/home/js_cn/sensing/diagnostics/core_message_seed2026_v2/future_token_qgnn_llm_seed2026_v1/future_token_qgnn_llm_selected.pt",
+  "source_epoch": 14
+}

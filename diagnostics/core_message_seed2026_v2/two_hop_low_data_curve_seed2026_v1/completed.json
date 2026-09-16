@@ -1,0 +1,200 @@
+{
+  "status": "completed",
+  "seed": 2026,
+  "results": {
+    "0.1": {
+      "training_scenes": 149,
+      "classical": {
+        "confirmation": {
+          "aggregate": {
+            "ade_m": 1.2951882072675904,
+            "fde_m": 2.416325444633442
+          },
+          "by_snr": {
+            "5": {
+              "ade_m": 1.4437277751033164,
+              "fde_m": 2.5422327910194014
+            },
+            "10": {
+              "ade_m": 1.283207581390377,
+              "fde_m": 2.403870318377586
+            },
+            "15": {
+              "ade_m": 1.2653954043618008,
+              "fde_m": 2.3891089591941577
+            },
+            "20": {
+              "ade_m": 1.1884220682148676,
+              "fde_m": 2.330089709942623
+            }
+          }
+        },
+        "selected_epoch": 31,
+        "executed_epochs": 37,
+        "stop_reason": "early_stopping",
+        "parameters": 352178
+      },
+      "quantum": {
+        "confirmation": {
+          "aggregate": {
+            "ade_m": 1.3325441661659336,
+            "fde_m": 2.505168546724609
+          },
+          "by_snr": {
+            "5": {
+              "ade_m": 1.4876169079158246,
+              "fde_m": 2.641731394867479
+            },
+            "10": {
+              "ade_m": 1.3198970094003402,
+              "fde_m": 2.4920709883080696
+            },
+            "15": {
+              "ade_m": 1.3011477016734427,
+              "fde_m": 2.475914485022649
+            },
+            "20": {
+              "ade_m": 1.2215150456741268,
+              "fde_m": 2.4109573187002384
+            }
+          }
+        },
+        "selected_epoch": 31,
+        "executed_epochs": 37,
+        "stop_reason": "early_stopping",
+        "parameters": 352148
+      }
+    },
+    "0.25": {
+      "training_scenes": 369,
+      "classical": {
+        "confirmation": {
+          "aggregate": {
+            "ade_m": 1.097599527906855,
+            "fde_m": 2.1484530867214686
+          },
+          "by_snr": {
+            "5": {
+              "ade_m": 1.205307993081021,
+              "fde_m": 2.2599659123591955
+            },
+            "10": {
+              "ade_m": 1.0879301309854363,
+              "fde_m": 2.1373002852649416
+            },
+            "15": {
+              "ade_m": 1.075480245469863,
+              "fde_m": 2.1245372932279336
+            },
+            "20": {
+              "ade_m": 1.0216797420911004,
+              "fde_m": 2.072008856033803
+            }
+          }
+        },
+        "selected_epoch": 37,
+        "executed_epochs": 40,
+        "stop_reason": "max_epochs",
+        "parameters": 352178
+      },
+      "quantum": {
+        "confirmation": {
+          "aggregate": {
+            "ade_m": 1.1454546265120937,
+            "fde_m": 2.2412858532116124
+          },
+          "by_snr": {
+            "5": {
+              "ade_m": 1.266064491695112,
+              "fde_m": 2.362136865355278
+            },
+            "10": {
+              "ade_m": 1.1353484175560378,
+              "fde_m": 2.2311846444256678
+            },
+            "15": {
+              "ade_m": 1.1210354460415652,
+              "fde_m": 2.216632792689991
+            },
+            "20": {
+              "ade_m": 1.0593701507556597,
+              "fde_m": 2.155189110375513
+            }
+          }
+        },
+        "selected_epoch": 32,
+        "executed_epochs": 38,
+        "stop_reason": "early_stopping",
+        "parameters": 352148
+      }
+    },
+    "0.5": {
+      "training_scenes": 739,
+      "classical": {
+        "confirmation": {
+          "aggregate": {
+            "ade_m": 1.0123556532050821,
+            "fde_m": 2.0475416851192154
+          },
+          "by_snr": {
+            "5": {
+              "ade_m": 1.1053743716639024,
+              "fde_m": 2.1559821429899966
+            },
+            "10": {
+              "ade_m": 1.0034516778135252,
+              "fde_m": 2.0367395171216653
+            },
+            "15": {
+              "ade_m": 0.9930016829195485,
+              "fde_m": 2.02465178762108
+            },
+            "20": {
+              "ade_m": 0.9475948804233528,
+              "fde_m": 1.9727932927441196
+            }
+          }
+        },
+        "selected_epoch": 39,
+        "executed_epochs": 40,
+        "stop_reason": "max_epochs",
+        "parameters": 352178
+      },
+      "quantum": {
+        "confirmation": {
+          "aggregate": {
+            "ade_m": 1.0238192119341578,
+            "fde_m": 2.0654328753828546
+          },
+          "by_snr": {
+            "5": {
+              "ade_m": 1.1179253052496363,
+              "fde_m": 2.1746682944557145
+            },
+            "10": {
+              "ade_m": 1.0148775215555577,
+              "fde_m": 2.0545800661558036
+            },
+            "15": {
+              "ade_m": 1.0041393411299646,
+              "fde_m": 2.0420388147820177
+            },
+            "20": {
+              "ade_m": 0.9583346798014729,
+              "fde_m": 1.9904443261378821
+            }
+          }
+        },
+        "selected_epoch": 40,
+        "executed_epochs": 40,
+        "stop_reason": "max_epochs",
+        "parameters": 352148
+      }
+    }
+  },
+  "source_hashes_verified": true,
+  "same_inputs_within_each_fraction_verified": true,
+  "confirmation_reported_for_all_predeclared_fractions": true,
+  "no_llm": true,
+  "no_test": true
+}
