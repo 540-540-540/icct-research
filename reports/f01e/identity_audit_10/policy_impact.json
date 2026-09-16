@@ -1,0 +1,72 @@
+{
+  "stage": "F01E-IDENTITY-AUDIT-10",
+  "note": "simulation only; labels were not modified",
+  "baseline": {
+    "valid_slot_labels": 3168589,
+    "labelled_slots": 161703,
+    "eligible_slots": 173862,
+    "coverage_ratio": 0.9300652241432861
+  },
+  "policies": {
+    "P1_exact": {
+      "description": "mask the switch-origin slot label",
+      "masked_labelled_slots": 4667,
+      "remaining_labelled_slots": 157036,
+      "coverage_ratio": 0.9032220956850836,
+      "retention_ratio": 0.9711384451741774,
+      "masked_by_snr": {
+        "-5": 813,
+        "0": 756,
+        "5": 768,
+        "10": 776,
+        "15": 796,
+        "20": 758
+      },
+      "masked_by_density": {
+        "low": 0,
+        "mid": 306,
+        "high": 4361
+      }
+    },
+    "P2_pm1": {
+      "description": "mask switch origin +/- 1 origin for that slot",
+      "masked_labelled_slots": 10548,
+      "remaining_labelled_slots": 151155,
+      "coverage_ratio": 0.8693964178486385,
+      "retention_ratio": 0.9347692992708855,
+      "masked_by_snr": {
+        "-5": 1811,
+        "0": 1722,
+        "5": 1738,
+        "10": 1753,
+        "15": 1791,
+        "20": 1733
+      },
+      "masked_by_density": {
+        "low": 0,
+        "mid": 648,
+        "high": 9900
+      }
+    },
+    "P3_pm2": {
+      "description": "mask switch origin +/- 2 origins for that slot",
+      "masked_labelled_slots": 13805,
+      "remaining_labelled_slots": 147898,
+      "coverage_ratio": 0.8506631696402894,
+      "retention_ratio": 0.9146274342467363,
+      "masked_by_snr": {
+        "-5": 2352,
+        "0": 2239,
+        "5": 2277,
+        "10": 2288,
+        "15": 2357,
+        "20": 2292
+      },
+      "masked_by_density": {
+        "low": 0,
+        "mid": 830,
+        "high": 12975
+      }
+    }
+  }
+}
