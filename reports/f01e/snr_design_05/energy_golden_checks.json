@@ -1,0 +1,55 @@
+{
+  "test": "SENS-SNR-DESIGN-05 energy golden test",
+  "checks": {
+    "test1_fixed_symbol_power_energy_invariant": true,
+    "test2_current_energy_scales_with_K": true,
+    "test3_fixed_power_CPI_energy_scales_with_N": true,
+    "test4_theory_matches_monte_carlo": true,
+    "test4_e2_shift_is_10log10_K": true,
+    "test5_e2_rows_consistent_with_current_gain_and_reduced_input": true
+  },
+  "symbol_energy_ledger": [
+    {
+      "K": 64,
+      "current_E_symbol": 64.0,
+      "fixed_power_E_symbol": 1.0
+    },
+    {
+      "K": 128,
+      "current_E_symbol": 128.0,
+      "fixed_power_E_symbol": 1.0
+    },
+    {
+      "K": 256,
+      "current_E_symbol": 256.0,
+      "fixed_power_E_symbol": 1.0
+    },
+    {
+      "K": 512,
+      "current_E_symbol": 512.0,
+      "fixed_power_E_symbol": 1.0
+    }
+  ],
+  "cpi_energy_ledger": [
+    {
+      "N": 128,
+      "E_CPI_fixed_power": 128.0
+    },
+    {
+      "N": 256,
+      "E_CPI_fixed_power": 256.0
+    },
+    {
+      "N": 512,
+      "E_CPI_fixed_power": 512.0
+    }
+  ],
+  "processing_gain": {
+    "hann_gain_K": 170.66666666666666,
+    "hann_gain_N": 170.66666666666666,
+    "rd_gain_current_db": 44.64297412512337,
+    "rd_gain_symbol_power_db": 22.321487062561683,
+    "rd_gain_cpi_energy_db": -3.521825181113625
+  },
+  "cfar_threshold_db_reference": 4.183178671286787
+}
