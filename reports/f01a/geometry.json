@@ -1,0 +1,17 @@
+{
+  "source": "local reconstruction of the frozen A01 3-BS geometry (not a server artifact; not committed)",
+  "stations_xy_m": [
+    [-64.23372566, -106.90678644],
+    [114.23372566, 0.0],
+    [-64.23372566, 106.90678644]
+  ],
+  "boresight_rad": [
+    0.0,
+    3.141592653589793,
+    0.0
+  ],
+  "station_height_m": 6.0,
+  "vehicle_height_m": 1.0,
+  "fov_half_angle_deg": 70.0,
+  "range_m": [10.0, 300.0]
+}
