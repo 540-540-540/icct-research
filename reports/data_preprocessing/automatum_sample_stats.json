@@ -1,0 +1,121 @@
+{
+ "dataset": "automatum_t_crossing_samples",
+ "task": {
+  "history_frames": 20,
+  "future_frames": 20,
+  "total_frames": 40,
+  "window_stride": 1,
+  "canonical_fps": 9.99,
+  "state": [
+   "x",
+   "y",
+   "vx",
+   "vy"
+  ],
+  "vehicle_rule": "2 <= N <= 8, eligible = present in all 40 frames, N > 8 rejects the whole window, order by vehicle_id ascending",
+  "padding": {
+   "max_nodes": 8,
+   "state": 0.0,
+   "vehicle_id": -1
+  }
+ },
+ "splits": {
+  "train": {
+   "trajectory_sha256": "d75994cb999d10ac5c05fab00f95a11d98b8e8cc61c475b87373ba6b51a82a11",
+   "samples": 10366,
+   "per_scene": {
+    "0": 4430,
+    "1": 5936
+   },
+   "n_distribution": {
+    "2": 2560,
+    "3": 2455,
+    "4": 2547,
+    "5": 1690,
+    "6": 641,
+    "7": 283,
+    "8": 190
+   },
+   "rejected_n_gt_8": 427,
+   "npz": {
+    "path": "data/automatum_t_crossing/splits/train/samples.npz",
+    "size_bytes": 53635566,
+    "sha256": "1b86a6453a53779b9b647f8fa04bf3b40c56bba0dfc26f0d19f6de895a58e0c9"
+   },
+   "sample_manifest": {
+    "runtime": "data/automatum_t_crossing/splits/train/sample_manifest.json",
+    "git_mirror": "reports/data_preprocessing/sample_manifests/train_sample_manifest.json",
+    "sha256": "8b4d1d6481d9b37960baf54e0d255fa6cacc928eb2afa9de1b0c57180c7f9bce"
+   }
+  },
+  "val": {
+   "trajectory_sha256": "c9964adb9b73e828754912381f5d93cfd8adf215bad4ba85db766d4166ab894d",
+   "samples": 893,
+   "per_scene": {
+    "0": 418,
+    "1": 475
+   },
+   "n_distribution": {
+    "2": 225,
+    "3": 186,
+    "4": 160,
+    "5": 189,
+    "6": 78,
+    "7": 25,
+    "8": 30
+   },
+   "rejected_n_gt_8": 75,
+   "npz": {
+    "path": "data/automatum_t_crossing/splits/val/samples.npz",
+    "size_bytes": 4622264,
+    "sha256": "51dc713ba5873ba438267e5c46f97902e4e744cbd3069bf3e289a485d058ff31"
+   },
+   "sample_manifest": {
+    "runtime": "data/automatum_t_crossing/splits/val/sample_manifest.json",
+    "git_mirror": "reports/data_preprocessing/sample_manifests/val_sample_manifest.json",
+    "sha256": "a74dca8e43f65dc33506839075f47cd90869c74614219991da1bd02df0c0b1ef"
+   }
+  },
+  "test": {
+   "trajectory_sha256": "6fb3117e95368e2c5b66cca5a28cb45a1ff91691d4afea4fb9b8c1a17eb75371",
+   "samples": 1135,
+   "per_scene": {
+    "0": 532,
+    "1": 603
+   },
+   "n_distribution": {
+    "2": 282,
+    "3": 266,
+    "4": 143,
+    "5": 92,
+    "6": 142,
+    "7": 154,
+    "8": 56
+   },
+   "rejected_n_gt_8": 0,
+   "npz": {
+    "path": "data/automatum_t_crossing/splits/test/samples.npz",
+    "size_bytes": 5874372,
+    "sha256": "dec95982e48686e03e0ba059fb3a977f095b881342ed8ce9416c4c0ec8424413"
+   },
+   "sample_manifest": {
+    "runtime": "data/automatum_t_crossing/splits/test/sample_manifest.json",
+    "git_mirror": "reports/data_preprocessing/sample_manifests/test_sample_manifest.json",
+    "sha256": "56c87582dd62be249b0c87431b26be337a42d9d9449fd10bf08cd047bd4b69c5"
+   }
+  }
+ },
+ "totals": {
+  "samples": 12394,
+  "rejected_n_gt_8": 502,
+  "n_distribution": {
+   "2": 3067,
+   "3": 2907,
+   "4": 2850,
+   "5": 1971,
+   "6": 861,
+   "7": 462,
+   "8": 276
+  }
+ }
+}

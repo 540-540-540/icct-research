@@ -1,0 +1,112 @@
+{
+ "split_name": "train",
+ "parent_trajectory_path": "data/automatum_t_crossing/splits/train/trajectories.csv",
+ "parent_trajectory_sha256": "d75994cb999d10ac5c05fab00f95a11d98b8e8cc61c475b87373ba6b51a82a11",
+ "sampling": {
+  "fps": 9.99,
+  "history_frames": 20,
+  "future_frames": 20,
+  "total_frames": 40,
+  "window_stride": 1
+ },
+ "vehicle_rule": {
+  "min_vehicles": 2,
+  "max_vehicles": 8,
+  "eligible_rule": "present_in_all_40_frames",
+  "over_max_policy": "reject_window",
+  "ordering": "vehicle_id ascending"
+ },
+ "padding": {
+  "max_nodes": 8,
+  "state_padding": 0.0,
+  "vehicle_id_padding": -1
+ },
+ "samples": {
+  "total": 10366,
+  "per_scene": {
+   "0": 4430,
+   "1": 5936
+  },
+  "n_distribution": {
+   "2": 2560,
+   "3": 2455,
+   "4": 2547,
+   "5": 1690,
+   "6": 641,
+   "7": 283,
+   "8": 190
+  },
+  "rejected_n_gt_8": 427,
+  "start_frame_range": [
+   0,
+   9002
+  ],
+  "start_timestamp_range": [
+   0.0,
+   901.1011011011011
+  ]
+ },
+ "output": {
+  "samples_npz_path": "data/automatum_t_crossing/splits/train/samples.npz",
+  "size_bytes": 53635566,
+  "sha256": "1b86a6453a53779b9b647f8fa04bf3b40c56bba0dfc26f0d19f6de895a58e0c9",
+  "arrays": {
+   "history": {
+    "shape": [
+     10366,
+     20,
+     8,
+     4
+    ],
+    "dtype": "float32"
+   },
+   "future": {
+    "shape": [
+     10366,
+     20,
+     8,
+     4
+    ],
+    "dtype": "float32"
+   },
+   "vehicle_ids": {
+    "shape": [
+     10366,
+     8
+    ],
+    "dtype": "int32"
+   },
+   "vehicle_mask": {
+    "shape": [
+     10366,
+     8
+    ],
+    "dtype": "bool"
+   },
+   "num_vehicles": {
+    "shape": [
+     10366
+    ],
+    "dtype": "uint8"
+   },
+   "scene_id": {
+    "shape": [
+     10366
+    ],
+    "dtype": "uint8"
+   },
+   "start_frame": {
+    "shape": [
+     10366
+    ],
+    "dtype": "int32"
+   },
+   "start_timestamp": {
+    "shape": [
+     10366
+    ],
+    "dtype": "float64"
+   }
+  }
+ }
+}

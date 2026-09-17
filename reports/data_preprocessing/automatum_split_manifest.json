@@ -211,19 +211,19 @@
  },
  "outputs": {
   "train.csv": {
-   "path": "data/automatum_t_crossing/splits/train.csv",
+   "path": "data/automatum_t_crossing/splits/train/trajectories.csv",
    "rows": 66652,
    "size_bytes": 4308924,
    "sha256": "d75994cb999d10ac5c05fab00f95a11d98b8e8cc61c475b87373ba6b51a82a11"
   },
   "val.csv": {
-   "path": "data/automatum_t_crossing/splits/val.csv",
+   "path": "data/automatum_t_crossing/splits/val/trajectories.csv",
    "rows": 7141,
    "size_bytes": 460201,
    "sha256": "c9964adb9b73e828754912381f5d93cfd8adf215bad4ba85db766d4166ab894d"
   },
   "test.csv": {
-   "path": "data/automatum_t_crossing/splits/test.csv",
+   "path": "data/automatum_t_crossing/splits/test/trajectories.csv",
    "rows": 7118,
    "size_bytes": 458816,
    "sha256": "6fb3117e95368e2c5b66cca5a28cb45a1ff91691d4afea4fb9b8c1a17eb75371"

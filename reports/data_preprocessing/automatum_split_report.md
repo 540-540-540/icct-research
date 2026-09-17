@@ -8,6 +8,7 @@
 - Manifest（runtime + Git 镜像，字节一致）：`data/automatum_t_crossing/splits/split_manifest.json` / `reports/data_preprocessing/automatum_split_manifest.json`
 - 验证结果：`reports/data_preprocessing/automatum_split_validation.json`（**19/19 PASS**）
 - 复现：`python tools/data_preprocessing/build_automatum_splits.py && python tools/data_preprocessing/validate_automatum_splits.py`
+- 目录迁移（后续工单）：三份 split CSV 已迁移为 `splits/{train,val,test}/trajectories.csv`，**字节与 SHA256 未变**；`split_manifest.json` 的 output 路径已同步更新，边界、gap 与比例均未改动。
 
 ---
 

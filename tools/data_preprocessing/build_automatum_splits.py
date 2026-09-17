@@ -326,15 +326,24 @@ def main() -> None:
 
     outputs = {}
     for split in ('train', 'val', 'test'):
-        path = out_dir / ('%s.csv' % split)
+        split_dir = out_dir / split
+        split_dir.mkdir(parents=True, exist_ok=True)
+        path = split_dir / 'trajectories.csv'
         with path.open('w', encoding='utf-8', newline='') as fh:
             fh.write(header + '\n')
             fh.write('\n'.join(split_lines[split]) + '\n')
+        flat = out_dir / ('%s.csv' % split)
+        if flat.exists():
+            if flat.read_bytes() != path.read_bytes():
+                print('FATAL: legacy flat %s differs from migrated %s' % (flat.name, path), file=sys.stderr)
+                sys.exit(4)
+            flat.unlink()
+            print('[ok] removed legacy flat %s' % flat.name)
         rows = len(split_lines[split])
-        outputs[split + '.csv'] = {'path': 'data/automatum_t_crossing/splits/%s.csv' % split,
+        outputs[split + '.csv'] = {'path': 'data/automatum_t_crossing/splits/%s/trajectories.csv' % split,
                                    'rows': rows, 'size_bytes': path.stat().st_size,
                                    'sha256': sha256_file(path)}
-        print('[ok] %s.csv rows=%d sha256=%s' % (split, rows, outputs[split + '.csv']['sha256']))
+        print('[ok] %s/trajectories.csv rows=%d sha256=%s' % (split, rows, outputs[split + '.csv']['sha256']))
 
     manifest = {
         'dataset_name': 'automatum_t_crossing_splits',

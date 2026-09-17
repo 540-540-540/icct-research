@@ -164,7 +164,7 @@ def main() -> None:
     headers = {}
     split_lines = {}
     for split in ('train', 'val', 'test'):
-        header, lines = read_rows(splits_dir / ('%s.csv' % split))
+        header, lines = read_rows(splits_dir / split / 'trajectories.csv')
         headers[split] = header
         split_lines[split] = lines
     record('schemas_identical_7_columns',
@@ -336,7 +336,7 @@ def main() -> None:
     for split in ('train', 'val', 'test'):
         name = '%s.csv' % split
         entry = manifest['outputs'][name]
-        path = splits_dir / name
+        path = splits_dir / split / 'trajectories.csv'
         actual_size = path.stat().st_size
         actual_sha = sha256_file(path)
         sizes_ok = sizes_ok and entry['rows'] == len(split_lines[split]) and entry['size_bytes'] == actual_size
