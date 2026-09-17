@@ -37,13 +37,12 @@ F01-E dataset is kept under `reports/f01e/final_freeze_11/`.
 | `stage0-senior-original` | Senior-delivered project snapshot before handover on 2026-09-11 17:00 +08:00 |
 | `stage1-meeting-freeze-20260915` | First stable project version before the 2026-09-15 group meeting |
 
-Historical development branches are fully contained in the current development history and are
-preserved until branch cleanup is approved.
+Historical development branches are fully contained in the current development history.
 
 ## Current development module
 
-ISAC (shared frontend) redesign continues on the `isac-redesign-probe-01` line and is not frozen
+ISAC (shared frontend) redesign continues on the `module/isac` development branch and is not frozen
 yet. The F01-E loader (`frontend.f01e_dataset.F01EDataset`) and the `data/f01e/` contract belong
 to the historical frozen experiment chain; they do not by themselves define the final sensing
-design. The active development branch and its code are the reference for the current
-implementation. QGNN/LLM modules follow after the ISAC freeze.
+design. The current implementation is defined by the code on `module/isac`. QGNN/LLM modules follow
+after the ISAC freeze.
