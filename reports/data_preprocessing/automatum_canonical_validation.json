@@ -1,0 +1,277 @@
+{
+ "dataset": "automatum_t_crossing_canonical",
+ "validator": "tools/data_preprocessing/validate_automatum_canonical.py",
+ "inputs": {
+  "trajectories_10hz.csv": "E:\\NJUPT\\ICCT会议\\data\\automatum_t_crossing\\processed\\trajectories_10hz.csv",
+  "stats": "E:\\NJUPT\\ICCT会议\\reports\\data_preprocessing\\automatum_canonical_stats.json"
+ },
+ "checks": {
+  "schema_columns": {
+   "pass": true,
+   "detail": {
+    "header": [
+     "scene_id",
+     "vehicle_id",
+     "timestamp",
+     "x",
+     "y",
+     "vx",
+     "vy"
+    ]
+   }
+  },
+  "rows_nonzero": {
+   "pass": true,
+   "detail": {
+    "rows": 81554
+   }
+  },
+  "scene_ids_only_0_1": {
+   "pass": true,
+   "detail": {
+    "scene_ids": [
+     0,
+     1
+    ]
+   }
+  },
+  "vehicle_id_continuous_1_683": {
+   "pass": true,
+   "detail": {
+    "count": 683,
+    "min": 1,
+    "max": 683
+   }
+  },
+  "scenes_do_not_share_vehicles": {
+   "pass": true,
+   "detail": {
+    "scene_0_vehicles": 299,
+    "scene_1_vehicles": 384,
+    "overlap": 0
+   }
+  },
+  "no_duplicate_state_rows": {
+   "pass": true,
+   "detail": {
+    "rows": 81554,
+    "unique": 81554
+   }
+  },
+  "timestamp_on_0.1s_grid": {
+   "pass": true,
+   "detail": {
+    "max_grid_error_s": 1.8189894035458566e-13,
+    "min_timestamp": 0.0
+   }
+  },
+  "finite_values": {
+   "pass": true,
+   "detail": {
+    "nan": 0,
+    "inf": 0
+   }
+  },
+  "per_track_strictly_increasing": {
+   "pass": true,
+   "detail": {
+    "violating_tracks": 0
+   }
+  },
+  "per_track_dt_is_0.1s": {
+   "pass": true,
+   "detail": {
+    "tracks_with_other_dt": 0,
+    "examples": []
+   }
+  },
+  "no_position_jumps": {
+   "pass": true,
+   "detail": {
+    "max_step_speed_mps": 30.65874696521368,
+    "violations": 0
+   }
+  },
+  "speed_range_physical": {
+   "pass": true,
+   "detail": {
+    "max_speed_mps": 30.64250693327713,
+    "violations_over_35mps": 0
+   }
+  },
+  "raw_file_sha256_scene_0": {
+   "pass": true,
+   "detail": {
+    "dynamicWorld.json": "899037a7be1f61dd75915fbdeab32e8e2c01c8d2b4be4e814775216896f2cd19",
+    "staticWorld.xodr": "afee5cbdad64d2098cd64e95d2df845ab940a433aee995beb258b604dbdeef55"
+   }
+  },
+  "raw_file_sha256_scene_1": {
+   "pass": true,
+   "detail": {
+    "dynamicWorld.json": "72c5bfbbcfc7ed59a258f543f8c74fad787ee0bdaaa1236fc354564d618fcce2",
+    "staticWorld.xodr": "641d193b5cd502406a495ab71ec8738ffac7376a0d8fe12f642b1199649f300e"
+   }
+  },
+  "mapping_rows_683": {
+   "pass": true,
+   "detail": {
+    "rows": 683
+   }
+  },
+  "mapping_ids_match_canonical": {
+   "pass": true,
+   "detail": {
+    "mapping_ids": 683
+   }
+  },
+  "mapping_uuids_unique": {
+   "pass": true,
+   "detail": {
+    "unique_uuids": 683
+   }
+  },
+  "half_frame_rule": {
+   "pass": true,
+   "detail": {
+    "max_error_ms": 16.683350016705845,
+    "half_frame_ms": 16.683350016683352,
+    "median_ms": 8.341675008296079,
+    "p95_ms": 15.849182515921711,
+    "p99_ms": 16.516516516503543
+   }
+  },
+  "no_source_frame_reuse": {
+   "pass": true,
+   "detail": {
+    "violating_tracks": 0
+   }
+  },
+  "positions_copied_from_source": {
+   "pass": true,
+   "detail": {
+    "violating_tracks": 0
+   }
+  },
+  "rotation_reproduces_world_velocity": {
+   "pass": true,
+   "detail": {
+    "violating_tracks": 0
+   }
+  },
+  "speed_norm_preserved": {
+   "pass": true,
+   "detail": {
+    "violating_tracks": 0,
+    "tolerance_mps": 2e-06
+   }
+  },
+  "mapping_traceable_to_raw": {
+   "pass": true,
+   "detail": {
+    "mismatches": 0
+   }
+  },
+  "velocity_fd_consistency": {
+   "pass": true,
+   "detail": {
+    "vx_mae_mps": 0.03364406481229899,
+    "vy_mae_mps": 0.034838871462592,
+    "vx_p95_mps": 0.10860284500269668,
+    "vy_p95_mps": 0.11071380499983152,
+    "direction_median_deg": 0.0691102687676758,
+    "direction_p95_deg": 0.9238913868877612,
+    "direction_max_deg": 6.9498798766600185,
+    "pairs": 80871
+   }
+  },
+  "file_sorted_scene_time_vehicle": {
+   "pass": true,
+   "detail": {
+    "sorted": true
+   }
+  },
+  "scene_metadata_consistent": {
+   "pass": true,
+   "detail": {
+    "0": {
+     "rows": 41995,
+     "vehicles": 299,
+     "timestamp_range": [
+      0.0,
+      650.6
+     ],
+     "stats_ok": true
+    },
+    "1": {
+     "rows": 39559,
+     "vehicles": 384,
+     "timestamp_range": [
+      8.5,
+      1125.6
+     ],
+     "stats_ok": true
+    }
+   }
+  },
+  "four_second_counts_match_stats": {
+   "pass": true,
+   "detail": {
+    "scene_0": 289,
+    "scene_1": 382,
+    "stats": [
+     289,
+     382
+    ]
+   }
+  },
+  "sha256_trajectories_10hz_csv": {
+   "pass": true,
+   "detail": {
+    "actual": "2a4b38fa3ffafd6cf4ca28463532c7fb95cadf5bfc0bded40b2da2c3760b203e",
+    "stats": "2a4b38fa3ffafd6cf4ca28463532c7fb95cadf5bfc0bded40b2da2c3760b203e"
+   }
+  },
+  "sha256_vehicle_id_mapping_csv": {
+   "pass": true,
+   "detail": {
+    "actual": "3d211ffd3c9029a3e0fe435a8e96ef3555ba36387665fbca9d39802569b2bbcb",
+    "stats": "3d211ffd3c9029a3e0fe435a8e96ef3555ba36387665fbca9d39802569b2bbcb"
+   }
+  },
+  "sha256_scene_metadata_json": {
+   "pass": true,
+   "detail": {
+    "actual": "708f85c497bf4f2afb2cbb0026952b07979d89abc3be9d33b9aa35930cbf72bc",
+    "stats": "708f85c497bf4f2afb2cbb0026952b07979d89abc3be9d33b9aa35930cbf72bc"
+   }
+  }
+ },
+ "summary": {
+  "checks_total": 30,
+  "checks_passed": 30,
+  "checks_failed": 0,
+  "failed_checks": [],
+  "verdict": "PASS"
+ },
+ "velocity_validation_true_source_interval": {
+  "vx_mae_mps": 0.03364406481229899,
+  "vy_mae_mps": 0.034838871462592,
+  "vx_rmse_mps": 0.049360902234984017,
+  "vy_rmse_mps": 0.05088530130094865,
+  "vx_p95_abs_mps": 0.10860284500269668,
+  "vy_p95_abs_mps": 0.11071380499983152,
+  "direction_median_deg": 0.0691102687676758,
+  "direction_p95_deg": 0.9238913868877612,
+  "direction_p99_deg": 2.180730381277167,
+  "direction_max_deg": 6.9498798766600185,
+  "pairs": 80871
+ },
+ "time_mapping_error_ms": {
+  "median": 8.341675008296079,
+  "p95": 15.849182515921711,
+  "p99": 16.516516516503543,
+  "max": 16.683350016705845,
+  "half_frame": 16.683350016683352
+ }
+}
