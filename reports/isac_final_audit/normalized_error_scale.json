@@ -1,0 +1,148 @@
+{
+  "train": {
+    "scales_used": {
+      "median_frame_displacement_m": 1.311672595246235,
+      "median_1s_displacement_m": 13.063693386761841,
+      "median_2s_history_span_m": 19.99539995325604,
+      "median_nearest_neighbor_m": 16.773500519106737,
+      "median_speed_mps": 13.082534342464385,
+      "p25_speed_mps": 6.395822925980675,
+      "p75_speed_mps": 19.075016046511863
+    },
+    "levels": {
+      "-10.0": {
+        "position_rmse_over_median_frame_displacement": 0.35081073169468846,
+        "position_rmse_over_median_1s_displacement": 0.035223486135130565,
+        "position_rmse_over_median_2s_displacement": 0.023012734126744597,
+        "position_rmse_over_median_nearest_neighbor": 0.02743308245992218,
+        "position_p95_over_median_frame_displacement": 0.6413957955737007,
+        "position_p95_over_median_nearest_neighbor": 0.050156572076404164,
+        "velocity_rmse_over_median_speed": 0.06934997251012423,
+        "velocity_rmse_over_p25_speed": 0.14185405185737665,
+        "velocity_rmse_over_p75_speed": 0.04756344082754096,
+        "velocity_error_accumulated_2s_over_median_2s_displacement": 0.09083905105317633
+      },
+      "-5.0": {
+        "position_rmse_over_median_frame_displacement": 0.19727386537775063,
+        "position_rmse_over_median_1s_displacement": 0.019807470622091067,
+        "position_rmse_over_median_2s_displacement": 0.012940912588855439,
+        "position_rmse_over_median_nearest_neighbor": 0.015426638147447984,
+        "position_p95_over_median_frame_displacement": 0.36087645651717226,
+        "position_p95_over_median_nearest_neighbor": 0.028220213052364843,
+        "velocity_rmse_over_median_speed": 0.04609237311705787,
+        "velocity_rmse_over_p25_speed": 0.09428107394595084,
+        "velocity_rmse_over_p75_speed": 0.03161229603997422,
+        "velocity_error_accumulated_2s_over_median_2s_displacement": 0.06037475262345957
+      },
+      "0.0": {
+        "position_rmse_over_median_frame_displacement": 0.11096012043872343,
+        "position_rmse_over_median_1s_displacement": 0.011141056731489293,
+        "position_rmse_over_median_2s_displacement": 0.00727884160781665,
+        "position_rmse_over_median_nearest_neighbor": 0.008676981228748666,
+        "position_p95_over_median_frame_displacement": 0.20291093726168588,
+        "position_p95_over_median_nearest_neighbor": 0.015867452078873235,
+        "velocity_rmse_over_median_speed": 0.0357240855404287,
+        "velocity_rmse_over_p25_speed": 0.07307293859517429,
+        "velocity_rmse_over_p75_speed": 0.024501241561013392,
+        "velocity_error_accumulated_2s_over_median_2s_displacement": 0.046793703195214545
+      },
+      "5.0": {
+        "position_rmse_over_median_frame_displacement": 0.062446127800546605,
+        "position_rmse_over_median_1s_displacement": 0.006269963025787469,
+        "position_rmse_over_median_2s_displacement": 0.0040963859040930575,
+        "position_rmse_over_median_nearest_neighbor": 0.004883230809330373,
+        "position_p95_over_median_frame_displacement": 0.11418401556438877,
+        "position_p95_over_median_nearest_neighbor": 0.00892908691661425,
+        "velocity_rmse_over_median_speed": 0.031754219599966514,
+        "velocity_rmse_over_p25_speed": 0.06495265319920035,
+        "velocity_rmse_over_p75_speed": 0.02177852261941788,
+        "velocity_error_accumulated_2s_over_median_2s_displacement": 0.041593717646737735
+      },
+      "10.0": {
+        "position_rmse_over_median_frame_displacement": 0.035203013071692636,
+        "position_rmse_over_median_1s_displacement": 0.0035345921057076944,
+        "position_rmse_over_median_2s_displacement": 0.002309272513887132,
+        "position_rmse_over_median_nearest_neighbor": 0.0027528438362425514,
+        "position_p95_over_median_frame_displacement": 0.06435919820668554,
+        "position_p95_over_median_nearest_neighbor": 0.005032831187715949,
+        "velocity_rmse_over_median_speed": 0.030394457093557127,
+        "velocity_rmse_over_p25_speed": 0.06217128481336927,
+        "velocity_rmse_over_p75_speed": 0.020845934167365212,
+        "velocity_error_accumulated_2s_over_median_2s_displacement": 0.03981261332514791
+      }
+    }
+  },
+  "val": {
+    "scales_used": {
+      "median_frame_displacement_m": 1.7277666209094868,
+      "median_1s_displacement_m": 17.45212400931245,
+      "median_2s_history_span_m": 31.38436343800968,
+      "median_nearest_neighbor_m": 14.399394914915,
+      "median_speed_mps": 17.25207145102993,
+      "p25_speed_mps": 8.810423961154964,
+      "p75_speed_mps": 19.297759111525785
+    },
+    "levels": {
+      "-10.0": {
+        "position_rmse_over_median_frame_displacement": 0.30897404292347724,
+        "position_rmse_over_median_1s_displacement": 0.03058854256397587,
+        "position_rmse_over_median_2s_displacement": 0.017009586291118147,
+        "position_rmse_over_median_nearest_neighbor": 0.037073435463436645,
+        "position_p95_over_median_frame_displacement": 0.5684987324801901,
+        "position_p95_over_median_nearest_neighbor": 0.06821350062364218,
+        "velocity_rmse_over_median_speed": 0.058069651150605195,
+        "velocity_rmse_over_p25_speed": 0.11370869043347306,
+        "velocity_rmse_over_p75_speed": 0.05191389140038933,
+        "velocity_error_accumulated_2s_over_median_2s_displacement": 0.06390600194028355
+      },
+      "-5.0": {
+        "position_rmse_over_median_frame_displacement": 0.17375788343684503,
+        "position_rmse_over_median_1s_displacement": 0.017202093622636912,
+        "position_rmse_over_median_2s_displacement": 0.0095656893508464,
+        "position_rmse_over_median_nearest_neighbor": 0.020849006010044167,
+        "position_p95_over_median_frame_displacement": 0.32011702261900155,
+        "position_p95_over_median_nearest_neighbor": 0.038410468615812876,
+        "velocity_rmse_over_median_speed": 0.03884829491367246,
+        "velocity_rmse_over_p25_speed": 0.07607052311629069,
+        "velocity_rmse_over_p75_speed": 0.03473012362358011,
+        "velocity_error_accumulated_2s_over_median_2s_displacement": 0.042752783268683134
+      },
+      "0.0": {
+        "position_rmse_over_median_frame_displacement": 0.097737400654907,
+        "position_rmse_over_median_1s_displacement": 0.009676038193167646,
+        "position_rmse_over_median_2s_displacement": 0.005380622704027497,
+        "position_rmse_over_median_nearest_neighbor": 0.011727396842980619,
+        "position_p95_over_median_frame_displacement": 0.18028547049652405,
+        "position_p95_over_median_nearest_neighbor": 0.021632243576861096,
+        "velocity_rmse_over_median_speed": 0.030301861924876248,
+        "velocity_rmse_over_p25_speed": 0.05933538378312934,
+        "velocity_rmse_over_p75_speed": 0.027089667976784863,
+        "velocity_error_accumulated_2s_over_median_2s_displacement": 0.03334738212811124
+      },
+      "5.0": {
+        "position_rmse_over_median_frame_displacement": 0.05500858913659936,
+        "position_rmse_over_median_1s_displacement": 0.005445870320588267,
+        "position_rmse_over_median_2s_displacement": 0.0030283234630922922,
+        "position_rmse_over_median_nearest_neighbor": 0.00660041652688443,
+        "position_p95_over_median_frame_displacement": 0.10150719602147706,
+        "position_p95_over_median_nearest_neighbor": 0.012179730197299031,
+        "velocity_rmse_over_median_speed": 0.02702267596866438,
+        "velocity_rmse_over_p25_speed": 0.05291426821965481,
+        "velocity_rmse_over_p75_speed": 0.02415809700572883,
+        "velocity_error_accumulated_2s_over_median_2s_displacement": 0.029738618170898415
+      },
+      "10.0": {
+        "position_rmse_over_median_frame_displacement": 0.03101622543617627,
+        "position_rmse_over_median_1s_displacement": 0.0030706175928290553,
+        "position_rmse_over_median_2s_displacement": 0.0017074999504475411,
+        "position_rmse_over_median_nearest_neighbor": 0.003721600756968022,
+        "position_p95_over_median_frame_displacement": 0.05717705025862768,
+        "position_p95_over_median_nearest_neighbor": 0.006860607650714204,
+        "velocity_rmse_over_median_speed": 0.025887559684352423,
+        "velocity_rmse_over_p25_speed": 0.05069154802724191,
+        "velocity_rmse_over_p75_speed": 0.023143310411648004,
+        "velocity_error_accumulated_2s_over_median_2s_displacement": 0.028489415841792782
+      }
+    }
+  }
+}
