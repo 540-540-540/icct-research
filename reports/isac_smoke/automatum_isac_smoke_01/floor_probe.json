@@ -1,0 +1,358 @@
+{
+  "probe": "deterministic single-target floor",
+  "levels_db": [
+    15.0,
+    30.0,
+    60.0
+  ],
+  "summary": {
+    "15": {
+      "n": 12,
+      "range_rmse_m": 0.0019098474593359236,
+      "radial_velocity_rmse_mps": 0.0021909436571803066,
+      "bearing_rmse_deg": 0.008251436552863924,
+      "position_rmse_m": 0.012106397960424505
+    },
+    "30": {
+      "n": 12,
+      "range_rmse_m": 0.0018118616464016027,
+      "radial_velocity_rmse_mps": 0.0022689741466726814,
+      "bearing_rmse_deg": 0.007854030796946626,
+      "position_rmse_m": 0.011438565259347682
+    },
+    "60": {
+      "n": 12,
+      "range_rmse_m": 0.001793168847212764,
+      "radial_velocity_rmse_mps": 0.0022879355478454782,
+      "bearing_rmse_deg": 0.007780635231387526,
+      "position_rmse_m": 0.01131649502600107
+    }
+  },
+  "rows": [
+    {
+      "target_snr_db": 15.0,
+      "range_gt_m": 25.0,
+      "bearing_gt_deg": 0.0,
+      "range_error_m": 0.0007072324724646251,
+      "radial_velocity_error_mps": -0.0010782284551629218,
+      "bearing_error_deg": 0.0005855791653669242,
+      "position_error_m": 0.0007639975602006091
+    },
+    {
+      "target_snr_db": 30.0,
+      "range_gt_m": 25.0,
+      "bearing_gt_deg": 0.0,
+      "range_error_m": 0.000730727333316139,
+      "radial_velocity_error_mps": -0.0008459031908891745,
+      "bearing_error_deg": 0.00010411335797539633,
+      "position_error_m": 0.0007471220853470634
+    },
+    {
+      "target_snr_db": 60.0,
+      "range_gt_m": 25.0,
+      "bearing_gt_deg": 0.0,
+      "range_error_m": 0.0007356602860113526,
+      "radial_velocity_error_mps": -0.0007972320866116434,
+      "bearing_error_deg": 3.2922277729953187e-06,
+      "position_error_m": 0.0007508309942862512
+    },
+    {
+      "target_snr_db": 15.0,
+      "range_gt_m": 35.0,
+      "bearing_gt_deg": 12.0,
+      "range_error_m": 0.0002708002642108909,
+      "radial_velocity_error_mps": -0.0015448963494417711,
+      "bearing_error_deg": -0.007206648085185114,
+      "position_error_m": 0.004365737186698716
+    },
+    {
+      "target_snr_db": 30.0,
+      "range_gt_m": 35.0,
+      "bearing_gt_deg": 12.0,
+      "range_error_m": 0.0005336075255328865,
+      "radial_velocity_error_mps": -0.0011951721610099497,
+      "bearing_error_deg": -0.007212571645131623,
+      "position_error_m": 0.0043939546605672
+    },
+    {
+      "target_snr_db": 60.0,
+      "range_gt_m": 35.0,
+      "bearing_gt_deg": 12.0,
+      "range_error_m": 0.0005886520642448545,
+      "radial_velocity_error_mps": -0.001121812807653555,
+      "bearing_error_deg": -0.007213821202778659,
+      "position_error_m": 0.004401876742739032
+    },
+    {
+      "target_snr_db": 15.0,
+      "range_gt_m": 48.0,
+      "bearing_gt_deg": -20.0,
+      "range_error_m": -0.0023899935172551068,
+      "radial_velocity_error_mps": 0.0019219075258085638,
+      "bearing_error_deg": 0.002677209052948417,
+      "position_error_m": 0.0032787634403652335
+    },
+    {
+      "target_snr_db": 30.0,
+      "range_gt_m": 48.0,
+      "bearing_gt_deg": -20.0,
+      "range_error_m": -0.0022631571210638413,
+      "radial_velocity_error_mps": 0.0020449112062461694,
+      "bearing_error_deg": 0.0023525876879198636,
+      "position_error_m": 0.0030033614907627494
+    },
+    {
+      "target_snr_db": 60.0,
+      "range_gt_m": 48.0,
+      "bearing_gt_deg": -20.0,
+      "range_error_m": -0.0022366800186119917,
+      "radial_velocity_error_mps": 0.002070665159990881,
+      "bearing_error_deg": 0.002284622529889638,
+      "position_error_m": 0.002946344443704808
+    },
+    {
+      "target_snr_db": 15.0,
+      "range_gt_m": 60.0,
+      "bearing_gt_deg": 30.0,
+      "range_error_m": -0.00091266893719677,
+      "radial_velocity_error_mps": 0.0018494545421336994,
+      "bearing_error_deg": 0.00032470393696074995,
+      "position_error_m": 0.0009765268895250689
+    },
+    {
+      "target_snr_db": 30.0,
+      "range_gt_m": 60.0,
+      "bearing_gt_deg": 30.0,
+      "range_error_m": -0.0008041024673275388,
+      "radial_velocity_error_mps": 0.0017529566310621192,
+      "bearing_error_deg": 5.7760749440861775e-05,
+      "position_error_m": 0.0008091573353677233
+    },
+    {
+      "target_snr_db": 60.0,
+      "range_gt_m": 60.0,
+      "bearing_gt_deg": 30.0,
+      "range_error_m": -0.0007813221141503846,
+      "radial_velocity_error_mps": 0.001732812995214772,
+      "bearing_error_deg": 1.8266832884284504e-06,
+      "position_error_m": 0.0007840516032166512
+    },
+    {
+      "target_snr_db": 15.0,
+      "range_gt_m": 75.0,
+      "bearing_gt_deg": -40.0,
+      "range_error_m": 0.0023351584812161263,
+      "radial_velocity_error_mps": 0.0025644475088348884,
+      "bearing_error_deg": 0.006752501920134498,
+      "position_error_m": 0.009124719320229652
+    },
+    {
+      "target_snr_db": 30.0,
+      "range_gt_m": 75.0,
+      "bearing_gt_deg": -40.0,
+      "range_error_m": 0.002054111557839633,
+      "radial_velocity_error_mps": 0.002882508417688001,
+      "bearing_error_deg": 0.0058711878467486685,
+      "position_error_m": 0.007939910709342166
+    },
+    {
+      "target_snr_db": 60.0,
+      "range_gt_m": 75.0,
+      "bearing_gt_deg": -40.0,
+      "range_error_m": 0.0019952344988638515,
+      "radial_velocity_error_mps": 0.00294902751454984,
+      "bearing_error_deg": 0.005686507058062229,
+      "position_error_m": 0.007691647061323409
+    },
+    {
+      "target_snr_db": 15.0,
+      "range_gt_m": 90.0,
+      "bearing_gt_deg": 55.0,
+      "range_error_m": -0.0026680695331720017,
+      "radial_velocity_error_mps": 0.002899533647504171,
+      "bearing_error_deg": 0.01379128410745104,
+      "position_error_m": 0.02179396169006026
+    },
+    {
+      "target_snr_db": 30.0,
+      "range_gt_m": 90.0,
+      "bearing_gt_deg": 55.0,
+      "range_error_m": -0.0023673827983117235,
+      "radial_velocity_error_mps": 0.0031071253834333845,
+      "bearing_error_deg": 0.01225228183637834,
+      "position_error_m": 0.019361591412574413
+    },
+    {
+      "target_snr_db": 60.0,
+      "range_gt_m": 90.0,
+      "bearing_gt_deg": 55.0,
+      "range_error_m": -0.002304401922273769,
+      "radial_velocity_error_mps": 0.003150531460555328,
+      "bearing_error_deg": 0.011929940591103378,
+      "position_error_m": 0.018852134583920085
+    },
+    {
+      "target_snr_db": 15.0,
+      "range_gt_m": 110.0,
+      "bearing_gt_deg": -60.0,
+      "range_error_m": -0.002655132237080693,
+      "radial_velocity_error_mps": 0.0029689806719233047,
+      "bearing_error_deg": 0.015159553625048826,
+      "position_error_m": 0.029195056648166896
+    },
+    {
+      "target_snr_db": 30.0,
+      "range_gt_m": 110.0,
+      "bearing_gt_deg": -60.0,
+      "range_error_m": -0.0024197678756081586,
+      "radial_velocity_error_mps": 0.0031615897269468007,
+      "bearing_error_deg": 0.015102965919363474,
+      "position_error_m": 0.029066430767242152
+    },
+    {
+      "target_snr_db": 60.0,
+      "range_gt_m": 110.0,
+      "bearing_gt_deg": -60.0,
+      "range_error_m": -0.002370441145103541,
+      "radial_velocity_error_mps": 0.0032018837072378403,
+      "bearing_error_deg": 0.015091031601027085,
+      "position_error_m": 0.02903955214048433
+    },
+    {
+      "target_snr_db": 15.0,
+      "range_gt_m": 18.0,
+      "bearing_gt_deg": 45.0,
+      "range_error_m": 0.0021451953772633203,
+      "radial_velocity_error_mps": -0.002260026979275409,
+      "bearing_error_deg": -0.007958877184631785,
+      "position_error_m": 0.0032797431096984737
+    },
+    {
+      "target_snr_db": 30.0,
+      "range_gt_m": 18.0,
+      "bearing_gt_deg": 45.0,
+      "range_error_m": 0.0023249931661162293,
+      "radial_velocity_error_mps": -0.0022969852359988607,
+      "bearing_error_deg": -0.008969061144529217,
+      "position_error_m": 0.003631173623214815
+    },
+    {
+      "target_snr_db": 60.0,
+      "range_gt_m": 18.0,
+      "bearing_gt_deg": 45.0,
+      "range_error_m": 0.002362663058072201,
+      "radial_velocity_error_mps": -0.0023047301596266223,
+      "bearing_error_deg": -0.0091806523960518,
+      "position_error_m": 0.003704944246471099
+    },
+    {
+      "target_snr_db": 15.0,
+      "range_gt_m": 42.0,
+      "bearing_gt_deg": -8.0,
+      "range_error_m": 0.0022865891017147533,
+      "radial_velocity_error_mps": 0.0011130927845055538,
+      "bearing_error_deg": -0.00314257333147525,
+      "position_error_m": 0.0032458322126338143
+    },
+    {
+      "target_snr_db": 30.0,
+      "range_gt_m": 42.0,
+      "bearing_gt_deg": -8.0,
+      "range_error_m": 0.0021018794541802777,
+      "radial_velocity_error_mps": 0.001424522598565403,
+      "bearing_error_deg": -0.0031747683771075085,
+      "position_error_m": 0.0031338322191959544
+    },
+    {
+      "target_snr_db": 60.0,
+      "range_gt_m": 42.0,
+      "bearing_gt_deg": -8.0,
+      "range_error_m": 0.0020632106061313493,
+      "radial_velocity_error_mps": 0.0014897866437433294,
+      "bearing_error_deg": -0.0031815142478900274,
+      "position_error_m": 0.003111308432701945
+    },
+    {
+      "target_snr_db": 15.0,
+      "range_gt_m": 55.0,
+      "bearing_gt_deg": 5.0,
+      "range_error_m": 0.002606904842330948,
+      "radial_velocity_error_mps": 0.0005037382621431163,
+      "bearing_error_deg": -0.008009010072449743,
+      "position_error_m": 0.008091584847561992
+    },
+    {
+      "target_snr_db": 30.0,
+      "range_gt_m": 55.0,
+      "bearing_gt_deg": 5.0,
+      "range_error_m": 0.0025754884521518306,
+      "radial_velocity_error_mps": 0.0008689482721084829,
+      "bearing_error_deg": -0.007038230340647425,
+      "position_error_m": 0.007208312180023563
+    },
+    {
+      "target_snr_db": 60.0,
+      "range_gt_m": 55.0,
+      "bearing_gt_deg": 5.0,
+      "range_error_m": 0.002568922174937427,
+      "radial_velocity_error_mps": 0.0009454585334509602,
+      "bearing_error_deg": -0.006834851850199114,
+      "position_error_m": 0.007024752997582075
+    },
+    {
+      "target_snr_db": 15.0,
+      "range_gt_m": 68.0,
+      "bearing_gt_deg": -52.0,
+      "range_error_m": 0.0005830319337860601,
+      "radial_velocity_error_mps": 0.002758952271511461,
+      "bearing_error_deg": -0.012287356621331512,
+      "position_error_m": 0.01455526109231294
+    },
+    {
+      "target_snr_db": 30.0,
+      "range_gt_m": 68.0,
+      "bearing_gt_deg": -52.0,
+      "range_error_m": 0.000733300846903262,
+      "radial_velocity_error_mps": 0.0026141206388334837,
+      "bearing_error_deg": -0.011396206386827114,
+      "position_error_m": 0.013508776841974544
+    },
+    {
+      "target_snr_db": 60.0,
+      "range_gt_m": 68.0,
+      "bearing_gt_deg": -52.0,
+      "range_error_m": 0.000764735798526317,
+      "radial_velocity_error_mps": 0.002583812291291565,
+      "bearing_error_deg": -0.011209565630069765,
+      "position_error_m": 0.013289982971776616
+    },
+    {
+      "target_snr_db": 15.0,
+      "range_gt_m": 130.0,
+      "bearing_gt_deg": 65.0,
+      "range_error_m": 0.00025326720754037524,
+      "radial_velocity_error_mps": 0.0029880624722409266,
+      "bearing_error_deg": -0.0018794062360411533,
+      "position_error_m": 0.00426861769845343
+    },
+    {
+      "target_snr_db": 30.0,
+      "range_gt_m": 130.0,
+      "bearing_gt_deg": 65.0,
+      "range_error_m": 0.00036529112995253854,
+      "radial_velocity_error_mps": 0.0030866779058484894,
+      "bearing_error_deg": -0.0001931521643004156,
+      "position_error_m": 0.0005704501236130287
+    },
+    {
+      "target_snr_db": 60.0,
+      "range_gt_m": 130.0,
+      "bearing_gt_deg": 65.0,
+      "range_error_m": 0.000388752175041418,
+      "radial_velocity_error_mps": 0.0031073391525140437,
+      "bearing_error_deg": 0.00016010013777600937,
+      "position_error_m": 0.0005320827362901552
+    }
+  ],
+  "note": "clean-target detector bias/quantisation floor; C-domain diagnostic only"
+}

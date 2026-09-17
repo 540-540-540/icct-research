@@ -38,14 +38,14 @@ def box_sum(x: torch.Tensor, half_h: int, half_w: int) -> torch.Tensor:
 
 
 @torch.no_grad()
-def compute_maps(Y_b: torch.Tensor, X_b: torch.Tensor, waveform: PaperWaveform, array: ArrayConfig,
-                 detector: dict, resource: SensingResource | None = None) -> dict:
-    """2D RD map over the active sensing resource.
+def rd_spectrum(Y_b: torch.Tensor, X_b: torch.Tensor, waveform: PaperWaveform, array: ArrayConfig,
+                resource: SensingResource | None = None) -> dict:
+    """2D Range-Doppler spectrum over the active sensing resource (B domain, no CFAR).
 
-    ``resource=None`` keeps the frozen full-grid oracle path (all N symbols). A
-    ``contiguous_burst`` resource integrates only the active consecutive symbols; the range
-    grid stays at nr=2K and the velocity grid becomes nv=2*active_symbols with the slow-time
-    spacing still T, so the unambiguous velocity is unchanged.
+    ``resource=None`` keeps the full-grid oracle path (all N symbols). A ``contiguous_burst``
+    resource integrates only the active consecutive symbols; the range grid stays at nr=2K and
+    the velocity grid becomes nv=2*active_symbols with the slow-time spacing still T, so the
+    unambiguous velocity is unchanged.
     """
     if Y_b.ndim != 3 or Y_b.shape != (array.elements, waveform.K, waveform.N):
         raise ValueError("Y_b must be [A,K,N]")
@@ -67,28 +67,37 @@ def compute_maps(Y_b: torch.Tensor, X_b: torch.Tensor, waveform: PaperWaveform, 
     spectrum = torch.fft.ifft(z * range_window, n=nr, dim=1)
     spectrum = torch.fft.fftshift(torch.fft.fft(spectrum * doppler_window, n=nv, dim=2), dim=2)
     power = spectrum.abs().square().sum(dim=0)
+    ranges = torch.arange(nr, device=device, dtype=dtype) * (waveform.unambiguous_range / nr)
+    velocities = torch.fft.fftshift(torch.fft.fftfreq(nv, d=waveform.T, device=device, dtype=dtype))
+    velocities = velocities * (waveform.c / (2 * waveform.fc))
+    return {"P_RD": power, "spectrum": spectrum, "ranges": ranges, "velocities": velocities,
+            "nr": nr, "nv": nv, "samples": samples}
+
+
+@torch.no_grad()
+def compute_maps(Y_b: torch.Tensor, X_b: torch.Tensor, waveform: PaperWaveform, array: ArrayConfig,
+                 detector: dict, resource: SensingResource | None = None) -> dict:
+    """Legacy CFAR path: RD spectrum plus the sliding-window noise/alpha fields."""
+    maps = rd_spectrum(Y_b, X_b, waveform, array, resource=resource)
 
     train_r, train_v = (int(v) for v in detector["cfar_train"])
     guard_r, guard_v = (int(v) for v in detector["cfar_guard"])
     if not (0 <= guard_r < train_r and 0 <= guard_v < train_v):
         raise ValueError("CFAR guard must be strictly inside the training window")
+    power = maps["P_RD"]
     ring_sum = box_sum(power, train_r, train_v) - box_sum(power, guard_r, guard_v)
     one = torch.ones_like(power)
     ring_count = box_sum(one, train_r, train_v) - box_sum(one, guard_r, guard_v)
     ring_count = ring_count.clamp_min(1.0)
     noise = ring_sum / ring_count
     target_false_alarms = float(detector["target_false_alarms_per_bs_frame"])
-    if not 0 < target_false_alarms < nr * nv:
+    if not 0 < target_false_alarms < maps["nr"] * maps["nv"]:
         raise ValueError("Invalid target false alarm budget")
-    pfa_cell = target_false_alarms / (nr * nv)
+    pfa_cell = target_false_alarms / (maps["nr"] * maps["nv"])
     alpha = ring_count * (pfa_cell ** (-1.0 / ring_count) - 1.0)
 
-    ranges = torch.arange(nr, device=device, dtype=dtype) * (waveform.unambiguous_range / nr)
-    velocities = torch.fft.fftshift(torch.fft.fftfreq(nv, d=waveform.T, device=device, dtype=dtype))
-    velocities = velocities * (waveform.c / (2 * waveform.fc))
-    return {"P_RD": power, "noise": noise, "alpha": alpha, "ring_count": ring_count,
-            "spectrum": spectrum, "ranges": ranges, "velocities": velocities,
-            "nr": nr, "nv": nv}
+    maps.update(noise=noise, alpha=alpha, ring_count=ring_count)
+    return maps
 
 
 @torch.no_grad()
@@ -248,3 +257,168 @@ def process_baseline(Y_b: torch.Tensor, X_b: torch.Tensor, station_id: int, wave
                                                        covariance_lut=covariance_lut, height=height)
     return {"power_rd": maps["P_RD"], "detections": detections,
             "snapshots": snapshots, "counters": counters}
+
+
+def _angle_parabolic(log_power: torch.Tensor, index: int) -> float:
+    size = log_power.numel()
+    left = log_power[(index - 1) % size] if index > 0 else log_power[index]
+    centre = log_power[index]
+    right = log_power[(index + 1) % size] if index < size - 1 else log_power[index]
+    denom = float(left - 2 * centre + right)
+    if denom >= 0:
+        return 0.0
+    return float(min(max(0.5 * float(left - right) / denom, -0.5), 0.5))
+
+
+@torch.no_grad()
+def aoa_angle_peaks(snapshot: torch.Tensor, array: ArrayConfig, max_peaks: int, rel_threshold_db: float,
+                    nms_radius: int, noise_reference: float | None = None,
+                    floor_factor_db: float | None = None) -> list[dict]:
+    """All resolvable angle peaks of one RD-bin snapshot (no CFAR, no target count).
+
+    Two internal spectrum-candidate filters keep the extraction honest without any
+    false-alarm calibration: a peak must stay within ``rel_threshold_db`` of the strongest
+    angle peak (rejects the -13.3 dB rectangular-array sidelobes) and, when a noise
+    reference is supplied, must beat it by ``floor_factor_db`` (rejects noise angle peaks).
+    """
+    if snapshot.ndim != 1 or snapshot.numel() != array.elements:
+        raise ValueError("snapshot must contain one complex sample per array element")
+    if int(max_peaks) < 1 or not math.isfinite(rel_threshold_db):
+        raise ValueError("max_peaks >= 1 and a finite relative threshold are required")
+    absolute_floor = 0.0
+    if noise_reference is not None:
+        if not math.isfinite(float(noise_reference)) or float(noise_reference) <= 0:
+            raise ValueError("noise_reference must be finite and positive")
+        if floor_factor_db is None or not math.isfinite(float(floor_factor_db)):
+            raise ValueError("floor_factor_db is required together with noise_reference")
+        absolute_floor = float(noise_reference) * 10 ** (float(floor_factor_db) / 10)
+    spectrum = torch.fft.fftshift(torch.fft.fft(snapshot, n=array.fft_size))
+    power = spectrum.abs().square()
+    log_power = torch.log(power.clamp_min(torch.finfo(power.dtype).tiny))
+    candidates = sorted(_nms_1d(power, int(nms_radius)),
+                        key=lambda i: (-float(power[i]), int(i)))
+    suppressed = torch.zeros(array.fft_size, dtype=torch.bool, device=power.device)
+    kept: list[int] = []
+    for index in candidates:
+        if suppressed[index]:
+            continue
+        low = max(0, index - int(nms_radius))
+        high = min(array.fft_size, index + int(nms_radius) + 1)
+        suppressed[low:high] = True
+        kept.append(int(index))
+        if len(kept) >= int(max_peaks):
+            break
+    strongest = float(power[kept[0]])
+    step = 2.0 / array.fft_size
+    u_grid = 2.0 * torch.fft.fftshift(torch.fft.fftfreq(array.fft_size))
+    peaks = []
+    for index in kept:
+        if float(power[index]) < absolute_floor:
+            break
+        relative_db = 10 * math.log10(float(power[index]) / strongest)
+        if relative_db < -float(rel_threshold_db):
+            continue
+        fraction = _angle_parabolic(log_power, index)
+        u_hat = float(u_grid[index]) + fraction * step
+        peaks.append({"u": float(min(max(u_hat, -1.0), 1.0)), "bin": int(index),
+                      "relative_db": float(relative_db), "power": float(power[index])})
+    return peaks
+
+
+@torch.no_grad()
+def extract_rd_peaks(maps: dict, params: dict, range_roi_m: tuple[float, float]) -> tuple[list[dict], dict]:
+    """Local spectral RD peaks above a global median floor (no CFAR false-alarm logic)."""
+    power = maps["P_RD"]
+    if not torch.isfinite(power).all():
+        raise ValueError("RD power map must be finite")
+    floor = float(power.median())
+    floor_db = 10 * math.log10(max(floor, 1e-300))
+    threshold = floor * 10 ** (float(params["rd_floor_factor_db"]) / 10)
+    in_roi = (maps["ranges"] >= float(range_roi_m[0])) & (maps["ranges"] <= float(range_roi_m[1]))
+    mask = (power > threshold) & in_roi[:, None]
+    radius = (int(params["rd_nms_radius"][0]), int(params["rd_nms_radius"][1]))
+    candidates = local_maxima(mask, power, radius)
+    indices = torch.nonzero(candidates).tolist()
+    log_power = torch.log(power.clamp_min(torch.finfo(power.dtype).tiny))
+    order = sorted(range(len(indices)), key=lambda n: (-float(power[tuple(indices[n])]), indices[n]))
+    suppressed = torch.zeros_like(mask)
+    d_r = float(maps["ranges"][1] - maps["ranges"][0])
+    d_v = float(maps["velocities"][1] - maps["velocities"][0])
+    hh, hw = radius
+    peaks, nms_suppressed, roi_rejected = [], 0, 0
+    for position in order:
+        index = indices[position]
+        if suppressed[index[0], index[1]]:
+            nms_suppressed += 1
+            continue
+        suppressed[max(0, index[0] - hh):min(maps["nr"], index[0] + hh + 1),
+                   max(0, index[1] - hw):min(maps["nv"], index[1] + hw + 1)] = True
+        fraction_r = _parabolic(log_power, (index[0], index[1]), 0)
+        fraction_v = _parabolic(log_power, (index[0], index[1]), 1)
+        r_hat = float(maps["ranges"][index[0]]) + fraction_r * d_r
+        v_hat = float(maps["velocities"][index[1]]) + fraction_v * d_v
+        if not (float(range_roi_m[0]) <= r_hat <= float(range_roi_m[1])):
+            roi_rejected += 1
+            continue
+        peaks.append({"range_m": r_hat, "radial_velocity_mps": v_hat,
+                      "peak_power": float(power[index[0], index[1]]),
+                      "grid_index": [int(index[0]), int(index[1])]})
+        if len(peaks) >= int(params["rd_max_peaks"]):
+            break
+    counters = {"local_maxima": len(indices), "nms_suppressed": nms_suppressed,
+                "roi_rejected": roi_rejected, "returned_count": len(peaks),
+                "median_floor": float(floor), "median_floor_db": float(floor_db),
+                "threshold_db": float(floor_db + float(params["rd_floor_factor_db"]))}
+    return peaks, counters
+
+
+@torch.no_grad()
+def detect_anonymous_measurements(Y_b: torch.Tensor, X_b: torch.Tensor, station_id: int, station,
+                                  boresight: float, waveform: PaperWaveform, array: ArrayConfig,
+                                  params: dict, visibility: dict,
+                                  resource: SensingResource | None = None) -> dict:
+    """Non-CFAR single-BS detector: shared echo in, anonymous measurements out.
+
+    The callable sees only the received cube, the known communication symbols, its own
+    station geometry and the waveform/visibility model parameters. No target list, no
+    identity, no ground-truth count enters this function.
+    """
+    maps = rd_spectrum(Y_b, X_b, waveform, array, resource=resource)
+    roi = (float(visibility["range_min_m"]), float(visibility["range_max_m"]))
+    height = float(visibility["height_difference_m"])
+    fov_half = math.radians(float(visibility["fov_half_angle_deg"]))
+    peaks, rd_counters = extract_rd_peaks(maps, params, roi)
+    measurements, fov_rejected = [], 0
+    for peak in peaks:
+        i, j = peak["grid_index"]
+        snapshot = maps["spectrum"][:, i, j]
+        angles = aoa_angle_peaks(snapshot, array, int(params["aoa_max_peaks"]),
+                                 float(params["aoa_rel_threshold_db"]), int(params["aoa_nms_radius"]),
+                                 noise_reference=rd_counters["median_floor"],
+                                 floor_factor_db=float(params.get("aoa_floor_factor_db", 10.0)))
+        for rank, angle in enumerate(angles[:int(params["max_measurements_per_rd_peak"])]):
+            bearing = math.asin(angle["u"])
+            if abs(bearing) > fov_half:
+                fov_rejected += 1
+                continue
+            x_m, y_m = coords.polar_to_cartesian(peak["range_m"], angle["u"], station, boresight, height)
+            measurements.append({
+                "station_id": int(station_id),
+                "range_hat": float(peak["range_m"]),
+                "radial_velocity_hat": float(peak["radial_velocity_mps"]),
+                "u_hat": float(angle["u"]),
+                "bearing_hat": float(bearing),
+                "x_hat_bs": float(x_m),
+                "y_hat_bs": float(y_m),
+                "rd_peak_power": peak["peak_power"],
+                "angle_peak_power": angle["power"],
+                "angle_peak_relative_db": angle["relative_db"],
+                "angle_rank": int(rank),
+                "grid_index": [int(i), int(j), int(angle["bin"])],
+            })
+    counters = dict(rd_counters)
+    counters.update(fov_rejected=fov_rejected, measurements=len(measurements),
+                    rd_peaks=len(peaks))
+    return {"measurements": measurements, "rd_peaks": peaks, "counters": counters,
+            "power_rd": maps["P_RD"], "spectrum": maps["spectrum"],
+            "ranges": maps["ranges"], "velocities": maps["velocities"]}

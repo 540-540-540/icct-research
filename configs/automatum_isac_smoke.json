@@ -1,0 +1,110 @@
+{
+  "revision": "AUTOMATUM-ISAC-SMOKE-01",
+  "status": "smoke candidates only; nothing in this file is frozen",
+  "dataset": {
+    "splits_dir": "data/automatum_t_crossing/splits",
+    "train_trajectories": "data/automatum_t_crossing/splits/train/trajectories.csv",
+    "val_trajectories": "data/automatum_t_crossing/splits/val/trajectories.csv",
+    "test_trajectories": "data/automatum_t_crossing/splits/test/trajectories.csv",
+    "source_hz": 29.97,
+    "stride": 3,
+    "dt_rule": "dt = stride / source_hz = 3 / 29.97; never hardcode 0.1",
+    "state_columns": ["x", "y", "vx", "vy"],
+    "velocity_frame": "world; vx/vy come rotated to world axes and must never be rotated again"
+  },
+  "waveform": {
+    "fc": 24000000000.0,
+    "B": 93100000.0,
+    "K": 256,
+    "N": 256,
+    "T": 1.2375e-05,
+    "c": 299792458.0
+  },
+  "sensing_resource": {
+    "mode": "full",
+    "total_symbols": 256,
+    "active_symbols": 256,
+    "start_symbol": 0,
+    "note": "all 256 communication OFDM symbols are reused for sensing"
+  },
+  "array": {
+    "elements": 16,
+    "spacing_wavelengths": 0.5,
+    "fft_size": 64,
+    "window": "rect",
+    "aoa_max_peaks": 1,
+    "aoa_nms_radius": 4
+  },
+  "scenes": [
+    {
+      "scene_id": 0,
+      "label": "Gaimersheim Stadtweg",
+      "junction_center_xy_m": [-21.0533598837844, -2.95345546097586],
+      "stations_xy_m": [
+        [26.200525320073083, 7.623030351301587],
+        [-30.4325273459796, 33.09256795456605],
+        [-26.549335918797667, -32.757553290344234]
+      ],
+      "boresights_deg": [-167.3838440101848, -75.41506241557956, 79.55183860023827]
+    },
+    {
+      "scene_id": 1,
+      "label": "St2214 Duenzlau Umgehung",
+      "junction_center_xy_m": [4.469859998597535, 26.762252641638906],
+      "stations_xy_m": [
+        [42.98047784925911, 39.27481469711556],
+        [26.9391919538491, -20.71416051351561],
+        [-13.380141846409817, 52.715592275166465]
+      ],
+      "boresights_deg": [-162.0003986009626, 115.32695701167816, -55.48086353031954]
+    }
+  ],
+  "visibility": {
+    "range_min_m": 5.0,
+    "range_max_m": 150.0,
+    "fov_half_angle_deg": 70.0,
+    "station_height_m": 6.5,
+    "vehicle_height_m": 1.5,
+    "height_difference_m": 5.0,
+    "status": "CANDIDATE (from the adaptation audit, not frozen)"
+  },
+  "power": {
+    "fixed_rcs_m2": 1.0,
+    "amplitude_rule": "amplitude = sqrt(rcs_m2) / r^2; absolute scale is irrelevant because SNR is set by noise scaling",
+    "note": "no 100 m reference SNR, no per-target SNR, no post-FFT SNR in the new path"
+  },
+  "snr": {
+    "definition": "SNR_b = 10*log10(mean|S_b|^2 / mean|W_b|^2) before FFT/detector/fusion",
+    "control": "fix clean shared echo S_b; draw one base noise W0 keyed by (scene, frame, bs); W = scale * W0",
+    "seed_rule": "noise seed depends on (scene_id, frame, bs) only; SNR never enters the seed",
+    "sweep_db": [-10, -5, 0, 5, 10, 15],
+    "achieved_tolerance_db": 0.05,
+    "status": "calibration sweep, not a freeze"
+  },
+  "detector": {
+    "path": "range FFT -> Doppler FFT -> RD power -> physical ROI -> local maxima -> NMS -> sub-bin interpolation -> AoA FFT -> multi-angle peaks",
+    "cfar": false,
+    "rd_floor_factor_db": 20.0,
+    "rd_nms_radius": [5, 5],
+    "rd_max_peaks": 32,
+    "aoa_floor_factor_db": 10.0,
+    "aoa_rel_threshold_db": 10.0,
+    "aoa_nms_radius": 4,
+    "aoa_max_peaks": 6,
+    "max_measurements_per_rd_peak": 4,
+    "status": "candidate parameters for SMOKE-01 calibration",
+    "parameter_rationale": "rd floor 20 dB above the RD median sits ~15 dB above the observed noise-only maximum (+4.5 dB) and above the Hann sidelobe ring beyond the NMS radius at the top of the sweep; NMS radius 5 covers the first Hann sidelobe ring (measured at +-4..5 bins); AoA peaks must beat the RD-median noise reference by 10 dB and stay within 10 dB of the strongest angle peak (rect array first sidelobe is -13.3 dB)"
+  },
+  "smoke": {
+    "train_frames_per_scene": 36,
+    "val_frames_per_scene": 10,
+    "selection_rule": "deterministic per-scene categories: high density, median density, low density, closest pair, junction center, farthest target; union sorted by canonical frame",
+    "train_category_frames": 6,
+    "val_category_frames": 2,
+    "match_gates": {
+      "range_m": 8.0,
+      "u": 0.25,
+      "radial_velocity_mps": 5.0
+    }
+  }
+}
