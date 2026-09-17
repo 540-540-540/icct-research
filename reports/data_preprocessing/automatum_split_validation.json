@@ -1,0 +1,341 @@
+{
+ "dataset": "automatum_t_crossing_splits",
+ "validator": "tools/data_preprocessing/validate_automatum_splits.py",
+ "checks": {
+  "parent_canonical_sha256": {
+   "pass": true,
+   "detail": {
+    "actual": "a41ac4e24a8f21039dde60064868871b21093289a661ca9bef28ee7d1aab3442",
+    "expected": "a41ac4e24a8f21039dde60064868871b21093289a661ca9bef28ee7d1aab3442"
+   }
+  },
+  "canonical_rows_expected": {
+   "pass": true,
+   "detail": {
+    "rows": 81450
+   }
+  },
+  "schemas_identical_7_columns": {
+   "pass": true,
+   "detail": {
+    "headers": {
+     "train": "scene_id,vehicle_id,timestamp,x,y,vx,vy",
+     "val": "scene_id,vehicle_id,timestamp,x,y,vx,vy",
+     "test": "scene_id,vehicle_id,timestamp,x,y,vx,vy"
+    }
+   }
+  },
+  "split_rows_exist_in_canonical": {
+   "pass": true,
+   "detail": {
+    "train": 0,
+    "val": 0,
+    "test": 0
+   }
+  },
+  "split_rows_unique": {
+   "pass": true,
+   "detail": {
+    "train": 0,
+    "val": 0,
+    "test": 0
+   }
+  },
+  "no_split_row_overlap": {
+   "pass": true,
+   "detail": {
+    "train_val": 0,
+    "train_test": 0,
+    "val_test": 0
+   }
+  },
+  "canonical_rows_partitioned": {
+   "pass": true,
+   "detail": {
+    "counts": {
+     "train": 66652,
+     "gap": 539,
+     "val": 7141,
+     "test": 7118
+    },
+    "mismatches": 0,
+    "outside": 0
+   }
+  },
+  "gap_rows_not_in_any_split": {
+   "pass": true,
+   "detail": {
+    "gap_rows": 539,
+    "gap_rows_found_in_splits": 0
+   }
+  },
+  "split_counts_match_stats": {
+   "pass": true,
+   "detail": {
+    "train": 66652,
+    "val": 7141,
+    "test": 7118,
+    "gap": 539,
+    "stats_gap": 539
+   }
+  },
+  "timestamp_not_across_splits": {
+   "pass": true,
+   "detail": {
+    "checked_timestamps": 16535,
+    "violations": 0
+   }
+  },
+  "scenes_split_as_contiguous_blocks": {
+   "pass": true,
+   "detail": {
+    "0": {
+     "contiguous": true,
+     "ranges": {
+      "train": [
+       0,
+       5197
+      ],
+      "val": [
+       5238,
+       5871
+      ],
+      "test": [
+       5912,
+       6500
+      ],
+      "gap1": [
+       5198,
+       5237
+      ],
+      "gap2": [
+       5872,
+       5911
+      ]
+     },
+     "gap_sizes": [
+      40,
+      40
+     ]
+    },
+    "1": {
+     "contiguous": true,
+     "ranges": {
+      "train": [
+       85,
+       9049
+      ],
+      "val": [
+       9090,
+       10097
+      ],
+      "test": [
+       10138,
+       11245
+      ],
+      "gap1": [
+       9050,
+       9089
+      ],
+      "gap2": [
+       10098,
+       10137
+      ]
+     },
+     "gap_sizes": [
+      40,
+      40
+     ]
+    }
+   }
+  },
+  "selected_boundaries_within_search_radius": {
+   "pass": true,
+   "detail": {
+    "0": {
+     "nominal": [
+      5137,
+      5819
+     ],
+     "selected": [
+      5198,
+      5872
+     ],
+     "within_search_radius": true,
+     "rule_reproduction": {
+      "reproduced": [
+       5198,
+       5872
+      ],
+      "manifest": [
+       5198,
+       5872
+      ],
+      "match": true,
+      "feasible_pairs_reproduced": 49537,
+      "feasible_pairs_manifest": 49537
+     }
+    },
+    "1": {
+     "nominal": [
+      8950,
+      10098
+     ],
+     "selected": [
+      9050,
+      10098
+     ],
+     "within_search_radius": true,
+     "rule_reproduction": {
+      "reproduced": [
+       9050,
+       10098
+      ],
+      "manifest": [
+       9050,
+       10098
+      ],
+      "match": true,
+      "feasible_pairs_reproduced": 147187,
+      "feasible_pairs_manifest": 147187
+     }
+    }
+   }
+  },
+  "boundary_rule_reproduced": {
+   "pass": true,
+   "detail": {
+    "0": {
+     "nominal": [
+      5137,
+      5819
+     ],
+     "selected": [
+      5198,
+      5872
+     ],
+     "within_search_radius": true,
+     "rule_reproduction": {
+      "reproduced": [
+       5198,
+       5872
+      ],
+      "manifest": [
+       5198,
+       5872
+      ],
+      "match": true,
+      "feasible_pairs_reproduced": 49537,
+      "feasible_pairs_manifest": 49537
+     }
+    },
+    "1": {
+     "nominal": [
+      8950,
+      10098
+     ],
+     "selected": [
+      9050,
+      10098
+     ],
+     "within_search_radius": true,
+     "rule_reproduction": {
+      "reproduced": [
+       9050,
+       10098
+      ],
+      "manifest": [
+       9050,
+       10098
+      ],
+      "match": true,
+      "feasible_pairs_reproduced": 147187,
+      "feasible_pairs_manifest": 147187
+     }
+    }
+   }
+  },
+  "ratio_within_2pp": {
+   "pass": true,
+   "detail": {
+    "0": {
+     "train": 0.809531,
+     "val": 0.098739,
+     "test": 0.09173,
+     "within_tol": true
+    },
+    "1": {
+     "train": 0.809043,
+     "val": 0.090967,
+     "test": 0.099991,
+     "within_tol": true
+    }
+   }
+  },
+  "csv_sorted_scene_time_vehicle": {
+   "pass": true,
+   "detail": {
+    "sorted": true
+   }
+  },
+  "manifest_rows_sizes": {
+   "pass": true,
+   "detail": {
+    "train.csv": {
+     "rows": 66652,
+     "size_bytes": 4308924,
+     "sha256": "d75994cb999d10ac5c05fab00f95a11d98b8e8cc61c475b87373ba6b51a82a11",
+     "manifest_sha256": "d75994cb999d10ac5c05fab00f95a11d98b8e8cc61c475b87373ba6b51a82a11"
+    },
+    "val.csv": {
+     "rows": 7141,
+     "size_bytes": 460201,
+     "sha256": "c9964adb9b73e828754912381f5d93cfd8adf215bad4ba85db766d4166ab894d",
+     "manifest_sha256": "c9964adb9b73e828754912381f5d93cfd8adf215bad4ba85db766d4166ab894d"
+    },
+    "test.csv": {
+     "rows": 7118,
+     "size_bytes": 458816,
+     "sha256": "6fb3117e95368e2c5b66cca5a28cb45a1ff91691d4afea4fb9b8c1a17eb75371",
+     "manifest_sha256": "6fb3117e95368e2c5b66cca5a28cb45a1ff91691d4afea4fb9b8c1a17eb75371"
+    }
+   }
+  },
+  "csv_sha256_matches_manifest": {
+   "pass": true,
+   "detail": {
+    "train.csv": "d75994cb999d10ac5c05fab00f95a11d98b8e8cc61c475b87373ba6b51a82a11",
+    "val.csv": "c9964adb9b73e828754912381f5d93cfd8adf215bad4ba85db766d4166ab894d",
+    "test.csv": "6fb3117e95368e2c5b66cca5a28cb45a1ff91691d4afea4fb9b8c1a17eb75371"
+   }
+  },
+  "manifest_mirror_byte_identical": {
+   "pass": true,
+   "detail": {
+    "runtime": "21bee09b8ccea23ed1d234bbad938e0de9a076681a250e138eaaf7f8d3d25f46",
+    "git_mirror": "21bee09b8ccea23ed1d234bbad938e0de9a076681a250e138eaaf7f8d3d25f46"
+   }
+  },
+  "manifest_sha256_matches_stats": {
+   "pass": true,
+   "detail": {
+    "manifest": "21bee09b8ccea23ed1d234bbad938e0de9a076681a250e138eaaf7f8d3d25f46",
+    "stats": "21bee09b8ccea23ed1d234bbad938e0de9a076681a250e138eaaf7f8d3d25f46"
+   }
+  }
+ },
+ "summary": {
+  "checks_total": 19,
+  "checks_passed": 19,
+  "checks_failed": 0,
+  "failed_checks": [],
+  "verdict": "PASS"
+ },
+ "split_row_accounting": {
+  "train": 66652,
+  "val": 7141,
+  "test": 7118,
+  "gap": 539,
+  "canonical": 81450
+ }
+}

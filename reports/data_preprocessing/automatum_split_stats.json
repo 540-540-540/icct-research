@@ -1,0 +1,362 @@
+{
+ "dataset": "automatum_t_crossing_splits",
+ "canonical_sha256_verified": true,
+ "parent_canonical_path": "data/automatum_t_crossing/processed/trajectories_10hz.csv",
+ "sampling": {
+  "source_fps": 29.97,
+  "stride": 3,
+  "canonical_fps": 9.99,
+  "canonical_dt_s": 0.1001001001001001,
+  "canonical_frame_rule": "source_frame = round(timestamp*29.97); source_frame % 3 == 0; canonical_frame = source_frame // 3"
+ },
+ "split": {
+  "target_ratio": [
+   0.8,
+   0.1,
+   0.1
+  ],
+  "gap_frames": 40,
+  "search_radius_seconds": 30,
+  "search_radius_frames": 300,
+  "ratio_tolerance_percentage_points": 2.0,
+  "ratio_definition": "per scene, slots/usable_slots with usable_slots = F - 2*gap_frames",
+  "boundary_selection_algorithm": "per scene: joint search of (gap1_start, gap2_start) over +/-300 canonical frames around the nominal 8:1:1 cuts; feasible pairs keep train/val/test slot ratios within +/-2 percentage points of 0.80/0.10/0.10; feasible pairs are ranked lexicographically ascending by (total cross-gap vehicles, total gap rows, total mean active vehicles in gaps, total max active vehicles in gaps, total offset from nominal boundaries, earliest gap1, earliest gap2); the first pair wins, no manual pick"
+ },
+ "scenes": {
+  "0": {
+   "scene_id": 0,
+   "f_first": 0,
+   "f_last": 6500,
+   "total_slots": 6501,
+   "usable_slots": 6421,
+   "nominal_gap1_start_frame": 5137,
+   "nominal_gap2_start_frame": 5819,
+   "selected_gap1_start_frame": 5198,
+   "selected_gap2_start_frame": 5872,
+   "gap1_shift_frames": 61,
+   "gap2_shift_frames": 53,
+   "gap1": {
+    "cross_gap_vehicles": 2,
+    "gap_rows": 169,
+    "mean_active_vehicles_in_gap": 4.225,
+    "max_active_vehicles_in_gap": 6,
+    "distance_from_nominal_frames": 61
+   },
+   "gap2": {
+    "cross_gap_vehicles": 5,
+    "gap_rows": 257,
+    "mean_active_vehicles_in_gap": 6.425,
+    "max_active_vehicles_in_gap": 7,
+    "distance_from_nominal_frames": 53
+   },
+   "candidate_gap1_starts": 601,
+   "candidate_gap2_starts": 601,
+   "feasible_pairs": 49537,
+   "selected_pair_rank_key": {
+    "cross_gap_vehicles_total": 7,
+    "gap_rows_total": 426,
+    "mean_active_total": 10.649999999999999,
+    "max_active_total": 13,
+    "nominal_offset_total_frames": 114
+   },
+   "split_frame_ranges": {
+    "train": [
+     0,
+     5197
+    ],
+    "val": [
+     5238,
+     5871
+    ],
+    "test": [
+     5912,
+     6500
+    ]
+   },
+   "gap1_frame_range": [
+    5198,
+    5237
+   ],
+   "gap2_frame_range": [
+    5872,
+    5911
+   ],
+   "gap1_timestamp_range_s": [
+    520.3203203203203,
+    524.2242242242243
+   ],
+   "gap2_timestamp_range_s": [
+    587.7877877877878,
+    591.6916916916917
+   ],
+   "train_slots": 5198,
+   "val_slots": 634,
+   "test_slots": 589,
+   "train_ratio": 0.8095312256657842,
+   "val_ratio": 0.0987385142501168,
+   "test_ratio": 0.09173026008409906,
+   "gap_rows": {
+    "gap1": 169,
+    "gap2": 257
+   },
+   "window_supply": {
+    "train": {
+     "potential_single_vehicle_40pt_windows": 23987,
+     "unique_vehicles_with_40pt_window": 237,
+     "anchor_count": 5072,
+     "anchors_ge_2": 4857,
+     "anchors_2_to_8": 4430,
+     "anchors_gt_8": 427
+    },
+    "val": {
+     "potential_single_vehicle_40pt_windows": 2589,
+     "unique_vehicles_with_40pt_window": 33,
+     "anchor_count": 557,
+     "anchors_ge_2": 493,
+     "anchors_2_to_8": 418,
+     "anchors_gt_8": 75
+    },
+    "test": {
+     "potential_single_vehicle_40pt_windows": 3085,
+     "unique_vehicles_with_40pt_window": 25,
+     "anchor_count": 550,
+     "anchors_ge_2": 532,
+     "anchors_2_to_8": 532,
+     "anchors_gt_8": 0
+    }
+   }
+  },
+  "1": {
+   "scene_id": 1,
+   "f_first": 85,
+   "f_last": 11245,
+   "total_slots": 11161,
+   "usable_slots": 11081,
+   "nominal_gap1_start_frame": 8950,
+   "nominal_gap2_start_frame": 10098,
+   "selected_gap1_start_frame": 9050,
+   "selected_gap2_start_frame": 10098,
+   "gap1_shift_frames": 100,
+   "gap2_shift_frames": 0,
+   "gap1": {
+    "cross_gap_vehicles": 0,
+    "gap_rows": 113,
+    "mean_active_vehicles_in_gap": 2.825,
+    "max_active_vehicles_in_gap": 5,
+    "distance_from_nominal_frames": 100
+   },
+   "gap2": {
+    "cross_gap_vehicles": 0,
+    "gap_rows": 0,
+    "mean_active_vehicles_in_gap": 0.0,
+    "max_active_vehicles_in_gap": 0,
+    "distance_from_nominal_frames": 0
+   },
+   "candidate_gap1_starts": 601,
+   "candidate_gap2_starts": 601,
+   "feasible_pairs": 147187,
+   "selected_pair_rank_key": {
+    "cross_gap_vehicles_total": 0,
+    "gap_rows_total": 113,
+    "mean_active_total": 2.825,
+    "max_active_total": 5,
+    "nominal_offset_total_frames": 100
+   },
+   "split_frame_ranges": {
+    "train": [
+     85,
+     9049
+    ],
+    "val": [
+     9090,
+     10097
+    ],
+    "test": [
+     10138,
+     11245
+    ]
+   },
+   "gap1_frame_range": [
+    9050,
+    9089
+   ],
+   "gap2_frame_range": [
+    10098,
+    10137
+   ],
+   "gap1_timestamp_range_s": [
+    905.9059059059059,
+    909.8098098098098
+   ],
+   "gap2_timestamp_range_s": [
+    1010.8108108108108,
+    1014.7147147147148
+   ],
+   "train_slots": 8965,
+   "val_slots": 1008,
+   "test_slots": 1108,
+   "train_ratio": 0.8090425051890624,
+   "val_ratio": 0.09096651926721415,
+   "test_ratio": 0.09999097554372349,
+   "gap_rows": {
+    "gap1": 113,
+    "gap2": 0
+   },
+   "window_supply": {
+    "train": {
+     "potential_single_vehicle_40pt_windows": 20674,
+     "unique_vehicles_with_40pt_window": 320,
+     "anchor_count": 7553,
+     "anchors_ge_2": 5936,
+     "anchors_2_to_8": 5936,
+     "anchors_gt_8": 0
+    },
+    "val": {
+     "potential_single_vehicle_40pt_windows": 1828,
+     "unique_vehicles_with_40pt_window": 36,
+     "anchor_count": 645,
+     "anchors_ge_2": 475,
+     "anchors_2_to_8": 475,
+     "anchors_gt_8": 0
+    },
+    "test": {
+     "potential_single_vehicle_40pt_windows": 1939,
+     "unique_vehicles_with_40pt_window": 25,
+     "anchor_count": 837,
+     "anchors_ge_2": 603,
+     "anchors_2_to_8": 603,
+     "anchors_gt_8": 0
+    }
+   }
+  }
+ },
+ "totals": {
+  "canonical_rows": 81450,
+  "train_rows": 66652,
+  "val_rows": 7141,
+  "test_rows": 7118,
+  "gap_rows_by_scene": {
+   "0": 426,
+   "1": 113
+  },
+  "gap_rows_total": 539,
+  "split_rows_total": 80911
+ },
+ "vehicle_ids": {
+  "train_unique": 565,
+  "val_unique": 70,
+  "test_unique": 55,
+  "overlaps": {
+   "train_val": 2,
+   "val_test": 5,
+   "train_test": 0
+  }
+ },
+ "window_supply": {
+  "per_scene": {
+   "0": {
+    "train": {
+     "potential_single_vehicle_40pt_windows": 23987,
+     "unique_vehicles_with_40pt_window": 237,
+     "anchor_count": 5072,
+     "anchors_ge_2": 4857,
+     "anchors_2_to_8": 4430,
+     "anchors_gt_8": 427
+    },
+    "val": {
+     "potential_single_vehicle_40pt_windows": 2589,
+     "unique_vehicles_with_40pt_window": 33,
+     "anchor_count": 557,
+     "anchors_ge_2": 493,
+     "anchors_2_to_8": 418,
+     "anchors_gt_8": 75
+    },
+    "test": {
+     "potential_single_vehicle_40pt_windows": 3085,
+     "unique_vehicles_with_40pt_window": 25,
+     "anchor_count": 550,
+     "anchors_ge_2": 532,
+     "anchors_2_to_8": 532,
+     "anchors_gt_8": 0
+    }
+   },
+   "1": {
+    "train": {
+     "potential_single_vehicle_40pt_windows": 20674,
+     "unique_vehicles_with_40pt_window": 320,
+     "anchor_count": 7553,
+     "anchors_ge_2": 5936,
+     "anchors_2_to_8": 5936,
+     "anchors_gt_8": 0
+    },
+    "val": {
+     "potential_single_vehicle_40pt_windows": 1828,
+     "unique_vehicles_with_40pt_window": 36,
+     "anchor_count": 645,
+     "anchors_ge_2": 475,
+     "anchors_2_to_8": 475,
+     "anchors_gt_8": 0
+    },
+    "test": {
+     "potential_single_vehicle_40pt_windows": 1939,
+     "unique_vehicles_with_40pt_window": 25,
+     "anchor_count": 837,
+     "anchors_ge_2": 603,
+     "anchors_2_to_8": 603,
+     "anchors_gt_8": 0
+    }
+   }
+  },
+  "combined": {
+   "train": {
+    "potential_single_vehicle_40pt_windows": 44661,
+    "unique_vehicles_with_40pt_window": 557,
+    "anchor_count": 12625,
+    "anchors_ge_2": 10793,
+    "anchors_2_to_8": 10366,
+    "anchors_gt_8": 427
+   },
+   "val": {
+    "potential_single_vehicle_40pt_windows": 4417,
+    "unique_vehicles_with_40pt_window": 69,
+    "anchor_count": 1202,
+    "anchors_ge_2": 968,
+    "anchors_2_to_8": 893,
+    "anchors_gt_8": 75
+   },
+   "test": {
+    "potential_single_vehicle_40pt_windows": 5024,
+    "unique_vehicles_with_40pt_window": 50,
+    "anchor_count": 1387,
+    "anchors_ge_2": 1135,
+    "anchors_2_to_8": 1135,
+    "anchors_gt_8": 0
+   }
+  }
+ },
+ "outputs": {
+  "train.csv": {
+   "path": "data/automatum_t_crossing/splits/train.csv",
+   "rows": 66652,
+   "size_bytes": 4308924,
+   "sha256": "d75994cb999d10ac5c05fab00f95a11d98b8e8cc61c475b87373ba6b51a82a11"
+  },
+  "val.csv": {
+   "path": "data/automatum_t_crossing/splits/val.csv",
+   "rows": 7141,
+   "size_bytes": 460201,
+   "sha256": "c9964adb9b73e828754912381f5d93cfd8adf215bad4ba85db766d4166ab894d"
+  },
+  "test.csv": {
+   "path": "data/automatum_t_crossing/splits/test.csv",
+   "rows": 7118,
+   "size_bytes": 458816,
+   "sha256": "6fb3117e95368e2c5b66cca5a28cb45a1ff91691d4afea4fb9b8c1a17eb75371"
+  }
+ },
+ "manifest": {
+  "runtime_path": "data/automatum_t_crossing/splits/split_manifest.json",
+  "git_mirror_path": "reports/data_preprocessing/automatum_split_manifest.json",
+  "sha256": "21bee09b8ccea23ed1d234bbad938e0de9a076681a250e138eaaf7f8d3d25f46"
+ }
+}
