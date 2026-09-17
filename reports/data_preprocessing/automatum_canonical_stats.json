@@ -8,28 +8,30 @@
  },
  "rules": {
   "source_fps": 29.97,
-  "canonical_fps": 10.0,
-  "downsampling": "nearest 0.1 s grid sample, no interpolation, no smoothing",
-  "max_time_error_s": 0.016683350016683352,
-  "timestamp_written": "target 0.1 s grid time",
+  "canonical_fps": 9.99,
+  "nominal_fps": 10.0,
+  "stride": 3,
+  "canonical_dt_s": 0.10010010010010012,
+  "downsampling": "scene-global source frame phase, keep frame % 3 == 0; no interpolation, no smoothing",
+  "timestamp_written": "true source time frame / 29.97 (never a 0.1 s relabel)",
   "velocity": "world frame: vx_w = cos(psi)*vx_body - sin(psi)*vy_body, vy_w = sin(psi)*vx_body + cos(psi)*vy_body",
   "coordinates": "official local metric frame, unchanged",
-  "vehicle_id": "sorted by (scene_id, first canonical timestamp, original UUID)"
+  "vehicle_id": "sorted by (scene_id, raw first timestamp, original UUID)"
  },
  "outputs": {
   "trajectories_10hz.csv": {
-   "rows": 81554,
-   "bytes": 4265176,
-   "sha256": "2a4b38fa3ffafd6cf4ca28463532c7fb95cadf5bfc0bded40b2da2c3760b203e"
+   "rows": 81450,
+   "bytes": 5262358,
+   "sha256": "a41ac4e24a8f21039dde60064868871b21093289a661ca9bef28ee7d1aab3442"
   },
   "vehicle_id_mapping.csv": {
    "rows": 683,
    "bytes": 59400,
-   "sha256": "3d211ffd3c9029a3e0fe435a8e96ef3555ba36387665fbca9d39802569b2bbcb"
+   "sha256": "5301f2403a34e3be718919a3eb1277b03335f8ec3c424c02ed220e386223c157"
   },
   "scene_metadata.json": {
-   "bytes": 3703,
-   "sha256": "708f85c497bf4f2afb2cbb0026952b07979d89abc3be9d33b9aa35930cbf72bc",
+   "bytes": 4295,
+   "sha256": "f70c74ccf0f02f89b0e9f5148a2d6abe16bbc60e178a41146eb70051131d1827",
    "rows": 2
   }
  },
@@ -42,9 +44,13 @@
    "recording_uuid": "e2e6f4bb-4668-4654-ac7e-bcd90c9df4c2",
    "source_dir": "T-Crossing--GaimersheimStadtweg_e2e6-e2e6f4bb-4668-4654-ac7e-bcd90c9df4c2",
    "raw_fps": 29.97,
-   "canonical_fps": 10.0,
+   "canonical_fps": 9.99,
+   "nominal_fps": 10.0,
+   "stride": 3,
+   "canonical_dt_s": 0.10010010010010012,
+   "frame_roundtrip_error_max_s": 1.1368683772161603e-13,
    "raw_points": 125860,
-   "canonical_points": 41995,
+   "canonical_points": 41944,
    "raw_vehicles": 299,
    "canonical_vehicles": 299,
    "raw_duration_s": 650.6506506506507,
@@ -54,46 +60,39 @@
    ],
    "canonical_timestamp_range_s": [
     0.0,
-    650.6
-   ],
-   "canonical_grid_range_s": [
-    0.0,
-    650.6
+    650.6506506506507
    ],
    "canonical_x_range_m": [
-    -57.97025084004831,
+    -58.09110377702449,
     76.13032506296467
    ],
    "canonical_y_range_m": [
-    -49.15001142700126,
-    69.2842822870745
+    -49.24233145454238,
+    69.35258790906524
    ],
-   "time_mapping_error_ms": {
-    "count": 41995,
-    "median_ms": 8.041374708056992,
-    "p95_ms": 15.849182515836446,
-    "p99_ms": 16.516516516503543,
-    "max_ms": 16.683350016705845,
-    "mean_ms": 8.158346861367194
-   },
    "source_stride_counts": {
-    "2": 124,
-    "3": 41572
+    "3": 41645
+   },
+   "canonical_dt_stats_s": {
+    "median": 0.10010010010010717,
+    "p95": 0.10010010010012138,
+    "p99": 0.10010010010012138,
+    "min": 0.1001001001000077,
+    "max": 0.10010010010012138
    },
    "track_duration_bins": {
     "<2s": 0,
     "2-4s": 10,
     "4-6s": 5,
-    "6-10s": 145,
-    "10-20s": 91,
+    "6-10s": 149,
+    "10-20s": 87,
     ">20s": 48
    },
-   "tracks_ge_4s": 289,
    "tracks_with_ge_40_canonical_points": 289,
-   "norm_error_max_mps": 7.105427357601002e-15,
+   "norm_error_max_mps": 1.0658141036401503e-14,
    "utm_reference": "675222.839714, 5406668.513171, U, 32",
    "wgs84_reference": "48.788309, 11.385632",
-   "static_world_xodr": "E:\\NJUPT\\ICCT会议\\data\\automatum_t_crossing\\raw\\extracted\\T-Crossing--GaimersheimStadtweg_e2e6-e2e6f4bb-4668-4654-ac7e-bcd90c9df4c2\\staticWorld.xodr",
+   "static_world_xodr": "T-Crossing--GaimersheimStadtweg_e2e6-e2e6f4bb-4668-4654-ac7e-bcd90c9df4c2/staticWorld.xodr",
    "raw_file_sha256": {
     "dynamicWorld.json": "899037a7be1f61dd75915fbdeab32e8e2c01c8d2b4be4e814775216896f2cd19",
     "staticWorld.xodr": "afee5cbdad64d2098cd64e95d2df845ab940a433aee995beb258b604dbdeef55"
@@ -107,9 +106,13 @@
    "recording_uuid": "1b9bf4b8-9fa6-4d23-abd2-2b715d087e8f",
    "source_dir": "T-Crossing-St2214-DuenzlauUmgehung_1b9b-1b9bf4b8-9fa6-4d23-abd2-2b715d087e8f",
    "raw_fps": 29.97,
-   "canonical_fps": 10.0,
+   "canonical_fps": 9.99,
+   "nominal_fps": 10.0,
+   "stride": 3,
+   "canonical_dt_s": 0.10010010010010012,
+   "frame_roundtrip_error_max_s": 2.2737367544323206e-13,
    "raw_points": 118517,
-   "canonical_points": 39559,
+   "canonical_points": 39506,
    "raw_vehicles": 384,
    "canonical_vehicles": 384,
    "raw_duration_s": 1117.1838505171838,
@@ -118,32 +121,26 @@
     1125.6256256256256
    ],
    "canonical_timestamp_range_s": [
-    8.5,
-    1125.6000000000001
-   ],
-   "canonical_grid_range_s": [
-    0.0,
-    1125.6000000000001
+    8.508508508508509,
+    1125.6256256256256
    ],
    "canonical_x_range_m": [
-    -29.228007549329625,
+    -29.381954313005057,
     63.82039379624384
    ],
    "canonical_y_range_m": [
-    -83.48179760858582,
-    84.08459188116888
+    -83.28499653423384,
+    83.7573045528009
    ],
-   "time_mapping_error_ms": {
-    "count": 39559,
-    "median_ms": 8.608608608597024,
-    "p95_ms": 15.882549215888275,
-    "p99_ms": 16.516516516503543,
-    "max_ms": 16.683350016705845,
-    "mean_ms": 8.475195790345081
-   },
    "source_stride_counts": {
-    "2": 126,
-    "3": 39049
+    "3": 39122
+   },
+   "canonical_dt_stats_s": {
+    "median": 0.10010010010012138,
+    "p95": 0.10010010010012138,
+    "p99": 0.10010010010023507,
+    "min": 0.1001001001000077,
+    "max": 0.10010010010023507
    },
    "track_duration_bins": {
     "<2s": 0,
@@ -153,12 +150,11 @@
     "10-20s": 71,
     ">20s": 31
    },
-   "tracks_ge_4s": 382,
    "tracks_with_ge_40_canonical_points": 382,
    "norm_error_max_mps": 7.105427357601002e-15,
    "utm_reference": "670421.179078, 5405184.058154, U, 32",
    "wgs84_reference": "48.776300, 11.319700",
-   "static_world_xodr": "E:\\NJUPT\\ICCT会议\\data\\automatum_t_crossing\\raw\\extracted\\T-Crossing-St2214-DuenzlauUmgehung_1b9b-1b9bf4b8-9fa6-4d23-abd2-2b715d087e8f\\staticWorld.xodr",
+   "static_world_xodr": "T-Crossing-St2214-DuenzlauUmgehung_1b9b-1b9bf4b8-9fa6-4d23-abd2-2b715d087e8f/staticWorld.xodr",
    "raw_file_sha256": {
     "dynamicWorld.json": "72c5bfbbcfc7ed59a258f543f8c74fad787ee0bdaaa1236fc354564d618fcce2",
     "staticWorld.xodr": "641d193b5cd502406a495ab71ec8738ffac7376a0d8fe12f642b1199649f300e"
@@ -168,214 +164,139 @@
  "totals": {
   "scenes": 2,
   "vehicles": 683,
-  "rows": 81554,
+  "rows": 81450,
   "raw_points": 244377,
-  "canonical_bytes": 4328279
+  "canonical_bytes": 5326053
  },
- "time_mapping_error_ms": {
-  "all_scenes": {
-   "count": 81554,
-   "median_ms": 8.341675008296079,
-   "p95_ms": 15.849182515921711,
-   "p99_ms": 16.516516516503543,
-   "max_ms": 16.683350016705845,
-   "mean_ms": 8.312039222029284
-  },
-  "half_source_frame_ms": 16.683350016683352
+ "vehicle_id_stability": {
+  "rule": "sorted by (scene_id, raw first timestamp, original UUID)",
+  "changed_vs_legacy_first_canonical_rule": 2,
+  "reason": "previous rule depended on the first canonical timestamp, which moves when the sampling phase changes; the raw first timestamp is resampling-independent"
  },
  "velocity_rotation_validation": {
   "0": {
-   "grid_interval_chord": {
-    "vx": {
-     "mae_mps": 0.04372203782084065,
-     "rmse_mps": 0.18831707251518906,
-     "bias_mps": -0.0015337799461870526,
-     "median_abs_mps": 0.025101766522735325,
-     "p95_abs_mps": 0.10974870771851808,
-     "p99_abs_mps": 0.17886658864507773,
-     "max_abs_mps": 5.75404149068013
-    },
-    "vy": {
-     "mae_mps": 0.04007071641996426,
-     "rmse_mps": 0.16592664485852204,
-     "bias_mps": 0.001460942309331734,
-     "median_abs_mps": 0.02178781477421121,
-     "p95_abs_mps": 0.10531504607019171,
-     "p99_abs_mps": 0.1858062738896149,
-     "max_abs_mps": 4.771041682807789
-    },
-    "direction_error_deg": {
-     "median": 0.06730707188043596,
-     "p95": 0.8983593716308347,
-     "p99": 2.263387104685229,
-     "max": 6.949770871269588,
-     "moving_points": 36390
-    },
-    "pairs_total": 41696
+   "vx": {
+    "mae_mps": 0.03296269245275482,
+    "rmse_mps": 0.04819056267739914,
+    "bias_mps": 0.00010811469527402851,
+    "median_abs_mps": 0.021530135169931075,
+    "p95_abs_mps": 0.10507535862819803,
+    "p99_abs_mps": 0.16629534649045266,
+    "max_abs_mps": 0.3242948268749899
    },
-   "true_source_interval": {
-    "vx": {
-     "mae_mps": 0.03296019171908638,
-     "rmse_mps": 0.04819414989985305,
-     "bias_mps": 0.00010453220412532044,
-     "median_abs_mps": 0.021541937661935736,
-     "p95_abs_mps": 0.10478730645516288,
-     "p99_abs_mps": 0.16658753158615186,
-     "max_abs_mps": 0.32671638575666684
-    },
-    "vy": {
-     "mae_mps": 0.03096519636734186,
-     "rmse_mps": 0.04613148680232593,
-     "bias_mps": 5.042732086377904e-05,
-     "median_abs_mps": 0.02012986592779953,
-     "p95_abs_mps": 0.09998687586315924,
-     "p99_abs_mps": 0.16928824910786688,
-     "max_abs_mps": 0.36765608716602965
-    },
-    "direction_error_deg": {
-     "median": 0.06730707188043661,
-     "p95": 0.8983593716308361,
-     "p99": 2.2633871046852287,
-     "max": 6.949770871269586,
-     "moving_points": 36390
-    },
-    "pairs_total": 41696
+   "vy": {
+    "mae_mps": 0.030984449441081533,
+    "rmse_mps": 0.04614235785969532,
+    "bias_mps": 4.618401847818984e-05,
+    "median_abs_mps": 0.020132264448406545,
+    "p95_abs_mps": 0.10011189579493177,
+    "p99_abs_mps": 0.1697020187732407,
+    "max_abs_mps": 0.3679289319998439
    },
+   "direction_error_deg": {
+    "median": 0.06748857583633856,
+    "p95": 0.8955933624011123,
+    "p99": 2.27858464834516,
+    "max": 6.949770871269586,
+    "moving_points": 36346
+   },
+   "pairs_total": 41645,
    "source_stride_counts": {
-    "2": 124,
-    "3": 41572
+    "3": 41645
    },
-   "note": "grid_interval_chord divides by the 0.1 s label (as stored); true_source_interval divides by the real source time delta and is the rotation-correctness check"
+   "dt_stats_s": {
+    "median": 0.10010010010010717,
+    "p95": 0.10010010010012138,
+    "p99": 0.10010010010012138,
+    "min": 0.1001001001000077,
+    "max": 0.10010010010012138,
+    "nominal": 0.10010010010010012
+   },
+   "note": "single physical caliber: FD over the true source dt (3/29.97 s) vs midpoint world velocity"
   },
   "1": {
-   "grid_interval_chord": {
-    "vx": {
-     "mae_mps": 0.04472478976424203,
-     "rmse_mps": 0.17984975450054347,
-     "bias_mps": -5.518541019621166e-05,
-     "median_abs_mps": 0.024856469152695126,
-     "p95_abs_mps": 0.11745965709544437,
-     "p99_abs_mps": 0.19482449384165734,
-     "max_abs_mps": 5.13865329209211
-    },
-    "vy": {
-     "mae_mps": 0.05745529423803489,
-     "rmse_mps": 0.2857428454720413,
-     "bias_mps": -0.0001760718261411434,
-     "median_abs_mps": 0.032112191723405736,
-     "p95_abs_mps": 0.12859435249018383,
-     "p99_abs_mps": 0.19995692435520215,
-     "max_abs_mps": 7.838341597435587
-    },
-    "direction_error_deg": {
-     "median": 0.07080194185798894,
-     "p95": 0.9466961766854856,
-     "p99": 2.1172150966025196,
-     "max": 6.543176820469355,
-     "moving_points": 36557
-    },
-    "pairs_total": 39175
+   "vx": {
+    "mae_mps": 0.03438470798652033,
+    "rmse_mps": 0.050587347468414,
+    "bias_mps": 0.0003613067593031994,
+    "median_abs_mps": 0.022740222643341967,
+    "p95_abs_mps": 0.11296151379308547,
+    "p99_abs_mps": 0.1785551711183896,
+    "max_abs_mps": 0.32999857896497353
    },
-   "true_source_interval": {
-    "vx": {
-     "mae_mps": 0.03437192568958518,
-     "rmse_mps": 0.05057315745202015,
-     "bias_mps": 0.0003590016864253166,
-     "median_abs_mps": 0.022641998386605966,
-     "p95_abs_mps": 0.11296391767941186,
-     "p99_abs_mps": 0.17810880222410816,
-     "max_abs_mps": 0.3315634695317877
-    },
-    "vy": {
-     "mae_mps": 0.0389618093538693,
-     "rmse_mps": 0.055499471225839994,
-     "bias_mps": 0.0015990288235247256,
-     "median_abs_mps": 0.026687896867894523,
-     "p95_abs_mps": 0.12071206429425387,
-     "p99_abs_mps": 0.18392493539188487,
-     "max_abs_mps": 0.4928376324182633
-    },
-    "direction_error_deg": {
-     "median": 0.0708019418579849,
-     "p95": 0.9466961766854858,
-     "p99": 2.1172150966025187,
-     "max": 6.5431768204693554,
-     "moving_points": 36557
-    },
-    "pairs_total": 39175
+   "vy": {
+    "mae_mps": 0.03896100682674069,
+    "rmse_mps": 0.0554971929913371,
+    "bias_mps": 0.0016067157682649177,
+    "median_abs_mps": 0.026736521202339603,
+    "p95_abs_mps": 0.12077103636260605,
+    "p99_abs_mps": 0.1842382745047854,
+    "max_abs_mps": 0.4928376324182633
    },
+   "direction_error_deg": {
+    "median": 0.07080180002783124,
+    "p95": 0.9459601293255252,
+    "p99": 2.0901864931469847,
+    "max": 6.188369803485327,
+    "moving_points": 36504
+   },
+   "pairs_total": 39122,
    "source_stride_counts": {
-    "2": 126,
-    "3": 39049
+    "3": 39122
    },
-   "note": "grid_interval_chord divides by the 0.1 s label (as stored); true_source_interval divides by the real source time delta and is the rotation-correctness check"
+   "dt_stats_s": {
+    "median": 0.10010010010012138,
+    "p95": 0.10010010010012138,
+    "p99": 0.10010010010023507,
+    "min": 0.1001001001000077,
+    "max": 0.10010010010023507,
+    "nominal": 0.10010010010010012
+   },
+   "note": "single physical caliber: FD over the true source dt (3/29.97 s) vs midpoint world velocity"
   },
   "all_scenes": {
-   "grid_interval_chord": {
-    "vx": {
-     "mae_mps": 0.0442077843478126,
-     "rmse_mps": 0.18426398532637586,
-     "bias_mps": -0.0008175288679582539,
-     "median_abs_mps": 0.02497519562703232,
-     "p95_abs_mps": 0.11362881035904235,
-     "p99_abs_mps": 0.1866343174352986,
-     "max_abs_mps": 5.75404149068013
-    },
-    "vy": {
-     "mae_mps": 0.0484920397128989,
-     "rmse_mps": 0.23183358294252612,
-     "bias_mps": 0.000667950646595401,
-     "median_abs_mps": 0.02632029431924933,
-     "p95_abs_mps": 0.11775031218694171,
-     "p99_abs_mps": 0.1928277431713024,
-     "max_abs_mps": 7.838341597435587
-    },
-    "direction_error_deg": {
-     "median": 0.06910228590947769,
-     "p95": 0.9239158546153683,
-     "p99": 2.180862937309292,
-     "max": 6.949770871269588,
-     "moving_points": 72947
-    },
-    "pairs_total": 80871
+   "vx": {
+    "mae_mps": 0.03365148975501904,
+    "rmse_mps": 0.04936605349931077,
+    "bias_mps": 0.00023075611972893237,
+    "median_abs_mps": 0.022119423324278742,
+    "p95_abs_mps": 0.10862953433466636,
+    "p99_abs_mps": 0.17167783649135906,
+    "max_abs_mps": 0.32999857896497353
    },
-   "true_source_interval": {
-    "vx": {
-     "mae_mps": 0.03364405464021127,
-     "rmse_mps": 0.04936089369280656,
-     "bias_mps": 0.00022780064360427272,
-     "median_abs_mps": 0.022101679627590687,
-     "p95_abs_mps": 0.10860498822970488,
-     "p99_abs_mps": 0.17203154591931571,
-     "max_abs_mps": 0.3315634695317877
-    },
-    "vy": {
-     "mae_mps": 0.03483886324109404,
-     "rmse_mps": 0.050885293452436905,
-     "bias_mps": 0.0008005907152417709,
-     "median_abs_mps": 0.023072566389544136,
-     "p95_abs_mps": 0.11070922873897826,
-     "p99_abs_mps": 0.17770440245081726,
-     "max_abs_mps": 0.4928376324182633
-    },
-    "direction_error_deg": {
-     "median": 0.06910228590947468,
-     "p95": 0.9239158546153716,
-     "p99": 2.180862937309292,
-     "max": 6.949770871269586,
-     "moving_points": 72947
-    },
-    "pairs_total": 80871
+   "vy": {
+    "mae_mps": 0.034848142261685956,
+    "rmse_mps": 0.05088886842668458,
+    "bias_mps": 0.0008020759435856766,
+    "median_abs_mps": 0.02308883551539509,
+    "p95_abs_mps": 0.11095135858105387,
+    "p99_abs_mps": 0.17734860703574487,
+    "max_abs_mps": 0.4928376324182633
    },
+   "direction_error_deg": {
+    "median": 0.06908337623319116,
+    "p95": 0.9257200642828937,
+    "p99": 2.1787023760486837,
+    "max": 6.949770871269586,
+    "moving_points": 72850
+   },
+   "pairs_total": 80767,
    "source_stride_counts": {
-    "2": 250,
-    "3": 80621
+    "3": 80767
    },
-   "note": "grid_interval_chord divides by the 0.1 s label (as stored); true_source_interval divides by the real source time delta and is the rotation-correctness check"
+   "dt_stats_s": {
+    "median": 0.10010010010012138,
+    "p95": 0.10010010010012138,
+    "p99": 0.10010010010023507,
+    "min": 0.1001001001000077,
+    "max": 0.10010010010023507,
+    "nominal": 0.10010010010010012
+   },
+   "note": "single physical caliber: FD over the true source dt (3/29.97 s) vs midpoint world velocity"
   }
  },
- "four_second_trajectories": {
-  "definition": "canonical tracks with last - first timestamp >= 4.0 s",
+ "prediction_window_supply": {
+  "definition": "vehicles with >= 40 canonical points (20 history + 20 future samples)",
   "scene_0": 289,
   "scene_1": 382,
   "total": 671

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the canonical 10 Hz Automatum T-Crossing trajectory dataset.
+"""Build the canonical Automatum T-Crossing dataset at the true 9.99 Hz rate.
 
 Deterministic and read-only on the raw recordings. One CSV per requirement:
 
@@ -7,13 +7,14 @@ Deterministic and read-only on the raw recordings. One CSV per requirement:
     data/automatum_t_crossing/processed/vehicle_id_mapping.csv
     data/automatum_t_crossing/processed/scene_metadata.json
 
-Rules (frozen by the preprocessing order, see reports/data_preprocessing/):
-- two scenes stay separate: scene_id 0 = Gaimersheim Stadtweg, 1 = St2214 Duenzlau
-- 29.97 Hz -> 10 Hz by nearest 0.1 s grid sample, no interpolation, no smoothing
-- only source samples within half a source frame (0.5/29.97 s) are eligible
-- stored timestamp is the target grid time, not the source time
+Sampling rule (refined, supersedes nearest-0.1-s-grid):
+- every scene uses one global source-frame phase, keep frames with frame % 3 == 0
+- source_frame = round(time * 29.97), validated against the stored time
+- timestamp is the true source time (frame / 29.97), never a relabelled 0.1 s grid
+- true rate 29.97 / 3 = 9.99 Hz, true dt = 3 / 29.97 = 0.1001001001 s; no interpolation
 - vx/vy are rotated from body frame to world frame with the raw continuous psi
 - x/y stay in the official local metric frame, no shifting/scaling/normalisation
+- vehicle_id sorted by (scene_id, raw first timestamp, original UUID)
 - all 683 vehicles kept (car/van/truck), no ROI, no N<=8 filtering, no split
 
 Usage:
@@ -25,7 +26,6 @@ import argparse
 import csv
 import hashlib
 import json
-import math
 import sys
 import time
 from pathlib import Path
@@ -34,13 +34,15 @@ import numpy as np
 
 RAW_FPS = 29.97
 SRC_DT = 1.0 / RAW_FPS
-HALF_FRAME_S = 0.5 * SRC_DT
-CANON_DT = 0.1
+STRIDE = 3
+CANON_FPS = RAW_FPS / STRIDE
+CANON_DT = STRIDE * SRC_DT
+NOMINAL_FPS = 10.0
+WINDOW_SAMPLES = 40
 TIME_EPS_S = 1e-9
 POS_TOL_M = 2e-6
 VEL_TOL_MPS = 2e-6
 JUMP_LIMIT_MPS = 45.0
-FOUR_S = 4.0
 AUDIT_COMMIT = 'f03e230d094abb0a3f268c2b7df9db7c6c675552'
 AUDIT_REPORT = 'reports/data_audit/automatum_t_crossing_audit.md'
 SCENES = [
@@ -75,13 +77,7 @@ def find_recording_dir(raw_root: Path, name: str) -> Path:
     raise FileNotFoundError('recording dir not found for %s under %s' % (name, raw_root))
 
 
-def qstats_ms(values_s: np.ndarray) -> dict:
-    values_ms = np.asarray(values_s, dtype=np.float64) * 1000.0
-    if values_ms.size == 0:
-        return {'count': 0}
-    q = np.percentile(values_ms, [50, 95, 99, 100])
-    return {'count': int(values_ms.size), 'median_ms': float(q[0]), 'p95_ms': float(q[1]),
-            'p99_ms': float(q[2]), 'max_ms': float(q[3]), 'mean_ms': float(values_ms.mean())}
+
 
 
 def load_scene(raw_dir: Path, spec: dict) -> dict:
@@ -102,27 +98,26 @@ def load_scene(raw_dir: Path, spec: dict) -> dict:
 
 
 def resample_scene(scene: dict) -> dict:
-    """Nearest 0.1 s grid selection over every track. Returns per-track selection."""
+    """Scene-global fixed stride 3 selection over the source frame grid."""
     objects = scene['objects']
     t_last = max(float(o['t'][-1]) for o in objects)
-    n_targets = int(math.floor(t_last / CANON_DT + TIME_EPS_S)) + 1
-    targets = np.arange(n_targets, dtype=np.float64) * CANON_DT
-    global_index = np.round(targets / SRC_DT).astype(np.int64)
-    grid_error = np.abs(global_index * SRC_DT - targets)
-    assert float(grid_error.max()) <= HALF_FRAME_S + TIME_EPS_S, 'grid error bound violated'
+    n_frames = int(round(t_last / SRC_DT)) + 1
+    phase = np.arange(n_frames, dtype=np.int64)
+    selected_frames = phase[phase % STRIDE == 0]
+    frame_error_max = 0.0
     tracks = []
     for obj in objects:
         n = len(obj['t'])
-        k0 = int(round(float(obj['t'][0]) / SRC_DT))
-        k_last = int(round(float(obj['t'][-1]) / SRC_DT))
-        assert abs(obj['t'][0] - k0 * SRC_DT) < TIME_EPS_S, 'track start not on source grid'
-        assert abs(obj['t'][-1] - k_last * SRC_DT) < TIME_EPS_S, 'track end not on source grid'
-        assert k_last == k0 + n - 1, 'track is not contiguous on the source grid'
-        local = global_index - k0
+        frame_index = np.round(obj['t'] / SRC_DT).astype(np.int64)
+        roundtrip = np.abs(obj['t'] - frame_index * SRC_DT)
+        frame_error_max = max(frame_error_max, float(roundtrip.max()))
+        assert float(roundtrip.max()) < TIME_EPS_S, 'raw time is not on the 29.97 frame grid'
+        k0 = int(frame_index[0])
+        assert frame_index[-1] == k0 + n - 1, 'track is not contiguous on the source grid'
+        local = selected_frames - k0
         valid = (local >= 0) & (local < n)
         local = local[valid]
-        err = np.abs(obj['t'][local] - targets[valid])
-        assert float(err.max()) <= HALF_FRAME_S + TIME_EPS_S, 'half-frame rule violated'
+        selected = selected_frames[valid]
         psi = obj['psi'][local]
         body_vx = obj['vx'][local]
         body_vy = obj['vy'][local]
@@ -133,34 +128,45 @@ def resample_scene(scene: dict) -> dict:
             'uuid': obj['uuid'], 'obj_type': obj['obj_type'], 'length': obj['length'],
             'width': obj['width'], 'n_raw': n,
             'raw_t0': float(obj['t'][0]), 'raw_t1': float(obj['t'][-1]),
-            'target_k': np.nonzero(valid)[0].astype(np.int64),
-            'target_t': targets[valid], 'source_index': local.astype(np.int64),
-            'source_t': obj['t'][local],
-            'time_error_s': err, 'x': obj['x'][local], 'y': obj['y'][local],
+            'source_frame': selected, 'timestamp': obj['t'][local],
+            'source_index': local.astype(np.int64),
+            'x': obj['x'][local], 'y': obj['y'][local],
             'vx_world': world_vx, 'vy_world': world_vy,
             'body_speed': np.hypot(body_vx, body_vy),
             'world_speed': np.hypot(world_vx, world_vy),
             'norm_error': norm_error,
         })
-    return {'scene': scene, 'tracks': tracks, 'targets': targets,
-            'global_index': global_index, 'grid_error': grid_error}
+    return {'scene': scene, 'tracks': tracks, 'selected_frames': selected_frames,
+            'frame_error_max_s': frame_error_max}
 
 
-def assign_vehicle_ids(resampled: list) -> list:
-    keys = []
+def assign_vehicle_ids(resampled: list) -> tuple:
+    """Stable rule: (scene_id, raw first timestamp, original UUID).
+
+    Also returns how many ids would differ under the previous rule
+    (scene_id, first canonical timestamp, UUID) for the stability report.
+    """
+    new_keys = []
+    legacy_keys = []
     for item in resampled:
         scene_id = item['scene']['spec']['scene_id']
         for track in item['tracks']:
-            keys.append((scene_id, float(track['target_t'][0]), track['uuid'], track))
-    keys.sort(key=lambda entry: (entry[0], entry[1], entry[2]))
+            new_keys.append((scene_id, track['raw_t0'], track['uuid'], track))
+            legacy_keys.append((scene_id, float(track['timestamp'][0]), track['uuid'], track))
+    new_keys.sort(key=lambda entry: (entry[0], entry[1], entry[2]))
+    legacy_keys.sort(key=lambda entry: (entry[0], entry[1], entry[2]))
+    legacy_ids = {uuid: vid for vid, (_s, _t, uuid, _track) in enumerate(legacy_keys, start=1)}
     mapping = []
-    for vehicle_id, (scene_id, _first_t, uuid, track) in enumerate(keys, start=1):
+    changed = 0
+    for vehicle_id, (scene_id, _first_t, uuid, track) in enumerate(new_keys, start=1):
         track['vehicle_id'] = vehicle_id
+        if legacy_ids[uuid] != vehicle_id:
+            changed += 1
         mapping.append({'scene_id': scene_id, 'vehicle_id': vehicle_id, 'original_uuid': uuid,
                         'obj_type': track['obj_type'], 'length': track['length'],
                         'width': track['width'], 'original_first_time': track['raw_t0'],
                         'original_last_time': track['raw_t1']})
-    return mapping
+    return mapping, changed
 
 
 def rows_of(resampled: list) -> list:
@@ -169,8 +175,8 @@ def rows_of(resampled: list) -> list:
         scene_id = item['scene']['spec']['scene_id']
         for track in item['tracks']:
             vehicle_id = track['vehicle_id']
-            for i in range(len(track['target_k'])):
-                rows.append((scene_id, int(track['target_k'][i]), vehicle_id,
+            for i in range(len(track['timestamp'])):
+                rows.append((scene_id, float(track['timestamp'][i]), vehicle_id,
                              float(track['x'][i]), float(track['y'][i]),
                              float(track['vx_world'][i]), float(track['vy_world'][i])))
     rows.sort(key=lambda row: (row[0], row[1], row[2]))
@@ -194,88 +200,87 @@ def _error_block(err_vx, err_vy, direction) -> dict:
 
 
 def velocity_validation(tracks: list) -> dict:
-    grid_vx, grid_vy, grid_dir = [], [], []
-    true_vx, true_vy, true_dir = [], [], []
+    err_vx, err_vy, direction = [], [], []
     strides = []
+    dt_all = []
     for track in tracks:
         x, y = track['x'], track['y']
         if len(x) < 2:
             continue
-        step = np.diff(track['source_index'])
-        strides.append(step)
-        delta_x, delta_y = np.diff(x), np.diff(y)
+        dt = np.diff(track['timestamp'])
+        dt_all.append(dt)
+        strides.append(np.diff(track['source_frame']))
+        fd_vx, fd_vy = np.diff(x) / dt, np.diff(y) / dt
         mid_vx = 0.5 * (track['vx_world'][:-1] + track['vx_world'][1:])
         mid_vy = 0.5 * (track['vy_world'][:-1] + track['vy_world'][1:])
-        fd_grid_vx, fd_grid_vy = delta_x / CANON_DT, delta_y / CANON_DT
-        dt_source = np.diff(track['source_t'])
-        fd_true_vx, fd_true_vy = delta_x / dt_source, delta_y / dt_source
-        grid_vx.append(fd_grid_vx - mid_vx)
-        grid_vy.append(fd_grid_vy - mid_vy)
-        true_vx.append(fd_true_vx - mid_vx)
-        true_vy.append(fd_true_vy - mid_vy)
+        err_vx.append(fd_vx - mid_vx)
+        err_vy.append(fd_vy - mid_vy)
         moving = np.hypot(mid_vx, mid_vy) > 1.0
         if moving.any():
-            for fd_vx, fd_vy, bucket in ((fd_grid_vx, fd_grid_vy, grid_dir),
-                                         (fd_true_vx, fd_true_vy, true_dir)):
-                cross = fd_vx[moving] * mid_vy[moving] - fd_vy[moving] * mid_vx[moving]
-                dot = fd_vx[moving] * mid_vx[moving] + fd_vy[moving] * mid_vy[moving]
-                bucket.append(np.degrees(np.abs(np.arctan2(cross, dot))))
+            cross = fd_vx[moving] * mid_vy[moving] - fd_vy[moving] * mid_vx[moving]
+            dot = fd_vx[moving] * mid_vx[moving] + fd_vy[moving] * mid_vy[moving]
+            direction.append(np.degrees(np.abs(np.arctan2(cross, dot))))
+    err_vx = np.concatenate(err_vx)
+    err_vy = np.concatenate(err_vy)
+    direction = np.concatenate(direction) if direction else np.array([])
     strides = np.concatenate(strides)
-    values, counts = np.unique(strides, return_counts=True)
-    return {
-        'grid_interval_chord': _error_block(np.concatenate(grid_vx), np.concatenate(grid_vy),
-                                            np.concatenate(grid_dir) if grid_dir else np.array([])),
-        'true_source_interval': _error_block(np.concatenate(true_vx), np.concatenate(true_vy),
-                                             np.concatenate(true_dir) if true_dir else np.array([])),
-        'source_stride_counts': {str(int(v)): int(c) for v, c in zip(values, counts)},
-        'note': 'grid_interval_chord divides by the 0.1 s label (as stored); true_source_interval '
-                'divides by the real source time delta and is the rotation-correctness check',
-    }
+    stride_values, stride_counts = np.unique(strides, return_counts=True)
+    dt_all = np.concatenate(dt_all)
+    return dict(
+        _error_block(err_vx, err_vy, direction),
+        source_stride_counts={str(int(v)): int(c) for v, c in zip(stride_values, stride_counts)},
+        dt_stats_s={'median': float(np.median(dt_all)), 'p95': float(np.percentile(dt_all, 95)),
+                    'p99': float(np.percentile(dt_all, 99)), 'min': float(dt_all.min()),
+                    'max': float(dt_all.max()), 'nominal': float(CANON_DT)},
+        note='single physical caliber: FD over the true source dt (3/29.97 s) vs midpoint world velocity')
 
 
 def scene_stats(item: dict) -> dict:
     spec = item['scene']['spec']
     world = item['scene']['world']
     tracks = item['tracks']
-    all_err = np.concatenate([t['time_error_s'] for t in tracks])
     all_x = np.concatenate([t['x'] for t in tracks])
     all_y = np.concatenate([t['y'] for t in tracks])
     all_norm = np.concatenate([t['norm_error'] for t in tracks])
-    durations = np.array([float(t['target_t'][-1] - t['target_t'][0]) for t in tracks])
+    durations = np.array([float(t['timestamp'][-1] - t['timestamp'][0]) for t in tracks])
     dist_bins = {'<2s': int((durations < 2).sum()), '2-4s': int(((durations >= 2) & (durations < 4)).sum()),
                  '4-6s': int(((durations >= 4) & (durations < 6)).sum()),
                  '6-10s': int(((durations >= 6) & (durations < 10)).sum()),
                  '10-20s': int(((durations >= 10) & (durations < 20)).sum()),
                  '>20s': int((durations >= 20).sum())}
     raw_points = int(sum(t['n_raw'] for t in tracks))
-    canonical_points = int(sum(len(t['target_k']) for t in tracks))
-    used_first = float(min(t['target_t'][0] for t in tracks))
-    used_last = float(max(t['target_t'][-1] for t in tracks))
-    strides = np.concatenate([np.diff(t['source_index']) for t in tracks if len(t['source_index']) > 1])
+    canonical_points = int(sum(len(t['timestamp']) for t in tracks))
+    used_first = float(min(t['timestamp'][0] for t in tracks))
+    used_last = float(max(t['timestamp'][-1] for t in tracks))
+    strides = np.concatenate([np.diff(t['source_frame']) for t in tracks if len(t['source_frame']) > 1])
     stride_values, stride_counts = np.unique(strides, return_counts=True)
+    dt_values = np.concatenate([np.diff(t['timestamp']) for t in tracks if len(t['timestamp']) > 1])
     raw_last = max(float(o['t'][-1]) for o in item['scene']['objects'])
     raw_first = min(float(o['t'][0]) for o in item['scene']['objects'])
     return {
         'scene_id': spec['scene_id'], 'scene_name': spec['name'], 'scene_label': spec['label'],
         'recording_name': world['RecordingName'], 'recording_uuid': world['UUID'],
         'source_dir': item['scene']['dir'].name,
-        'raw_fps': RAW_FPS, 'canonical_fps': 1.0 / CANON_DT,
+        'raw_fps': RAW_FPS, 'canonical_fps': CANON_FPS, 'nominal_fps': NOMINAL_FPS,
+        'stride': STRIDE, 'canonical_dt_s': CANON_DT,
+        'frame_roundtrip_error_max_s': float(item['frame_error_max_s']),
         'raw_points': raw_points, 'canonical_points': canonical_points,
         'raw_vehicles': len(tracks), 'canonical_vehicles': len(tracks),
         'raw_duration_s': raw_last - raw_first,
         'raw_time_range_s': [raw_first, raw_last],
         'canonical_timestamp_range_s': [used_first, used_last],
-        'canonical_grid_range_s': [0.0, float(item['targets'][-1])],
         'canonical_x_range_m': [float(all_x.min()), float(all_x.max())],
         'canonical_y_range_m': [float(all_y.min()), float(all_y.max())],
-        'time_mapping_error_ms': qstats_ms(all_err),
         'source_stride_counts': {str(int(v)): int(c) for v, c in zip(stride_values, stride_counts)},
+        'canonical_dt_stats_s': {'median': float(np.median(dt_values)),
+                                 'p95': float(np.percentile(dt_values, 95)),
+                                 'p99': float(np.percentile(dt_values, 99)),
+                                 'min': float(dt_values.min()), 'max': float(dt_values.max())},
         'track_duration_bins': dist_bins,
-        'tracks_ge_4s': int((durations >= FOUR_S).sum()),
-        'tracks_with_ge_40_canonical_points': int(sum(1 for t in tracks if len(t['target_k']) >= 40)),
+        'tracks_with_ge_40_canonical_points': int(sum(1 for t in tracks if len(t['timestamp']) >= 40)),
         'norm_error_max_mps': float(all_norm.max()),
         'utm_reference': world['UTM-ReferencePoint'], 'wgs84_reference': world['WGS84-ReferencePoint'],
-        'static_world_xodr': str((item['scene']['dir'] / 'staticWorld.xodr')),
+        'static_world_xodr': '%s/staticWorld.xodr' % item['scene']['dir'].name,
         'raw_file_sha256': {
             'dynamicWorld.json': sha256_file(item['scene']['dir'] / 'dynamicWorld.json'),
             'staticWorld.xodr': sha256_file(item['scene']['dir'] / 'staticWorld.xodr'),
@@ -287,8 +292,8 @@ def write_trajectories(rows: list, path: Path) -> dict:
     with path.open('w', encoding='utf-8', newline='') as fh:
         fh.write('scene_id,vehicle_id,timestamp,x,y,vx,vy\n')
         writer = csv.writer(fh, lineterminator='\n')
-        for scene_id, k, vehicle_id, x, y, vx, vy in rows:
-            writer.writerow([scene_id, vehicle_id, '%.1f' % (k * CANON_DT),
+        for scene_id, timestamp, vehicle_id, x, y, vx, vy in rows:
+            writer.writerow([scene_id, vehicle_id, repr(float(timestamp)),
                              '%.6f' % x, '%.6f' % y, '%.6f' % vx, '%.6f' % vy])
     return {'rows': len(rows), 'bytes': path.stat().st_size, 'sha256': sha256_file(path)}
 
@@ -314,7 +319,7 @@ def write_json(payload: dict, path: Path) -> dict:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description='Build the canonical 10 Hz Automatum T-Crossing dataset')
+    parser = argparse.ArgumentParser(description='Build the canonical 9.99 Hz Automatum T-Crossing dataset')
     parser.add_argument('--raw-dir', default='data/automatum_t_crossing/raw')
     parser.add_argument('--out-dir', default='data/automatum_t_crossing/processed')
     parser.add_argument('--stats-out', default='reports/data_preprocessing/automatum_canonical_stats.json')
@@ -334,7 +339,7 @@ def main() -> None:
         log('resampling scene %d: %d tracks' % (spec['scene_id'], len(scene['objects'])))
         resampled.append(resample_scene(scene))
 
-    mapping = assign_vehicle_ids(resampled)
+    mapping, id_changed_vs_legacy = assign_vehicle_ids(resampled)
     assert len(mapping) == 683, 'expected 683 vehicles, got %d' % len(mapping)
     rows = rows_of(resampled)
     log('canonical rows:', len(rows))
@@ -350,15 +355,20 @@ def main() -> None:
             'recording_uuid': stats['recording_uuid'], 'source_dir': stats['source_dir'],
             'recording_duration_raw_s': stats['raw_duration_s'],
             'raw_fps': stats['raw_fps'], 'canonical_fps': stats['canonical_fps'],
+            'nominal_fps': stats['nominal_fps'], 'stride': stats['stride'],
+            'canonical_dt_s': stats['canonical_dt_s'],
+            'sampling_rule': 'scene-global source frame phase, keep frame % 3 == 0, '
+                             'timestamp = frame / 29.97 (true source time)',
             'num_vehicles': stats['canonical_vehicles'],
             'x_range_m': stats['canonical_x_range_m'], 'y_range_m': stats['canonical_y_range_m'],
             'UTM_reference': stats['utm_reference'], 'WGS84_reference': stats['wgs84_reference'],
             'static_world_xodr': stats['static_world_xodr'],
             'canonical_rows': stats['canonical_points'],
             'canonical_timestamp_range_s': stats['canonical_timestamp_range_s'],
-            'time_mapping_error_ms': stats['time_mapping_error_ms'],
+            'canonical_dt_stats_s': stats['canonical_dt_stats_s'],
+            'frame_roundtrip_error_max_s': stats['frame_roundtrip_error_max_s'],
             'track_duration_bins': stats['track_duration_bins'],
-            'tracks_ge_4s': stats['tracks_ge_4s'],
+            'tracks_with_ge_40_canonical_points': stats['tracks_with_ge_40_canonical_points'],
             'raw_file_sha256': stats['raw_file_sha256'],
         }
 
@@ -367,7 +377,12 @@ def main() -> None:
     metrics['vehicle_id_mapping.csv'] = write_mapping(mapping, out_dir / 'vehicle_id_mapping.csv')
     metadata_payload = {
         'dataset': 'automatum_t_crossing_canonical',
-        'canonical_fps': 1.0 / CANON_DT,
+        'canonical_fps': CANON_FPS,
+        'nominal_fps': NOMINAL_FPS,
+        'canonical_dt_s': CANON_DT,
+        'stride': STRIDE,
+        'sampling_rule': 'scene-global source frame phase, keep frame % 3 == 0, '
+                         'timestamp = frame / 29.97 (true source time)',
         'columns': ['scene_id', 'vehicle_id', 'timestamp', 'x', 'y', 'vx', 'vy'],
         'units': {'timestamp': 's', 'x': 'm', 'y': 'm', 'vx': 'm/s', 'vy': 'm/s'},
         'velocity_frame': 'world (local metric scene frame, same as x/y and staticWorld.xodr)',
@@ -388,14 +403,15 @@ def main() -> None:
         'provenance': {'audit_commit': AUDIT_COMMIT, 'audit_report': AUDIT_REPORT,
                        'builder': 'tools/data_preprocessing/build_automatum_canonical.py'},
         'rules': {
-            'source_fps': RAW_FPS, 'canonical_fps': 1.0 / CANON_DT,
-            'downsampling': 'nearest 0.1 s grid sample, no interpolation, no smoothing',
-            'max_time_error_s': HALF_FRAME_S,
-            'timestamp_written': 'target 0.1 s grid time',
+            'source_fps': RAW_FPS, 'canonical_fps': CANON_FPS, 'nominal_fps': NOMINAL_FPS,
+            'stride': STRIDE, 'canonical_dt_s': CANON_DT,
+            'downsampling': 'scene-global source frame phase, keep frame % 3 == 0; '
+                            'no interpolation, no smoothing',
+            'timestamp_written': 'true source time frame / 29.97 (never a 0.1 s relabel)',
             'velocity': 'world frame: vx_w = cos(psi)*vx_body - sin(psi)*vy_body, '
                         'vy_w = sin(psi)*vx_body + cos(psi)*vy_body',
             'coordinates': 'official local metric frame, unchanged',
-            'vehicle_id': 'sorted by (scene_id, first canonical timestamp, original UUID)',
+            'vehicle_id': 'sorted by (scene_id, raw first timestamp, original UUID)',
         },
         'outputs': metrics,
         'scenes': scene_stats_all,
@@ -406,17 +422,19 @@ def main() -> None:
             'raw_points': int(sum(s['raw_points'] for s in scene_stats_all.values())),
             'canonical_bytes': int(sum(m['bytes'] for m in metrics.values())),
         },
-        'time_mapping_error_ms': {
-            'all_scenes': qstats_ms(np.concatenate([t['time_error_s']
-                                                    for item in resampled for t in item['tracks']])),
-            'half_source_frame_ms': HALF_FRAME_S * 1000.0,
+        'vehicle_id_stability': {
+            'rule': 'sorted by (scene_id, raw first timestamp, original UUID)',
+            'changed_vs_legacy_first_canonical_rule': int(id_changed_vs_legacy),
+            'reason': 'previous rule depended on the first canonical timestamp, which moves when the '
+                      'sampling phase changes; the raw first timestamp is resampling-independent',
         },
         'velocity_rotation_validation': vv,
-        'four_second_trajectories': {
-            'definition': 'canonical tracks with last - first timestamp >= 4.0 s',
-            'scene_0': scene_stats_all['0']['tracks_ge_4s'],
-            'scene_1': scene_stats_all['1']['tracks_ge_4s'],
-            'total': scene_stats_all['0']['tracks_ge_4s'] + scene_stats_all['1']['tracks_ge_4s'],
+        'prediction_window_supply': {
+            'definition': 'vehicles with >= 40 canonical points (20 history + 20 future samples)',
+            'scene_0': scene_stats_all['0']['tracks_with_ge_40_canonical_points'],
+            'scene_1': scene_stats_all['1']['tracks_with_ge_40_canonical_points'],
+            'total': scene_stats_all['0']['tracks_with_ge_40_canonical_points']
+            + scene_stats_all['1']['tracks_with_ge_40_canonical_points'],
         },
     }
     stats_metric = write_json(stats, stats_path)
@@ -426,7 +444,8 @@ def main() -> None:
                       'metadata': metrics['scene_metadata.json'],
                       'stats': stats_metric,
                       'scenes': {k: {'rows': v['canonical_points'], 'vehicles': v['canonical_vehicles'],
-                                     'tracks_ge_4s': v['tracks_ge_4s']}
+                                     'tracks_with_ge_40_points': v['tracks_with_ge_40_canonical_points'],
+                                     'stride_counts': v['source_stride_counts']}
                                  for k, v in scene_stats_all.items()}},
                      indent=1, default=float))
 
