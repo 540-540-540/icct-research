@@ -1,0 +1,167 @@
+{
+ "kind": "canonical_build",
+ "input_csv": "data/Lankershim_Vehicle_Trajectories.csv",
+ "input_sha256": "ec10b87ac065f41cdef143ce8e75f4c77d45e056c0094573d27beeb85447d180",
+ "global_time_origin_ms": 1118935680200,
+ "session_boundary_ms": 1118936700000,
+ "dt_s": 0.1,
+ "feet_to_m": 0.3048,
+ "raw_rows": 1607319,
+ "session_clock_offsets_ms": [
+  1118935679900,
+  1118936699900
+ ],
+ "duplicate_pairs": [
+  {
+   "session0_vehicle_id": 1418,
+   "session1_vehicle_id": 2,
+   "session0_rows": 978,
+   "session1_rows": 965,
+   "kept_session0_rows_before_boundary": 11,
+   "kept_session1_rows_from_boundary": 965,
+   "dropped_session0_rows_at_or_after_boundary": 967,
+   "dropped_session1_rows_before_boundary": 0
+  },
+  {
+   "session0_vehicle_id": 1421,
+   "session1_vehicle_id": 5,
+   "session0_rows": 927,
+   "session1_rows": 926,
+   "kept_session0_rows_before_boundary": 1,
+   "kept_session1_rows_from_boundary": 926,
+   "dropped_session0_rows_at_or_after_boundary": 926,
+   "dropped_session1_rows_before_boundary": 0
+  },
+  {
+   "session0_vehicle_id": 1420,
+   "session1_vehicle_id": 6,
+   "session0_rows": 35,
+   "session1_rows": 35,
+   "kept_session0_rows_before_boundary": 1,
+   "kept_session1_rows_from_boundary": 35,
+   "dropped_session0_rows_at_or_after_boundary": 34,
+   "dropped_session1_rows_before_boundary": 0
+  },
+  {
+   "session0_vehicle_id": 1422,
+   "session1_vehicle_id": 7,
+   "session0_rows": 115,
+   "session1_rows": 114,
+   "kept_session0_rows_before_boundary": 1,
+   "kept_session1_rows_from_boundary": 114,
+   "dropped_session0_rows_at_or_after_boundary": 114,
+   "dropped_session1_rows_before_boundary": 0
+  }
+ ],
+ "row_accounting": {
+  "raw_rows": 1607319,
+  "merge_dropped_rows": 2041,
+  "first_points_kept": 2438,
+  "first_point_velocity_rule": "forward difference (x[1]-x[0])/0.1; no point deleted",
+  "final_rows": 1605278,
+  "check_raw_minus_drops": 1605278
+ },
+ "counts": {
+  "canonical_vehicles": 2438,
+  "mapping_rows": 2442,
+  "merged_vehicle_ids": [
+   1208,
+   1210,
+   1209,
+   1211
+  ]
+ },
+ "seam_checks": [
+  {
+   "session0_vehicle_id": 1422,
+   "session1_vehicle_id": 7,
+   "kept_session0_rows": 1,
+   "kept_session1_rows": 114,
+   "seam_time_s": 1019.8,
+   "dt_at_seam_s": 0.1,
+   "dx_m": 0.33284159982576966,
+   "dy_m": -0.00548639998305589,
+   "jump_m": 0.33288681433687317,
+   "speed_pre_mps": null,
+   "speed_post_mps": 0.0,
+   "seam_implied_speed_mps": 3.3288681433687315
+  },
+  {
+   "session0_vehicle_id": 1420,
+   "session1_vehicle_id": 6,
+   "kept_session0_rows": 1,
+   "kept_session1_rows": 35,
+   "seam_time_s": 1019.8,
+   "dt_at_seam_s": 0.1,
+   "dx_m": -0.46207679994404316,
+   "dy_m": 0.765352800139226,
+   "jump_m": 0.8940245397792397,
+   "speed_pre_mps": null,
+   "speed_post_mps": 1.9510485864022222,
+   "seam_implied_speed_mps": 8.940245397792395
+  },
+  {
+   "session0_vehicle_id": 1421,
+   "session1_vehicle_id": 5,
+   "kept_session0_rows": 1,
+   "kept_session1_rows": 926,
+   "seam_time_s": 1019.8,
+   "dt_at_seam_s": 0.1,
+   "dx_m": -0.24505919986404479,
+   "dy_m": 0.1514856000430882,
+   "jump_m": 0.2881005006216066,
+   "speed_pre_mps": null,
+   "speed_post_mps": 1.5253192123952315,
+   "seam_implied_speed_mps": 2.8810050062160655
+  },
+  {
+   "session0_vehicle_id": 1418,
+   "session1_vehicle_id": 2,
+   "kept_session0_rows": 11,
+   "kept_session1_rows": 965,
+   "seam_time_s": 1019.8,
+   "dt_at_seam_s": 0.1,
+   "dx_m": -0.3557015999685973,
+   "dy_m": 0.166116000036709,
+   "jump_m": 0.3925788502815911,
+   "speed_pre_mps": 5.186705573631263,
+   "speed_post_mps": 6.467544297476776,
+   "seam_implied_speed_mps": 3.925788502815911
+  }
+ ],
+ "v_vel_sanity": {
+  "matched_rows": 1605278,
+  "total_rows": 1605278,
+  "matched_fraction": 1.0,
+  "raw_v_vel_mps": {
+   "median": 3.633216,
+   "p90": 14.276832000000002
+  },
+  "computed_speed_mps": {
+   "median": 3.6241841505015167,
+   "p90": 14.14448365816092
+  },
+  "difference_mps": {
+   "median": 0.0,
+   "p90_abs": 0.771998270921891
+  },
+  "pearson": 0.9873123185444458
+ },
+ "timestamps": {
+  "min_s": 0.0,
+  "max_s": 2066.8
+ },
+ "outputs": {
+  "data/processed/trajectories_clean.csv": {
+   "size": 103010868,
+   "lines": 1605279,
+   "sha256": "a546e44f560e993b5ce8ca0818a309ef180346c7595a71262a39f8296b53b153"
+  },
+  "data/processed/vehicle_id_mapping.csv": {
+   "size": 26590,
+   "lines": 2443,
+   "sha256": "ad15d01aa32d88f978f345a070789012fbed6508c9eaa65fe0deebbecc76258c"
+  }
+ },
+ "runtime_s": 38.33911848068237
+}

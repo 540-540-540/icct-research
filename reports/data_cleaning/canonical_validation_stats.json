@@ -1,0 +1,183 @@
+{
+ "kind": "canonical_validation",
+ "clean_csv": "data/processed/trajectories_clean.csv",
+ "mapping_csv": "data/processed/vehicle_id_mapping.csv",
+ "raw_csv": "data/Lankershim_Vehicle_Trajectories.csv",
+ "totals": {
+  "vehicles": 2438,
+  "rows": 1605278,
+  "columns": [
+   "vehicle_id",
+   "timestamp",
+   "x",
+   "y",
+   "vx",
+   "vy"
+  ]
+ },
+ "checks": {
+  "vehicle_id_contiguous_1_to_N": {
+   "count": 2438,
+   "min": 1,
+   "max": 2438,
+   "pass": true
+  },
+  "no_duplicate_vehicle_timestamp": {
+   "duplicates": 0,
+   "pass": true
+  },
+  "timestamps_strictly_increasing": {
+   "non_positive_steps": 0,
+   "pass": true
+  },
+  "time_gap_0p1s": {
+   "steps": 1602840,
+   "max_abs_deviation": 3.6379232959404817e-13,
+   "pass": true
+  },
+  "no_nan": {
+   "counts": {
+    "vehicle_id": 0,
+    "timestamp": 0,
+    "x": 0,
+    "y": 0,
+    "vx": 0,
+    "vy": 0
+   },
+   "pass": true
+  },
+  "no_inf": {
+   "counts": {
+    "vehicle_id": 0,
+    "timestamp": 0,
+    "x": 0,
+    "y": 0,
+    "vx": 0,
+    "vy": 0
+   },
+   "pass": true
+  },
+  "position_steps": {
+   "max_step_m": 8.688035667620591,
+   "steps_gt_3m": 96,
+   "steps_gt_5m": 6,
+   "steps_gt_10m": 0,
+   "pass": true
+  },
+  "velocity_finite": {
+   "pass": true
+  },
+  "speed_physical": {
+   "max_mps": 86.88036442825998,
+   "p50_mps": 3.624184151048852,
+   "p99_mps": 18.888120835070467,
+   "count_gt_30_mps": 113,
+   "pass": true
+  },
+  "v_vel_consistency": {
+   "matched_rows": 1605278,
+   "matched_fraction": 1.0,
+   "median_raw_mps": 3.633216,
+   "median_computed_mps": 3.624184151048852,
+   "median_abs_diff_mps": 0.011216252205729305,
+   "pearson": 0.9873123185444371,
+   "pass": true
+  },
+  "duplicates_merged": {
+   "merged_vehicle_ids": [
+    1208,
+    1209,
+    1210,
+    1211
+   ],
+   "merged_vehicle_count": 4,
+   "sources": {
+    "1208": [
+     [
+      0,
+      1418
+     ],
+     [
+      1,
+      2
+     ]
+    ],
+    "1209": [
+     [
+      0,
+      1420
+     ],
+     [
+      1,
+      6
+     ]
+    ],
+    "1210": [
+     [
+      0,
+      1421
+     ],
+     [
+      1,
+      5
+     ]
+    ],
+    "1211": [
+     [
+      0,
+      1422
+     ],
+     [
+      1,
+      7
+     ]
+    ]
+   },
+   "expected_pairs": [
+    [
+     1418,
+     2
+    ],
+    [
+     1421,
+     5
+    ],
+    [
+     1420,
+     6
+    ],
+    [
+     1422,
+     7
+    ]
+   ],
+   "pass": true
+  },
+  "row_accounting": {
+   "raw_rows": 1607319,
+   "merge_dropped_rows": 2041,
+   "expected_final_rows": 1605278,
+   "actual_final_rows": 1605278,
+   "source_tracks": 2442,
+   "source_tracks_session0": 1211,
+   "source_tracks_session1": 1231,
+   "complementary_tracks_kept_expected": 2438,
+   "canonical_vehicles": 2438,
+   "pass": true
+  },
+  "per_vehicle_row_counts": {
+   "mismatches": [],
+   "pass": true,
+   "vehicles_checked": 2438
+  },
+  "first_frame_velocity_rule": {
+   "checked_vehicles": 2438,
+   "mismatches": [],
+   "pass": true
+  },
+  "file_sorted_by_timestamp_vehicle": {
+   "pass": true
+  }
+ },
+ "overall_pass": true
+}
