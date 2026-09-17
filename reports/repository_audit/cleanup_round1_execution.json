@@ -1,5 +1,6 @@
 {
   "stage": "ICCT cleanup round 1 execution",
+  "outcome": "Round 1 completed: 30 runtime sources added to Git, 926 obsolete history/process artifacts removed from the Git tree, 23 approved server files deleted, 14 dependency-referenced files held back (REVIEW_REQUIRED), final work tree clean",
   "added_to_git": {
     "commit": "c1ee95bbfd6018c986676cccc009559d59eaf24a",
     "count": 30,
@@ -1152,7 +1153,7 @@
           ]
         }
       },
-      "action": "kept on the server; decisions updated to REVIEW_REQUIRED"
+      "action": "deletion stopped in round 1; all 14 files kept on the server and in the Windows mirror; pre_cleanup_files.csv and source_retention_decisions.json record them as REVIEW_REQUIRED (final, committed with the round-1 closeout)"
     },
     {
       "type": "stale_manifest_entry",
@@ -1166,14 +1167,11 @@
     }
   ],
   "final_git_status": {
-    "working_tree_entries": 3,
-    "status_lines": [
-      " M reports/repository_audit/pre_cleanup_files.csv",
-      " M reports/repository_audit/source_retention_decisions.json",
-      "?? reports/qgnn_hzy/"
-    ],
-    "tracked_files": 1765
+    "working_tree_entries": 0,
+    "status_lines": [],
+    "tracked_files": 1767,
+    "note": "clean: no modified, deleted or untracked entries; reports/qgnn_hzy/graph_checks.json was added to Git as current QGNN check evidence; large scientific assets stay ignored (data/, models/, checkpoints/, large results)"
   },
-  "final_commit": "16628b8dab7d2543dd8000ab45b571984d4fd468",
-  "record_commit": "the commit adding this file"
+  "final_commit": "the closeout commit 'Close out cleanup round 1' on maintenance/repo-cleanup (this revision is part of it)",
+  "record_commit": "initial revision added by 79c85ad53a2b45c92ef9396ff121752bd1c7a791; final revision added by the closeout commit"
 }

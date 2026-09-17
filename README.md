@@ -7,7 +7,7 @@ facts live in `reports/` and `results/`.
 
 | Path | Contents |
 |---|---|
-| `frontend/` | Frozen ISAC frontend: shared echo source adapter, B64 OFDM sensing, CA-CFAR, AoA, fusion, CV-KF tracking, F01-E dataset loader |
+| `frontend/` | Sensing / ISAC frontend implementations, shared interfaces, dataset loaders and supporting runtime components |
 | `prediction/` | QGAT/QGNN runtime: classical and quantum graph cores, shared GPT-2/LoRA temporal predictor, training utilities (import path only; not run by the ISAC flow) |
 | `experiments/` | QGAT/QGNN experiment entry points and their configurations |
 | `scripts/` | Stage-1 training/evaluation/protocol entry scripts and environment checks |
@@ -42,6 +42,8 @@ preserved until branch cleanup is approved.
 
 ## Current development module
 
-ISAC (shared frontend) development continues on the `isac-redesign-probe-01` line; the formal
-dataset contract and loader entry are `data/f01e/` and
-`frontend.f01e_dataset.F01EDataset`. QGNN/LLM modules follow after the ISAC freeze.
+ISAC (shared frontend) redesign continues on the `isac-redesign-probe-01` line and is not frozen
+yet. The F01-E loader (`frontend.f01e_dataset.F01EDataset`) and the `data/f01e/` contract belong
+to the historical frozen experiment chain; they do not by themselves define the final sensing
+design. The active development branch and its code are the reference for the current
+implementation. QGNN/LLM modules follow after the ISAC freeze.

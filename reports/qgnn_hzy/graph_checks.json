@@ -1,0 +1,75 @@
+{
+  "passed": true,
+  "circuit_revision": "h-once-rz-ry-rz-ry-rz-ring-z-zz-v1",
+  "environment": {
+    "host": "smaster",
+    "python": "3.11.15",
+    "torch": "2.13.0+cu130",
+    "pennylane": "0.45.1"
+  },
+  "graph_parameters": 219278,
+  "quantum_parameters_per_layer": 54,
+  "quantum_parameters_total": 108,
+  "gate_operations_per_core": 115,
+  "hadamard_count_per_core": 6,
+  "reupload_rounds": 3,
+  "checks": [
+    "exact gate order, wires, and input/weight mapping",
+    "Z and adjacent ZZ readout order",
+    "independent replica simulators",
+    "batched/single/no_grad CPU equivalence",
+    "all 12 input columns and each quantum weight tensor have nonzero finite probe gradients",
+    "both quantum cores receive gradients through the graph",
+    "masks, empty frames, permutation, padding",
+    "same initial parameters and trainable parameter count as inherited graph",
+    "parameters unchanged"
+  ],
+  "core_checks": [
+    {
+      "input_angle_gradient_l1_by_column": [
+        2.299245834350586,
+        1.500609040260315,
+        2.8192319869995117,
+        1.0134551525115967,
+        1.0004138946533203,
+        1.7736953496932983,
+        0.8258963227272034,
+        2.1787281036376953,
+        2.1434051990509033,
+        2.2303600311279297,
+        2.1876893043518066,
+        0.8250013589859009
+      ],
+      "quantum_weight_gradient_norm": 4.352609157562256,
+      "quantum_weight_nonzero_probe_gradients": 48
+    },
+    {
+      "input_angle_gradient_l1_by_column": [
+        2.7484328746795654,
+        1.5104095935821533,
+        0.7282508611679077,
+        0.9437955617904663,
+        0.9636999368667603,
+        1.2429633140563965,
+        1.256176471710205,
+        1.6427706480026245,
+        2.5732216835021973,
+        1.261581540107727,
+        1.6288223266601562,
+        2.251194477081299
+      ],
+      "quantum_weight_gradient_norm": 4.174274444580078,
+      "quantum_weight_nonzero_probe_gradients": 48
+    }
+  ],
+  "graph_quantum_gradient_norms": [
+    0.5549658536911011,
+    0.0686262995004654
+  ],
+  "cuda_output_and_gradient_equivalence_checked": true,
+  "optimizer_steps_executed": 0,
+  "historical_checkpoint_loaded": false,
+  "dataset_opened": false,
+  "confirmation_opened": false,
+  "test_opened": false
+}
