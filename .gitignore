@@ -19,6 +19,7 @@ venv/
 # Raw datasets and downloaded model assets
 data/
 models/
+checkpoints/
 
 # Training checkpoints and large generated arrays
 *.pt
@@ -48,6 +49,9 @@ models/
 *.7z
 *.rar
 *.log
+*.tmp
+.syncthing.*.tmp
+~$*
 wandb/
 runs/
 

@@ -6,8 +6,6 @@
 cd /home/dell/YrM/ICCT
 source /home/dell/YrM/envs/ICCT/bin/activate
 python scripts/check_environment.py
-OPENBLAS_NUM_THREADS=1 python -m frontend.check_ofdm
-OPENBLAS_NUM_THREADS=1 python -m frontend.run_echo_audit
 ```
 
 脚本也可以直接使用 `/home/dell/YrM/envs/ICCT/bin/python`，无需激活。依赖锁定于 `requirements-lock.txt`；`requirements.txt`列出直接依赖。安装日志保存在 `reports/ICCT_environment_install.log`，实际校核记录为 `reports/ICCT_environment.json`。

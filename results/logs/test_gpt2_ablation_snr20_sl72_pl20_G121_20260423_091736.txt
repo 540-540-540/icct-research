@@ -1,9 +1,0 @@
-====================================================================================================
-GPT-2 ablation evaluation | split=test | snr=20dB | ablations=['full', 'wo_uncertainty_u', 'wo_soft_token', 'wo_token_loss', 'wo_global_refiner']
-[Cache] loaded localized trajectories from ./logs/localized_cache_dataset_lankershim_v3_localize_snr20_g121_s3_t0p06_e1_sl72_pl20.npz
-[Cache] ./logs/localized_cache_dataset_lankershim_v3_localize_snr20_g121_s3_t0p06_e1_sl72_pl20.npz | samples=22400
-Ours Full                           | ADE=0.591 FDE=0.998 | S5=0.374 S10=0.546 S15=0.782 S20=0.998 | ckpt=checkpoints/localized_gpt2_soft_snr20_sl72_pl20_G121_MAIN/gpt2_soft_snr20/checkpoint.pth
-w/o Uncertainty u                   | ADE=0.582 FDE=0.965 | S5=0.372 S10=0.531 S15=0.771 S20=0.965 | ckpt=checkpoints/gpt2_ablation_wo_uncertainty_u_snr20_sl72_pl20_G121/wo_uncertainty_u_snr20/checkpoint.pth
-w/o Uncertainty-aware Soft Token    | ADE=0.608 FDE=1.024 | S5=0.383 S10=0.559 S15=0.808 S20=1.024 | ckpt=checkpoints/gpt2_ablation_wo_soft_token_snr20_sl72_pl20_G121/wo_soft_token_snr20/checkpoint.pth
-w/o Token Loss                      | ADE=0.585 FDE=0.989 | S5=0.370 S10=0.528 S15=0.780 S20=0.989 | ckpt=checkpoints/gpt2_ablation_wo_token_loss_snr20_sl72_pl20_G121/wo_token_loss_snr20/checkpoint.pth
-w/o Global Refiner                  | ADE=0.593 FDE=1.002 | S5=0.382 S10=0.530 S15=0.791 S20=1.002 | ckpt=checkpoints/gpt2_ablation_wo_global_refiner_snr20_sl72_pl20_G121/wo_global_refiner_snr20/checkpoint.pth
