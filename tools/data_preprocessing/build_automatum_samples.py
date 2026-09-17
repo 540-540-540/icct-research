@@ -166,6 +166,12 @@ def write_npz_deterministic(path: Path, arrays: dict) -> None:
         for key in NPZ_KEYS:
             info = zipfile.ZipInfo('%s.npy' % key, date_time=(1980, 1, 1, 0, 0, 0))
             info.compress_type = zipfile.ZIP_STORED
+            info.create_system = 0
+            info.create_version = 20
+            info.extract_version = 20
+            info.external_attr = 0
+            info.internal_attr = 0
+            info.flag_bits = 0
             with zf.open(info, 'w') as fid:
                 npy_format.write_array(fid, np.ascontiguousarray(arrays[key]), allow_pickle=False)
 
