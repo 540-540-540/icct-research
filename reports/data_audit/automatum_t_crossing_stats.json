@@ -1,0 +1,2515 @@
+{
+ "audit": "automatum_t_crossing_full_audit",
+ "mode": "AUDIT ONLY (no raw data modified; no downsampling/cleaning/renumbering performed)",
+ "generated_utc": "2026-09-17T08:51:05Z",
+ "zip": {
+  "path": "E:\\NJUPT\\ICCT\u4f1a\u8bae\\data\\automatum_t_crossing\\raw\\automatum_data_crossing.zip",
+  "size_bytes": 33479907,
+  "sha256": "ea2c528fafdb306ea20686065b15c39ae2332342594a0f8031477bdd8f91f19f",
+  "testzip_corrupt_member": null,
+  "member_count": 14,
+  "members": [
+   {
+    "name": "T-Crossing--GaimersheimStadtweg_e2e6-e2e6f4bb-4668-4654-ac7e-bcd90c9df4c2/staticWorld.xodr",
+    "size": 18679,
+    "compressed": 4663,
+    "crc": "ebaebe59"
+   },
+   {
+    "name": "T-Crossing--GaimersheimStadtweg_e2e6-e2e6f4bb-4668-4654-ac7e-bcd90c9df4c2/dynamicWorld.json",
+    "size": 51283310,
+    "compressed": 14630313,
+    "crc": "9711fb2d"
+   },
+   {
+    "name": "T-Crossing--GaimersheimStadtweg_e2e6-e2e6f4bb-4668-4654-ac7e-bcd90c9df4c2/T-Crossing--GaimersheimStadtweg_e2e6-e2e6f4bb-4668-4654-ac7e-bcd90c9df4c2.html",
+    "size": 4823478,
+    "compressed": 2411021,
+    "crc": "0552bbee"
+   },
+   {
+    "name": "T-Crossing--GaimersheimStadtweg_e2e6-e2e6f4bb-4668-4654-ac7e-bcd90c9df4c2/img/T-Crossing--GaimersheimStadtweg_e2e6-e2e6f4bb-4668-4654-ac7e-bcd90c9df4c2_centerImg_thumb.jpg",
+    "size": 14777,
+    "compressed": 14621,
+    "crc": "5bb26879"
+   },
+   {
+    "name": "T-Crossing--GaimersheimStadtweg_e2e6-e2e6f4bb-4668-4654-ac7e-bcd90c9df4c2/img/kpis.json",
+    "size": 314,
+    "compressed": 196,
+    "crc": "6412d4de"
+   },
+   {
+    "name": "T-Crossing--GaimersheimStadtweg_e2e6-e2e6f4bb-4668-4654-ac7e-bcd90c9df4c2/img/T-Crossing--GaimersheimStadtweg_e2e6-e2e6f4bb-4668-4654-ac7e-bcd90c9df4c2_trajectories.jpg",
+    "size": 101742,
+    "compressed": 73776,
+    "crc": "fedcdc54"
+   },
+   {
+    "name": "T-Crossing--GaimersheimStadtweg_e2e6-e2e6f4bb-4668-4654-ac7e-bcd90c9df4c2/img/T-Crossing--GaimersheimStadtweg_e2e6-e2e6f4bb-4668-4654-ac7e-bcd90c9df4c2_map.jpg",
+    "size": 83178,
+    "compressed": 82952,
+    "crc": "59634897"
+   },
+   {
+    "name": "T-Crossing-St2214-DuenzlauUmgehung_1b9b-1b9bf4b8-9fa6-4d23-abd2-2b715d087e8f/staticWorld.xodr",
+    "size": 22085,
+    "compressed": 5780,
+    "crc": "e5abdb9d"
+   },
+   {
+    "name": "T-Crossing-St2214-DuenzlauUmgehung_1b9b-1b9bf4b8-9fa6-4d23-abd2-2b715d087e8f/T-Crossing-St2214-DuenzlauUmgehung_1b9b-1b9bf4b8-9fa6-4d23-abd2-2b715d087e8f.html",
+    "size": 4558768,
+    "compressed": 2291621,
+    "crc": "40f8877e"
+   },
+   {
+    "name": "T-Crossing-St2214-DuenzlauUmgehung_1b9b-1b9bf4b8-9fa6-4d23-abd2-2b715d087e8f/dynamicWorld.json",
+    "size": 48353942,
+    "compressed": 13829827,
+    "crc": "3d37d5c4"
+   },
+   {
+    "name": "T-Crossing-St2214-DuenzlauUmgehung_1b9b-1b9bf4b8-9fa6-4d23-abd2-2b715d087e8f/img/T-Crossing-St2214-DuenzlauUmgehung_1b9b-1b9bf4b8-9fa6-4d23-abd2-2b715d087e8f_trajectories.jpg",
+    "size": 70396,
+    "compressed": 51373,
+    "crc": "6dae6848"
+   },
+   {
+    "name": "T-Crossing-St2214-DuenzlauUmgehung_1b9b-1b9bf4b8-9fa6-4d23-abd2-2b715d087e8f/img/T-Crossing-St2214-DuenzlauUmgehung_1b9b-1b9bf4b8-9fa6-4d23-abd2-2b715d087e8f_centerImg_thumb.jpg",
+    "size": 22738,
+    "compressed": 22575,
+    "crc": "a16b9bcd"
+   },
+   {
+    "name": "T-Crossing-St2214-DuenzlauUmgehung_1b9b-1b9bf4b8-9fa6-4d23-abd2-2b715d087e8f/img/kpis.json",
+    "size": 315,
+    "compressed": 193,
+    "crc": "27cc025a"
+   },
+   {
+    "name": "T-Crossing-St2214-DuenzlauUmgehung_1b9b-1b9bf4b8-9fa6-4d23-abd2-2b715d087e8f/img/T-Crossing-St2214-DuenzlauUmgehung_1b9b-1b9bf4b8-9fa6-4d23-abd2-2b715d087e8f_map.jpg",
+    "size": 56736,
+    "compressed": 56172,
+    "crc": "f854f354"
+   }
+  ],
+  "recordings": [
+   "T-Crossing--GaimersheimStadtweg_e2e6-e2e6f4bb-4668-4654-ac7e-bcd90c9df4c2",
+   "T-Crossing-St2214-DuenzlauUmgehung_1b9b-1b9bf4b8-9fa6-4d23-abd2-2b715d087e8f"
+  ],
+  "extracted_root": "E:\\NJUPT\\ICCT\u4f1a\u8bae\\data\\automatum_t_crossing\\raw\\extracted",
+  "extracted_files": {
+   "T-Crossing--GaimersheimStadtweg_e2e6-e2e6f4bb-4668-4654-ac7e-bcd90c9df4c2\\dynamicWorld.json": 51283310,
+   "T-Crossing--GaimersheimStadtweg_e2e6-e2e6f4bb-4668-4654-ac7e-bcd90c9df4c2\\img\\kpis.json": 314,
+   "T-Crossing--GaimersheimStadtweg_e2e6-e2e6f4bb-4668-4654-ac7e-bcd90c9df4c2\\img\\T-Crossing--GaimersheimStadtweg_e2e6-e2e6f4bb-4668-4654-ac7e-bcd90c9df4c2_centerImg_thumb.jpg": 14777,
+   "T-Crossing--GaimersheimStadtweg_e2e6-e2e6f4bb-4668-4654-ac7e-bcd90c9df4c2\\img\\T-Crossing--GaimersheimStadtweg_e2e6-e2e6f4bb-4668-4654-ac7e-bcd90c9df4c2_map.jpg": 83178,
+   "T-Crossing--GaimersheimStadtweg_e2e6-e2e6f4bb-4668-4654-ac7e-bcd90c9df4c2\\img\\T-Crossing--GaimersheimStadtweg_e2e6-e2e6f4bb-4668-4654-ac7e-bcd90c9df4c2_trajectories.jpg": 101742,
+   "T-Crossing--GaimersheimStadtweg_e2e6-e2e6f4bb-4668-4654-ac7e-bcd90c9df4c2\\staticWorld.xodr": 18679,
+   "T-Crossing--GaimersheimStadtweg_e2e6-e2e6f4bb-4668-4654-ac7e-bcd90c9df4c2\\T-Crossing--GaimersheimStadtweg_e2e6-e2e6f4bb-4668-4654-ac7e-bcd90c9df4c2.html": 4823478,
+   "T-Crossing-St2214-DuenzlauUmgehung_1b9b-1b9bf4b8-9fa6-4d23-abd2-2b715d087e8f\\dynamicWorld.json": 48353942,
+   "T-Crossing-St2214-DuenzlauUmgehung_1b9b-1b9bf4b8-9fa6-4d23-abd2-2b715d087e8f\\img\\kpis.json": 315,
+   "T-Crossing-St2214-DuenzlauUmgehung_1b9b-1b9bf4b8-9fa6-4d23-abd2-2b715d087e8f\\img\\T-Crossing-St2214-DuenzlauUmgehung_1b9b-1b9bf4b8-9fa6-4d23-abd2-2b715d087e8f_centerImg_thumb.jpg": 22738,
+   "T-Crossing-St2214-DuenzlauUmgehung_1b9b-1b9bf4b8-9fa6-4d23-abd2-2b715d087e8f\\img\\T-Crossing-St2214-DuenzlauUmgehung_1b9b-1b9bf4b8-9fa6-4d23-abd2-2b715d087e8f_map.jpg": 56736,
+   "T-Crossing-St2214-DuenzlauUmgehung_1b9b-1b9bf4b8-9fa6-4d23-abd2-2b715d087e8f\\img\\T-Crossing-St2214-DuenzlauUmgehung_1b9b-1b9bf4b8-9fa6-4d23-abd2-2b715d087e8f_trajectories.jpg": 70396,
+   "T-Crossing-St2214-DuenzlauUmgehung_1b9b-1b9bf4b8-9fa6-4d23-abd2-2b715d087e8f\\staticWorld.xodr": 22085,
+   "T-Crossing-St2214-DuenzlauUmgehung_1b9b-1b9bf4b8-9fa6-4d23-abd2-2b715d087e8f\\T-Crossing-St2214-DuenzlauUmgehung_1b9b-1b9bf4b8-9fa6-4d23-abd2-2b715d087e8f.html": 4558768
+  },
+  "extracted_total_bytes": 109410458
+ },
+ "recordings": {
+  "recording_A": {
+   "label": "recording_A",
+   "name": "T-Crossing--GaimersheimStadtweg_e2e6-e2e6f4bb-4668-4654-ac7e-bcd90c9df4c2",
+   "uuid": "e2e6f4bb-4668-4654-ac7e-bcd90c9df4c2",
+   "source_dir": "T-Crossing--GaimersheimStadtweg_e2e6-e2e6f4bb-4668-4654-ac7e-bcd90c9df4c2",
+   "release": 3.0,
+   "utm_reference_point": "675222.839714, 5406668.513171, U, 32",
+   "wgs84_reference_point": "48.788309, 11.385632",
+   "video": {
+    "fps": 29.97,
+    "frame_count": 19501
+   },
+   "duration_s": 650.6506506506507,
+   "n_frames": 19501,
+   "video_frame_count": 19501,
+   "video_frame_count_matches_timestamp_grid": true,
+   "mean_sampling_rate_hz": 29.969999999999995,
+   "vehicle_type_counts": {
+    "car": 265,
+    "van": 3,
+    "truck": 31
+   },
+   "objects": 299,
+   "object_types_in_objects_list": {
+    "car": 265,
+    "truck": 31,
+    "van": 3
+   },
+   "schema": {
+    "object_keys": [
+     "UUID",
+     "ax_vec",
+     "ay_vec",
+     "curvature_vec",
+     "dist_along_road_segment",
+     "distance_left_lane_marking",
+     "distance_right_lane_marking",
+     "jerk_x_vec",
+     "jerk_y_vec",
+     "lane_change_flag_vec",
+     "lane_id_vec",
+     "lat_dist_dict_vec",
+     "length",
+     "long_dist_dict_vec",
+     "objType",
+     "object_relation_dict_list",
+     "psi_vec",
+     "road_id_vec",
+     "road_type_list",
+     "time",
+     "ttc_dict_vec",
+     "tth_dict_vec",
+     "vx_vec",
+     "vy_vec",
+     "width",
+     "x_vec",
+     "y_vec"
+    ],
+    "state_vectors": [
+     "ax_vec",
+     "ay_vec",
+     "curvature_vec",
+     "psi_vec",
+     "vx_vec",
+     "vy_vec",
+     "x_vec",
+     "y_vec",
+     "jerk_x_vec",
+     "jerk_y_vec"
+    ],
+    "aux_vectors_present_but_empty": [
+     "dist_along_road_segment",
+     "distance_left_lane_marking",
+     "distance_right_lane_marking",
+     "lane_change_flag_vec",
+     "lane_id_vec",
+     "lat_dist_dict_vec",
+     "long_dist_dict_vec",
+     "object_relation_dict_list",
+     "road_id_vec",
+     "road_type_list",
+     "ttc_dict_vec",
+     "tth_dict_vec"
+    ],
+    "vector_length_mismatch_tracks": 0,
+    "time_base": "per-object time vector in seconds from recording start, 1/29.97 s grid",
+    "coordinate_base": "local metric Cartesian frame (UTM reference point given in metadata); same frame as staticWorld.xodr",
+    "velocity_frame": "body frame: vx longitudinal, vy lateral; world velocity = R(psi) @ (vx, vy)"
+   },
+   "duration_bins": {
+    "<2s": 0,
+    "2-4s": 10,
+    "4-6s": 5,
+    "6-10s": 145,
+    "10-20s": 91,
+    ">20s": 48
+   },
+   "tracks_ge_4s": 289,
+   "continuity": {
+    "tracks": 299,
+    "track_points": 125860,
+    "dt": {
+     "count": 125561,
+     "mean": 0.033366700033366704,
+     "std": 3.070282616593592e-14,
+     "p0": 0.033366700033298,
+     "p1": 0.033366700033298,
+     "p50": 0.033366700033354846,
+     "p99": 0.03336670003341169,
+     "p99.9": 0.03336670003341169,
+     "p100": 0.03336670003341169
+    },
+    "dt_equals_nominal_fraction": 1.0,
+    "tracks_non_monotonic_time": 0,
+    "tracks_duplicate_timestamps": 0,
+    "tracks_with_vector_length_mismatch": 0,
+    "tracks_not_on_29_97_grid": 0,
+    "n_objects_with_empty_aux_vectors": 299,
+    "aux_vector_keys_present_but_empty": [
+     "dist_along_road_segment",
+     "distance_left_lane_marking",
+     "distance_right_lane_marking",
+     "lane_change_flag_vec",
+     "lane_id_vec",
+     "lat_dist_dict_vec",
+     "long_dist_dict_vec",
+     "object_relation_dict_list",
+     "road_id_vec",
+     "road_type_list",
+     "ttc_dict_vec",
+     "tth_dict_vec"
+    ],
+    "aux_vector_keys_populated": []
+   },
+   "kinematics": {
+    "anomaly_rows": [],
+    "velocity_consistency": {
+     "body_frame_check": {
+      "fd_vs_official_midpoint": {
+       "mae_mps": 0.03774932952243138,
+       "rmse_mps": 0.054896622617791255,
+       "bias_mps": 0.006489709892932979,
+       "p95_abs_mps": 0.12084833788139537,
+       "p99_abs_mps": 0.1839477513750047,
+       "max_abs_mps": 0.44453511546267066
+      },
+      "fd_vs_official_left_sample_mae_mps": 14.110206127954031,
+      "fd_world_after_psi_rotation_mae_mps": 0.05138303097419695,
+      "conclusion": "vx/vy are body-frame (longitudinal/lateral), x/y world, psi heading; rotation of (vx,vy) by psi matches finite differences"
+     },
+     "pairs_total": 125561,
+     "speed_quantization": {
+      "count": 125561,
+      "mean": 0.03774932952243138,
+      "std": 0.03985774639618978,
+      "p50": 0.024475648140866446,
+      "p90": 0.09068951461613395,
+      "p95": 0.12084833788139537,
+      "p99": 0.1839477513750047,
+      "p99.9": 0.2709443056558363,
+      "p100": 0.44453511546267066
+     }
+    },
+    "heading_consistency": {
+     "moving_points": 95685,
+     "psi_vs_fd_direction": {
+      "count": 95685,
+      "mean": 0.003999732560722961,
+      "std": 0.00677317886106768,
+      "p50": 0.0015556755904193587,
+      "p90": 0.011172389304527288,
+      "p95": 0.01940820076680652,
+      "p99": 0.03420614877816546,
+      "p99.9": 0.048827968440478584,
+      "p100": 0.06656775823528527
+     },
+     "heading_jump_events_over_0.5rad_moving": 0
+    },
+    "physical": {
+     "speed_mps": {
+      "count": 125860,
+      "mean": 11.444093736789727,
+      "std": 6.947897976151316,
+      "p0": 0.0005141507454836733,
+      "p1": 0.015536583240003897,
+      "p50": 12.770634582339746,
+      "p75": 17.34727428992776,
+      "p90": 19.307028721393444,
+      "p95": 20.456198657990598,
+      "p99": 22.950746043437125,
+      "p99.9": 30.321936035644974,
+      "p100": 30.390231862413593
+     },
+     "accel_mps2": {
+      "count": 125860,
+      "mean": 0.7037536872484336,
+      "std": 0.7485560980306526,
+      "p0": 0.0005365877357946499,
+      "p50": 0.3761496226006708,
+      "p90": 1.8512811693318953,
+      "p95": 2.315893232881804,
+      "p99": 3.1647904336454,
+      "p99.9": 4.080822663998212,
+      "p100": 4.694374407632571
+     },
+     "jerk_mps3": {
+      "count": 125860,
+      "mean": 0.3262633963776659,
+      "std": 0.3272540454827423,
+      "p50": 0.20782910751720968,
+      "p90": 0.7835299969938044,
+      "p95": 1.0206621154340685,
+      "p99": 1.54677551480267,
+      "p99.9": 2.033994811538641,
+      "p100": 2.344467356767218
+     },
+     "speed_kmh_max": 109.40483470468894,
+     "events_fd_speed_over_45mps": 0,
+     "events_accel_over_8mps2": 0,
+     "jump_cases": [],
+     "hard_accel_cases": [],
+     "speed_mismatch_cases_over_5mps": 0,
+     "speed_mismatch_examples": [],
+     "nonfinite_vectors": 0
+    }
+   },
+   "concurrency": {
+    "frames": 19501,
+    "active_vehicle_count": {
+     "count": 19501,
+     "mean": 6.454027998564176,
+     "std": 2.7814775274903782,
+     "p0": 0.0,
+     "p1": 1.0,
+     "p50": 6.0,
+     "p75": 8.0,
+     "p90": 10.0,
+     "p95": 12.0,
+     "p99": 15.0,
+     "p99.9": 17.0,
+     "p100": 18.0
+    },
+    "bins_frames": {
+     "N=0": 57,
+     "N=1": 225,
+     "2<=N<=4": 4134,
+     "5<=N<=8": 11660,
+     "N>8": 3425
+    },
+    "bins_fraction": {
+     "N=0": 0.0029229270293831084,
+     "N=1": 0.01153786985282806,
+     "2<=N<=4": 0.21198912876262757,
+     "5<=N<=8": 0.5979180554843342,
+     "N>8": 0.17563201887082713
+    },
+    "fraction_frames_at_least_2": 0.9855392031177889,
+    "fraction_frames_at_least_5": 0.7735500743551613
+   },
+   "interaction": {
+    "neighbours": {
+     "nearest_neighbour_distance_m": {
+      "count": 125635,
+      "mean": 19.730149861603596,
+      "std": 16.759245807619227,
+      "p1": 3.6227492003680952,
+      "p5": 4.286317033590615,
+      "p10": 5.4253036886547665,
+      "p25": 7.887797660059662,
+      "p50": 14.130677966081288,
+      "p75": 25.381160912756624,
+      "p90": 42.661185185874515,
+      "p95": 56.15158907535793,
+      "p99": 76.3223649685906,
+      "p100": 157.66602418956202
+     },
+     "neighbours_within_10m": {
+      "count": 125635,
+      "mean": 0.4852787837784057,
+      "std": 0.7789778318456501,
+      "p50": 0.0,
+      "p90": 2.0,
+      "p95": 2.0,
+      "p99": 3.0,
+      "p100": 5.0
+     },
+     "neighbours_within_20m": {
+      "count": 125635,
+      "mean": 1.339499343335854,
+      "std": 1.3732899413943678,
+      "p50": 1.0,
+      "p90": 3.0,
+      "p95": 4.0,
+      "p99": 5.0,
+      "p100": 7.0
+     },
+     "neighbours_within_30m": {
+      "count": 125635,
+      "mean": 2.205722927528157,
+      "std": 1.853925139491941,
+      "p50": 2.0,
+      "p90": 5.0,
+      "p95": 6.0,
+      "p99": 7.0,
+      "p100": 10.0
+     },
+     "heading_diff_within_30m_rad": {
+      "count": 138558,
+      "mean": 1.4305755093769519,
+      "std": 1.3762693211317056,
+      "p25": 0.01857013484396597,
+      "p50": 0.8430021027500487,
+      "p75": 3.1012529915845,
+      "p90": 3.131856490212418,
+      "p95": 3.1367946232650907,
+      "p100": 3.1415915724201557
+     },
+     "vehicle_frames_with_any_neighbour_10m_fraction": 0.33973017073267797,
+     "vehicle_frames_with_any_neighbour_20m_fraction": 0.6578580809487802,
+     "vehicle_frames_with_any_neighbour_30m_fraction": 0.8093286106578581,
+     "veh_frames": 125635,
+     "frames_with_pair_within_20m_fraction": 0.8553407517563202,
+     "pairs_within_30m": 138558,
+     "pairs_within_30m_following_lt30deg": 61388,
+     "pairs_within_30m_crossing_30_150deg": 26690,
+     "pairs_within_30m_oncoming_gt150deg": 50480,
+     "frames_with_crossing_pair_fraction": 0.519768217014512,
+     "junction_frames_busy": 19199,
+     "junction_frames_multi_arm": 14353,
+     "junction_frames_multi_arm_fraction": 0.7475910203656441,
+     "junction_frames_main_plus_side_road": 2941,
+     "junction_frames_main_plus_side_road_fraction": 0.1531850617219647,
+     "junction_zone_definition": "moving vehicles (speed > 2 m/s) within 60 m of junction center; arm = nearest approach traffic direction; main+side = both a through-road direction and the side-road direction present"
+    },
+    "representative_windows": {
+     "definition": "sliding 4 s window ranked by active vehicles x heading diversity",
+     "windows": [
+      {
+       "t_start_s": 62.22889556222891,
+       "t_end_s": 66.2328995662329,
+       "max_active_vehicles": 18,
+       "mean_active_vehicles": 16.075,
+       "interaction_score": 7984.2339660251455,
+       "vehicle_types": {
+        "car": 15,
+        "truck": 3
+       },
+       "vehicles": [
+        {
+         "uuid": "36783ec7-87bd-4615-88d8-af1c00d9725a",
+         "type": "car",
+         "x": -51.7684848443075,
+         "y": 66.90741831393267,
+         "speed_mps": 16.74623832228005
+        },
+        {
+         "uuid": "a7547d36-a6e3-45fa-aef9-f8c8799cda75",
+         "type": "truck",
+         "x": -35.95828190386402,
+         "y": -38.30164980830217,
+         "speed_mps": 10.233115990575245
+        },
+        {
+         "uuid": "9e7527eb-77ae-4c1f-b36f-c694b8a8301b",
+         "type": "car",
+         "x": -37.97617922622782,
+         "y": 56.103417922037046,
+         "speed_mps": 16.596267762020503
+        },
+        {
+         "uuid": "d0098aae-e4c8-4b4e-ba0a-927b8fdf05b8",
+         "type": "car",
+         "x": 38.61069522443899,
+         "y": -14.552533108083287,
+         "speed_mps": 15.721793068083382
+        },
+        {
+         "uuid": "48c20fa0-1ac0-407e-8f3c-69250c9aa835",
+         "type": "car",
+         "x": -16.425185637053108,
+         "y": 38.74778106365908,
+         "speed_mps": 16.244904703130217
+        },
+        {
+         "uuid": "55d3657e-7aec-4a2c-b5e0-24d0b38adb51",
+         "type": "car",
+         "x": 21.330256874659565,
+         "y": -1.2788813942933814,
+         "speed_mps": 15.555607304149095
+        },
+        {
+         "uuid": "5f384292-7c1f-41ce-a018-bf7f2dc60b73",
+         "type": "car",
+         "x": 4.442444286019028,
+         "y": 12.286332514706725,
+         "speed_mps": 15.385846492626834
+        },
+        {
+         "uuid": "c3a6a638-5a0d-4cf6-9890-944c813b7ea6",
+         "type": "car",
+         "x": 28.652463759122693,
+         "y": 3.1284380320165,
+         "speed_mps": 16.09596628708848
+        },
+        {
+         "uuid": "4a52f7c6-d694-499b-a013-b1d616cc9587",
+         "type": "car",
+         "x": -16.41529203432647,
+         "y": 29.45147053780714,
+         "speed_mps": 15.81148587604373
+        },
+        {
+         "uuid": "5a01339f-208f-4fef-9a8c-89b1efdb5b0a",
+         "type": "car",
+         "x": 40.113844367485086,
+         "y": -7.381901742193913,
+         "speed_mps": 16.03140358735603
+        },
+        {
+         "uuid": "549631ae-acf2-4b46-a2b9-00b93ce6b29a",
+         "type": "car",
+         "x": -33.79624653401094,
+         "y": 43.765704754888844,
+         "speed_mps": 15.332364145668874
+        },
+        {
+         "uuid": "bec45a1a-8433-49d1-8782-3c4a7aabe442",
+         "type": "car",
+         "x": 65.68833447094055,
+         "y": -29.70490296728273,
+         "speed_mps": 14.9003253927728
+        },
+        {
+         "uuid": "c91c22ec-d3ad-4a17-8a2b-5c8454eee0b6",
+         "type": "car",
+         "x": -49.33479656044478,
+         "y": 57.099010452889026,
+         "speed_mps": 14.547557868952959
+        },
+        {
+         "uuid": "8f6739f8-e6fa-4a2c-8ef8-bf562b816002",
+         "type": "truck",
+         "x": -1.133319816566213,
+         "y": 22.018345367090227,
+         "speed_mps": 0.06139898215718145
+        },
+        {
+         "uuid": "9fc039b7-8aba-4a9f-9bd5-574acbef6bf1",
+         "type": "car",
+         "x": 21.264149680204493,
+         "y": 3.6945560464477167,
+         "speed_mps": 0.07155777484998181
+        },
+        {
+         "uuid": "adca8849-0a78-41a0-badd-bba4fad9228d",
+         "type": "car",
+         "x": 25.677771707791294,
+         "y": 0.11630421709048248,
+         "speed_mps": 0.07034527648517808
+        },
+        {
+         "uuid": "a017a2c9-51bf-4aef-b31b-85a0ba800fc6",
+         "type": "car",
+         "x": 36.89995687091929,
+         "y": -8.9040917472634,
+         "speed_mps": 5.028187233908317
+        },
+        {
+         "uuid": "d5e31f0e-70ba-48e8-b80d-3f667a558fc7",
+         "type": "truck",
+         "x": -21.029945549779377,
+         "y": -3.283500555005572,
+         "speed_mps": 4.921230023469251
+        }
+       ]
+      },
+      {
+       "t_start_s": 319.2525859192526,
+       "t_end_s": 323.2565899232566,
+       "max_active_vehicles": 15,
+       "mean_active_vehicles": 14.208333333333334,
+       "interaction_score": 7059.758962334548,
+       "vehicle_types": {
+        "car": 16
+       },
+       "vehicles": [
+        {
+         "uuid": "6debd77c-70ef-4e43-8ebe-25f1ee73cc97",
+         "type": "car",
+         "x": -37.757731413333666,
+         "y": -49.24233145454238,
+         "speed_mps": 10.076127730334395
+        },
+        {
+         "uuid": "e6dcbbca-bb51-4f26-99dd-e848c896c248",
+         "type": "car",
+         "x": 62.58879914220676,
+         "y": -34.1725634920328,
+         "speed_mps": 14.024549789178973
+        },
+        {
+         "uuid": "f3a52e14-e9d9-4765-80f5-ab1de817bb29",
+         "type": "car",
+         "x": 46.30181029619953,
+         "y": -20.643296487952533,
+         "speed_mps": 15.259095941657083
+        },
+        {
+         "uuid": "1535b413-a403-4ecf-a02d-96995206515d",
+         "type": "car",
+         "x": 33.37204020092578,
+         "y": -10.250648919580591,
+         "speed_mps": 15.64554811575825
+        },
+        {
+         "uuid": "9c8d36ca-263b-49ad-9940-72d16c04eb81",
+         "type": "car",
+         "x": 16.893640068005094,
+         "y": 2.0454912159985428,
+         "speed_mps": 15.00188049308705
+        },
+        {
+         "uuid": "bc4055ec-320f-441b-9c75-98f89cdd42f3",
+         "type": "car",
+         "x": 21.027414639546933,
+         "y": 8.57968507166084,
+         "speed_mps": 18.762275504635888
+        },
+        {
+         "uuid": "d147181c-e041-4a79-b9c9-36e45f068a23",
+         "type": "car",
+         "x": 5.849338370842855,
+         "y": 11.437348732610863,
+         "speed_mps": 15.489656805174405
+        },
+        {
+         "uuid": "2e8e909e-e608-420f-9c72-372b973cfc02",
+         "type": "car",
+         "x": -25.52247226451857,
+         "y": 37.098810808561936,
+         "speed_mps": 14.766726926870975
+        },
+        {
+         "uuid": "ed90e17a-c496-4512-ba66-5a5ecd9b4c31",
+         "type": "car",
+         "x": -4.0335460454859575,
+         "y": 23.77417415323978,
+         "speed_mps": 0.07831570250717754
+        },
+        {
+         "uuid": "faf369d3-565c-4f54-8b4e-0e5235113b11",
+         "type": "car",
+         "x": 74.40357021131722,
+         "y": -36.997801363569124,
+         "speed_mps": 15.570591857969388
+        },
+        {
+         "uuid": "09637e3c-8b8e-477a-84f7-dc6bd602b3e3",
+         "type": "car",
+         "x": 1.4659598932801068,
+         "y": 20.020462627007014,
+         "speed_mps": 0.0319726065637814
+        },
+        {
+         "uuid": "c58b14f7-e7de-4041-ba84-19115fcaeb7a",
+         "type": "car",
+         "x": 6.794146646949449,
+         "y": 15.65794672580998,
+         "speed_mps": 0.1907266402037709
+        },
+        {
+         "uuid": "33b21959-0a05-4e55-82c7-ab61f352f2a8",
+         "type": "car",
+         "x": 12.022460412367577,
+         "y": 10.98686088811893,
+         "speed_mps": 0.028499127763776118
+        },
+        {
+         "uuid": "cd1d852b-6900-4640-ad26-bbf0425bc93d",
+         "type": "car",
+         "x": 18.48084493135031,
+         "y": 6.14412732958878,
+         "speed_mps": 1.6216441840199292
+        },
+        {
+         "uuid": "3d557785-3070-467b-b6f0-6505cae05fd0",
+         "type": "car",
+         "x": 27.656858161213243,
+         "y": -1.6962427028752027,
+         "speed_mps": 3.850558340059759
+        },
+        {
+         "uuid": "6f0640fd-61bf-491c-a70a-815e7a2514a1",
+         "type": "car",
+         "x": 64.85737306549774,
+         "y": -29.452672878200524,
+         "speed_mps": 11.93816802191226
+        }
+       ]
+      },
+      {
+       "t_start_s": 313.81381381381385,
+       "t_end_s": 317.81781781781785,
+       "max_active_vehicles": 15,
+       "mean_active_vehicles": 13.95,
+       "interaction_score": 6924.539587484162,
+       "vehicle_types": {
+        "car": 16,
+        "truck": 1
+       },
+       "vehicles": [
+        {
+         "uuid": "aa160311-0b76-4a36-afde-45e0236487ba",
+         "type": "car",
+         "x": -53.8198627096136,
+         "y": 68.66758841722991,
+         "speed_mps": 16.523635015517474
+        },
+        {
+         "uuid": "5b0ae512-3137-4f94-a89c-ee3e31015e4d",
+         "type": "car",
+         "x": -52.73836857898404,
+         "y": 67.76657418311048,
+         "speed_mps": 16.32936227695091
+        },
+        {
+         "uuid": "8defcf56-56de-4a29-9bbf-2f71524c29fe",
+         "type": "truck",
+         "x": -33.87702673482636,
+         "y": -28.600454506870587,
+         "speed_mps": 10.999069217033826
+        },
+        {
+         "uuid": "00a2cf87-aed8-410b-a5bb-2a3aeaf5770b",
+         "type": "car",
+         "x": 48.45345490302283,
+         "y": -23.226474656980304,
+         "speed_mps": 14.409405310444594
+        },
+        {
+         "uuid": "6debd77c-70ef-4e43-8ebe-25f1ee73cc97",
+         "type": "car",
+         "x": -29.308714141304964,
+         "y": -2.5434812260133515,
+         "speed_mps": 9.309186265596852
+        },
+        {
+         "uuid": "e6dcbbca-bb51-4f26-99dd-e848c896c248",
+         "type": "car",
+         "x": 3.621329028709983,
+         "y": 13.189501383321154,
+         "speed_mps": 13.525553290162522
+        },
+        {
+         "uuid": "f3a52e14-e9d9-4765-80f5-ab1de817bb29",
+         "type": "car",
+         "x": -15.573750632443726,
+         "y": 29.0287988990405,
+         "speed_mps": 13.296307175037356
+        },
+        {
+         "uuid": "1535b413-a403-4ecf-a02d-96995206515d",
+         "type": "car",
+         "x": -27.929343264488015,
+         "y": 39.146985155708755,
+         "speed_mps": 13.027618684819227
+        },
+        {
+         "uuid": "9c8d36ca-263b-49ad-9940-72d16c04eb81",
+         "type": "car",
+         "x": -39.97366305014804,
+         "y": 48.876624844846944,
+         "speed_mps": 11.752556706571434
+        },
+        {
+         "uuid": "bc4055ec-320f-441b-9c75-98f89cdd42f3",
+         "type": "car",
+         "x": 74.51537807527632,
+         "y": -37.36447650280592,
+         "speed_mps": 19.060156702838746
+        },
+        {
+         "uuid": "d147181c-e041-4a79-b9c9-36e45f068a23",
+         "type": "car",
+         "x": -50.53134994119909,
+         "y": 58.74481122733807,
+         "speed_mps": 10.906479143362159
+        },
+        {
+         "uuid": "ed90e17a-c496-4512-ba66-5a5ecd9b4c31",
+         "type": "car",
+         "x": -4.062801179559408,
+         "y": 23.812485399177213,
+         "speed_mps": 0.013329607828865253
+        },
+        {
+         "uuid": "09637e3c-8b8e-477a-84f7-dc6bd602b3e3",
+         "type": "car",
+         "x": 1.573883284420336,
+         "y": 19.923295301995296,
+         "speed_mps": 0.2704772185416316
+        },
+        {
+         "uuid": "c58b14f7-e7de-4041-ba84-19115fcaeb7a",
+         "type": "car",
+         "x": 7.374941795039494,
+         "y": 15.164365293581072,
+         "speed_mps": 0.8798842979926755
+        },
+        {
+         "uuid": "33b21959-0a05-4e55-82c7-ab61f352f2a8",
+         "type": "car",
+         "x": 16.20484755702738,
+         "y": 7.579503308985391,
+         "speed_mps": 2.083147145991123
+        },
+        {
+         "uuid": "cd1d852b-6900-4640-ad26-bbf0425bc93d",
+         "type": "car",
+         "x": 42.15947546954965,
+         "y": -12.94791895318672,
+         "speed_mps": 10.185314171391557
+        },
+        {
+         "uuid": "3d557785-3070-467b-b6f0-6505cae05fd0",
+         "type": "car",
+         "x": 61.328126798114866,
+         "y": -27.540978496593354,
+         "speed_mps": 13.061761120177554
+        }
+       ]
+      },
+      {
+       "t_start_s": 66.2328995662329,
+       "t_end_s": 70.23690357023692,
+       "max_active_vehicles": 15,
+       "mean_active_vehicles": 12.8,
+       "interaction_score": 6358.323623024288,
+       "vehicle_types": {
+        "car": 13,
+        "truck": 2
+       },
+       "vehicles": [
+        {
+         "uuid": "d0098aae-e4c8-4b4e-ba0a-927b8fdf05b8",
+         "type": "car",
+         "x": 72.74615588668311,
+         "y": -42.51256054239563,
+         "speed_mps": 16.52149589273158
+        },
+        {
+         "uuid": "48c20fa0-1ac0-407e-8f3c-69250c9aa835",
+         "type": "car",
+         "x": -52.55450956466133,
+         "y": 67.97019756990807,
+         "speed_mps": 16.62093218670342
+        },
+        {
+         "uuid": "55d3657e-7aec-4a2c-b5e0-24d0b38adb51",
+         "type": "car",
+         "x": 71.13316317375009,
+         "y": -41.31947210848308,
+         "speed_mps": 16.100079580645023
+        },
+        {
+         "uuid": "5f384292-7c1f-41ce-a018-bf7f2dc60b73",
+         "type": "car",
+         "x": 54.61764625080958,
+         "y": -27.246846121811657,
+         "speed_mps": 16.341079142232285
+        },
+        {
+         "uuid": "c3a6a638-5a0d-4cf6-9890-944c813b7ea6",
+         "type": "car",
+         "x": -22.777944842584912,
+         "y": 44.86887609897945,
+         "speed_mps": 16.821716520099297
+        },
+        {
+         "uuid": "4a52f7c6-d694-499b-a013-b1d616cc9587",
+         "type": "car",
+         "x": 33.37218175452219,
+         "y": -10.98890764126885,
+         "speed_mps": 15.953374195269783
+        },
+        {
+         "uuid": "5a01339f-208f-4fef-9a8c-89b1efdb5b0a",
+         "type": "car",
+         "x": -10.21731661528016,
+         "y": 33.66746665672121,
+         "speed_mps": 16.32356883058355
+        },
+        {
+         "uuid": "549631ae-acf2-4b46-a2b9-00b93ce6b29a",
+         "type": "car",
+         "x": 15.13071234342338,
+         "y": 3.620029593172528,
+         "speed_mps": 16.365367484908738
+        },
+        {
+         "uuid": "bec45a1a-8433-49d1-8782-3c4a7aabe442",
+         "type": "car",
+         "x": 17.777240806633934,
+         "y": 11.508771806843734,
+         "speed_mps": 16.26482166054539
+        },
+        {
+         "uuid": "c91c22ec-d3ad-4a17-8a2b-5c8454eee0b6",
+         "type": "car",
+         "x": -1.477007580405114,
+         "y": 17.626560984327575,
+         "speed_mps": 16.385345969502364
+        },
+        {
+         "uuid": "8f6739f8-e6fa-4a2c-8ef8-bf562b816002",
+         "type": "truck",
+         "x": -2.4676210309719915,
+         "y": 22.995482764146807,
+         "speed_mps": 1.843476962852709
+        },
+        {
+         "uuid": "9fc039b7-8aba-4a9f-9bd5-574acbef6bf1",
+         "type": "car",
+         "x": 21.326705500323385,
+         "y": 3.640545786273247,
+         "speed_mps": 0.07288675891370401
+        },
+        {
+         "uuid": "adca8849-0a78-41a0-badd-bba4fad9228d",
+         "type": "car",
+         "x": 25.770578239156297,
+         "y": 0.12225300399753243,
+         "speed_mps": 0.09602940665557139
+        },
+        {
+         "uuid": "a017a2c9-51bf-4aef-b31b-85a0ba800fc6",
+         "type": "car",
+         "x": 30.55025960384048,
+         "y": -3.807362865493222,
+         "speed_mps": 0.1954455326794167
+        },
+        {
+         "uuid": "d5e31f0e-70ba-48e8-b80d-3f667a558fc7",
+         "type": "truck",
+         "x": -14.757663233886266,
+         "y": 8.308767248063205,
+         "speed_mps": 1.7016905952506443
+        }
+       ]
+      },
+      {
+       "t_start_s": 323.2565899232566,
+       "t_end_s": 327.26059392726063,
+       "max_active_vehicles": 14,
+       "mean_active_vehicles": 12.55,
+       "interaction_score": 6229.792971063103,
+       "vehicle_types": {
+        "car": 16
+       },
+       "vehicles": [
+        {
+         "uuid": "f3a52e14-e9d9-4765-80f5-ab1de817bb29",
+         "type": "car",
+         "x": 71.03741602821303,
+         "y": -41.00617717181933,
+         "speed_mps": 15.644482938099431
+        },
+        {
+         "uuid": "1535b413-a403-4ecf-a02d-96995206515d",
+         "type": "car",
+         "x": 71.01886810430454,
+         "y": -41.09312232466588,
+         "speed_mps": 16.03155956792779
+        },
+        {
+         "uuid": "9c8d36ca-263b-49ad-9940-72d16c04eb81",
+         "type": "car",
+         "x": 66.62005046620993,
+         "y": -38.09140690420888,
+         "speed_mps": 16.33785213109806
+        },
+        {
+         "uuid": "bc4055ec-320f-441b-9c75-98f89cdd42f3",
+         "type": "car",
+         "x": -37.517873607529616,
+         "y": 55.956958580306605,
+         "speed_mps": 18.944026482696835
+        },
+        {
+         "uuid": "d147181c-e041-4a79-b9c9-36e45f068a23",
+         "type": "car",
+         "x": 55.69068678419312,
+         "y": -28.564541346078105,
+         "speed_mps": 16.471725467984776
+        },
+        {
+         "uuid": "2e8e909e-e608-420f-9c72-372b973cfc02",
+         "type": "car",
+         "x": 22.60994221679536,
+         "y": -1.8570897973113472,
+         "speed_mps": 16.308239774537697
+        },
+        {
+         "uuid": "ed90e17a-c496-4512-ba66-5a5ecd9b4c31",
+         "type": "car",
+         "x": -14.200612936921166,
+         "y": 22.29910333477146,
+         "speed_mps": 6.931452160319461
+        },
+        {
+         "uuid": "faf369d3-565c-4f54-8b4e-0e5235113b11",
+         "type": "car",
+         "x": 31.31191394495339,
+         "y": 0.5345627746460746,
+         "speed_mps": 16.343773972301893
+        },
+        {
+         "uuid": "09637e3c-8b8e-477a-84f7-dc6bd602b3e3",
+         "type": "car",
+         "x": -0.4280579166533046,
+         "y": 21.424126461625963,
+         "speed_mps": 3.120965122911375
+        },
+        {
+         "uuid": "c7dda006-80dc-4938-bf70-28b6e3586a4d",
+         "type": "car",
+         "x": -57.201321323904025,
+         "y": 64.36740398593813,
+         "speed_mps": 17.160757051558303
+        },
+        {
+         "uuid": "c58b14f7-e7de-4041-ba84-19115fcaeb7a",
+         "type": "car",
+         "x": 6.088944004081624,
+         "y": 16.23680728119817,
+         "speed_mps": 1.4239796779310214
+        },
+        {
+         "uuid": "33b21959-0a05-4e55-82c7-ab61f352f2a8",
+         "type": "car",
+         "x": 11.754249807798509,
+         "y": 11.20236077557942,
+         "speed_mps": 0.5912352315141138
+        },
+        {
+         "uuid": "cd1d852b-6900-4640-ad26-bbf0425bc93d",
+         "type": "car",
+         "x": 17.39569920926841,
+         "y": 7.033605059852953,
+         "speed_mps": 0.050751138979155355
+        },
+        {
+         "uuid": "3d557785-3070-467b-b6f0-6505cae05fd0",
+         "type": "car",
+         "x": 22.038148914952075,
+         "y": 2.9576969183562327,
+         "speed_mps": 0.17937765675093478
+        },
+        {
+         "uuid": "6f0640fd-61bf-491c-a70a-815e7a2514a1",
+         "type": "car",
+         "x": 34.29717387633756,
+         "y": -6.682230018296561,
+         "speed_mps": 5.638286510352051
+        },
+        {
+         "uuid": "d0cb7536-dab4-46ac-bc96-75aee5f6691e",
+         "type": "car",
+         "x": 58.7697154007859,
+         "y": -25.29874969310905,
+         "speed_mps": 11.47079291385831
+        }
+       ]
+      }
+     ]
+    }
+   },
+   "on_road": {
+    "definition": "residual = distance(point, nearest driving-lane centerline) - lane half width; <=0 means inside the lane surface",
+    "points": 125860,
+    "fraction_residual_le_0m": 0.9909820435404417,
+    "fraction_residual_le_0.5m": 0.9982122993802638,
+    "fraction_residual_le_1m": 1.0,
+    "residual_m": {
+     "count": 125860,
+     "mean": -1.628752844065988,
+     "std": 0.3643778710675983,
+     "p50": -1.656301887154504,
+     "p75": -1.526147799002848,
+     "p90": -1.3110014234004435,
+     "p95": -1.0286290885586067,
+     "p99": -0.058991924897361915,
+     "p99.9": 0.5657220422606124,
+     "p100": 0.7563477492813548
+    },
+    "worst_tracks_fraction_on_road": [
+     {
+      "uuid": "d6857347-1c15-4232-93bd-d92486cec52f",
+      "type": "car",
+      "fraction_le_0.5m": 0.8923076923076924,
+      "p95_residual_m": 0.5510529395701708
+     },
+     {
+      "uuid": "3293c3cb-eb9c-42c7-aadb-758470b6315b",
+      "type": "car",
+      "fraction_le_0.5m": 0.9731638418079096,
+      "p95_residual_m": 0.24465981443639687
+     },
+     {
+      "uuid": "ea4b9805-210b-440e-ac22-114fbbf1ce12",
+      "type": "car",
+      "fraction_le_0.5m": 0.9734513274336283,
+      "p95_residual_m": 0.13987085792504916
+     },
+     {
+      "uuid": "6219db40-e3e1-4774-8e4d-db106397a83e",
+      "type": "car",
+      "fraction_le_0.5m": 0.977116704805492,
+      "p95_residual_m": 0.12194196445441031
+     },
+     {
+      "uuid": "a3caa4cb-0a4b-48c5-b33c-2f48f1c5b922",
+      "type": "car",
+      "fraction_le_0.5m": 0.9873617693522907,
+      "p95_residual_m": -0.17979533715246102
+     },
+     {
+      "uuid": "adca8849-0a78-41a0-badd-bba4fad9228d",
+      "type": "car",
+      "fraction_le_0.5m": 0.988495575221239,
+      "p95_residual_m": -0.7268864900314548
+     },
+     {
+      "uuid": "3b1307c8-07b2-4653-b81c-fe6b208fe485",
+      "type": "car",
+      "fraction_le_0.5m": 0.9893992932862191,
+      "p95_residual_m": -0.48930655048332755
+     },
+     {
+      "uuid": "401ea812-94e4-474b-82cb-40d27e63534a",
+      "type": "car",
+      "fraction_le_0.5m": 0.9899856938483548,
+      "p95_residual_m": -0.17284715703974488
+     },
+     {
+      "uuid": "6a0f088e-8f80-418e-aaae-f742852f5a1d",
+      "type": "car",
+      "fraction_le_0.5m": 0.9905660377358491,
+      "p95_residual_m": -0.2881686610335165
+     },
+     {
+      "uuid": "cd1d852b-6900-4640-ad26-bbf0425bc93d",
+      "type": "car",
+      "fraction_le_0.5m": 0.9906279287722587,
+      "p95_residual_m": -0.6759786288892953
+     }
+    ]
+   },
+   "downsample_10hz": {
+    "nominal_source_rate_hz": 29.97,
+    "source_dt_s": 0.033366700033366704,
+    "effective_rate_of_every_3rd_frame_hz": 9.989999999999998,
+    "method_A_every_3rd": {
+     "dt_s": 0.10010010010010012,
+     "dt_is_uniform": true,
+     "time_error_vs_0.1s_grid_s": {
+      "count": 6507,
+      "mean": 0.3256256256256511,
+      "std": 0.18804338666975454,
+      "p0": 0.0,
+      "p50": 0.325625625625662,
+      "p99": 0.6447387387387925,
+      "p100": 0.651251251251324
+     },
+     "max_abs_time_error_s": 0.651251251251324,
+     "drift_at_end_s": 0.651251251251324
+    },
+    "method_B_nearest_0.1s_grid": {
+     "sample_stride_counts": {
+      "2": 20,
+      "3": 6486
+     },
+     "time_error_vs_0.1s_grid_s": {
+      "count": 6507,
+      "mean": 0.00017851466550291228,
+      "std": 0.00963992963706222,
+      "p0": -0.016683350016677423,
+      "p50": 0.00036703370039958827,
+      "p99": 0.01634768101435837,
+      "p100": 0.01664998331671086
+     },
+     "max_abs_time_error_s": 0.016683350016677423,
+     "drift_at_end_s": -0.016082749416000297,
+     "effective_mean_rate_hz": 10.000247204841521
+    },
+    "position_difference_A_minus_B_m": {
+     "count": 42056,
+     "mean": 0.040052065772280286,
+     "std": 0.11275935156891763,
+     "p50": 0.0,
+     "p90": 0.17629042631604264,
+     "p95": 0.3031165337558867,
+     "p99": 0.4978647065659224,
+     "p99.9": 0.838517296131552,
+     "p100": 1.0760434633721914
+    },
+    "speed_difference_A_minus_B_mps": {
+     "count": 42056,
+     "mean": 0.00354072041278226,
+     "std": 0.014398945694457606,
+     "p50": 0.0,
+     "p90": 0.014369346481693634,
+     "p95": 0.031003315959302558,
+     "p99": 0.06480755016551915,
+     "p99.9": 0.15135158334574927,
+     "p100": 0.16496243054229254
+    },
+    "method_A_within_one_4s_window_time_error_s": 0.004004004004004358,
+    "recommendation": "method_B_nearest_0.1s_grid"
+   },
+   "windows_2s_2s": {
+    "definition": "41 consecutive 10 Hz samples (4.0 s) per window; anchor grid 0.1 s; window needs t in [k*0.1, k*0.1+4.0] fully inside the track",
+    "single_vehicle_windows_total": 30018,
+    "windows_in_multi_vehicle_scenes": 29711,
+    "windows_in_2_to_8_scenes": 24853,
+    "windows_in_more_than_8_scenes": 4858,
+    "multi_vehicle_anchors": 6027,
+    "multi_2_to_8_anchors": 5544,
+    "anchors_with_more_than_8": 483,
+    "concurrent_windows": {
+     "count": 6507,
+     "mean": 4.613185799907791,
+     "std": 2.3952826839292114,
+     "p50": 4.0,
+     "p75": 6.0,
+     "p90": 8.0,
+     "p95": 9.0,
+     "p99": 12.0,
+     "p99.9": 13.0,
+     "p100": 13.0
+    },
+    "concurrent_bins_anchors": {
+     "N=0": 173,
+     "N=1": 307,
+     "2<=N<=4": 2967,
+     "5<=N<=8": 2577,
+     "N>8": 483
+    }
+   },
+   "bs_geometry": {
+    "candidate_bs_positions": [
+     {
+      "x": 26.200525320073083,
+      "y": 7.623030351301587,
+      "arm_road_id": 4,
+      "arm_name": "object 1",
+      "through_road": true,
+      "axis_deg": 320.85374156505736
+     },
+     {
+      "x": -30.4325273459796,
+      "y": 33.09256795456605,
+      "arm_road_id": 4,
+      "arm_name": "object 1",
+      "through_road": true,
+      "axis_deg": 140.85374156505733
+     },
+     {
+      "x": -26.549335918797667,
+      "y": -32.757553290344234,
+      "arm_road_id": 5,
+      "arm_name": "object 66",
+      "through_road": false,
+      "axis_deg": 251.39500000000004
+     }
+    ],
+    "junction_center": [
+     -21.0533598837844,
+     -2.95345546097586
+    ],
+    "junction_center_max_distance_to_connector_m": 7.750000000000077,
+    "arms": [
+     {
+      "road_id": 4,
+      "name": "object 1",
+      "through_road": true,
+      "axis_deg": 320.85374156505736,
+      "point": [
+       -2.116001012953258,
+       20.35779915293382
+      ],
+      "distance_to_center_m": 30.033950001243127
+     },
+     {
+      "road_id": 4,
+      "name": "object 1",
+      "through_road": true,
+      "axis_deg": 140.85374156505733,
+      "point": [
+       -2.116001012953258,
+       20.35779915293382
+      ],
+      "distance_to_center_m": 30.033950001243127
+     },
+     {
+      "road_id": 5,
+      "name": "object 66",
+      "through_road": false,
+      "axis_deg": 251.39500000000004,
+      "point": [
+       -24.56,
+       -1.773
+      ],
+      "distance_to_center_m": 3.7000000000000384
+     }
+    ],
+    "arm_axes_deg": [
+     320.85374156505736,
+     140.85374156505733,
+     251.39500000000004
+    ],
+    "vehicle_to_nearest_bs_m": {
+     "count": 125860,
+     "mean": 23.572646912233026,
+     "std": 13.316363594975172,
+     "p0": 0.4225075621694747,
+     "p1": 4.335535485199367,
+     "p50": 21.759215384508096,
+     "p75": 29.95408619596447,
+     "p90": 41.00438783126866,
+     "p95": 53.246437997048396,
+     "p99": 63.92375617025501,
+     "p100": 69.32319110045682
+    },
+    "vehicle_to_each_bs_m": {
+     "4": {
+      "count": 125860,
+      "mean": 51.25423691274784,
+      "std": 30.393600314928204,
+      "p50": 43.200963851751354,
+      "p95": 113.09773677549285,
+      "p100": 129.3086404882385
+     },
+     "5": {
+      "count": 125860,
+      "mean": 62.37062722657967,
+      "std": 20.18768286720525,
+      "p50": 60.83979796263711,
+      "p95": 95.02712183170703,
+      "p100": 106.27527559230678
+     }
+    },
+    "fraction_vehicles_within_100m": 1.0,
+    "fraction_vehicles_within_150m": 1.0,
+    "triangle_area_m2": 1815.195147226837,
+    "triangle_sides_m": [
+     62.09669878504009,
+     65.96451806562013,
+     66.4314639004747
+    ],
+    "triangle_angles_deg": [
+     61.64928417765156,
+     62.41032646579261,
+     55.94038935655584
+    ],
+    "min_triangle_angle_deg": 55.94038935655584,
+    "is_non_collinear": true,
+    "scene_bbox_m": [
+     -58.344471394726376,
+     76.6535727292698,
+     -49.26195722822569,
+     69.73262858159534
+    ],
+    "scene_hull_area_m2": 7678.401018660002
+   },
+   "files": {
+    "dynamicWorld_json_bytes": 51283310,
+    "staticWorld_xodr_bytes": 18679,
+    "html": [
+     "T-Crossing--GaimersheimStadtweg_e2e6-e2e6f4bb-4668-4654-ac7e-bcd90c9df4c2.html"
+    ],
+    "track_bbox": [
+     -58.344471394726376,
+     76.6535727292698,
+     -49.26195722822569,
+     69.73262858159534
+    ],
+    "track_hull_area_m2": 7678.401018660002
+   }
+  },
+  "recording_B": {
+   "label": "recording_B",
+   "name": "T-Crossing-St2214-DuenzlauUmgehung_1b9b-1b9bf4b8-9fa6-4d23-abd2-2b715d087e8f",
+   "uuid": "1b9bf4b8-9fa6-4d23-abd2-2b715d087e8f",
+   "source_dir": "T-Crossing-St2214-DuenzlauUmgehung_1b9b-1b9bf4b8-9fa6-4d23-abd2-2b715d087e8f",
+   "release": 3.0,
+   "utm_reference_point": "670421.179078, 5405184.058154, U, 32",
+   "wgs84_reference_point": "48.776300, 11.319700",
+   "video": {
+    "fps": 29.97,
+    "frame_count": 33736
+   },
+   "duration_s": 1125.6256256256258,
+   "n_frames": 33736,
+   "video_frame_count": 33736,
+   "video_frame_count_matches_timestamp_grid": true,
+   "mean_sampling_rate_hz": 29.969999999999995,
+   "vehicle_type_counts": {
+    "car": 358,
+    "van": 10,
+    "truck": 16
+   },
+   "objects": 384,
+   "object_types_in_objects_list": {
+    "car": 358,
+    "truck": 16,
+    "van": 10
+   },
+   "schema": {
+    "object_keys": [
+     "UUID",
+     "ax_vec",
+     "ay_vec",
+     "curvature_vec",
+     "dist_along_road_segment",
+     "distance_left_lane_marking",
+     "distance_right_lane_marking",
+     "jerk_x_vec",
+     "jerk_y_vec",
+     "lane_change_flag_vec",
+     "lane_id_vec",
+     "lat_dist_dict_vec",
+     "length",
+     "long_dist_dict_vec",
+     "objType",
+     "object_relation_dict_list",
+     "psi_vec",
+     "road_id_vec",
+     "road_type_list",
+     "time",
+     "ttc_dict_vec",
+     "tth_dict_vec",
+     "vx_vec",
+     "vy_vec",
+     "width",
+     "x_vec",
+     "y_vec"
+    ],
+    "state_vectors": [
+     "ax_vec",
+     "ay_vec",
+     "curvature_vec",
+     "psi_vec",
+     "vx_vec",
+     "vy_vec",
+     "x_vec",
+     "y_vec",
+     "jerk_x_vec",
+     "jerk_y_vec"
+    ],
+    "aux_vectors_present_but_empty": [
+     "dist_along_road_segment",
+     "distance_left_lane_marking",
+     "distance_right_lane_marking",
+     "lane_change_flag_vec",
+     "lane_id_vec",
+     "lat_dist_dict_vec",
+     "long_dist_dict_vec",
+     "object_relation_dict_list",
+     "road_id_vec",
+     "road_type_list",
+     "ttc_dict_vec",
+     "tth_dict_vec"
+    ],
+    "vector_length_mismatch_tracks": 0,
+    "time_base": "per-object time vector in seconds from recording start, 1/29.97 s grid",
+    "coordinate_base": "local metric Cartesian frame (UTM reference point given in metadata); same frame as staticWorld.xodr",
+    "velocity_frame": "body frame: vx longitudinal, vy lateral; world velocity = R(psi) @ (vx, vy)"
+   },
+   "duration_bins": {
+    "<2s": 0,
+    "2-4s": 2,
+    "4-6s": 11,
+    "6-10s": 269,
+    "10-20s": 71,
+    ">20s": 31
+   },
+   "tracks_ge_4s": 382,
+   "continuity": {
+    "tracks": 384,
+    "track_points": 118517,
+    "dt": {
+     "count": 118133,
+     "mean": 0.0333667000333667,
+     "std": 4.609178202491275e-14,
+     "p0": 0.033366700033184316,
+     "p1": 0.033366700033184316,
+     "p50": 0.03336670003336906,
+     "p99": 0.03336670003341169,
+     "p99.9": 0.03336670003341169,
+     "p100": 0.03336670003341169
+    },
+    "dt_equals_nominal_fraction": 1.0,
+    "tracks_non_monotonic_time": 0,
+    "tracks_duplicate_timestamps": 0,
+    "tracks_with_vector_length_mismatch": 0,
+    "tracks_not_on_29_97_grid": 0,
+    "n_objects_with_empty_aux_vectors": 384,
+    "aux_vector_keys_present_but_empty": [
+     "dist_along_road_segment",
+     "distance_left_lane_marking",
+     "distance_right_lane_marking",
+     "lane_change_flag_vec",
+     "lane_id_vec",
+     "lat_dist_dict_vec",
+     "long_dist_dict_vec",
+     "object_relation_dict_list",
+     "road_id_vec",
+     "road_type_list",
+     "ttc_dict_vec",
+     "tth_dict_vec"
+    ],
+    "aux_vector_keys_populated": []
+   },
+   "kinematics": {
+    "anomaly_rows": [],
+    "velocity_consistency": {
+     "body_frame_check": {
+      "fd_vs_official_midpoint": {
+       "mae_mps": 0.04064860908200591,
+       "rmse_mps": 0.05837013582338161,
+       "bias_mps": 0.00649473920085804,
+       "p95_abs_mps": 0.1290411347374855,
+       "p99_abs_mps": 0.19249454428796373,
+       "max_abs_mps": 0.5242580390221141
+      },
+      "fd_vs_official_left_sample_mae_mps": 22.783527772933983,
+      "fd_world_after_psi_rotation_mae_mps": 0.06032865112448384,
+      "conclusion": "vx/vy are body-frame (longitudinal/lateral), x/y world, psi heading; rotation of (vx,vy) by psi matches finite differences"
+     },
+     "pairs_total": 118133,
+     "speed_quantization": {
+      "count": 118133,
+      "mean": 0.04064860908200591,
+      "std": 0.041890072690285246,
+      "p50": 0.027362679362056497,
+      "p90": 0.09602500248592812,
+      "p95": 0.1290411347374855,
+      "p99": 0.19249454428796373,
+      "p99.9": 0.27531147728627786,
+      "p100": 0.5242580390221141
+     }
+    },
+    "heading_consistency": {
+     "moving_points": 102338,
+     "psi_vs_fd_direction": {
+      "count": 102338,
+      "mean": 0.004521729863518742,
+      "std": 0.007721548309401744,
+      "p50": 0.0018466687391520686,
+      "p90": 0.012686527207123715,
+      "p95": 0.022258810653669848,
+      "p99": 0.03898883296752001,
+      "p99.9": 0.05417068102107363,
+      "p100": 0.06593919781367141
+     },
+     "heading_jump_events_over_0.5rad_moving": 0
+    },
+    "physical": {
+     "speed_mps": {
+      "count": 118517,
+      "mean": 15.45563287010983,
+      "std": 7.77962514392147,
+      "p0": 0.0005362686382284683,
+      "p1": 0.015624739191421348,
+      "p50": 17.94868445560363,
+      "p75": 21.983440968585683,
+      "p90": 23.90749844437496,
+      "p95": 25.136086272208924,
+      "p99": 27.630368408226698,
+      "p99.9": 29.555395978724313,
+      "p100": 30.657329019517515
+     },
+     "accel_mps2": {
+      "count": 118517,
+      "mean": 1.0830117642700268,
+      "std": 0.8268871843507642,
+      "p0": 0.00030135815667016566,
+      "p50": 0.7920492598755714,
+      "p90": 2.2973741300664003,
+      "p95": 2.8301192356753275,
+      "p99": 3.7693938687465893,
+      "p99.9": 5.013682995502305,
+      "p100": 5.802800692069084
+     },
+     "jerk_mps3": {
+      "count": 118517,
+      "mean": 0.4043341136606739,
+      "std": 0.4024254159502562,
+      "p50": 0.2556993889437848,
+      "p90": 0.9761965725063314,
+      "p95": 1.2777305051065966,
+      "p99": 1.8327167238466595,
+      "p99.9": 2.5109821143538387,
+      "p100": 2.8716701373418934
+     },
+     "speed_kmh_max": 110.36638447026306,
+     "events_fd_speed_over_45mps": 0,
+     "events_accel_over_8mps2": 0,
+     "jump_cases": [],
+     "hard_accel_cases": [],
+     "speed_mismatch_cases_over_5mps": 0,
+     "speed_mismatch_examples": [],
+     "nonfinite_vectors": 0
+    }
+   },
+   "concurrency": {
+    "frames": 33736,
+    "active_vehicle_count": {
+     "count": 33736,
+     "mean": 3.513072089162912,
+     "std": 2.142640107753184,
+     "p0": 0.0,
+     "p1": 0.0,
+     "p50": 4.0,
+     "p75": 5.0,
+     "p90": 6.0,
+     "p95": 7.0,
+     "p99": 8.0,
+     "p99.9": 10.0,
+     "p100": 10.0
+    },
+    "bins_frames": {
+     "N=0": 3223,
+     "N=1": 3425,
+     "2<=N<=4": 15856,
+     "5<=N<=8": 10927,
+     "N>8": 305
+    },
+    "bins_fraction": {
+     "N=0": 0.09553592601375385,
+     "N=1": 0.10152359497272943,
+     "2<=N<=4": 0.47000237135404316,
+     "5<=N<=8": 0.32389732036993124,
+     "N>8": 0.009040787289542329
+    },
+    "fraction_frames_at_least_2": 0.8029404790135167,
+    "fraction_frames_at_least_5": 0.33293810765947357
+   },
+   "interaction": {
+    "neighbours": {
+     "nearest_neighbour_distance_m": {
+      "count": 115092,
+      "mean": 27.640548400908518,
+      "std": 22.02296283801678,
+      "p1": 4.156083925153343,
+      "p5": 5.98948720520146,
+      "p10": 7.303165326215484,
+      "p25": 12.286074256618699,
+      "p50": 21.94618414692657,
+      "p75": 35.781642940285714,
+      "p90": 55.742084174100945,
+      "p95": 70.37916455535601,
+      "p99": 111.74137464743671,
+      "p100": 158.07700715271545
+     },
+     "neighbours_within_10m": {
+      "count": 115092,
+      "mean": 0.22020644354081953,
+      "std": 0.48328435766478545,
+      "p50": 0.0,
+      "p90": 1.0,
+      "p95": 1.0,
+      "p99": 2.0,
+      "p100": 4.0
+     },
+     "neighbours_within_20m": {
+      "count": 115092,
+      "mean": 0.6629305251451013,
+      "std": 0.8586168832530616,
+      "p50": 0.0,
+      "p90": 2.0,
+      "p95": 2.0,
+      "p99": 3.0,
+      "p100": 5.0
+     },
+     "neighbours_within_30m": {
+      "count": 115092,
+      "mean": 1.1772147499391792,
+      "std": 1.0963185579241403,
+      "p50": 1.0,
+      "p90": 3.0,
+      "p95": 3.0,
+      "p99": 4.0,
+      "p100": 6.0
+     },
+     "heading_diff_within_30m_rad": {
+      "count": 67744,
+      "mean": 1.2352073433435733,
+      "std": 1.2596208508649949,
+      "p25": 0.0554631768273921,
+      "p50": 0.5743422056770957,
+      "p75": 2.747997382073529,
+      "p90": 3.1143104162443365,
+      "p95": 3.128497599534898,
+      "p100": 3.1415888845047
+     },
+     "vehicle_frames_with_any_neighbour_10m_fraction": 0.1911166718798874,
+     "vehicle_frames_with_any_neighbour_20m_fraction": 0.45666944705105483,
+     "vehicle_frames_with_any_neighbour_30m_fraction": 0.6745125638619539,
+     "veh_frames": 115092,
+     "frames_with_pair_within_20m_fraction": 0.48574223381550863,
+     "pairs_within_30m": 67744,
+     "pairs_within_30m_following_lt30deg": 32063,
+     "pairs_within_30m_crossing_30_150deg": 17420,
+     "pairs_within_30m_oncoming_gt150deg": 18261,
+     "frames_with_crossing_pair_fraction": 0.2688819065686507,
+     "junction_frames_busy": 28426,
+     "junction_frames_multi_arm": 14225,
+     "junction_frames_multi_arm_fraction": 0.5004221487370717,
+     "junction_frames_main_plus_side_road": 8428,
+     "junction_frames_main_plus_side_road_fraction": 0.2964891296700204,
+     "junction_zone_definition": "moving vehicles (speed > 2 m/s) within 60 m of junction center; arm = nearest approach traffic direction; main+side = both a through-road direction and the side-road direction present"
+    },
+    "representative_windows": {
+     "definition": "sliding 4 s window ranked by active vehicles x heading diversity",
+     "windows": [
+      {
+       "t_start_s": 982.4157490824159,
+       "t_end_s": 986.4197530864199,
+       "max_active_vehicles": 10,
+       "mean_active_vehicles": 9.433333333333334,
+       "interaction_score": 4678.940865682563,
+       "vehicle_types": {
+        "car": 12
+       },
+       "vehicles": [
+        {
+         "uuid": "bf3a4ea0-ad37-4790-832b-103b656658b1",
+         "type": "car",
+         "x": 62.99871369679817,
+         "y": 53.774752701492574,
+         "speed_mps": 19.504587637452538
+        },
+        {
+         "uuid": "15eeb6ab-31e7-4525-8706-aadc1bcecf1f",
+         "type": "car",
+         "x": -27.793351399299375,
+         "y": -79.23343002010776,
+         "speed_mps": 21.662212222490968
+        },
+        {
+         "uuid": "2337f09a-b3f4-41cb-aca1-d70fc4f66d9a",
+         "type": "car",
+         "x": 52.135881401010174,
+         "y": 31.61149374879864,
+         "speed_mps": 20.042990390198714
+        },
+        {
+         "uuid": "b9f11bac-def5-499f-98b3-47cfd1deb340",
+         "type": "car",
+         "x": 42.087281007626565,
+         "y": 11.66871791491163,
+         "speed_mps": 21.644432043548488
+        },
+        {
+         "uuid": "4cdd5669-3dcc-4cc1-a9c2-4e94574d92d8",
+         "type": "car",
+         "x": 7.800190360081943,
+         "y": -30.905584851379693,
+         "speed_mps": 22.84566049998003
+        },
+        {
+         "uuid": "b66a2ddb-d7e2-416f-a15d-9943dc63380f",
+         "type": "car",
+         "x": 28.352959435072997,
+         "y": -11.946691211368325,
+         "speed_mps": 18.79880558318534
+        },
+        {
+         "uuid": "17007832-b5a3-40c2-a8ca-2204503f0b86",
+         "type": "car",
+         "x": 13.013807497142466,
+         "y": -35.92281501906059,
+         "speed_mps": 17.745111758113506
+        },
+        {
+         "uuid": "96959f9f-f89b-448c-9402-44f0e270aa95",
+         "type": "car",
+         "x": -0.4810974372904885,
+         "y": -54.59834707484524,
+         "speed_mps": 17.662758788008446
+        },
+        {
+         "uuid": "22a45346-db3c-40ea-a8fe-9f8d332c967c",
+         "type": "car",
+         "x": 21.2013279813937,
+         "y": -14.172079022657076,
+         "speed_mps": 6.09280522974531
+        },
+        {
+         "uuid": "89d7faa3-77c3-4eb0-80cf-3e24b771c1d7",
+         "type": "car",
+         "x": -10.506074236856469,
+         "y": -67.54675427698048,
+         "speed_mps": 17.76818325930933
+        },
+        {
+         "uuid": "d1c49dad-f8f8-4e27-9761-a57b30704395",
+         "type": "car",
+         "x": -22.91410959405679,
+         "y": -82.81554932378866,
+         "speed_mps": 19.282104226045043
+        },
+        {
+         "uuid": "b90a0c38-d135-48db-9f76-b94d04b0be9e",
+         "type": "car",
+         "x": -7.315303038600668,
+         "y": 57.8411852161487,
+         "speed_mps": 13.396811767660777
+        }
+       ]
+      },
+      {
+       "t_start_s": 547.2472472472473,
+       "t_end_s": 551.2512512512513,
+       "max_active_vehicles": 10,
+       "mean_active_vehicles": 9.016666666666667,
+       "interaction_score": 4466.39904330738,
+       "vehicle_types": {
+        "car": 10,
+        "van": 1
+       },
+       "vehicles": [
+        {
+         "uuid": "92ad1252-286b-466e-b7fc-2b36f8cbafcd",
+         "type": "car",
+         "x": -28.649100484521572,
+         "y": -80.19198311341376,
+         "speed_mps": 15.547991906649958
+        },
+        {
+         "uuid": "a0a8d0e8-7eb8-4325-a330-5427227cbf9f",
+         "type": "car",
+         "x": 52.76000420530904,
+         "y": 33.79923681005607,
+         "speed_mps": 20.70681620955816
+        },
+        {
+         "uuid": "847727b8-fe34-467b-ae12-b36800183e3f",
+         "type": "van",
+         "x": 43.4276381605568,
+         "y": 15.408755615376574,
+         "speed_mps": 21.116565183675824
+        },
+        {
+         "uuid": "e6a436fa-3e9c-4357-ab42-80ca1b6dd12c",
+         "type": "car",
+         "x": 7.066711944382876,
+         "y": -31.411980140023495,
+         "speed_mps": 24.39924590386208
+        },
+        {
+         "uuid": "0b5b093d-441c-4898-84bd-3643c11488f5",
+         "type": "car",
+         "x": 30.688367774973038,
+         "y": -6.265581268628726,
+         "speed_mps": 21.746452855097733
+        },
+        {
+         "uuid": "99c64da8-92af-49cb-8148-2b1cc71f42ed",
+         "type": "car",
+         "x": 18.663042622840567,
+         "y": -26.9039151899296,
+         "speed_mps": 22.152589988449066
+        },
+        {
+         "uuid": "f7844739-dc37-43fb-bb3c-659870b9e57d",
+         "type": "car",
+         "x": 11.158565919963788,
+         "y": -13.373143959306399,
+         "speed_mps": 0.6016982051762944
+        },
+        {
+         "uuid": "1d3d6420-1bf7-4e0c-a7b8-da9ba60f96eb",
+         "type": "car",
+         "x": 48.995899347491815,
+         "y": 41.73051176632372,
+         "speed_mps": 16.727659688411496
+        },
+        {
+         "uuid": "1afe605e-1262-4bd3-9aa4-ac549d332182",
+         "type": "car",
+         "x": -7.775634452886392,
+         "y": -58.508484090663075,
+         "speed_mps": 15.136641376694907
+        },
+        {
+         "uuid": "a31c284f-f52f-4552-91a1-0dfb759ec277",
+         "type": "car",
+         "x": 6.553162955081408,
+         "y": 6.881332811446534,
+         "speed_mps": 8.080442462723715
+        },
+        {
+         "uuid": "2c9ea8a8-ed77-43f5-85c6-f7938eff0497",
+         "type": "car",
+         "x": -17.634731902954442,
+         "y": -72.58145389119227,
+         "speed_mps": 16.880664584141233
+        }
+       ]
+      },
+      {
+       "t_start_s": 978.4117450784119,
+       "t_end_s": 982.4157490824159,
+       "max_active_vehicles": 10,
+       "mean_active_vehicles": 8.891666666666667,
+       "interaction_score": 4412.240470039758,
+       "vehicle_types": {
+        "car": 11
+       },
+       "vehicles": [
+        {
+         "uuid": "897bacbf-44b6-4770-80f9-f30ff458c38d",
+         "type": "car",
+         "x": -27.21135954252992,
+         "y": -78.18699295859257,
+         "speed_mps": 23.657663019193564
+        },
+        {
+         "uuid": "c370bc88-5d80-44e3-b682-c178844cfc33",
+         "type": "car",
+         "x": 54.329602617665756,
+         "y": 36.487396670665085,
+         "speed_mps": 19.85619484378474
+        },
+        {
+         "uuid": "98f3cac4-75a1-4ab4-9f74-5e12edcb9b48",
+         "type": "car",
+         "x": 47.476392036683535,
+         "y": 23.633025910946433,
+         "speed_mps": 19.43345478295632
+        },
+        {
+         "uuid": "bf3a4ea0-ad37-4790-832b-103b656658b1",
+         "type": "car",
+         "x": 32.68718792102227,
+         "y": -5.0260451631208705,
+         "speed_mps": 19.1613272406568
+        },
+        {
+         "uuid": "15eeb6ab-31e7-4525-8706-aadc1bcecf1f",
+         "type": "car",
+         "x": 21.492581104312908,
+         "y": -9.607954976893208,
+         "speed_mps": 21.181918431669178
+        },
+        {
+         "uuid": "2337f09a-b3f4-41cb-aca1-d70fc4f66d9a",
+         "type": "car",
+         "x": 11.744155948615324,
+         "y": -37.05684976468319,
+         "speed_mps": 19.771045124743527
+        },
+        {
+         "uuid": "b9f11bac-def5-499f-98b3-47cfd1deb340",
+         "type": "car",
+         "x": -1.7282837213013362,
+         "y": -57.04490004613227,
+         "speed_mps": 18.554115238181712
+        },
+        {
+         "uuid": "4cdd5669-3dcc-4cc1-a9c2-4e94574d92d8",
+         "type": "car",
+         "x": 53.5296044918319,
+         "y": 47.14472488384868,
+         "speed_mps": 22.579690864429423
+        },
+        {
+         "uuid": "b66a2ddb-d7e2-416f-a15d-9943dc63380f",
+         "type": "car",
+         "x": -12.931118659672878,
+         "y": -71.21548246546874,
+         "speed_mps": 17.751431168649518
+        },
+        {
+         "uuid": "17007832-b5a3-40c2-a8ca-2204503f0b86",
+         "type": "car",
+         "x": -23.059524811439847,
+         "y": -83.10620657034261,
+         "speed_mps": 18.13435023913812
+        },
+        {
+         "uuid": "22a45346-db3c-40ea-a8fe-9f8d332c967c",
+         "type": "car",
+         "x": 16.942488254580866,
+         "y": -23.592431258436534,
+         "speed_mps": 2.9107309522333997
+        }
+       ]
+      },
+      {
+       "t_start_s": 873.23990657324,
+       "t_end_s": 877.243910577244,
+       "max_active_vehicles": 8,
+       "mean_active_vehicles": 7.866666666666666,
+       "interaction_score": 3901.847104210882,
+       "vehicle_types": {
+        "car": 8,
+        "truck": 1
+       },
+       "vehicles": [
+        {
+         "uuid": "78c4f798-c613-4610-b8df-e9f2c6596360",
+         "type": "car",
+         "x": 62.538773240511425,
+         "y": 53.411712718964424,
+         "speed_mps": 20.363031276275386
+        },
+        {
+         "uuid": "c3de634e-0e41-41ab-8f80-83f011715b71",
+         "type": "truck",
+         "x": 1.2935604292409715,
+         "y": -40.17451201539625,
+         "speed_mps": 19.04494773265616
+        },
+        {
+         "uuid": "55de7ee0-00c4-419a-8315-8ffa59cfd226",
+         "type": "car",
+         "x": 46.90523414303748,
+         "y": 21.400051895545985,
+         "speed_mps": 18.73938016739037
+        },
+        {
+         "uuid": "bf2a7e79-a3e9-4b81-9220-797523e3ca25",
+         "type": "car",
+         "x": 36.91788072625937,
+         "y": 3.5547586231750543,
+         "speed_mps": 18.72097505839395
+        },
+        {
+         "uuid": "f482e468-43a3-41b3-9a7b-93128d4e1df1",
+         "type": "car",
+         "x": 22.890572990362823,
+         "y": -21.495068721086405,
+         "speed_mps": 18.56216467579445
+        },
+        {
+         "uuid": "88ec6144-570f-40ab-bee8-cd68ac9aa07d",
+         "type": "car",
+         "x": 24.126561467087964,
+         "y": 15.53289227416348,
+         "speed_mps": 9.249714884583222
+        },
+        {
+         "uuid": "d17e9c10-a11e-4611-a56b-c79dd7b40798",
+         "type": "car",
+         "x": 47.15176795928747,
+         "y": 35.44232379792836,
+         "speed_mps": 15.235864979099578
+        },
+        {
+         "uuid": "4219ef96-a718-4eba-9500-23a88b898e9c",
+         "type": "car",
+         "x": 55.479723213884114,
+         "y": 50.73811353375959,
+         "speed_mps": 16.793345318565894
+        },
+        {
+         "uuid": "28f7abaa-0eb5-4849-887d-c7bf04fc14b1",
+         "type": "car",
+         "x": 41.43509736742688,
+         "y": 30.227802194102562,
+         "speed_mps": 11.082921256697238
+        }
+       ]
+      },
+      {
+       "t_start_s": 573.1731731731733,
+       "t_end_s": 577.1771771771772,
+       "max_active_vehicles": 8,
+       "mean_active_vehicles": 7.791666666666667,
+       "interaction_score": 3850.9852835905003,
+       "vehicle_types": {
+        "car": 8
+       },
+       "vehicles": [
+        {
+         "uuid": "a291d183-cc7d-4bc4-b7e3-b7b965575f1b",
+         "type": "car",
+         "x": 46.58013390129889,
+         "y": 21.44304370218215,
+         "speed_mps": 24.64202606593414
+        },
+        {
+         "uuid": "cdd0022a-43ed-4cde-b5c6-7e9c6db8bf84",
+         "type": "car",
+         "x": 9.007598896143536,
+         "y": -28.855473182855416,
+         "speed_mps": 22.372467391113897
+        },
+        {
+         "uuid": "3f369ba6-205d-45a5-9e61-459a51206352",
+         "type": "car",
+         "x": 26.73299846209194,
+         "y": -14.010689697102325,
+         "speed_mps": 21.086199116645226
+        },
+        {
+         "uuid": "b940d64f-80c2-4cfe-9e46-fa16974983f5",
+         "type": "car",
+         "x": 7.3740176717215,
+         "y": -43.332122965089305,
+         "speed_mps": 19.310605769694586
+        },
+        {
+         "uuid": "7b8b180c-9560-4d18-b850-0d504b289fbe",
+         "type": "car",
+         "x": -2.859495084704867,
+         "y": -57.61429441250604,
+         "speed_mps": 19.684029223856083
+        },
+        {
+         "uuid": "ff8d96fa-f43f-4d23-92d0-57660bf70e86",
+         "type": "car",
+         "x": 20.10089432017265,
+         "y": -17.179850915776814,
+         "speed_mps": 4.398956829831793
+        },
+        {
+         "uuid": "7ec00f05-f130-4022-9d26-a323b329e4cb",
+         "type": "car",
+         "x": 12.241624788350077,
+         "y": -13.20107358873381,
+         "speed_mps": 2.9199351197051944
+        },
+        {
+         "uuid": "92dbd3cd-b779-453b-8011-512ba0cd7a8f",
+         "type": "car",
+         "x": 15.260672651219235,
+         "y": -25.663616275942335,
+         "speed_mps": 4.2166562352192285
+        }
+       ]
+      }
+     ]
+    }
+   },
+   "on_road": {
+    "definition": "residual = distance(point, nearest driving-lane centerline) - lane half width; <=0 means inside the lane surface",
+    "points": 118517,
+    "fraction_residual_le_0m": 0.9984896681488732,
+    "fraction_residual_le_0.5m": 1.0,
+    "fraction_residual_le_1m": 1.0,
+    "residual_m": {
+     "count": 118517,
+     "mean": -1.3679000921037616,
+     "std": 0.2898863747235934,
+     "p50": -1.434464505955886,
+     "p75": -1.2261567147298864,
+     "p90": -0.9814236286673298,
+     "p95": -0.8160959093821937,
+     "p99": -0.39162190818227005,
+     "p99.9": 0.0664519548723511,
+     "p100": 0.43200082171352716
+    },
+    "worst_tracks_fraction_on_road": [
+     {
+      "uuid": "0093c425-21ed-4f28-a110-0bc24f85770d",
+      "type": "car",
+      "fraction_le_0.5m": 1.0,
+      "p95_residual_m": -1.448860319855194
+     },
+     {
+      "uuid": "01044e5f-b958-4702-8254-3e08730bb0ee",
+      "type": "car",
+      "fraction_le_0.5m": 1.0,
+      "p95_residual_m": -1.1393699993339053
+     },
+     {
+      "uuid": "0271ea1e-0504-4a1e-bc70-aefb0a1089da",
+      "type": "van",
+      "fraction_le_0.5m": 1.0,
+      "p95_residual_m": -0.8021313552177655
+     },
+     {
+      "uuid": "0335a5a7-a246-42fd-9012-609da065e1a5",
+      "type": "car",
+      "fraction_le_0.5m": 1.0,
+      "p95_residual_m": -0.8364997040941632
+     },
+     {
+      "uuid": "04204f6b-807a-4d2b-a902-44e2b68e2c6d",
+      "type": "car",
+      "fraction_le_0.5m": 1.0,
+      "p95_residual_m": -1.2074948513195864
+     },
+     {
+      "uuid": "04ce1456-cb0c-4288-b3f0-ec67a86b5fa8",
+      "type": "truck",
+      "fraction_le_0.5m": 1.0,
+      "p95_residual_m": -1.4688871301659636
+     },
+     {
+      "uuid": "050d359c-edce-4cad-aa6d-9a9272b6d1dc",
+      "type": "car",
+      "fraction_le_0.5m": 1.0,
+      "p95_residual_m": -0.8839241600893166
+     },
+     {
+      "uuid": "0528b485-1444-4121-939f-ed51b3ac06ca",
+      "type": "car",
+      "fraction_le_0.5m": 1.0,
+      "p95_residual_m": -0.9945818726070483
+     },
+     {
+      "uuid": "064a7192-d8af-4b08-bd4f-2e765de61f6c",
+      "type": "car",
+      "fraction_le_0.5m": 1.0,
+      "p95_residual_m": -0.4186671642125387
+     },
+     {
+      "uuid": "06599fe5-a922-47ec-8cc3-07d02e3f0db3",
+      "type": "car",
+      "fraction_le_0.5m": 1.0,
+      "p95_residual_m": -0.9271169013202895
+     }
+    ]
+   },
+   "downsample_10hz": {
+    "nominal_source_rate_hz": 29.97,
+    "source_dt_s": 0.033366700033366704,
+    "effective_rate_of_every_3rd_frame_hz": 9.989999999999998,
+    "method_A_every_3rd": {
+     "dt_s": 0.10010010010010012,
+     "dt_is_uniform": true,
+     "time_error_vs_0.1s_grid_s": {
+      "count": 11257,
+      "mean": 0.5633633633634076,
+      "std": 0.3253013337833845,
+      "p0": 0.0,
+      "p50": 0.5633633633633508,
+      "p99": 1.1154594594595983,
+      "p100": 1.1267267267267016
+     },
+     "max_abs_time_error_s": 1.1267267267267016,
+     "drift_at_end_s": 1.1267267267267016
+    },
+    "method_B_nearest_0.1s_grid": {
+     "sample_stride_counts": {
+      "2": 34,
+      "3": 11222
+     },
+     "time_error_vs_0.1s_grid_s": {
+      "count": 11257,
+      "mean": 9.44950166158878e-06,
+      "std": 0.009658207415027218,
+      "p0": -0.016683350016677423,
+      "p50": 0.00010010010009864345,
+      "p99": 0.016330997664456406,
+      "p100": 0.016649983316938233
+     },
+     "max_abs_time_error_s": 0.016683350016677423,
+     "drift_at_end_s": -0.007741074407704218,
+     "effective_mean_rate_hz": 10.000068773344399
+    },
+    "position_difference_A_minus_B_m": {
+     "count": 39641,
+     "mean": 0.02433383416635619,
+     "std": 0.09800362857994273,
+     "p50": 0.0,
+     "p90": 0.0,
+     "p95": 0.2528292987046331,
+     "p99": 0.5036652451825557,
+     "p99.9": 0.6082267025507943,
+     "p100": 0.6428379545212007
+    },
+    "speed_difference_A_minus_B_mps": {
+     "count": 39641,
+     "mean": 0.0032882107272248226,
+     "std": 0.01374754252135646,
+     "p50": 0.0,
+     "p90": 0.0,
+     "p95": 0.032936982068672904,
+     "p99": 0.07406975265484796,
+     "p99.9": 0.1009379439982805,
+     "p100": 0.11303346201005038
+    },
+    "method_A_within_one_4s_window_time_error_s": 0.004004004004004358,
+    "recommendation": "method_B_nearest_0.1s_grid"
+   },
+   "windows_2s_2s": {
+    "definition": "41 consecutive 10 Hz samples (4.0 s) per window; anchor grid 0.1 s; window needs t in [k*0.1, k*0.1+4.0] fully inside the track",
+    "single_vehicle_windows_total": 24095,
+    "windows_in_multi_vehicle_scenes": 21988,
+    "windows_in_2_to_8_scenes": 21988,
+    "windows_in_more_than_8_scenes": 0,
+    "multi_vehicle_anchors": 6950,
+    "multi_2_to_8_anchors": 6950,
+    "anchors_with_more_than_8": 0,
+    "concurrent_windows": {
+     "count": 11257,
+     "mean": 2.1404459447454918,
+     "std": 1.5973768854349975,
+     "p50": 2.0,
+     "p75": 3.0,
+     "p90": 4.0,
+     "p95": 5.0,
+     "p99": 6.0,
+     "p99.9": 6.0,
+     "p100": 7.0
+    },
+    "concurrent_bins_anchors": {
+     "N=0": 2200,
+     "N=1": 2107,
+     "2<=N<=4": 6007,
+     "5<=N<=8": 943,
+     "N>8": 0
+    }
+   },
+   "bs_geometry": {
+    "candidate_bs_positions": [
+     {
+      "x": 42.98047784925911,
+      "y": 39.27481469711556,
+      "arm_road_id": 4,
+      "arm_name": "object 1",
+      "through_road": true,
+      "axis_deg": 60.09773689682698
+     },
+     {
+      "x": 26.9391919538491,
+      "y": -20.71416051351561,
+      "arm_road_id": 4,
+      "arm_name": "object 1",
+      "through_road": true,
+      "axis_deg": 240.09773689682697
+     },
+     {
+      "x": -13.380141846409817,
+      "y": 52.715592275166465,
+      "arm_road_id": 5,
+      "arm_name": "object 62",
+      "through_road": false,
+      "axis_deg": 106.77100000000023
+     }
+    ],
+    "junction_center": [
+     4.469859998597535,
+     26.762252641638906
+    ],
+    "junction_center_max_distance_to_connector_m": 3.3569999999999345,
+    "arms": [
+     {
+      "road_id": 4,
+      "name": "object 1",
+      "through_road": true,
+      "axis_deg": 60.09773689682698,
+      "point": [
+       34.9598349015541,
+       9.280327091799977
+      ],
+      "distance_to_center_m": 35.14621303231733
+     },
+     {
+      "road_id": 4,
+      "name": "object 1",
+      "through_road": true,
+      "axis_deg": 240.09773689682697,
+      "point": [
+       34.9598349015541,
+       9.280327091799977
+      ],
+      "distance_to_center_m": 35.14621303231733
+     },
+     {
+      "road_id": 5,
+      "name": "object 62",
+      "through_road": false,
+      "axis_deg": 106.77100000000023,
+      "point": [
+       2.936,
+       26.3
+      ],
+      "distance_to_center_m": 1.6019999999999301
+     }
+    ],
+    "arm_axes_deg": [
+     60.09773689682698,
+     240.09773689682697,
+     106.77100000000023
+    ],
+    "vehicle_to_nearest_bs_m": {
+     "count": 118517,
+     "mean": 27.219472549067063,
+     "std": 17.993723928042275,
+     "p0": 2.858177240012975,
+     "p1": 4.845485941278418,
+     "p50": 21.416842420548633,
+     "p75": 34.52583025369978,
+     "p90": 57.271434475273615,
+     "p95": 68.70036048633798,
+     "p99": 78.71084338641168,
+     "p100": 82.11016323993451
+    },
+    "vehicle_to_each_bs_m": {
+     "4": {
+      "count": 118517,
+      "mean": 41.22488226286109,
+      "std": 23.52668896849651,
+      "p50": 38.09505851260063,
+      "p95": 80.28964832444251,
+      "p100": 111.94006029241527
+     },
+     "5": {
+      "count": 118517,
+      "mean": 74.35142387849187,
+      "std": 28.233419717393122,
+      "p50": 71.18848188603414,
+      "p95": 124.38756730821649,
+      "p100": 136.49828278933683
+     }
+    },
+    "fraction_vehicles_within_100m": 1.0,
+    "fraction_vehicles_within_150m": 1.0,
+    "triangle_area_m2": 1798.3115867827125,
+    "triangle_sides_m": [
+     62.096698785040104,
+     83.77098108953757,
+     57.941124897454834
+    ],
+    "triangle_angles_deg": [
+     88.44241348719983,
+     43.741468826213584,
+     47.8161176865866
+    ],
+    "min_triangle_angle_deg": 43.741468826213584,
+    "is_non_collinear": true,
+    "scene_bbox_m": [
+     -29.381954313005057,
+     63.960177959872084,
+     -83.48179760858582,
+     84.32685051294706
+    ],
+    "scene_hull_area_m2": 7813.481006603459
+   },
+   "files": {
+    "dynamicWorld_json_bytes": 48353942,
+    "staticWorld_xodr_bytes": 22085,
+    "html": [
+     "T-Crossing-St2214-DuenzlauUmgehung_1b9b-1b9bf4b8-9fa6-4d23-abd2-2b715d087e8f.html"
+    ],
+    "track_bbox": [
+     -29.381954313005057,
+     63.960177959872084,
+     -83.48179760858582,
+     84.32685051294706
+    ],
+    "track_hull_area_m2": 7813.481006603459
+   }
+  }
+ },
+ "cross_recording": {
+  "uuid_overlap": 0,
+  "uuid_unique_within_recording": [
+   true,
+   true
+  ],
+  "recommended_trace_key": "(recording_id, UUID) or equivalently (recording_name, UUID); UUIDs are globally unique in this release",
+  "recommended_final_vehicle_id_rule": "vehicle_id = stable hash or integer index of (recording_name, UUID); do not rely on the objects list order",
+  "total_objects": 683,
+  "combined_duration_s": 1776.2762762762766,
+  "single_vehicle_windows_total": 54113,
+  "multi_vehicle_windows_total": 51699,
+  "windows_in_2_to_8_scenes_total": 46841,
+  "windows_in_more_than_8_scenes_total": 4858
+ },
+ "checks": {
+  "recording_A_dt_all_nominal": true,
+  "recording_A_tracks_monotonic": true,
+  "recording_A_no_duplicate_timestamps": true,
+  "recording_A_vector_lengths_consistent": true,
+  "recording_A_velocity_body_frame_matches_fd": true,
+  "recording_A_bs_non_collinear": true,
+  "recording_A_tracks_on_road_ge_99pct": true,
+  "recording_B_dt_all_nominal": true,
+  "recording_B_tracks_monotonic": true,
+  "recording_B_no_duplicate_timestamps": true,
+  "recording_B_vector_lengths_consistent": true,
+  "recording_B_velocity_body_frame_matches_fd": true,
+  "recording_B_bs_non_collinear": true,
+  "recording_B_tracks_on_road_ge_99pct": true
+ }
+}
