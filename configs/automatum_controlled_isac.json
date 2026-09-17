@@ -1,0 +1,83 @@
+{
+  "revision": "AUTOMATUM-CONTROLLED-ISAC-V1",
+  "status": "Calibration V1 candidates; NOT FROZEN",
+  "route": "B: controlled multi-BS state sensing; detection and identity association are assumed successful",
+  "dataset": {
+    "splits_dir": "data/automatum_t_crossing/splits",
+    "train_trajectories": "data/automatum_t_crossing/splits/train/trajectories.csv",
+    "val_trajectories": "data/automatum_t_crossing/splits/val/trajectories.csv",
+    "test_trajectories": "data/automatum_t_crossing/splits/test/trajectories.csv",
+    "source_hz": 29.97,
+    "stride": 3,
+    "dt_rule": "dt = stride / source_hz = 3 / 29.97; never hardcode 0.1",
+    "velocity_frame": "world; vx/vy arrive rotated and must never be rotated again",
+    "calibration_frames": "reports/isac_smoke/automatum_isac_smoke_01/selection_train.csv (same frames as SMOKE-01 for comparability)",
+    "validation_frames": "reports/isac_smoke/automatum_isac_smoke_01/selection_val.csv"
+  },
+  "scenes": [
+    {
+      "scene_id": 0,
+      "label": "Gaimersheim Stadtweg",
+      "junction_center_xy_m": [-21.0533598837844, -2.95345546097586],
+      "stations_xy_m": [
+        [26.200525320073083, 7.623030351301587],
+        [-30.4325273459796, 33.09256795456605],
+        [-26.549335918797667, -32.757553290344234]
+      ],
+      "boresights_deg": [-167.3838440101848, -75.41506241557956, 79.55183860023827]
+    },
+    {
+      "scene_id": 1,
+      "label": "St2214 Duenzlau Umgehung",
+      "junction_center_xy_m": [4.469859998597535, 26.762252641638906],
+      "stations_xy_m": [
+        [42.98047784925911, 39.27481469711556],
+        [26.9391919538491, -20.71416051351561],
+        [-13.380141846409817, 52.715592275166465]
+      ],
+      "boresights_deg": [-162.0003986009626, 115.32695701167816, -55.48086353031954]
+    }
+  ],
+  "visibility": {
+    "range_min_m": 5.0,
+    "range_max_m": 150.0,
+    "fov_half_angle_deg": 70.0,
+    "station_height_m": 6.5,
+    "vehicle_height_m": 1.5,
+    "height_difference_m": 5.0,
+    "status": "CANDIDATE (inherited from the SMOKE-01 geometry audit, not frozen)"
+  },
+  "snr": {
+    "levels_db": [-10.0, -5.0, 0.0, 5.0, 10.0],
+    "semantics": {"10.0": "Good", "0.0": "Medium", "-10.0": "Poor-but-usable"},
+    "seed_rule": "base standard normals are keyed by (scene_id, frame, bs_id, vehicle_id, channel); SNR never enters the seed"
+  },
+  "measurement": {
+    "a": {
+      "range": 0.1,
+      "bearing": 0.004,
+      "radial_velocity": 0.16
+    },
+    "floors": {
+      "range": 0.0018,
+      "bearing": 0.000136,
+      "radial_velocity": 0.0023
+    },
+    "floor_source": "SMOKE-01 reports/isac_smoke/automatum_isac_smoke_01/floor_probe.json high-SNR single-BS estimator floor (60 dB); a reference order of magnitude, not a hardware value",
+    "sigma_rule": "sigma_q(gamma) = sqrt(floor_q^2 + (a_q * 10^(-gamma/20))^2); no range/speed/vehicle/scene factors in V1",
+    "covariance_floor_m2": 1e-8,
+    "status": "a = Calibration V1 recommended candidate B_recommended; NOT FROZEN"
+  },
+  "fusion": {
+    "velocity_prior_sigma_mps": 200.0,
+    "velocity_prior_note": "weak regularization only; the legacy 30 m/s NGSIM prior is not a default for Automatum",
+    "position_fusion": "covariance-weighted inverse-variance fusion (cross_bs_association.fuse_positions)",
+    "status": "NOT FROZEN"
+  },
+  "state_quality": {
+    "form": "100 * exp(-sqrt((dp/p_ref)^2 + (dv/v_ref)^2))",
+    "p_ref_m": 1.0,
+    "v_ref_mps": 1.0,
+    "status": "provisional candidate; the percentage definition is NOT FROZEN"
+  }
+}

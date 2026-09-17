@@ -22,10 +22,18 @@ def recover_velocity(fused_position, members: list, sigma_radial: float,
     directions = []
     for member in members:
         delta = position - np.asarray(member["station"], dtype=float)
-        norm = float(np.linalg.norm(delta))
-        if norm < 1e-9:
-            continue
-        direction = delta / norm
+        if "direction" in member:
+            # Backward-compatible override used by the Automatum controlled model, whose radial
+            # velocity is defined along the 3D line of sight: the (x, y) direction carries the
+            # rho/r_3d scaling of the height-aware range.
+            direction = np.asarray(member["direction"], dtype=float)
+            if direction.shape != (2,) or not np.isfinite(direction).all():
+                raise ValueError("member direction must be a finite 2-vector")
+        else:
+            norm = float(np.linalg.norm(delta))
+            if norm < 1e-9:
+                continue
+            direction = delta / norm
         weight = 1.0 / max(float(sigma_radial) ** 2, 1e-12)
         normal += weight * np.outer(direction, direction)
         rhs += -weight * direction * float(member["radial_velocity"])
