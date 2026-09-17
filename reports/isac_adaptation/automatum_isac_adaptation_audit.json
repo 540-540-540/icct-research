@@ -1,0 +1,1356 @@
+{
+ "audit": "automatum_isac_adaptation",
+ "mode": "AUDIT ONLY (read-only; no data, code, model or split modification)",
+ "dataset_baseline": {
+  "canonical_path": "data/automatum_t_crossing/processed/trajectories_10hz.csv",
+  "canonical_sha256": "a41ac4e24a8f21039dde60064868871b21093289a661ca9bef28ee7d1aab3442",
+  "canonical_rows": 81450,
+  "schema": [
+   "scene_id",
+   "vehicle_id",
+   "timestamp",
+   "x",
+   "y",
+   "vx",
+   "vy"
+  ],
+  "canonical_fps": 9.99,
+  "canonical_dt_s": 0.1001001001001001,
+  "source_fps": 29.97,
+  "stride": 3,
+  "velocity_frame": "world (body-frame rotation already applied in canonical)",
+  "splits": {
+   "train": {
+    "trajectories": "data/automatum_t_crossing/splits/train/trajectories.csv",
+    "trajectories_sha256": "d75994cb999d10ac5c05fab00f95a11d98b8e8cc61c475b87373ba6b51a82a11",
+    "samples": "data/automatum_t_crossing/splits/train/samples.npz",
+    "samples_sha256": "1b86a6453a53779b9b647f8fa04bf3b40c56bba0dfc26f0d19f6de895a58e0c9",
+    "history": [
+     20,
+     8,
+     4
+    ],
+    "future": [
+     20,
+     8,
+     4
+    ],
+    "state": [
+     "x",
+     "y",
+     "vx",
+     "vy"
+    ],
+    "vehicle_rule": "2 <= N <= 8; cohort = present in all 40 frames"
+   },
+   "val": {
+    "trajectories": "data/automatum_t_crossing/splits/val/trajectories.csv",
+    "trajectories_sha256": "c9964adb9b73e828754912381f5d93cfd8adf215bad4ba85db766d4166ab894d",
+    "samples": "data/automatum_t_crossing/splits/val/samples.npz",
+    "samples_sha256": "51dc713ba5873ba438267e5c46f97902e4e744cbd3069bf3e289a485d058ff31",
+    "history": [
+     20,
+     8,
+     4
+    ],
+    "future": [
+     20,
+     8,
+     4
+    ],
+    "state": [
+     "x",
+     "y",
+     "vx",
+     "vy"
+    ],
+    "vehicle_rule": "2 <= N <= 8; cohort = present in all 40 frames"
+   },
+   "test": {
+    "trajectories": "data/automatum_t_crossing/splits/test/trajectories.csv",
+    "trajectories_sha256": "6fb3117e95368e2c5b66cca5a28cb45a1ff91691d4afea4fb9b8c1a17eb75371",
+    "samples": "data/automatum_t_crossing/splits/test/samples.npz",
+    "samples_sha256": "dec95982e48686e03e0ba059fb3a977f095b881342ed8ce9416c4c0ec8424413",
+    "history": [
+     20,
+     8,
+     4
+    ],
+    "future": [
+     20,
+     8,
+     4
+    ],
+    "state": [
+     "x",
+     "y",
+     "vx",
+     "vy"
+    ],
+    "vehicle_rule": "2 <= N <= 8; cohort = present in all 40 frames"
+   }
+  },
+  "frozen_commit": "d017d49d688c0cc92294674b764d3813fa21b327"
+ },
+ "scene_stats": {
+  "0": {
+   "scene_id": 0,
+   "label": "Gaimersheim Stadtweg",
+   "recording_name": "T-Crossing--GaimersheimStadtweg_e2e6-e2e6f4bb-4668-4654-ac7e-bcd90c9df4c2",
+   "canonical_points": 41944,
+   "x_range_m": [
+    -58.091104,
+    76.130325
+   ],
+   "y_range_m": [
+    -49.242331,
+    69.352588
+   ],
+   "vx_range_mps": [
+    -23.727947,
+    18.620353
+   ],
+   "vy_range_mps": [
+    -15.719279,
+    20.249599
+   ],
+   "speed_mps": {
+    "count": 41944,
+    "p50": 12.771141981432368,
+    "p90": 19.307171757666318,
+    "p95": 20.45853078474316,
+    "p99": 22.951210874441536,
+    "p100": 30.390231698898546
+   },
+   "vehicles_per_frame": {
+    "count": 6501,
+    "p50": 6.0,
+    "p90": 10.0,
+    "p95": 12.0,
+    "p99": 15.0,
+    "p100": 18.0,
+    "frames_total": 6501,
+    "frames_empty": 19
+   },
+   "time_range_s": [
+    0.0,
+    650.6506506506507
+   ],
+   "static_world_xodr": "data/automatum_t_crossing/raw/extracted/T-Crossing--GaimersheimStadtweg_e2e6-e2e6f4bb-4668-4654-ac7e-bcd90c9df4c2/staticWorld.xodr",
+   "junction_center_xy_m": [
+    -21.0533598837844,
+    -2.95345546097586
+   ]
+  },
+  "1": {
+   "scene_id": 1,
+   "label": "St2214 Duenzlau Umgehung",
+   "recording_name": "T-Crossing-St2214-DuenzlauUmgehung_1b9b-1b9bf4b8-9fa6-4d23-abd2-2b715d087e8f",
+   "canonical_points": 39506,
+   "x_range_m": [
+    -29.381954,
+    63.820394
+   ],
+   "y_range_m": [
+    -83.284997,
+    83.757305
+   ],
+   "vx_range_mps": [
+    -18.713991,
+    18.230944
+   ],
+   "vy_range_mps": [
+    -27.270901,
+    25.756458
+   ],
+   "speed_mps": {
+    "count": 39506,
+    "p50": 17.945468873939177,
+    "p90": 23.905830485685666,
+    "p95": 25.13779130637586,
+    "p99": 27.635829753695972,
+    "p100": 30.657329337562494
+   },
+   "vehicles_per_frame": {
+    "count": 11161,
+    "p50": 4.0,
+    "p90": 6.0,
+    "p95": 7.0,
+    "p99": 8.0,
+    "p100": 10.0,
+    "frames_total": 11161,
+    "frames_empty": 988
+   },
+   "time_range_s": [
+    8.508508508508509,
+    1125.6256256256256
+   ],
+   "static_world_xodr": "data/automatum_t_crossing/raw/extracted/T-Crossing-St2214-DuenzlauUmgehung_1b9b-1b9bf4b8-9fa6-4d23-abd2-2b715d087e8f/staticWorld.xodr",
+   "junction_center_xy_m": [
+    4.469859998597535,
+    26.762252641638906
+   ]
+  }
+ },
+ "sample_vs_scene_occupancy": {
+  "definition": {
+   "cohort": "sample vehicle_ids = vehicles present in all 40 window frames",
+   "extra_vehicle": "a real vehicle present in >=1 of the 40 frames but not in the cohort",
+   "history": "frames 0..19 of the window",
+   "future": "frames 20..39",
+   "per_sample_metrics": [
+    "N",
+    "history_max_concurrent",
+    "history_max_extra",
+    "future_max_concurrent",
+    "future_max_extra",
+    "max_concurrent_40",
+    "extra_vehicles_distinct_40",
+    "history_frames_with_extra"
+   ]
+  },
+  "per_split": {
+   "train": {
+    "overall": {
+     "samples": 10366,
+     "zero_extra_in_40_frames_fraction": 0.03926297511093961,
+     "history_with_extra_fraction": 0.929288057109782,
+     "future_with_extra_fraction": 0.919930542157052,
+     "history_max_extra": {
+      "count": 10366,
+      "p50": 2.0,
+      "p90": 4.0,
+      "p95": 4.0,
+      "p100": 6.0
+     },
+     "history_max_concurrent": {
+      "count": 10366,
+      "p50": 6.0,
+      "p90": 8.0,
+      "p95": 9.0,
+      "p100": 14.0
+     },
+     "future_max_extra": {
+      "count": 10366,
+      "p50": 2.0,
+      "p90": 4.0,
+      "p95": 4.0,
+      "p100": 8.0
+     },
+     "future_max_concurrent": {
+      "count": 10366,
+      "p50": 6.0,
+      "p90": 8.0,
+      "p95": 9.0,
+      "p100": 16.0
+     },
+     "samples_with_concurrent_gt_8": 1082,
+     "samples_with_concurrent_gt_8_fraction": 0.10437970287478295,
+     "max_concurrent_observed": 16
+    },
+    "per_scene": {
+     "scene_0": {
+      "samples": 4430,
+      "zero_extra_in_40_frames_fraction": 0.020090293453724605,
+      "history_with_extra_fraction": 0.9534988713318284,
+      "future_with_extra_fraction": 0.9550790067720091,
+      "history_max_extra": {
+       "count": 4430,
+       "p50": 2.0,
+       "p90": 4.0,
+       "p95": 4.0,
+       "p100": 6.0
+      },
+      "history_max_concurrent": {
+       "count": 4430,
+       "p50": 7.0,
+       "p90": 9.0,
+       "p95": 10.0,
+       "p100": 14.0
+      },
+      "future_max_extra": {
+       "count": 4430,
+       "p50": 2.0,
+       "p90": 4.0,
+       "p95": 5.0,
+       "p100": 8.0
+      },
+      "future_max_concurrent": {
+       "count": 4430,
+       "p50": 7.0,
+       "p90": 9.0,
+       "p95": 11.0,
+       "p100": 16.0
+      },
+      "samples_with_concurrent_gt_8": 971,
+      "samples_with_concurrent_gt_8_fraction": 0.21918735891647856,
+      "max_concurrent_observed": 16
+     },
+     "scene_1": {
+      "samples": 5936,
+      "zero_extra_in_40_frames_fraction": 0.05357142857142857,
+      "history_with_extra_fraction": 0.9112196765498652,
+      "future_with_extra_fraction": 0.893699460916442,
+      "history_max_extra": {
+       "count": 5936,
+       "p50": 2.0,
+       "p90": 3.0,
+       "p95": 4.0,
+       "p100": 6.0
+      },
+      "history_max_concurrent": {
+       "count": 5936,
+       "p50": 5.0,
+       "p90": 7.0,
+       "p95": 8.0,
+       "p100": 10.0
+      },
+      "future_max_extra": {
+       "count": 5936,
+       "p50": 2.0,
+       "p90": 4.0,
+       "p95": 4.0,
+       "p100": 7.0
+      },
+      "future_max_concurrent": {
+       "count": 5936,
+       "p50": 5.0,
+       "p90": 7.0,
+       "p95": 8.0,
+       "p100": 10.0
+      },
+      "samples_with_concurrent_gt_8": 111,
+      "samples_with_concurrent_gt_8_fraction": 0.01869946091644205,
+      "max_concurrent_observed": 10
+     }
+    }
+   },
+   "val": {
+    "overall": {
+     "samples": 893,
+     "zero_extra_in_40_frames_fraction": 0.029115341545352745,
+     "history_with_extra_fraction": 0.9563269876819709,
+     "future_with_extra_fraction": 0.9048152295632699,
+     "history_max_extra": {
+      "count": 893,
+      "p50": 3.0,
+      "p90": 4.0,
+      "p95": 5.0,
+      "p100": 6.0
+     },
+     "history_max_concurrent": {
+      "count": 893,
+      "p50": 6.0,
+      "p90": 10.0,
+      "p95": 10.399999999999977,
+      "p100": 12.0
+     },
+     "future_max_extra": {
+      "count": 893,
+      "p50": 2.0,
+      "p90": 5.0,
+      "p95": 5.0,
+      "p100": 7.0
+     },
+     "future_max_concurrent": {
+      "count": 893,
+      "p50": 6.0,
+      "p90": 10.0,
+      "p95": 10.399999999999977,
+      "p100": 12.0
+     },
+     "samples_with_concurrent_gt_8": 201,
+     "samples_with_concurrent_gt_8_fraction": 0.22508398656215006,
+     "max_concurrent_observed": 12
+    },
+    "per_scene": {
+     "scene_0": {
+      "samples": 418,
+      "zero_extra_in_40_frames_fraction": 0.014354066985645933,
+      "history_with_extra_fraction": 0.9569377990430622,
+      "future_with_extra_fraction": 0.9234449760765551,
+      "history_max_extra": {
+       "count": 418,
+       "p50": 2.0,
+       "p90": 4.0,
+       "p95": 4.0,
+       "p100": 6.0
+      },
+      "history_max_concurrent": {
+       "count": 418,
+       "p50": 6.0,
+       "p90": 11.0,
+       "p95": 12.0,
+       "p100": 12.0
+      },
+      "future_max_extra": {
+       "count": 418,
+       "p50": 2.0,
+       "p90": 5.0,
+       "p95": 5.0,
+       "p100": 7.0
+      },
+      "future_max_concurrent": {
+       "count": 418,
+       "p50": 6.0,
+       "p90": 11.0,
+       "p95": 12.0,
+       "p100": 12.0
+      },
+      "samples_with_concurrent_gt_8": 91,
+      "samples_with_concurrent_gt_8_fraction": 0.21770334928229665,
+      "max_concurrent_observed": 12
+     },
+     "scene_1": {
+      "samples": 475,
+      "zero_extra_in_40_frames_fraction": 0.042105263157894736,
+      "history_with_extra_fraction": 0.9557894736842105,
+      "future_with_extra_fraction": 0.888421052631579,
+      "history_max_extra": {
+       "count": 475,
+       "p50": 3.0,
+       "p90": 5.0,
+       "p95": 5.0,
+       "p100": 6.0
+      },
+      "history_max_concurrent": {
+       "count": 475,
+       "p50": 6.0,
+       "p90": 10.0,
+       "p95": 10.0,
+       "p100": 10.0
+      },
+      "future_max_extra": {
+       "count": 475,
+       "p50": 2.0,
+       "p90": 5.0,
+       "p95": 5.0,
+       "p100": 6.0
+      },
+      "future_max_concurrent": {
+       "count": 475,
+       "p50": 6.0,
+       "p90": 10.0,
+       "p95": 10.0,
+       "p100": 10.0
+      },
+      "samples_with_concurrent_gt_8": 110,
+      "samples_with_concurrent_gt_8_fraction": 0.23157894736842105,
+      "max_concurrent_observed": 10
+     }
+    }
+   },
+   "test": {
+    "overall": {
+     "samples": 1135,
+     "zero_extra_in_40_frames_fraction": 0.015859030837004406,
+     "history_with_extra_fraction": 0.905726872246696,
+     "future_with_extra_fraction": 0.8810572687224669,
+     "history_max_extra": {
+      "count": 1135,
+      "p50": 2.0,
+      "p90": 3.0,
+      "p95": 3.0,
+      "p100": 4.0
+     },
+     "history_max_concurrent": {
+      "count": 1135,
+      "p50": 6.0,
+      "p90": 9.0,
+      "p95": 9.0,
+      "p100": 10.0
+     },
+     "future_max_extra": {
+      "count": 1135,
+      "p50": 2.0,
+      "p90": 3.0,
+      "p95": 3.0,
+      "p100": 4.0
+     },
+     "future_max_concurrent": {
+      "count": 1135,
+      "p50": 6.0,
+      "p90": 9.0,
+      "p95": 9.0,
+      "p100": 10.0
+     },
+     "samples_with_concurrent_gt_8": 231,
+     "samples_with_concurrent_gt_8_fraction": 0.20352422907488987,
+     "max_concurrent_observed": 10
+    },
+    "per_scene": {
+     "scene_0": {
+      "samples": 532,
+      "zero_extra_in_40_frames_fraction": 0.0,
+      "history_with_extra_fraction": 0.9342105263157895,
+      "future_with_extra_fraction": 0.9342105263157895,
+      "history_max_extra": {
+       "count": 532,
+       "p50": 2.0,
+       "p90": 3.0,
+       "p95": 3.0,
+       "p100": 4.0
+      },
+      "history_max_concurrent": {
+       "count": 532,
+       "p50": 8.0,
+       "p90": 9.0,
+       "p95": 10.0,
+       "p100": 10.0
+      },
+      "future_max_extra": {
+       "count": 532,
+       "p50": 2.0,
+       "p90": 3.0,
+       "p95": 4.0,
+       "p100": 4.0
+      },
+      "future_max_concurrent": {
+       "count": 532,
+       "p50": 8.0,
+       "p90": 9.0,
+       "p95": 10.0,
+       "p100": 10.0
+      },
+      "samples_with_concurrent_gt_8": 231,
+      "samples_with_concurrent_gt_8_fraction": 0.4342105263157895,
+      "max_concurrent_observed": 10
+     },
+     "scene_1": {
+      "samples": 603,
+      "zero_extra_in_40_frames_fraction": 0.029850746268656716,
+      "history_with_extra_fraction": 0.8805970149253731,
+      "future_with_extra_fraction": 0.8341625207296849,
+      "history_max_extra": {
+       "count": 603,
+       "p50": 1.0,
+       "p90": 2.0,
+       "p95": 3.0,
+       "p100": 4.0
+      },
+      "history_max_concurrent": {
+       "count": 603,
+       "p50": 4.0,
+       "p90": 6.0,
+       "p95": 6.0,
+       "p100": 6.0
+      },
+      "future_max_extra": {
+       "count": 603,
+       "p50": 1.0,
+       "p90": 2.0,
+       "p95": 3.0,
+       "p100": 4.0
+      },
+      "future_max_concurrent": {
+       "count": 603,
+       "p50": 4.0,
+       "p90": 6.0,
+       "p95": 6.0,
+       "p100": 6.0
+      },
+      "samples_with_concurrent_gt_8": 0,
+      "samples_with_concurrent_gt_8_fraction": 0.0,
+      "max_concurrent_observed": 6
+     }
+    }
+   }
+  },
+  "overall": {
+   "samples": 12394,
+   "zero_extra_in_40_frames_fraction": 0.036388575116992096,
+   "history_with_extra_fraction": 0.9290785864127804,
+   "history_max_extra": {
+    "count": 12394,
+    "p50": 2.0,
+    "p90": 4.0,
+    "p95": 4.0,
+    "p100": 6.0
+   },
+   "max_concurrent_observed": 16,
+   "samples_with_concurrent_gt_8": 1514
+  }
+ },
+ "candidate_bs_geometry": {
+  "placement_rule": "one BS per approach arm: nearest road point + 30 m along the arm + 8 m lateral offset; boresight points at the junction center",
+  "coverage_probe": {
+   "range_min_m": 5.0,
+   "range_max_m": [
+    100.0,
+    120.0,
+    150.0
+   ],
+   "fov_half_angle_deg": [
+    60.0,
+    70.0,
+    80.0
+   ],
+   "height_difference_m": 5.0,
+   "definition": "a BS sees a point when range_min <= sqrt(rho^2+dh^2) <= range_max and |wrap(bearing-boresight)| <= FOV half"
+  },
+  "scenes": {
+   "scene_0": {
+    "scene_id": 0,
+    "label": "Gaimersheim Stadtweg",
+    "junction_center_xy_m": [
+     -21.0533598837844,
+     -2.95345546097586
+    ],
+    "junction_center_source": "staticWorld.xodr (connector-road centrality)",
+    "arms": [
+     {
+      "road_id": 4,
+      "axis_deg": 320.85374156505736,
+      "distance_to_center_m": 30.033950001243127
+     },
+     {
+      "road_id": 4,
+      "axis_deg": 140.85374156505733,
+      "distance_to_center_m": 30.033950001243127
+     },
+     {
+      "road_id": 5,
+      "axis_deg": 251.39500000000004,
+      "distance_to_center_m": 3.7000000000000384
+     }
+    ],
+    "bs": [
+     {
+      "bs_id": 0,
+      "x_m": 26.200525320073083,
+      "y_m": 7.623030351301587,
+      "boresight_deg": -167.3838440101848,
+      "arm_road_id": 4
+     },
+     {
+      "bs_id": 1,
+      "x_m": -30.4325273459796,
+      "y_m": 33.09256795456605,
+      "boresight_deg": -75.41506241557956,
+      "arm_road_id": 4
+     },
+     {
+      "bs_id": 2,
+      "x_m": -26.549335918797667,
+      "y_m": -32.757553290344234,
+      "boresight_deg": 79.55183860023827,
+      "arm_road_id": 5
+     }
+    ],
+    "triangle_area_m2": 1815.195147226837,
+    "triangle_min_angle_deg": 55.94038935655584,
+    "triangle_angles_deg": [
+     61.64928417765156,
+     62.41032646579261,
+     55.94038935655584
+    ],
+    "vehicle_to_nearest_bs_m": {
+     "count": 41944,
+     "p50": 21.772898923892484,
+     "p90": 40.9981045784601,
+     "p95": 53.22896779727223,
+     "p100": 68.84307564750378
+    },
+    "visible_bs_count_per_point": {
+     "eq_0": 0.024222773221438107,
+     "eq_1": 0.0936963570474919,
+     "eq_2": 0.3388804119778753,
+     "eq_3": 0.5432004577531947,
+     "mean": 2.4010585542628267
+    },
+    "per_bs_visibility_fraction": [
+     0.7367203890902155,
+     0.8153251954987603,
+     0.8490129696738509
+    ],
+    "coverage_matrix": {
+     "range_100_fov_60": {
+      "ge_1_bs": 0.8957896242609193,
+      "ge_2_bs": 0.8076959755864963,
+      "all_3_bs": 0.5092265878313943,
+      "mean_visible_bs": 2.21271218767881
+     },
+     "range_100_fov_70": {
+      "ge_1_bs": 0.8958134655731451,
+      "ge_2_bs": 0.8719721533473203,
+      "all_3_bs": 0.5432004577531947,
+      "mean_visible_bs": 2.31098607667366
+     },
+     "range_100_fov_80": {
+      "ge_1_bs": 0.9612101850085829,
+      "ge_2_bs": 0.8881842456608812,
+      "all_3_bs": 0.5689967575815373,
+      "mean_visible_bs": 2.418391188251001
+     },
+     "range_120_fov_60": {
+      "ge_1_bs": 0.9757772267785619,
+      "ge_2_bs": 0.8177808506580202,
+      "all_3_bs": 0.5092265878313943,
+      "mean_visible_bs": 2.302784665267976
+     },
+     "range_120_fov_70": {
+      "ge_1_bs": 0.9757772267785619,
+      "ge_2_bs": 0.88208086973107,
+      "all_3_bs": 0.5432004577531947,
+      "mean_visible_bs": 2.4010585542628267
+     },
+     "range_120_fov_80": {
+      "ge_1_bs": 0.9766116727064658,
+      "ge_2_bs": 0.9628552355521648,
+      "all_3_bs": 0.5689967575815373,
+      "mean_visible_bs": 2.5084636658401678
+     },
+     "range_150_fov_60": {
+      "ge_1_bs": 1.0,
+      "ge_2_bs": 0.8177808506580202,
+      "all_3_bs": 0.5092265878313943,
+      "mean_visible_bs": 2.3270074384894146
+     },
+     "range_150_fov_70": {
+      "ge_1_bs": 1.0,
+      "ge_2_bs": 0.88208086973107,
+      "all_3_bs": 0.5432004577531947,
+      "mean_visible_bs": 2.4252813274842646
+     },
+     "range_150_fov_80": {
+      "ge_1_bs": 1.0,
+      "ge_2_bs": 0.9636896814800686,
+      "all_3_bs": 0.5689967575815373,
+      "mean_visible_bs": 2.5326864390616057
+     }
+    },
+    "recommended_candidate": {
+     "range_min_m": 5.0,
+     "range_max_m": 150.0,
+     "fov_half_angle_deg": 70.0,
+     "station_height_m": 6.5,
+     "vehicle_height_m": 1.5,
+     "height_difference_m": 5.0,
+     "candidate_coverage": {
+      "ge_1_bs": 1.0,
+      "ge_2_bs": 0.88208086973107,
+      "all_3_bs": 0.5432004577531947,
+      "mean_visible_bs": 2.4252813274842646
+     },
+     "status": "CANDIDATE (not frozen)",
+     "rationale": "max vehicle-to-nearest-BS distance in this scene is 68.8 m; range 150 m reaches 100% >=1-BS coverage in both T-crossings (120 m leaves 2.4% / 7.3% of points uncovered) and, unlike 150 m, larger ranges add nothing; FOV 70 deg keeps the current value; height difference 5 m keeps the existing H_M and simulator constant"
+    }
+   },
+   "scene_1": {
+    "scene_id": 1,
+    "label": "St2214 Duenzlau Umgehung",
+    "junction_center_xy_m": [
+     4.469859998597535,
+     26.762252641638906
+    ],
+    "junction_center_source": "staticWorld.xodr (connector-road centrality)",
+    "arms": [
+     {
+      "road_id": 4,
+      "axis_deg": 60.09773689682698,
+      "distance_to_center_m": 35.14621303231733
+     },
+     {
+      "road_id": 4,
+      "axis_deg": 240.09773689682697,
+      "distance_to_center_m": 35.14621303231733
+     },
+     {
+      "road_id": 5,
+      "axis_deg": 106.77100000000023,
+      "distance_to_center_m": 1.6019999999999301
+     }
+    ],
+    "bs": [
+     {
+      "bs_id": 0,
+      "x_m": 42.98047784925911,
+      "y_m": 39.27481469711556,
+      "boresight_deg": -162.0003986009626,
+      "arm_road_id": 4
+     },
+     {
+      "bs_id": 1,
+      "x_m": 26.9391919538491,
+      "y_m": -20.71416051351561,
+      "boresight_deg": 115.32695701167816,
+      "arm_road_id": 4
+     },
+     {
+      "bs_id": 2,
+      "x_m": -13.380141846409817,
+      "y_m": 52.715592275166465,
+      "boresight_deg": -55.48086353031954,
+      "arm_road_id": 5
+     }
+    ],
+    "triangle_area_m2": 1798.3115867827125,
+    "triangle_min_angle_deg": 43.741468826213584,
+    "triangle_angles_deg": [
+     88.44241348719983,
+     43.741468826213584,
+     47.8161176865866
+    ],
+    "vehicle_to_nearest_bs_m": {
+     "count": 39506,
+     "p50": 21.419452320381517,
+     "p90": 57.328140266736284,
+     "p95": 68.71503207662579,
+     "p100": 81.89798404421589
+    },
+    "visible_bs_count_per_point": {
+     "eq_0": 0.07257125499924062,
+     "eq_1": 0.010200982129296815,
+     "eq_2": 0.43651597225737865,
+     "eq_3": 0.4807117906140839,
+     "mean": 2.325368298486306
+    },
+    "per_bs_visibility_fraction": [
+     0.7767427732496329,
+     0.6510150356907811,
+     0.8976104895458917
+    ],
+    "coverage_matrix": {
+     "range_100_fov_60": {
+      "ge_1_bs": 0.8273426821242343,
+      "ge_2_bs": 0.8000556877436339,
+      "all_3_bs": 0.42626436490659647,
+      "mean_visible_bs": 2.0536627347744645
+     },
+     "range_100_fov_70": {
+      "ge_1_bs": 0.8273426821242343,
+      "ge_2_bs": 0.8001063129651192,
+      "all_3_bs": 0.4807117906140839,
+      "mean_visible_bs": 2.1081607857034372
+     },
+     "range_100_fov_80": {
+      "ge_1_bs": 0.8273426821242343,
+      "ge_2_bs": 0.8001063129651192,
+      "all_3_bs": 0.519060395889232,
+      "mean_visible_bs": 2.1465093909785855
+     },
+     "range_120_fov_60": {
+      "ge_1_bs": 0.9274287450007593,
+      "ge_2_bs": 0.9171771376499772,
+      "all_3_bs": 0.42626436490659647,
+      "mean_visible_bs": 2.2708702475573332
+     },
+     "range_120_fov_70": {
+      "ge_1_bs": 0.9274287450007593,
+      "ge_2_bs": 0.9172277628714626,
+      "all_3_bs": 0.4807117906140839,
+      "mean_visible_bs": 2.325368298486306
+     },
+     "range_120_fov_80": {
+      "ge_1_bs": 0.9274287450007593,
+      "ge_2_bs": 0.9172277628714626,
+      "all_3_bs": 0.519060395889232,
+      "mean_visible_bs": 2.363716903761454
+     },
+     "range_150_fov_60": {
+      "ge_1_bs": 1.0,
+      "ge_2_bs": 0.9999493747785146,
+      "all_3_bs": 0.42626436490659647,
+      "mean_visible_bs": 2.426213739685111
+     },
+     "range_150_fov_70": {
+      "ge_1_bs": 1.0,
+      "ge_2_bs": 1.0,
+      "all_3_bs": 0.4807117906140839,
+      "mean_visible_bs": 2.480711790614084
+     },
+     "range_150_fov_80": {
+      "ge_1_bs": 1.0,
+      "ge_2_bs": 1.0,
+      "all_3_bs": 0.519060395889232,
+      "mean_visible_bs": 2.519060395889232
+     }
+    },
+    "recommended_candidate": {
+     "range_min_m": 5.0,
+     "range_max_m": 150.0,
+     "fov_half_angle_deg": 70.0,
+     "station_height_m": 6.5,
+     "vehicle_height_m": 1.5,
+     "height_difference_m": 5.0,
+     "candidate_coverage": {
+      "ge_1_bs": 1.0,
+      "ge_2_bs": 1.0,
+      "all_3_bs": 0.4807117906140839,
+      "mean_visible_bs": 2.480711790614084
+     },
+     "status": "CANDIDATE (not frozen)",
+     "rationale": "max vehicle-to-nearest-BS distance in this scene is 81.9 m; range 150 m reaches 100% >=1-BS coverage in both T-crossings (120 m leaves 2.4% / 7.3% of points uncovered) and, unlike 150 m, larger ranges add nothing; FOV 70 deg keeps the current value; height difference 5 m keeps the existing H_M and simulator constant"
+    }
+   }
+  }
+ },
+ "current_code_dependencies": {
+  "fixed_dt_0_1": {
+   "count": 5,
+   "hits": [
+    {
+     "file": "frontend/controlled_isac/temporal_association.py",
+     "line": 5,
+     "text": "solely to predict where a slot should reappear for the one-to-one matching (dt = 0.1 s)."
+    },
+    {
+     "file": "frontend/echo_source.py",
+     "line": 46,
+     "text": "if age_ns<0 or age_ns>=100_000_000 or row['past_frames']<3: continue"
+    },
+    {
+     "file": "frontend/echo_source.py",
+     "line": 69,
+     "text": "if elapsed%100 or not 100<=elapsed<20000: raise ValueError('Deadline must be on episode +0.1..19.9s grid')"
+    },
+    {
+     "file": "frontend/tracking/cv_kf.py",
+     "line": 23,
+     "text": "raise ValueError(\"Frozen tracker uses dt=0.1 s\")"
+    },
+    {
+     "file": "frontend/tracking/cv_kf.py",
+     "line": 103,
+     "text": "raise ValueError(\"Frozen tracker advances by exactly dt=0.1 s\")"
+    }
+   ]
+  },
+  "fixed_visibility_gate": {
+   "count": 3,
+   "hits": [
+    {
+     "file": "frontend/sensing/detector.py",
+     "line": 194,
+     "text": "if r_hat <= height or not (10.0 <= r_hat <= 300.0) or abs(bearing) > math.radians(70.0):"
+    },
+    {
+     "file": "frontend/sensing/simulator.py",
+     "line": 91,
+     "text": "visibility = ((radii >= 10.0) & (radii <= 300.0) & (bearing.abs() <= math.radians(70.0))) if len(p) else \\"
+    },
+    {
+     "file": "configs/shared_frontend.json",
+     "line": 30,
+     "text": "300.0"
+    }
+   ]
+  },
+  "height_constant_5m": {
+   "count": 7,
+   "hits": [
+    {
+     "file": "frontend/controlled_isac/measurement.py",
+     "line": 25,
+     "text": "config_height = float(config[\"visibility\"][\"height_difference_m\"])"
+    },
+    {
+     "file": "frontend/ofdm_echo.py",
+     "line": 146,
+     "text": "height_difference_m=5., half_angle_deg=70., range_limits_m=[10., 300.],"
+    },
+    {
+     "file": "frontend/sensing/coords.py",
+     "line": 12,
+     "text": "H_M = 5.0"
+    },
+    {
+     "file": "frontend/sensing/coords.py",
+     "line": 69,
+     "text": "jacobian = jacobian_ru_to_xy(r, u, boresight, float(lut.get(\"height_difference_m\", H_M)))"
+    },
+    {
+     "file": "frontend/sensing/coords.py",
+     "line": 107,
+     "text": "\"floor_m2\": 0.01, \"height_difference_m\": 5.0}"
+    },
+    {
+     "file": "frontend/sensing/waveform.py",
+     "line": 131,
+     "text": "\"height_difference_m\": float(payload[\"station_height_m\"] - payload[\"vehicle_height_m\"]),"
+    },
+    {
+     "file": "configs/shared_frontend.json",
+     "line": 32,
+     "text": "\"height_difference_m\": 5.0"
+    }
+   ]
+  },
+  "legacy_calibration": {
+   "count": 7,
+   "hits": [
+    {
+     "file": "frontend/f01e_dataset.py",
+     "line": 16,
+     "text": "ALLOWED_SNR_DB = (-5.0, 0.0, 5.0, 10.0, 15.0, 20.0)"
+    },
+    {
+     "file": "frontend/f01e_dataset.py",
+     "line": 122,
+     "text": "if float(snr_db) not in ALLOWED_SNR_DB:"
+    },
+    {
+     "file": "frontend/f01e_dataset.py",
+     "line": 123,
+     "text": "raise ValueError(f\"snr_db must be one of {ALLOWED_SNR_DB}\")"
+    },
+    {
+     "file": "frontend/f01e_dataset.py",
+     "line": 126,
+     "text": "if float(label_snr_db) not in ALLOWED_SNR_DB:"
+    },
+    {
+     "file": "frontend/f01e_dataset.py",
+     "line": 127,
+     "text": "raise ValueError(f\"label_snr_db must be one of {ALLOWED_SNR_DB}\")"
+    },
+    {
+     "file": "configs/shared_frontend.json",
+     "line": 62,
+     "text": "\"covariance_lut\": \"reports/f01e/snr_rebuild_06/covariance_calibration.json\","
+    },
+    {
+     "file": "configs/shared_frontend.json",
+     "line": 95,
+     "text": "\"report\": \"reports/f01e/snr_rebuild_06/snr_audit_summary.json\""
+    }
+   ]
+  },
+  "legacy_geometry": {
+   "count": 4,
+   "hits": [
+    {
+     "file": "frontend/controlled_isac/measurement.py",
+     "line": 24,
+     "text": "geometry = json.loads((root / \"reports/f01a/geometry.json\").read_text())"
+    },
+    {
+     "file": "frontend/echo_source.py",
+     "line": 29,
+     "text": "self.geometry=json.loads((self.root/'reports/f01a/geometry.json').read_text())"
+    },
+    {
+     "file": "frontend/sensing/waveform.py",
+     "line": 122,
+     "text": "def load_geometry(root: Path | str = ROOT, path: str = \"reports/f01a/geometry.json\") -> dict:"
+    },
+    {
+     "file": "configs/shared_frontend.json",
+     "line": 25,
+     "text": "\"geometry_source\": \"reports/f01a/geometry.json\","
+    }
+   ]
+  },
+  "legacy_source_data": {
+   "count": 3,
+   "hits": [
+    {
+     "file": "frontend/echo_source.py",
+     "line": 27,
+     "text": "self.rows=np.load(self.root/'data/f01_source/source_states.npy',mmap_mode='r',allow_pickle=False)"
+    },
+    {
+     "file": "frontend/echo_source.py",
+     "line": 28,
+     "text": "self.episodes=[json.loads(x) for x in (self.root/'reports/f01a/episodes.jsonl').read_text().splitlines()]"
+    },
+    {
+     "file": "configs/qgnn_bottleneck_diagnostic.json",
+     "line": 17,
+     "text": "\"source_rows\": \"data/f01_source/source_states.npy\","
+    }
+   ]
+  },
+  "snr_reference_definition": {
+   "count": 9,
+   "hits": [
+    {
+     "file": "frontend/ofdm_echo.py",
+     "line": 86,
+     "text": "return dict(snr_ref_db=float(snr_db), alpha_ref=1., reference_range_m=100.,"
+    },
+    {
+     "file": "frontend/sensing/simulator.py",
+     "line": 50,
+     "text": "snr_ref_db: float,"
+    },
+    {
+     "file": "frontend/sensing/simulator.py",
+     "line": 78,
+     "text": "if not math.isfinite(float(snr_ref_db)):"
+    },
+    {
+     "file": "frontend/sensing/simulator.py",
+     "line": 79,
+     "text": "raise ValueError(\"snr_ref_db must be finite\")"
+    },
+    {
+     "file": "frontend/sensing/simulator.py",
+     "line": 94,
+     "text": "amplitude = 10 ** (float(snr_ref_db) / 20) * (100.0 / radii.clamp_min(1e-9)) ** 2 * torch.sqrt(sigma / 10.0)"
+    },
+    {
+     "file": "configs/f01b.json",
+     "line": 29,
+     "text": "\"snr_ref_db\": 20.0,"
+    },
+    {
+     "file": "configs/shared_frontend.json",
+     "line": 35,
+     "text": "\"snr_ref_db\": null,"
+    },
+    {
+     "file": "configs/shared_frontend.json",
+     "line": 36,
+     "text": "\"reference_range_m\": 100.0,"
+    },
+    {
+     "file": "configs/shared_frontend.json",
+     "line": 37,
+     "text": "\"reference_rcs_m2\": 10.0,"
+    }
+   ]
+  }
+ },
+ "migration_matrix": [
+  {
+   "file": "frontend/echo_source.py",
+   "current_role": "F01-B causal source adapter + streaming three-station observations; reads data/f01_source/source_states.npy, reports/f01a/episodes.jsonl, reports/f01a/geometry.json; hard 100 ms deadline grid and 100 ms hold window",
+   "verdict": "refactor/replace",
+   "changes": "replace with an Automatum scene adapter over splits/*/trajectories.csv: canonical frame index f, dt=3/29.97, scene-global phase; keep the A-domain observation interface (per-BS shared echo + schedule)",
+   "priority": "P0"
+  },
+  {
+   "file": "frontend/ofdm_echo.py",
+   "current_role": "reference OFDM echo synthesizer with snr_ref_db and 100 m reference range; Waveform.dt=0.1 validated against 3 CPI",
+   "verdict": "small change",
+   "changes": "parameterise dt to 3/29.97 s; remove snr_ref_db reference range semantics in favour of the new per-BS frame SNR definition (section 9)",
+   "priority": "P1"
+  },
+  {
+   "file": "frontend/sensing/simulator.py",
+   "current_role": "formal shared multi-target echo simulator (A domain); snr_ref_db with 100 m reference, amplitude ~ RCS/10; visibility 10-300 m, 70 deg, requires height_m=5.0",
+   "verdict": "small change",
+   "changes": "config-driven visibility (range/FOV/height candidate); replace snr_ref_db amplitude law with the new SNR_b = 10log10(mean|S_b|^2/mean|W_b|^2) control; keep per-BS shared echo and single receiver-noise realisation",
+   "priority": "P0"
+  },
+  {
+   "file": "frontend/sensing/waveform.py",
+   "current_role": "frozen waveform/array/resource + load_geometry() from reports/f01a/geometry.json",
+   "verdict": "small change",
+   "changes": "load_geometry must read the Automatum candidate BS geometry config (to be frozen); waveform constants unchanged",
+   "priority": "P0"
+  },
+  {
+   "file": "frontend/sensing/coords.py",
+   "current_role": "polar/Cartesian conversion, r-u Jacobian, covariance LUT application (H_M=5.0)",
+   "verdict": "keep",
+   "changes": "height from config; LUT recalibration is a detector-side concern",
+   "priority": "P2"
+  },
+  {
+   "file": "frontend/sensing/detector.py",
+   "current_role": "2D RD CA-CFAR, NMS, AoA; outputs position + vr_mps + peak_to_noise_db; hard 10-300 m and 70 deg gates; LUT keyed by post-FFT peak_to_noise_db",
+   "verdict": "small change",
+   "changes": "config-driven range/FOV gates; recalibrate covariance LUT under the new SNR definition; keep vr_mps output (needed for multi-BS velocity fusion)",
+   "priority": "P1"
+  },
+  {
+   "file": "frontend/fusion/association.py",
+   "current_role": "sequential Hungarian 3-BS position fusion (x,y only, inverse-covariance)",
+   "verdict": "keep / optional extend",
+   "changes": "position fusion is reusable; radial-velocity fusion is handled by controlled_isac/velocity_fusion.py, so no mandatory change (P2 option: fuse velocity state)",
+   "priority": "P2"
+  },
+  {
+   "file": "frontend/tracking/cv_kf.py",
+   "current_role": "anonymous CV Kalman tracker, 8 slots; assert dt=0.1 s; birth velocity 0 with variance 100; position-only updates",
+   "verdict": "small change",
+   "changes": "dt=3/29.97 s (config); recalibrate q_a and birth inflation for the new dt and speed scale; velocity remains inferred from position unless radial-velocity fusion is wired in",
+   "priority": "P0"
+  },
+  {
+   "file": "frontend/controlled_isac/measurement.py",
+   "current_role": "truth polar + calibrated noise measurement generator bound to reports/f01a/geometry.json; auxiliary controlled study only, not the formal sensing chain",
+   "verdict": "keep as auxiliary",
+   "changes": "rebind geometry/range/FOV/height to the Automatum candidate; replace episode/deadline seed keys with (scene, canonical frame, BS, vehicle); must stay out of the formal run",
+   "priority": "P1"
+  },
+  {
+   "file": "frontend/controlled_isac/cross_bs_association.py",
+   "current_role": "position-only cross-BS association for controlled measurements",
+   "verdict": "keep as auxiliary",
+   "changes": "reuse for smoke tests only; formal association is fusion/association.py",
+   "priority": "P2"
+  },
+  {
+   "file": "frontend/controlled_isac/velocity_fusion.py",
+   "current_role": "multi-BS radial velocity -> vx,vy MAP with a 30 m/s prior (NGSIM scale)",
+   "verdict": "reuse in formal chain",
+   "changes": "update velocity prior sigma to the Automatum speed scale (max ~31 m/s, P99 ~27.6), keep the estimator; wire into the fusion output",
+   "priority": "P1"
+  },
+  {
+   "file": "frontend/controlled_isac/temporal_association.py",
+   "current_role": "frame-to-frame slot linking with dt=0.1 s",
+   "verdict": "small change",
+   "changes": "dt from config (3/29.97)",
+   "priority": "P1"
+  },
+  {
+   "file": "configs/shared_frontend.json",
+   "current_role": "single production config: A01 geometry_source, visibility 10-300 m / 70 deg / 5 m, power.snr_ref_db with 100 m reference, detector covariance_lut -> f01e/snr_rebuild_06, calibration -> f01e report, tracker dt=0.1",
+   "verdict": "refactor",
+   "changes": "replace geometry_source and power/calibration blocks; add dataset/scene block (canonical paths, split SHAs, dt, frame phase); move calibration references to the new SNR calibration output",
+   "priority": "P0"
+  },
+  {
+   "file": "frontend/f01e_dataset.py",
+   "current_role": "frozen F01-E packed dataset loader (per-SNR npz under data/f01e)",
+   "verdict": "retire (historical chain)",
+   "changes": "superseded by the Automatum split/sample loader",
+   "priority": "P3"
+  },
+  {
+   "file": "frontend/symbol_dataset.py",
+   "current_role": "F01-E symbol-level prediction inputs used by QGAT/QGNN training",
+   "verdict": "replace with new loader",
+   "changes": "new GNN/QGNN input builder over samples.npz + sensing cache; do not reuse the F01-E packing",
+   "priority": "P2"
+  },
+  {
+   "file": "code/07_shared_frontend/* (probes, calibrations)",
+   "current_role": "historical calibration/probe entry points calling echo_source, simulator, detector, fusion, tracker",
+   "verdict": "experiment-auxiliary",
+   "changes": "keep as reference; rerun only after the new adapter and SNR definition exist",
+   "priority": "P3"
+  },
+  {
+   "file": "experiments/* (qgnn/qgat runs, snr smoke)",
+   "current_role": "F01-E prediction training/evaluation entries",
+   "verdict": "out of scope this round",
+   "changes": "not to be run on Automatum until the new sample loader and sensing cache exist",
+   "priority": "P3"
+  }
+ ],
+ "migration_priority_counts": {
+  "P0": 5,
+  "P1": 5,
+  "P2": 4,
+  "P3": 3
+ },
+ "routes": {
+  "route_A_sample_level": {
+   "description": "each sample generates its own 20-frame echo from samples.npz history only",
+   "future_leakage": "none if history only is used",
+   "deletes_temporary_vehicles": "yes (cohort excludes vehicles without 40/40 presence)",
+   "shared_echo_fidelity": "low: echo contains only the cohort, not the physical scene",
+   "same_frame_consistency": "no: overlapping samples would re-simulate the same frame with sample-specific targets and noise",
+   "compute": "lowest (12,394 samples x 20 frames x 3 BS, but highly redundant)",
+   "cache_reuse": "none",
+   "gnn_docking": "direct from samples.npz history"
+  },
+  "route_B_scene_level": {
+   "description": "per scene/frame sensing cache over trajectories.csv, sliced to samples by start_frame",
+   "future_leakage": "none if per-frame echoes are causal (treated state at frame t uses only states up to t)",
+   "deletes_temporary_vehicles": "no: every physically present vehicle contributes",
+   "shared_echo_fidelity": "high: one shared echo per BS and frame",
+   "same_frame_consistency": "yes: identical echo for the same (scene, frame) across samples",
+   "compute": "higher upfront (~14k train frames x 3 BS) but one echo per frame",
+   "cache_reuse": "high: reusable by any window/split/stride and by ablations",
+   "gnn_docking": "slice cache by start_frame; sample cohort defines slots/labels only"
+  },
+  "recommendation": "route_B_scene_level"
+ },
+ "anonymous_identity": {
+  "A_domain": "simulator truth (positions/velocities/vehicle ids) never leaves the simulator; produces shared echoes and audit metadata only",
+  "B_domain": "detector/fusion/tracker receive echoes or anonymous measurements only; outputs anonymous track_key/slot states; no vehicle_id, UUID, future or GT identity",
+  "C_domain": "offline label builder / evaluation may use vehicle_id to score or to slice GT; must never feed scores, ids or GT states back into B",
+  "recommended_matching": {
+   "scope": "per split, per scene, offline",
+   "algorithm": "per frame: Hungarian assignment between track positions (and fused velocity when available) and GT sample vehicle states; cost = Mahalanobis position (+ optional velocity term); gate at the association chi-square",
+   "track_identity": "each anonymous track_key -> vehicle_id by majority over its frames, with vote-margin reported as confidence",
+   "outputs": "track_to_vehicle_mapping per split with per-track confidence; used only by evaluation and label alignment code paths",
+   "forbidden": "mapping must not be an input to thresholds, gates, calibration or any sensing decision"
+  }
+ },
+ "snr_migration": {
+  "new_definition": "per BS b and frame: Y_b = S_b + W_b; SNR_b = 10log10(mean|S_b|^2/mean|W_b|^2), pre-FFT, pre-detection, pre-fusion; no per-target SNR as the experiment control",
+  "conflicts": [
+   {
+    "where": "configs/shared_frontend.json -> power.snr_ref_db / reference_range_m=100 / reference_rcs_m2 / fixed_rcs_m2 / noise_variance",
+    "why": "reference-range per-target SNR control; incompatible with frame-level shared SNR"
+   },
+   {
+    "where": "frontend/ofdm_echo.py -> noise_parameters(snr_db)",
+    "why": "noise variance derived from a 100 m reference gain; per-target SNR semantics"
+   },
+   {
+    "where": "frontend/sensing/simulator.py -> snr_ref_db amplitude law 10^(snr/20)(100/radii)^2",
+    "why": "per-target reference-range amplitude; single-target SNR control"
+   },
+   {
+    "where": "frontend/echo_source.py -> observation(snr_db=20) and pressure at 20 dB only",
+    "why": "episode-level SNR control on the retired F01-B adapter"
+   },
+   {
+    "where": "configs/shared_frontend.json -> snr_levels_db and detector covariance_lut (reports/f01e/snr_rebuild_06)",
+    "why": "levels and LUT calibrated against the old SNR definition and post-FFT peak SNR"
+   },
+   {
+    "where": "frontend/f01e_dataset.py -> ALLOWED_SNR_DB per-SNR packed npz",
+    "why": "binds the experiment control to the retired F01-E chain"
+   }
+  ],
+  "future_change_list": [
+   "simulator: accept a frame SNR target and scale the summed clean echo, then add one noise realisation; report SNR_b per BS/frame",
+   "config: replace power block with noise_variance + snr control levels; delete 100 m reference and RCS-to-SNR scaling from the control path",
+   "detector/coords: recalibrate the covariance LUT against the new SNR definition (peak SNR may still key the LUT entry, but calibration must be produced under SNR_b control)",
+   "reports: regenerate calibration summaries under the new definition; retire f01e SNR reports as calibration sources"
+  ]
+ },
+ "open_decisions": [
+  {
+   "id": "D-01",
+   "question": "sample-level vs scene-level echo generation",
+   "recommendation": "scene-level cache (route B)",
+   "status": "recommend, pending confirmation"
+  },
+  {
+   "id": "D-02",
+   "question": "freeze the candidate 3-BS coordinates",
+   "recommendation": "freeze after route B cache smoke test; candidates in candidate_bs_geometry",
+   "status": "CANDIDATE, not frozen"
+  },
+  {
+   "id": "D-03",
+   "question": "range/FOV/height candidate",
+   "recommendation": "range_min 5 m, range_max 120 m, FOV half 70 deg, dh 5 m (6.5 m station / 1.5 m vehicle)",
+   "status": "CANDIDATE"
+  },
+  {
+   "id": "D-04",
+   "question": "SNR control definition and levels",
+   "recommendation": "per-BS pre-FFT SNR_b; re-derive snr_levels_db and recalibrate CFAR/LUT",
+   "status": "open"
+  },
+  {
+   "id": "D-05",
+   "question": "velocity prior sigma for radial-velocity fusion",
+   "recommendation": "replace 30 m/s with Automatum-scale value (~15 m/s P90 of speed spread) after observing fused geometry conditioning",
+   "status": "open"
+  },
+  {
+   "id": "D-06",
+   "question": "anonymous track <-> sample vehicle_id alignment",
+   "recommendation": "C-domain Hungarian alignment on position (+velocity), majority vote per track; never fed back into sensing",
+   "status": "recommend"
+  },
+  {
+   "id": "D-07",
+   "question": "temporary vehicles in shared echo",
+   "recommendation": "include all physically present vehicles per frame (route B); the sample cohort only defines prediction slots/labels",
+   "status": "recommend"
+  }
+ ]
+}
