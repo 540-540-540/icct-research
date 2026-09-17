@@ -1,0 +1,36 @@
+{
+  "schema_version": "FTEST-01-v1",
+  "run_id": "final_test_q_vs_g_seed2026_20260914",
+  "models": {
+    "QGNN": {
+      "kind": "original",
+      "path": "results/qgnn_directed_context/seed2026/original/best.pt",
+      "epoch": 75,
+      "sha256": "6853008762325fc18f8e0503feb9bc1d9e8f181f063829800c115436850288ab",
+      "device": "cuda:0"
+    },
+    "GNN": {
+      "kind": "gnn",
+      "path": "results/qgnn_motionframe/seed2026/gnn/best.pt",
+      "epoch": 82,
+      "sha256": "30154a753f756b462c37e1893fdf7934b3eef0c152f26bd47fbae60cc546d191",
+      "device": "cuda:1"
+    }
+  },
+  "split": "test",
+  "test_origins": 864,
+  "snr_db": [5, 10, 15, 20],
+  "prediction_steps": 20,
+  "time_step_seconds": 0.1,
+  "inference_batch": 16,
+  "report_root": "reports/qgnn_final_test",
+  "cache_root": "results/qgnn_final_test",
+  "expected_test_file_sizes": {
+    "data/f01d/inputs/test_snr_5.npz": 468413,
+    "data/f01d/inputs/test_snr_10.npz": 465023,
+    "data/f01d/inputs/test_snr_15.npz": 462854,
+    "data/f01d/inputs/test_snr_20.npz": 461591,
+    "data/f01d/labels/test.npz": 232143,
+    "data/f01d/metadata/test.json": 472529
+  }
+}
