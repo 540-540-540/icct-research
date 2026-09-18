@@ -1,0 +1,34 @@
+{
+  "revision": "QGNN-Q0-UNIFIED-HARNESS-V1",
+  "status": "DIAGNOSTIC",
+  "dataset": "AutomatumPredictionDataset",
+  "history_length": 20,
+  "prediction_length": 20,
+  "max_vehicles": 8,
+  "dt_seconds": 0.1001001001001001,
+  "snr_levels_db": [-10, -5, 0, 5, 10],
+  "graph_dim": 64,
+  "independent_temporal_hidden_dim": 64,
+  "pairwise_baseline_layers": 3,
+  "physical_edge_fields": [
+    "dx", "dy", "dvx", "dvy",
+    "distance", "closing_rate", "t_cpa", "d_cpa"
+  ],
+  "downstream": {
+    "model": "GPT-2 base",
+    "layers": 12,
+    "hidden_dim": 768,
+    "lora_rank": 8,
+    "cross_vehicle_attention": false,
+    "trajectory_head": "CV residual, zero initialized",
+    "selection_metric": "validation J = ADE + 0.5*FDE"
+  },
+  "fairness": {
+    "future_is_supervision_only": true,
+    "vehicle_ids_are_not_model_inputs": true,
+    "scene_id_is_not_model_input": true,
+    "test_is_not_accessible_from_train_q0": true,
+    "graph_output_contract": "[B,20,8,64]"
+  }
+}
+
