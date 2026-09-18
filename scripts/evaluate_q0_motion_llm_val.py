@@ -35,7 +35,7 @@ def interaction_stats(history,mask):
 
 def main():
     p=argparse.ArgumentParser()
-    p.add_argument('--graph',choices=['nograph','mpnn','routed_mpnn'],required=True)
+    p.add_argument('--graph',choices=['nograph','mpnn','routed_mpnn','pair_triplet'],required=True)
     p.add_argument('--checkpoint',required=True)
     p.add_argument('--snr',type=float,default=0.)
     p.add_argument('--seed',type=int,default=2026)

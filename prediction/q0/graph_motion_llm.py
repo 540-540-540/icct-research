@@ -7,7 +7,7 @@ from torch import nn
 
 from .contracts import NormalizationStats, validate_model_inputs
 from .features import normalize_state_and_edges
-from .graph import EdgeResidualMPNN, NoGraphCore, PhysicsRoutedEdgeMPNN
+from .graph import EdgeResidualMPNN, GatedPairTriplet, NoGraphCore, PhysicsRoutedEdgeMPNN
 from .motion_token_llm import MotionTokenGPT2Core
 
 
@@ -61,6 +61,8 @@ def build_graph_motion_llm(
             graph=EdgeResidualMPNN(hidden_dim,graph_dim,graph_layers)
         elif graph_kind=="routed_mpnn":
             graph=PhysicsRoutedEdgeMPNN(hidden_dim,graph_dim,graph_layers)
+        elif graph_kind=="pair_triplet":
+            graph=GatedPairTriplet(hidden_dim,graph_dim,graph_layers)
         else:
             raise ValueError(graph_kind)
     with torch.random.fork_rng(devices=[]):

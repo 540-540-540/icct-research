@@ -55,7 +55,7 @@ def subset(ds,limit,seed):
 
 def main():
     p=argparse.ArgumentParser()
-    p.add_argument("--graph",choices=["nograph","mpnn","routed_mpnn"],required=True)
+    p.add_argument("--graph",choices=["nograph","mpnn","routed_mpnn","pair_triplet"],required=True)
     p.add_argument("--snr",type=float,default=0.)
     p.add_argument("--epochs",type=int,default=20)
     p.add_argument("--batch-size",type=int,default=16)
