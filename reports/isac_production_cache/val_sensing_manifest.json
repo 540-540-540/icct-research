@@ -1,0 +1,101 @@
+{
+  "split": "val",
+  "isac_revision": "AUTOMATUM-CONTROLLED-ISAC-V2-FROZEN",
+  "isac_status": "FROZEN",
+  "source_git_commit": "1b9b5ccbb4d34fdcc20a2dc30b7a381f99b6b5cc",
+  "config_path": "configs/automatum_controlled_isac.json",
+  "config_sha256": "8309c9dcaee6e190015a8ab40653e55b4ea25e12db4c89b9fc6aa5ce1434debf",
+  "trajectories_path": "data/automatum_t_crossing/splits/val/trajectories.csv",
+  "trajectories_sha256": "c9964adb9b73e828754912381f5d93cfd8adf215bad4ba85db766d4166ab894d",
+  "samples_path": "data/automatum_t_crossing/splits/val/samples.npz",
+  "samples_sha256": "51dc713ba5873ba438267e5c46f97902e4e744cbd3069bf3e289a485d058ff31",
+  "prediction_sample_count": 893,
+  "history_rows_before_dedup": 69520,
+  "unique_history_states": 4779,
+  "dedup_factor": 14.547,
+  "snr_levels_db": [
+    -10.0,
+    -5.0,
+    0.0,
+    5.0,
+    10.0
+  ],
+  "state_fields": [
+    "x_hat",
+    "y_hat",
+    "vx_hat",
+    "vy_hat"
+  ],
+  "state_hat_shape": [
+    5,
+    4779,
+    4
+  ],
+  "dtype": "float32",
+  "ordering_rule": "scene_id ascending, frame ascending, vehicle_id ascending",
+  "cache_filename": "sensing_cache.npz",
+  "cache_size_bytes": 609037,
+  "cache_sha256": "b4edbb5cdabae79f31ef394b0b5d265029788a6ec9bc6848a85777f2ff3c9268",
+  "monotonicity": {
+    "position_strictly_monotonic": true,
+    "velocity_strictly_monotonic": true
+  },
+  "metrics_by_snr": {
+    "-10dB": {
+      "snr_db": -10.0,
+      "position_rmse_m": 1.4341587192014111,
+      "velocity_rmse_mps": 1.748033849648879,
+      "position_mae_m": 1.1646644909386963,
+      "velocity_mae_mps": 1.4226305420237668,
+      "position_p50_m": 0.9630045774432635,
+      "velocity_p50_mps": 1.186054894718206,
+      "position_p95_m": 2.7671194101687386,
+      "velocity_p95_mps": 3.373747180966307
+    },
+    "-5dB": {
+      "snr_db": -5.0,
+      "position_rmse_m": 0.8059159386928615,
+      "velocity_rmse_mps": 0.9827260637106031,
+      "position_mae_m": 0.654575296857704,
+      "velocity_mae_mps": 0.7996738360854263,
+      "position_p50_m": 0.5423867538412978,
+      "velocity_p50_mps": 0.6680770539914458,
+      "position_p95_m": 1.5552335432630213,
+      "velocity_p95_mps": 1.8982060542966004
+    },
+    "+0dB": {
+      "snr_db": 0.0,
+      "position_rmse_m": 0.45314918957469785,
+      "velocity_rmse_mps": 0.5525947544501456,
+      "position_mae_m": 0.36799985652722084,
+      "velocity_mae_mps": 0.4496418323088765,
+      "position_p50_m": 0.30446138657116856,
+      "velocity_p50_mps": 0.3754626280414998,
+      "position_p95_m": 0.8728398017285823,
+      "velocity_p95_mps": 1.0667759756114905
+    },
+    "+5dB": {
+      "snr_db": 5.0,
+      "position_rmse_m": 0.2548454225699305,
+      "velocity_rmse_mps": 0.3107641359526249,
+      "position_mae_m": 0.20694684077841238,
+      "velocity_mae_mps": 0.25286013177191247,
+      "position_p50_m": 0.17117186533823844,
+      "velocity_p50_mps": 0.21114042042840006,
+      "position_p95_m": 0.49110409117412906,
+      "velocity_p95_mps": 0.5987712998710761
+    },
+    "+10dB": {
+      "snr_db": 10.0,
+      "position_rmse_m": 0.14334841011901933,
+      "velocity_rmse_mps": 0.17479183902682202,
+      "position_mae_m": 0.11640201672651604,
+      "velocity_mae_mps": 0.1422209355064181,
+      "position_p50_m": 0.09629784641420541,
+      "velocity_p50_mps": 0.11876300697017159,
+      "position_p95_m": 0.27621538714985744,
+      "velocity_p95_mps": 0.3367059434764539
+    }
+  },
+  "build_timestamp_utc": "2026-09-18T06:58:28Z"
+}
