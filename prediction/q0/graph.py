@@ -415,3 +415,93 @@ class GatedPairTriplet(nn.Module):
         z = local_z + pair_correction + trip_correction
         return torch.where(vehicle_mask[:, None, :, None], z, torch.zeros_like(z))
 
+
+
+class PhysicsRoutedEdgeMPNN(nn.Module):
+    """Local bypass plus a scene-level gate learned from physical interaction summaries.
+
+    The graph branch is a normal edge-aware MPNN. The routing gate only decides
+    how much of its interaction residual should enter the node representation.
+    This is a strong classical control for heterogeneous interaction relevance.
+    """
+
+    display_name = "PhysicsRoutedEdgeMPNN"
+
+    def __init__(self, hidden_dim: int = 64, graph_dim: int = 64, layers: int = 3) -> None:
+        super().__init__()
+        self.encoder = IndependentTemporalEncoder(hidden_dim)
+        # Construction-compatible local path.
+        self.output = nn.Sequential(
+            nn.Linear(hidden_dim, graph_dim),
+            nn.SiLU(),
+            nn.LayerNorm(graph_dim),
+        )
+        self.layers = nn.ModuleList(
+            [ResidualEdgeMPNNLayer(hidden_dim) for _ in range(layers)]
+        )
+        self.delta = nn.Linear(hidden_dim, graph_dim)
+        # N plus six physical edge summaries:
+        # mean/min distance, mean/max closing, min tCPA, min dCPA.
+        self.router = nn.Sequential(
+            nn.Linear(7, 32),
+            nn.SiLU(),
+            nn.Linear(32, 1),
+        )
+        nn.init.zeros_(self.delta.weight)
+        nn.init.zeros_(self.delta.bias)
+        # Conservative start: mostly local, but not saturated.
+        nn.init.zeros_(self.router[-1].weight)
+        nn.init.constant_(self.router[-1].bias, -1.5)
+        self.graph_dim = int(graph_dim)
+
+    @staticmethod
+    def _scene_features(edge: torch.Tensor, pair_mask: torch.Tensor, vehicle_mask: torch.Tensor) -> torch.Tensor:
+        # Use last-frame standardized physical edges. Statistics stay permutation invariant.
+        e = edge[:, -1]  # [B,N,N,E]
+        valid = pair_mask
+        vf = valid.to(e.dtype)
+        count = vf.sum(dim=(1, 2)).clamp_min(1.0)
+
+        def masked_mean(x):
+            return (x * vf).sum(dim=(1, 2)) / count
+
+        inf = torch.full_like(e[..., 0], float("inf"))
+        neg_inf = torch.full_like(e[..., 0], -float("inf"))
+        dist = e[..., 4]
+        closing = e[..., 5]
+        tcpa = e[..., 6]
+        dcpa = e[..., 7]
+        n = vehicle_mask.sum(dim=1).to(e.dtype) / vehicle_mask.shape[1]
+        feats = torch.stack(
+            [
+                n,
+                masked_mean(dist),
+                torch.where(valid, dist, inf).amin(dim=(1, 2)),
+                masked_mean(closing),
+                torch.where(valid, closing, neg_inf).amax(dim=(1, 2)),
+                torch.where(valid, tcpa, inf).amin(dim=(1, 2)),
+                torch.where(valid, dcpa, inf).amin(dim=(1, 2)),
+            ],
+            dim=-1,
+        )
+        return feats
+
+    def forward(
+        self,
+        standardized_state: torch.Tensor,
+        standardized_edges: torch.Tensor,
+        pair_mask: torch.Tensor,
+        vehicle_mask: torch.Tensor,
+    ) -> torch.Tensor:
+        local_h = self.encoder(standardized_state, vehicle_mask)
+        local_z = self.output(local_h)
+
+        h = local_h
+        for layer in self.layers:
+            h = layer(h, standardized_edges, pair_mask, vehicle_mask)
+        interaction = h - local_h
+
+        scene_features = self._scene_features(standardized_edges, pair_mask, vehicle_mask)
+        gate = torch.sigmoid(self.router(scene_features))[:, None, None, :]
+        z = local_z + gate * self.delta(interaction)
+        return torch.where(vehicle_mask[:, None, :, None], z, torch.zeros_like(z))
