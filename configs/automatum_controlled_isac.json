@@ -11,8 +11,9 @@
     "stride": 3,
     "dt_rule": "dt = stride / source_hz = 3 / 29.97; never hardcode 0.1",
     "velocity_frame": "world; vx/vy arrive rotated and must never be rotated again",
-    "calibration_frames": "reports/isac_smoke/automatum_isac_smoke_01/selection_train.csv (same frames as SMOKE-01 for comparability)",
-    "validation_frames": "reports/isac_smoke/automatum_isac_smoke_01/selection_val.csv"
+    "calibration_scope": "all unique prediction-history states from train samples.npz; unique key = (scene_id, frame, vehicle_id); overlapping sample windows are deduplicated",
+    "validation_scope": "all unique prediction-history states from val samples.npz; unique key = (scene_id, frame, vehicle_id); validation only, not used for parameter search",
+    "test_scope": "not used for geometry search, calibration, or freeze decisions"
   },
   "scenes": [
     {

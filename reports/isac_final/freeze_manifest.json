@@ -2,7 +2,8 @@
   "revision": "AUTOMATUM-CONTROLLED-ISAC-V2-FROZEN",
   "status": "FROZEN",
   "baseline_head": "eaadbe6d826f9f6e83baf3caf3c01bf75ac093d1",
-  "config_sha256": "90eedfcce54a3a05ace93922a38fae9be3591c5800a08564c107fbca14180ceb",
+  "config_sha256": "abe22eab765abed7cba5722d78d3e145a3dc15bf890eed7b536f80ac330a1350",
+  "config_sha256_note": "SHA changed by metadata-only cleanup: dataset calibration/validation frame provenance replaced by prediction-history unique-state scopes; no frozen numerical value, geometry, SNR level, sigma parameter or fusion rule changed",
   "route_b": {
     "chain": [
       "GT [x,y,vx,vy]",
