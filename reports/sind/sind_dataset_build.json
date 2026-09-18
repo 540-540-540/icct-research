@@ -1,0 +1,331 @@
+{
+  "revision": "SIND-HIGH-INTERACTION-V1",
+  "source": {
+    "repository": "https://github.com/SOTIF-AVLab/SinD",
+    "commit": "930e4dea78d924c6e9a58ff8e378331f93bba8ec",
+    "raw_sha256": {
+      "changchun": "f3011d7dc1786f940981a9d49c7f83c7860beda9d14ed0e06c995f7b7e590692",
+      "xian": "1bf5d8450577249beb9c97bc210e7510babf0796ba817f9a88c64d19a5a5e4a7"
+    }
+  },
+  "vehicle_id_mapping": {
+    "path": "data/sind/vehicle_id_mapping.csv",
+    "rows": 1605,
+    "sha256": "80cd45cbc614319bdcf58733010e16b09a57e6203c8524fd036af466fa1a251c"
+  },
+  "timebase": {
+    "nominal_hz": 10.0,
+    "nominal_dt_s": 0.1,
+    "rule": "preserve audited source timestamp_ms; no fixed-dt relabeling"
+  },
+  "scenes": {
+    "0": {
+      "city": "changchun",
+      "source_file": "data/sind/raw/changchun/Veh_smoothed_tracks.csv",
+      "sha256": "f3011d7dc1786f940981a9d49c7f83c7860beda9d14ed0e06c995f7b7e590692",
+      "raw_rows_all_types": 432224,
+      "rows": 407599,
+      "vehicles": 1244,
+      "frame_range": [
+        0,
+        15396
+      ],
+      "x_range": [
+        -63.93488419060833,
+        24.219489099334087
+      ],
+      "y_range": [
+        -82.81182123323086,
+        76.35857377981911
+      ],
+      "types": {
+        "car": 381590,
+        "truck": 26009
+      },
+      "quality_filter": {
+        "rule": "exclude full track if max adjacent position-velocity consistency error > 5 m/s",
+        "threshold_mps": 5.0,
+        "excluded_original_track_ids": [
+          747
+        ],
+        "excluded_track_count": 1
+      },
+      "timebase": {
+        "nominal_hz": 10.0,
+        "timestamp_source": "timestamp_ms",
+        "median_dt_s": 0.10010010010010362,
+        "min_dt_s": 0.10010010009978032,
+        "max_dt_s": 0.10010010010068982,
+        "resampled": false
+      }
+    },
+    "1": {
+      "city": "xian",
+      "source_file": "data/sind/raw/xian/Veh_smoothed_tracks.csv",
+      "sha256": "1bf5d8450577249beb9c97bc210e7510babf0796ba817f9a88c64d19a5a5e4a7",
+      "raw_rows_all_types": 116836,
+      "rows": 103692,
+      "vehicles": 361,
+      "frame_range": [
+        0,
+        9097
+      ],
+      "x_range": [
+        -76.85394898658025,
+        60.02778666128246
+      ],
+      "y_range": [
+        -10.03388711026424,
+        67.34283217462158
+      ],
+      "types": {
+        "car": 102753,
+        "bus": 636,
+        "truck": 303
+      },
+      "quality_filter": {
+        "rule": "exclude full track if max adjacent position-velocity consistency error > 5 m/s",
+        "threshold_mps": 5.0,
+        "excluded_original_track_ids": [
+          141
+        ],
+        "excluded_track_count": 1
+      },
+      "timebase": {
+        "nominal_hz": 10.0,
+        "timestamp_source": "timestamp_ms",
+        "median_dt_s": 0.10010010010012138,
+        "min_dt_s": 0.10010010009989401,
+        "max_dt_s": 0.10010010010046244,
+        "resampled": false
+      }
+    }
+  },
+  "split_boundaries": {
+    "0": {
+      "f0": 0,
+      "f1": 15396,
+      "g1": 11999,
+      "g2": 13629,
+      "slots": [
+        11999,
+        1590,
+        1728
+      ],
+      "ratios": [
+        0.7833779460729908,
+        0.10380622837370242,
+        0.11281582555330678
+      ],
+      "crossing_total": 31,
+      "gap_rows_total": 1630,
+      "leakage_guard_vehicle_ids": [
+        928,
+        930,
+        934,
+        935,
+        937,
+        939,
+        940,
+        952,
+        957,
+        958,
+        959,
+        960,
+        1056,
+        1057,
+        1058,
+        1060,
+        1065,
+        1066,
+        1067,
+        1073,
+        1075,
+        1080,
+        1083,
+        1085,
+        1086,
+        1087,
+        1088,
+        1089,
+        1090,
+        1091,
+        1092
+      ],
+      "leakage_guard_count": 31
+    },
+    "1": {
+      "f0": 0,
+      "f1": 9097,
+      "g1": 7035,
+      "g2": 8156,
+      "slots": [
+        7035,
+        1081,
+        902
+      ],
+      "ratios": [
+        0.7801064537591483,
+        0.11987136837436238,
+        0.10002217786648925
+      ],
+      "crossing_total": 7,
+      "gap_rows_total": 328,
+      "leakage_guard_vehicle_ids": [
+        4,
+        282,
+        287,
+        310,
+        316,
+        318
+      ],
+      "leakage_guard_count": 6
+    }
+  },
+  "splits": {
+    "train": {
+      "trajectories_rows": 390025,
+      "samples": 15802,
+      "trajectories_sha256": "4ede602a7c0164dd0da092816bfc91d120c8a0478370be5a4348afc3b29d0287",
+      "samples_sha256": "dd16cf60569280a330f129cf225b8052fe0fa5bc6b2158abcecf1df35d950b74",
+      "interaction": {
+        "windows": 15802,
+        "n_dist": {
+          "2": 0,
+          "3": 11,
+          "4": 102,
+          "5": 171,
+          "6": 328,
+          "7": 290,
+          "8": 14900
+        },
+        "original_n_gt8": 14455,
+        "n_ge_fraction": {
+          "4": 0.9993038855841033,
+          "5": 0.9928490064548792,
+          "6": 0.982027591444121
+        },
+        "pair_total": 430565,
+        "radius_pairs_per_window": {
+          "10": 5.840146816858626,
+          "15": 9.252562966713075,
+          "20": 12.503986837109228,
+          "25": 15.671433995696747,
+          "30": 19.104796861156817,
+          "45": 23.826414377926845
+        },
+        "closing_pairs_per_window": {
+          "0": 19.05524617137071,
+          "0.5": 14.957790153145172,
+          "1.0": 13.558157195291734
+        },
+        "cpa_window_fraction": {
+          "2": 0.17282622452854068,
+          "5": 0.743450196177699,
+          "10": 0.9339324136185293
+        },
+        "active_neighbor_target_fraction": {
+          "2": 0.6031214355711921,
+          "3": 0.3918823397111507,
+          "4": 0.24230083377512168
+        }
+      }
+    },
+    "val": {
+      "trajectories_rows": 41760,
+      "samples": 1880,
+      "trajectories_sha256": "edad1e8e40c246e977f2d6cce418f5a904cdd5d0d7e7b114d336a61306537031",
+      "samples_sha256": "02ecff89bf48147f61bcede9fa5866d5e87e1ba80e92118e8e1401b7faecf2e2",
+      "interaction": {
+        "windows": 1880,
+        "n_dist": {
+          "2": 0,
+          "3": 0,
+          "4": 20,
+          "5": 44,
+          "6": 90,
+          "7": 113,
+          "8": 1613
+        },
+        "original_n_gt8": 1508,
+        "n_ge_fraction": {
+          "4": 1.0,
+          "5": 0.9893617021276596,
+          "6": 0.9659574468085106
+        },
+        "pair_total": 49447,
+        "radius_pairs_per_window": {
+          "10": 4.269148936170213,
+          "15": 6.971276595744681,
+          "20": 9.88031914893617,
+          "25": 12.913829787234043,
+          "30": 16.206382978723404,
+          "45": 22.14946808510638
+        },
+        "closing_pairs_per_window": {
+          "0": 18.97127659574468,
+          "0.5": 15.928723404255319,
+          "1.0": 14.501063829787235
+        },
+        "cpa_window_fraction": {
+          "2": 0.17659574468085107,
+          "5": 0.7058510638297872,
+          "10": 0.9595744680851064
+        },
+        "active_neighbor_target_fraction": {
+          "2": 0.6103887168902649,
+          "3": 0.3588579291365669,
+          "4": 0.20591675266597867
+        }
+      }
+    },
+    "test": {
+      "trajectories_rows": 50818,
+      "samples": 2086,
+      "trajectories_sha256": "7ccb3eec357d6f06d9134ad2812cea6ba01ada26f3bad72aa01f51c467c49724",
+      "samples_sha256": "ace2921e20c19110e25c99b3ab7fd3b8f8f038f7efc9e0f57bf331e7aeb72bee",
+      "interaction": {
+        "windows": 2086,
+        "n_dist": {
+          "2": 0,
+          "3": 0,
+          "4": 15,
+          "5": 1,
+          "6": 65,
+          "7": 27,
+          "8": 1978
+        },
+        "original_n_gt8": 1972,
+        "n_ge_fraction": {
+          "4": 1.0,
+          "5": 0.9928092042186002,
+          "6": 0.9923298178331735
+        },
+        "pair_total": 57026,
+        "radius_pairs_per_window": {
+          "10": 6.174017257909876,
+          "15": 9.193672099712368,
+          "20": 12.274209012464047,
+          "25": 15.312559923298178,
+          "30": 18.632310642377757,
+          "45": 23.426653883029722
+        },
+        "closing_pairs_per_window": {
+          "0": 20.24352828379674,
+          "0.5": 15.814956855225311,
+          "1.0": 14.234899328859061
+        },
+        "cpa_window_fraction": {
+          "2": 0.19702780441035475,
+          "5": 0.7943432406519655,
+          "10": 0.9261744966442953
+        },
+        "active_neighbor_target_fraction": {
+          "2": 0.5883531697838231,
+          "3": 0.38735729900412924,
+          "4": 0.24848190429924702
+        }
+      }
+    }
+  }
+}

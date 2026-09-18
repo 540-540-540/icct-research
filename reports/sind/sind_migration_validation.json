@@ -1,0 +1,359 @@
+{
+  "status": "PASS",
+  "checks_total": 43,
+  "checks_passed": 43,
+  "heavy_validation": {
+    "gt": {
+      "status": "PASS",
+      "checks": 56
+    },
+    "isac": {
+      "status": "PASS",
+      "checks": 782
+    }
+  },
+  "sample_counts": {
+    "train": 15802,
+    "val": 1880,
+    "test": 2086
+  },
+  "interaction_key": {
+    "source_high_interaction_fraction_sind": 0.8322070688454765,
+    "source_high_interaction_fraction_automatum": 0.34770471464019853,
+    "model_active_neighbors_ge3_sind": 0.38831617330237883,
+    "model_active_neighbors_ge3_automatum": 0.04689841174707821
+  },
+  "checks": [
+    {
+      "name": "gt_validation_pass",
+      "pass": true,
+      "detail": {
+        "checks": 56,
+        "passed": 56
+      }
+    },
+    {
+      "name": "isac_validation_pass",
+      "pass": true,
+      "detail": {
+        "checks": 782,
+        "passed": 782
+      }
+    },
+    {
+      "name": "raw_changchun_missing",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "name": "raw_changchun_duplicate",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "name": "raw_changchun_noncontiguous",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "name": "raw_changchun_nonfinite",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "name": "raw_changchun_jump",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "name": "raw_changchun_nominal_10hz",
+      "pass": true,
+      "detail": {
+        "frame_min": 0,
+        "frame_max": 15396,
+        "frames": 15397,
+        "median_dt_s": 0.10010010010009865,
+        "min_dt_s": 0.1001001000998076,
+        "max_dt_s": 0.1001001001005061,
+        "nominal_hz": 10.0,
+        "resampled": false
+      }
+    },
+    {
+      "name": "raw_xian_missing",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "name": "raw_xian_duplicate",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "name": "raw_xian_noncontiguous",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "name": "raw_xian_nonfinite",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "name": "raw_xian_jump",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "name": "raw_xian_nominal_10hz",
+      "pass": true,
+      "detail": {
+        "frame_min": 0,
+        "frame_max": 9097,
+        "frames": 9098,
+        "median_dt_s": 0.10010010010009865,
+        "min_dt_s": 0.10010010009992402,
+        "max_dt_s": 0.10010010010038968,
+        "nominal_hz": 10.0,
+        "resampled": false
+      }
+    },
+    {
+      "name": "geometry_train_only",
+      "pass": true,
+      "detail": "train_only"
+    },
+    {
+      "name": "config_test_not_tuned",
+      "pass": true,
+      "detail": "never used for geometry search, preprocessing threshold selection, or SNR tuning"
+    },
+    {
+      "name": "geometry_scene0_stations_frozen",
+      "pass": true,
+      "detail": {
+        "config": [
+          [
+            42.9943214570293,
+            37.341358207813855
+          ],
+          [
+            -86.9094891106365,
+            37.341358207813855
+          ],
+          [
+            -21.957583826803614,
+            -75.15864179218615
+          ]
+        ],
+        "search": [
+          [
+            42.9943214570293,
+            37.341358207813855
+          ],
+          [
+            -86.9094891106365,
+            37.341358207813855
+          ],
+          [
+            -21.957583826803614,
+            -75.15864179218615
+          ]
+        ]
+      }
+    },
+    {
+      "name": "geometry_scene0_boresights_frozen",
+      "pass": true,
+      "detail": {
+        "config": [
+          -150.0,
+          -29.999999999999996,
+          89.99999999999999
+        ],
+        "search": [
+          -150.0,
+          -29.999999999999996,
+          89.99999999999999
+        ]
+      }
+    },
+    {
+      "name": "geometry_scene0_coverage_ge2",
+      "pass": true,
+      "detail": 1.0
+    },
+    {
+      "name": "geometry_scene1_stations_frozen",
+      "pass": true,
+      "detail": {
+        "config": [
+          [
+            13.614639427448656,
+            94.74051165841983
+          ],
+          [
+            -85.8974527978921,
+            11.239951774456923
+          ],
+          [
+            36.17219940451394,
+            -33.18976813444665
+          ]
+        ],
+        "search": [
+          [
+            13.614639427448656,
+            94.74051165841983
+          ],
+          [
+            -85.8974527978921,
+            11.239951774456923
+          ],
+          [
+            36.17219940451394,
+            -33.18976813444665
+          ]
+        ]
+      }
+    },
+    {
+      "name": "geometry_scene1_boresights_frozen",
+      "pass": true,
+      "detail": {
+        "config": [
+          -110.0,
+          10.000000000000007,
+          130.0
+        ],
+        "search": [
+          -110.0,
+          10.000000000000007,
+          130.0
+        ]
+      }
+    },
+    {
+      "name": "geometry_scene1_coverage_ge2",
+      "pass": true,
+      "detail": 1.0
+    },
+    {
+      "name": "interaction_supply_gain",
+      "pass": true,
+      "detail": {
+        "sind": 0.8322070688454765,
+        "automatum": 0.34770471464019853
+      }
+    },
+    {
+      "name": "interaction_active3_gain",
+      "pass": true,
+      "detail": {
+        "sind": 0.38831617330237883,
+        "automatum": 0.04689841174707821
+      }
+    },
+    {
+      "name": "interaction_nge4_gain",
+      "pass": true,
+      "detail": {
+        "sind": 0.9994435451234318,
+        "automatum": 0.517992577053413
+      }
+    },
+    {
+      "name": "build_marker_exists",
+      "pass": true,
+      "detail": "data/sind/.BUILD_COMPLETE"
+    },
+    {
+      "name": "build_marker_report_hash",
+      "pass": true,
+      "detail": {
+        "actual": "8f3e6ebb065ffc27e4e6b98f64c51fd49f723f6f5614ae4fb58597eb277baff3",
+        "marker": "8f3e6ebb065ffc27e4e6b98f64c51fd49f723f6f5614ae4fb58597eb277baff3"
+      }
+    },
+    {
+      "name": "train_sample_count",
+      "pass": true,
+      "detail": 15802
+    },
+    {
+      "name": "train_file_samples.npz",
+      "pass": true,
+      "detail": "data/sind/splits/train/samples.npz"
+    },
+    {
+      "name": "train_file_trajectories.csv",
+      "pass": true,
+      "detail": "data/sind/splits/train/trajectories.csv"
+    },
+    {
+      "name": "train_file_sensing_cache.npz",
+      "pass": true,
+      "detail": "data/sind/isac/train/sensing_cache.npz"
+    },
+    {
+      "name": "train_file_sensing_manifest.json",
+      "pass": true,
+      "detail": "data/sind/isac/train/sensing_manifest.json"
+    },
+    {
+      "name": "val_sample_count",
+      "pass": true,
+      "detail": 1880
+    },
+    {
+      "name": "val_file_samples.npz",
+      "pass": true,
+      "detail": "data/sind/splits/val/samples.npz"
+    },
+    {
+      "name": "val_file_trajectories.csv",
+      "pass": true,
+      "detail": "data/sind/splits/val/trajectories.csv"
+    },
+    {
+      "name": "val_file_sensing_cache.npz",
+      "pass": true,
+      "detail": "data/sind/isac/val/sensing_cache.npz"
+    },
+    {
+      "name": "val_file_sensing_manifest.json",
+      "pass": true,
+      "detail": "data/sind/isac/val/sensing_manifest.json"
+    },
+    {
+      "name": "test_sample_count",
+      "pass": true,
+      "detail": 2086
+    },
+    {
+      "name": "test_file_samples.npz",
+      "pass": true,
+      "detail": "data/sind/splits/test/samples.npz"
+    },
+    {
+      "name": "test_file_trajectories.csv",
+      "pass": true,
+      "detail": "data/sind/splits/test/trajectories.csv"
+    },
+    {
+      "name": "test_file_sensing_cache.npz",
+      "pass": true,
+      "detail": "data/sind/isac/test/sensing_cache.npz"
+    },
+    {
+      "name": "test_file_sensing_manifest.json",
+      "pass": true,
+      "detail": "data/sind/isac/test/sensing_manifest.json"
+    },
+    {
+      "name": "no_temp_worktree_absolute_paths",
+      "pass": true,
+      "detail": []
+    }
+  ]
+}

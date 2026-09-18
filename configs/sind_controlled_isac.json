@@ -1,0 +1,116 @@
+{
+  "revision": "SIND-CONTROLLED-ISAC-V1-FROZEN",
+  "status": "FROZEN",
+  "route": "B: controlled multi-BS state sensing; detection and identity association are assumed successful",
+  "dataset": {
+    "name": "SinD public high-interaction subset",
+    "scenes": [
+      "Changchun",
+      "Xi'an"
+    ],
+    "splits_dir": "data/sind/splits",
+    "nominal_hz": 10.0,
+    "timestamp_rule": "preserve audited source timestamp_ms; frame_id is an index, not a fixed-dt clock",
+    "velocity_frame": "world/ground coordinate x-y components from SinD vx/vy",
+    "history_source": "selected GT states keyed by (scene_id, frame_id, vehicle_id)",
+    "test_scope": "never used for geometry search, preprocessing threshold selection, or SNR tuning"
+  },
+  "scenes": [
+    {
+      "scene_id": 0,
+      "label": "SinD Changchun Pudong",
+      "junction_center_xy_m": [
+        -21.9575838268036,
+        -0.15864179218614005
+      ],
+      "stations_xy_m": [
+        [
+          42.9943214570293,
+          37.341358207813855
+        ],
+        [
+          -86.9094891106365,
+          37.341358207813855
+        ],
+        [
+          -21.957583826803614,
+          -75.15864179218615
+        ]
+      ],
+      "boresights_deg": [
+        -150.0,
+        -29.999999999999996,
+        89.99999999999999
+      ]
+    },
+    {
+      "scene_id": 1,
+      "label": "SinD Xi'an Shanglin",
+      "junction_center_xy_m": [
+        -12.036871321976504,
+        24.263565099476708
+      ],
+      "stations_xy_m": [
+        [
+          13.614639427448656,
+          94.74051165841983
+        ],
+        [
+          -85.8974527978921,
+          11.239951774456923
+        ],
+        [
+          36.17219940451394,
+          -33.18976813444665
+        ]
+      ],
+      "boresights_deg": [
+        -110.0,
+        10.000000000000007,
+        130.0
+      ]
+    }
+  ],
+  "visibility": {
+    "range_min_m": 5.0,
+    "range_max_m": 150.0,
+    "fov_half_angle_deg": 70.0,
+    "station_height_m": 6.5,
+    "vehicle_height_m": 1.5,
+    "height_difference_m": 5.0
+  },
+  "snr": {
+    "levels_db": [
+      -10.0,
+      -5.0,
+      0.0,
+      5.0,
+      10.0
+    ],
+    "seed_rule": "base standard normals keyed by (scene_id, frame, bs_id, vehicle_id, channel); SNR excluded"
+  },
+  "measurement": {
+    "a": {
+      "range": 0.35,
+      "bearing": 0.0111,
+      "radial_velocity": 0.3
+    },
+    "floors": {
+      "range": 0.0018,
+      "bearing": 0.000136,
+      "radial_velocity": 0.0023
+    },
+    "covariance_floor_m2": 1e-08,
+    "calibration_source": "Transferred unchanged from AUTOMATUM-CONTROLLED-ISAC-V2-FROZEN; no SinD test tuning"
+  },
+  "fusion": {
+    "velocity_prior_sigma_mps": 200.0,
+    "position_fusion": "covariance-weighted inverse-variance fusion",
+    "velocity_fusion": "multi-BS radial-velocity least squares with weak prior"
+  },
+  "geometry_freeze": {
+    "search_scope": "train only after raw-quality filtering",
+    "report": "reports/sind/sind_geometry_search.json",
+    "criteria": "maximize >=2 BS coverage, then >=3 BS coverage, then median velocity condition ratio"
+  }
+}
