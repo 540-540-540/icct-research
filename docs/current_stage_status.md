@@ -33,9 +33,10 @@
   * 通用 DataLoader 烟测：PASS（支持 batching, shuffling, multi-worker）
 
 * **当前阶段仓库精简**: **COMPLETE**
-  * 阶段边界：`stage1-meeting-freeze-20260915` 历史资产 100% 完整保留（已恢复误删的 897 个历史资产文件）
-  * 当前阶段 146 个过时中间文件（early smoke, calib v1, temporary audits）已彻底移除
-  * 仅保留权威脚本、配置与终审报告
+  * 历史资产保护：历史 Stage0 / Stage1 由不可变 Git tags（`stage0-senior-original` 与 `stage1-meeting-freeze-20260915`）永久保存；当前 `main` 工作树仅维护当前最新有效工作版本。
+  * 纠偏清理：上一轮误恢复到工作树的 897 个历史归档文件已全部自当前工作树移除（0 遗留）。
+  * 中间文件精简：当前阶段 146 个过时/探索性中间文件（early smoke, calib v1, temporary audits）彻底移除。
+  * 仅保留权威脚本、配置与终审报告。
 
 ---
 

@@ -22,7 +22,7 @@
 | 7 | **Clock 3/29.97** | 真实时间步 `dt = 3 / 29.97 ≈ 0.1001001s`，杜绝硬编码 0.1 | **PASS** | 时间戳严格对齐 |
 | 8 | **Generic DataLoader** | PyTorch DataLoader 支持 batching, shuffling, multi-worker | **PASS** | 批量迭代与张量转换通过 |
 | 9 | **Current-Stage Cleanup** | 移除探索阶段过时代码与冗余报告，保持 active tree 权威精简 | **PASS** | 146 个中间过时文件已清理 |
-| 10 | **Stage0/Stage1 Preserved** | 历史冻结阶段资产 100% 原样保留，误删资产完全恢复 | **PASS** | 897 个历史资产文件已恢复 |
+| 10 | **Historical Tags Intact** | 历史阶段资产由不可变 Git tags 永久存档，当前 main 仅保留有效基线 | **PASS** | `stage0` (`ca1682a4...`) 与 `stage1` (`8adc24c5...`) tags 完好无损，工作树误恢复的 897 个历史文件已全数清除（遗留 0） |
 
 ---
 

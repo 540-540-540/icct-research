@@ -1,6 +1,0 @@
-| Method | Trainable parameters (M) | Inference time / sample (ms) | ADE (m) |
-|---|---:|---:|---:|
-| Ours | 2.92 | 1.1502 | 1.038 |
-| LSTM | 0.87 | 0.0154 | 1.144 |
-| TCN | 0.50 | 0.0096 | 1.195 |
-| Transformer | 43.14 | 0.1863 | 1.967 |

@@ -26,15 +26,22 @@
 
 原始数据集（`data/`）、模型权重（`models/`）、训练 checkpoint（`checkpoints/`）以及大型生成数组/权重（`*.npy`、`*.npz`、`*.pt`、`*.pth`、`*.ckpt`、`*.bin`）有意排除在 Git 之外，保留在服务器（或本地镜像）。F01-E 冻结数据集的完整性证据保存在 `reports/f01e/final_freeze_11/`。
 
-## 历史
+## 历史快照 (Git Tags)
 
-| Tag | 含义 |
-|---|---|
-| `stage0-senior-original` | 2026-09-11 17:00 +08:00 交接前的师兄原始项目快照 |
-| `stage1-meeting-freeze-20260915` | 2026-09-15 组会前的第一版稳定项目 |
+历史阶段资产由不可变 Git tags 永久存档保存在仓库历史中，当前 `main` 工作树仅维护当前最新有效的工作流水线：
 
-历史开发分支已完整包含在当前开发历史中。
+| Tag | 提交 Commit | 历史含义 |
+|---|---|---|
+| `stage0-senior-original` | `ca1682a47e9129fbaf50dab4e2a6abc574b60098` | 2026-09-11 17:00 +08:00 交接前的师兄原始项目快照 |
+| `stage1-meeting-freeze-20260915` | `8adc24c5791daaa6a27c986c9aeb1915e1c5e7c7` | 2026-09-15 组会前第一版完整稳定项目快照 |
 
-## 当前开发模块
+## 当前阶段状态 (Pre-Model Data Ready)
 
-ISAC（共享前端）重构在 `module/isac` 开发分支上继续，尚未正式 freeze。F01-E 加载器（`frontend.f01e_dataset.F01EDataset`）与 `data/f01e/` 数据契约属于历史冻结实验链，本身不代表最终感知方案；当前实现以 `module/isac` 上的代码为准。QGNN/LLM 模块将在 ISAC freeze 之后跟进。
+当前 `main` 分支作为最新稳定 baseline，已完成进入模型阶段前的全部数据与感知基建闭环：
+
+- **ISAC Route-B**: `FROZEN` (`AUTOMATUM-CONTROLLED-ISAC-V2-FROZEN`，3-BS 确定性纯物理链路)
+- **Production ISAC Sensing Cache**: `COMPLETE` (`data/automatum_t_crossing/isac/{train,val,test}/sensing_cache.npz`)
+- **Model-Agnostic Prediction Dataset**: `COMPLETE` (`frontend/automatum_prediction_dataset.py`，物理时钟 $\Delta t = \frac{3}{29.97}\text{ s}$)
+- **Current-Stage Cleanup**: `COMPLETE`（当前工作树仅保留权威工具、配置与终审报告，移除过时中间文件与非当前有效历史工作文件）
+- **Formal Classical GNN Baseline**: `PENDING (NOT SELECTED)`
+- **Formal QGNN 主模型**: `PENDING (NOT SELECTED)`

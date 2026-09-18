@@ -2,7 +2,6 @@
   "stage_boundary": "stage1-meeting-freeze-20260915",
   "timestamp_utc": "2026-09-18T07:43:51Z",
   "stage1_protected_files_count": 2457,
-  "stage1_files_restored_count": 897,
   "stage1_files_modified_count": 3,
   "current_stage_files_total": 370,
   "current_stage_files_to_remove": 146,
@@ -380,5 +379,19 @@
     "tools/data_preprocessing/validate_automatum_samples.py",
     "tools/data_preprocessing/validate_automatum_splits.py",
     "tools/data_preprocessing/validate_isac_production_cache.py"
-  ]
+  ],
+  "history_preservation_policy": "stage0/stage1 history is preserved by immutable Git tags. The current main tree is intentionally allowed to omit obsolete files from historical snapshots.",
+  "stage0_tag": {
+    "tag": "stage0-senior-original",
+    "commit": "ca1682a47e9129fbaf50dab4e2a6abc574b60098",
+    "intact": true
+  },
+  "stage1_tag": {
+    "tag": "stage1-meeting-freeze-20260915",
+    "commit": "8adc24c5791daaa6a27c986c9aeb1915e1c5e7c7",
+    "intact": true
+  },
+  "unintentionally_restored_historical_files_removed": 897,
+  "unintended_restored_files_remaining": 0,
+  "current_stage_files_removed": 146
 }

@@ -10,8 +10,13 @@
     "clock_3_over_29_97": "PASS",
     "generic_dataloader": "PASS",
     "current_stage_repository_cleanup": "PASS",
-    "stage0_stage1_assets_preserved": "PASS"
+    "historical_tags_intact": "PASS"
   },
+  "tags_verified": {
+    "stage0-senior-original": "ca1682a47e9129fbaf50dab4e2a6abc574b60098",
+    "stage1-meeting-freeze-20260915": "8adc24c5791daaa6a27c986c9aeb1915e1c5e7c7"
+  },
+  "unintended_restored_files_remaining": 0,
   "pre_model_data_ready": "YES",
   "current_stage_repository_clean": "YES",
   "formal_gnn_selected": "NO",
