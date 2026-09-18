@@ -1,0 +1,1402 @@
+[
+  {
+    "name": "graph.theta",
+    "shape": [
+      3,
+      2,
+      3
+    ],
+    "trainable": true
+  },
+  {
+    "name": "graph.encoder.weight",
+    "shape": [
+      6,
+      6
+    ],
+    "trainable": true
+  },
+  {
+    "name": "graph.encoder.bias",
+    "shape": [
+      6
+    ],
+    "trainable": true
+  },
+  {
+    "name": "graph.readout.0.weight",
+    "shape": [
+      128,
+      32
+    ],
+    "trainable": true
+  },
+  {
+    "name": "graph.readout.0.bias",
+    "shape": [
+      128
+    ],
+    "trainable": true
+  },
+  {
+    "name": "graph.readout.1.weight",
+    "shape": [
+      128
+    ],
+    "trainable": true
+  },
+  {
+    "name": "graph.readout.1.bias",
+    "shape": [
+      128
+    ],
+    "trainable": true
+  },
+  {
+    "name": "graph.edge_encoder.weight",
+    "shape": [
+      4,
+      7
+    ],
+    "trainable": true
+  },
+  {
+    "name": "temporal.adapter.state_projection.weight",
+    "shape": [
+      768,
+      4
+    ],
+    "trainable": true
+  },
+  {
+    "name": "temporal.adapter.state_projection.bias",
+    "shape": [
+      768
+    ],
+    "trainable": true
+  },
+  {
+    "name": "temporal.adapter.marker_projection.weight",
+    "shape": [
+      768,
+      2
+    ],
+    "trainable": true
+  },
+  {
+    "name": "temporal.adapter.graph_projection.weight",
+    "shape": [
+      768,
+      128
+    ],
+    "trainable": true
+  },
+  {
+    "name": "temporal.llm.wte.weight",
+    "shape": [
+      50257,
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.wpe.weight",
+    "shape": [
+      1024,
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.0.ln_1.weight",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.0.ln_1.bias",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.0.attn.c_attn.lora_A",
+    "shape": [
+      768,
+      8
+    ],
+    "trainable": true
+  },
+  {
+    "name": "temporal.llm.h.0.attn.c_attn.lora_B",
+    "shape": [
+      8,
+      2304
+    ],
+    "trainable": true
+  },
+  {
+    "name": "temporal.llm.h.0.attn.c_attn.base.weight",
+    "shape": [
+      768,
+      2304
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.0.attn.c_attn.base.bias",
+    "shape": [
+      2304
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.0.attn.c_proj.weight",
+    "shape": [
+      768,
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.0.attn.c_proj.bias",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.0.ln_2.weight",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.0.ln_2.bias",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.0.mlp.c_fc.weight",
+    "shape": [
+      768,
+      3072
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.0.mlp.c_fc.bias",
+    "shape": [
+      3072
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.0.mlp.c_proj.weight",
+    "shape": [
+      3072,
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.0.mlp.c_proj.bias",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.1.ln_1.weight",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.1.ln_1.bias",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.1.attn.c_attn.lora_A",
+    "shape": [
+      768,
+      8
+    ],
+    "trainable": true
+  },
+  {
+    "name": "temporal.llm.h.1.attn.c_attn.lora_B",
+    "shape": [
+      8,
+      2304
+    ],
+    "trainable": true
+  },
+  {
+    "name": "temporal.llm.h.1.attn.c_attn.base.weight",
+    "shape": [
+      768,
+      2304
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.1.attn.c_attn.base.bias",
+    "shape": [
+      2304
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.1.attn.c_proj.weight",
+    "shape": [
+      768,
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.1.attn.c_proj.bias",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.1.ln_2.weight",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.1.ln_2.bias",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.1.mlp.c_fc.weight",
+    "shape": [
+      768,
+      3072
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.1.mlp.c_fc.bias",
+    "shape": [
+      3072
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.1.mlp.c_proj.weight",
+    "shape": [
+      3072,
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.1.mlp.c_proj.bias",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.2.ln_1.weight",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.2.ln_1.bias",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.2.attn.c_attn.lora_A",
+    "shape": [
+      768,
+      8
+    ],
+    "trainable": true
+  },
+  {
+    "name": "temporal.llm.h.2.attn.c_attn.lora_B",
+    "shape": [
+      8,
+      2304
+    ],
+    "trainable": true
+  },
+  {
+    "name": "temporal.llm.h.2.attn.c_attn.base.weight",
+    "shape": [
+      768,
+      2304
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.2.attn.c_attn.base.bias",
+    "shape": [
+      2304
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.2.attn.c_proj.weight",
+    "shape": [
+      768,
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.2.attn.c_proj.bias",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.2.ln_2.weight",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.2.ln_2.bias",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.2.mlp.c_fc.weight",
+    "shape": [
+      768,
+      3072
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.2.mlp.c_fc.bias",
+    "shape": [
+      3072
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.2.mlp.c_proj.weight",
+    "shape": [
+      3072,
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.2.mlp.c_proj.bias",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.3.ln_1.weight",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.3.ln_1.bias",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.3.attn.c_attn.lora_A",
+    "shape": [
+      768,
+      8
+    ],
+    "trainable": true
+  },
+  {
+    "name": "temporal.llm.h.3.attn.c_attn.lora_B",
+    "shape": [
+      8,
+      2304
+    ],
+    "trainable": true
+  },
+  {
+    "name": "temporal.llm.h.3.attn.c_attn.base.weight",
+    "shape": [
+      768,
+      2304
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.3.attn.c_attn.base.bias",
+    "shape": [
+      2304
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.3.attn.c_proj.weight",
+    "shape": [
+      768,
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.3.attn.c_proj.bias",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.3.ln_2.weight",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.3.ln_2.bias",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.3.mlp.c_fc.weight",
+    "shape": [
+      768,
+      3072
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.3.mlp.c_fc.bias",
+    "shape": [
+      3072
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.3.mlp.c_proj.weight",
+    "shape": [
+      3072,
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.3.mlp.c_proj.bias",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.4.ln_1.weight",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.4.ln_1.bias",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.4.attn.c_attn.lora_A",
+    "shape": [
+      768,
+      8
+    ],
+    "trainable": true
+  },
+  {
+    "name": "temporal.llm.h.4.attn.c_attn.lora_B",
+    "shape": [
+      8,
+      2304
+    ],
+    "trainable": true
+  },
+  {
+    "name": "temporal.llm.h.4.attn.c_attn.base.weight",
+    "shape": [
+      768,
+      2304
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.4.attn.c_attn.base.bias",
+    "shape": [
+      2304
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.4.attn.c_proj.weight",
+    "shape": [
+      768,
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.4.attn.c_proj.bias",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.4.ln_2.weight",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.4.ln_2.bias",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.4.mlp.c_fc.weight",
+    "shape": [
+      768,
+      3072
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.4.mlp.c_fc.bias",
+    "shape": [
+      3072
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.4.mlp.c_proj.weight",
+    "shape": [
+      3072,
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.4.mlp.c_proj.bias",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.5.ln_1.weight",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.5.ln_1.bias",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.5.attn.c_attn.lora_A",
+    "shape": [
+      768,
+      8
+    ],
+    "trainable": true
+  },
+  {
+    "name": "temporal.llm.h.5.attn.c_attn.lora_B",
+    "shape": [
+      8,
+      2304
+    ],
+    "trainable": true
+  },
+  {
+    "name": "temporal.llm.h.5.attn.c_attn.base.weight",
+    "shape": [
+      768,
+      2304
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.5.attn.c_attn.base.bias",
+    "shape": [
+      2304
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.5.attn.c_proj.weight",
+    "shape": [
+      768,
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.5.attn.c_proj.bias",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.5.ln_2.weight",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.5.ln_2.bias",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.5.mlp.c_fc.weight",
+    "shape": [
+      768,
+      3072
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.5.mlp.c_fc.bias",
+    "shape": [
+      3072
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.5.mlp.c_proj.weight",
+    "shape": [
+      3072,
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.5.mlp.c_proj.bias",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.6.ln_1.weight",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.6.ln_1.bias",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.6.attn.c_attn.lora_A",
+    "shape": [
+      768,
+      8
+    ],
+    "trainable": true
+  },
+  {
+    "name": "temporal.llm.h.6.attn.c_attn.lora_B",
+    "shape": [
+      8,
+      2304
+    ],
+    "trainable": true
+  },
+  {
+    "name": "temporal.llm.h.6.attn.c_attn.base.weight",
+    "shape": [
+      768,
+      2304
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.6.attn.c_attn.base.bias",
+    "shape": [
+      2304
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.6.attn.c_proj.weight",
+    "shape": [
+      768,
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.6.attn.c_proj.bias",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.6.ln_2.weight",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.6.ln_2.bias",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.6.mlp.c_fc.weight",
+    "shape": [
+      768,
+      3072
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.6.mlp.c_fc.bias",
+    "shape": [
+      3072
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.6.mlp.c_proj.weight",
+    "shape": [
+      3072,
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.6.mlp.c_proj.bias",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.7.ln_1.weight",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.7.ln_1.bias",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.7.attn.c_attn.lora_A",
+    "shape": [
+      768,
+      8
+    ],
+    "trainable": true
+  },
+  {
+    "name": "temporal.llm.h.7.attn.c_attn.lora_B",
+    "shape": [
+      8,
+      2304
+    ],
+    "trainable": true
+  },
+  {
+    "name": "temporal.llm.h.7.attn.c_attn.base.weight",
+    "shape": [
+      768,
+      2304
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.7.attn.c_attn.base.bias",
+    "shape": [
+      2304
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.7.attn.c_proj.weight",
+    "shape": [
+      768,
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.7.attn.c_proj.bias",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.7.ln_2.weight",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.7.ln_2.bias",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.7.mlp.c_fc.weight",
+    "shape": [
+      768,
+      3072
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.7.mlp.c_fc.bias",
+    "shape": [
+      3072
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.7.mlp.c_proj.weight",
+    "shape": [
+      3072,
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.7.mlp.c_proj.bias",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.8.ln_1.weight",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.8.ln_1.bias",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.8.attn.c_attn.lora_A",
+    "shape": [
+      768,
+      8
+    ],
+    "trainable": true
+  },
+  {
+    "name": "temporal.llm.h.8.attn.c_attn.lora_B",
+    "shape": [
+      8,
+      2304
+    ],
+    "trainable": true
+  },
+  {
+    "name": "temporal.llm.h.8.attn.c_attn.base.weight",
+    "shape": [
+      768,
+      2304
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.8.attn.c_attn.base.bias",
+    "shape": [
+      2304
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.8.attn.c_proj.weight",
+    "shape": [
+      768,
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.8.attn.c_proj.bias",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.8.ln_2.weight",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.8.ln_2.bias",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.8.mlp.c_fc.weight",
+    "shape": [
+      768,
+      3072
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.8.mlp.c_fc.bias",
+    "shape": [
+      3072
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.8.mlp.c_proj.weight",
+    "shape": [
+      3072,
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.8.mlp.c_proj.bias",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.9.ln_1.weight",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.9.ln_1.bias",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.9.attn.c_attn.lora_A",
+    "shape": [
+      768,
+      8
+    ],
+    "trainable": true
+  },
+  {
+    "name": "temporal.llm.h.9.attn.c_attn.lora_B",
+    "shape": [
+      8,
+      2304
+    ],
+    "trainable": true
+  },
+  {
+    "name": "temporal.llm.h.9.attn.c_attn.base.weight",
+    "shape": [
+      768,
+      2304
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.9.attn.c_attn.base.bias",
+    "shape": [
+      2304
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.9.attn.c_proj.weight",
+    "shape": [
+      768,
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.9.attn.c_proj.bias",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.9.ln_2.weight",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.9.ln_2.bias",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.9.mlp.c_fc.weight",
+    "shape": [
+      768,
+      3072
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.9.mlp.c_fc.bias",
+    "shape": [
+      3072
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.9.mlp.c_proj.weight",
+    "shape": [
+      3072,
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.9.mlp.c_proj.bias",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.10.ln_1.weight",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.10.ln_1.bias",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.10.attn.c_attn.lora_A",
+    "shape": [
+      768,
+      8
+    ],
+    "trainable": true
+  },
+  {
+    "name": "temporal.llm.h.10.attn.c_attn.lora_B",
+    "shape": [
+      8,
+      2304
+    ],
+    "trainable": true
+  },
+  {
+    "name": "temporal.llm.h.10.attn.c_attn.base.weight",
+    "shape": [
+      768,
+      2304
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.10.attn.c_attn.base.bias",
+    "shape": [
+      2304
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.10.attn.c_proj.weight",
+    "shape": [
+      768,
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.10.attn.c_proj.bias",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.10.ln_2.weight",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.10.ln_2.bias",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.10.mlp.c_fc.weight",
+    "shape": [
+      768,
+      3072
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.10.mlp.c_fc.bias",
+    "shape": [
+      3072
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.10.mlp.c_proj.weight",
+    "shape": [
+      3072,
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.10.mlp.c_proj.bias",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.11.ln_1.weight",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.11.ln_1.bias",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.11.attn.c_attn.lora_A",
+    "shape": [
+      768,
+      8
+    ],
+    "trainable": true
+  },
+  {
+    "name": "temporal.llm.h.11.attn.c_attn.lora_B",
+    "shape": [
+      8,
+      2304
+    ],
+    "trainable": true
+  },
+  {
+    "name": "temporal.llm.h.11.attn.c_attn.base.weight",
+    "shape": [
+      768,
+      2304
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.11.attn.c_attn.base.bias",
+    "shape": [
+      2304
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.11.attn.c_proj.weight",
+    "shape": [
+      768,
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.11.attn.c_proj.bias",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.11.ln_2.weight",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.11.ln_2.bias",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.11.mlp.c_fc.weight",
+    "shape": [
+      768,
+      3072
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.11.mlp.c_fc.bias",
+    "shape": [
+      3072
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.11.mlp.c_proj.weight",
+    "shape": [
+      3072,
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.h.11.mlp.c_proj.bias",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.ln_f.weight",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.llm.ln_f.bias",
+    "shape": [
+      768
+    ],
+    "trainable": false
+  },
+  {
+    "name": "temporal.head.0.weight",
+    "shape": [
+      256,
+      768
+    ],
+    "trainable": true
+  },
+  {
+    "name": "temporal.head.0.bias",
+    "shape": [
+      256
+    ],
+    "trainable": true
+  },
+  {
+    "name": "temporal.head.2.weight",
+    "shape": [
+      40,
+      256
+    ],
+    "trainable": true
+  },
+  {
+    "name": "temporal.head.2.bias",
+    "shape": [
+      40
+    ],
+    "trainable": true
+  }
+]

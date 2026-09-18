@@ -1,6 +1,6 @@
 # Production ISAC Sensing Cache 构建与验证报告
 
-- **构建时间 (UTC)**: `2026-09-18T06:59:31Z`
+- **构建时间 (UTC)**: `2026-09-18T07:34:32Z`
 - **ISAC 版本**: `AUTOMATUM-CONTROLLED-ISAC-V2-FROZEN` (`FROZEN`)
 - **确定性重建检验**: `PASS`
 - **全量验证结论**: `ALL PASS`
@@ -46,7 +46,7 @@
 
 | Split | 相对路径 | SHA256 |
 | :--- | :--- | :--- |
-| `train` | `data/automatum_t_crossing/isac_v2/train/sensing_cache.npz` | `d38d26987798746039738a9d93b9833d9512bad576d41b8a9307e1fc58f331ce` |
-| `val` | `data/automatum_t_crossing/isac_v2/val/sensing_cache.npz` | `b4edbb5cdabae79f31ef394b0b5d265029788a6ec9bc6848a85777f2ff3c9268` |
-| `test` | `data/automatum_t_crossing/isac_v2/test/sensing_cache.npz` | `438e681b5191308d9f31272fbfab4eda7e6b75ad92158a1c3c7b06b8fe4c9a13` |
+| `train` | `data/automatum_t_crossing/isac/train/sensing_cache.npz` | `d38d26987798746039738a9d93b9833d9512bad576d41b8a9307e1fc58f331ce` |
+| `val` | `data/automatum_t_crossing/isac/val/sensing_cache.npz` | `b4edbb5cdabae79f31ef394b0b5d265029788a6ec9bc6848a85777f2ff3c9268` |
+| `test` | `data/automatum_t_crossing/isac/test/sensing_cache.npz` | `438e681b5191308d9f31272fbfab4eda7e6b75ad92158a1c3c7b06b8fe4c9a13` |
 

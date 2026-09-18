@@ -1,0 +1,303 @@
+{
+  "q_a": 9.0,
+  "p_D": 0.5475113122171946,
+  "R_global": [
+    [
+      0.12249999999999998,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0005063176792922466,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.04000000000000001
+    ]
+  ],
+  "R_quality_bins": [
+    {
+      "bin": 0,
+      "count": 0,
+      "R": [
+        [
+          0.12249999999999998,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0005063176792922466,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.04000000000000001
+        ]
+      ],
+      "fallback_global": true
+    },
+    {
+      "bin": 1,
+      "count": 659,
+      "R": [
+        [
+          0.12249999999999998,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0004954041431121795,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.04000000000000001
+        ]
+      ],
+      "fallback_global": false
+    },
+    {
+      "bin": 2,
+      "count": 187,
+      "R": [
+        [
+          0.12249999999999998,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0002603051925225205,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.040000000000000015
+        ]
+      ],
+      "fallback_global": false
+    }
+  ],
+  "quality_bin_edges_db": [
+    12.0,
+    20.0
+  ],
+  "detector_config": {
+    "threshold_multiplier": 1.0379822661928502,
+    "target_false_alarms_per_cpi": 0.1,
+    "spatial_fft_size": 64,
+    "max_candidates": 32,
+    "p_D": 0.9,
+    "device": "cuda:0",
+    "R": [
+      [
+        2.25,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.007615435494667714,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "training_half_width": [
+      4,
+      4,
+      8
+    ],
+    "guard_half_width": [
+      1,
+      1,
+      4
+    ],
+    "revision": "C01",
+    "nms_half_width": [
+      1,
+      1,
+      1
+    ],
+    "sidelobe_power_margin": 1.5,
+    "lambda_c": 1.6133007847442656e-06,
+    "revision_reason": "Array mainlobe guard4/outer8; local NMS1/1/1 avoids deleting measured resolved peaks; ULA sidelobe suppression and waveform unchanged",
+    "calibration_design_cpis": 1024,
+    "calibration_holdout_cpis": 1024,
+    "calibration_design_seed_start": 6202600,
+    "calibration_holdout_seed_start": 7202600,
+    "design_false_alarms": 102,
+    "design_false_alarms_per_cpi": 0.099609375,
+    "p_D_status": "initial value; training detection calibration pending",
+    "window_description": "periodic Hann range/slow, rectangular 16-element array, scan FFT64",
+    "backend": "torch CUDA with scipy CPU reference/fallback",
+    "noise_model": "unit-variance circular CN frequency noise; CFAR scale invariant",
+    "calibration_note": "NMS and interpolation geometry filtering included; no source traffic or target truth used",
+    "lambda_c_units": "detections/(m rad m/s)",
+    "lambda_c_source": "design mean divided by continuous valid measurement-domain volume",
+    "measurement_domain_volume": 61742.59378159895
+  },
+  "calibration": {
+    "split": "train",
+    "visible": 1545,
+    "matched": 846,
+    "p_D_estimator": "Beta(1,1) posterior mean",
+    "residual_estimator": "Training-only EM angular mixture; core sigma floor0.5deg, fixed wide5deg; original range/Doppler variances unchanged",
+    "matching_gate": "3D conservative initial R Mahalanobis gate 11.345; residual censoring and unresolved peaks remain limitations"
+  },
+  "clutter_intensity": 1.6133007847442656e-06,
+  "association_mode": "jpda",
+  "association_revision": "C03: predeclared local JPDA with exact small components and top-50 joint hypotheses; mixture covariance includes association uncertainty",
+  "frontend_revision": "C06",
+  "R_revision": "C05 zero-mean narrow-plus-5deg angular Gaussian mixture; training-fitted core and weight; R interface is prior moment",
+  "measurement_noise_mixture_bins": [
+    {
+      "bin": 0,
+      "components": [
+        {
+          "weight": 0.954350939474345,
+          "R": [
+            [
+              0.12249999999999998,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.00016627028580737776,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.04000000000000001
+            ]
+          ]
+        },
+        {
+          "weight": 0.04564906052565499,
+          "R": [
+            [
+              0.12249999999999998,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.007615435494667714,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.04000000000000001
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "bin": 1,
+      "components": [
+        {
+          "weight": 0.9627905726906795,
+          "R": [
+            [
+              0.12249999999999998,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.00022023288933121333,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.04000000000000001
+            ]
+          ]
+        },
+        {
+          "weight": 0.03720942730932052,
+          "R": [
+            [
+              0.12249999999999998,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.007615435494667714,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.04000000000000001
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "bin": 2,
+      "components": [
+        {
+          "weight": 0.9755744832745875,
+          "R": [
+            [
+              0.12249999999999998,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              7.615435494667714e-05,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.04000000000000001
+            ]
+          ]
+        },
+        {
+          "weight": 0.024425516725412523,
+          "R": [
+            [
+              0.12249999999999998,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.007615435494667714,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.04000000000000001
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "max_missed_cycles": 7,
+  "lifecycle_calibration": "bounded5..8 from training positivegap95..99; select6/7 on training jointgate"
+}

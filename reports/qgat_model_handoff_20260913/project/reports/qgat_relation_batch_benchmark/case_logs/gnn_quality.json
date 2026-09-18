@@ -1,0 +1,476 @@
+{
+  "status": "complete",
+  "kind": "quality",
+  "case_id": "gnn_quality",
+  "model": "gnn",
+  "source": {
+    "checkpoint": "/home/dell/YrM/ICCT/results/qgat_relation_gnn/seed2026/gnn/latest.pt",
+    "checkpoint_bytes": 11235989,
+    "checkpoint_mtime_ns": 1789289878413636171,
+    "checkpoint_epoch": 0,
+    "checkpoint_cursor": 4288,
+    "checkpoint_optimizer_steps": 268
+  },
+  "passed": true,
+  "tolerances": {
+    "prediction_atol": 3e-05,
+    "prediction_rtol": 1e-06,
+    "gradient_atol": 2e-05,
+    "gradient_rtol": 0.0002,
+    "gradient_relative_l2": 0.0001,
+    "metric_atol": 3e-05,
+    "metric_rtol": 1e-06,
+    "parameter_atol": 2e-06,
+    "parameter_rtol": 2e-05,
+    "parameter_relative_l2": 1e-05,
+    "optimizer_atol": 2e-05,
+    "optimizer_rtol": 0.0002,
+    "optimizer_relative_l2": 0.0001
+  },
+  "results": [
+    {
+      "batch_length": 16,
+      "real_epoch_tail": false,
+      "origin_ids": [
+        4083,
+        3169,
+        2571,
+        3176,
+        940,
+        3903,
+        2034,
+        46,
+        343,
+        3641,
+        32,
+        2315,
+        4919,
+        1704,
+        213,
+        918
+      ],
+      "snr_db": [
+        20,
+        5,
+        20,
+        15,
+        20,
+        20,
+        5,
+        20,
+        5,
+        5,
+        20,
+        10,
+        20,
+        10,
+        20,
+        15
+      ],
+      "micro_per_gpu": 1,
+      "physical_forward": 2,
+      "passed": true,
+      "prediction_maxabs": 1.52587890625e-05,
+      "prediction_close": true,
+      "gradient_maxabs": 6.258487701416016e-07,
+      "gradient_relative_l2": 3.0331854363029957e-06,
+      "failed_gradient_names": [],
+      "gradient_tensor_count": 82,
+      "metrics_reference": {
+        "loss": 2.3168256282806396,
+        "accumulated_loss": 2.316825640387833,
+        "ADE": 1.0738091468811035,
+        "FDE": 2.4606759548187256
+      },
+      "metrics_candidate": {
+        "loss": 2.3168256282806396,
+        "accumulated_loss": 2.3168255984783173,
+        "ADE": 1.0738091468811035,
+        "FDE": 2.4606759548187256
+      },
+      "metric_abs_differences": {
+        "loss": 0.0,
+        "accumulated_loss": 4.190951585769653e-08,
+        "ADE": 0.0,
+        "FDE": 0.0
+      },
+      "one_update_parameters": {
+        "maxabs": 1.1920928955078125e-07,
+        "relative_l2": 7.992218540554108e-09,
+        "failed_tensor_names": [],
+        "tensor_count": 82,
+        "passed": true
+      },
+      "one_update_optimizer_state": {
+        "maxabs": 4.470348358154297e-08,
+        "relative_l2": 1.2403190214911454e-10,
+        "failed_tensor_names": [],
+        "tensor_count": 246,
+        "passed": true,
+        "by_state": {
+          "exp_avg": {
+            "maxabs": 4.470348358154297e-08,
+            "relative_l2": 1.3999238196660364e-06,
+            "failed_tensor_names": [],
+            "tensor_count": 82,
+            "passed": true
+          },
+          "exp_avg_sq": {
+            "maxabs": 2.3283064365386963e-10,
+            "relative_l2": 3.9164365097544426e-08,
+            "failed_tensor_names": [],
+            "tensor_count": 82,
+            "passed": true
+          },
+          "step": {
+            "maxabs": 0.0,
+            "relative_l2": 0.0,
+            "failed_tensor_names": [],
+            "tensor_count": 82,
+            "passed": true
+          }
+        }
+      },
+      "clip_norm_reference": 1.1513702869415283,
+      "clip_norm_candidate": 1.151370644569397,
+      "masks_match": true,
+      "observed_cuda_devices": [
+        0,
+        1
+      ],
+      "finite": true
+    },
+    {
+      "batch_length": 16,
+      "real_epoch_tail": false,
+      "origin_ids": [
+        4083,
+        3169,
+        2571,
+        3176,
+        940,
+        3903,
+        2034,
+        46,
+        343,
+        3641,
+        32,
+        2315,
+        4919,
+        1704,
+        213,
+        918
+      ],
+      "snr_db": [
+        20,
+        5,
+        20,
+        15,
+        20,
+        20,
+        5,
+        20,
+        5,
+        5,
+        20,
+        10,
+        20,
+        10,
+        20,
+        15
+      ],
+      "micro_per_gpu": 8,
+      "physical_forward": 16,
+      "passed": true,
+      "prediction_maxabs": 1.52587890625e-05,
+      "prediction_close": true,
+      "gradient_maxabs": 2.652406692504883e-06,
+      "gradient_relative_l2": 6.64063940583532e-06,
+      "failed_gradient_names": [],
+      "gradient_tensor_count": 82,
+      "metrics_reference": {
+        "loss": 2.3168256282806396,
+        "accumulated_loss": 2.316825640387833,
+        "ADE": 1.0738091468811035,
+        "FDE": 2.4606759548187256
+      },
+      "metrics_candidate": {
+        "loss": 2.3168256282806396,
+        "accumulated_loss": 2.3168258666992188,
+        "ADE": 1.0738091468811035,
+        "FDE": 2.4606759548187256
+      },
+      "metric_abs_differences": {
+        "loss": 0.0,
+        "accumulated_loss": 2.2631138563156128e-07,
+        "ADE": 0.0,
+        "FDE": 0.0
+      },
+      "one_update_parameters": {
+        "maxabs": 1.3853423297405243e-07,
+        "relative_l2": 1.2138744822631321e-08,
+        "failed_tensor_names": [],
+        "tensor_count": 82,
+        "passed": true
+      },
+      "one_update_optimizer_state": {
+        "maxabs": 2.1606683731079102e-07,
+        "relative_l2": 2.7225822171284954e-10,
+        "failed_tensor_names": [],
+        "tensor_count": 246,
+        "passed": true,
+        "by_state": {
+          "exp_avg": {
+            "maxabs": 2.1606683731079102e-07,
+            "relative_l2": 3.0729192098411706e-06,
+            "failed_tensor_names": [],
+            "tensor_count": 82,
+            "passed": true
+          },
+          "exp_avg_sq": {
+            "maxabs": 1.1641532182693481e-09,
+            "relative_l2": 1.3430828716138087e-07,
+            "failed_tensor_names": [],
+            "tensor_count": 82,
+            "passed": true
+          },
+          "step": {
+            "maxabs": 0.0,
+            "relative_l2": 0.0,
+            "failed_tensor_names": [],
+            "tensor_count": 82,
+            "passed": true
+          }
+        }
+      },
+      "clip_norm_reference": 1.1513702869415283,
+      "clip_norm_candidate": 1.151370882987976,
+      "masks_match": true,
+      "observed_cuda_devices": [
+        0,
+        1
+      ],
+      "finite": true
+    },
+    {
+      "batch_length": 13,
+      "real_epoch_tail": true,
+      "origin_ids": [
+        230,
+        4160,
+        3669,
+        4825,
+        1677,
+        1529,
+        802,
+        2234,
+        3927,
+        189,
+        3209,
+        5401,
+        347
+      ],
+      "snr_db": [
+        15,
+        20,
+        20,
+        15,
+        5,
+        20,
+        5,
+        10,
+        10,
+        15,
+        15,
+        15,
+        10
+      ],
+      "micro_per_gpu": 1,
+      "physical_forward": 2,
+      "passed": true,
+      "prediction_maxabs": 1.52587890625e-05,
+      "prediction_close": true,
+      "gradient_maxabs": 2.384185791015625e-07,
+      "gradient_relative_l2": 4.4841335802979574e-07,
+      "failed_gradient_names": [],
+      "gradient_tensor_count": 82,
+      "metrics_reference": {
+        "loss": 2.3628122806549072,
+        "accumulated_loss": 2.36281233234331,
+        "ADE": 1.1403820514678955,
+        "FDE": 2.4448604583740234
+      },
+      "metrics_candidate": {
+        "loss": 2.3628122806549072,
+        "accumulated_loss": 2.3628124222159386,
+        "ADE": 1.1403820514678955,
+        "FDE": 2.4448606967926025
+      },
+      "metric_abs_differences": {
+        "loss": 0.0,
+        "accumulated_loss": 8.987262845039368e-08,
+        "ADE": 0.0,
+        "FDE": 2.384185791015625e-07
+      },
+      "one_update_parameters": {
+        "maxabs": 6.705522537231445e-08,
+        "relative_l2": 2.8466413853200906e-09,
+        "failed_tensor_names": [],
+        "tensor_count": 82,
+        "passed": true
+      },
+      "one_update_optimizer_state": {
+        "maxabs": 7.916241884231567e-09,
+        "relative_l2": 1.8476980890848377e-11,
+        "failed_tensor_names": [],
+        "tensor_count": 246,
+        "passed": true,
+        "by_state": {
+          "exp_avg": {
+            "maxabs": 7.916241884231567e-09,
+            "relative_l2": 2.8228217435424094e-07,
+            "failed_tensor_names": [],
+            "tensor_count": 82,
+            "passed": true
+          },
+          "exp_avg_sq": {
+            "maxabs": 2.3283064365386963e-10,
+            "relative_l2": 2.0694710753486898e-08,
+            "failed_tensor_names": [],
+            "tensor_count": 82,
+            "passed": true
+          },
+          "step": {
+            "maxabs": 0.0,
+            "relative_l2": 0.0,
+            "failed_tensor_names": [],
+            "tensor_count": 82,
+            "passed": true
+          }
+        }
+      },
+      "clip_norm_reference": 2.7017955780029297,
+      "clip_norm_candidate": 2.7017955780029297,
+      "masks_match": true,
+      "observed_cuda_devices": [
+        0,
+        1
+      ],
+      "finite": true
+    },
+    {
+      "batch_length": 13,
+      "real_epoch_tail": true,
+      "origin_ids": [
+        230,
+        4160,
+        3669,
+        4825,
+        1677,
+        1529,
+        802,
+        2234,
+        3927,
+        189,
+        3209,
+        5401,
+        347
+      ],
+      "snr_db": [
+        15,
+        20,
+        20,
+        15,
+        5,
+        20,
+        5,
+        10,
+        10,
+        15,
+        15,
+        15,
+        10
+      ],
+      "micro_per_gpu": 8,
+      "physical_forward": 16,
+      "passed": true,
+      "prediction_maxabs": 1.52587890625e-05,
+      "prediction_close": true,
+      "gradient_maxabs": 8.195638656616211e-07,
+      "gradient_relative_l2": 1.4752136129620896e-06,
+      "failed_gradient_names": [],
+      "gradient_tensor_count": 82,
+      "metrics_reference": {
+        "loss": 2.3628122806549072,
+        "accumulated_loss": 2.36281233234331,
+        "ADE": 1.1403820514678955,
+        "FDE": 2.4448604583740234
+      },
+      "metrics_candidate": {
+        "loss": 2.3628125190734863,
+        "accumulated_loss": 2.3628125190734863,
+        "ADE": 1.1403820514678955,
+        "FDE": 2.4448606967926025
+      },
+      "metric_abs_differences": {
+        "loss": 2.384185791015625e-07,
+        "accumulated_loss": 1.8673017621040344e-07,
+        "ADE": 0.0,
+        "FDE": 2.384185791015625e-07
+      },
+      "one_update_parameters": {
+        "maxabs": 1.0617077350616455e-07,
+        "relative_l2": 5.5893209448446615e-09,
+        "failed_tensor_names": [],
+        "tensor_count": 82,
+        "passed": true
+      },
+      "one_update_optimizer_state": {
+        "maxabs": 3.329478204250336e-08,
+        "relative_l2": 5.806658654088104e-11,
+        "failed_tensor_names": [],
+        "tensor_count": 246,
+        "passed": true,
+        "by_state": {
+          "exp_avg": {
+            "maxabs": 3.329478204250336e-08,
+            "relative_l2": 8.87125429090651e-07,
+            "failed_tensor_names": [],
+            "tensor_count": 82,
+            "passed": true
+          },
+          "exp_avg_sq": {
+            "maxabs": 2.3283064365386963e-10,
+            "relative_l2": 2.6491891923914027e-08,
+            "failed_tensor_names": [],
+            "tensor_count": 82,
+            "passed": true
+          },
+          "step": {
+            "maxabs": 0.0,
+            "relative_l2": 0.0,
+            "failed_tensor_names": [],
+            "tensor_count": 82,
+            "passed": true
+          }
+        }
+      },
+      "clip_norm_reference": 2.7017955780029297,
+      "clip_norm_candidate": 2.701794147491455,
+      "masks_match": true,
+      "observed_cuda_devices": [
+        0,
+        1
+      ],
+      "finite": true
+    }
+  ],
+  "optimizer_reset": false,
+  "optimizer_state_source": "saved checkpoint; deep-copied before every comparison",
+  "optimizer_comparison": "Each comparison reloads the checkpoint AdamW state before clip=1 and one update; exp_avg, exp_avg_sq and step included",
+  "comparison": "same trained weights; eval disables dropout; serial one-origin gradient accumulation is reference",
+  "limitation": "Training dropout changes random-number assignment when physical microbatch changes; this checks deterministic numerical equivalence, not identical stochastic training trajectories or final ADE.",
+  "formal_optimizer_steps_executed": 0,
+  "confirmation_opened": false,
+  "test_opened": false
+}

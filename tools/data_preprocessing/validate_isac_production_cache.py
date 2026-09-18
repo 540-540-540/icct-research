@@ -41,7 +41,7 @@ from frontend.controlled_isac.automatum_measurement import (
 )
 
 CONFIG_PATH = ROOT / "configs/automatum_controlled_isac.json"
-CACHE_BASE = ROOT / "data/automatum_t_crossing/isac_v2"
+CACHE_BASE = ROOT / "data/automatum_t_crossing/isac"
 REPORT_DIR = ROOT / "reports/isac_production_cache"
 
 SNR_LEVELS = [-10.0, -5.0, 0.0, 5.0, 10.0]
@@ -323,7 +323,7 @@ def main() -> None:
     from tools.data_preprocessing.build_isac_production_cache import build_split_cache, get_git_commit
     import tempfile
     with tempfile.TemporaryDirectory() as tmp_dir:
-        tmp_cache_base = Path(tmp_dir) / "isac_v2"
+        tmp_cache_base = Path(tmp_dir) / "isac"
         tmp_report_base = Path(tmp_dir) / "reports"
         rebuilt_manifest = build_split_cache(
             "val", config, setup, calibration, get_git_commit(), tmp_cache_base, tmp_report_base
@@ -428,7 +428,7 @@ def main() -> None:
 
     for s in ["train", "val", "test"]:
         r = results[s]
-        md_lines.append(f"| `{s}` | `data/automatum_t_crossing/isac_v2/{s}/sensing_cache.npz` | `{r['cache_sha256']}` |")
+        md_lines.append(f"| `{s}` | `data/automatum_t_crossing/isac/{s}/sensing_cache.npz` | `{r['cache_sha256']}` |")
 
     md_lines.append("")
     report_md_path.write_text("\n".join(md_lines) + "\n", encoding="utf-8")

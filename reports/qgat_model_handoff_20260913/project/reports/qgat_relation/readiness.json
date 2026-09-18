@@ -1,0 +1,19 @@
+{
+  "ready": true,
+  "source_self_check_current": true,
+  "seed": 2026,
+  "cells": [
+    "original_D",
+    "relation_D"
+  ],
+  "epochs": 40,
+  "patience": 41,
+  "train_origins": 5549,
+  "V_select_origins": 400,
+  "steps_per_epoch": 347,
+  "last_batch": 13,
+  "expected_steps_per_cell": 13880,
+  "optimizer_steps_executed": 0,
+  "confirmation_opened": false,
+  "test_opened": false
+}

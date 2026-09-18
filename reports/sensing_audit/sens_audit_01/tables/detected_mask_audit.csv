@@ -1,9 +1,0 @@
-split,snr_db,detected_true,track_exists_true,detected_equals_exists,detected_without_exists,exists_without_detected,target_count_per_origin_min,target_count_per_origin_max
-train,5,701822,701822,True,0,0,0,160
-train,10,701822,701822,True,0,0,0,160
-train,15,701822,701822,True,0,0,0,160
-train,20,701822,701822,True,0,0,0,160
-V_select,5,57958,57958,True,0,0,60,160
-V_select,10,57958,57958,True,0,0,60,160
-V_select,15,57958,57958,True,0,0,60,160
-V_select,20,57958,57958,True,0,0,60,160

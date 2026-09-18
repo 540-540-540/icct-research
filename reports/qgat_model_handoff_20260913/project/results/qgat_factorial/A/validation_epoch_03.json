@@ -1,0 +1,4150 @@
+{
+  "ADE": 0.8292076005091076,
+  "FDE": 1.7468677444121568,
+  "J": 1.702641472715186,
+  "by_snr": {
+    "5": {
+      "ADE": 0.8291430394747294,
+      "FDE": 1.7467007192899473,
+      "J": 1.702493399119703,
+      "ade_sum": 106.13030905276537,
+      "fde_sum": 223.57769206911325,
+      "ade_scenes": 128,
+      "fde_scenes": 128,
+      "total_scenes": 128,
+      "graph_evaluation_cache": null
+    },
+    "10": {
+      "ADE": 0.829311562483781,
+      "FDE": 1.7469850442721508,
+      "J": 1.7028040846198564,
+      "ade_sum": 106.15187999792397,
+      "fde_sum": 223.6140856668353,
+      "ade_scenes": 128,
+      "fde_scenes": 128,
+      "total_scenes": 128,
+      "graph_evaluation_cache": null
+    },
+    "15": {
+      "ADE": 0.8292454158363398,
+      "FDE": 1.747017985675484,
+      "J": 1.7027544086740818,
+      "ade_sum": 106.1434132270515,
+      "fde_sum": 223.61830216646194,
+      "ade_scenes": 128,
+      "fde_scenes": 128,
+      "total_scenes": 128,
+      "graph_evaluation_cache": null
+    },
+    "20": {
+      "ADE": 0.82913038424158,
+      "FDE": 1.746767228411045,
+      "J": 1.7025139984471025,
+      "ade_sum": 106.12868918292224,
+      "fde_sum": 223.58620523661375,
+      "ade_scenes": 128,
+      "fde_scenes": 128,
+      "total_scenes": 128,
+      "graph_evaluation_cache": null
+    }
+  },
+  "per_scene": [
+    {
+      "origin": 0,
+      "snr_db": 5,
+      "ADE": 0.11323338747024536,
+      "FDE": 0.4410790503025055,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 1,
+      "snr_db": 5,
+      "ADE": 2.9411730766296387,
+      "FDE": 7.042693138122559,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 2,
+      "snr_db": 5,
+      "ADE": 1.2139209508895874,
+      "FDE": 2.978935956954956,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 3,
+      "snr_db": 5,
+      "ADE": 2.0537147521972656,
+      "FDE": 4.179304599761963,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 4,
+      "snr_db": 5,
+      "ADE": 2.761444568634033,
+      "FDE": 4.977871417999268,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 5,
+      "snr_db": 5,
+      "ADE": 0.02747001312673092,
+      "FDE": 0.04928336292505264,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 6,
+      "snr_db": 5,
+      "ADE": 0.02836158126592636,
+      "FDE": 0.05171947181224823,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 7,
+      "snr_db": 5,
+      "ADE": 0.09498367458581924,
+      "FDE": 0.20891419053077698,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 8,
+      "snr_db": 5,
+      "ADE": 0.9614421725273132,
+      "FDE": 2.743382453918457,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 9,
+      "snr_db": 5,
+      "ADE": 1.750469446182251,
+      "FDE": 3.727966785430908,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 10,
+      "snr_db": 5,
+      "ADE": 1.04188871383667,
+      "FDE": 2.3716790676116943,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 11,
+      "snr_db": 5,
+      "ADE": 1.8541816473007202,
+      "FDE": 3.49033522605896,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 12,
+      "snr_db": 5,
+      "ADE": 1.4095277786254883,
+      "FDE": 2.5910792350769043,
+      "ade_targets": 8,
+      "fde_targets": 7
+    },
+    {
+      "origin": 13,
+      "snr_db": 5,
+      "ADE": 0.864648163318634,
+      "FDE": 1.6998156309127808,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 14,
+      "snr_db": 5,
+      "ADE": 1.796242117881775,
+      "FDE": 4.177427768707275,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 15,
+      "snr_db": 5,
+      "ADE": 2.143528461456299,
+      "FDE": 4.500413417816162,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 16,
+      "snr_db": 5,
+      "ADE": 1.151031255722046,
+      "FDE": 2.5384020805358887,
+      "ade_targets": 8,
+      "fde_targets": 6
+    },
+    {
+      "origin": 17,
+      "snr_db": 5,
+      "ADE": 1.733517050743103,
+      "FDE": 3.6317615509033203,
+      "ade_targets": 5,
+      "fde_targets": 5
+    },
+    {
+      "origin": 18,
+      "snr_db": 5,
+      "ADE": 1.170305609703064,
+      "FDE": 1.9395790100097656,
+      "ade_targets": 5,
+      "fde_targets": 5
+    },
+    {
+      "origin": 19,
+      "snr_db": 5,
+      "ADE": 1.1018126010894775,
+      "FDE": 2.3924546241760254,
+      "ade_targets": 5,
+      "fde_targets": 5
+    },
+    {
+      "origin": 20,
+      "snr_db": 5,
+      "ADE": 1.6335455179214478,
+      "FDE": 3.876619338989258,
+      "ade_targets": 5,
+      "fde_targets": 5
+    },
+    {
+      "origin": 21,
+      "snr_db": 5,
+      "ADE": 0.792949914932251,
+      "FDE": 1.9777259826660156,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 22,
+      "snr_db": 5,
+      "ADE": 0.9522573947906494,
+      "FDE": 1.8842183351516724,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 23,
+      "snr_db": 5,
+      "ADE": 0.4052561819553375,
+      "FDE": 0.7616258859634399,
+      "ade_targets": 8,
+      "fde_targets": 7
+    },
+    {
+      "origin": 24,
+      "snr_db": 5,
+      "ADE": 0.46669960021972656,
+      "FDE": 0.9840574264526367,
+      "ade_targets": 7,
+      "fde_targets": 6
+    },
+    {
+      "origin": 25,
+      "snr_db": 5,
+      "ADE": 0.38835301995277405,
+      "FDE": 0.9561306834220886,
+      "ade_targets": 6,
+      "fde_targets": 6
+    },
+    {
+      "origin": 26,
+      "snr_db": 5,
+      "ADE": 1.0305918455123901,
+      "FDE": 2.2571749687194824,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 27,
+      "snr_db": 5,
+      "ADE": 0.8828575015068054,
+      "FDE": 1.7991770505905151,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 28,
+      "snr_db": 5,
+      "ADE": 0.9526588320732117,
+      "FDE": 1.7758417129516602,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 29,
+      "snr_db": 5,
+      "ADE": 0.7794586420059204,
+      "FDE": 1.5121917724609375,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 30,
+      "snr_db": 5,
+      "ADE": 1.2937004566192627,
+      "FDE": 2.5317816734313965,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 31,
+      "snr_db": 5,
+      "ADE": 0.18190394341945648,
+      "FDE": 0.4819554090499878,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 32,
+      "snr_db": 5,
+      "ADE": 0.7345070838928223,
+      "FDE": 1.6172916889190674,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 33,
+      "snr_db": 5,
+      "ADE": 0.5477352142333984,
+      "FDE": 1.0825403928756714,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 34,
+      "snr_db": 5,
+      "ADE": 1.1184431314468384,
+      "FDE": 2.2397522926330566,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 35,
+      "snr_db": 5,
+      "ADE": 0.9089065790176392,
+      "FDE": 1.6169873476028442,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 36,
+      "snr_db": 5,
+      "ADE": 0.7714053988456726,
+      "FDE": 1.7007242441177368,
+      "ade_targets": 6,
+      "fde_targets": 6
+    },
+    {
+      "origin": 37,
+      "snr_db": 5,
+      "ADE": 0.8145690560340881,
+      "FDE": 2.0794575214385986,
+      "ade_targets": 6,
+      "fde_targets": 6
+    },
+    {
+      "origin": 38,
+      "snr_db": 5,
+      "ADE": 0.496837854385376,
+      "FDE": 1.1240774393081665,
+      "ade_targets": 6,
+      "fde_targets": 6
+    },
+    {
+      "origin": 39,
+      "snr_db": 5,
+      "ADE": 0.03973963484168053,
+      "FDE": 0.06189042329788208,
+      "ade_targets": 6,
+      "fde_targets": 6
+    },
+    {
+      "origin": 40,
+      "snr_db": 5,
+      "ADE": 0.045464932918548584,
+      "FDE": 0.07215429097414017,
+      "ade_targets": 6,
+      "fde_targets": 6
+    },
+    {
+      "origin": 41,
+      "snr_db": 5,
+      "ADE": 0.9121507406234741,
+      "FDE": 1.912773847579956,
+      "ade_targets": 8,
+      "fde_targets": 7
+    },
+    {
+      "origin": 42,
+      "snr_db": 5,
+      "ADE": 1.5366261005401611,
+      "FDE": 3.469200611114502,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 43,
+      "snr_db": 5,
+      "ADE": 1.8003960847854614,
+      "FDE": 3.6278274059295654,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 44,
+      "snr_db": 5,
+      "ADE": 0.5195993185043335,
+      "FDE": 1.3217031955718994,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 45,
+      "snr_db": 5,
+      "ADE": 0.22225303947925568,
+      "FDE": 0.5906252264976501,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 46,
+      "snr_db": 5,
+      "ADE": 0.5665183663368225,
+      "FDE": 1.2498729228973389,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 47,
+      "snr_db": 5,
+      "ADE": 0.889397144317627,
+      "FDE": 2.281752109527588,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 48,
+      "snr_db": 5,
+      "ADE": 0.38615134358406067,
+      "FDE": 0.9005829691886902,
+      "ade_targets": 7,
+      "fde_targets": 6
+    },
+    {
+      "origin": 49,
+      "snr_db": 5,
+      "ADE": 0.2952156662940979,
+      "FDE": 0.053017210215330124,
+      "ade_targets": 6,
+      "fde_targets": 5
+    },
+    {
+      "origin": 50,
+      "snr_db": 5,
+      "ADE": 0.03223491832613945,
+      "FDE": 0.04990651458501816,
+      "ade_targets": 5,
+      "fde_targets": 5
+    },
+    {
+      "origin": 51,
+      "snr_db": 5,
+      "ADE": 0.04020194336771965,
+      "FDE": 0.05403885245323181,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 52,
+      "snr_db": 5,
+      "ADE": 0.04312456399202347,
+      "FDE": 0.06279813498258591,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 53,
+      "snr_db": 5,
+      "ADE": 0.03909463435411453,
+      "FDE": 0.05017700791358948,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 54,
+      "snr_db": 5,
+      "ADE": 0.036869652569293976,
+      "FDE": 0.04511098191142082,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 55,
+      "snr_db": 5,
+      "ADE": 0.04116175323724747,
+      "FDE": 0.054636240005493164,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 56,
+      "snr_db": 5,
+      "ADE": 0.4742913246154785,
+      "FDE": 0.9311016798019409,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 57,
+      "snr_db": 5,
+      "ADE": 0.21155652403831482,
+      "FDE": 0.49511846899986267,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 58,
+      "snr_db": 5,
+      "ADE": 0.0280744731426239,
+      "FDE": 0.04723697155714035,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 59,
+      "snr_db": 5,
+      "ADE": 0.030179528519511223,
+      "FDE": 0.0516047477722168,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 60,
+      "snr_db": 5,
+      "ADE": 0.03054654970765114,
+      "FDE": 0.05285598710179329,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 61,
+      "snr_db": 5,
+      "ADE": 0.03842848539352417,
+      "FDE": 0.04822996258735657,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 62,
+      "snr_db": 5,
+      "ADE": 0.043464548885822296,
+      "FDE": 0.05470074340701103,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 63,
+      "snr_db": 5,
+      "ADE": 0.043029312044382095,
+      "FDE": 0.06073300540447235,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 64,
+      "snr_db": 5,
+      "ADE": 0.04335439205169678,
+      "FDE": 0.06016342714428902,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 65,
+      "snr_db": 5,
+      "ADE": 0.042057208716869354,
+      "FDE": 0.05173662304878235,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 66,
+      "snr_db": 5,
+      "ADE": 0.1371825933456421,
+      "FDE": 0.5104827880859375,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 67,
+      "snr_db": 5,
+      "ADE": 0.42275744676589966,
+      "FDE": 0.05457037687301636,
+      "ade_targets": 8,
+      "fde_targets": 7
+    },
+    {
+      "origin": 68,
+      "snr_db": 5,
+      "ADE": 0.03073950670659542,
+      "FDE": 0.051945824176073074,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 69,
+      "snr_db": 5,
+      "ADE": 0.038672614842653275,
+      "FDE": 0.07325702160596848,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 70,
+      "snr_db": 5,
+      "ADE": 0.028050975874066353,
+      "FDE": 0.04774874076247215,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 71,
+      "snr_db": 5,
+      "ADE": 0.02822287380695343,
+      "FDE": 0.05010358244180679,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 72,
+      "snr_db": 5,
+      "ADE": 0.027428772300481796,
+      "FDE": 0.0445474237203598,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 73,
+      "snr_db": 5,
+      "ADE": 0.028304480016231537,
+      "FDE": 0.046459976583719254,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 74,
+      "snr_db": 5,
+      "ADE": 0.037106581032276154,
+      "FDE": 0.05604331195354462,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 75,
+      "snr_db": 5,
+      "ADE": 0.02855801209807396,
+      "FDE": 0.044287826865911484,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 76,
+      "snr_db": 5,
+      "ADE": 0.028950467705726624,
+      "FDE": 0.04637237638235092,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 77,
+      "snr_db": 5,
+      "ADE": 1.9258450269699097,
+      "FDE": 4.550755500793457,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 78,
+      "snr_db": 5,
+      "ADE": 2.9524333477020264,
+      "FDE": 6.300967693328857,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 79,
+      "snr_db": 5,
+      "ADE": 2.294140100479126,
+      "FDE": 4.66928768157959,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 80,
+      "snr_db": 5,
+      "ADE": 2.2397427558898926,
+      "FDE": 4.063368797302246,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 81,
+      "snr_db": 5,
+      "ADE": 2.5884437561035156,
+      "FDE": 5.0602006912231445,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 82,
+      "snr_db": 5,
+      "ADE": 1.1097168922424316,
+      "FDE": 2.4844188690185547,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 83,
+      "snr_db": 5,
+      "ADE": 1.6507658958435059,
+      "FDE": 3.9774184226989746,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 84,
+      "snr_db": 5,
+      "ADE": 1.0106098651885986,
+      "FDE": 2.587035894393921,
+      "ade_targets": 8,
+      "fde_targets": 7
+    },
+    {
+      "origin": 85,
+      "snr_db": 5,
+      "ADE": 1.2103240489959717,
+      "FDE": 2.4225895404815674,
+      "ade_targets": 7,
+      "fde_targets": 6
+    },
+    {
+      "origin": 86,
+      "snr_db": 5,
+      "ADE": 0.9566521644592285,
+      "FDE": 1.8872476816177368,
+      "ade_targets": 6,
+      "fde_targets": 6
+    },
+    {
+      "origin": 87,
+      "snr_db": 5,
+      "ADE": 1.6048635244369507,
+      "FDE": 3.129004716873169,
+      "ade_targets": 7,
+      "fde_targets": 5
+    },
+    {
+      "origin": 88,
+      "snr_db": 5,
+      "ADE": 2.1663544178009033,
+      "FDE": 4.391211032867432,
+      "ade_targets": 3,
+      "fde_targets": 3
+    },
+    {
+      "origin": 89,
+      "snr_db": 5,
+      "ADE": 0.6762357354164124,
+      "FDE": 1.7627264261245728,
+      "ade_targets": 3,
+      "fde_targets": 3
+    },
+    {
+      "origin": 90,
+      "snr_db": 5,
+      "ADE": 0.8371670842170715,
+      "FDE": 1.4823131561279297,
+      "ade_targets": 3,
+      "fde_targets": 3
+    },
+    {
+      "origin": 91,
+      "snr_db": 5,
+      "ADE": 0.9001591205596924,
+      "FDE": 1.7464097738265991,
+      "ade_targets": 3,
+      "fde_targets": 3
+    },
+    {
+      "origin": 92,
+      "snr_db": 5,
+      "ADE": 1.5586752891540527,
+      "FDE": 3.1208736896514893,
+      "ade_targets": 8,
+      "fde_targets": 7
+    },
+    {
+      "origin": 93,
+      "snr_db": 5,
+      "ADE": 3.046050548553467,
+      "FDE": 6.498971462249756,
+      "ade_targets": 5,
+      "fde_targets": 5
+    },
+    {
+      "origin": 94,
+      "snr_db": 5,
+      "ADE": 1.3028500080108643,
+      "FDE": 2.501154899597168,
+      "ade_targets": 4,
+      "fde_targets": 4
+    },
+    {
+      "origin": 95,
+      "snr_db": 5,
+      "ADE": 0.9864133596420288,
+      "FDE": 1.9519968032836914,
+      "ade_targets": 4,
+      "fde_targets": 4
+    },
+    {
+      "origin": 96,
+      "snr_db": 5,
+      "ADE": 1.4969210624694824,
+      "FDE": 3.382333517074585,
+      "ade_targets": 4,
+      "fde_targets": 4
+    },
+    {
+      "origin": 97,
+      "snr_db": 5,
+      "ADE": 0.8594808578491211,
+      "FDE": 1.4683799743652344,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 98,
+      "snr_db": 5,
+      "ADE": 0.8347601294517517,
+      "FDE": 1.6424295902252197,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 99,
+      "snr_db": 5,
+      "ADE": 0.48435500264167786,
+      "FDE": 1.2415274381637573,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 100,
+      "snr_db": 5,
+      "ADE": 0.3135353624820709,
+      "FDE": 0.5893258452415466,
+      "ade_targets": 7,
+      "fde_targets": 6
+    },
+    {
+      "origin": 101,
+      "snr_db": 5,
+      "ADE": 0.5626457333564758,
+      "FDE": 1.091001033782959,
+      "ade_targets": 4,
+      "fde_targets": 4
+    },
+    {
+      "origin": 102,
+      "snr_db": 5,
+      "ADE": 1.8081810474395752,
+      "FDE": 4.013238430023193,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 103,
+      "snr_db": 5,
+      "ADE": 2.2634923458099365,
+      "FDE": 4.609559059143066,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 104,
+      "snr_db": 5,
+      "ADE": 0.46177372336387634,
+      "FDE": 0.8045720458030701,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 105,
+      "snr_db": 5,
+      "ADE": 1.1437729597091675,
+      "FDE": 2.118032932281494,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 106,
+      "snr_db": 5,
+      "ADE": 1.2597509622573853,
+      "FDE": 2.955888032913208,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 107,
+      "snr_db": 5,
+      "ADE": 0.794269323348999,
+      "FDE": 1.5133064985275269,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 108,
+      "snr_db": 5,
+      "ADE": 1.5984266996383667,
+      "FDE": 3.5468335151672363,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 109,
+      "snr_db": 5,
+      "ADE": 0.873432457447052,
+      "FDE": 1.4937357902526855,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 110,
+      "snr_db": 5,
+      "ADE": 0.6530705690383911,
+      "FDE": 1.3400630950927734,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 111,
+      "snr_db": 5,
+      "ADE": 1.0572690963745117,
+      "FDE": 2.4191794395446777,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 112,
+      "snr_db": 5,
+      "ADE": 1.7159030437469482,
+      "FDE": 4.272952079772949,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 113,
+      "snr_db": 5,
+      "ADE": 0.7758635878562927,
+      "FDE": 1.8707270622253418,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 114,
+      "snr_db": 5,
+      "ADE": 0.08815973252058029,
+      "FDE": 0.18197138607501984,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 115,
+      "snr_db": 5,
+      "ADE": 0.04186711087822914,
+      "FDE": 0.057853084057569504,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 116,
+      "snr_db": 5,
+      "ADE": 1.0268223285675049,
+      "FDE": 2.382690906524658,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 117,
+      "snr_db": 5,
+      "ADE": 0.4143615961074829,
+      "FDE": 0.9363363981246948,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 118,
+      "snr_db": 5,
+      "ADE": 0.14168883860111237,
+      "FDE": 0.40025794506073,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 119,
+      "snr_db": 5,
+      "ADE": 0.34714269638061523,
+      "FDE": 0.8578577041625977,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 120,
+      "snr_db": 5,
+      "ADE": 0.1829979121685028,
+      "FDE": 0.3926336169242859,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 121,
+      "snr_db": 5,
+      "ADE": 0.04170328378677368,
+      "FDE": 0.0721389651298523,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 122,
+      "snr_db": 5,
+      "ADE": 0.38906508684158325,
+      "FDE": 0.7560445070266724,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 123,
+      "snr_db": 5,
+      "ADE": 0.938355028629303,
+      "FDE": 1.9860162734985352,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 124,
+      "snr_db": 5,
+      "ADE": 0.6658191084861755,
+      "FDE": 1.3398444652557373,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 125,
+      "snr_db": 5,
+      "ADE": 0.37613052129745483,
+      "FDE": 0.7610394358634949,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 126,
+      "snr_db": 5,
+      "ADE": 0.11704760044813156,
+      "FDE": 0.3535384237766266,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 127,
+      "snr_db": 5,
+      "ADE": 0.7521106004714966,
+      "FDE": 1.407632827758789,
+      "ade_targets": 7,
+      "fde_targets": 6
+    },
+    {
+      "origin": 0,
+      "snr_db": 10,
+      "ADE": 0.1132320836186409,
+      "FDE": 0.4410708546638489,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 1,
+      "snr_db": 10,
+      "ADE": 2.943129301071167,
+      "FDE": 7.046929359436035,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 2,
+      "snr_db": 10,
+      "ADE": 1.2139183282852173,
+      "FDE": 2.9789295196533203,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 3,
+      "snr_db": 10,
+      "ADE": 2.0537164211273193,
+      "FDE": 4.179309368133545,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 4,
+      "snr_db": 10,
+      "ADE": 2.7614431381225586,
+      "FDE": 4.977879524230957,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 5,
+      "snr_db": 10,
+      "ADE": 0.028748365119099617,
+      "FDE": 0.05131016671657562,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 6,
+      "snr_db": 10,
+      "ADE": 0.02836116962134838,
+      "FDE": 0.05171872675418854,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 7,
+      "snr_db": 10,
+      "ADE": 0.09498346596956253,
+      "FDE": 0.20891442894935608,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 8,
+      "snr_db": 10,
+      "ADE": 0.9622365832328796,
+      "FDE": 2.7436680793762207,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 9,
+      "snr_db": 10,
+      "ADE": 1.7504689693450928,
+      "FDE": 3.72796368598938,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 10,
+      "snr_db": 10,
+      "ADE": 1.0452282428741455,
+      "FDE": 2.3782899379730225,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 11,
+      "snr_db": 10,
+      "ADE": 1.85417902469635,
+      "FDE": 3.4903154373168945,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 12,
+      "snr_db": 10,
+      "ADE": 1.4095301628112793,
+      "FDE": 2.5910892486572266,
+      "ade_targets": 8,
+      "fde_targets": 7
+    },
+    {
+      "origin": 13,
+      "snr_db": 10,
+      "ADE": 0.8612432479858398,
+      "FDE": 1.6950340270996094,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 14,
+      "snr_db": 10,
+      "ADE": 1.7962430715560913,
+      "FDE": 4.177459239959717,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 15,
+      "snr_db": 10,
+      "ADE": 2.1435282230377197,
+      "FDE": 4.500400543212891,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 16,
+      "snr_db": 10,
+      "ADE": 1.1537424325942993,
+      "FDE": 2.54209303855896,
+      "ade_targets": 8,
+      "fde_targets": 6
+    },
+    {
+      "origin": 17,
+      "snr_db": 10,
+      "ADE": 1.7343847751617432,
+      "FDE": 3.632000684738159,
+      "ade_targets": 5,
+      "fde_targets": 5
+    },
+    {
+      "origin": 18,
+      "snr_db": 10,
+      "ADE": 1.170301914215088,
+      "FDE": 1.9395568370819092,
+      "ade_targets": 5,
+      "fde_targets": 5
+    },
+    {
+      "origin": 19,
+      "snr_db": 10,
+      "ADE": 1.1101466417312622,
+      "FDE": 2.4034111499786377,
+      "ade_targets": 5,
+      "fde_targets": 5
+    },
+    {
+      "origin": 20,
+      "snr_db": 10,
+      "ADE": 1.6335484981536865,
+      "FDE": 3.8766331672668457,
+      "ade_targets": 5,
+      "fde_targets": 5
+    },
+    {
+      "origin": 21,
+      "snr_db": 10,
+      "ADE": 0.7929494976997375,
+      "FDE": 1.9777181148529053,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 22,
+      "snr_db": 10,
+      "ADE": 0.9522609114646912,
+      "FDE": 1.8842353820800781,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 23,
+      "snr_db": 10,
+      "ADE": 0.4036308526992798,
+      "FDE": 0.7590834498405457,
+      "ade_targets": 8,
+      "fde_targets": 7
+    },
+    {
+      "origin": 24,
+      "snr_db": 10,
+      "ADE": 0.4666990637779236,
+      "FDE": 0.984057605266571,
+      "ade_targets": 7,
+      "fde_targets": 6
+    },
+    {
+      "origin": 25,
+      "snr_db": 10,
+      "ADE": 0.38834938406944275,
+      "FDE": 0.9561070799827576,
+      "ade_targets": 6,
+      "fde_targets": 6
+    },
+    {
+      "origin": 26,
+      "snr_db": 10,
+      "ADE": 1.0299556255340576,
+      "FDE": 2.258826971054077,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 27,
+      "snr_db": 10,
+      "ADE": 0.8800740838050842,
+      "FDE": 1.7969239950180054,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 28,
+      "snr_db": 10,
+      "ADE": 0.9503895044326782,
+      "FDE": 1.7728863954544067,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 29,
+      "snr_db": 10,
+      "ADE": 0.7794597744941711,
+      "FDE": 1.512229084968567,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 30,
+      "snr_db": 10,
+      "ADE": 1.2936991453170776,
+      "FDE": 2.5317819118499756,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 31,
+      "snr_db": 10,
+      "ADE": 0.18190668523311615,
+      "FDE": 0.48197102546691895,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 32,
+      "snr_db": 10,
+      "ADE": 0.7345050573348999,
+      "FDE": 1.6172840595245361,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 33,
+      "snr_db": 10,
+      "ADE": 0.5477356910705566,
+      "FDE": 1.082546591758728,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 34,
+      "snr_db": 10,
+      "ADE": 1.1193888187408447,
+      "FDE": 2.239835262298584,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 35,
+      "snr_db": 10,
+      "ADE": 0.9105743765830994,
+      "FDE": 1.6203747987747192,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 36,
+      "snr_db": 10,
+      "ADE": 0.7714031338691711,
+      "FDE": 1.7007097005844116,
+      "ade_targets": 6,
+      "fde_targets": 6
+    },
+    {
+      "origin": 37,
+      "snr_db": 10,
+      "ADE": 0.8164100050926208,
+      "FDE": 2.082944631576538,
+      "ade_targets": 6,
+      "fde_targets": 6
+    },
+    {
+      "origin": 38,
+      "snr_db": 10,
+      "ADE": 0.4968377351760864,
+      "FDE": 1.1240774393081665,
+      "ade_targets": 6,
+      "fde_targets": 6
+    },
+    {
+      "origin": 39,
+      "snr_db": 10,
+      "ADE": 0.038056764751672745,
+      "FDE": 0.05903450772166252,
+      "ade_targets": 6,
+      "fde_targets": 6
+    },
+    {
+      "origin": 40,
+      "snr_db": 10,
+      "ADE": 0.04659488424658775,
+      "FDE": 0.07675647735595703,
+      "ade_targets": 6,
+      "fde_targets": 6
+    },
+    {
+      "origin": 41,
+      "snr_db": 10,
+      "ADE": 0.9121512174606323,
+      "FDE": 1.9127988815307617,
+      "ade_targets": 8,
+      "fde_targets": 7
+    },
+    {
+      "origin": 42,
+      "snr_db": 10,
+      "ADE": 1.5366288423538208,
+      "FDE": 3.469207286834717,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 43,
+      "snr_db": 10,
+      "ADE": 1.801195740699768,
+      "FDE": 3.629973888397217,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 44,
+      "snr_db": 10,
+      "ADE": 0.5195990800857544,
+      "FDE": 1.3217023611068726,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 45,
+      "snr_db": 10,
+      "ADE": 0.22225166857242584,
+      "FDE": 0.5906223058700562,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 46,
+      "snr_db": 10,
+      "ADE": 0.566510796546936,
+      "FDE": 1.2498414516448975,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 47,
+      "snr_db": 10,
+      "ADE": 0.8893964886665344,
+      "FDE": 2.2817463874816895,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 48,
+      "snr_db": 10,
+      "ADE": 0.386151522397995,
+      "FDE": 0.9005827903747559,
+      "ade_targets": 7,
+      "fde_targets": 6
+    },
+    {
+      "origin": 49,
+      "snr_db": 10,
+      "ADE": 0.2952154278755188,
+      "FDE": 0.05301796272397041,
+      "ade_targets": 6,
+      "fde_targets": 5
+    },
+    {
+      "origin": 50,
+      "snr_db": 10,
+      "ADE": 0.03223464637994766,
+      "FDE": 0.04990795999765396,
+      "ade_targets": 5,
+      "fde_targets": 5
+    },
+    {
+      "origin": 51,
+      "snr_db": 10,
+      "ADE": 0.04020090401172638,
+      "FDE": 0.05404181778430939,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 52,
+      "snr_db": 10,
+      "ADE": 0.043123986572027206,
+      "FDE": 0.06279785186052322,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 53,
+      "snr_db": 10,
+      "ADE": 0.03909434750676155,
+      "FDE": 0.0501771979033947,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 54,
+      "snr_db": 10,
+      "ADE": 0.038638100028038025,
+      "FDE": 0.04816557466983795,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 55,
+      "snr_db": 10,
+      "ADE": 0.042484622448682785,
+      "FDE": 0.056138329207897186,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 56,
+      "snr_db": 10,
+      "ADE": 0.47429558634757996,
+      "FDE": 0.9311239719390869,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 57,
+      "snr_db": 10,
+      "ADE": 0.21145983040332794,
+      "FDE": 0.493781179189682,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 58,
+      "snr_db": 10,
+      "ADE": 0.029615167528390884,
+      "FDE": 0.05062766745686531,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 59,
+      "snr_db": 10,
+      "ADE": 0.0301816463470459,
+      "FDE": 0.05162062495946884,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 60,
+      "snr_db": 10,
+      "ADE": 0.030546830967068672,
+      "FDE": 0.05285600572824478,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 61,
+      "snr_db": 10,
+      "ADE": 0.041065461933612823,
+      "FDE": 0.051655642688274384,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 62,
+      "snr_db": 10,
+      "ADE": 0.04227776452898979,
+      "FDE": 0.053447969257831573,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 63,
+      "snr_db": 10,
+      "ADE": 0.04302901029586792,
+      "FDE": 0.06073939800262451,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 64,
+      "snr_db": 10,
+      "ADE": 0.04335295781493187,
+      "FDE": 0.060158174484968185,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 65,
+      "snr_db": 10,
+      "ADE": 0.04367629438638687,
+      "FDE": 0.05452241376042366,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 66,
+      "snr_db": 10,
+      "ADE": 0.13718204200267792,
+      "FDE": 0.5104816555976868,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 67,
+      "snr_db": 10,
+      "ADE": 0.4227519631385803,
+      "FDE": 0.05453226715326309,
+      "ade_targets": 8,
+      "fde_targets": 7
+    },
+    {
+      "origin": 68,
+      "snr_db": 10,
+      "ADE": 0.029812410473823547,
+      "FDE": 0.050711341202259064,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 69,
+      "snr_db": 10,
+      "ADE": 0.03866377845406532,
+      "FDE": 0.0732036828994751,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 70,
+      "snr_db": 10,
+      "ADE": 0.028051069006323814,
+      "FDE": 0.04774624854326248,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 71,
+      "snr_db": 10,
+      "ADE": 0.02822304703295231,
+      "FDE": 0.05010358616709709,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 72,
+      "snr_db": 10,
+      "ADE": 0.02770300768315792,
+      "FDE": 0.04501986876130104,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 73,
+      "snr_db": 10,
+      "ADE": 0.028304507955908775,
+      "FDE": 0.046459831297397614,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 74,
+      "snr_db": 10,
+      "ADE": 0.037106916308403015,
+      "FDE": 0.05604255199432373,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 75,
+      "snr_db": 10,
+      "ADE": 0.028558172285556793,
+      "FDE": 0.044294923543930054,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 76,
+      "snr_db": 10,
+      "ADE": 0.028950829058885574,
+      "FDE": 0.04637227579951286,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 77,
+      "snr_db": 10,
+      "ADE": 1.9258455038070679,
+      "FDE": 4.550751686096191,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 78,
+      "snr_db": 10,
+      "ADE": 2.9524941444396973,
+      "FDE": 6.3022990226745605,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 79,
+      "snr_db": 10,
+      "ADE": 2.2921457290649414,
+      "FDE": 4.667463779449463,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 80,
+      "snr_db": 10,
+      "ADE": 2.2399535179138184,
+      "FDE": 4.06276273727417,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 81,
+      "snr_db": 10,
+      "ADE": 2.5855703353881836,
+      "FDE": 5.054946422576904,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 82,
+      "snr_db": 10,
+      "ADE": 1.1092026233673096,
+      "FDE": 2.4837636947631836,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 83,
+      "snr_db": 10,
+      "ADE": 1.6478323936462402,
+      "FDE": 3.9720094203948975,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 84,
+      "snr_db": 10,
+      "ADE": 1.0106072425842285,
+      "FDE": 2.5870230197906494,
+      "ade_targets": 8,
+      "fde_targets": 7
+    },
+    {
+      "origin": 85,
+      "snr_db": 10,
+      "ADE": 1.2065980434417725,
+      "FDE": 2.4143226146698,
+      "ade_targets": 7,
+      "fde_targets": 6
+    },
+    {
+      "origin": 86,
+      "snr_db": 10,
+      "ADE": 0.9596239924430847,
+      "FDE": 1.8951853513717651,
+      "ade_targets": 6,
+      "fde_targets": 6
+    },
+    {
+      "origin": 87,
+      "snr_db": 10,
+      "ADE": 1.6054248809814453,
+      "FDE": 3.1289615631103516,
+      "ade_targets": 7,
+      "fde_targets": 5
+    },
+    {
+      "origin": 88,
+      "snr_db": 10,
+      "ADE": 2.1663525104522705,
+      "FDE": 4.391191482543945,
+      "ade_targets": 3,
+      "fde_targets": 3
+    },
+    {
+      "origin": 89,
+      "snr_db": 10,
+      "ADE": 0.6762357354164124,
+      "FDE": 1.7627263069152832,
+      "ade_targets": 3,
+      "fde_targets": 3
+    },
+    {
+      "origin": 90,
+      "snr_db": 10,
+      "ADE": 0.8371643424034119,
+      "FDE": 1.4822998046875,
+      "ade_targets": 3,
+      "fde_targets": 3
+    },
+    {
+      "origin": 91,
+      "snr_db": 10,
+      "ADE": 0.9001589417457581,
+      "FDE": 1.7464113235473633,
+      "ade_targets": 3,
+      "fde_targets": 3
+    },
+    {
+      "origin": 92,
+      "snr_db": 10,
+      "ADE": 1.5581578016281128,
+      "FDE": 3.120255708694458,
+      "ade_targets": 8,
+      "fde_targets": 7
+    },
+    {
+      "origin": 93,
+      "snr_db": 10,
+      "ADE": 3.0460522174835205,
+      "FDE": 6.4989776611328125,
+      "ade_targets": 5,
+      "fde_targets": 5
+    },
+    {
+      "origin": 94,
+      "snr_db": 10,
+      "ADE": 1.3045905828475952,
+      "FDE": 2.4985811710357666,
+      "ade_targets": 4,
+      "fde_targets": 4
+    },
+    {
+      "origin": 95,
+      "snr_db": 10,
+      "ADE": 0.9864089488983154,
+      "FDE": 1.9520046710968018,
+      "ade_targets": 4,
+      "fde_targets": 4
+    },
+    {
+      "origin": 96,
+      "snr_db": 10,
+      "ADE": 1.4969193935394287,
+      "FDE": 3.382330894470215,
+      "ade_targets": 4,
+      "fde_targets": 4
+    },
+    {
+      "origin": 97,
+      "snr_db": 10,
+      "ADE": 0.8628638386726379,
+      "FDE": 1.473587989807129,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 98,
+      "snr_db": 10,
+      "ADE": 0.8336877822875977,
+      "FDE": 1.6413875818252563,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 99,
+      "snr_db": 10,
+      "ADE": 0.4843539595603943,
+      "FDE": 1.241532325744629,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 100,
+      "snr_db": 10,
+      "ADE": 0.31404536962509155,
+      "FDE": 0.5892453193664551,
+      "ade_targets": 7,
+      "fde_targets": 6
+    },
+    {
+      "origin": 101,
+      "snr_db": 10,
+      "ADE": 0.5626373291015625,
+      "FDE": 1.090959906578064,
+      "ade_targets": 4,
+      "fde_targets": 4
+    },
+    {
+      "origin": 102,
+      "snr_db": 10,
+      "ADE": 1.8113919496536255,
+      "FDE": 4.020251750946045,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 103,
+      "snr_db": 10,
+      "ADE": 2.263491153717041,
+      "FDE": 4.60953950881958,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 104,
+      "snr_db": 10,
+      "ADE": 0.4617767333984375,
+      "FDE": 0.8045941591262817,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 105,
+      "snr_db": 10,
+      "ADE": 1.1425808668136597,
+      "FDE": 2.116598606109619,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 106,
+      "snr_db": 10,
+      "ADE": 1.2597512006759644,
+      "FDE": 2.955893039703369,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 107,
+      "snr_db": 10,
+      "ADE": 0.79427170753479,
+      "FDE": 1.5133336782455444,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 108,
+      "snr_db": 10,
+      "ADE": 1.5984231233596802,
+      "FDE": 3.546821117401123,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 109,
+      "snr_db": 10,
+      "ADE": 0.8795558214187622,
+      "FDE": 1.5023114681243896,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 110,
+      "snr_db": 10,
+      "ADE": 0.6530739068984985,
+      "FDE": 1.3400806188583374,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 111,
+      "snr_db": 10,
+      "ADE": 1.0561285018920898,
+      "FDE": 2.4211723804473877,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 112,
+      "snr_db": 10,
+      "ADE": 1.7215313911437988,
+      "FDE": 4.281826496124268,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 113,
+      "snr_db": 10,
+      "ADE": 0.7720586061477661,
+      "FDE": 1.8652191162109375,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 114,
+      "snr_db": 10,
+      "ADE": 0.08815953880548477,
+      "FDE": 0.18196718394756317,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 115,
+      "snr_db": 10,
+      "ADE": 0.042124900966882706,
+      "FDE": 0.05688358470797539,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 116,
+      "snr_db": 10,
+      "ADE": 1.0231120586395264,
+      "FDE": 2.3755924701690674,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 117,
+      "snr_db": 10,
+      "ADE": 0.4143635928630829,
+      "FDE": 0.9363495111465454,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 118,
+      "snr_db": 10,
+      "ADE": 0.14168871939182281,
+      "FDE": 0.4002540707588196,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 119,
+      "snr_db": 10,
+      "ADE": 0.34814929962158203,
+      "FDE": 0.8604101538658142,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 120,
+      "snr_db": 10,
+      "ADE": 0.18299756944179535,
+      "FDE": 0.39263466000556946,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 121,
+      "snr_db": 10,
+      "ADE": 0.04170331358909607,
+      "FDE": 0.07213916629552841,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 122,
+      "snr_db": 10,
+      "ADE": 0.3880264163017273,
+      "FDE": 0.7532286643981934,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 123,
+      "snr_db": 10,
+      "ADE": 0.9383561015129089,
+      "FDE": 1.9860183000564575,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 124,
+      "snr_db": 10,
+      "ADE": 0.6658204197883606,
+      "FDE": 1.3398529291152954,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 125,
+      "snr_db": 10,
+      "ADE": 0.37613222002983093,
+      "FDE": 0.7610457539558411,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 126,
+      "snr_db": 10,
+      "ADE": 0.11729124933481216,
+      "FDE": 0.35186338424682617,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 127,
+      "snr_db": 10,
+      "ADE": 0.7521117329597473,
+      "FDE": 1.407637596130371,
+      "ade_targets": 7,
+      "fde_targets": 6
+    },
+    {
+      "origin": 0,
+      "snr_db": 15,
+      "ADE": 0.11323137581348419,
+      "FDE": 0.44106900691986084,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 1,
+      "snr_db": 15,
+      "ADE": 2.943127393722534,
+      "FDE": 7.046926498413086,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 2,
+      "snr_db": 15,
+      "ADE": 1.2158657312393188,
+      "FDE": 2.9766438007354736,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 3,
+      "snr_db": 15,
+      "ADE": 2.054612636566162,
+      "FDE": 4.1804986000061035,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 4,
+      "snr_db": 15,
+      "ADE": 2.764148473739624,
+      "FDE": 4.981159210205078,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 5,
+      "snr_db": 15,
+      "ADE": 0.029197968542575836,
+      "FDE": 0.05228262394666672,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 6,
+      "snr_db": 15,
+      "ADE": 0.02836025133728981,
+      "FDE": 0.05171804875135422,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 7,
+      "snr_db": 15,
+      "ADE": 0.0958208218216896,
+      "FDE": 0.2107241302728653,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 8,
+      "snr_db": 15,
+      "ADE": 0.9622364044189453,
+      "FDE": 2.7436776161193848,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 9,
+      "snr_db": 15,
+      "ADE": 1.7537362575531006,
+      "FDE": 3.7342419624328613,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 10,
+      "snr_db": 15,
+      "ADE": 1.0452277660369873,
+      "FDE": 2.378286838531494,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 11,
+      "snr_db": 15,
+      "ADE": 1.8541767597198486,
+      "FDE": 3.490302085876465,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 12,
+      "snr_db": 15,
+      "ADE": 1.4095287322998047,
+      "FDE": 2.5910754203796387,
+      "ade_targets": 8,
+      "fde_targets": 7
+    },
+    {
+      "origin": 13,
+      "snr_db": 15,
+      "ADE": 0.8646363019943237,
+      "FDE": 1.6982871294021606,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 14,
+      "snr_db": 15,
+      "ADE": 1.7942558526992798,
+      "FDE": 4.17611837387085,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 15,
+      "snr_db": 15,
+      "ADE": 2.1435258388519287,
+      "FDE": 4.500385761260986,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 16,
+      "snr_db": 15,
+      "ADE": 1.1537396907806396,
+      "FDE": 2.5420761108398438,
+      "ade_targets": 8,
+      "fde_targets": 6
+    },
+    {
+      "origin": 17,
+      "snr_db": 15,
+      "ADE": 1.7343851327896118,
+      "FDE": 3.632000684738159,
+      "ade_targets": 5,
+      "fde_targets": 5
+    },
+    {
+      "origin": 18,
+      "snr_db": 15,
+      "ADE": 1.1656396389007568,
+      "FDE": 1.9346940517425537,
+      "ade_targets": 5,
+      "fde_targets": 5
+    },
+    {
+      "origin": 19,
+      "snr_db": 15,
+      "ADE": 1.1146397590637207,
+      "FDE": 2.406996726989746,
+      "ade_targets": 5,
+      "fde_targets": 5
+    },
+    {
+      "origin": 20,
+      "snr_db": 15,
+      "ADE": 1.6335442066192627,
+      "FDE": 3.8766160011291504,
+      "ade_targets": 5,
+      "fde_targets": 5
+    },
+    {
+      "origin": 21,
+      "snr_db": 15,
+      "ADE": 0.7929499745368958,
+      "FDE": 1.9777189493179321,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 22,
+      "snr_db": 15,
+      "ADE": 0.9522620439529419,
+      "FDE": 1.8842417001724243,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 23,
+      "snr_db": 15,
+      "ADE": 0.4010259211063385,
+      "FDE": 0.7590732574462891,
+      "ade_targets": 8,
+      "fde_targets": 7
+    },
+    {
+      "origin": 24,
+      "snr_db": 15,
+      "ADE": 0.4666992723941803,
+      "FDE": 0.9840574264526367,
+      "ade_targets": 7,
+      "fde_targets": 6
+    },
+    {
+      "origin": 25,
+      "snr_db": 15,
+      "ADE": 0.3883495628833771,
+      "FDE": 0.9561068415641785,
+      "ade_targets": 6,
+      "fde_targets": 6
+    },
+    {
+      "origin": 26,
+      "snr_db": 15,
+      "ADE": 1.0299575328826904,
+      "FDE": 2.2588422298431396,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 27,
+      "snr_db": 15,
+      "ADE": 0.8793728947639465,
+      "FDE": 1.796478271484375,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 28,
+      "snr_db": 15,
+      "ADE": 0.9503931403160095,
+      "FDE": 1.7728965282440186,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 29,
+      "snr_db": 15,
+      "ADE": 0.7794614434242249,
+      "FDE": 1.5122517347335815,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 30,
+      "snr_db": 15,
+      "ADE": 1.2964822053909302,
+      "FDE": 2.537374258041382,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 31,
+      "snr_db": 15,
+      "ADE": 0.18053632974624634,
+      "FDE": 0.480903297662735,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 32,
+      "snr_db": 15,
+      "ADE": 0.7345076203346252,
+      "FDE": 1.617292046546936,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 33,
+      "snr_db": 15,
+      "ADE": 0.5477355718612671,
+      "FDE": 1.0825471878051758,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 34,
+      "snr_db": 15,
+      "ADE": 1.1193852424621582,
+      "FDE": 2.23982572555542,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 35,
+      "snr_db": 15,
+      "ADE": 0.9105702638626099,
+      "FDE": 1.620349407196045,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 36,
+      "snr_db": 15,
+      "ADE": 0.7657430768013,
+      "FDE": 1.6943836212158203,
+      "ade_targets": 6,
+      "fde_targets": 6
+    },
+    {
+      "origin": 37,
+      "snr_db": 15,
+      "ADE": 0.8164107799530029,
+      "FDE": 2.082949638366699,
+      "ade_targets": 6,
+      "fde_targets": 6
+    },
+    {
+      "origin": 38,
+      "snr_db": 15,
+      "ADE": 0.49684056639671326,
+      "FDE": 1.1240769624710083,
+      "ade_targets": 6,
+      "fde_targets": 6
+    },
+    {
+      "origin": 39,
+      "snr_db": 15,
+      "ADE": 0.038057148456573486,
+      "FDE": 0.059033606201410294,
+      "ade_targets": 6,
+      "fde_targets": 6
+    },
+    {
+      "origin": 40,
+      "snr_db": 15,
+      "ADE": 0.046595025807619095,
+      "FDE": 0.07675661146640778,
+      "ade_targets": 6,
+      "fde_targets": 6
+    },
+    {
+      "origin": 41,
+      "snr_db": 15,
+      "ADE": 0.9153861999511719,
+      "FDE": 1.919912576675415,
+      "ade_targets": 8,
+      "fde_targets": 7
+    },
+    {
+      "origin": 42,
+      "snr_db": 15,
+      "ADE": 1.536629319190979,
+      "FDE": 3.4692180156707764,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 43,
+      "snr_db": 15,
+      "ADE": 1.797817349433899,
+      "FDE": 3.6231906414031982,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 44,
+      "snr_db": 15,
+      "ADE": 0.5195978283882141,
+      "FDE": 1.3216959238052368,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 45,
+      "snr_db": 15,
+      "ADE": 0.2215646356344223,
+      "FDE": 0.5893197655677795,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 46,
+      "snr_db": 15,
+      "ADE": 0.5661075711250305,
+      "FDE": 1.2486653327941895,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 47,
+      "snr_db": 15,
+      "ADE": 0.8884594440460205,
+      "FDE": 2.2796101570129395,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 48,
+      "snr_db": 15,
+      "ADE": 0.3861508071422577,
+      "FDE": 0.9005870223045349,
+      "ade_targets": 7,
+      "fde_targets": 6
+    },
+    {
+      "origin": 49,
+      "snr_db": 15,
+      "ADE": 0.29757967591285706,
+      "FDE": 0.052950166165828705,
+      "ade_targets": 6,
+      "fde_targets": 5
+    },
+    {
+      "origin": 50,
+      "snr_db": 15,
+      "ADE": 0.032235048711299896,
+      "FDE": 0.04990795627236366,
+      "ade_targets": 5,
+      "fde_targets": 5
+    },
+    {
+      "origin": 51,
+      "snr_db": 15,
+      "ADE": 0.04020090401172638,
+      "FDE": 0.05404170975089073,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 52,
+      "snr_db": 15,
+      "ADE": 0.04312462359666824,
+      "FDE": 0.06281386315822601,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 53,
+      "snr_db": 15,
+      "ADE": 0.039095133543014526,
+      "FDE": 0.05020100623369217,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 54,
+      "snr_db": 15,
+      "ADE": 0.0386367104947567,
+      "FDE": 0.04813791811466217,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 55,
+      "snr_db": 15,
+      "ADE": 0.04248468577861786,
+      "FDE": 0.05613831430673599,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 56,
+      "snr_db": 15,
+      "ADE": 0.4737215042114258,
+      "FDE": 0.9299951791763306,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 57,
+      "snr_db": 15,
+      "ADE": 0.21146100759506226,
+      "FDE": 0.49379873275756836,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 58,
+      "snr_db": 15,
+      "ADE": 0.0296196136623621,
+      "FDE": 0.05065258592367172,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 59,
+      "snr_db": 15,
+      "ADE": 0.03018411621451378,
+      "FDE": 0.05164075270295143,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 60,
+      "snr_db": 15,
+      "ADE": 0.029671447351574898,
+      "FDE": 0.05180266872048378,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 61,
+      "snr_db": 15,
+      "ADE": 0.041063643991947174,
+      "FDE": 0.05165984481573105,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 62,
+      "snr_db": 15,
+      "ADE": 0.04193735122680664,
+      "FDE": 0.053352240473032,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 63,
+      "snr_db": 15,
+      "ADE": 0.04302975535392761,
+      "FDE": 0.060756053775548935,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 64,
+      "snr_db": 15,
+      "ADE": 0.04459529370069504,
+      "FDE": 0.06244835630059242,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 65,
+      "snr_db": 15,
+      "ADE": 0.04367620870471001,
+      "FDE": 0.054522473365068436,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 66,
+      "snr_db": 15,
+      "ADE": 0.13718146085739136,
+      "FDE": 0.510479748249054,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 67,
+      "snr_db": 15,
+      "ADE": 0.42275184392929077,
+      "FDE": 0.05453174561262131,
+      "ade_targets": 8,
+      "fde_targets": 7
+    },
+    {
+      "origin": 68,
+      "snr_db": 15,
+      "ADE": 0.029807040467858315,
+      "FDE": 0.050675492733716965,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 69,
+      "snr_db": 15,
+      "ADE": 0.03866139426827431,
+      "FDE": 0.07319007813930511,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 70,
+      "snr_db": 15,
+      "ADE": 0.028051117435097694,
+      "FDE": 0.047746069729328156,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 71,
+      "snr_db": 15,
+      "ADE": 0.028223033994436264,
+      "FDE": 0.05010352283716202,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 72,
+      "snr_db": 15,
+      "ADE": 0.02770320326089859,
+      "FDE": 0.04502226412296295,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 73,
+      "snr_db": 15,
+      "ADE": 0.028304602950811386,
+      "FDE": 0.04646071791648865,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 74,
+      "snr_db": 15,
+      "ADE": 0.03710639476776123,
+      "FDE": 0.05604301393032074,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 75,
+      "snr_db": 15,
+      "ADE": 0.028558049350976944,
+      "FDE": 0.04429444670677185,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 76,
+      "snr_db": 15,
+      "ADE": 0.02895093709230423,
+      "FDE": 0.046372346580028534,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 77,
+      "snr_db": 15,
+      "ADE": 1.9251630306243896,
+      "FDE": 4.550185203552246,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 78,
+      "snr_db": 15,
+      "ADE": 2.952493667602539,
+      "FDE": 6.3022942543029785,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 79,
+      "snr_db": 15,
+      "ADE": 2.292144775390625,
+      "FDE": 4.667461395263672,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 80,
+      "snr_db": 15,
+      "ADE": 2.2399535179138184,
+      "FDE": 4.062758922576904,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 81,
+      "snr_db": 15,
+      "ADE": 2.5887486934661865,
+      "FDE": 5.060574531555176,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 82,
+      "snr_db": 15,
+      "ADE": 1.1069774627685547,
+      "FDE": 2.4818358421325684,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 83,
+      "snr_db": 15,
+      "ADE": 1.6478309631347656,
+      "FDE": 3.9720232486724854,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 84,
+      "snr_db": 15,
+      "ADE": 1.0106098651885986,
+      "FDE": 2.587036609649658,
+      "ade_targets": 8,
+      "fde_targets": 7
+    },
+    {
+      "origin": 85,
+      "snr_db": 15,
+      "ADE": 1.2065951824188232,
+      "FDE": 2.4143056869506836,
+      "ade_targets": 7,
+      "fde_targets": 6
+    },
+    {
+      "origin": 86,
+      "snr_db": 15,
+      "ADE": 0.9602589011192322,
+      "FDE": 1.8961272239685059,
+      "ade_targets": 6,
+      "fde_targets": 6
+    },
+    {
+      "origin": 87,
+      "snr_db": 15,
+      "ADE": 1.6062185764312744,
+      "FDE": 3.129021406173706,
+      "ade_targets": 7,
+      "fde_targets": 5
+    },
+    {
+      "origin": 88,
+      "snr_db": 15,
+      "ADE": 2.1663506031036377,
+      "FDE": 4.39117956161499,
+      "ade_targets": 3,
+      "fde_targets": 3
+    },
+    {
+      "origin": 89,
+      "snr_db": 15,
+      "ADE": 0.6762399673461914,
+      "FDE": 1.7627650499343872,
+      "ade_targets": 3,
+      "fde_targets": 3
+    },
+    {
+      "origin": 90,
+      "snr_db": 15,
+      "ADE": 0.8276247382164001,
+      "FDE": 1.4783025979995728,
+      "ade_targets": 3,
+      "fde_targets": 3
+    },
+    {
+      "origin": 91,
+      "snr_db": 15,
+      "ADE": 0.9001590609550476,
+      "FDE": 1.7464121580123901,
+      "ade_targets": 3,
+      "fde_targets": 3
+    },
+    {
+      "origin": 92,
+      "snr_db": 15,
+      "ADE": 1.5583794116973877,
+      "FDE": 3.120267391204834,
+      "ade_targets": 8,
+      "fde_targets": 7
+    },
+    {
+      "origin": 93,
+      "snr_db": 15,
+      "ADE": 3.0460543632507324,
+      "FDE": 6.4989824295043945,
+      "ade_targets": 5,
+      "fde_targets": 5
+    },
+    {
+      "origin": 94,
+      "snr_db": 15,
+      "ADE": 1.3045902252197266,
+      "FDE": 2.4985790252685547,
+      "ade_targets": 4,
+      "fde_targets": 4
+    },
+    {
+      "origin": 95,
+      "snr_db": 15,
+      "ADE": 0.9864093065261841,
+      "FDE": 1.9520045518875122,
+      "ade_targets": 4,
+      "fde_targets": 4
+    },
+    {
+      "origin": 96,
+      "snr_db": 15,
+      "ADE": 1.4969196319580078,
+      "FDE": 3.3823304176330566,
+      "ade_targets": 4,
+      "fde_targets": 4
+    },
+    {
+      "origin": 97,
+      "snr_db": 15,
+      "ADE": 0.8628642559051514,
+      "FDE": 1.4735901355743408,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 98,
+      "snr_db": 15,
+      "ADE": 0.8336870670318604,
+      "FDE": 1.6413859128952026,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 99,
+      "snr_db": 15,
+      "ADE": 0.4843573570251465,
+      "FDE": 1.241546392440796,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 100,
+      "snr_db": 15,
+      "ADE": 0.31404414772987366,
+      "FDE": 0.5892364382743835,
+      "ade_targets": 7,
+      "fde_targets": 6
+    },
+    {
+      "origin": 101,
+      "snr_db": 15,
+      "ADE": 0.5626367330551147,
+      "FDE": 1.0909518003463745,
+      "ade_targets": 4,
+      "fde_targets": 4
+    },
+    {
+      "origin": 102,
+      "snr_db": 15,
+      "ADE": 1.811392068862915,
+      "FDE": 4.020251750946045,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 103,
+      "snr_db": 15,
+      "ADE": 2.2647595405578613,
+      "FDE": 4.612645626068115,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 104,
+      "snr_db": 15,
+      "ADE": 0.4615294635295868,
+      "FDE": 0.8026628494262695,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 105,
+      "snr_db": 15,
+      "ADE": 1.1425803899765015,
+      "FDE": 2.1165974140167236,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 106,
+      "snr_db": 15,
+      "ADE": 1.259751319885254,
+      "FDE": 2.9558956623077393,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 107,
+      "snr_db": 15,
+      "ADE": 0.7932306528091431,
+      "FDE": 1.5139551162719727,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 108,
+      "snr_db": 15,
+      "ADE": 1.6014622449874878,
+      "FDE": 3.5527310371398926,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 109,
+      "snr_db": 15,
+      "ADE": 0.8766887187957764,
+      "FDE": 1.496910810470581,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 110,
+      "snr_db": 15,
+      "ADE": 0.6588426232337952,
+      "FDE": 1.3485796451568604,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 111,
+      "snr_db": 15,
+      "ADE": 1.0561305284500122,
+      "FDE": 2.4211668968200684,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 112,
+      "snr_db": 15,
+      "ADE": 1.721531629562378,
+      "FDE": 4.281832695007324,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 113,
+      "snr_db": 15,
+      "ADE": 0.7720578908920288,
+      "FDE": 1.865211844444275,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 114,
+      "snr_db": 15,
+      "ADE": 0.08816014230251312,
+      "FDE": 0.18197815120220184,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 115,
+      "snr_db": 15,
+      "ADE": 0.042123906314373016,
+      "FDE": 0.056883059442043304,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 116,
+      "snr_db": 15,
+      "ADE": 1.0231130123138428,
+      "FDE": 2.3755946159362793,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 117,
+      "snr_db": 15,
+      "ADE": 0.4143698811531067,
+      "FDE": 0.9363799095153809,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 118,
+      "snr_db": 15,
+      "ADE": 0.14168813824653625,
+      "FDE": 0.400255024433136,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 119,
+      "snr_db": 15,
+      "ADE": 0.3481490910053253,
+      "FDE": 0.8604103922843933,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 120,
+      "snr_db": 15,
+      "ADE": 0.18434497714042664,
+      "FDE": 0.39468663930892944,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 121,
+      "snr_db": 15,
+      "ADE": 0.04170292615890503,
+      "FDE": 0.07214556634426117,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 122,
+      "snr_db": 15,
+      "ADE": 0.3880264163017273,
+      "FDE": 0.7532286643981934,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 123,
+      "snr_db": 15,
+      "ADE": 0.9344336986541748,
+      "FDE": 1.978208303451538,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 124,
+      "snr_db": 15,
+      "ADE": 0.6623223423957825,
+      "FDE": 1.3332756757736206,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 125,
+      "snr_db": 15,
+      "ADE": 0.3739197850227356,
+      "FDE": 0.7577172517776489,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 126,
+      "snr_db": 15,
+      "ADE": 0.1153777465224266,
+      "FDE": 0.3554248809814453,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 127,
+      "snr_db": 15,
+      "ADE": 0.75211101770401,
+      "FDE": 1.4076358079910278,
+      "ade_targets": 7,
+      "fde_targets": 6
+    },
+    {
+      "origin": 0,
+      "snr_db": 20,
+      "ADE": 0.11323146522045135,
+      "FDE": 0.44106894731521606,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 1,
+      "snr_db": 20,
+      "ADE": 2.943126678466797,
+      "FDE": 7.046926975250244,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 2,
+      "snr_db": 20,
+      "ADE": 1.2122631072998047,
+      "FDE": 2.9704198837280273,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 3,
+      "snr_db": 20,
+      "ADE": 2.0555028915405273,
+      "FDE": 4.182862281799316,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 4,
+      "snr_db": 20,
+      "ADE": 2.764150857925415,
+      "FDE": 4.981170654296875,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 5,
+      "snr_db": 20,
+      "ADE": 0.029197845607995987,
+      "FDE": 0.05228257179260254,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 6,
+      "snr_db": 20,
+      "ADE": 0.02836029604077339,
+      "FDE": 0.05171804875135422,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 7,
+      "snr_db": 20,
+      "ADE": 0.09582073241472244,
+      "FDE": 0.21072669327259064,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 8,
+      "snr_db": 20,
+      "ADE": 0.9622361660003662,
+      "FDE": 2.743675708770752,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 9,
+      "snr_db": 20,
+      "ADE": 1.7537344694137573,
+      "FDE": 3.734229564666748,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 10,
+      "snr_db": 20,
+      "ADE": 1.0451582670211792,
+      "FDE": 2.3783693313598633,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 11,
+      "snr_db": 20,
+      "ADE": 1.8541780710220337,
+      "FDE": 3.4903147220611572,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 12,
+      "snr_db": 20,
+      "ADE": 1.4081506729125977,
+      "FDE": 2.587472677230835,
+      "ade_targets": 8,
+      "fde_targets": 7
+    },
+    {
+      "origin": 13,
+      "snr_db": 20,
+      "ADE": 0.8646363615989685,
+      "FDE": 1.6982885599136353,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 14,
+      "snr_db": 20,
+      "ADE": 1.7942559719085693,
+      "FDE": 4.176120281219482,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 15,
+      "snr_db": 20,
+      "ADE": 2.1435248851776123,
+      "FDE": 4.5003981590271,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 16,
+      "snr_db": 20,
+      "ADE": 1.1537411212921143,
+      "FDE": 2.542076826095581,
+      "ade_targets": 8,
+      "fde_targets": 6
+    },
+    {
+      "origin": 17,
+      "snr_db": 20,
+      "ADE": 1.7343870401382446,
+      "FDE": 3.632009506225586,
+      "ade_targets": 5,
+      "fde_targets": 5
+    },
+    {
+      "origin": 18,
+      "snr_db": 20,
+      "ADE": 1.1656396389007568,
+      "FDE": 1.9346942901611328,
+      "ade_targets": 5,
+      "fde_targets": 5
+    },
+    {
+      "origin": 19,
+      "snr_db": 20,
+      "ADE": 1.1146397590637207,
+      "FDE": 2.406996726989746,
+      "ade_targets": 5,
+      "fde_targets": 5
+    },
+    {
+      "origin": 20,
+      "snr_db": 20,
+      "ADE": 1.633543610572815,
+      "FDE": 3.8766136169433594,
+      "ade_targets": 5,
+      "fde_targets": 5
+    },
+    {
+      "origin": 21,
+      "snr_db": 20,
+      "ADE": 0.7916878461837769,
+      "FDE": 1.9756954908370972,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 22,
+      "snr_db": 20,
+      "ADE": 0.9540486335754395,
+      "FDE": 1.8874398469924927,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 23,
+      "snr_db": 20,
+      "ADE": 0.4010268747806549,
+      "FDE": 0.7590819597244263,
+      "ade_targets": 8,
+      "fde_targets": 7
+    },
+    {
+      "origin": 24,
+      "snr_db": 20,
+      "ADE": 0.46670079231262207,
+      "FDE": 0.9840622544288635,
+      "ade_targets": 7,
+      "fde_targets": 6
+    },
+    {
+      "origin": 25,
+      "snr_db": 20,
+      "ADE": 0.38835039734840393,
+      "FDE": 0.9561098217964172,
+      "ade_targets": 6,
+      "fde_targets": 6
+    },
+    {
+      "origin": 26,
+      "snr_db": 20,
+      "ADE": 1.0299575328826904,
+      "FDE": 2.2588422298431396,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 27,
+      "snr_db": 20,
+      "ADE": 0.8793764114379883,
+      "FDE": 1.7965008020401,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 28,
+      "snr_db": 20,
+      "ADE": 0.950389564037323,
+      "FDE": 1.7728872299194336,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 29,
+      "snr_db": 20,
+      "ADE": 0.7794592976570129,
+      "FDE": 1.512258768081665,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 30,
+      "snr_db": 20,
+      "ADE": 1.2964839935302734,
+      "FDE": 2.5373804569244385,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 31,
+      "snr_db": 20,
+      "ADE": 0.18053515255451202,
+      "FDE": 0.4808986186981201,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 32,
+      "snr_db": 20,
+      "ADE": 0.7345057725906372,
+      "FDE": 1.6172856092453003,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 33,
+      "snr_db": 20,
+      "ADE": 0.5477359890937805,
+      "FDE": 1.0825366973876953,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 34,
+      "snr_db": 20,
+      "ADE": 1.119385004043579,
+      "FDE": 2.23982572555542,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 35,
+      "snr_db": 20,
+      "ADE": 0.9105702638626099,
+      "FDE": 1.6203491687774658,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 36,
+      "snr_db": 20,
+      "ADE": 0.7657435536384583,
+      "FDE": 1.6943928003311157,
+      "ade_targets": 6,
+      "fde_targets": 6
+    },
+    {
+      "origin": 37,
+      "snr_db": 20,
+      "ADE": 0.816411018371582,
+      "FDE": 2.08294939994812,
+      "ade_targets": 6,
+      "fde_targets": 6
+    },
+    {
+      "origin": 38,
+      "snr_db": 20,
+      "ADE": 0.49684032797813416,
+      "FDE": 1.1240769624710083,
+      "ade_targets": 6,
+      "fde_targets": 6
+    },
+    {
+      "origin": 39,
+      "snr_db": 20,
+      "ADE": 0.03805731609463692,
+      "FDE": 0.05903356894850731,
+      "ade_targets": 6,
+      "fde_targets": 6
+    },
+    {
+      "origin": 40,
+      "snr_db": 20,
+      "ADE": 0.046595219522714615,
+      "FDE": 0.076758973300457,
+      "ade_targets": 6,
+      "fde_targets": 6
+    },
+    {
+      "origin": 41,
+      "snr_db": 20,
+      "ADE": 0.9153860211372375,
+      "FDE": 1.91991126537323,
+      "ade_targets": 8,
+      "fde_targets": 7
+    },
+    {
+      "origin": 42,
+      "snr_db": 20,
+      "ADE": 1.5366309881210327,
+      "FDE": 3.4692294597625732,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 43,
+      "snr_db": 20,
+      "ADE": 1.801404356956482,
+      "FDE": 3.6268184185028076,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 44,
+      "snr_db": 20,
+      "ADE": 0.5195978283882141,
+      "FDE": 1.3216959238052368,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 45,
+      "snr_db": 20,
+      "ADE": 0.22156286239624023,
+      "FDE": 0.5893101692199707,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 46,
+      "snr_db": 20,
+      "ADE": 0.5661076307296753,
+      "FDE": 1.2486650943756104,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 47,
+      "snr_db": 20,
+      "ADE": 0.8888100385665894,
+      "FDE": 2.279977321624756,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 48,
+      "snr_db": 20,
+      "ADE": 0.38459348678588867,
+      "FDE": 0.8978347182273865,
+      "ade_targets": 7,
+      "fde_targets": 6
+    },
+    {
+      "origin": 49,
+      "snr_db": 20,
+      "ADE": 0.29757991433143616,
+      "FDE": 0.05295012146234512,
+      "ade_targets": 6,
+      "fde_targets": 5
+    },
+    {
+      "origin": 50,
+      "snr_db": 20,
+      "ADE": 0.03223516419529915,
+      "FDE": 0.04990795627236366,
+      "ade_targets": 5,
+      "fde_targets": 5
+    },
+    {
+      "origin": 51,
+      "snr_db": 20,
+      "ADE": 0.0402008518576622,
+      "FDE": 0.05404389649629593,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 52,
+      "snr_db": 20,
+      "ADE": 0.04312437027692795,
+      "FDE": 0.06282144784927368,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 53,
+      "snr_db": 20,
+      "ADE": 0.04039956256747246,
+      "FDE": 0.05136721953749657,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 54,
+      "snr_db": 20,
+      "ADE": 0.03863665461540222,
+      "FDE": 0.0481378436088562,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 55,
+      "snr_db": 20,
+      "ADE": 0.042484596371650696,
+      "FDE": 0.05613863468170166,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 56,
+      "snr_db": 20,
+      "ADE": 0.4737218916416168,
+      "FDE": 0.9299945831298828,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 57,
+      "snr_db": 20,
+      "ADE": 0.21034425497055054,
+      "FDE": 0.4910743832588196,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 58,
+      "snr_db": 20,
+      "ADE": 0.028713103383779526,
+      "FDE": 0.04547441005706787,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 59,
+      "snr_db": 20,
+      "ADE": 0.030185172334313393,
+      "FDE": 0.051649775356054306,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 60,
+      "snr_db": 20,
+      "ADE": 0.02967148646712303,
+      "FDE": 0.05180266872048378,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 61,
+      "snr_db": 20,
+      "ADE": 0.04106396064162254,
+      "FDE": 0.05166150629520416,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 62,
+      "snr_db": 20,
+      "ADE": 0.04193782061338425,
+      "FDE": 0.05335290729999542,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 63,
+      "snr_db": 20,
+      "ADE": 0.04366115853190422,
+      "FDE": 0.06059431657195091,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 64,
+      "snr_db": 20,
+      "ADE": 0.045853931456804276,
+      "FDE": 0.06338460743427277,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 65,
+      "snr_db": 20,
+      "ADE": 0.04156909137964249,
+      "FDE": 0.05144370347261429,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 66,
+      "snr_db": 20,
+      "ADE": 0.13718129694461823,
+      "FDE": 0.5104798674583435,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 67,
+      "snr_db": 20,
+      "ADE": 0.4227063059806824,
+      "FDE": 0.053753070533275604,
+      "ade_targets": 8,
+      "fde_targets": 7
+    },
+    {
+      "origin": 68,
+      "snr_db": 20,
+      "ADE": 0.02980704978108406,
+      "FDE": 0.05067545175552368,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 69,
+      "snr_db": 20,
+      "ADE": 0.03855248540639877,
+      "FDE": 0.07251615077257156,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 70,
+      "snr_db": 20,
+      "ADE": 0.028051117435097694,
+      "FDE": 0.047746069729328156,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 71,
+      "snr_db": 20,
+      "ADE": 0.0281097162514925,
+      "FDE": 0.049410153180360794,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 72,
+      "snr_db": 20,
+      "ADE": 0.02770313248038292,
+      "FDE": 0.04502428323030472,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 73,
+      "snr_db": 20,
+      "ADE": 0.028304435312747955,
+      "FDE": 0.046461738646030426,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 74,
+      "snr_db": 20,
+      "ADE": 0.0371064767241478,
+      "FDE": 0.056044865399599075,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 75,
+      "snr_db": 20,
+      "ADE": 0.028557945042848587,
+      "FDE": 0.04429467394948006,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 76,
+      "snr_db": 20,
+      "ADE": 0.02895025536417961,
+      "FDE": 0.046373024582862854,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 77,
+      "snr_db": 20,
+      "ADE": 1.9251625537872314,
+      "FDE": 4.550185203552246,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 78,
+      "snr_db": 20,
+      "ADE": 2.952495574951172,
+      "FDE": 6.302306175231934,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 79,
+      "snr_db": 20,
+      "ADE": 2.292147397994995,
+      "FDE": 4.667468070983887,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 80,
+      "snr_db": 20,
+      "ADE": 2.2399539947509766,
+      "FDE": 4.062762260437012,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 81,
+      "snr_db": 20,
+      "ADE": 2.5887484550476074,
+      "FDE": 5.060573101043701,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 82,
+      "snr_db": 20,
+      "ADE": 1.1069777011871338,
+      "FDE": 2.481834650039673,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 83,
+      "snr_db": 20,
+      "ADE": 1.6478309631347656,
+      "FDE": 3.972022771835327,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 84,
+      "snr_db": 20,
+      "ADE": 1.010608196258545,
+      "FDE": 2.5870306491851807,
+      "ade_targets": 8,
+      "fde_targets": 7
+    },
+    {
+      "origin": 85,
+      "snr_db": 20,
+      "ADE": 1.2065951824188232,
+      "FDE": 2.4143056869506836,
+      "ade_targets": 7,
+      "fde_targets": 6
+    },
+    {
+      "origin": 86,
+      "snr_db": 20,
+      "ADE": 0.9602594375610352,
+      "FDE": 1.8961381912231445,
+      "ade_targets": 6,
+      "fde_targets": 6
+    },
+    {
+      "origin": 87,
+      "snr_db": 20,
+      "ADE": 1.6084821224212646,
+      "FDE": 3.13206148147583,
+      "ade_targets": 7,
+      "fde_targets": 5
+    },
+    {
+      "origin": 88,
+      "snr_db": 20,
+      "ADE": 2.1663522720336914,
+      "FDE": 4.391190528869629,
+      "ade_targets": 3,
+      "fde_targets": 3
+    },
+    {
+      "origin": 89,
+      "snr_db": 20,
+      "ADE": 0.6762361526489258,
+      "FDE": 1.762736439704895,
+      "ade_targets": 3,
+      "fde_targets": 3
+    },
+    {
+      "origin": 90,
+      "snr_db": 20,
+      "ADE": 0.821791410446167,
+      "FDE": 1.473307728767395,
+      "ade_targets": 3,
+      "fde_targets": 3
+    },
+    {
+      "origin": 91,
+      "snr_db": 20,
+      "ADE": 0.9001595377922058,
+      "FDE": 1.746412754058838,
+      "ade_targets": 3,
+      "fde_targets": 3
+    },
+    {
+      "origin": 92,
+      "snr_db": 20,
+      "ADE": 1.5583823919296265,
+      "FDE": 3.1202850341796875,
+      "ade_targets": 8,
+      "fde_targets": 7
+    },
+    {
+      "origin": 93,
+      "snr_db": 20,
+      "ADE": 3.041332721710205,
+      "FDE": 6.4895148277282715,
+      "ade_targets": 5,
+      "fde_targets": 5
+    },
+    {
+      "origin": 94,
+      "snr_db": 20,
+      "ADE": 1.3045907020568848,
+      "FDE": 2.498582124710083,
+      "ade_targets": 4,
+      "fde_targets": 4
+    },
+    {
+      "origin": 95,
+      "snr_db": 20,
+      "ADE": 0.9864119291305542,
+      "FDE": 1.9519991874694824,
+      "ade_targets": 4,
+      "fde_targets": 4
+    },
+    {
+      "origin": 96,
+      "snr_db": 20,
+      "ADE": 1.4969191551208496,
+      "FDE": 3.3823306560516357,
+      "ade_targets": 4,
+      "fde_targets": 4
+    },
+    {
+      "origin": 97,
+      "snr_db": 20,
+      "ADE": 0.8628642559051514,
+      "FDE": 1.4735900163650513,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 98,
+      "snr_db": 20,
+      "ADE": 0.8336859941482544,
+      "FDE": 1.6413750648498535,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 99,
+      "snr_db": 20,
+      "ADE": 0.48435503244400024,
+      "FDE": 1.2415351867675781,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 100,
+      "snr_db": 20,
+      "ADE": 0.31404250860214233,
+      "FDE": 0.5892228484153748,
+      "ade_targets": 7,
+      "fde_targets": 6
+    },
+    {
+      "origin": 101,
+      "snr_db": 20,
+      "ADE": 0.5626367330551147,
+      "FDE": 1.0909518003463745,
+      "ade_targets": 4,
+      "fde_targets": 4
+    },
+    {
+      "origin": 102,
+      "snr_db": 20,
+      "ADE": 1.8113905191421509,
+      "FDE": 4.020230770111084,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 103,
+      "snr_db": 20,
+      "ADE": 2.2647593021392822,
+      "FDE": 4.612643718719482,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 104,
+      "snr_db": 20,
+      "ADE": 0.46153131127357483,
+      "FDE": 0.80267733335495,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 105,
+      "snr_db": 20,
+      "ADE": 1.1425807476043701,
+      "FDE": 2.1165971755981445,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 106,
+      "snr_db": 20,
+      "ADE": 1.259751319885254,
+      "FDE": 2.9558956623077393,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 107,
+      "snr_db": 20,
+      "ADE": 0.7932307124137878,
+      "FDE": 1.5139551162719727,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 108,
+      "snr_db": 20,
+      "ADE": 1.60146164894104,
+      "FDE": 3.552729368209839,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 109,
+      "snr_db": 20,
+      "ADE": 0.8766874074935913,
+      "FDE": 1.496910572052002,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 110,
+      "snr_db": 20,
+      "ADE": 0.6570053100585938,
+      "FDE": 1.3472247123718262,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 111,
+      "snr_db": 20,
+      "ADE": 1.0561299324035645,
+      "FDE": 2.421177625656128,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 112,
+      "snr_db": 20,
+      "ADE": 1.7215321063995361,
+      "FDE": 4.281832695007324,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 113,
+      "snr_db": 20,
+      "ADE": 0.7720558643341064,
+      "FDE": 1.8652102947235107,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 114,
+      "snr_db": 20,
+      "ADE": 0.0881613940000534,
+      "FDE": 0.18197396397590637,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 115,
+      "snr_db": 20,
+      "ADE": 0.04212414100766182,
+      "FDE": 0.056884218007326126,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 116,
+      "snr_db": 20,
+      "ADE": 1.0231130123138428,
+      "FDE": 2.3755946159362793,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 117,
+      "snr_db": 20,
+      "ADE": 0.41436687111854553,
+      "FDE": 0.9363712072372437,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 118,
+      "snr_db": 20,
+      "ADE": 0.14168810844421387,
+      "FDE": 0.400255024433136,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 119,
+      "snr_db": 20,
+      "ADE": 0.3481489419937134,
+      "FDE": 0.8604104518890381,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 120,
+      "snr_db": 20,
+      "ADE": 0.18434733152389526,
+      "FDE": 0.39469319581985474,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 121,
+      "snr_db": 20,
+      "ADE": 0.041703350841999054,
+      "FDE": 0.07214692234992981,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 122,
+      "snr_db": 20,
+      "ADE": 0.38802629709243774,
+      "FDE": 0.7532286643981934,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 123,
+      "snr_db": 20,
+      "ADE": 0.9344336986541748,
+      "FDE": 1.9782086610794067,
+      "ade_targets": 8,
+      "fde_targets": 8
+    },
+    {
+      "origin": 124,
+      "snr_db": 20,
+      "ADE": 0.6601822972297668,
+      "FDE": 1.330031156539917,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 125,
+      "snr_db": 20,
+      "ADE": 0.373919814825058,
+      "FDE": 0.7577174305915833,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 126,
+      "snr_db": 20,
+      "ADE": 0.11537712067365646,
+      "FDE": 0.3554233908653259,
+      "ade_targets": 7,
+      "fde_targets": 7
+    },
+    {
+      "origin": 127,
+      "snr_db": 20,
+      "ADE": 0.7521109580993652,
+      "FDE": 1.4076347351074219,
+      "ade_targets": 7,
+      "fde_targets": 6
+    }
+  ],
+  "split": "V_select"
+}

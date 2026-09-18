@@ -1,0 +1,36 @@
+{
+  "timestamp_utc": "2026-09-18T07:38:44Z",
+  "dataset_revision": "AUTOMATUM-PREDICTION-DATA-FROZEN",
+  "splits": {
+    "train": {
+      "split": "train",
+      "sample_count": 10366,
+      "scene_cache_diff": 0.0,
+      "future_diff": 0.0,
+      "padding_violations": 0,
+      "non_finite_count": 0,
+      "status": "PASS"
+    },
+    "val": {
+      "split": "val",
+      "sample_count": 893,
+      "scene_cache_diff": 0.0,
+      "future_diff": 0.0,
+      "padding_violations": 0,
+      "non_finite_count": 0,
+      "status": "PASS"
+    },
+    "test": {
+      "split": "test",
+      "sample_count": 1135,
+      "scene_cache_diff": 0.0,
+      "future_diff": 0.0,
+      "padding_violations": 0,
+      "non_finite_count": 0,
+      "status": "PASS"
+    }
+  },
+  "gt_history_leakage_pass": true,
+  "generic_dataloader_pass": true,
+  "overall_status": "PASS"
+}

@@ -1,0 +1,10 @@
+{
+  "status": "complete",
+  "pid": 2566252,
+  "started_at": 1789278355.0195765,
+  "devices": {
+    "original_D": "cuda:0",
+    "relation_D": "cuda:1"
+  },
+  "finished_at": 1789288290.517075
+}

@@ -1,0 +1,39 @@
+{
+  "source_files": 837,
+  "source_file_sizes_match": true,
+  "current_run_complete": true,
+  "common_denominators_verified": true,
+  "new_training_or_prediction_run": false,
+  "confirmation_or_test_opened": false,
+  "inherited_histories_match": {
+    "gnn": true,
+    "relation_D": true
+  },
+  "checkpoint_metadata": {
+    "gnn/best": {
+      "epoch": 97,
+      "optimizer_steps": 33659,
+      "saved_tensors_finite": true
+    },
+    "gnn/latest": {
+      "epoch": 100,
+      "optimizer_steps": 34700,
+      "saved_tensors_finite": true
+    },
+    "relation_D/best": {
+      "epoch": 85,
+      "optimizer_steps": 29495,
+      "saved_tensors_finite": true
+    },
+    "relation_D/latest": {
+      "epoch": 100,
+      "optimizer_steps": 34700,
+      "saved_tensors_finite": true
+    }
+  },
+  "archive_check_note": "After this report is written, final ZIP CRC and full member inventory are checked by the packaging script.",
+  "guide_source_references_exist": true,
+  "figures_and_derived_tables_present": true,
+  "figures_visually_inspected_by_root": true,
+  "inventory_excludes_only_itself": "metadata/package_manifest.csv"
+}

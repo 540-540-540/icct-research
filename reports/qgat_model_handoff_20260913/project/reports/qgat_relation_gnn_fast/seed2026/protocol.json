@@ -1,0 +1,194 @@
+{
+  "source": {
+    "baseline_source": {
+      "reference_D_source": {
+        "configuration": {
+          "revision": "qgat-relation-v1",
+          "seed": 2026,
+          "cells": [
+            "original_D",
+            "relation_D"
+          ],
+          "devices": {
+            "original_D": "cuda:0",
+            "relation_D": "cuda:1"
+          },
+          "train_origins": 5549,
+          "validation_origins": 400,
+          "epochs": 40,
+          "patience": 41,
+          "batch_size": 16,
+          "micro_batch": 1,
+          "graph_lr": 0.0003,
+          "graph_seed_offset": 200000,
+          "temporal_seed_offset": 100000,
+          "snr_db": [
+            5,
+            10,
+            15,
+            20
+          ],
+          "allowed_splits": [
+            "train",
+            "V_select"
+          ],
+          "edge_weight_decay": 0.01,
+          "theta_weight_decay": 0.0,
+          "smoke_train_origins": 17,
+          "smoke_validation_origins": 2,
+          "limitation": "Paired single-seed development comparison of original D and relation D, trained from scratch for the same fixed 40 epochs. GNN is historical context only. No confirmation/test access, multi-seed claim, or assumed quantum advantage. Report both common final epoch and best J checkpoints; never combine metric minima from different epochs."
+        },
+        "files": {
+          "experiments/qgat_relation/run.py": "2f32c8714b741184ef5a3b512c9b7ece3ea0aec36db2cd79f823c32b8cc2e24a",
+          "experiments/qgat_relation/graph.py": "7de38febb2a11056e63ef95b5d7b1f0509443820c6fb0d23a5c3c99effbc9cd7",
+          "configs/qgat_relation.json": "644079c11b1f2b996a865bd9998539fa487bc3a46ccc74d1b96e83f8cc8946b9",
+          "experiments/qgat_factorial/run_trial.py": "ef6528ff7c380ed48be8c619318e6a27d1a45c1d3e62e81a346e0536e9d80b03",
+          "experiments/qgat_factorial/graph.py": "5bc2ced42fe0bf01d06a8c1d200bfe892af265844168913eac9b4aea954e7030",
+          "experiments/qgat_candidate/graph.py": "8d5c4b6de2945c50098b9802aab162d47f455e4ee4191e8b9d61d22044ca9a70",
+          "prediction/training.py": "27e746f9083bb67fc1b7cbb68d1c81672c22b6271b94861ce2c081e1ba065cb1",
+          "prediction/temporal.py": "1c5e5f45bdff854eb7ff58a25221aad03dd9db2b70a8686d0fdaefd206f62f99",
+          "prediction/classical.py": "5d9b3fe6b80350271b105ad8367c34120df090d566a81071f42ec77fa9e4e041",
+          "prediction/evaluation_cache.py": "095274ff0af7d50fd0c54ede0b1fa0035962b71d748101caffb7f1783fec50f0",
+          "code/00_remote_shared_dependencies/target_interaction_graph.py": "9bc4cc0201052ea9083d19fb4d278319a7458c5a703906ccb57ca3228bc8bdb2",
+          "frontend/symbol_dataset.py": "5eae742edaa773716d88544d366fb72fbaf1af1d99617484303b47317d078452",
+          "frontend/echo_source.py": "5c59a41a04ae588765c8df4ffd7e16e2ed612e31ddb1352538323f7d652ccde4",
+          "models/gpt2/config.json": "0daed7749b4f02b8f76240d5444551d7b08712dab4d0adb8239c56ba823bb7b4",
+          "models/gpt2/model.safetensors": "248dfc3911869ec493c76e65bf2fcf7f615828b0254c12b473182f0f81d3a707",
+          "data/f01d/normalization.json": "bb2d8173a8b7c852a4142deab4f5cc786359bf202517612e75414ee3b70f3a53",
+          "data/f01d/labels/train.npz": "488b2623185cdd697927881dec5ff4556aeed14aeaee0b8d8874197cf5a0f950",
+          "data/f01d/inputs/train_snr_5.npz": "3d627fb2061e44d17feeb820ca8f89f63b5474c3e99d41e108a0bf96b3dc11c8",
+          "data/f01d/inputs/train_snr_10.npz": "ae097d7b6047cf5b60025d94f359b730011944c185db71b6b869f795bd5a8726",
+          "data/f01d/inputs/train_snr_15.npz": "739a510788901b97215cc7e867651ab1af7c2350a0b74eefa7c60688999b7f72",
+          "data/f01d/inputs/train_snr_20.npz": "5b7111202d7c823c3d150e56ed3ea147aac3a9a6dc0e863cf23c5780df81afca",
+          "data/f01d/labels/V_select.npz": "f31a840311223d8eedb0e33d8c53df3064dc7175cfe8509e98369bef074c980e",
+          "data/f01d/inputs/V_select_snr_5.npz": "2bb0204aa49e2930a7db2d13ce299b6d4cbfca86b80562cada4069bfedba9fd3",
+          "data/f01d/inputs/V_select_snr_10.npz": "8f692d43693b726a4cda361e2e7201d7c867a19dae3ecd92a2f01a22164eed33",
+          "data/f01d/inputs/V_select_snr_15.npz": "6e99e986a994baedd58fa80bc22e9964ea7c2586302a1c3394dc9c8dbe58e522",
+          "data/f01d/inputs/V_select_snr_20.npz": "42749735f9fe9b3fbd9651ce74a8957589ddaeada195fa0caf39152715bbe8d5"
+        },
+        "versions": {
+          "torch": "2.13.0",
+          "numpy": "2.4.6",
+          "pennylane": "0.45.1",
+          "transformers": "4.57.6"
+        }
+      },
+      "configuration": {
+        "revision": "qgat-relation-gnn-two-gpu-v1",
+        "seed": 2026,
+        "cells": [
+          "gnn"
+        ],
+        "devices": {
+          "gnn": [
+            "cuda:0",
+            "cuda:1"
+          ]
+        },
+        "train_origins": 5549,
+        "validation_origins": 400,
+        "epochs": 40,
+        "patience": 41,
+        "batch_size": 16,
+        "micro_batch": 1,
+        "graph_lr": 0.0003,
+        "graph_seed_offset": 200000,
+        "temporal_seed_offset": 100000,
+        "snr_db": [
+          5,
+          10,
+          15,
+          20
+        ],
+        "allowed_splits": [
+          "train",
+          "V_select"
+        ],
+        "edge_weight_decay": 0.01,
+        "theta_weight_decay": 0.0,
+        "smoke_train_origins": 17,
+        "smoke_validation_origins": 2,
+        "limitation": "One seed-2026 GNN baseline matched to the fixed-40-epoch D comparison. Global batch remains 16; two concurrent one-origin micro-batches. No confirmation/test access. Two GPUs train one model, not two seeds.",
+        "parallel_forward_micro_batch": 2,
+        "per_device_micro_batch": 1,
+        "validation_micro_batch": 1,
+        "cuda_rng_offsets": [
+          0,
+          1000000
+        ]
+      },
+      "additional_files": {
+        "experiments/qgat_relation/run_gnn.py": "e24b2a346d6cfea06279b4f5e25b8a39ef7d61086f4c4a352e2efc46bd41e45a",
+        "experiments/qgat_candidate/run_formal.py": "2019055fd3d3b428e1610ae97fca0edcb02148341b4335ab10ad926cd40b4402"
+      }
+    },
+    "configuration": {
+      "revision": "qgat-relation-gnn-fast-v1",
+      "seed": 2026,
+      "cells": [
+        "gnn"
+      ],
+      "devices": {
+        "gnn": [
+          "cuda:0",
+          "cuda:1"
+        ]
+      },
+      "train_origins": 5549,
+      "validation_origins": 400,
+      "epochs": 40,
+      "patience": 41,
+      "batch_size": 16,
+      "micro_batch": 16,
+      "graph_lr": 0.0003,
+      "graph_seed_offset": 200000,
+      "temporal_seed_offset": 100000,
+      "snr_db": [
+        5,
+        10,
+        15,
+        20
+      ],
+      "allowed_splits": [
+        "train",
+        "V_select"
+      ],
+      "edge_weight_decay": 0.01,
+      "theta_weight_decay": 0.0,
+      "smoke_train_origins": 17,
+      "smoke_validation_origins": 2,
+      "limitation": "Fresh seed-2026 fixed-40 GNN run; measured physical batch 8 per GPU, global batch 16, validation batch 32. No confirmation/test access.",
+      "parallel_forward_micro_batch": 16,
+      "per_device_micro_batch": 8,
+      "validation_micro_batch": 32,
+      "cuda_rng_offsets": [
+        0,
+        1000000
+      ],
+      "runtime_training": {
+        "global_batch_size": 16,
+        "epochs": 40,
+        "patience": 41,
+        "seed": 2026,
+        "train_origins": 5549,
+        "V_select_origins": 400,
+        "optimizer_updates_per_full_40_epochs": 13880,
+        "graph_learning_rate": 0.0003,
+        "gradient_clip_norm": 1.0,
+        "checkpoint_every_optimizer_update": true,
+        "model_precision": "float32",
+        "AMP": false,
+        "TF32": false,
+        "torch_compile": false,
+        "torch_cpu_threads": 1,
+        "OMP_NUM_THREADS": 1,
+        "OPENBLAS_NUM_THREADS": 1,
+        "MKL_NUM_THREADS": 1
+      }
+    },
+    "runner_sha256": "fc22a3b0093f99f61eab95319da189d0415de7b6a78d005b0917e4c2681936ee"
+  },
+  "mode": "GNN-fast-fixed-40",
+  "confirmation_opened": false,
+  "test_opened": false
+}

@@ -1,0 +1,47 @@
+================================================================================================
+Standard continuous baselines | snr=15dB | grid=91 | smooth=3 | posterior_temp=0.12 | input=state_unc | velocity=frame_difference | output=direct_coordinates
+[Cache] loaded localized trajectories from ./logs/localized_cache_dataset_lankershim_v3_localize_snr15_g91_s3_t0p12_e0_sl72_pl20.npz
+[Cache] active: ./logs/localized_cache_dataset_lankershim_v3_localize_snr15_g91_s3_t0p12_e0_sl72_pl20.npz
+[Transformer config] train_windows=61056 | d_model=256 | heads=8 | layers=3
+
+[transformer_snr15] Params: 2,578,984 | Trainable: 2,578,984
+[transformer_snr15] Ep   1/100 [7s] Loss=0.0360/0.0049 | Train_ADE=7.367m | Val_ADE=2.281m FDE=2.645m (best=2.281) | S1=2.648m S5=2.342m S10=2.001m S15=2.340m S20=2.645m | Turn=5.959
+[transformer_snr15] Ep   2/100 [6s] Loss=0.0102/0.0042 | Train_ADE=4.293m | Val_ADE=1.996m FDE=2.368m (best=1.996) | S1=2.000m S5=1.850m S10=1.849m S15=2.025m S20=2.368m | Turn=5.510
+[transformer_snr15] Ep   3/100 [6s] Loss=0.0078/0.0045 | Train_ADE=3.701m | Val_ADE=2.075m FDE=2.462m (best=1.996) | S1=2.060m S5=2.005m S10=1.930m S15=2.181m S20=2.462m | Turn=5.688
+[transformer_snr15] Ep   4/100 [6s] Loss=0.0067/0.0038 | Train_ADE=3.407m | Val_ADE=1.697m FDE=2.100m (best=1.697) | S1=1.549m S5=1.551m S10=1.610m S15=1.788m S20=2.100m | Turn=5.367
+[transformer_snr15] Ep   5/100 [6s] Loss=0.0059/0.0041 | Train_ADE=3.195m | Val_ADE=1.960m FDE=2.380m (best=1.697) | S1=1.740m S5=1.851m S10=1.807m S15=2.086m S20=2.380m | Turn=5.537
+[transformer_snr15] Ep   6/100 [6s] Loss=0.0054/0.0046 | Train_ADE=3.026m | Val_ADE=2.150m FDE=2.537m (best=1.697) | S1=1.942m S5=1.947m S10=2.053m S15=2.245m S20=2.537m | Turn=5.586
+[transformer_snr15] Ep   7/100 [6s] Loss=0.0050/0.0039 | Train_ADE=2.913m | Val_ADE=1.705m FDE=2.092m (best=1.697) | S1=1.518m S5=1.584m S10=1.596m S15=1.832m S20=2.092m | Turn=5.131
+[transformer_snr15] Ep   8/100 [6s] Loss=0.0048/0.0038 | Train_ADE=2.842m | Val_ADE=1.694m FDE=2.090m (best=1.694) | S1=1.514m S5=1.521m S10=1.583m S15=1.835m S20=2.090m | Turn=5.017
+[transformer_snr15] Ep   9/100 [6s] Loss=0.0046/0.0039 | Train_ADE=2.750m | Val_ADE=1.911m FDE=2.268m (best=1.694) | S1=1.720m S5=1.808m S10=1.788m S15=2.030m S20=2.268m | Turn=5.220
+[transformer_snr15] Ep  10/100 [6s] Loss=0.0045/0.0041 | Train_ADE=2.707m | Val_ADE=1.910m FDE=2.232m (best=1.694) | S1=1.761m S5=1.795m S10=1.840m S15=2.014m S20=2.232m | Turn=5.234
+[transformer_snr15] Ep  11/100 [6s] Loss=0.0043/0.0044 | Train_ADE=2.655m | Val_ADE=2.189m FDE=2.534m (best=1.694) | S1=1.952m S5=2.064m S10=2.108m S15=2.297m S20=2.534m | Turn=5.674
+[transformer_snr15] Ep  12/100 [6s] Loss=0.0043/0.0044 | Train_ADE=2.633m | Val_ADE=1.960m FDE=2.281m (best=1.694) | S1=1.775m S5=1.829m S10=1.890m S15=2.073m S20=2.281m | Turn=5.319
+[transformer_snr15] Ep  13/100 [6s] Loss=0.0041/0.0037 | Train_ADE=2.587m | Val_ADE=1.587m FDE=1.989m (best=1.587) | S1=1.332m S5=1.395m S10=1.517m S15=1.742m S20=1.989m | Turn=4.802
+[transformer_snr15] Ep  14/100 [6s] Loss=0.0041/0.0037 | Train_ADE=2.564m | Val_ADE=1.646m FDE=2.000m (best=1.587) | S1=1.438m S5=1.496m S10=1.595m S15=1.763m S20=2.000m | Turn=4.948
+[transformer_snr15] Ep  15/100 [6s] Loss=0.0040/0.0038 | Train_ADE=2.553m | Val_ADE=1.846m FDE=2.292m (best=1.587) | S1=1.520m S5=1.656m S10=1.792m S15=2.015m S20=2.292m | Turn=5.134
+[transformer_snr15] Ep  16/100 [6s] Loss=0.0040/0.0040 | Train_ADE=2.536m | Val_ADE=1.850m FDE=2.150m (best=1.587) | S1=1.728m S5=1.738m S10=1.775m S15=1.938m S20=2.150m | Turn=5.199
+[transformer_snr15] Ep  17/100 [6s] Loss=0.0038/0.0040 | Train_ADE=2.481m | Val_ADE=1.912m FDE=2.333m (best=1.587) | S1=1.605m S5=1.702m S10=1.858m S15=2.077m S20=2.333m | Turn=5.258
+[transformer_snr15] Ep  18/100 [6s] Loss=0.0038/0.0037 | Train_ADE=2.478m | Val_ADE=1.726m FDE=2.108m (best=1.587) | S1=1.470m S5=1.580m S10=1.674m S15=1.839m S20=2.108m | Turn=5.304
+[transformer_snr15] Ep  19/100 [6s] Loss=0.0039/0.0041 | Train_ADE=2.482m | Val_ADE=1.928m FDE=2.284m (best=1.587) | S1=1.676m S5=1.772m S10=1.868m S15=2.048m S20=2.284m | Turn=5.253
+[transformer_snr15] Ep  20/100 [6s] Loss=0.0038/0.0034 | Train_ADE=2.469m | Val_ADE=1.522m FDE=1.856m (best=1.522) | S1=1.348m S5=1.384m S10=1.450m S15=1.620m S20=1.856m | Turn=4.934
+[transformer_snr15] Ep  21/100 [6s] Loss=0.0038/0.0039 | Train_ADE=2.456m | Val_ADE=1.740m FDE=2.067m (best=1.522) | S1=1.553m S5=1.609m S10=1.670m S15=1.834m S20=2.067m | Turn=5.395
+[transformer_snr15] Ep  22/100 [6s] Loss=0.0037/0.0041 | Train_ADE=2.432m | Val_ADE=1.823m FDE=2.199m (best=1.522) | S1=1.572m S5=1.636m S10=1.766m S15=1.964m S20=2.199m | Turn=5.488
+[transformer_snr15] Ep  23/100 [6s] Loss=0.0037/0.0042 | Train_ADE=2.424m | Val_ADE=1.985m FDE=2.301m (best=1.522) | S1=1.815m S5=1.875m S10=1.931m S15=2.056m S20=2.301m | Turn=5.480
+[transformer_snr15] Ep  24/100 [6s] Loss=0.0037/0.0037 | Train_ADE=2.416m | Val_ADE=1.665m FDE=2.004m (best=1.522) | S1=1.458m S5=1.532m S10=1.604m S15=1.765m S20=2.004m | Turn=5.146
+[transformer_snr15] Ep  25/100 [6s] Loss=0.0037/0.0043 | Train_ADE=2.412m | Val_ADE=2.047m FDE=2.421m (best=1.522) | S1=1.714m S5=1.881m S10=1.948m S15=2.242m S20=2.421m | Turn=5.402
+[transformer_snr15] Ep  26/100 [6s] Loss=0.0036/0.0039 | Train_ADE=2.386m | Val_ADE=1.874m FDE=2.258m (best=1.522) | S1=1.550m S5=1.680m S10=1.803m S15=2.028m S20=2.258m | Turn=5.312
+[transformer_snr15] Ep  27/100 [6s] Loss=0.0036/0.0035 | Train_ADE=2.375m | Val_ADE=1.524m FDE=1.929m (best=1.522) | S1=1.258m S5=1.358m S10=1.446m S15=1.652m S20=1.929m | Turn=5.220
+[transformer_snr15] Ep  28/100 [6s] Loss=0.0036/0.0036 | Train_ADE=2.379m | Val_ADE=1.545m FDE=1.901m (best=1.522) | S1=1.324m S5=1.385m S10=1.486m S15=1.657m S20=1.901m | Turn=4.922
+[transformer_snr15] Ep  29/100 [6s] Loss=0.0036/0.0035 | Train_ADE=2.364m | Val_ADE=1.507m FDE=1.872m (best=1.507) | S1=1.264m S5=1.370m S10=1.423m S15=1.632m S20=1.872m | Turn=4.908
+[transformer_snr15] Ep  30/100 [6s] Loss=0.0035/0.0037 | Train_ADE=2.348m | Val_ADE=1.546m FDE=1.911m (best=1.507) | S1=1.293m S5=1.395m S10=1.481m S15=1.681m S20=1.911m | Turn=5.004
+[transformer_snr15] Ep  31/100 [6s] Loss=0.0035/0.0034 | Train_ADE=2.352m | Val_ADE=1.445m FDE=1.823m (best=1.445) | S1=1.216m S5=1.290m S10=1.372m S15=1.561m S20=1.823m | Turn=5.027
+[transformer_snr15] Ep  32/100 [6s] Loss=0.0035/0.0043 | Train_ADE=2.340m | Val_ADE=1.975m FDE=2.332m (best=1.445) | S1=1.743m S5=1.837m S10=1.942m S15=2.094m S20=2.332m | Turn=5.551
+[transformer_snr15] Ep  33/100 [6s] Loss=0.0035/0.0036 | Train_ADE=2.325m | Val_ADE=1.514m FDE=1.881m (best=1.445) | S1=1.297m S5=1.357m S10=1.449m S15=1.619m S20=1.881m | Turn=5.053
+[transformer_snr15] Ep  34/100 [6s] Loss=0.0035/0.0037 | Train_ADE=2.319m | Val_ADE=1.650m FDE=2.016m (best=1.445) | S1=1.410m S5=1.496m S10=1.598m S15=1.773m S20=2.016m | Turn=5.037
+[transformer_snr15] Ep  35/100 [6s] Loss=0.0035/0.0033 | Train_ADE=2.318m | Val_ADE=1.339m FDE=1.763m (best=1.339) | S1=1.062m S5=1.153m S10=1.272m S15=1.489m S20=1.763m | Turn=4.789
+[transformer_snr15] Ep  36/100 [6s] Loss=0.0034/0.0033 | Train_ADE=2.316m | Val_ADE=1.549m FDE=1.949m (best=1.339) | S1=1.235m S5=1.378m S10=1.484m S15=1.698m S20=1.949m | Turn=4.876
+[transformer_snr15] Ep  37/100 [6s] Loss=0.0034/0.0036 | Train_ADE=2.291m | Val_ADE=1.475m FDE=1.827m (best=1.339) | S1=1.218m S5=1.319m S10=1.385m S15=1.621m S20=1.827m | Turn=4.952
+[transformer_snr15] Ep  38/100 [6s] Loss=0.0034/0.0033 | Train_ADE=2.296m | Val_ADE=1.351m FDE=1.767m (best=1.339) | S1=1.061m S5=1.170m S10=1.264m S15=1.507m S20=1.767m | Turn=4.813
+[transformer_snr15] Ep  39/100 [6s] Loss=0.0034/0.0041 | Train_ADE=2.303m | Val_ADE=1.982m FDE=2.311m (best=1.339) | S1=1.754m S5=1.851m S10=1.925m S15=2.102m S20=2.311m | Turn=5.328
+[transformer_snr15] Ep  40/100 [6s] Loss=0.0034/0.0040 | Train_ADE=2.282m | Val_ADE=1.759m FDE=2.071m (best=1.339) | S1=1.543m S5=1.638m S10=1.706m S15=1.867m S20=2.071m | Turn=5.315

@@ -1,0 +1,49 @@
+{
+  "revision": "AUTOMATUM-PREDICTION-DATA-FROZEN",
+  "status": "FROZEN",
+  "history_length": 20,
+  "prediction_length": 20,
+  "max_vehicles": 8,
+  "source_hz": 29.97,
+  "stride": 3,
+  "dt_seconds": 0.1001001001001001,
+  "dt_formula": "stride / source_hz = 3 / 29.97; never hardcode 0.1",
+  "snr_levels_db": [
+    -10.0,
+    -5.0,
+    0.0,
+    5.0,
+    10.0
+  ],
+  "history_state_fields": [
+    "x_hat",
+    "y_hat",
+    "vx_hat",
+    "vy_hat"
+  ],
+  "future_state_fields": [
+    "x",
+    "y",
+    "vx",
+    "vy"
+  ],
+  "history_source": "Frozen Route-B ISAC",
+  "future_source": "Automatum GT",
+  "dataset_splits": {
+    "train": {
+      "samples": "data/automatum_t_crossing/splits/train/samples.npz",
+      "trajectories": "data/automatum_t_crossing/splits/train/trajectories.csv",
+      "isac_cache": "data/automatum_t_crossing/isac/train/sensing_cache.npz"
+    },
+    "val": {
+      "samples": "data/automatum_t_crossing/splits/val/samples.npz",
+      "trajectories": "data/automatum_t_crossing/splits/val/trajectories.csv",
+      "isac_cache": "data/automatum_t_crossing/isac/val/sensing_cache.npz"
+    },
+    "test": {
+      "samples": "data/automatum_t_crossing/splits/test/samples.npz",
+      "trajectories": "data/automatum_t_crossing/splits/test/trajectories.csv",
+      "isac_cache": "data/automatum_t_crossing/isac/test/sensing_cache.npz"
+    }
+  }
+}

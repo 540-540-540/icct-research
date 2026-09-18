@@ -1,0 +1,110 @@
+====================================================================================================
+GPT-2 Ablation Study | snr=20dB | grid=121 | smooth=3 | posterior=0.06 | ablations=['wo_global_refiner']
+[Cache] loaded localized trajectories from ./logs/localized_cache_dataset_lankershim_v3_localize_snr20_g121_s3_t0p06_e1_sl72_pl20.npz
+[Cache] ./logs/localized_cache_dataset_lankershim_v3_localize_snr20_g121_s3_t0p06_e1_sl72_pl20.npz
+[SoftToken] Global calibration: low=0.6424, high=0.7810
+
+----------------------------------------------------------------------------------------------------
+[wo_global_refiner] w/o Global Refiner
+[wo_global_refiner] Params=84,758,985 | Trainable=2,846,409
+[wo_global_refiner] Ep   1/100 [301s] Loss=0.6291/1.4658 | Train_ADE=1.258m | Val_ADE=1.000m FDE=1.745m (best=1.000) | S5=0.673m S10=0.883m S15=1.306m S20=1.745m | L_cls=0.606 L_reg=0.0023 | Acc=80.91%/58.06%
+[wo_global_refiner] Ep   2/100 [303s] Loss=0.2926/1.3630 | Train_ADE=0.775m | Val_ADE=0.988m FDE=1.769m (best=0.988) | S5=0.650m S10=0.843m S15=1.318m S20=1.769m | L_cls=0.279 L_reg=0.0013 | Acc=89.35%/61.76%
+[wo_global_refiner] Ep   3/100 [304s] Loss=0.2649/1.2556 | Train_ADE=0.723m | Val_ADE=0.901m FDE=1.506m (best=0.901) | S5=0.638m S10=0.802m S15=1.168m S20=1.506m | L_cls=0.252 L_reg=0.0013 | Acc=89.68%/64.10%
+[wo_global_refiner] Ep   4/100 [300s] Loss=0.2547/1.2080 | Train_ADE=0.704m | Val_ADE=0.929m FDE=1.572m (best=0.901) | S5=0.648m S10=0.810m S15=1.216m S20=1.572m | L_cls=0.242 L_reg=0.0012 | Acc=89.85%/64.62%
+[wo_global_refiner] Ep   5/100 [304s] Loss=0.2482/1.2611 | Train_ADE=0.685m | Val_ADE=0.890m FDE=1.489m (best=0.890) | S5=0.638m S10=0.778m S15=1.161m S20=1.489m | L_cls=0.236 L_reg=0.0012 | Acc=89.97%/62.05%
+[wo_global_refiner] Ep   6/100 [304s] Loss=0.2437/1.1812 | Train_ADE=0.674m | Val_ADE=0.867m FDE=1.419m (best=0.867) | S5=0.631m S10=0.766m S15=1.125m S20=1.419m | L_cls=0.232 L_reg=0.0012 | Acc=90.07%/64.32%
+[wo_global_refiner] Ep   7/100 [303s] Loss=0.2404/1.2473 | Train_ADE=0.671m | Val_ADE=0.860m FDE=1.401m (best=0.860) | S5=0.629m S10=0.770m S15=1.108m S20=1.401m | L_cls=0.228 L_reg=0.0012 | Acc=90.13%/64.06%
+[wo_global_refiner] Ep   8/100 [299s] Loss=0.2383/1.2588 | Train_ADE=0.664m | Val_ADE=0.863m FDE=1.407m (best=0.860) | S5=0.625m S10=0.768m S15=1.120m S20=1.407m | L_cls=0.226 L_reg=0.0012 | Acc=90.18%/64.34%
+[wo_global_refiner] Ep   9/100 [299s] Loss=0.2362/1.3048 | Train_ADE=0.659m | Val_ADE=0.883m FDE=1.477m (best=0.860) | S5=0.630m S10=0.781m S15=1.146m S20=1.477m | L_cls=0.225 L_reg=0.0012 | Acc=90.24%/61.91%
+[wo_global_refiner] Ep  10/100 [304s] Loss=0.2349/1.1711 | Train_ADE=0.658m | Val_ADE=0.858m FDE=1.416m (best=0.858) | S5=0.622m S10=0.755m S15=1.114m S20=1.416m | L_cls=0.223 L_reg=0.0012 | Acc=90.27%/65.79%
+[wo_global_refiner] Ep  11/100 [300s] Loss=0.2333/1.2947 | Train_ADE=0.650m | Val_ADE=0.866m FDE=1.429m (best=0.858) | S5=0.628m S10=0.772m S15=1.117m S20=1.429m | L_cls=0.222 L_reg=0.0011 | Acc=90.32%/62.11%
+[wo_global_refiner] Ep  12/100 [304s] Loss=0.2323/1.2041 | Train_ADE=0.648m | Val_ADE=0.850m FDE=1.387m (best=0.850) | S5=0.623m S10=0.756m S15=1.098m S20=1.387m | L_cls=0.221 L_reg=0.0012 | Acc=90.35%/65.80%
+[wo_global_refiner] Ep  13/100 [300s] Loss=0.2311/1.1904 | Train_ADE=0.642m | Val_ADE=0.880m FDE=1.456m (best=0.850) | S5=0.621m S10=0.778m S15=1.151m S20=1.456m | L_cls=0.220 L_reg=0.0011 | Acc=90.37%/65.38%
+[wo_global_refiner] Ep  14/100 [306s] Loss=0.2305/1.2393 | Train_ADE=0.639m | Val_ADE=0.850m FDE=1.375m (best=0.850) | S5=0.623m S10=0.756m S15=1.100m S20=1.375m | L_cls=0.219 L_reg=0.0011 | Acc=90.36%/65.05%
+[wo_global_refiner] Ep  15/100 [306s] Loss=0.2296/1.1957 | Train_ADE=0.638m | Val_ADE=0.850m FDE=1.376m (best=0.850) | S5=0.623m S10=0.759m S15=1.097m S20=1.376m | L_cls=0.218 L_reg=0.0011 | Acc=90.40%/65.95%
+[wo_global_refiner] Ep  16/100 [299s] Loss=0.2286/1.2442 | Train_ADE=0.639m | Val_ADE=0.851m FDE=1.386m (best=0.850) | S5=0.619m S10=0.763m S15=1.100m S20=1.386m | L_cls=0.217 L_reg=0.0011 | Acc=90.41%/65.00%
+[wo_global_refiner] Ep  17/100 [299s] Loss=0.2276/1.1880 | Train_ADE=0.635m | Val_ADE=0.855m FDE=1.412m (best=0.850) | S5=0.618m S10=0.762m S15=1.100m S20=1.412m | L_cls=0.217 L_reg=0.0011 | Acc=90.43%/65.71%
+[wo_global_refiner] Ep  18/100 [300s] Loss=0.2274/1.1779 | Train_ADE=0.633m | Val_ADE=0.860m FDE=1.410m (best=0.850) | S5=0.618m S10=0.765m S15=1.118m S20=1.410m | L_cls=0.216 L_reg=0.0011 | Acc=90.44%/66.01%
+[wo_global_refiner] Ep  19/100 [301s] Loss=0.2273/1.2257 | Train_ADE=0.633m | Val_ADE=0.865m FDE=1.416m (best=0.850) | S5=0.626m S10=0.762m S15=1.120m S20=1.416m | L_cls=0.216 L_reg=0.0011 | Acc=90.45%/65.42%
+[wo_global_refiner] Ep  20/100 [305s] Loss=0.2264/1.1809 | Train_ADE=0.630m | Val_ADE=0.830m FDE=1.332m (best=0.830) | S5=0.618m S10=0.742m S15=1.062m S20=1.332m | L_cls=0.215 L_reg=0.0011 | Acc=90.46%/66.02%
+[wo_global_refiner] Ep  21/100 [300s] Loss=0.2257/1.1678 | Train_ADE=0.627m | Val_ADE=0.834m FDE=1.345m (best=0.830) | S5=0.616m S10=0.744m S15=1.069m S20=1.345m | L_cls=0.215 L_reg=0.0011 | Acc=90.47%/66.19%
+[wo_global_refiner] Ep  22/100 [300s] Loss=0.2256/1.2071 | Train_ADE=0.628m | Val_ADE=0.834m FDE=1.335m (best=0.830) | S5=0.620m S10=0.743m S15=1.070m S20=1.335m | L_cls=0.214 L_reg=0.0011 | Acc=90.48%/66.33%
+[wo_global_refiner] Ep  23/100 [300s] Loss=0.2245/1.1788 | Train_ADE=0.623m | Val_ADE=0.836m FDE=1.370m (best=0.830) | S5=0.612m S10=0.749m S15=1.067m S20=1.370m | L_cls=0.214 L_reg=0.0011 | Acc=90.50%/66.00%
+[wo_global_refiner] Ep  24/100 [299s] Loss=0.2243/1.1886 | Train_ADE=0.624m | Val_ADE=0.842m FDE=1.357m (best=0.830) | S5=0.617m S10=0.754m S15=1.082m S20=1.357m | L_cls=0.213 L_reg=0.0011 | Acc=90.49%/65.67%
+[wo_global_refiner] Ep  25/100 [300s] Loss=0.2236/1.1872 | Train_ADE=0.622m | Val_ADE=0.853m FDE=1.395m (best=0.830) | S5=0.621m S10=0.759m S15=1.100m S20=1.395m | L_cls=0.213 L_reg=0.0011 | Acc=90.51%/66.11%
+[wo_global_refiner] Ep  26/100 [303s] Loss=0.2237/1.2025 | Train_ADE=0.620m | Val_ADE=0.870m FDE=1.417m (best=0.830) | S5=0.626m S10=0.777m S15=1.127m S20=1.417m | L_cls=0.213 L_reg=0.0011 | Acc=90.50%/66.43%
+[wo_global_refiner] Ep  27/100 [300s] Loss=0.2230/1.1758 | Train_ADE=0.619m | Val_ADE=0.842m FDE=1.386m (best=0.830) | S5=0.620m S10=0.741m S15=1.080m S20=1.386m | L_cls=0.212 L_reg=0.0011 | Acc=90.52%/66.48%
+[wo_global_refiner] Ep  28/100 [299s] Loss=0.2232/1.1826 | Train_ADE=0.621m | Val_ADE=0.841m FDE=1.380m (best=0.830) | S5=0.616m S10=0.760m S15=1.071m S20=1.380m | L_cls=0.212 L_reg=0.0011 | Acc=90.52%/66.21%
+[wo_global_refiner] Ep  29/100 [300s] Loss=0.2219/1.1695 | Train_ADE=0.616m | Val_ADE=0.832m FDE=1.352m (best=0.830) | S5=0.618m S10=0.746m S15=1.062m S20=1.352m | L_cls=0.211 L_reg=0.0011 | Acc=90.54%/66.16%
+[wo_global_refiner] Ep  30/100 [305s] Loss=0.2224/1.1796 | Train_ADE=0.617m | Val_ADE=0.828m FDE=1.335m (best=0.828) | S5=0.619m S10=0.744m S15=1.053m S20=1.335m | L_cls=0.212 L_reg=0.0011 | Acc=90.52%/65.00%
+[wo_global_refiner] Ep  31/100 [300s] Loss=0.2209/1.2141 | Train_ADE=0.613m | Val_ADE=0.830m FDE=1.341m (best=0.828) | S5=0.618m S10=0.742m S15=1.056m S20=1.341m | L_cls=0.210 L_reg=0.0011 | Acc=90.56%/64.91%
+[wo_global_refiner] Ep  32/100 [307s] Loss=0.2206/1.1822 | Train_ADE=0.611m | Val_ADE=0.824m FDE=1.318m (best=0.824) | S5=0.618m S10=0.738m S15=1.052m S20=1.318m | L_cls=0.210 L_reg=0.0011 | Acc=90.57%/65.95%
+[wo_global_refiner] Ep  33/100 [300s] Loss=0.2210/1.1649 | Train_ADE=0.613m | Val_ADE=0.844m FDE=1.368m (best=0.824) | S5=0.620m S10=0.757m S15=1.081m S20=1.368m | L_cls=0.210 L_reg=0.0011 | Acc=90.56%/66.74%
+[wo_global_refiner] Ep  34/100 [300s] Loss=0.2209/1.1837 | Train_ADE=0.611m | Val_ADE=0.835m FDE=1.353m (best=0.824) | S5=0.615m S10=0.747m S15=1.068m S20=1.353m | L_cls=0.210 L_reg=0.0011 | Acc=90.56%/65.68%
+[wo_global_refiner] Ep  35/100 [299s] Loss=0.2202/1.1666 | Train_ADE=0.609m | Val_ADE=0.836m FDE=1.349m (best=0.824) | S5=0.618m S10=0.747m S15=1.068m S20=1.349m | L_cls=0.209 L_reg=0.0011 | Acc=90.57%/65.58%
+[wo_global_refiner] Ep  36/100 [300s] Loss=0.2201/1.2053 | Train_ADE=0.612m | Val_ADE=0.827m FDE=1.316m (best=0.824) | S5=0.614m S10=0.739m S15=1.068m S20=1.316m | L_cls=0.209 L_reg=0.0011 | Acc=90.58%/64.75%
+[wo_global_refiner] Ep  37/100 [305s] Loss=0.2193/1.2250 | Train_ADE=0.606m | Val_ADE=0.822m FDE=1.315m (best=0.822) | S5=0.615m S10=0.738m S15=1.047m S20=1.315m | L_cls=0.209 L_reg=0.0011 | Acc=90.59%/64.12%
+[wo_global_refiner] Ep  38/100 [306s] Loss=0.2188/1.1616 | Train_ADE=0.606m | Val_ADE=0.816m FDE=1.308m (best=0.816) | S5=0.612m S10=0.736m S15=1.037m S20=1.308m | L_cls=0.208 L_reg=0.0010 | Acc=90.61%/65.66%
+[wo_global_refiner] Ep  39/100 [300s] Loss=0.2185/1.2064 | Train_ADE=0.604m | Val_ADE=0.817m FDE=1.313m (best=0.816) | S5=0.615m S10=0.730m S15=1.034m S20=1.313m | L_cls=0.208 L_reg=0.0010 | Acc=90.60%/65.84%
+[wo_global_refiner] Ep  40/100 [306s] Loss=0.2181/1.1791 | Train_ADE=0.602m | Val_ADE=0.811m FDE=1.297m (best=0.811) | S5=0.610m S10=0.731m S15=1.027m S20=1.297m | L_cls=0.208 L_reg=0.0010 | Acc=90.61%/66.01%
+[wo_global_refiner] Ep  41/100 [301s] Loss=0.2178/1.1706 | Train_ADE=0.604m | Val_ADE=0.835m FDE=1.349m (best=0.811) | S5=0.612m S10=0.749m S15=1.080m S20=1.349m | L_cls=0.207 L_reg=0.0010 | Acc=90.63%/66.25%
+[wo_global_refiner] Ep  42/100 [300s] Loss=0.2173/1.1730 | Train_ADE=0.602m | Val_ADE=0.815m FDE=1.305m (best=0.811) | S5=0.617m S10=0.739m S15=1.033m S20=1.305m | L_cls=0.207 L_reg=0.0010 | Acc=90.63%/66.44%
+[wo_global_refiner] Ep  43/100 [301s] Loss=0.2173/1.1819 | Train_ADE=0.603m | Val_ADE=0.829m FDE=1.325m (best=0.811) | S5=0.622m S10=0.754m S15=1.052m S20=1.325m | L_cls=0.207 L_reg=0.0011 | Acc=90.64%/66.50%
+[wo_global_refiner] Ep  44/100 [300s] Loss=0.2169/1.1747 | Train_ADE=0.599m | Val_ADE=0.821m FDE=1.329m (best=0.811) | S5=0.615m S10=0.740m S15=1.045m S20=1.329m | L_cls=0.207 L_reg=0.0010 | Acc=90.64%/66.19%
+[wo_global_refiner] Ep  45/100 [300s] Loss=0.2171/1.2784 | Train_ADE=0.601m | Val_ADE=0.827m FDE=1.318m (best=0.811) | S5=0.616m S10=0.741m S15=1.060m S20=1.318m | L_cls=0.206 L_reg=0.0011 | Acc=90.64%/63.84%
+[wo_global_refiner] Ep  46/100 [305s] Loss=0.2167/1.1756 | Train_ADE=0.599m | Val_ADE=0.805m FDE=1.290m (best=0.805) | S5=0.611m S10=0.730m S15=1.020m S20=1.290m | L_cls=0.206 L_reg=0.0010 | Acc=90.65%/66.78%
+[wo_global_refiner] Ep  47/100 [300s] Loss=0.2171/1.1509 | Train_ADE=0.602m | Val_ADE=0.814m FDE=1.295m (best=0.805) | S5=0.613m S10=0.729m S15=1.038m S20=1.295m | L_cls=0.206 L_reg=0.0011 | Acc=90.66%/66.87%
+[wo_global_refiner] Ep  48/100 [305s] Loss=0.2163/1.1768 | Train_ADE=0.596m | Val_ADE=0.803m FDE=1.272m (best=0.803) | S5=0.607m S10=0.720m S15=1.020m S20=1.272m | L_cls=0.206 L_reg=0.0010 | Acc=90.65%/66.51%
+[wo_global_refiner] Ep  49/100 [306s] Loss=0.2162/1.1505 | Train_ADE=0.596m | Val_ADE=0.801m FDE=1.274m (best=0.801) | S5=0.603m S10=0.719m S15=1.017m S20=1.274m | L_cls=0.206 L_reg=0.0011 | Acc=90.67%/66.68%
+[wo_global_refiner] Ep  50/100 [302s] Loss=0.2152/1.1382 | Train_ADE=0.593m | Val_ADE=0.834m FDE=1.347m (best=0.801) | S5=0.614m S10=0.753m S15=1.065m S20=1.347m | L_cls=0.205 L_reg=0.0010 | Acc=90.66%/66.70%
+[wo_global_refiner] Ep  51/100 [300s] Loss=0.2146/1.1410 | Train_ADE=0.590m | Val_ADE=0.804m FDE=1.285m (best=0.801) | S5=0.607m S10=0.724m S15=1.014m S20=1.285m | L_cls=0.204 L_reg=0.0010 | Acc=90.68%/67.00%
+[wo_global_refiner] Ep  52/100 [303s] Loss=0.2144/1.1607 | Train_ADE=0.591m | Val_ADE=0.808m FDE=1.293m (best=0.801) | S5=0.610m S10=0.728m S15=1.022m S20=1.293m | L_cls=0.204 L_reg=0.0010 | Acc=90.69%/66.69%
+[wo_global_refiner] Ep  53/100 [302s] Loss=0.2141/1.1775 | Train_ADE=0.590m | Val_ADE=0.803m FDE=1.286m (best=0.801) | S5=0.604m S10=0.721m S15=1.017m S20=1.286m | L_cls=0.204 L_reg=0.0010 | Acc=90.70%/66.65%
+[wo_global_refiner] Ep  54/100 [302s] Loss=0.2137/1.2118 | Train_ADE=0.590m | Val_ADE=0.811m FDE=1.304m (best=0.801) | S5=0.606m S10=0.731m S15=1.021m S20=1.304m | L_cls=0.204 L_reg=0.0010 | Acc=90.72%/66.39%
+[wo_global_refiner] Ep  55/100 [301s] Loss=0.2134/1.2140 | Train_ADE=0.589m | Val_ADE=0.808m FDE=1.293m (best=0.801) | S5=0.606m S10=0.732m S15=1.019m S20=1.293m | L_cls=0.203 L_reg=0.0010 | Acc=90.72%/66.31%
+[wo_global_refiner] Ep  56/100 [301s] Loss=0.2145/1.1816 | Train_ADE=0.595m | Val_ADE=0.825m FDE=1.312m (best=0.801) | S5=0.617m S10=0.728m S15=1.059m S20=1.312m | L_cls=0.204 L_reg=0.0011 | Acc=90.71%/66.06%
+[wo_global_refiner] Ep  57/100 [302s] Loss=0.2142/1.2065 | Train_ADE=0.588m | Val_ADE=0.804m FDE=1.281m (best=0.801) | S5=0.607m S10=0.729m S15=1.018m S20=1.281m | L_cls=0.204 L_reg=0.0011 | Acc=90.71%/66.34%
+[wo_global_refiner] Ep  58/100 [302s] Loss=0.2130/1.1971 | Train_ADE=0.586m | Val_ADE=0.802m FDE=1.281m (best=0.801) | S5=0.604m S10=0.726m S15=1.018m S20=1.281m | L_cls=0.203 L_reg=0.0010 | Acc=90.74%/66.48%
+[wo_global_refiner] Ep  59/100 [307s] Loss=0.2127/1.1583 | Train_ADE=0.585m | Val_ADE=0.797m FDE=1.270m (best=0.797) | S5=0.602m S10=0.720m S15=1.006m S20=1.270m | L_cls=0.203 L_reg=0.0010 | Acc=90.75%/66.87%
+[wo_global_refiner] Ep  60/100 [307s] Loss=0.2129/1.1531 | Train_ADE=0.583m | Val_ADE=0.793m FDE=1.237m (best=0.793) | S5=0.606m S10=0.716m S15=0.997m S20=1.237m | L_cls=0.203 L_reg=0.0010 | Acc=90.75%/66.50%
+[wo_global_refiner] Ep  61/100 [300s] Loss=0.2121/1.1786 | Train_ADE=0.581m | Val_ADE=0.799m FDE=1.273m (best=0.793) | S5=0.602m S10=0.724m S15=1.007m S20=1.273m | L_cls=0.202 L_reg=0.0010 | Acc=90.75%/66.28%
+[wo_global_refiner] Ep  62/100 [301s] Loss=0.2118/1.1804 | Train_ADE=0.578m | Val_ADE=0.796m FDE=1.256m (best=0.793) | S5=0.603m S10=0.722m S15=1.004m S20=1.256m | L_cls=0.202 L_reg=0.0010 | Acc=90.76%/66.05%
+[wo_global_refiner] Ep  63/100 [300s] Loss=0.2112/1.1773 | Train_ADE=0.576m | Val_ADE=0.799m FDE=1.276m (best=0.793) | S5=0.605m S10=0.717m S15=1.005m S20=1.276m | L_cls=0.201 L_reg=0.0010 | Acc=90.78%/66.54%
+[wo_global_refiner] Ep  64/100 [299s] Loss=0.2111/1.1755 | Train_ADE=0.576m | Val_ADE=0.799m FDE=1.262m (best=0.793) | S5=0.608m S10=0.728m S15=1.000m S20=1.262m | L_cls=0.201 L_reg=0.0010 | Acc=90.77%/66.11%
+[wo_global_refiner] Ep  65/100 [301s] Loss=0.2117/1.1612 | Train_ADE=0.578m | Val_ADE=0.811m FDE=1.300m (best=0.793) | S5=0.602m S10=0.732m S15=1.027m S20=1.300m | L_cls=0.201 L_reg=0.0010 | Acc=90.77%/66.97%
+[wo_global_refiner] Ep  66/100 [300s] Loss=0.2111/1.1556 | Train_ADE=0.573m | Val_ADE=0.808m FDE=1.294m (best=0.793) | S5=0.605m S10=0.724m S15=1.024m S20=1.294m | L_cls=0.201 L_reg=0.0010 | Acc=90.77%/66.93%
+[wo_global_refiner] Ep  67/100 [300s] Loss=0.2108/1.1724 | Train_ADE=0.573m | Val_ADE=0.809m FDE=1.299m (best=0.793) | S5=0.604m S10=0.735m S15=1.027m S20=1.299m | L_cls=0.201 L_reg=0.0010 | Acc=90.80%/65.85%
+[wo_global_refiner] Ep  68/100 [300s] Loss=0.2101/1.2039 | Train_ADE=0.570m | Val_ADE=0.795m FDE=1.266m (best=0.793) | S5=0.601m S10=0.720m S15=0.998m S20=1.266m | L_cls=0.200 L_reg=0.0010 | Acc=90.82%/65.28%
+[wo_global_refiner] Ep  69/100 [301s] Loss=0.2100/1.1941 | Train_ADE=0.570m | Val_ADE=0.811m FDE=1.293m (best=0.793) | S5=0.605m S10=0.735m S15=1.030m S20=1.293m | L_cls=0.200 L_reg=0.0010 | Acc=90.81%/66.18%
+[wo_global_refiner] Ep  70/100 [305s] Loss=0.2097/1.1600 | Train_ADE=0.567m | Val_ADE=0.787m FDE=1.257m (best=0.787) | S5=0.595m S10=0.712m S15=0.988m S20=1.257m | L_cls=0.200 L_reg=0.0010 | Acc=90.81%/66.69%
+[wo_global_refiner] Ep  71/100 [301s] Loss=0.2098/1.1868 | Train_ADE=0.566m | Val_ADE=0.792m FDE=1.270m (best=0.787) | S5=0.596m S10=0.714m S15=0.997m S20=1.270m | L_cls=0.200 L_reg=0.0010 | Acc=90.80%/66.48%
+[wo_global_refiner] Ep  72/100 [300s] Loss=0.2103/1.2182 | Train_ADE=0.569m | Val_ADE=0.810m FDE=1.294m (best=0.787) | S5=0.605m S10=0.735m S15=1.021m S20=1.294m | L_cls=0.200 L_reg=0.0010 | Acc=90.80%/64.64%
+[wo_global_refiner] Ep  73/100 [301s] Loss=0.2100/1.1643 | Train_ADE=0.567m | Val_ADE=0.788m FDE=1.245m (best=0.787) | S5=0.600m S10=0.715m S15=1.000m S20=1.245m | L_cls=0.200 L_reg=0.0010 | Acc=90.82%/67.04%
+[wo_global_refiner] Ep  74/100 [306s] Loss=0.2089/1.1672 | Train_ADE=0.562m | Val_ADE=0.779m FDE=1.236m (best=0.779) | S5=0.600m S10=0.707m S15=0.975m S20=1.236m | L_cls=0.199 L_reg=0.0010 | Acc=90.85%/66.99%
+[wo_global_refiner] Ep  75/100 [302s] Loss=0.2084/1.1610 | Train_ADE=0.561m | Val_ADE=0.785m FDE=1.250m (best=0.779) | S5=0.596m S10=0.711m S15=0.991m S20=1.250m | L_cls=0.199 L_reg=0.0010 | Acc=90.84%/66.94%
+[wo_global_refiner] Ep  76/100 [300s] Loss=0.2088/1.1583 | Train_ADE=0.561m | Val_ADE=0.800m FDE=1.276m (best=0.779) | S5=0.602m S10=0.722m S15=1.011m S20=1.276m | L_cls=0.199 L_reg=0.0010 | Acc=90.83%/66.25%
+[wo_global_refiner] Ep  77/100 [305s] Loss=0.2089/1.1507 | Train_ADE=0.559m | Val_ADE=0.778m FDE=1.235m (best=0.778) | S5=0.598m S10=0.701m S15=0.977m S20=1.235m | L_cls=0.199 L_reg=0.0010 | Acc=90.84%/66.35%
+[wo_global_refiner] Ep  78/100 [307s] Loss=0.2085/1.1717 | Train_ADE=0.559m | Val_ADE=0.776m FDE=1.216m (best=0.776) | S5=0.596m S10=0.695m S15=0.974m S20=1.216m | L_cls=0.199 L_reg=0.0010 | Acc=90.84%/66.87%
+[wo_global_refiner] Ep  79/100 [300s] Loss=0.2078/1.1772 | Train_ADE=0.557m | Val_ADE=0.783m FDE=1.239m (best=0.776) | S5=0.605m S10=0.706m S15=0.980m S20=1.239m | L_cls=0.198 L_reg=0.0010 | Acc=90.88%/65.90%
+[wo_global_refiner] Ep  80/100 [301s] Loss=0.2075/1.1574 | Train_ADE=0.553m | Val_ADE=0.778m FDE=1.226m (best=0.776) | S5=0.600m S10=0.705m S15=0.970m S20=1.226m | L_cls=0.198 L_reg=0.0010 | Acc=90.85%/66.93%
+[wo_global_refiner] Ep  81/100 [301s] Loss=0.2081/1.1711 | Train_ADE=0.557m | Val_ADE=0.787m FDE=1.253m (best=0.776) | S5=0.596m S10=0.712m S15=0.993m S20=1.253m | L_cls=0.198 L_reg=0.0010 | Acc=90.85%/66.59%
+[wo_global_refiner] Ep  82/100 [300s] Loss=0.2081/1.1578 | Train_ADE=0.554m | Val_ADE=0.784m FDE=1.245m (best=0.776) | S5=0.599m S10=0.710m S15=0.985m S20=1.245m | L_cls=0.198 L_reg=0.0010 | Acc=90.85%/66.78%
+[wo_global_refiner] Ep  83/100 [300s] Loss=0.2072/1.1515 | Train_ADE=0.553m | Val_ADE=0.785m FDE=1.246m (best=0.776) | S5=0.598m S10=0.707m S15=0.985m S20=1.246m | L_cls=0.197 L_reg=0.0010 | Acc=90.88%/66.38%
+[wo_global_refiner] Ep  84/100 [300s] Loss=0.2075/1.1693 | Train_ADE=0.554m | Val_ADE=0.777m FDE=1.220m (best=0.776) | S5=0.602m S10=0.704m S15=0.969m S20=1.220m | L_cls=0.198 L_reg=0.0010 | Acc=90.88%/66.64%
+[wo_global_refiner] Ep  85/100 [307s] Loss=0.2069/1.1310 | Train_ADE=0.551m | Val_ADE=0.766m FDE=1.203m (best=0.766) | S5=0.592m S10=0.694m S15=0.956m S20=1.203m | L_cls=0.197 L_reg=0.0010 | Acc=90.88%/67.31%
+[wo_global_refiner] Ep  86/100 [301s] Loss=0.2069/1.2002 | Train_ADE=0.549m | Val_ADE=0.772m FDE=1.221m (best=0.766) | S5=0.593m S10=0.697m S15=0.962m S20=1.221m | L_cls=0.197 L_reg=0.0010 | Acc=90.89%/66.40%
+[wo_global_refiner] Ep  87/100 [300s] Loss=0.2069/1.1499 | Train_ADE=0.549m | Val_ADE=0.784m FDE=1.241m (best=0.766) | S5=0.606m S10=0.708m S15=0.985m S20=1.241m | L_cls=0.197 L_reg=0.0010 | Acc=90.87%/66.67%
+[wo_global_refiner] Ep  88/100 [301s] Loss=0.2061/1.1719 | Train_ADE=0.547m | Val_ADE=0.776m FDE=1.228m (best=0.766) | S5=0.594m S10=0.704m S15=0.969m S20=1.228m | L_cls=0.196 L_reg=0.0010 | Acc=90.89%/66.56%
+[wo_global_refiner] Ep  89/100 [300s] Loss=0.2059/1.1688 | Train_ADE=0.545m | Val_ADE=0.782m FDE=1.251m (best=0.766) | S5=0.595m S10=0.709m S15=0.981m S20=1.251m | L_cls=0.196 L_reg=0.0010 | Acc=90.92%/67.13%
+[wo_global_refiner] Ep  90/100 [300s] Loss=0.2058/1.1794 | Train_ADE=0.545m | Val_ADE=0.774m FDE=1.227m (best=0.766) | S5=0.596m S10=0.698m S15=0.968m S20=1.227m | L_cls=0.196 L_reg=0.0010 | Acc=90.92%/66.35%
+[wo_global_refiner] Ep  91/100 [301s] Loss=0.2052/1.1326 | Train_ADE=0.542m | Val_ADE=0.773m FDE=1.218m (best=0.766) | S5=0.592m S10=0.698m S15=0.969m S20=1.218m | L_cls=0.196 L_reg=0.0010 | Acc=90.92%/67.13%
+[wo_global_refiner] Ep  92/100 [307s] Loss=0.2052/1.1457 | Train_ADE=0.543m | Val_ADE=0.761m FDE=1.201m (best=0.761) | S5=0.589m S10=0.694m S15=0.946m S20=1.201m | L_cls=0.196 L_reg=0.0010 | Acc=90.92%/66.43%
+[wo_global_refiner] Ep  93/100 [300s] Loss=0.2047/1.1809 | Train_ADE=0.539m | Val_ADE=0.779m FDE=1.233m (best=0.761) | S5=0.597m S10=0.711m S15=0.972m S20=1.233m | L_cls=0.195 L_reg=0.0010 | Acc=90.94%/66.79%
+[wo_global_refiner] Ep  94/100 [299s] Loss=0.2048/1.2043 | Train_ADE=0.540m | Val_ADE=0.778m FDE=1.249m (best=0.761) | S5=0.592m S10=0.707m S15=0.972m S20=1.249m | L_cls=0.195 L_reg=0.0010 | Acc=90.94%/65.32%
+[wo_global_refiner] Ep  95/100 [300s] Loss=0.2048/1.2054 | Train_ADE=0.538m | Val_ADE=0.762m FDE=1.192m (best=0.761) | S5=0.597m S10=0.695m S15=0.940m S20=1.192m | L_cls=0.195 L_reg=0.0010 | Acc=90.95%/65.12%
+[wo_global_refiner] Ep  96/100 [305s] Loss=0.2043/1.1703 | Train_ADE=0.538m | Val_ADE=0.760m FDE=1.184m (best=0.760) | S5=0.598m S10=0.691m S15=0.942m S20=1.184m | L_cls=0.195 L_reg=0.0009 | Acc=90.95%/66.38%
+[wo_global_refiner] Ep  97/100 [300s] Loss=0.2043/1.1618 | Train_ADE=0.538m | Val_ADE=0.760m FDE=1.195m (best=0.760) | S5=0.591m S10=0.692m S15=0.941m S20=1.195m | L_cls=0.195 L_reg=0.0010 | Acc=90.94%/66.83%
+[wo_global_refiner] Ep  98/100 [301s] Loss=0.2042/1.1909 | Train_ADE=0.538m | Val_ADE=0.777m FDE=1.224m (best=0.760) | S5=0.595m S10=0.709m S15=0.967m S20=1.224m | L_cls=0.194 L_reg=0.0010 | Acc=90.95%/66.66%
+[wo_global_refiner] Ep  99/100 [300s] Loss=0.2042/1.1716 | Train_ADE=0.538m | Val_ADE=0.775m FDE=1.226m (best=0.760) | S5=0.595m S10=0.700m S15=0.971m S20=1.226m | L_cls=0.195 L_reg=0.0009 | Acc=90.94%/66.52%
+[wo_global_refiner] Ep 100/100 [306s] Loss=0.2039/1.1895 | Train_ADE=0.534m | Val_ADE=0.758m FDE=1.194m (best=0.758) | S5=0.590m S10=0.685m S15=0.943m S20=1.194m | L_cls=0.194 L_reg=0.0010 | Acc=90.95%/66.05%
+[wo_global_refiner] Best-checkpoint eval | ADE=0.758 FDE=1.194 | Turn=4.631

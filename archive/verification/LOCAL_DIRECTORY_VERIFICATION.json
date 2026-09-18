@@ -1,0 +1,130 @@
+[
+  {
+    "Directory": "data",
+    "RemoteFiles": 2,
+    "LocalFiles": 2,
+    "RemoteBytes": 57735701,
+    "LocalBytes": 57735701,
+    "Match": true
+  },
+  {
+    "Directory": "dataset_lankershim_clean_v1",
+    "RemoteFiles": 449,
+    "LocalFiles": 449,
+    "RemoteBytes": 2430477255,
+    "LocalBytes": 2430477255,
+    "Match": true
+  },
+  {
+    "Directory": "results",
+    "RemoteFiles": 98,
+    "LocalFiles": 98,
+    "RemoteBytes": 2544683403,
+    "LocalBytes": 2544683403,
+    "Match": true
+  },
+  {
+    "Directory": "双图研究框架",
+    "RemoteFiles": 173,
+    "LocalFiles": 173,
+    "RemoteBytes": 15558032,
+    "LocalBytes": 15558032,
+    "Match": true
+  },
+  {
+    "Directory": "gpt2",
+    "RemoteFiles": 9,
+    "LocalFiles": 9,
+    "RemoteBytes": 551490878,
+    "LocalBytes": 551490878,
+    "Match": true
+  },
+  {
+    "Directory": "preserved_experiments",
+    "RemoteFiles": 1,
+    "LocalFiles": 1,
+    "RemoteBytes": 72998790,
+    "LocalBytes": 72998790,
+    "Match": true
+  },
+  {
+    "Directory": "paper_figures",
+    "RemoteFiles": 10,
+    "LocalFiles": 10,
+    "RemoteBytes": 1418628,
+    "LocalBytes": 1418628,
+    "Match": true
+  },
+  {
+    "Directory": "paper_figures_nature",
+    "RemoteFiles": 21,
+    "LocalFiles": 21,
+    "RemoteBytes": 5499975,
+    "LocalBytes": 5499975,
+    "Match": true
+  },
+  {
+    "Directory": "figures",
+    "RemoteFiles": 107,
+    "LocalFiles": 107,
+    "RemoteBytes": 24430384,
+    "LocalBytes": 24430384,
+    "Match": true
+  },
+  {
+    "Directory": "assets",
+    "RemoteFiles": 2,
+    "LocalFiles": 2,
+    "RemoteBytes": 19507484,
+    "LocalBytes": 19507484,
+    "Match": true
+  },
+  {
+    "Directory": "figure_tools",
+    "RemoteFiles": 18,
+    "LocalFiles": 18,
+    "RemoteBytes": 4366542,
+    "LocalBytes": 4366542,
+    "Match": true
+  },
+  {
+    "Directory": "logs",
+    "RemoteFiles": 76,
+    "LocalFiles": 76,
+    "RemoteBytes": 32031197,
+    "LocalBytes": 32031197,
+    "Match": true
+  },
+  {
+    "Directory": "newnew_figure",
+    "RemoteFiles": 14,
+    "LocalFiles": 14,
+    "RemoteBytes": 2682627,
+    "LocalBytes": 2682627,
+    "Match": true
+  },
+  {
+    "Directory": "dataset",
+    "RemoteFiles": 1,
+    "LocalFiles": 1,
+    "RemoteBytes": 571,
+    "LocalBytes": 571,
+    "Match": true
+  },
+  {
+    "Directory": "deepmimo_generate_data",
+    "RemoteFiles": 2,
+    "LocalFiles": 2,
+    "RemoteBytes": 15125,
+    "LocalBytes": 15125,
+    "Match": true
+  },
+  {
+    "Directory": "diagnostics/core_message_seed2026_v2",
+    "RemoteFiles": 772,
+    "LocalFiles": 772,
+    "RemoteBytes": 668703637,
+    "LocalBytes": 668703637,
+    "Match": true
+  }
+]

@@ -5,7 +5,7 @@ Chain:
   trajectories.csv GT state
     -> Frozen 3-BS Route-B ISAC (frontend.controlled_isac.automatum_frontend.sense_vehicle)
     -> [x_hat, y_hat, vx_hat, vy_hat]
-    -> Production Sensing Cache (data/automatum_t_crossing/isac_v2/<split>/sensing_cache.npz)
+    -> Production Sensing Cache (data/automatum_t_crossing/isac/<split>/sensing_cache.npz)
 
 The cache covers all unique prediction-history states:
   (scene_id, frame, vehicle_id)
@@ -13,8 +13,8 @@ where frame = start_frame + 0...19, across all valid windows in samples.npz.
 For each unique state, 5 SNR levels [-10, -5, 0, +5, +10] dB are evaluated.
 
 Outputs per split:
-  data/automatum_t_crossing/isac_v2/<split>/sensing_cache.npz
-  data/automatum_t_crossing/isac_v2/<split>/sensing_manifest.json
+  data/automatum_t_crossing/isac/<split>/sensing_cache.npz
+  data/automatum_t_crossing/isac/<split>/sensing_manifest.json
 Mirrored reports:
   reports/isac_production_cache/<split>_sensing_manifest.json
 
@@ -46,7 +46,7 @@ from frontend.controlled_isac.automatum_measurement import (
 )
 
 CONFIG_PATH = ROOT / "configs/automatum_controlled_isac.json"
-OUT_BASE = ROOT / "data/automatum_t_crossing/isac_v2"
+OUT_BASE = ROOT / "data/automatum_t_crossing/isac"
 REPORT_DIR = ROOT / "reports/isac_production_cache"
 
 SNR_LEVELS = [-10.0, -5.0, 0.0, 5.0, 10.0]

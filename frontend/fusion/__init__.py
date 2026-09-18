@@ -1,1 +1,0 @@
-"""Cross-BS association/fusion package placeholder (P3, not implemented in REBUILD-03A)."""

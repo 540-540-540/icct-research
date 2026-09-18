@@ -1,0 +1,106 @@
+{
+  "status": "complete",
+  "best_checkpoint": "/home/dell/YrM/ICCT/results/qgat_factorial/C/best.pt",
+  "best_metrics": {
+    "epoch": 8,
+    "loss": 1.8951074374563177,
+    "ADE": 0.802181787097652,
+    "FDE": 1.6791093419597019,
+    "J": 1.641736458077503,
+    "gradient_norm": 1.2427787780761719,
+    "graph_gradient_norm": 0.3611581325531006,
+    "elapsed_seconds": 181.21891086362302
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "loss": 2.1758061001601163,
+      "ADE": 0.8767844671237981,
+      "FDE": 1.8011548137146747,
+      "J": 1.7773618739811354,
+      "gradient_norm": 4.256640911102295,
+      "graph_gradient_norm": 0.1567479819059372,
+      "elapsed_seconds": 23.838224003091455
+    },
+    {
+      "epoch": 2,
+      "loss": 1.9626895880064694,
+      "ADE": 0.8391359112865757,
+      "FDE": 1.760958284699882,
+      "J": 1.7196150536365167,
+      "gradient_norm": 1.1468995809555054,
+      "graph_gradient_norm": 0.08395456522703171,
+      "elapsed_seconds": 46.26916146278381
+    },
+    {
+      "epoch": 3,
+      "loss": 1.9426601374143502,
+      "ADE": 0.8296314109975356,
+      "FDE": 1.7492192232966772,
+      "J": 1.7042410226458742,
+      "gradient_norm": 2.202162027359009,
+      "graph_gradient_norm": 0.10031385719776154,
+      "elapsed_seconds": 68.59399666637182
+    },
+    {
+      "epoch": 4,
+      "loss": 1.931327288308239,
+      "ADE": 0.820107821815327,
+      "FDE": 1.7254722405159555,
+      "J": 1.6828439420733048,
+      "gradient_norm": 1.665984034538269,
+      "graph_gradient_norm": 0.14834459125995636,
+      "elapsed_seconds": 90.4092753380537
+    },
+    {
+      "epoch": 5,
+      "loss": 1.9214404097874649,
+      "ADE": 0.8173135719516722,
+      "FDE": 1.7113613896599418,
+      "J": 1.672994266781643,
+      "gradient_norm": 1.2627882957458496,
+      "graph_gradient_norm": 0.12392482906579971,
+      "elapsed_seconds": 113.59544485807419
+    },
+    {
+      "epoch": 6,
+      "loss": 1.9104439583607018,
+      "ADE": 0.8130379180256568,
+      "FDE": 1.6932380795224162,
+      "J": 1.659656957786865,
+      "gradient_norm": 1.685706377029419,
+      "graph_gradient_norm": 0.21134337782859802,
+      "elapsed_seconds": 135.877487776801
+    },
+    {
+      "epoch": 7,
+      "loss": 1.899638393864734,
+      "ADE": 0.8069555421716359,
+      "FDE": 1.6840916751716577,
+      "J": 1.6490013797574647,
+      "gradient_norm": 0.9219221472740173,
+      "graph_gradient_norm": 0.24082349240779877,
+      "elapsed_seconds": 158.70678166672587
+    },
+    {
+      "epoch": 8,
+      "loss": 1.8951074374563177,
+      "ADE": 0.802181787097652,
+      "FDE": 1.6791093419597019,
+      "J": 1.641736458077503,
+      "gradient_norm": 1.2427787780761719,
+      "graph_gradient_norm": 0.3611581325531006,
+      "elapsed_seconds": 181.21891086362302
+    }
+  ],
+  "optimizer_steps": 256,
+  "elapsed_seconds": 181.21891086362302,
+  "stopped_early": false,
+  "sufficiency_unresolved": true,
+  "training_origins": 512,
+  "phase": "joint",
+  "measured_step_seconds": 0.4565890282392502,
+  "parameter_count": 607174,
+  "numerical_gate": true,
+  "graph_gradient_norm": 0.3611581325531006
+}

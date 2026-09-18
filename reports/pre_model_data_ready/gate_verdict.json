@@ -1,0 +1,30 @@
+{
+  "timestamp_utc": "2026-09-18T07:45:00Z",
+  "gate_items": {
+    "automatum_dataset": "PASS",
+    "frozen_isac": "PASS",
+    "production_sensing_cache": "PASS",
+    "model_agnostic_dataset": "PASS",
+    "gt_history_leakage": "PASS",
+    "five_snr_alignment": "PASS",
+    "clock_3_over_29_97": "PASS",
+    "generic_dataloader": "PASS",
+    "current_stage_repository_cleanup": "PASS",
+    "stage0_stage1_assets_preserved": "PASS"
+  },
+  "pre_model_data_ready": "YES",
+  "current_stage_repository_clean": "YES",
+  "formal_gnn_selected": "NO",
+  "formal_qgnn_selected": "NO",
+  "dataset_summary": {
+    "train_samples": 10366,
+    "val_samples": 893,
+    "test_samples": 1135,
+    "dt_seconds": 0.1001001001001001,
+    "source_hz": 29.97,
+    "stride": 3,
+    "snr_levels_db": [-10.0, -5.0, 0.0, 5.0, 10.0],
+    "history_source": "Frozen Route-B ISAC (sensing_cache.npz)",
+    "future_source": "Automatum GT (samples.npz)"
+  }
+}
