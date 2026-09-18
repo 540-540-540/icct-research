@@ -1,0 +1,193 @@
+{
+  "revision": "AUTOMATUM-CONTROLLED-ISAC-V2-FROZEN",
+  "status": "FROZEN",
+  "baseline_head": "eaadbe6d826f9f6e83baf3caf3c01bf75ac093d1",
+  "config_sha256": "90eedfcce54a3a05ace93922a38fae9be3591c5800a08564c107fbca14180ceb",
+  "route_b": {
+    "chain": [
+      "GT [x,y,vx,vy]",
+      "3 fixed BS",
+      "per-BS range/bearing/radial-velocity truth",
+      "SNR-controlled measurement noise",
+      "multi-BS position + velocity fusion",
+      "[x_hat,y_hat,vx_hat,vy_hat]"
+    ],
+    "assumptions": [
+      "target detection successful",
+      "identity association successful",
+      "no missed detection / false alarm / CFAR in the formal chain",
+      "frame noise temporally independent",
+      "no Kalman/temporal smoothing"
+    ],
+    "model_state_dim": 4,
+    "model_state_fields": [
+      "x_hat",
+      "y_hat",
+      "vx_hat",
+      "vy_hat"
+    ],
+    "vehicle_id_role": "internal index only"
+  },
+  "geometry": {
+    "scene_0": {
+      "stations_xy_m": [
+        [
+          26.200525320073083,
+          7.623030351301587
+        ],
+        [
+          -30.4325273459796,
+          33.09256795456605
+        ],
+        [
+          -26.549335918797667,
+          -32.757553290344234
+        ]
+      ],
+      "boresights_deg": [
+        -167.3838440101848,
+        -75.41506241557956,
+        64.55183860023827
+      ],
+      "fov_half_angle_deg": 70.0,
+      "change": "BS2 boresight 79.55183860023827 -> 64.55183860023827 deg; stations and FOV unchanged"
+    },
+    "scene_1": {
+      "stations_xy_m": [
+        [
+          42.98047784925911,
+          39.27481469711556
+        ],
+        [
+          26.9391919538491,
+          -20.71416051351561
+        ],
+        [
+          -13.380141846409817,
+          52.715592275166465
+        ]
+      ],
+      "boresights_deg": [
+        -162.0003986009626,
+        115.32695701167816,
+        -55.48086353031954
+      ],
+      "change": "unchanged"
+    },
+    "visibility": {
+      "range_min_m": 5.0,
+      "range_max_m": 150.0,
+      "fov_half_angle_deg": 70.0,
+      "height_difference_m": 5.0
+    }
+  },
+  "snr": {
+    "levels_db": [
+      -10.0,
+      -5.0,
+      0.0,
+      5.0,
+      10.0
+    ],
+    "semantics": {
+      "10.0": "Good",
+      "0.0": "Medium",
+      "-10.0": "Poor-but-usable"
+    }
+  },
+  "measurement": {
+    "sigma_rule": "sigma_q(gamma) = sqrt(floor_q^2 + (a_q * 10^(-gamma/20))^2); k_q = 1 for all channels",
+    "a": {
+      "range": 0.35,
+      "bearing": 0.0111,
+      "radial_velocity": 0.3
+    },
+    "floors": {
+      "range": 0.0018,
+      "bearing": 0.000136,
+      "radial_velocity": 0.0023
+    },
+    "floor_source": "SMOKE-01 reports/isac_smoke/automatum_isac_smoke_01/floor_probe.json high-SNR single-BS estimator floor (60 dB); a reference order of magnitude, not a hardware value",
+    "seed_rule": "base standard normal keyed by (scene_id, frame, bs_id, vehicle_id, channel); SNR never enters the seed"
+  },
+  "fusion": {
+    "velocity_prior_sigma_mps": 200.0,
+    "position_fusion": "covariance-weighted inverse-variance",
+    "velocity_fusion": "multi-BS radial velocities with 3D LOS direction"
+  },
+  "final_acceptance": {
+    "bands": {
+      "+10_position": {
+        "value": 0.13083796553965643,
+        "band": [
+          0.1,
+          0.3
+        ],
+        "pass": true
+      },
+      "+10_velocity": {
+        "value": 0.1590378149773291,
+        "band": [
+          0.1,
+          0.3
+        ],
+        "pass": true
+      },
+      "+0_position": {
+        "value": 0.4136571055347469,
+        "band": [
+          0.3,
+          0.7
+        ],
+        "pass": true
+      },
+      "+0_velocity": {
+        "value": 0.5028285689638389,
+        "band": [
+          0.3,
+          0.8
+        ],
+        "pass": true
+      },
+      "-10_position": {
+        "value": 1.309010077602472,
+        "band": [
+          0.8,
+          1.5
+        ],
+        "pass": true
+      },
+      "-10_velocity": {
+        "value": 1.5907575344809615,
+        "band": [
+          1.0,
+          2.0
+        ],
+        "pass": true
+      }
+    },
+    "monotonicity": {
+      "position": true,
+      "velocity": true
+    },
+    "trajectory_plots": [
+      "reports/isac_final/plots/trajectories_train_scene0.png",
+      "reports/isac_final/plots/trajectories_val_scene0.png",
+      "reports/isac_final/plots/trajectories_train_scene1.png",
+      "reports/isac_final/plots/trajectories_val_scene1.png"
+    ]
+  },
+  "test_used": false,
+  "evidence_sha256": {
+    "reports/isac_final/geometry_search.json": "9be331de9ea76a35e562b3e72aaaa5169c24272bf270b0ebd889b37d86efef98",
+    "reports/isac_final/geometry_final_audit.csv": "12c4422d878780b824c34aca49920bd084c5f97335f5870fdc3510c18cb7056f",
+    "reports/isac_final/calibration_search.json": "aa55bb2b4a0cfb552bd47f170cca460e16d48f943824e10f5835787efbe8ab5a",
+    "reports/isac_final/calibration_candidates.csv": "1cf7b0e0517a3bbcfaf7521481d52294b7b66fcdf845f70bef529d94e12f911b",
+    "reports/isac_final/final_metrics.json": "50956cd367f4a621b6967544c0fc4980d1e654499ac5a9c0baf6073bd8c345be",
+    "reports/isac_final/final_metrics.csv": "e5451201707ead112c2736b41166937b31d17bf449d353cb9db2a47efeb773e9",
+    "reports/isac_final/final_metrics_by_bs.csv": "98e043860c03ea1748f93e78ca6b204630a3a9dbfdf49897b704ffa16c031753",
+    "reports/isac_final/final_speed_bins.csv": "00725f72aee2fb2406a26591ba2bcce2c2ebff73b3e281ef39a56b88ce091e49",
+    "reports/isac_final/final_stability.csv": "1fe4347637849c994a706fea7c2425b5e8858a9ed96adde188ea29e4ba9fe6b7",
+    "reports/isac_final/final_report.md": "f65c229a18ada12b1dc3cfaa511cfc47be63c5bcdd8fb22c9230cb9416119b3d"
+  }
+}

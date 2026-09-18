@@ -1,17 +1,15 @@
-"""Configurable state-quality candidate for Route-B sensing outputs.
+"""LEGACY descriptive score; not used for calibration or evaluation.
 
-The percentage is a *quality score* of the estimated state relative to the true motion state:
+Final Audit (``reports/isac_final_audit/quality_audit.md``) showed that this percentage is a
+self-declared score whose 1 m / 1 m/s reference scales are arbitrary relative to the Automatum
+motion scales; it must never be reported as an accuracy. The frozen Route-B evaluation uses
+physical ``position RMSE [m]`` / ``velocity RMSE [m/s]`` with the Good / Medium /
+Poor-but-usable SNR semantics instead.
+
+The function below is kept for backward compatibility only:
 
     s       = sqrt( (dp / p_ref)^2 + (dv / v_ref)^2 )
     quality = 100 * exp(-s)
-
-where ``dp`` is the position error norm [m] and ``dv`` the velocity error norm [m/s]. The score
-is bounded in (0, 100], monotone in the errors, and free of per-component ratios such as
-``|x_hat - x| / |x|`` that explode near the coordinate origin or at zero velocity.
-
-``p_ref`` / ``v_ref`` are task-relevant error scales, not fitted to ground truth per target.
-The reference values and the exact quality formula are NOT frozen in Calibration V1; the
-physical position/velocity RMSE remains the primary report metric.
 """
 from __future__ import annotations
 
