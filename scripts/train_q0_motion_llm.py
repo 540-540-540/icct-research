@@ -12,7 +12,9 @@ ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
 
 from frontend.automatum_prediction_dataset import AutomatumPredictionDataset
+from frontend.sind_prediction_dataset import SinDPredictionDataset
 from prediction.q0.graph_motion_llm import build_graph_motion_llm
+from prediction.q0.motion_token_llm import tokenizer_config_for_dataset
 from prediction.q0.metrics import trajectory_metrics
 from prediction.q0.normalization import load_normalization,normalization_path
 
@@ -56,6 +58,7 @@ def subset(ds,limit,seed):
 def main():
     p=argparse.ArgumentParser()
     p.add_argument("--graph",choices=["nograph","mpnn","routed_mpnn","pair_triplet"],required=True)
+    p.add_argument("--dataset",choices=["automatum","sind"],default="sind")
     p.add_argument("--snr",type=float,default=0.)
     p.add_argument("--epochs",type=int,default=20)
     p.add_argument("--batch-size",type=int,default=16)
@@ -72,8 +75,9 @@ def main():
 
     seed_all(args.seed)
     device=torch.device(args.device if torch.cuda.is_available() else "cpu")
-    stats=load_normalization(normalization_path(ROOT,args.snr))
-    model=build_graph_motion_llm(args.graph,stats,init_seed=args.seed)
+    stats=load_normalization(normalization_path(ROOT,args.snr,args.dataset))
+    token_cfg=tokenizer_config_for_dataset(args.dataset)
+    model=build_graph_motion_llm(args.graph,stats,init_seed=args.seed,tokenizer_config=token_cfg)
     if args.graph_pretrain_checkpoint:
         payload=torch.load(args.graph_pretrain_checkpoint,map_location="cpu",weights_only=False)
         source={k[len("graph."):]:v for k,v in payload["model_state"].items() if k.startswith("graph.")}
@@ -85,8 +89,9 @@ def main():
             param.requires_grad=False
     model=model.to(device)
 
-    tr=AutomatumPredictionDataset("train",args.snr,ROOT,True)
-    va=AutomatumPredictionDataset("val",args.snr,ROOT,True)
+    dataset_cls = AutomatumPredictionDataset if args.dataset == "automatum" else SinDPredictionDataset
+    tr=dataset_cls("train",args.snr,ROOT,True)
+    va=dataset_cls("val",args.snr,ROOT,True)
     tr=subset(tr,args.train_limit,args.seed); va=subset(va,args.val_limit,args.seed+1)
     train_loader=DataLoader(tr,batch_size=args.batch_size,shuffle=True,num_workers=0,
         pin_memory=device.type=="cuda",generator=torch.Generator().manual_seed(args.seed))

@@ -34,6 +34,21 @@ class AutomatumMotionTokenizerConfig:
         return self.forward_bins * self.lateral_bins
 
 
+def tokenizer_config_for_dataset(dataset: str) -> AutomatumMotionTokenizerConfig:
+    name = str(dataset).lower()
+    if name == "automatum":
+        return AutomatumMotionTokenizerConfig()
+    if name == "sind":
+        return AutomatumMotionTokenizerConfig(
+            forward_min=-1.2,
+            forward_max=2.2,
+            lateral_min=-1.3,
+            lateral_max=1.3,
+            temperature_m=0.12,
+        )
+    raise ValueError(f"Unknown dataset: {dataset}")
+
+
 class AutomatumMotionTokenizer:
     def __init__(self, config: AutomatumMotionTokenizerConfig | None = None):
         self.config = config or AutomatumMotionTokenizerConfig()

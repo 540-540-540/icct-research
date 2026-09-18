@@ -9,6 +9,7 @@ import torch
 from torch.utils.data import DataLoader
 
 from frontend.automatum_prediction_dataset import AutomatumPredictionDataset
+from frontend.sind_prediction_dataset import SinDPredictionDataset
 from .contracts import EDGE_DIM, STATE_DIM, NormalizationStats
 from .features import physical_edge_features
 
@@ -45,8 +46,15 @@ def compute_train_normalization(
     root_dir: str | Path | None = None,
     batch_size: int = 64,
     workers: int = 0,
+    dataset_name: str = "automatum",
 ) -> NormalizationStats:
-    dataset = AutomatumPredictionDataset(
+    dataset_cls = {
+        "automatum": AutomatumPredictionDataset,
+        "sind": SinDPredictionDataset,
+    }.get(str(dataset_name).lower())
+    if dataset_cls is None:
+        raise ValueError(f"Unknown dataset: {dataset_name}")
+    dataset = dataset_cls(
         "train", snr_db=snr_db, root_dir=root_dir, return_tensors=True
     )
     loader = DataLoader(dataset, batch_size=batch_size, shuffle=False, num_workers=workers)
@@ -69,9 +77,10 @@ def compute_train_normalization(
     return NormalizationStats(state_mean, state_std, edge_mean, edge_std)
 
 
-def normalization_path(root: str | Path, snr_db: float) -> Path:
+def normalization_path(root: str | Path, snr_db: float, dataset_name: str = "automatum") -> Path:
     label = f"{float(snr_db):+g}".replace("+", "p").replace("-", "m")
-    return Path(root) / "reports/q0" / f"normalization_snr_{label}.json"
+    prefix = "normalization" if str(dataset_name).lower() == "automatum" else f"normalization_{str(dataset_name).lower()}"
+    return Path(root) / "reports/q0" / f"{prefix}_snr_{label}.json"
 
 
 def save_normalization(path: str | Path, stats: NormalizationStats, snr_db: float) -> None:

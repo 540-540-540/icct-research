@@ -8,7 +8,9 @@ ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
 
 from frontend.automatum_prediction_dataset import AutomatumPredictionDataset
+from frontend.sind_prediction_dataset import SinDPredictionDataset
 from prediction.q0.graph_motion_llm import build_graph_motion_llm
+from prediction.q0.motion_token_llm import tokenizer_config_for_dataset
 from prediction.q0.features import physical_edge_features
 from prediction.q0.normalization import load_normalization,normalization_path
 
@@ -36,6 +38,7 @@ def interaction_stats(history,mask):
 def main():
     p=argparse.ArgumentParser()
     p.add_argument('--graph',choices=['nograph','mpnn','routed_mpnn','pair_triplet'],required=True)
+    p.add_argument('--dataset',choices=['automatum','sind'],default='sind')
     p.add_argument('--checkpoint',required=True)
     p.add_argument('--snr',type=float,default=0.)
     p.add_argument('--seed',type=int,default=2026)
@@ -45,15 +48,17 @@ def main():
     a=p.parse_args()
 
     device=torch.device(a.device if torch.cuda.is_available() else 'cpu')
-    stats=load_normalization(normalization_path(ROOT,a.snr))
-    model=build_graph_motion_llm(a.graph,stats,init_seed=a.seed).to(device)
+    stats=load_normalization(normalization_path(ROOT,a.snr,a.dataset))
+    token_cfg=tokenizer_config_for_dataset(a.dataset)
+    model=build_graph_motion_llm(a.graph,stats,init_seed=a.seed,tokenizer_config=token_cfg).to(device)
     payload=torch.load(a.checkpoint,map_location='cpu',weights_only=False)
     missing,unexpected=model.load_state_dict(payload['model_state'],strict=False)
     if unexpected or any(not k.startswith('llm.gpt2.') for k in missing):
         raise ValueError(f'mismatch missing={missing} unexpected={unexpected}')
     model.eval()
 
-    ds=AutomatumPredictionDataset('val',a.snr,ROOT,True)
+    dataset_cls = AutomatumPredictionDataset if a.dataset == 'automatum' else SinDPredictionDataset
+    ds=dataset_cls('val',a.snr,ROOT,True)
     dl=DataLoader(ds,batch_size=a.batch_size,shuffle=False,num_workers=0)
     rows=[]; cur=0
     with torch.no_grad():
@@ -68,7 +73,7 @@ def main():
           rows.append(r)
         cur += h.shape[0]
 
-    summary={'model':f'{a.graph}_motion_llm','snr_db':a.snr,'checkpoint_validation':payload.get('validation'),
+    summary={'model':f'{a.graph}_motion_llm','dataset':a.dataset,'snr_db':a.snr,'checkpoint_validation':payload.get('validation'),
       'scenes':len(rows),'ADE':sum(r['ADE'] for r in rows)/len(rows),
       'FDE':sum(r['FDE'] for r in rows)/len(rows),'test_set_used':False}
     out=ROOT/a.output; out.parent.mkdir(parents=True,exist_ok=True)

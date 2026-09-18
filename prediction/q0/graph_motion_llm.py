@@ -52,6 +52,7 @@ def build_graph_motion_llm(
     llm_layers: int = 4,
     lora_rank: int = 8,
     init_seed: int = 2026,
+    tokenizer_config=None,
 ):
     with torch.random.fork_rng(devices=[]):
         torch.manual_seed(init_seed + 100_003)
@@ -68,7 +69,8 @@ def build_graph_motion_llm(
     with torch.random.fork_rng(devices=[]):
         torch.manual_seed(init_seed + 300_003)
         llm=MotionTokenGPT2Core(
-            graph_dim=graph_dim,llm_layers=llm_layers,lora_rank=lora_rank
+            graph_dim=graph_dim,llm_layers=llm_layers,lora_rank=lora_rank,
+            tokenizer_config=tokenizer_config,
         )
     return GraphMotionLLM(graph,llm,normalization)
 
