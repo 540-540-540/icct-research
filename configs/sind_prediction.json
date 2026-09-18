@@ -1,0 +1,40 @@
+{
+  "revision": "SIND-PREDICTION-DATA-V1-FROZEN",
+  "status": "FROZEN",
+  "dataset": "SinD public Changchun + Xi'an high-interaction subset",
+  "history_length": 20,
+  "prediction_length": 20,
+  "max_vehicles": 8,
+  "nominal_hz": 10.0,
+  "timestamp_rule": "history_timestamp is stored from audited source timestamp_ms; never reconstruct time as frame_id * fixed dt",
+  "snr_levels_db": [-10.0, -5.0, 0.0, 5.0, 10.0],
+  "history_state_fields": ["x_hat", "y_hat", "vx_hat", "vy_hat"],
+  "future_state_fields": ["x", "y", "vx", "vy"],
+  "history_source": "Frozen SinD Route-B ISAC sensing cache",
+  "future_source": "SinD trajectory GT",
+  "selection": {
+    "high_interaction_gate": "at last history frame, at least one vehicle has >=2 active neighbors",
+    "active_edge": "distance<=30m AND (closing>0.5m/s OR 0<TCPA<=4s AND DCPA<=10m)",
+    "n_le_8": "keep every eligible non-guard vehicle",
+    "n_gt_8": "one local graph per global window; choose focal using history-only active-degree ranking, then top 7 focal-related neighbors",
+    "future_used_for_selection": false
+  },
+  "metadata_only": ["scene_id", "vehicle_ids", "focal_vehicle_id", "original_num_vehicles", "selection_mode"],
+  "dataset_splits": {
+    "train": {
+      "samples": "data/sind/splits/train/samples.npz",
+      "trajectories": "data/sind/splits/train/trajectories.csv",
+      "isac_cache": "data/sind/isac/train/sensing_cache.npz"
+    },
+    "val": {
+      "samples": "data/sind/splits/val/samples.npz",
+      "trajectories": "data/sind/splits/val/trajectories.csv",
+      "isac_cache": "data/sind/isac/val/sensing_cache.npz"
+    },
+    "test": {
+      "samples": "data/sind/splits/test/samples.npz",
+      "trajectories": "data/sind/splits/test/trajectories.csv",
+      "isac_cache": "data/sind/isac/test/sensing_cache.npz"
+    }
+  }
+}

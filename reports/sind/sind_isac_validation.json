@@ -1,0 +1,4118 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "train.snr_levels",
+      "pass": true,
+      "detail": [
+        -10.0,
+        -5.0,
+        0.0,
+        5.0,
+        10.0
+      ]
+    },
+    {
+      "name": "train.shape",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.finite",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.cache_key_unique",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.cache_coverage",
+      "pass": true,
+      "detail": {
+        "cache": 228553,
+        "needed": 228553
+      }
+    },
+    {
+      "name": "train.n_bs_ge2",
+      "pass": true,
+      "detail": 2
+    },
+    {
+      "name": "train.rank2",
+      "pass": true,
+      "detail": 1.0
+    },
+    {
+      "name": "train.timestamp_alignment",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "train.position_monotonic",
+      "pass": true,
+      "detail": [
+        1.1749478890078877,
+        0.6597182220378736,
+        0.370816339723438,
+        0.2085063518334265,
+        0.11726720518153026
+      ]
+    },
+    {
+      "name": "train.velocity_monotonic",
+      "pass": true,
+      "detail": [
+        1.1575803899093753,
+        0.6509278187181091,
+        0.36604489979050664,
+        0.2058540368414928,
+        0.11578322683707055
+      ]
+    },
+    {
+      "name": "train.frontend_exact",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "train.loader_len_-10.0",
+      "pass": true,
+      "detail": 15802
+    },
+    {
+      "name": "train.loader_shape_-10.0_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_-10.0_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_-10.0_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_-10.0_1053",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_-10.0_1053",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_-10.0_1053",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_-10.0_2106",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_-10.0_2106",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_-10.0_2106",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_-10.0_3160",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_-10.0_3160",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_-10.0_3160",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_-10.0_4213",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_-10.0_4213",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_-10.0_4213",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_-10.0_5267",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_-10.0_5267",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_-10.0_5267",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_-10.0_6320",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_-10.0_6320",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_-10.0_6320",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_-10.0_7373",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_-10.0_7373",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_-10.0_7373",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_-10.0_8427",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_-10.0_8427",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_-10.0_8427",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_-10.0_9480",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_-10.0_9480",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_-10.0_9480",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_-10.0_10534",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_-10.0_10534",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_-10.0_10534",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_-10.0_11587",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_-10.0_11587",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_-10.0_11587",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_-10.0_12640",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_-10.0_12640",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_-10.0_12640",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_-10.0_13694",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_-10.0_13694",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_-10.0_13694",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_-10.0_14747",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_-10.0_14747",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_-10.0_14747",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_-10.0_15801",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_-10.0_15801",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_-10.0_15801",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_len_-5.0",
+      "pass": true,
+      "detail": 15802
+    },
+    {
+      "name": "train.loader_shape_-5.0_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_-5.0_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_-5.0_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_-5.0_1053",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_-5.0_1053",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_-5.0_1053",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_-5.0_2106",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_-5.0_2106",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_-5.0_2106",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_-5.0_3160",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_-5.0_3160",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_-5.0_3160",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_-5.0_4213",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_-5.0_4213",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_-5.0_4213",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_-5.0_5267",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_-5.0_5267",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_-5.0_5267",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_-5.0_6320",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_-5.0_6320",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_-5.0_6320",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_-5.0_7373",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_-5.0_7373",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_-5.0_7373",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_-5.0_8427",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_-5.0_8427",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_-5.0_8427",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_-5.0_9480",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_-5.0_9480",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_-5.0_9480",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_-5.0_10534",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_-5.0_10534",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_-5.0_10534",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_-5.0_11587",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_-5.0_11587",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_-5.0_11587",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_-5.0_12640",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_-5.0_12640",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_-5.0_12640",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_-5.0_13694",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_-5.0_13694",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_-5.0_13694",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_-5.0_14747",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_-5.0_14747",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_-5.0_14747",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_-5.0_15801",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_-5.0_15801",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_-5.0_15801",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.future_snr_invariant_-5.0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_len_0.0",
+      "pass": true,
+      "detail": 15802
+    },
+    {
+      "name": "train.loader_shape_0.0_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_0.0_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_0.0_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_0.0_1053",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_0.0_1053",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_0.0_1053",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_0.0_2106",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_0.0_2106",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_0.0_2106",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_0.0_3160",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_0.0_3160",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_0.0_3160",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_0.0_4213",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_0.0_4213",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_0.0_4213",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_0.0_5267",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_0.0_5267",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_0.0_5267",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_0.0_6320",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_0.0_6320",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_0.0_6320",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_0.0_7373",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_0.0_7373",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_0.0_7373",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_0.0_8427",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_0.0_8427",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_0.0_8427",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_0.0_9480",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_0.0_9480",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_0.0_9480",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_0.0_10534",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_0.0_10534",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_0.0_10534",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_0.0_11587",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_0.0_11587",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_0.0_11587",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_0.0_12640",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_0.0_12640",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_0.0_12640",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_0.0_13694",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_0.0_13694",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_0.0_13694",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_0.0_14747",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_0.0_14747",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_0.0_14747",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_0.0_15801",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_0.0_15801",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_0.0_15801",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.future_snr_invariant_0.0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_len_5.0",
+      "pass": true,
+      "detail": 15802
+    },
+    {
+      "name": "train.loader_shape_5.0_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_5.0_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_5.0_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_5.0_1053",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_5.0_1053",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_5.0_1053",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_5.0_2106",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_5.0_2106",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_5.0_2106",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_5.0_3160",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_5.0_3160",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_5.0_3160",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_5.0_4213",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_5.0_4213",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_5.0_4213",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_5.0_5267",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_5.0_5267",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_5.0_5267",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_5.0_6320",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_5.0_6320",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_5.0_6320",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_5.0_7373",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_5.0_7373",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_5.0_7373",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_5.0_8427",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_5.0_8427",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_5.0_8427",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_5.0_9480",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_5.0_9480",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_5.0_9480",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_5.0_10534",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_5.0_10534",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_5.0_10534",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_5.0_11587",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_5.0_11587",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_5.0_11587",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_5.0_12640",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_5.0_12640",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_5.0_12640",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_5.0_13694",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_5.0_13694",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_5.0_13694",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_5.0_14747",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_5.0_14747",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_5.0_14747",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_5.0_15801",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_5.0_15801",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_5.0_15801",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.future_snr_invariant_5.0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_len_10.0",
+      "pass": true,
+      "detail": 15802
+    },
+    {
+      "name": "train.loader_shape_10.0_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_10.0_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_10.0_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_10.0_1053",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_10.0_1053",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_10.0_1053",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_10.0_2106",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_10.0_2106",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_10.0_2106",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_10.0_3160",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_10.0_3160",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_10.0_3160",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_10.0_4213",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_10.0_4213",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_10.0_4213",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_10.0_5267",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_10.0_5267",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_10.0_5267",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_10.0_6320",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_10.0_6320",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_10.0_6320",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_10.0_7373",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_10.0_7373",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_10.0_7373",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_10.0_8427",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_10.0_8427",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_10.0_8427",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_10.0_9480",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_10.0_9480",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_10.0_9480",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_10.0_10534",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_10.0_10534",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_10.0_10534",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_10.0_11587",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_10.0_11587",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_10.0_11587",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_10.0_12640",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_10.0_12640",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_10.0_12640",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_10.0_13694",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_10.0_13694",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_10.0_13694",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_10.0_14747",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_10.0_14747",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_10.0_14747",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_shape_10.0_15801",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_finite_10.0_15801",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.loader_padding_10.0_15801",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.future_snr_invariant_10.0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.snr_levels",
+      "pass": true,
+      "detail": [
+        -10.0,
+        -5.0,
+        0.0,
+        5.0,
+        10.0
+      ]
+    },
+    {
+      "name": "val.shape",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.finite",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.cache_key_unique",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.cache_coverage",
+      "pass": true,
+      "detail": {
+        "cache": 24620,
+        "needed": 24620
+      }
+    },
+    {
+      "name": "val.n_bs_ge2",
+      "pass": true,
+      "detail": 2
+    },
+    {
+      "name": "val.rank2",
+      "pass": true,
+      "detail": 1.0
+    },
+    {
+      "name": "val.timestamp_alignment",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "val.position_monotonic",
+      "pass": true,
+      "detail": [
+        1.1802499800609136,
+        0.662709043349975,
+        0.3725002281798117,
+        0.20945359580860615,
+        0.11779981007842033
+      ]
+    },
+    {
+      "name": "val.velocity_monotonic",
+      "pass": true,
+      "detail": [
+        1.1529724557584813,
+        0.6483608086056755,
+        0.3646078965999567,
+        0.2050477710403977,
+        0.11533029774481637
+      ]
+    },
+    {
+      "name": "val.frontend_exact",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "val.loader_len_-10.0",
+      "pass": true,
+      "detail": 1880
+    },
+    {
+      "name": "val.loader_shape_-10.0_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_-10.0_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_-10.0_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_-10.0_125",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_-10.0_125",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_-10.0_125",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_-10.0_250",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_-10.0_250",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_-10.0_250",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_-10.0_375",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_-10.0_375",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_-10.0_375",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_-10.0_501",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_-10.0_501",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_-10.0_501",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_-10.0_626",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_-10.0_626",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_-10.0_626",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_-10.0_751",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_-10.0_751",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_-10.0_751",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_-10.0_876",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_-10.0_876",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_-10.0_876",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_-10.0_1002",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_-10.0_1002",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_-10.0_1002",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_-10.0_1127",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_-10.0_1127",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_-10.0_1127",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_-10.0_1252",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_-10.0_1252",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_-10.0_1252",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_-10.0_1377",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_-10.0_1377",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_-10.0_1377",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_-10.0_1503",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_-10.0_1503",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_-10.0_1503",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_-10.0_1628",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_-10.0_1628",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_-10.0_1628",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_-10.0_1753",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_-10.0_1753",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_-10.0_1753",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_-10.0_1879",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_-10.0_1879",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_-10.0_1879",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_len_-5.0",
+      "pass": true,
+      "detail": 1880
+    },
+    {
+      "name": "val.loader_shape_-5.0_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_-5.0_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_-5.0_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_-5.0_125",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_-5.0_125",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_-5.0_125",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_-5.0_250",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_-5.0_250",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_-5.0_250",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_-5.0_375",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_-5.0_375",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_-5.0_375",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_-5.0_501",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_-5.0_501",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_-5.0_501",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_-5.0_626",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_-5.0_626",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_-5.0_626",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_-5.0_751",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_-5.0_751",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_-5.0_751",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_-5.0_876",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_-5.0_876",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_-5.0_876",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_-5.0_1002",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_-5.0_1002",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_-5.0_1002",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_-5.0_1127",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_-5.0_1127",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_-5.0_1127",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_-5.0_1252",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_-5.0_1252",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_-5.0_1252",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_-5.0_1377",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_-5.0_1377",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_-5.0_1377",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_-5.0_1503",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_-5.0_1503",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_-5.0_1503",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_-5.0_1628",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_-5.0_1628",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_-5.0_1628",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_-5.0_1753",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_-5.0_1753",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_-5.0_1753",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_-5.0_1879",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_-5.0_1879",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_-5.0_1879",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.future_snr_invariant_-5.0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_len_0.0",
+      "pass": true,
+      "detail": 1880
+    },
+    {
+      "name": "val.loader_shape_0.0_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_0.0_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_0.0_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_0.0_125",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_0.0_125",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_0.0_125",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_0.0_250",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_0.0_250",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_0.0_250",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_0.0_375",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_0.0_375",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_0.0_375",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_0.0_501",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_0.0_501",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_0.0_501",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_0.0_626",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_0.0_626",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_0.0_626",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_0.0_751",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_0.0_751",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_0.0_751",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_0.0_876",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_0.0_876",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_0.0_876",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_0.0_1002",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_0.0_1002",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_0.0_1002",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_0.0_1127",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_0.0_1127",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_0.0_1127",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_0.0_1252",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_0.0_1252",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_0.0_1252",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_0.0_1377",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_0.0_1377",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_0.0_1377",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_0.0_1503",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_0.0_1503",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_0.0_1503",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_0.0_1628",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_0.0_1628",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_0.0_1628",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_0.0_1753",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_0.0_1753",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_0.0_1753",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_0.0_1879",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_0.0_1879",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_0.0_1879",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.future_snr_invariant_0.0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_len_5.0",
+      "pass": true,
+      "detail": 1880
+    },
+    {
+      "name": "val.loader_shape_5.0_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_5.0_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_5.0_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_5.0_125",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_5.0_125",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_5.0_125",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_5.0_250",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_5.0_250",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_5.0_250",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_5.0_375",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_5.0_375",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_5.0_375",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_5.0_501",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_5.0_501",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_5.0_501",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_5.0_626",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_5.0_626",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_5.0_626",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_5.0_751",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_5.0_751",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_5.0_751",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_5.0_876",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_5.0_876",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_5.0_876",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_5.0_1002",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_5.0_1002",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_5.0_1002",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_5.0_1127",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_5.0_1127",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_5.0_1127",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_5.0_1252",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_5.0_1252",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_5.0_1252",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_5.0_1377",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_5.0_1377",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_5.0_1377",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_5.0_1503",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_5.0_1503",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_5.0_1503",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_5.0_1628",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_5.0_1628",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_5.0_1628",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_5.0_1753",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_5.0_1753",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_5.0_1753",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_5.0_1879",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_5.0_1879",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_5.0_1879",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.future_snr_invariant_5.0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_len_10.0",
+      "pass": true,
+      "detail": 1880
+    },
+    {
+      "name": "val.loader_shape_10.0_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_10.0_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_10.0_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_10.0_125",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_10.0_125",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_10.0_125",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_10.0_250",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_10.0_250",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_10.0_250",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_10.0_375",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_10.0_375",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_10.0_375",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_10.0_501",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_10.0_501",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_10.0_501",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_10.0_626",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_10.0_626",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_10.0_626",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_10.0_751",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_10.0_751",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_10.0_751",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_10.0_876",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_10.0_876",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_10.0_876",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_10.0_1002",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_10.0_1002",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_10.0_1002",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_10.0_1127",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_10.0_1127",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_10.0_1127",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_10.0_1252",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_10.0_1252",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_10.0_1252",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_10.0_1377",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_10.0_1377",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_10.0_1377",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_10.0_1503",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_10.0_1503",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_10.0_1503",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_10.0_1628",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_10.0_1628",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_10.0_1628",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_10.0_1753",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_10.0_1753",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_10.0_1753",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_shape_10.0_1879",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_finite_10.0_1879",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.loader_padding_10.0_1879",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.future_snr_invariant_10.0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.snr_levels",
+      "pass": true,
+      "detail": [
+        -10.0,
+        -5.0,
+        0.0,
+        5.0,
+        10.0
+      ]
+    },
+    {
+      "name": "test.shape",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.finite",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.cache_key_unique",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.cache_coverage",
+      "pass": true,
+      "detail": {
+        "cache": 31556,
+        "needed": 31556
+      }
+    },
+    {
+      "name": "test.n_bs_ge2",
+      "pass": true,
+      "detail": 2
+    },
+    {
+      "name": "test.rank2",
+      "pass": true,
+      "detail": 1.0
+    },
+    {
+      "name": "test.timestamp_alignment",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "test.position_monotonic",
+      "pass": true,
+      "detail": [
+        1.174899948069821,
+        0.6595609249434684,
+        0.3706874380098672,
+        0.2084219937742684,
+        0.11721636106554863
+      ]
+    },
+    {
+      "name": "test.velocity_monotonic",
+      "pass": true,
+      "detail": [
+        1.1757393597176466,
+        0.6611257530825928,
+        0.3717749990714499,
+        0.20907546012065545,
+        0.11759486118104415
+      ]
+    },
+    {
+      "name": "test.frontend_exact",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "test.loader_len_-10.0",
+      "pass": true,
+      "detail": 2086
+    },
+    {
+      "name": "test.loader_shape_-10.0_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_-10.0_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_-10.0_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_-10.0_139",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_-10.0_139",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_-10.0_139",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_-10.0_278",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_-10.0_278",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_-10.0_278",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_-10.0_417",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_-10.0_417",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_-10.0_417",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_-10.0_556",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_-10.0_556",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_-10.0_556",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_-10.0_695",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_-10.0_695",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_-10.0_695",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_-10.0_834",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_-10.0_834",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_-10.0_834",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_-10.0_973",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_-10.0_973",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_-10.0_973",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_-10.0_1112",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_-10.0_1112",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_-10.0_1112",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_-10.0_1251",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_-10.0_1251",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_-10.0_1251",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_-10.0_1390",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_-10.0_1390",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_-10.0_1390",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_-10.0_1529",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_-10.0_1529",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_-10.0_1529",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_-10.0_1668",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_-10.0_1668",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_-10.0_1668",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_-10.0_1807",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_-10.0_1807",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_-10.0_1807",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_-10.0_1946",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_-10.0_1946",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_-10.0_1946",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_-10.0_2085",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_-10.0_2085",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_-10.0_2085",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_len_-5.0",
+      "pass": true,
+      "detail": 2086
+    },
+    {
+      "name": "test.loader_shape_-5.0_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_-5.0_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_-5.0_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_-5.0_139",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_-5.0_139",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_-5.0_139",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_-5.0_278",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_-5.0_278",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_-5.0_278",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_-5.0_417",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_-5.0_417",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_-5.0_417",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_-5.0_556",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_-5.0_556",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_-5.0_556",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_-5.0_695",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_-5.0_695",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_-5.0_695",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_-5.0_834",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_-5.0_834",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_-5.0_834",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_-5.0_973",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_-5.0_973",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_-5.0_973",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_-5.0_1112",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_-5.0_1112",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_-5.0_1112",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_-5.0_1251",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_-5.0_1251",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_-5.0_1251",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_-5.0_1390",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_-5.0_1390",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_-5.0_1390",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_-5.0_1529",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_-5.0_1529",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_-5.0_1529",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_-5.0_1668",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_-5.0_1668",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_-5.0_1668",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_-5.0_1807",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_-5.0_1807",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_-5.0_1807",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_-5.0_1946",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_-5.0_1946",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_-5.0_1946",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_-5.0_2085",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_-5.0_2085",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_-5.0_2085",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.future_snr_invariant_-5.0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_len_0.0",
+      "pass": true,
+      "detail": 2086
+    },
+    {
+      "name": "test.loader_shape_0.0_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_0.0_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_0.0_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_0.0_139",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_0.0_139",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_0.0_139",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_0.0_278",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_0.0_278",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_0.0_278",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_0.0_417",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_0.0_417",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_0.0_417",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_0.0_556",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_0.0_556",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_0.0_556",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_0.0_695",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_0.0_695",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_0.0_695",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_0.0_834",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_0.0_834",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_0.0_834",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_0.0_973",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_0.0_973",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_0.0_973",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_0.0_1112",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_0.0_1112",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_0.0_1112",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_0.0_1251",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_0.0_1251",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_0.0_1251",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_0.0_1390",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_0.0_1390",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_0.0_1390",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_0.0_1529",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_0.0_1529",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_0.0_1529",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_0.0_1668",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_0.0_1668",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_0.0_1668",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_0.0_1807",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_0.0_1807",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_0.0_1807",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_0.0_1946",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_0.0_1946",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_0.0_1946",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_0.0_2085",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_0.0_2085",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_0.0_2085",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.future_snr_invariant_0.0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_len_5.0",
+      "pass": true,
+      "detail": 2086
+    },
+    {
+      "name": "test.loader_shape_5.0_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_5.0_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_5.0_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_5.0_139",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_5.0_139",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_5.0_139",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_5.0_278",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_5.0_278",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_5.0_278",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_5.0_417",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_5.0_417",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_5.0_417",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_5.0_556",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_5.0_556",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_5.0_556",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_5.0_695",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_5.0_695",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_5.0_695",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_5.0_834",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_5.0_834",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_5.0_834",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_5.0_973",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_5.0_973",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_5.0_973",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_5.0_1112",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_5.0_1112",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_5.0_1112",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_5.0_1251",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_5.0_1251",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_5.0_1251",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_5.0_1390",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_5.0_1390",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_5.0_1390",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_5.0_1529",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_5.0_1529",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_5.0_1529",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_5.0_1668",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_5.0_1668",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_5.0_1668",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_5.0_1807",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_5.0_1807",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_5.0_1807",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_5.0_1946",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_5.0_1946",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_5.0_1946",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_5.0_2085",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_5.0_2085",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_5.0_2085",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.future_snr_invariant_5.0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_len_10.0",
+      "pass": true,
+      "detail": 2086
+    },
+    {
+      "name": "test.loader_shape_10.0_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_10.0_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_10.0_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_10.0_139",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_10.0_139",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_10.0_139",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_10.0_278",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_10.0_278",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_10.0_278",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_10.0_417",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_10.0_417",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_10.0_417",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_10.0_556",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_10.0_556",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_10.0_556",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_10.0_695",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_10.0_695",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_10.0_695",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_10.0_834",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_10.0_834",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_10.0_834",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_10.0_973",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_10.0_973",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_10.0_973",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_10.0_1112",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_10.0_1112",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_10.0_1112",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_10.0_1251",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_10.0_1251",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_10.0_1251",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_10.0_1390",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_10.0_1390",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_10.0_1390",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_10.0_1529",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_10.0_1529",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_10.0_1529",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_10.0_1668",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_10.0_1668",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_10.0_1668",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_10.0_1807",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_10.0_1807",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_10.0_1807",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_10.0_1946",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_10.0_1946",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_10.0_1946",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_shape_10.0_2085",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_finite_10.0_2085",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.loader_padding_10.0_2085",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.future_snr_invariant_10.0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "geometry_search_train_only",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "config_test_not_tuned",
+      "pass": true,
+      "detail": null
+    }
+  ],
+  "summary": {
+    "train": {
+      "unique_history_states": 228553,
+      "position_rmse_m_by_snr": {
+        "-10.0": 1.1749478890078877,
+        "-5.0": 0.6597182220378736,
+        "0.0": 0.370816339723438,
+        "5.0": 0.2085063518334265,
+        "10.0": 0.11726720518153026
+      },
+      "velocity_rmse_mps_by_snr": {
+        "-10.0": 1.1575803899093753,
+        "-5.0": 0.6509278187181091,
+        "0.0": 0.36604489979050664,
+        "5.0": 0.2058540368414928,
+        "10.0": 0.11578322683707055
+      },
+      "n_bs_distribution": {
+        "1": 0,
+        "2": 985,
+        "3": 227568
+      },
+      "rank2_fraction": 1.0,
+      "condition_ratio_median": 0.5513627529144287,
+      "loader": [
+        {
+          "snr": -10.0,
+          "samples_checked": 16
+        },
+        {
+          "snr": -5.0,
+          "samples_checked": 16
+        },
+        {
+          "snr": 0.0,
+          "samples_checked": 16
+        },
+        {
+          "snr": 5.0,
+          "samples_checked": 16
+        },
+        {
+          "snr": 10.0,
+          "samples_checked": 16
+        }
+      ]
+    },
+    "val": {
+      "unique_history_states": 24620,
+      "position_rmse_m_by_snr": {
+        "-10.0": 1.1802499800609136,
+        "-5.0": 0.662709043349975,
+        "0.0": 0.3725002281798117,
+        "5.0": 0.20945359580860615,
+        "10.0": 0.11779981007842033
+      },
+      "velocity_rmse_mps_by_snr": {
+        "-10.0": 1.1529724557584813,
+        "-5.0": 0.6483608086056755,
+        "0.0": 0.3646078965999567,
+        "5.0": 0.2050477710403977,
+        "10.0": 0.11533029774481637
+      },
+      "n_bs_distribution": {
+        "1": 0,
+        "2": 160,
+        "3": 24460
+      },
+      "rank2_fraction": 1.0,
+      "condition_ratio_median": 0.5617844462394714,
+      "loader": [
+        {
+          "snr": -10.0,
+          "samples_checked": 16
+        },
+        {
+          "snr": -5.0,
+          "samples_checked": 16
+        },
+        {
+          "snr": 0.0,
+          "samples_checked": 16
+        },
+        {
+          "snr": 5.0,
+          "samples_checked": 16
+        },
+        {
+          "snr": 10.0,
+          "samples_checked": 16
+        }
+      ]
+    },
+    "test": {
+      "unique_history_states": 31556,
+      "position_rmse_m_by_snr": {
+        "-10.0": 1.174899948069821,
+        "-5.0": 0.6595609249434684,
+        "0.0": 0.3706874380098672,
+        "5.0": 0.2084219937742684,
+        "10.0": 0.11721636106554863
+      },
+      "velocity_rmse_mps_by_snr": {
+        "-10.0": 1.1757393597176466,
+        "-5.0": 0.6611257530825928,
+        "0.0": 0.3717749990714499,
+        "5.0": 0.20907546012065545,
+        "10.0": 0.11759486118104415
+      },
+      "n_bs_distribution": {
+        "1": 0,
+        "2": 514,
+        "3": 31042
+      },
+      "rank2_fraction": 1.0,
+      "condition_ratio_median": 0.5342111587524414,
+      "loader": [
+        {
+          "snr": -10.0,
+          "samples_checked": 16
+        },
+        {
+          "snr": -5.0,
+          "samples_checked": 16
+        },
+        {
+          "snr": 0.0,
+          "samples_checked": 16
+        },
+        {
+          "snr": 5.0,
+          "samples_checked": 16
+        },
+        {
+          "snr": 10.0,
+          "samples_checked": 16
+        }
+      ]
+    }
+  }
+}

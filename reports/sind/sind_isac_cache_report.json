@@ -1,0 +1,312 @@
+{
+  "revision": "SIND-CONTROLLED-ISAC-V1-FROZEN",
+  "workers": 12,
+  "splits": {
+    "train": {
+      "split": "train",
+      "revision": "SIND-CONTROLLED-ISAC-V1-FROZEN",
+      "samples": 15802,
+      "unique_history_states": 228553,
+      "state_fields": [
+        "x_hat",
+        "y_hat",
+        "vx_hat",
+        "vy_hat"
+      ],
+      "cache_sha256": "5ed8dd11c7c125cf9496284877ca41202cdce3ea079fb81a046a25e67cbe2bc5",
+      "samples_sha256": "dd16cf60569280a330f129cf225b8052fe0fa5bc6b2158abcecf1df35d950b74",
+      "trajectories_sha256": "4ede602a7c0164dd0da092816bfc91d120c8a0478370be5a4348afc3b29d0287",
+      "snr_levels_db": [
+        -10.0,
+        -5.0,
+        0.0,
+        5.0,
+        10.0
+      ],
+      "metrics": {
+        "-10.0": {
+          "position_rmse_m": 1.1749478890078877,
+          "velocity_rmse_mps": 1.1575803899093753,
+          "position_mae_m": 1.038478038279123,
+          "velocity_mae_mps": 1.0189957930649995,
+          "position_p95_m": 2.041410446152577,
+          "velocity_p95_mps": 2.026866472441411,
+          "n_bs_distribution": {
+            "1": 0,
+            "2": 985,
+            "3": 227568
+          },
+          "rank2_fraction": 1.0,
+          "condition_ratio_median": 0.5513627529144287
+        },
+        "-5.0": {
+          "position_rmse_m": 0.6597182220378736,
+          "velocity_rmse_mps": 0.6509278187181091,
+          "position_mae_m": 0.5830899480835905,
+          "velocity_mae_mps": 0.5730055562038896,
+          "position_p95_m": 1.1462922189469464,
+          "velocity_p95_mps": 1.1398748723654049,
+          "n_bs_distribution": {
+            "1": 0,
+            "2": 985,
+            "3": 227568
+          },
+          "rank2_fraction": 1.0,
+          "condition_ratio_median": 0.5516172647476196
+        },
+        "0.0": {
+          "position_rmse_m": 0.370816339723438,
+          "velocity_rmse_mps": 0.36604489979050664,
+          "position_mae_m": 0.32774155663247556,
+          "velocity_mae_mps": 0.322227357723681,
+          "position_p95_m": 0.6444892962791922,
+          "velocity_p95_mps": 0.6413112660438633,
+          "n_bs_distribution": {
+            "1": 0,
+            "2": 985,
+            "3": 227568
+          },
+          "rank2_fraction": 1.0,
+          "condition_ratio_median": 0.5515158176422119
+        },
+        "5.0": {
+          "position_rmse_m": 0.2085063518334265,
+          "velocity_rmse_mps": 0.2058540368414928,
+          "position_mae_m": 0.18428446458912184,
+          "velocity_mae_mps": 0.181212567718727,
+          "position_p95_m": 0.3622772903941099,
+          "velocity_p95_mps": 0.3607030300701031,
+          "n_bs_distribution": {
+            "1": 0,
+            "2": 985,
+            "3": 227568
+          },
+          "rank2_fraction": 1.0,
+          "condition_ratio_median": 0.5514344573020935
+        },
+        "10.0": {
+          "position_rmse_m": 0.11726720518153026,
+          "velocity_rmse_mps": 0.11578322683707055,
+          "position_mae_m": 0.10364390602358542,
+          "velocity_mae_mps": 0.10192365263934612,
+          "position_p95_m": 0.20377765539803822,
+          "velocity_p95_mps": 0.20288209347271435,
+          "n_bs_distribution": {
+            "1": 0,
+            "2": 985,
+            "3": 227568
+          },
+          "rank2_fraction": 1.0,
+          "condition_ratio_median": 0.5514561533927917
+        }
+      },
+      "position_strict_monotonic": true,
+      "velocity_strict_monotonic": true,
+      "geometry_test_tuned": false
+    },
+    "val": {
+      "split": "val",
+      "revision": "SIND-CONTROLLED-ISAC-V1-FROZEN",
+      "samples": 1880,
+      "unique_history_states": 24620,
+      "state_fields": [
+        "x_hat",
+        "y_hat",
+        "vx_hat",
+        "vy_hat"
+      ],
+      "cache_sha256": "13780c00b06d675616a0ba607f16e0bbc7aad6deeb87be947897e4ddcaa3e2cb",
+      "samples_sha256": "02ecff89bf48147f61bcede9fa5866d5e87e1ba80e92118e8e1401b7faecf2e2",
+      "trajectories_sha256": "edad1e8e40c246e977f2d6cce418f5a904cdd5d0d7e7b114d336a61306537031",
+      "snr_levels_db": [
+        -10.0,
+        -5.0,
+        0.0,
+        5.0,
+        10.0
+      ],
+      "metrics": {
+        "-10.0": {
+          "position_rmse_m": 1.1802499800609136,
+          "velocity_rmse_mps": 1.1529724557584813,
+          "position_mae_m": 1.0410855262378274,
+          "velocity_mae_mps": 1.0163883423378135,
+          "position_p95_m": 2.0571782981138274,
+          "velocity_p95_mps": 2.0159199061609865,
+          "n_bs_distribution": {
+            "1": 0,
+            "2": 160,
+            "3": 24460
+          },
+          "rank2_fraction": 1.0,
+          "condition_ratio_median": 0.5617844462394714
+        },
+        "-5.0": {
+          "position_rmse_m": 0.662709043349975,
+          "velocity_rmse_mps": 0.6483608086056755,
+          "position_mae_m": 0.5845884989887115,
+          "velocity_mae_mps": 0.5715629718516606,
+          "position_p95_m": 1.1555388371657538,
+          "velocity_p95_mps": 1.1329721353900308,
+          "n_bs_distribution": {
+            "1": 0,
+            "2": 160,
+            "3": 24460
+          },
+          "rank2_fraction": 1.0,
+          "condition_ratio_median": 0.5618366003036499
+        },
+        "0.0": {
+          "position_rmse_m": 0.3725002281798117,
+          "velocity_rmse_mps": 0.3646078965999567,
+          "position_mae_m": 0.3285961570622942,
+          "velocity_mae_mps": 0.321422381717306,
+          "position_p95_m": 0.6495938034715422,
+          "velocity_p95_mps": 0.6371203867971236,
+          "n_bs_distribution": {
+            "1": 0,
+            "2": 160,
+            "3": 24460
+          },
+          "rank2_fraction": 1.0,
+          "condition_ratio_median": 0.5610657930374146
+        },
+        "5.0": {
+          "position_rmse_m": 0.20945359580860615,
+          "velocity_rmse_mps": 0.2050477710403977,
+          "position_mae_m": 0.18476829253337076,
+          "velocity_mae_mps": 0.1807616525904894,
+          "position_p95_m": 0.3654917534563209,
+          "velocity_p95_mps": 0.35835942660623243,
+          "n_bs_distribution": {
+            "1": 0,
+            "2": 160,
+            "3": 24460
+          },
+          "rank2_fraction": 1.0,
+          "condition_ratio_median": 0.5602861642837524
+        },
+        "10.0": {
+          "position_rmse_m": 0.11779981007842033,
+          "velocity_rmse_mps": 0.11533029774481637,
+          "position_mae_m": 0.10391675108246407,
+          "velocity_mae_mps": 0.10167056769066356,
+          "position_p95_m": 0.20565853341079238,
+          "velocity_p95_mps": 0.20155218302951916,
+          "n_bs_distribution": {
+            "1": 0,
+            "2": 160,
+            "3": 24460
+          },
+          "rank2_fraction": 1.0,
+          "condition_ratio_median": 0.5599756240844727
+        }
+      },
+      "position_strict_monotonic": true,
+      "velocity_strict_monotonic": true,
+      "geometry_test_tuned": false
+    },
+    "test": {
+      "split": "test",
+      "revision": "SIND-CONTROLLED-ISAC-V1-FROZEN",
+      "samples": 2086,
+      "unique_history_states": 31556,
+      "state_fields": [
+        "x_hat",
+        "y_hat",
+        "vx_hat",
+        "vy_hat"
+      ],
+      "cache_sha256": "a3dde92f66fcf574c1560ca0daf750bbf46ae0e919e8824bcf8eb19d0823c27a",
+      "samples_sha256": "ace2921e20c19110e25c99b3ab7fd3b8f8f038f7efc9e0f57bf331e7aeb72bee",
+      "trajectories_sha256": "7ccb3eec357d6f06d9134ad2812cea6ba01ada26f3bad72aa01f51c467c49724",
+      "snr_levels_db": [
+        -10.0,
+        -5.0,
+        0.0,
+        5.0,
+        10.0
+      ],
+      "metrics": {
+        "-10.0": {
+          "position_rmse_m": 1.174899948069821,
+          "velocity_rmse_mps": 1.1757393597176466,
+          "position_mae_m": 1.034780136281251,
+          "velocity_mae_mps": 1.0319930925215668,
+          "position_p95_m": 2.058880773001448,
+          "velocity_p95_mps": 2.073680433702368,
+          "n_bs_distribution": {
+            "1": 0,
+            "2": 514,
+            "3": 31042
+          },
+          "rank2_fraction": 1.0,
+          "condition_ratio_median": 0.5342111587524414
+        },
+        "-5.0": {
+          "position_rmse_m": 0.6595609249434684,
+          "velocity_rmse_mps": 0.6611257530825928,
+          "position_mae_m": 0.5809830295247863,
+          "velocity_mae_mps": 0.5803219862004925,
+          "position_p95_m": 1.155182373093615,
+          "velocity_p95_mps": 1.1660037475862257,
+          "n_bs_distribution": {
+            "1": 0,
+            "2": 514,
+            "3": 31042
+          },
+          "rank2_fraction": 1.0,
+          "condition_ratio_median": 0.5333014726638794
+        },
+        "0.0": {
+          "position_rmse_m": 0.3706874380098672,
+          "velocity_rmse_mps": 0.3717749990714499,
+          "position_mae_m": 0.3265491910459964,
+          "velocity_mae_mps": 0.3263434925290332,
+          "position_p95_m": 0.6491624087587663,
+          "velocity_p95_mps": 0.6560874147048282,
+          "n_bs_distribution": {
+            "1": 0,
+            "2": 514,
+            "3": 31042
+          },
+          "rank2_fraction": 1.0,
+          "condition_ratio_median": 0.5333858728408813
+        },
+        "5.0": {
+          "position_rmse_m": 0.2084219937742684,
+          "velocity_rmse_mps": 0.20907546012065545,
+          "position_mae_m": 0.1836118338203058,
+          "velocity_mae_mps": 0.1835281856581809,
+          "position_p95_m": 0.3648901373696665,
+          "velocity_p95_mps": 0.36886271137233384,
+          "n_bs_distribution": {
+            "1": 0,
+            "2": 514,
+            "3": 31042
+          },
+          "rank2_fraction": 1.0,
+          "condition_ratio_median": 0.5336182117462158
+        },
+        "10.0": {
+          "position_rmse_m": 0.11721636106554863,
+          "velocity_rmse_mps": 0.11759486118104415,
+          "position_mae_m": 0.103265244573369,
+          "velocity_mae_mps": 0.10322637714171186,
+          "position_p95_m": 0.20522592009511537,
+          "velocity_p95_mps": 0.20746818964378877,
+          "n_bs_distribution": {
+            "1": 0,
+            "2": 514,
+            "3": 31042
+          },
+          "rank2_fraction": 1.0,
+          "condition_ratio_median": 0.5337668657302856
+        }
+      },
+      "position_strict_monotonic": true,
+      "velocity_strict_monotonic": true,
+      "geometry_test_tuned": false
+    }
+  }
+}

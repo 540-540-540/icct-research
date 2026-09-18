@@ -1,0 +1,350 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "train.keys",
+      "pass": true,
+      "detail": [
+        "focal_vehicle_id",
+        "future",
+        "history",
+        "history_timestamp",
+        "num_vehicles",
+        "original_num_vehicles",
+        "scene_id",
+        "selection_mode",
+        "start_frame",
+        "start_timestamp",
+        "vehicle_ids",
+        "vehicle_mask"
+      ]
+    },
+    {
+      "name": "train.shapes",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.finite",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.mask_count",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.n_bounds",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.padding_zero",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.id_padding",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.time_increasing",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.nominal_10hz",
+      "pass": true,
+      "detail": {
+        "median": 0.10010010010010717,
+        "min": 0.10010010009978032,
+        "max": 0.10010010010068982
+      }
+    },
+    {
+      "name": "train.start_ts",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.sample_key_unique",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "train.source_state_exact",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "train.source_timestamp_exact",
+      "pass": true,
+      "detail": 2.2737367544323206e-13
+    },
+    {
+      "name": "train.original_n_exact",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "name": "train.selection_exact",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "name": "train.focal_exact",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "name": "val.keys",
+      "pass": true,
+      "detail": [
+        "focal_vehicle_id",
+        "future",
+        "history",
+        "history_timestamp",
+        "num_vehicles",
+        "original_num_vehicles",
+        "scene_id",
+        "selection_mode",
+        "start_frame",
+        "start_timestamp",
+        "vehicle_ids",
+        "vehicle_mask"
+      ]
+    },
+    {
+      "name": "val.shapes",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.finite",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.mask_count",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.n_bounds",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.padding_zero",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.id_padding",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.time_increasing",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.nominal_10hz",
+      "pass": true,
+      "detail": {
+        "median": 0.1001001001000077,
+        "min": 0.10010010009978032,
+        "max": 0.10010010010068982
+      }
+    },
+    {
+      "name": "val.start_ts",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.sample_key_unique",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "val.source_state_exact",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "val.source_timestamp_exact",
+      "pass": true,
+      "detail": 2.2737367544323206e-13
+    },
+    {
+      "name": "val.original_n_exact",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "name": "val.selection_exact",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "name": "val.focal_exact",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "name": "test.keys",
+      "pass": true,
+      "detail": [
+        "focal_vehicle_id",
+        "future",
+        "history",
+        "history_timestamp",
+        "num_vehicles",
+        "original_num_vehicles",
+        "scene_id",
+        "selection_mode",
+        "start_frame",
+        "start_timestamp",
+        "vehicle_ids",
+        "vehicle_mask"
+      ]
+    },
+    {
+      "name": "test.shapes",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.finite",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.mask_count",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.n_bounds",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.padding_zero",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.id_padding",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.time_increasing",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.nominal_10hz",
+      "pass": true,
+      "detail": {
+        "median": 0.1001001001000077,
+        "min": 0.10010010009978032,
+        "max": 0.10010010010068982
+      }
+    },
+    {
+      "name": "test.start_ts",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.sample_key_unique",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test.source_state_exact",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "test.source_timestamp_exact",
+      "pass": true,
+      "detail": 2.2737367544323206e-13
+    },
+    {
+      "name": "test.original_n_exact",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "name": "test.selection_exact",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "name": "test.focal_exact",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "name": "agent_leakage_train_val",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "name": "sample_key_overlap_train_val",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "name": "agent_leakage_train_test",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "name": "sample_key_overlap_train_test",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "name": "agent_leakage_val_test",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "name": "sample_key_overlap_val_test",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "name": "source_hash_scene0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "source_hash_scene1",
+      "pass": true,
+      "detail": null
+    }
+  ],
+  "summary": {
+    "checks": 56,
+    "passed": 56,
+    "sample_counts": {
+      "train": 15802,
+      "val": 1880,
+      "test": 2086
+    },
+    "agent_overlap": {
+      "train_val": 0,
+      "train_test": 0,
+      "val_test": 0
+    }
+  }
+}
