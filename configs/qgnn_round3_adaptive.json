@@ -1,0 +1,22 @@
+{
+  "revision": "ROUND3-SA-RC-HQGNN-v1",
+  "base_commit": "dc5daca",
+  "candidate": "history plus relation-level prior-round cumulant feedback",
+  "qubit_cap": 8,
+  "channels": 4,
+  "depth": 3,
+  "controller_params": 2112,
+  "lambda_range": [
+    0.2,
+    1.8
+  ],
+  "feedback_scales": {
+    "K2": 0.05,
+    "K3": 0.02
+  },
+  "input": "sensing history only",
+  "same_gpt2_tokenizer_loss": true,
+  "all_scenes_quantum": true,
+  "hardware": "sequential ensemble expectation estimates + reprepare/replay prefixes; not coherent or free intermediate observation",
+  "test_set_used": false
+}
