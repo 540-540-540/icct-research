@@ -17,11 +17,21 @@ def quantum_round(state,ry,rz,pa,ta,rx,mask):
     return state
 
 class SceneAdaptiveQuantumCore(RelationCarryingQuantumCore):
-    def __init__(self,depth=3,channels=4,controller_seed=802029,feedback=True):
+    def __init__(self,depth=3,channels=4,controller_seed=802029,feedback=True,phase_mode=False):
         super().__init__(depth,channels)
         with torch.random.fork_rng(devices=[]):
             torch.manual_seed(controller_seed);self.controller=CouplingController(depth,channels)
-        self.feedback_enabled=feedback
+        self.feedback_enabled=feedback;self.phase_mode=phase_mode
+
+    def modulate_angles(self,pa,ta,l2,l3,d,mask):
+        if not self.phase_mode:
+            return pa*l2.reshape_as(pa),ta*l3.reshape_as(ta)
+        active=mask.sum(1).clamp_min(1).to(pa.dtype)
+        n2=(d["pw"].square().sum(1)/active).clamp_min(1.).sqrt()
+        n3=(d["tw"].square().sum(1)/active).clamp_min(1.).sqrt()
+        p=1.5*(l2-1)*d["pw"][:,None]/n2[:,None,None]*self.interaction_scale
+        t=1.5*(l3-1)*d["tw"][:,None]/n3[:,None,None]*self.interaction_scale*self.triple_scale
+        return pa+p.reshape_as(pa),ta+t.reshape_as(ta)
 
     def quantum_states(self,history,mask,trace=False):
         own,risk,tw,ry,rz,pa,ta,rx,em=self.circuit_inputs(history,mask)
@@ -31,7 +41,7 @@ class SceneAdaptiveQuantumCore(RelationCarryingQuantumCore):
         state[:,0]=1.;states=[];feedback=None;logs=[]
         for layer in range(self.depth):
             l2,l3=self.controller(layer,d,feedback if self.feedback_enabled else None)
-            p=pa[:,layer]*l2.reshape(b*ch,-1);t=ta[:,layer]*l3.reshape(b*ch,-1)
+            p,t=self.modulate_angles(pa[:,layer],ta[:,layer],l2,l3,d,mask)
             mix=rx[:,layer] if rx.ndim==2 else rx[layer].expand(b*ch)
             state=quantum_round(state,ry[:,layer],rz[:,layer],p,t,mix,em)
             states.append(state)

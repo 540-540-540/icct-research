@@ -1,0 +1,172 @@
+{
+  "status": "PASS",
+  "test_set_used": false,
+  "checks": {
+    "quantum_permutation_shapes": {
+      "1": 0.0,
+      "2": 2.220446049250313e-16,
+      "4": 8.881784197001252e-16,
+      "8": 8.881784197001252e-16,
+      "12": 0.0,
+      "16": 0.0,
+      "20": 0.0
+    },
+    "quantum_padding_to20": 8.881784197001252e-16,
+    "classical_permutation_shapes": {
+      "1": 0.0,
+      "2": 0.0,
+      "4": 4.440892098500626e-16,
+      "8": 4.440892098500626e-16,
+      "12": 0.0,
+      "16": 0.0,
+      "20": 0.0
+    },
+    "classical_padding_to20": 4.440892098500626e-16,
+    "identical_adaptive_controller_initialization": true,
+    "cross_vehicle_dependency": {
+      "on": 0.08009157518735514,
+      "entanglers_off": 2.537167608581638e-16
+    },
+    "parameter_gradient_norms": {
+      "rx": 3.5991494958015515,
+      "encoder.input.weight": 5.884411165922747,
+      "encoder.input.bias": 80.50520895230572,
+      "encoder.gru.weight_ih_l0": 238.60249623343154,
+      "encoder.gru.weight_hh_l0": 123.0985420491,
+      "encoder.gru.bias_ih_l0": 296.00487155638075,
+      "encoder.gru.bias_hh_l0": 146.58387898030173,
+      "encoder.norm.weight": 42.241712452503506,
+      "encoder.norm.bias": 38.45649225691395,
+      "local.0.weight": 351.23899129182064,
+      "local.0.bias": 62.17872331518528,
+      "local.2.weight": 39.06040858071005,
+      "local.2.bias": 38.333959694605944,
+      "node_angle.weight": 33.719574230599065,
+      "node_angle.bias": 5.969130257390649,
+      "pair_angle.0.weight": 0.2837122709835441,
+      "pair_angle.0.bias": 1.0268478544634514,
+      "pair_angle.2.weight": 1.179046104689695,
+      "pair_angle.2.bias": 4.16449878600702,
+      "triple_angle.0.weight": 0.37063113027325767,
+      "triple_angle.0.bias": 0.9463240514037217,
+      "triple_angle.2.weight": 0.6419732017972221,
+      "triple_angle.2.bias": 2.6453706218234245,
+      "readout.0.weight": 101.60646951621536,
+      "readout.0.bias": 4.011070570257849,
+      "readout.2.weight": 48.573426425364076,
+      "readout.2.bias": 12.539378666607055,
+      "gate.0.weight": 9.566124346898349,
+      "gate.0.bias": 0.3685922450430475,
+      "gate.2.weight": 2.578411436155169,
+      "gate.2.bias": 0.9738321848481398,
+      "pair_value.0.weight": 6.31650941241423,
+      "pair_value.0.bias": 1.1167934851774595,
+      "pair_value.2.weight": 4.017938954591696,
+      "pair_value.2.bias": 3.617131768304395,
+      "triple_value.0.weight": 13.142300672919971,
+      "triple_value.0.bias": 1.160043586504872,
+      "triple_value.2.weight": 7.722256620858281,
+      "triple_value.2.bias": 5.420950343512799,
+      "controller.relation_gain": 0.019241097922613387,
+      "controller.feedback_local": 2.5805995865292064,
+      "controller.scene_encoder.weight": 0.002952213604265822,
+      "controller.scene_encoder.bias": 0.003052855761593594,
+      "controller.scene_head.weight": 1.1354597834422115,
+      "controller.scene_head.bias": 5.008636681215148,
+      "controller.query.weight": 0.0024510596165467947,
+      "controller.query.bias": 0.010811890726824862,
+      "controller.pair_key.weight": 0.003187965960390776,
+      "controller.triple_key.weight": 0.017465372817594207,
+      "controller.feedback_global.weight": 8.244582299586115
+    },
+    "state_norm": 8.881784197001252e-16,
+    "independent_PennyLane_prefix_feedback": {
+      "state_max_error": 5.661048867003676e-16,
+      "gradient_max_error": 5.273559366969494e-16
+    },
+    "quantum_end_to_end_permutation": 1.9073486328125e-06,
+    "classical_end_to_end_permutation": 1.9073486328125e-06,
+    "shared_initialization_sha256": {
+      "quantum": "0d35048bfb3385d55aaab30cca077f76a7bc52701da744e786d67462a276b57f",
+      "classical": "0d35048bfb3385d55aaab30cca077f76a7bc52701da744e786d67462a276b57f"
+    }
+  },
+  "profiling": {
+    "quantum": {
+      "parameters": {
+        "graph": 69469,
+        "llm_non_lora": 4052375,
+        "lora": 98304,
+        "trainable_total": 4220148,
+        "frozen_total": 67736832,
+        "total": 71956980
+      },
+      "controller_params": 2112,
+      "B32_step_median_s": 0.11153159197419882,
+      "peak_allocated_GiB": 3.640848159790039,
+      "peak_reserved_GiB": 3.97265625,
+      "losses": [
+        1.7313629388809204,
+        1.6984974145889282,
+        1.6517740488052368,
+        1.5999943017959595,
+        1.545601725578308,
+        1.5009421110153198
+      ],
+      "full20_train_only_estimate_s": 1101.9321287050843
+    },
+    "classical": {
+      "parameters": {
+        "graph": 325250,
+        "llm_non_lora": 4052375,
+        "lora": 98304,
+        "trainable_total": 4475929,
+        "frozen_total": 67736832,
+        "total": 72212761
+      },
+      "controller_params": 2112,
+      "B32_step_median_s": 0.08447156101465225,
+      "peak_allocated_GiB": 3.6663308143615723,
+      "peak_reserved_GiB": 4.0390625,
+      "losses": [
+        1.7315824031829834,
+        1.6990580558776855,
+        1.651951789855957,
+        1.6001145839691162,
+        1.5469051599502563,
+        1.5009373426437378
+      ],
+      "full20_train_only_estimate_s": 834.5790228247643
+    },
+    "dynamic_N": {
+      "8": {
+        "B16_core_forward_backward_s": 0.04732018709182739,
+        "peak_allocated_GiB": 0.03577995300292969,
+        "trajectories_per_scene": 4
+      },
+      "12": {
+        "B16_core_forward_backward_s": 0.0499850669875741,
+        "peak_allocated_GiB": 0.24733638763427734,
+        "trajectories_per_scene": 48
+      },
+      "16": {
+        "B16_core_forward_backward_s": 0.052362035028636456,
+        "peak_allocated_GiB": 0.32271766662597656,
+        "trajectories_per_scene": 64
+      },
+      "20": {
+        "B16_core_forward_backward_s": 0.05174166988581419,
+        "peak_allocated_GiB": 0.39983081817626953,
+        "trajectories_per_scene": 80
+      }
+    }
+  },
+  "environment": {
+    "torch": "2.13.0",
+    "pennylane": "0.45.1",
+    "pennylane-lightning-gpu": "0.45.0",
+    "custatevec-cu12": "1.15.0",
+    "transformers": "4.57.6",
+    "gpu": "NVIDIA GeForce RTX 4090"
+  }
+}

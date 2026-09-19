@@ -1,0 +1,30 @@
+{
+  "pid": 278326,
+  "command": [
+    "/home/dell/YrM/envs/ICCT/bin/python",
+    "scripts/train_qgnn_adaptive.py",
+    "--kind",
+    "quantum",
+    "--seed",
+    "2026",
+    "--snr",
+    "0",
+    "--epochs",
+    "12",
+    "--batch-size",
+    "32",
+    "--train-limit",
+    "4096",
+    "--correction-cap",
+    "16",
+    "--run-dir",
+    "reports/qgnn/round3_v1_quantum_small_2026",
+    "--max-seconds",
+    "1200"
+  ],
+  "gpu": 0,
+  "cwd": "/home/dell/YrM/ICCT",
+  "log": "/home/dell/YrM/ICCT/reports/qgnn/round3_v1_quantum_small_2026/train.log",
+  "output_dir": "/home/dell/YrM/ICCT/reports/qgnn/round3_v1_quantum_small_2026",
+  "created_at": "2026-09-19T10:15:49+0800"
+}
