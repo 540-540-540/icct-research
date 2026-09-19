@@ -83,12 +83,16 @@ class FinalModel(nn.Module):
     def parameter_summary(self):
         return GraphMotionLLM.parameter_summary(self)
 
-def build_model(kind,seed=2026,depth=3,token_path=None,channels=4,enhanced=True,snr_db=0.):
+def build_model(kind,seed=2026,depth=3,token_path=None,channels=4,enhanced=True,snr_db=0.,quantum_version=3):
     root=Path(__file__).resolve().parents[2]
     payload=json.loads(Path(token_path or root/'configs/qgnn_final_tokens.json').read_text())
     with torch.random.fork_rng(devices=[]):
         torch.manual_seed(seed+100003)
-        if kind=='quantum': core=HypergraphQuantumCore(depth,channels,enhanced)
+        if kind=='quantum':
+            if quantum_version==3:
+                from .relational import RelationCarryingQuantumCore
+                core=RelationCarryingQuantumCore(depth,channels)
+            else: core=HypergraphQuantumCore(depth,channels,enhanced)
         elif kind=='classical': core=AdaptiveClassicalCore(depth,channels)
         elif kind=='legacy_classical': core=LegacyHigherOrder(snr_db)
         else: raise ValueError(kind)

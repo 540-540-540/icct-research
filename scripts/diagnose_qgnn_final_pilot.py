@@ -13,7 +13,7 @@ def main():
     p=argparse.ArgumentParser();p.add_argument('--run-dir',required=True);a=p.parse_args()
     torch.set_num_threads(4);directory=ROOT/a.run_dir
     cp=torch.load(directory/'best.pt',map_location='cpu',weights_only=False);c=cp['config']
-    model=build_model(c['kind'],c['seed'],c['depth'],channels=c.get('channels',1),enhanced=c.get('quantum_version',1)==2,snr_db=c['snr']).cuda().eval()
+    model=build_model(c['kind'],c['seed'],c['depth'],channels=c.get('channels',1),enhanced=c.get('quantum_version',1)>=2,snr_db=c['snr'],quantum_version=c.get('quantum_version',1)).cuda().eval()
     missing,extra=model.load_state_dict(cp['model_state'],strict=False)
     if extra or any(not k.startswith('llm.gpt2.') for k in missing):raise ValueError('checkpoint mismatch')
     q=model.graph
@@ -38,6 +38,7 @@ def main():
         states=evolve(ry,rz,pa,ta,rx,expanded_mask)
         raw_features=torch.cat([moments(s,expanded_mask,risk,tw) for s in states],-1)
         features=q.readout_features(states,expanded_mask,risk,tw,h.shape[0])
+        if hasattr(q,'relational_features'): features=torch.cat((features,q.relational_features(states,own,h,mask)),-1)
         gate=torch.sigmoid(q.gate(torch.cat((own,features),-1)))
         z=q.local(own);delta=gate*q.readout(features)
         per=raw_features[expanded_mask]
