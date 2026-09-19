@@ -20,7 +20,7 @@ def save(stage):
 def main():
     torch.set_num_threads(4)
     configs={};summaries={};arrays={}
-    aggregate=read('reports/qgnn/round3_neutral_summary.json')
+    aggregate=read('reports/qgnn/round3_neutral_init_summary.json')
     save('checking_complete_paired_protocol')
     for kind in ('quantum','classical'):
         directory='reports/qgnn/round3_neutral_'+kind+'_small_2026'

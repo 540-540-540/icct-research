@@ -77,24 +77,24 @@
         "J": 0.0
       },
       "per_window_max_error": 0.0,
-      "seconds": 3.37863452360034,
+      "seconds": 3.219434041529894,
       "controller_enabled": true,
       "feedback_enabled": true
     },
     "classical": {
       "metrics": {
-        "ADE": 0.5870824272724542,
-        "FDE": 1.212963391951424,
-        "J": 1.1935641232481662,
+        "ADE": 0.5870824271297835,
+        "FDE": 1.2129633910557691,
+        "J": 1.193564122657668,
         "scenes": 1880
       },
       "difference": {
-        "ADE": 6.975011679344334e-10,
-        "FDE": 3.1149767210081336e-09,
-        "J": 2.2549895284385e-09
+        "ADE": 8.401718210038212e-10,
+        "FDE": 4.0106316046006896e-09,
+        "J": 2.845487623304166e-09
       },
-      "per_window_max_error": 1.2516975402832031e-06,
-      "seconds": 2.6856745276600122,
+      "per_window_max_error": 1.0728836059570312e-06,
+      "seconds": 2.4612141456454992,
       "controller_enabled": true,
       "feedback_enabled": true
     }

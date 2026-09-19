@@ -45,6 +45,6 @@
 
 预定义final-history高动态140窗口的Q/C ADE增益为2.5923%，FDE增益4.7764%；普通1054窗口仍差2.7413%/3.1354%。中性初始化通过普通组改善与高动态保持三条判据，但整体J改善不足1%，相对差距缩小约20.83%也不足30%。原full-train门禁仍为FAIL，不启动全量训练或多SNR/多seed扫参。
 
-round3_neutral_summary.json记录全部14个固定分层。scripts/check_qgnn_round3_neutral_acceptance.py另从中性初始化的真实checkpoint重跑1880窗口，并保留对原经典的比较；其结果在reports/qgnn/round3_neutral_independent_acceptance.json。此一次校准不是对新的初始化范围作搜索，也不支持无限延长实验。
+round3_neutral_init_summary.json记录全部14个固定分层。scripts/check_qgnn_round3_neutral_acceptance.py另从中性初始化的真实checkpoint重跑1880窗口，并保留对原经典的比较；其结果在reports/qgnn/round3_neutral_independent_acceptance.json。此一次校准不是对新的初始化范围作搜索，也不支持无限延长实验。
 
 解释上只能说：特殊通道初值可能造成了部分有限预算下的优化干扰，但改成中性初始化仍不足以确立量子优势。是否存在真正的反馈因果收益，还缺同结构从头训练的无反馈对照；不能用训练后将反馈置零的结果代替。当前将该问题记录为后续可证伪问题，而不在第三轮追加结构修正。
