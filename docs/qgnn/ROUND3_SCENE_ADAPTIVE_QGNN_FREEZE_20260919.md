@@ -185,3 +185,7 @@ K3_ijk = <Z_i Z_j Z_k> - m_i*<Z_j Z_k>
 连续读出保留每车每通道每轮X/Y/Z及加权K2/K3均值、RMS；二体asinh刻度0.02，三体0.005。邻车value为MLP48→32→16([h_j,e_ij])，三车value为MLP112→32→16([h_j+h_k,|h_j−h_k|,e_ij+e_ik,|e_ij−e_ik|,e_jk])。分别乘w*asinh(K/scale)再按总w归一化；不经量子相关不允许value绕行预测。最终468维经MLP468→64→64，sigmoid门MLP500→32→1与本车local64相加得到G[B,N,64]。
 
 Interaction Token为G逐车LayerNorm64→Linear768→GELU软Token，不是让量子输入离散ID。其后与本车19运动Token和20未来query组成长度40的GPT-2序列；原输出模块从future hidden、G与期望运动Token生成连续残差。最终仅输出[B,20,N,2]位置；future_state中的GT仅监督，不作为控制输入。
+
+## 17. 最终中性初始化反馈依赖补查
+
+补充报告ROUND3_SELECTED_FEEDBACK_AUDIT_20260919.md重新核验最终Q/C各5种设置的1880窗口。最终Q去全部内部反馈的整体J下降约0.057%，但高140窗口J增加0.164%；不能称为反馈的稳定独立收益，也不据此切换模型。该补充的训练端梯度探针因辅助脚本GRU模式错误未完成，已如实保留，不能与既有工程PASS混写。本轮主架构、初始化、原始pilot指标与FAILED_FULL_TRAIN_GATE结论均不改变。

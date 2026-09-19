@@ -1,0 +1,6 @@
+{
+  "status": "FAILED",
+  "pid": 347860,
+  "traceback": "Traceback (most recent call last):\n  File \"/home/dell/YrM/ICCT/scripts/audit_qgnn_round3_selected_feedback.py\", line 179, in <module>\n    main(args)\n  File \"/home/dell/YrM/ICCT/scripts/audit_qgnn_round3_selected_feedback.py\", line 162, in main\n    loss.backward()\n  File \"/home/dell/YrM/envs/ICCT/lib/python3.11/site-packages/torch/_tensor.py\", line 623, in backward\n    torch.autograd.backward(\n  File \"/home/dell/YrM/envs/ICCT/lib/python3.11/site-packages/torch/autograd/__init__.py\", line 395, in backward\n    _engine_run_backward(\n  File \"/home/dell/YrM/envs/ICCT/lib/python3.11/site-packages/torch/autograd/graph.py\", line 979, in _engine_run_backward\n    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: cudnn RNN backward can only be called in training mode\n",
+  "test_set_used": false
+}
