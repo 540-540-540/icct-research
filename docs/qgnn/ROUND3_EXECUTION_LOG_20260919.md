@@ -46,3 +46,6 @@ Final acceptance independently confirms parameter containment: neutral controlle
 
 ## G. Final initialization result and definitive stop
 Neutral initialization of the SAMEv2 graph: Q ADE0.601021648/FDE1.241815257/J1.221929276; C0.587082428/1.212963395/J1.193564126. Q gap2.3743%ADE/2.3786%FDE. Q vsfrozenQ small improvements0.1850%/0.3627% only. High140 improves2.5923%/4.7764% vsits matched C. Relative overallJ gap reduced20.8%, below registered30%, J gain0.2754% below1%; full gateFAIL. Freeze v2 phase_feedback withneutral init, backupv3. No further training search, full train or sweep. The stronger retained frozen classical also beats selectedQ by2.6764%ADE/2.7583%FDE. All results/failed attempts retained.
+
+## H. Release verification and handoff
+Final selected neutral checkpoint replay covers all1880validationwindows on both sides. Independent raw-metric/subgroup/gate audit PASS; frozen data/token/GPT2 hashes unchanged. Release resume regression PASS (continuous4steps vs1step pause+resume4); artifacts include exactparameter andvalidation differences. OriginalR2 implementation unchanged. All scientific pilots finished; no active full run or sweep. Freeze doc ROUND3_SCENE_ADAPTIVE_QGNN_FREEZE_20260919.md and collector ROUND3_FINAL_RESULTS_20260919.json record both completed scope and negative gate.

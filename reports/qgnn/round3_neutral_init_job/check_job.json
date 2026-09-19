@@ -1,0 +1,12 @@
+{
+  "pid": 319977,
+  "command": [
+    "/home/dell/YrM/envs/ICCT/bin/python",
+    "scripts/check_qgnn_round3_neutral_init.py"
+  ],
+  "gpu": "",
+  "cwd": "/home/dell/YrM/ICCT",
+  "log": "/home/dell/YrM/ICCT/reports/qgnn/round3_neutral_init_job/check.log",
+  "output_dir": "/home/dell/YrM/ICCT/reports/qgnn/round3_neutral_init_job",
+  "created_at": "2026-09-19T10:51:39+0800"
+}

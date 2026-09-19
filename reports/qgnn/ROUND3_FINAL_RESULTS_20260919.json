@@ -1031,11 +1031,31 @@
   ],
   "any_full_train_gate_passed": false,
   "performance_status": "FAILED_FULL_TRAIN_GATE",
-  "source_git_head": "4617ba3fe8fc3fcec81ed805709372c358dfd420",
+  "source_git_head": "2d48e5c560074d40c12835544fdb36a43fc4e7a6",
   "input_report_sha256": {
     "v1": "015a5857243efc247b846861c80b7543fd266323c25a7a53723de7ff3ee45c09",
     "v2": "28c2e7b07abc5ad605303b7339a76152610777a26745071c725d0680cb07deb9",
     "v3": "00953a1f1b39cb4f48d56b3ee57d31356c2b01d586ae7a0287e1eb9a0a954949",
     "neutral_init": "e8b3ba209962ad120bde5f865add13232e14aecde5fed406bda5bd2ae2abb7da"
+  },
+  "acceptance": {
+    "round3_release_acceptance": {
+      "status": "PASS",
+      "path": "reports/qgnn/round3_release_acceptance.json",
+      "sha256": "ef418cadfc02f618c55f588dd969a65dd2fa43ee255d2ba1fa4b8f6a4dd6d14e"
+    },
+    "round3_release_resume_regression": {
+      "status": "PASS",
+      "path": "reports/qgnn/round3_release_resume_regression.json",
+      "sha256": "bd6bb23dfde34537b87756996cea8885fbaacb1885641a2a4864a7394911c103",
+      "max_parameter_error": 0.0,
+      "validation_ADE_difference": 0.0,
+      "validation_FDE_difference": 0.0
+    },
+    "round3_neutral_init_preflight": {
+      "status": "PASS",
+      "path": "reports/qgnn/round3_neutral_init_preflight.json",
+      "sha256": "da7b0bb3a1c0cd1a21338f73f5aec788a25ac829904c1360a506fd446a3fd45b"
+    }
   }
 }

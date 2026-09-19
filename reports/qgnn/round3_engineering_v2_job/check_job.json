@@ -1,0 +1,12 @@
+{
+  "pid": 287262,
+  "command": [
+    "/home/dell/YrM/envs/ICCT/bin/python",
+    "scripts/check_qgnn_adaptive_v2.py"
+  ],
+  "gpu": 0,
+  "cwd": "/home/dell/YrM/ICCT",
+  "log": "/home/dell/YrM/ICCT/reports/qgnn/round3_engineering_v2_job/check.log",
+  "output_dir": "/home/dell/YrM/ICCT/reports/qgnn/round3_engineering_v2_job",
+  "created_at": "2026-09-19T10:23:39+0800"
+}
