@@ -30,3 +30,7 @@ Shared decoder4m saturation is separately documented by train-only five-SNR audi
 
 ## Shared five-SNR output interface freeze
 After the isolated V3 pilot, freeze the common correction as 16*tanh(z/4) instead of4*tanh(z), applied identically to all interaction cores. The derivative atzero remains4 and initial prediction remainsCV. Justification is the prior train-only five-SNR audit:4m causes an unavoidable -10dB FDE floor0.15336m;16m covers all observed train residual coordinates. This is a common-interface robustness repair, not a third quantum architecture refinement or claimed quantum improvement. Historical checkpoints explicitly reconstructcap4. Final controlled pilot: full15802train, all1880val,0dB,seed2026,20epochs, B32, same optimizer/scheduler/order/LLM; no test.
+
+## Final acceptance
+Primary RC-HQGNN-v3 frozen. Full0dB/seed2026/15802train/1880val/20epoch: Q0.51094460/1.12605076 (1146.55s), matched classical0.49146503/1.07928883 (891.65s). Q is worse3.96%ADE/4.33%FDE globally; predefined closing>=15 subset140 windows improves4.29%/6.35%. No quantum advantage claim. Two architecture refinements exhausted.
+Installed padding/root-duplication boundary fix8305cf4 after experiments; N8 prediction reload identical. Independent PennyLane observables and state/gradient checks PASS. Interrupted/resumed64-sample smoke equals uninterrupted mutable parameters exactly; ADE/FDE equal. All jobs completed. Test closed. Canonical freeze and compact results identify remaining multi-seed/five-SNR/finite-shot validation.

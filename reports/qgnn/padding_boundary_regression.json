@@ -1,0 +1,10 @@
+{
+  "status": "FIX_INSTALLED_AND_VERIFIED",
+  "before_max_error": 0.06696021005819508,
+  "after_quantum_max_error": 4.440892098500626e-16,
+  "after_classical_max_error": 4.440892098500626e-16,
+  "affected_path": "N>8 tensor slots with fewer than7 valid neighbors",
+  "fixed_commit": "8305cf4",
+  "N_le_8_branch_unchanged": true,
+  "full_pilot_reloaded_exactly": true
+}

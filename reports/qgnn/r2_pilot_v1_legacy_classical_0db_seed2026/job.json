@@ -1,0 +1,22 @@
+{
+  "pid": 4037282,
+  "command": [
+    "/home/dell/YrM/envs/ICCT/bin/python",
+    "-u",
+    "scripts/train_qgnn_final.py",
+    "--kind",
+    "legacy_classical",
+    "--epochs",
+    "12",
+    "--train-limit",
+    "4096",
+    "--batch-size",
+    "32",
+    "--run-dir",
+    "reports/qgnn/r2_pilot_v1_legacy_classical_0db_seed2026"
+  ],
+  "gpu": 1,
+  "log": "reports/qgnn/r2_pilot_v1_legacy_classical_0db_seed2026/process.log",
+  "output": "reports/qgnn/r2_pilot_v1_legacy_classical_0db_seed2026",
+  "test_set_used": false
+}
