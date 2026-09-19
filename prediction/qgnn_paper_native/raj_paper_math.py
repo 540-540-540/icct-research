@@ -17,7 +17,7 @@ from torch import nn
 from prediction.qgnn_final.common import BoundedCore, physical_graph
 from .raj_subset import SubsetFeatureBuilder
 from .raj_paper import CompoundEvolution, rdm_operators_cpu
-from .raj_joint import JointRegisterMixer, givens_shell_pairs, conditional_embedding_states
+from .raj_joint import JointRegisterMixer, givens_shell_pairs, oriented_pair_tables, conditional_embedding_states
 
 
 class ControlledFeatureLoader(nn.Module):
@@ -70,12 +70,15 @@ class EquivariantSubsetAdjacency(nn.Module):
         super().__init__()
         self.n, self.j = n, j
         self.angle = nn.Sequential(nn.Linear(edge_dim, hidden), nn.SiLU(), nn.Linear(hidden, 1))
+        li, ri = oriented_pair_tables(n, j)
+        self.register_buffer("_pair_left", li)
+        self.register_buffer("_pair_right", ri)
 
     @staticmethod
     def _node_key(weights: torch.Tensor, node: int) -> tuple[float, ...]:
         row = weights[node]
-        vals = sorted((float(v) for i, v in enumerate(row.detach().cpu()) if i != node), reverse=True)
-        return (float(row.abs().sum().detach().cpu()), float((row * row).sum().detach().cpu()), *vals)
+        vals = sorted((float(v) for i, v in enumerate(row) if i != node), reverse=True)
+        return (float(row.abs().sum()), float((row * row).sum()), *vals)
 
     def _ordered_pairs(self, weights: torch.Tensor, mask: torch.Tensor) -> list[tuple[int, int]]:
         nodes = [i for i in range(self.n) if bool(mask[i])]
@@ -83,11 +86,15 @@ class EquivariantSubsetAdjacency(nn.Module):
         pairs = []
         for a, b in itertools.combinations(nodes, 2):
             if keys[a] == keys[b]:
-                continue  # exact symmetry: skip oriented gate rather than break equivariance by label
+                continue
             u, v = (a, b) if keys[a] > keys[b] else (b, a)
-            pairs.append((float(weights[a, b].detach().cpu()), keys[u], keys[v], u, v))
+            pairs.append((float(weights[a, b]), keys[u], keys[v], u, v))
         pairs.sort(key=lambda z: (-z[0], tuple(-x for x in z[1]), tuple(-x for x in z[2])))
         return [(u, v) for _, _, _, u, v in pairs]
+
+    def _orders_cpu(self, risk: torch.Tensor, mask: torch.Tensor):
+        rc = risk.detach().cpu(); mc = mask.detach().cpu()
+        return [self._ordered_pairs(rc[b], mc[b]) for b in range(len(rc))]
 
     def _apply_pair(self, x: torch.Tensor, a: int, b: int, theta: torch.Tensor) -> torch.Tensor:
         ia, ib = givens_shell_pairs(self.n, self.j, a, b)
@@ -95,20 +102,50 @@ class EquivariantSubsetAdjacency(nn.Module):
         xa, xb = x[ia], x[ib]
         c = torch.cos(theta / 2).to(x.real.dtype)
         s = torch.sin(theta / 2).to(x.real.dtype)
-        y = x.clone()
-        y[ia] = c * xa - s * xb
-        y[ib] = s * xa + c * xb
+        y = x.clone(); y[ia] = c * xa - s * xb; y[ib] = s * xa + c * xb
         return y
 
-    def forward(self, x: torch.Tensor, edge: torch.Tensor, risk: torch.Tensor, mask: torch.Tensor) -> torch.Tensor:
+    def _apply_pair_batch(self, x, a, b, theta, enabled):
+        safe_a = torch.where(enabled, a, torch.zeros_like(a))
+        safe_b = torch.where(enabled, b, torch.ones_like(b))
+        ia = self._pair_left[safe_a, safe_b]
+        ib = self._pair_right[safe_a, safe_b]
+        E = x.shape[-1]
+        iae = ia[..., None].expand(-1, -1, E)
+        ibe = ib[..., None].expand(-1, -1, E)
+        xa = torch.gather(x, 1, iae); xb = torch.gather(x, 1, ibe)
+        th = torch.where(enabled, theta, torch.zeros_like(theta))
+        c = torch.cos(th / 2).to(x.real.dtype)[:, None, None]
+        s = torch.sin(th / 2).to(x.real.dtype)[:, None, None]
+        y = x.scatter(1, iae, c * xa - s * xb)
+        y = y.scatter(1, ibe, s * xa + c * xb)
+        return y
+
+    def _forward_reference(self, x, edge, risk, mask):
+        rc, mc = risk.detach().cpu(), mask.detach().cpu()
         rows = []
         for bi in range(x.shape[0]):
             z = x[bi]
-            for a, b in self._ordered_pairs(risk[bi], mask[bi]):
+            for a, b in self._ordered_pairs(rc[bi], mc[bi]):
                 theta = torch.tanh(self.angle(edge[bi, a, b]).squeeze(-1)) * (math.pi / 2)
                 z = self._apply_pair(z, a, b, theta)
             rows.append(z)
         return torch.stack(rows, 0)
+
+    def forward(self, x: torch.Tensor, edge: torch.Tensor, risk: torch.Tensor, mask: torch.Tensor) -> torch.Tensor:
+        orders = self._orders_cpu(risk, mask)
+        B = x.shape[0]; device = x.device
+        z = x
+        max_pairs = max((len(o) for o in orders), default=0)
+        batch = torch.arange(B, device=device)
+        for rank in range(max_pairs):
+            enabled = torch.tensor([rank < len(o) for o in orders], device=device, dtype=torch.bool)
+            a = torch.tensor([o[rank][0] if rank < len(o) else 0 for o in orders], device=device)
+            b = torch.tensor([o[rank][1] if rank < len(o) else 1 for o in orders], device=device)
+            ef = edge[batch, a, b]
+            theta = torch.tanh(self.angle(ef).squeeze(-1)) * (math.pi / 2)
+            z = self._apply_pair_batch(z, a, b, theta, enabled)
+        return z
 
 
 class ConditionalRDMReadout(nn.Module):
