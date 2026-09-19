@@ -1,0 +1,11 @@
+{
+  "agents": 491,
+  "per_agent_subset_count_mean": 19.31364631652832,
+  "effective_subset_count_mean": 9.243745803833008,
+  "effective_fraction_mean": 0.4851042330265045,
+  "effective_fraction_min": 0.19894690811634064,
+  "max_single_subset_weight_mean": 0.2816316783428192,
+  "max_single_subset_weight_max": 0.6973147988319397,
+  "entropy_mean": 2.167741537094116,
+  "test_used": false
+}
