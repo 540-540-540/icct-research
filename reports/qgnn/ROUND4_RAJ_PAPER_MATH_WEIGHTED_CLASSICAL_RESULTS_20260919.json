@@ -1,0 +1,91 @@
+{
+  "revision": "ROUND4_RAJ_PAPER_MATH_WEIGHTED_CLASSICAL_DIAGNOSTIC_20260919",
+  "prereg_commit": "7189d76",
+  "protocol": {
+    "dataset": "SinD",
+    "snr_db": 0,
+    "seed": 2026,
+    "train_samples": 4096,
+    "validation_samples": 1880,
+    "epochs": 20,
+    "batch_size": 32,
+    "lr": 0.0003,
+    "j": 3,
+    "test_set_used": false
+  },
+  "frozen_quantum": {
+    "kind": "raj_paper_math_quantum",
+    "best_validation": {
+      "ADE": 0.8105364381791429,
+      "FDE": 1.707538616752371,
+      "J": 1.6643057465553284,
+      "scenes": 1880
+    },
+    "best_epoch": 1,
+    "parameters": {
+      "graph": 56763,
+      "llm_non_lora": 4052375,
+      "lora": 98304,
+      "trainable_total": 4207442,
+      "frozen_total": 67736832,
+      "total": 71944274
+    }
+  },
+  "weighted_no_local_classical": {
+    "kind": "raj_paper_johnson",
+    "best_validation": {
+      "ADE": 0.7689202470665283,
+      "FDE": 1.5687315095612344,
+      "J": 1.5532860018471455,
+      "scenes": 1880
+    },
+    "best_epoch": 19,
+    "parameters": {
+      "graph": 267354,
+      "llm_non_lora": 4052375,
+      "lora": 98304,
+      "trainable_total": 4418033,
+      "frozen_total": 67736832,
+      "total": 72154865
+    }
+  },
+  "original_local_johnson_reference": {
+    "kind": "raj_johnson",
+    "best_validation": {
+      "ADE": 0.5501600268039297,
+      "FDE": 1.1557706815527475,
+      "J": 1.1280453675803035,
+      "scenes": 1880
+    },
+    "best_epoch": 20,
+    "parameters": {
+      "graph": 81248,
+      "llm_non_lora": 4052375,
+      "lora": 98304,
+      "trainable_total": 4231927,
+      "frozen_total": 67736832,
+      "total": 71968759
+    }
+  },
+  "quantum_relative_gain_vs_weighted_no_local_pct": {
+    "ADE": -5.412289671312805,
+    "FDE": -8.848366106317334,
+    "J": -7.147411653498441
+  },
+  "weighted_no_local_degradation_vs_local_johnson_pct": {
+    "ADE": 39.76301614158565,
+    "FDE": 35.73034293045787,
+    "J": 37.69712163075479
+  },
+  "integrity": {
+    "same_train_indices": true,
+    "same_downstream_initialization": true,
+    "quantum_completed": true,
+    "weighted_classical_completed": true
+  },
+  "interpretation": {
+    "local_residual_explains_large_fraction_of_original_gap": true,
+    "local_residual_fully_explains_gap": false,
+    "weighted_no_local_classical_still_beats_full_paper_math_quantum": true
+  }
+}
