@@ -1,0 +1,639 @@
+{
+  "tag": "v3",
+  "test_set_used": false,
+  "notes": [
+    "Same cap16 4096/1880/12epoch comparison.",
+    "K3 strata use frozen R2 history response, not labels or adaptive outcome selection.",
+    "Overlapping windows; all subgroup statistics are descriptive, not independent-sample significance."
+  ],
+  "runs": {
+    "quantum": {
+      "status": "COMPLETED",
+      "kind": "quantum",
+      "best_validation": {
+        "ADE": 0.6092239333514837,
+        "FDE": 1.2644376872067755,
+        "J": 1.2414427769548715,
+        "scenes": 1880
+      },
+      "best_epoch": 12,
+      "epochs_completed": 12,
+      "global_step": 1536,
+      "elapsed_seconds": 221.09907497093081,
+      "parameters": {
+        "graph": 69501,
+        "llm_non_lora": 4052375,
+        "lora": 98304,
+        "trainable_total": 4220180,
+        "frozen_total": 67736832,
+        "total": 71957012
+      },
+      "shared_initialization_sha256": "0d35048bfb3385d55aaab30cca077f76a7bc52701da744e786d67462a276b57f",
+      "train_indices_sha256": "dd7b0bd5ff75e728dcca1dd61abc913595f70953ae6c3265271ae9806d53bd68",
+      "train_samples": 4096,
+      "validation_samples": 1880,
+      "test_set_used": false
+    },
+    "classical": {
+      "status": "COMPLETED",
+      "kind": "classical",
+      "best_validation": {
+        "ADE": 0.5893548621300687,
+        "FDE": 1.217504884667219,
+        "J": 1.198107304463678,
+        "scenes": 1880
+      },
+      "best_epoch": 12,
+      "epochs_completed": 12,
+      "global_step": 1536,
+      "elapsed_seconds": 172.27792080119252,
+      "parameters": {
+        "graph": 325282,
+        "llm_non_lora": 4052375,
+        "lora": 98304,
+        "trainable_total": 4475961,
+        "frozen_total": 67736832,
+        "total": 72212793
+      },
+      "shared_initialization_sha256": "0d35048bfb3385d55aaab30cca077f76a7bc52701da744e786d67462a276b57f",
+      "train_indices_sha256": "dd7b0bd5ff75e728dcca1dd61abc913595f70953ae6c3265271ae9806d53bd68",
+      "train_samples": 4096,
+      "validation_samples": 1880,
+      "test_set_used": false
+    },
+    "frozen_quantum": {
+      "status": "COMPLETED",
+      "kind": "quantum",
+      "best_validation": {
+        "ADE": 0.6021354767949657,
+        "FDE": 1.2463357536716664,
+        "J": 1.225303353630799,
+        "scenes": 1880
+      },
+      "best_epoch": 12,
+      "epochs_completed": 12,
+      "global_step": 1536,
+      "elapsed_seconds": 202.4999940674752,
+      "parameters": {
+        "graph": 67357,
+        "llm_non_lora": 4052375,
+        "lora": 98304,
+        "trainable_total": 4218036,
+        "frozen_total": 67736832,
+        "total": 71954868
+      },
+      "shared_initialization_sha256": "0d35048bfb3385d55aaab30cca077f76a7bc52701da744e786d67462a276b57f",
+      "train_indices_sha256": "dd7b0bd5ff75e728dcca1dd61abc913595f70953ae6c3265271ae9806d53bd68",
+      "train_samples": 4096,
+      "validation_samples": 1880,
+      "test_set_used": false
+    },
+    "frozen_classical": {
+      "status": "COMPLETED",
+      "kind": "classical",
+      "best_validation": {
+        "ADE": 0.5853551465621654,
+        "FDE": 1.208481877352646,
+        "J": 1.1895960852384884,
+        "scenes": 1880
+      },
+      "best_epoch": 12,
+      "epochs_completed": 12,
+      "global_step": 1536,
+      "elapsed_seconds": 161.07554253190756,
+      "parameters": {
+        "graph": 323138,
+        "llm_non_lora": 4052375,
+        "lora": 98304,
+        "trainable_total": 4473817,
+        "frozen_total": 67736832,
+        "total": 72210649
+      },
+      "shared_initialization_sha256": "0d35048bfb3385d55aaab30cca077f76a7bc52701da744e786d67462a276b57f",
+      "train_indices_sha256": "dd7b0bd5ff75e728dcca1dd61abc913595f70953ae6c3265271ae9806d53bd68",
+      "train_samples": 4096,
+      "validation_samples": 1880,
+      "test_set_used": false
+    }
+  },
+  "directories": {
+    "quantum": "reports/qgnn/round3_v3_quantum_small_2026",
+    "classical": "reports/qgnn/round3_v3_classical_small_2026",
+    "frozen_quantum": "reports/qgnn/round3_reference_quantum_small_2026",
+    "frozen_classical": "reports/qgnn/round3_reference_classical_small_2026"
+  },
+  "frozen_K3_bounds": [
+    0.003057739231735468,
+    0.016814872995018958,
+    0.027396393194794654,
+    0.03624519035220146,
+    0.04907870516180992,
+    0.10112883150577545
+  ],
+  "strata": {
+    "all": {
+      "windows": 1880,
+      "metrics": {
+        "quantum": {
+          "ADE": 0.6092239333514837,
+          "FDE": 1.2644376872067755,
+          "J": 1.2414427769548715
+        },
+        "classical": {
+          "ADE": 0.5893548621300687,
+          "FDE": 1.217504884667219,
+          "J": 1.1981073044636783
+        },
+        "frozen_quantum": {
+          "ADE": 0.6021354767949657,
+          "FDE": 1.2463357536716664,
+          "J": 1.225303353630799
+        },
+        "frozen_classical": {
+          "ADE": 0.5853551465621654,
+          "FDE": 1.208481877352646,
+          "J": 1.1895960852384884
+        }
+      },
+      "quantum_vs_matched_gain_pct": {
+        "ADE": -3.3713255795673636,
+        "FDE": -3.8548348454786385,
+        "J": -3.616994265016338
+      },
+      "adaptive_vs_frozen_quantum_gain_pct": {
+        "ADE": -1.1772195510300065,
+        "FDE": -1.4524122798998063,
+        "J": -1.317177764693822
+      }
+    },
+    "final_closing_lt10": {
+      "windows": 1054,
+      "metrics": {
+        "quantum": {
+          "ADE": 0.6445634364374901,
+          "FDE": 1.3516334889622748,
+          "J": 1.3203801809186275
+        },
+        "classical": {
+          "ADE": 0.6172473964191252,
+          "FDE": 1.2858282097207074,
+          "J": 1.260161501279479
+        },
+        "frozen_quantum": {
+          "ADE": 0.6351890561985563,
+          "FDE": 1.3283781301534152,
+          "J": 1.299378121275264
+        },
+        "frozen_classical": {
+          "ADE": 0.6145230380560235,
+          "FDE": 1.2785465446861013,
+          "J": 1.2537963103990741
+        }
+      },
+      "quantum_vs_matched_gain_pct": {
+        "ADE": -4.425460549017335,
+        "FDE": -5.117734915448846,
+        "J": -4.77864778268553
+      },
+      "adaptive_vs_frozen_quantum_gain_pct": {
+        "ADE": -1.475840955925345,
+        "FDE": -1.7506580604555566,
+        "J": -1.6163162438622036
+      }
+    },
+    "final_closing_10_14": {
+      "windows": 686,
+      "metrics": {
+        "quantum": {
+          "ADE": 0.5578063206839492,
+          "FDE": 1.136461960504771,
+          "J": 1.1260373009363347
+        },
+        "classical": {
+          "ADE": 0.5408925136046229,
+          "FDE": 1.0937824629833677,
+          "J": 1.0877837450963068
+        },
+        "frozen_quantum": {
+          "ADE": 0.5523466826918869,
+          "FDE": 1.1182709714674741,
+          "J": 1.111482168425624
+        },
+        "frozen_classical": {
+          "ADE": 0.5354727881338784,
+          "FDE": 1.0824792760019748,
+          "J": 1.0767124261348657
+        }
+      },
+      "quantum_vs_matched_gain_pct": {
+        "ADE": -3.127018151279093,
+        "FDE": -3.902009674299589,
+        "J": -3.5166508060516355
+      },
+      "adaptive_vs_frozen_quantum_gain_pct": {
+        "ADE": -0.9884440629668534,
+        "FDE": -1.626706719698312,
+        "J": -1.309524608148016
+      }
+    },
+    "final_closing_ge15": {
+      "windows": 140,
+      "metrics": {
+        "quantum": {
+          "ADE": 0.595114262189184,
+          "FDE": 1.2350589262587683,
+          "J": 1.212643725318568
+        },
+        "classical": {
+          "ADE": 0.6168294331857136,
+          "FDE": 1.3093677180153982,
+          "J": 1.2715132921934127
+        },
+        "frozen_quantum": {
+          "ADE": 0.5972543343901634,
+          "FDE": 1.2561912949596132,
+          "J": 1.22534998186997
+        },
+        "frozen_classical": {
+          "ADE": 0.6101861483284405,
+          "FDE": 1.2984077713319233,
+          "J": 1.2593900339944022
+        }
+      },
+      "quantum_vs_matched_gain_pct": {
+        "ADE": 3.5204498728891975,
+        "FDE": 5.675166015949995,
+        "J": 4.6298821440782785
+      },
+      "adaptive_vs_frozen_quantum_gain_pct": {
+        "ADE": 0.3583184043636334,
+        "FDE": 1.6822572155719584,
+        "J": 1.036949176920976
+      }
+    },
+    "recent5_closing_lt10": {
+      "windows": 1130,
+      "metrics": {
+        "quantum": {
+          "ADE": 0.63478732622039,
+          "FDE": 1.3281449043117792,
+          "J": 1.2988597783762796
+        },
+        "classical": {
+          "ADE": 0.6085808202492452,
+          "FDE": 1.265494677028825,
+          "J": 1.2413281587636575
+        },
+        "frozen_quantum": {
+          "ADE": 0.6257921745951197,
+          "FDE": 1.3056019419853666,
+          "J": 1.278593145587803
+        },
+        "frozen_classical": {
+          "ADE": 0.6053076482979597,
+          "FDE": 1.2568015735629385,
+          "J": 1.233708435079429
+        }
+      },
+      "quantum_vs_matched_gain_pct": {
+        "ADE": -4.306166921332144,
+        "FDE": -4.950651189623878,
+        "J": -4.634682554041358
+      },
+      "adaptive_vs_frozen_quantum_gain_pct": {
+        "ADE": -1.4374023822030235,
+        "FDE": -1.7266336393566117,
+        "J": -1.5850728481075604
+      }
+    },
+    "recent5_closing_10_14": {
+      "windows": 635,
+      "metrics": {
+        "quantum": {
+          "ADE": 0.5643023599789837,
+          "FDE": 1.148927404467515,
+          "J": 1.1387660622127413
+        },
+        "classical": {
+          "ADE": 0.5464318453796266,
+          "FDE": 1.1054780059442746,
+          "J": 1.099170848351764
+        },
+        "frozen_quantum": {
+          "ADE": 0.5579034435467457,
+          "FDE": 1.1298900453593788,
+          "J": 1.122848466226435
+        },
+        "frozen_classical": {
+          "ADE": 0.5417848160886389,
+          "FDE": 1.0964847794198613,
+          "J": 1.0900272057985696
+        }
+      },
+      "quantum_vs_matched_gain_pct": {
+        "ADE": -3.2704013776762464,
+        "FDE": -3.9303720462649183,
+        "J": -3.602280202422725
+      },
+      "adaptive_vs_frozen_quantum_gain_pct": {
+        "ADE": -1.14695768707902,
+        "FDE": -1.6848859927853566,
+        "J": -1.4176085611801836
+      }
+    },
+    "recent5_closing_ge15": {
+      "windows": 115,
+      "metrics": {
+        "quantum": {
+          "ADE": 0.6060810216095136,
+          "FDE": 1.2762626803439596,
+          "J": 1.2442123617814935
+        },
+        "classical": {
+          "ADE": 0.6374486270158187,
+          "FDE": 1.3645362118016118,
+          "J": 1.3197167329166246
+        },
+        "frozen_quantum": {
+          "ADE": 0.6139204559118852,
+          "FDE": 1.3069638578788094,
+          "J": 1.2674023848512899
+        },
+        "frozen_classical": {
+          "ADE": 0.6298841282077458,
+          "FDE": 1.3521070988281914,
+          "J": 1.3059376776218414
+        }
+      },
+      "quantum_vs_matched_gain_pct": {
+        "ADE": 4.920805234635283,
+        "FDE": 6.469123405754374,
+        "J": 5.721255876498854
+      },
+      "adaptive_vs_frozen_quantum_gain_pct": {
+        "ADE": 1.2769462602003179,
+        "FDE": 2.349045641145542,
+        "J": 1.8297285334931246
+      }
+    },
+    "recent5_wedges_ge35": {
+      "windows": 416,
+      "metrics": {
+        "quantum": {
+          "ADE": 0.5652986702580864,
+          "FDE": 1.1549034423839588,
+          "J": 1.1427503914500658
+        },
+        "classical": {
+          "ADE": 0.5649332040920854,
+          "FDE": 1.1562235876201437,
+          "J": 1.1430449979021573
+        },
+        "frozen_quantum": {
+          "ADE": 0.5610231540810603,
+          "FDE": 1.1474888144920652,
+          "J": 1.1347675613270929
+        },
+        "frozen_classical": {
+          "ADE": 0.5611186420831543,
+          "FDE": 1.150573349916018,
+          "J": 1.1364053170411632
+        }
+      },
+      "quantum_vs_matched_gain_pct": {
+        "ADE": -0.0646919252318412,
+        "FDE": 0.11417733129819307,
+        "J": 0.025773828032327195
+      },
+      "adaptive_vs_frozen_quantum_gain_pct": {
+        "ADE": -0.7620926419747098,
+        "FDE": -0.6461612347110846,
+        "J": -0.7034771168147547
+      }
+    },
+    "recent5_triangles_ge6": {
+      "windows": 391,
+      "metrics": {
+        "quantum": {
+          "ADE": 0.5753463760513784,
+          "FDE": 1.178167343901856,
+          "J": 1.1644300480023064
+        },
+        "classical": {
+          "ADE": 0.5720590676188164,
+          "FDE": 1.1705256937562352,
+          "J": 1.157321914496934
+        },
+        "frozen_quantum": {
+          "ADE": 0.5711870897380288,
+          "FDE": 1.1706156358694482,
+          "J": 1.1564949076727529
+        },
+        "frozen_classical": {
+          "ADE": 0.5673014331046883,
+          "FDE": 1.1622676586403566,
+          "J": 1.1484352624248666
+        }
+      },
+      "quantum_vs_matched_gain_pct": {
+        "ADE": -0.5746449306791579,
+        "FDE": -0.6528391633248809,
+        "J": -0.6141881024055662
+      },
+      "adaptive_vs_frozen_quantum_gain_pct": {
+        "ADE": -0.7281828297725168,
+        "FDE": -0.6451056863595594,
+        "J": -0.6861370747858864
+      }
+    },
+    "frozen_K3_quintile_1": {
+      "windows": 376,
+      "metrics": {
+        "quantum": {
+          "ADE": 0.6813008537951936,
+          "FDE": 1.43240668703901,
+          "J": 1.3975041973146987
+        },
+        "classical": {
+          "ADE": 0.643801465987208,
+          "FDE": 1.3400763300188043,
+          "J": 1.3138396309966103
+        },
+        "frozen_quantum": {
+          "ADE": 0.6712488080672128,
+          "FDE": 1.4110281952518098,
+          "J": 1.3767629056931177
+        },
+        "frozen_classical": {
+          "ADE": 0.6394264753907919,
+          "FDE": 1.3306577338817271,
+          "J": 1.3047553423316556
+        }
+      },
+      "quantum_vs_matched_gain_pct": {
+        "ADE": -5.824681953851063,
+        "FDE": -6.889932681589128,
+        "J": -6.367943571212331
+      },
+      "adaptive_vs_frozen_quantum_gain_pct": {
+        "ADE": -1.4975141269784276,
+        "FDE": -1.5151002551997195,
+        "J": -1.5065260355150878
+      }
+    },
+    "frozen_K3_quintile_2": {
+      "windows": 376,
+      "metrics": {
+        "quantum": {
+          "ADE": 0.663460448225762,
+          "FDE": 1.4182090114088768,
+          "J": 1.3725649539302005
+        },
+        "classical": {
+          "ADE": 0.6330954155072253,
+          "FDE": 1.33178461501573,
+          "J": 1.2989877230150904
+        },
+        "frozen_quantum": {
+          "ADE": 0.651933750098056,
+          "FDE": 1.3839050845262852,
+          "J": 1.3438862923611985
+        },
+        "frozen_classical": {
+          "ADE": 0.6328882678867654,
+          "FDE": 1.3372287216021659,
+          "J": 1.3015026286878484
+        }
+      },
+      "quantum_vs_matched_gain_pct": {
+        "ADE": -4.796280619755988,
+        "FDE": -6.4893673810855645,
+        "J": -5.664197560260953
+      },
+      "adaptive_vs_frozen_quantum_gain_pct": {
+        "ADE": -1.768078140757745,
+        "FDE": -2.4787774296193055,
+        "J": -2.1340095313133745
+      }
+    },
+    "frozen_K3_quintile_3": {
+      "windows": 376,
+      "metrics": {
+        "quantum": {
+          "ADE": 0.6263628234254554,
+          "FDE": 1.3218857449419954,
+          "J": 1.287305695896453
+        },
+        "classical": {
+          "ADE": 0.5987058951658137,
+          "FDE": 1.2553925484894437,
+          "J": 1.2264021694105356
+        },
+        "frozen_quantum": {
+          "ADE": 0.610900906727035,
+          "FDE": 1.2789412261323725,
+          "J": 1.2503715197932213
+        },
+        "frozen_classical": {
+          "ADE": 0.5970397394229757,
+          "FDE": 1.2520084923252146,
+          "J": 1.223043985585583
+        }
+      },
+      "quantum_vs_matched_gain_pct": {
+        "ADE": -4.619451467399016,
+        "FDE": -5.296605952660771,
+        "J": -4.966032187890734
+      },
+      "adaptive_vs_frozen_quantum_gain_pct": {
+        "ADE": -2.53100241432922,
+        "FDE": -3.357818008532787,
+        "J": -2.9538561554360854
+      }
+    },
+    "frozen_K3_quintile_4": {
+      "windows": 376,
+      "metrics": {
+        "quantum": {
+          "ADE": 0.5803324810050904,
+          "FDE": 1.1802099958220695,
+          "J": 1.1704374789161252
+        },
+        "classical": {
+          "ADE": 0.5713001769432362,
+          "FDE": 1.1607402790575585,
+          "J": 1.1516703164720155
+        },
+        "frozen_quantum": {
+          "ADE": 0.5790522368030345,
+          "FDE": 1.1776020350132852,
+          "J": 1.1678532543096771
+        },
+        "frozen_classical": {
+          "ADE": 0.5662762773163775,
+          "FDE": 1.1463015598661088,
+          "J": 1.1394270572494318
+        }
+      },
+      "quantum_vs_matched_gain_pct": {
+        "ADE": -1.581008448165,
+        "FDE": -1.6773534196917073,
+        "J": -1.6295603156292415
+      },
+      "adaptive_vs_frozen_quantum_gain_pct": {
+        "ADE": -0.22109304147137632,
+        "FDE": -0.22146368053406196,
+        "J": -0.22127990797744523
+      }
+    },
+    "frozen_K3_quintile_5": {
+      "windows": 376,
+      "metrics": {
+        "quantum": {
+          "ADE": 0.4946630603059175,
+          "FDE": 0.969476996821926,
+          "J": 0.9794015587168805
+        },
+        "classical": {
+          "ADE": 0.4998713570468603,
+          "FDE": 0.9995306507545583,
+          "J": 0.9996366824241395
+        },
+        "frozen_quantum": {
+          "ADE": 0.4975416822794904,
+          "FDE": 0.9802022274345794,
+          "J": 0.9876427959967801
+        },
+        "frozen_classical": {
+          "ADE": 0.49114497279391645,
+          "FDE": 0.9762128790880137,
+          "J": 0.9792514123379233
+        }
+      },
+      "quantum_vs_matched_gain_pct": {
+        "ADE": 1.041927421429456,
+        "FDE": 3.006776621601792,
+        "J": 2.024247815535185
+      },
+      "adaptive_vs_frozen_quantum_gain_pct": {
+        "ADE": 0.5785690076024363,
+        "FDE": 1.0941854968768872,
+        "J": 0.8344350116564203
+      }
+    }
+  },
+  "full_train_gate": {
+    "checks": {
+      "overall_J_improves_at_least1pct": false,
+      "relative_gap_shrinks_at_least30pct_or_win": false,
+      "ordinary_J_improves": false,
+      "high_dynamic_J_not_degraded_over1pct": true,
+      "high_dynamic_QC_gap_not_worse": true
+    },
+    "PASS": false,
+    "old_relative_J_gap": 0.030016296149084853,
+    "new_relative_J_gap": 0.03616994265016338,
+    "old_high_dynamic_relative_gap": -0.027028999123065556,
+    "new_high_dynamic_relative_gap": -0.04629882144078279
+  }
+}

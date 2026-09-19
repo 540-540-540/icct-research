@@ -1,0 +1,71 @@
+{
+  "split": "train",
+  "test_set_used": false,
+  "samples": 16,
+  "indices": [
+    4056,
+    6709,
+    13140,
+    2829,
+    7970,
+    11885,
+    8564,
+    10547,
+    7054,
+    9832,
+    1605,
+    1803,
+    1844,
+    1052,
+    11081,
+    6719
+  ],
+  "note": "Shot noise only in intermediate K2/K3 feedback; readout exact, no gate/readout hardware noise. Draw prefix Z samples from repeated preparations; not nondestructive measurement.",
+  "results": [
+    {
+      "shots_per_intermediate_Z_setting": 256,
+      "feedback_preparations_per_scene": 2048,
+      "position_vector_RMS_deviation_m": [
+        0.009556804783642292,
+        0.011528577655553818,
+        0.008996057324111462
+      ],
+      "mean_deviation_m": 0.01002714658776919,
+      "simulator_elapsed_s": 0.09931874461472034
+    },
+    {
+      "shots_per_intermediate_Z_setting": 1024,
+      "feedback_preparations_per_scene": 8192,
+      "position_vector_RMS_deviation_m": [
+        0.004931140225380659,
+        0.004818099085241556,
+        0.005218652077019215
+      ],
+      "mean_deviation_m": 0.00498929712921381,
+      "simulator_elapsed_s": 0.09657786414027214
+    },
+    {
+      "shots_per_intermediate_Z_setting": 8192,
+      "feedback_preparations_per_scene": 65536,
+      "position_vector_RMS_deviation_m": [
+        0.0021554806735366583,
+        0.002033138182014227,
+        0.0015346859581768513
+      ],
+      "mean_deviation_m": 0.0019077682712425788,
+      "simulator_elapsed_s": 0.09909776039421558
+    },
+    {
+      "shots_per_intermediate_Z_setting": 65536,
+      "feedback_preparations_per_scene": 524288,
+      "position_vector_RMS_deviation_m": [
+        0.0007575359777547419,
+        0.0007607741863466799,
+        0.0007378245936706662
+      ],
+      "mean_deviation_m": 0.0007520449192573627,
+      "simulator_elapsed_s": 0.09761268645524979
+    }
+  ],
+  "status": "COMPLETED"
+}

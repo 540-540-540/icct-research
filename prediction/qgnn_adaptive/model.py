@@ -6,7 +6,7 @@ from prediction.qgnn_final.model import FinalModel,FinalMotionGPT2
 from .quantum import SceneAdaptiveQuantumCore
 from .classical import SceneAdaptiveClassicalCore
 
-def build_model(kind,seed=2026,depth=3,token_path=None,channels=4,enhanced=True,snr_db=0.,quantum_version=3,correction_cap_m=16.,adaptive_mode="feedback"):
+def build_model(kind,seed=2026,depth=3,token_path=None,channels=4,enhanced=True,snr_db=0.,quantum_version=3,correction_cap_m=16.,adaptive_mode="phase_feedback"):
     if adaptive_mode not in ("feedback","history","phase_feedback","basis_feedback"):raise ValueError(adaptive_mode)
     root=Path(__file__).resolve().parents[2]
     payload=json.loads(Path(token_path or root/"configs/qgnn_final_tokens.json").read_text())
