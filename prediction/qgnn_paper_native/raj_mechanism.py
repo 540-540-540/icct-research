@@ -138,3 +138,88 @@ class RajPaperMathRowLocalQGNNCore(BoundedCore):
         z, _ = self.readout(conditional, prob, valid, mask)
         return z
 
+
+
+
+class HamiltonianExpSubsetAdjacency(nn.Module):
+    """Matched A(G) ablation: same edge-angle MLP, one exp(iH) per round."""
+
+    def __init__(self, n: int, j: int, edge_dim: int = 16, hidden: int = 32):
+        super().__init__()
+        self.n, self.j = n, j
+        self.angle = nn.Sequential(
+            nn.Linear(edge_dim, hidden),
+            nn.SiLU(),
+            nn.Linear(hidden, 1),
+        )
+        _, links, _ = subset_tensors(n, j)
+        self.register_buffer("_u", links[:, 0].clone())
+        self.register_buffer("_v", links[:, 1].clone())
+        self.register_buffer("_a", links[:, 2].clone())
+        self.register_buffer("_b", links[:, 3].clone())
+
+    def hamiltonian(self, edge: torch.Tensor, mask: torch.Tensor) -> torch.Tensor:
+        B = edge.shape[0]
+        S = len(torch.unique(torch.cat((self._u, self._v))))
+        # For Johnson J(n,j), every subset appears in the link table when 0<j<n.
+        S = int(max(int(self._u.max()), int(self._v.max())) + 1) if self._u.numel() else 0
+        H = edge.new_zeros(B, S, S)
+        if self._u.numel() == 0:
+            return H
+        a, b = self._a, self._b
+        ef = edge[:, a, b]
+        theta = torch.tanh(self.angle(ef).squeeze(-1)) * (torch.pi / 2)
+        theta = theta * (mask[:, a] & mask[:, b]).to(theta.dtype)
+        H[:, self._u, self._v] = theta
+        H[:, self._v, self._u] = theta
+        return H
+
+    def forward(self, x: torch.Tensor, edge: torch.Tensor, risk: torch.Tensor, mask: torch.Tensor) -> torch.Tensor:
+        del risk
+        H = self.hamiltonian(edge, mask)
+        U = torch.matrix_exp(1j * H.to(x.dtype))
+        return torch.bmm(U, x)
+
+
+class RajPaperMathExpAdjQGNNCore(BoundedCore):
+    """Full paper-math pipeline with only A(G) composition changed to exp(iH)."""
+
+    def __init__(self, j: int = 3, rounds: int = 3, D: int = 6, k: int = 3, n: int = 8):
+        super().__init__()
+        import math
+        from .raj_paper_math import ControlledFeatureLoader, ConditionalRDMReadout
+        from .raj_paper import CompoundEvolution
+        from .raj_joint import JointRegisterMixer
+
+        if n != 8:
+            raise ValueError("BoundedCore patch size is fixed at N=8 for this diagnostic")
+        self.n, self.j, self.rounds, self.D, self.k = n, j, rounds, D, k
+        self.builder = SubsetFeatureBuilder(32)
+        self.embed_dim = math.comb(D, k)
+        self.loaders = nn.ModuleList(
+            ControlledFeatureLoader(self.builder.out_dim, self.embed_dim) for _ in range(rounds + 1)
+        )
+        self.adj = nn.ModuleList(HamiltonianExpSubsetAdjacency(n, j) for _ in range(rounds))
+        self.evolution = nn.ModuleList(CompoundEvolution(D, k) for _ in range(rounds))
+        self.joint = JointRegisterMixer(n=n, D=D, j=j, k=k)
+        self.readout = ConditionalRDMReadout(n, j, D, k, 64)
+
+    def forward_patch(self, history, mask):
+        own, feat, valid, subs = self.builder(history, mask, self.j)
+        if not bool(valid.any()):
+            return history.new_zeros(history.shape[0], history.shape[2], 64)
+        edge, risk = physical_graph(history, mask)
+        x0, _ = self.loaders[0](feat, valid)
+        ctype = torch.complex64 if x0.dtype == torch.float32 else torch.complex128
+        x = x0.to(ctype)
+        for l in range(self.rounds):
+            x = self.adj[l](x, edge, risk, mask)
+            x = self.evolution[l](x)
+            _, cond = self.loaders[l + 1](feat, valid)
+            x = self.loaders[l + 1].reupload(x, cond, valid)
+        joint = self.joint(x, risk, mask)
+        from .raj_joint import conditional_embedding_states
+        conditional, prob = conditional_embedding_states(self.joint, joint)
+        z, _ = self.readout(conditional, prob, valid, mask)
+        return z
+

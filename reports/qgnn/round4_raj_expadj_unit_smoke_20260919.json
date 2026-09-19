@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "identity_max_abs_error": 0.0,
+  "norm_max_abs_error": 1.1102230246251565e-16,
+  "permutation_equivariance_max_abs_error": 1.1123893155135927e-16,
+  "adjacency_gradient_norm_sum": 8.53803710859988,
+  "full_graph_gradient_norm_sum": 1385.614403322339,
+  "graph_params": 56763,
+  "graph_shape": [
+    2,
+    8,
+    64
+  ],
+  "masked_zero_max": 0.0,
+  "test_used": false
+}
