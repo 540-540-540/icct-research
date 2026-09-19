@@ -42,3 +42,17 @@ job.json、完整错误和已完成推理均保留。出错前summary曾停留�
 主方案仍为phase_feedback + neutral，唯一备用basis_feedback + specialized。第三轮两次结构修正额度已用完，full-train门槛仍FAILED，不启动15802全量训练、五SNR、多seed或test。
 
 后续最小可证伪问题是：同一phase_feedback结构、同一中性初始化与训练曝光下，从头训练的有反馈/无反馈配对，是否显示反馈有独立增益；经典同时作自身反馈对应消融。这项检验本次没有启动，也不构成第四版架构或放宽本轮停止规则。
+
+## 6. 本次续跑已完成辅助修复与验收
+
+在6893010之后的用户继续推进指令下，已于51b832a修复辅助审计脚本；第4节记录的失败是当时状态，旧失败报告保留，不再是当前未解决阻塞。修复只影响诊断脚本，不修改训练中的QGNN、GPT-2、Tokenizer、数据或checkpoint。
+
+首次尝试禁用cuDNN、改用原生CUDA RNN，其前向与原cuDNN预测在检查batch上最大相差0.0063753m（Q）/0.0045853m（C），超过预设2e-4m一致性门槛；因此该方案没有被接受，没有放宽门槛。对应round3_feedback_audit_fixed_*目录保留FAILED及traceback。
+
+最终采用最小范围修复：只将单层且dropout=0的GRU切到train以取得cuDNN反向所需中间缓存，GPT-2与其他模块仍eval；执行一次反向后恢复GRU.eval，不执行optimizer.step。梯度前向与原eval预测最大差为Q=0、C=3.8146973e-6m，均通过原门槛。两组均重跑5种设置×1880val、512个随机训练子集场景的控制器统计和32场景梯度探针，最终进程exit0，summary=COMPLETED。
+
+最终Q控制器的11个参数张量均有有限梯度，其中feedback_global梯度范数0.0838531、feedback_local0.0332090；512训练窗口的风险加权lambda场景标准差平均为lambda2=0.0144979、lambda3=0.0191095。关闭反馈后lambda平均绝对变化0.0248867/0.0307432。这证明反馈不是断梯度/完全失活，但不证明它改善预测。
+
+新通过结果：reports/qgnn/round3_feedback_audit_completed_quantum_20260919/summary.json及classical对应路径；完整过程状态见round3_auxiliary_completion_receipt_20260919.json。统计在梯度探针之前即持久化；失败处理也同步更新summary，避免退出后停留RUNNING。
+
+针对第5节提出的最小可证伪问题，本次另按ROUND3_FEEDBACK_RETRAIN_PREREG_20260919.md执行固定四组从头训练消融；它不新增一级结构、不选择新的部署模式，不放宽full-train门槛。最终消融结果以单独的ROUND3_FEEDBACK_RETRAINING_FINDINGS_20260919.md为准。

@@ -1,0 +1,6 @@
+{
+  "status": "FAILED",
+  "pid": 395934,
+  "traceback": "Traceback (most recent call last):\n  File \"/home/dell/YrM/ICCT/scripts/audit_qgnn_round3_selected_feedback.py\", line 189, in <module>\n    main(args)\n  File \"/home/dell/YrM/ICCT/scripts/audit_qgnn_round3_selected_feedback.py\", line 170, in main\n    assert drift < 2e-4, drift\n           ^^^^^^^^^^^^\nAssertionError: 0.00458526611328125\n",
+  "test_set_used": false
+}

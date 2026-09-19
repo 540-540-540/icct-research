@@ -1,0 +1,72 @@
+{
+  "jobs": {
+    "round3_feedback_audit_fixed_quantum_20260919": {
+      "pid": 395933,
+      "returncode": 1
+    },
+    "round3_feedback_audit_fixed_classical_20260919": {
+      "pid": 395934,
+      "returncode": 1
+    },
+    "round3_feedback_audit_completed_quantum_20260919": {
+      "pid": 397489,
+      "returncode": 0
+    },
+    "round3_feedback_audit_completed_classical_20260919": {
+      "pid": 397490,
+      "returncode": 0
+    },
+    "round3_retrain_quantum_on_20260919": {
+      "pid": 399484,
+      "returncode": 0
+    },
+    "round3_retrain_classical_on_20260919": {
+      "pid": 399485,
+      "returncode": 0
+    },
+    "round3_feedback_retrain_preflight_job": {
+      "pid": 401349,
+      "returncode": 0
+    },
+    "round3_retrain_quantum_off_20260919": {
+      "pid": 406002,
+      "returncode": 0
+    },
+    "round3_retrain_classical_off_20260919": {
+      "pid": 406003,
+      "returncode": 0
+    },
+    "round3_feedback_prereg_push_job": {
+      "pid": 408222,
+      "returncode": 128
+    },
+    "round3_feedback_replay_classical_off_job": {
+      "pid": 410234,
+      "returncode": 0
+    },
+    "round3_feedback_replay_quantum_off_job": {
+      "pid": 410957,
+      "returncode": 0
+    },
+    "round3_feedback_replay_classical_on_job": {
+      "pid": 410958,
+      "returncode": 0
+    },
+    "round3_feedback_retraining_collector_job": {
+      "pid": 410959,
+      "returncode": 0
+    },
+    "round3_feedback_replay_quantum_on_job": {
+      "pid": 411721,
+      "returncode": 0
+    },
+    "round3_feedback_retraining_collector_final_job": {
+      "pid": 412862,
+      "returncode": 0
+    }
+  },
+  "all_processes_exited": true,
+  "test_set_used": false,
+  "failed_native_audit_attempts_preserved": true,
+  "server_push_requires_authorized_publish_bridge": true
+}

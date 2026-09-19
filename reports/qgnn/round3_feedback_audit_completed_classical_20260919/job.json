@@ -1,0 +1,17 @@
+{
+  "pid": 397490,
+  "command": [
+    "/home/dell/YrM/envs/ICCT/bin/python",
+    "-u",
+    "scripts/audit_qgnn_round3_selected_feedback.py",
+    "--run-dir",
+    "reports/qgnn/round3_neutral_classical_small_2026",
+    "--out-dir",
+    "reports/qgnn/round3_feedback_audit_completed_classical_20260919"
+  ],
+  "gpu": 1,
+  "cwd": "/home/dell/YrM/ICCT",
+  "log": "reports/qgnn/round3_feedback_audit_completed_classical_20260919/run.log",
+  "output_dir": "reports/qgnn/round3_feedback_audit_completed_classical_20260919",
+  "started_at": "2026-09-19T11:57:23+0800"
+}

@@ -1,0 +1,29 @@
+{
+  "scope": "Auxiliary gradient/statistics audit only; original checkpoints and model definitions unchanged",
+  "test_set_used": false,
+  "jobs": {
+    "round3_feedback_audit_fixed_quantum_20260919": {
+      "returncode": 1,
+      "summary_status": "FAILED",
+      "summary_sha256": "d12d516521dbabaa62ce7b3118ba077ce09624e953d46f2f6a9810d3d6925362"
+    },
+    "round3_feedback_audit_fixed_classical_20260919": {
+      "returncode": 1,
+      "summary_status": "FAILED",
+      "summary_sha256": "72e4624dfc5b1a9ba6bab931c324eb1c5d823bbe4e25fe20ab69fe0d400fcdef"
+    },
+    "round3_feedback_audit_completed_quantum_20260919": {
+      "returncode": 0,
+      "summary_status": "COMPLETED",
+      "summary_sha256": "d71a9e8d5ba954578aea1eeb2ac592e3df2a308e957913282173604f9c999f87"
+    },
+    "round3_feedback_audit_completed_classical_20260919": {
+      "returncode": 0,
+      "summary_status": "COMPLETED",
+      "summary_sha256": "3fd26a86cd16db51e8a11fce540be2ec1c2aec9f0d928f9536b4ac90ba3d5c95"
+    }
+  },
+  "accepted_backend": "Only one-layer dropout-free GRU uses training reserve; all other modules eval; no optimizer update",
+  "rejected_backend": "Native CUDA alternative failed predeclared2e-4m prediction-equivalence bound; failures preserved",
+  "original_model_config_diff": []
+}

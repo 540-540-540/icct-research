@@ -1,0 +1,17 @@
+{
+  "pid": 411721,
+  "command": [
+    "/home/dell/YrM/envs/ICCT/bin/python",
+    "-u",
+    "scripts/replay_qgnn_feedback_ablation.py",
+    "--run-dir",
+    "reports/qgnn/round3_retrain_quantum_on_20260919",
+    "--output",
+    "reports/qgnn/round3_retrain_quantum_on_20260919/replay.json"
+  ],
+  "gpu": 0,
+  "cwd": "/home/dell/YrM/ICCT",
+  "log": "reports/qgnn/round3_feedback_replay_quantum_on_job/run.log",
+  "output_dir": "reports/qgnn/round3_feedback_replay_quantum_on_job",
+  "started_at": "2026-09-19T12:08:56+0800"
+}
