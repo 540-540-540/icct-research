@@ -56,12 +56,12 @@ class FinalMotionGPT2(MotionTokenGPT2Core):
 
 class LegacyHigherOrder(nn.Module):
     """Unweakened previous 64-wide, per-frame pair+triplet core as extra control."""
-    def __init__(self):
+    def __init__(self,snr_db=0.):
         super().__init__()
         from prediction.q0.graph import GatedPairTriplet
         from prediction.q0.normalization import load_normalization,normalization_path
         self.inner=GatedPairTriplet()
-        self.stats=load_normalization(normalization_path(Path(__file__).resolve().parents[2],0.,'sind'))
+        self.stats=load_normalization(normalization_path(Path(__file__).resolve().parents[2],snr_db,'sind'))
     def forward(self,history,mask):
         from prediction.q0.features import normalize_state_and_edges
         state,edge,pair=normalize_state_and_edges(history,mask,self.stats)
@@ -83,14 +83,14 @@ class FinalModel(nn.Module):
     def parameter_summary(self):
         return GraphMotionLLM.parameter_summary(self)
 
-def build_model(kind,seed=2026,depth=3,token_path=None):
+def build_model(kind,seed=2026,depth=3,token_path=None,channels=4,enhanced=True,snr_db=0.):
     root=Path(__file__).resolve().parents[2]
     payload=json.loads(Path(token_path or root/'configs/qgnn_final_tokens.json').read_text())
     with torch.random.fork_rng(devices=[]):
         torch.manual_seed(seed+100003)
-        if kind=='quantum': core=HypergraphQuantumCore(depth)
-        elif kind=='classical': core=AdaptiveClassicalCore(depth)
-        elif kind=='legacy_classical': core=LegacyHigherOrder()
+        if kind=='quantum': core=HypergraphQuantumCore(depth,channels,enhanced)
+        elif kind=='classical': core=AdaptiveClassicalCore(depth,channels)
+        elif kind=='legacy_classical': core=LegacyHigherOrder(snr_db)
         else: raise ValueError(kind)
     with torch.random.fork_rng(devices=[]):
         torch.manual_seed(seed+300003)

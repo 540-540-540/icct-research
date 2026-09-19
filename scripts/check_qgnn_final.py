@@ -7,7 +7,7 @@ from prediction.qgnn_final.quantum import HypergraphQuantumCore,evolve,moments
 from prediction.qgnn_final.classical import AdaptiveClassicalCore
 from prediction.qgnn_final.model import build_model
 
-OUT=ROOT/'reports/qgnn/engineering_checks.json'
+OUT=ROOT/'reports/qgnn/engineering_checks_v2.json'
 report={'test_set_used':False,'checks':{},'profiling':{}}
 def save():
     tmp=OUT.with_suffix('.tmp');tmp.write_text(json.dumps(report,indent=2)+'\n');tmp.replace(OUT)
@@ -126,7 +126,7 @@ def profile():
             q.zero_grad(set_to_none=True);torch.cuda.synchronize();start=time.perf_counter()
             out=q(x,mask);out.square().mean().backward();torch.cuda.synchronize()
             if s>0:times.append(time.perf_counter()-start)
-        dynamic[str(n)]={'core_forward_backward_s':statistics.median(times),'peak_allocated_gib':torch.cuda.max_memory_allocated()/2**30,'circuit_instances_per_scene':1 if n<=8 else n}
+        dynamic[str(n)]={'core_forward_backward_s':statistics.median(times),'peak_allocated_gib':torch.cuda.max_memory_allocated()/2**30,'quantum_channels':q.channels,'circuit_instances_per_scene':q.channels*(1 if n<=8 else n)}
     report['profiling']['dynamic_N_quantum_core']=dynamic;save();print('DYNAMIC',json.dumps(dynamic),flush=True)
 
 if __name__=='__main__':

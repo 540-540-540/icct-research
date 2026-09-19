@@ -13,7 +13,7 @@ def main():
     p=argparse.ArgumentParser();p.add_argument('--run-dir',required=True);a=p.parse_args()
     torch.set_num_threads(4);directory=ROOT/a.run_dir
     cp=torch.load(directory/'best.pt',map_location='cpu',weights_only=False);c=cp['config']
-    model=build_model(c['kind'],c['seed'],c['depth']).cuda().eval()
+    model=build_model(c['kind'],c['seed'],c['depth'],channels=c.get('channels',1),enhanced=c.get('quantum_version',1)==2,snr_db=c['snr']).cuda().eval()
     missing,extra=model.load_state_dict(cp['model_state'],strict=False)
     if extra or any(not k.startswith('llm.gpt2.') for k in missing):raise ValueError('checkpoint mismatch')
     q=model.graph
@@ -34,14 +34,15 @@ def main():
     data=next(iter(DataLoader(train,batch_size=64,shuffle=False)))
     h=data['history_state'].cuda();mask=data['vehicle_mask'].cuda()
     with torch.no_grad():
-        own,risk,tw,ry,rz,pa,ta=q.circuit_inputs(h,mask)
-        states=evolve(ry,rz,pa,ta,q.rx,mask)
-        features=torch.cat([moments(s,mask,risk,tw) for s in states],-1)
+        own,risk,tw,ry,rz,pa,ta,rx,expanded_mask=q.circuit_inputs(h,mask)
+        states=evolve(ry,rz,pa,ta,rx,expanded_mask)
+        raw_features=torch.cat([moments(s,expanded_mask,risk,tw) for s in states],-1)
+        features=q.readout_features(states,expanded_mask,risk,tw,h.shape[0])
         gate=torch.sigmoid(q.gate(torch.cat((own,features),-1)))
         z=q.local(own);delta=gate*q.readout(features)
-        per=features[mask]
-        last=moments(states[-1],mask,risk,tw)
+        per=raw_features[expanded_mask]
+        last=moments(states[-1],expanded_mask,risk,tw)
         purity=(1+last[...,:3].square().sum(-1))/2
-        report['train_only_readout']={'feature_std':per.std(0).tolist(),'feature_abs_mean':per.abs().mean(0).tolist(),'gate_mean':float(gate[mask].mean()),'local_rms':float(z[mask].square().mean().sqrt()),'interaction_readout_rms':float(delta[mask].square().mean().sqrt()),'single_qubit_purity_min':float(purity[mask].min()),'single_qubit_purity_mean':float(purity[mask].mean()),'pair_phase_rms':float(pa.square().mean().sqrt()),'triple_phase_rms':float(ta.square().mean().sqrt())}
+        report['train_only_readout']={'feature_std':per.std(0).tolist(),'feature_abs_mean':per.abs().mean(0).tolist(),'gate_mean':float(gate[mask].mean()),'local_rms':float(z[mask].square().mean().sqrt()),'interaction_readout_rms':float(delta[mask].square().mean().sqrt()),'single_qubit_purity_min':float(purity[expanded_mask].min()),'single_qubit_purity_mean':float(purity[expanded_mask].mean()),'pair_phase_rms':float(pa.square().mean().sqrt()),'triple_phase_rms':float(ta.square().mean().sqrt())}
     atomic_json(directory/'mechanism_diagnostic.json',report);print('TRAIN_READOUT',json.dumps(report['train_only_readout']),flush=True)
 if __name__=='__main__':main()

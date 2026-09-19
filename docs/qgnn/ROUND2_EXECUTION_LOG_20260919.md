@@ -17,3 +17,8 @@ Decisions before experiments:
 Engineering: independent PennyLane state/gradient, N=1/2/4/8/12/16/20 permutation, padding and end-to-end checks PASS. N8 B32 quantum step 0.09541s / peak 3.613GiB. Core 17,296 trainable vs adaptive classical 320,816. Matched shared-GPT2 initialization SHA256 verified equal for all three models.
 
 Pilot v1 launched: seed2026, 0dB, deterministic 4096 train subset, all1880 validation, 12epochs, B32, same LR/loss and initialization. Two separate GPU processes; checkpoint every100steps and each epoch, heartbeat every25steps, atomic summaries. Additional legacy pair+triplet control will use the same new tokenizer/GPT2. These are limited-exposure pilots, not final test results.
+
+## V2 refinement declared before validation
+V1 commit269544d. Q ADE/FDE=0.601817/1.255976; adaptive classical=0.583580/1.205876; legacy higher-order=0.610172/1.138172. Same4096/1880/12epoch exposure. No quantum victory.
+Train-only64scene diagnostic: local RMS0.998 vs quantum readout RMS0.0629; pair std0.0058-0.0178, triple std0.0010-0.0043, singleton std0.167-0.521. Entangler removal worsens ADE only0.26%, ZZZ removal0.037%. Marginal purity mean0.99218: weak entanglement.
+V2 keeps joint ZZ/ZZZ structure: four independently conditioned8qubit channels, weighted phase-energy normalization max(1,sqrt(sum w^2 / active_N)), asinh readout scaling .02(pair)/.005(triple). No extra observations. Classical control strengthened to four-head pair and four-head rooted-triplet attention; width64/three layers unchanged. Shared GPT2, tokens, seed, subset and exposure unchanged. A second refinement requires a new mechanism diagnosis.
