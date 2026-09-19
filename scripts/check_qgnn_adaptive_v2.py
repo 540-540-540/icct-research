@@ -95,7 +95,7 @@ def profile():
     ds=SinDPredictionDataset("train",0.,ROOT,True);batch=next(iter(DataLoader(ds,batch_size=32)))
     x=batch["history_state"].cuda();m=batch["vehicle_mask"].cuda();y=batch["future_state"].cuda();ts=batch["history_timestamp"].cuda();hashes={}
     for kind in ["quantum","classical"]:
-        model=build_model(kind,adaptive_mode="phase_feedback").cuda();digest=hashlib.sha256()
+        model=build_model(kind,adaptive_mode="phase_feedback",controller_init="specialized").cuda();digest=hashlib.sha256()
         for name,p in model.llm.named_parameters():
             if p.requires_grad:digest.update(name.encode());digest.update(p.detach().cpu().numpy().tobytes())
         hashes[kind]=digest.hexdigest();opt=torch.optim.AdamW([p for p in model.parameters() if p.requires_grad],lr=3e-4)

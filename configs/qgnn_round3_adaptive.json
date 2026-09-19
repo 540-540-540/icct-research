@@ -34,9 +34,13 @@
     "batch_size": 32,
     "loss": "ADE+0.5FDE+0.035CE"
   },
-  "selection_rule": "minimum overall validation J across adaptive variants",
+  "selection_rule": "minimum overall validation J for structure, then one bounded same-structure initialization comparison",
   "full_train_executed": false,
   "test_set_used": false,
   "frozen_r2_not_modified": true,
-  "hardware": "ensemble feedback via prefix re-preparation/replay, not coherent/no-cost measurement"
+  "hardware": "ensemble feedback via prefix re-preparation/replay, not coherent/no-cost measurement",
+  "controller_init": "neutral",
+  "selected_report": "reports/qgnn/round3_neutral_init_summary.json",
+  "initialization_calibrations": 1,
+  "structural_revisions": 2
 }
