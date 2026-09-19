@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "first8_mean_loss": 1.6457548290491104,
+  "last8_mean_loss": 1.3883922696113586,
+  "loss_improvement_pct": 15.63796471352003,
+  "min_graph_grad_norm": 0.05047536038793668,
+  "max_graph_grad_norm": 0.836525540926168,
+  "elapsed_seconds": 14.145348040387034,
+  "peak_allocated_gib": 0.7574448585510254,
+  "steps": 32,
+  "test_set_used": false
+}
