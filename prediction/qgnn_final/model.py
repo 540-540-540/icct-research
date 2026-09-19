@@ -39,10 +39,19 @@ class NonuniformTokenizer(AutomatumMotionTokenizer):
         ft,lt=self.axis_tables(f.device,f.dtype)
         return (f[...,None]-ft).abs().argmin(-1)*len(lt)+(l[...,None]-lt).abs().argmin(-1)
 
+class ScaledCoordinateHead(nn.Sequential):
+    """Preserve the local gradient while extending the shared residual range."""
+    def __init__(self,*modules,scale=1.):
+        super().__init__(*modules);self.output_scale=float(scale)
+    def forward(self,x):
+        return super().forward(x)*self.output_scale
+
 class FinalMotionGPT2(MotionTokenGPT2Core):
-    def __init__(self,payload):
+    def __init__(self,payload,correction_cap_m=16.):
         tokenizer=NonuniformTokenizer(payload)
-        super().__init__(graph_dim=64,llm_layers=4,lora_rank=8,tokenizer_config=tokenizer.config)
+        if correction_cap_m<4.: raise ValueError("correction_cap_m must be at least4m")
+        super().__init__(graph_dim=64,llm_layers=4,lora_rank=8,tokenizer_config=tokenizer.config,correction_scale_m=correction_cap_m)
+        self.coordinate_head=ScaledCoordinateHead(*list(self.coordinate_head.children()),scale=4./correction_cap_m)
         self.tokenizer=tokenizer
         self.continuous_motion=nn.Linear(4,self.d_llm,bias=False)
         nn.init.normal_(self.continuous_motion.weight,std=.01)
@@ -83,7 +92,7 @@ class FinalModel(nn.Module):
     def parameter_summary(self):
         return GraphMotionLLM.parameter_summary(self)
 
-def build_model(kind,seed=2026,depth=3,token_path=None,channels=4,enhanced=True,snr_db=0.,quantum_version=3):
+def build_model(kind,seed=2026,depth=3,token_path=None,channels=4,enhanced=True,snr_db=0.,quantum_version=3,correction_cap_m=16.):
     root=Path(__file__).resolve().parents[2]
     payload=json.loads(Path(token_path or root/'configs/qgnn_final_tokens.json').read_text())
     with torch.random.fork_rng(devices=[]):
@@ -98,5 +107,5 @@ def build_model(kind,seed=2026,depth=3,token_path=None,channels=4,enhanced=True,
         else: raise ValueError(kind)
     with torch.random.fork_rng(devices=[]):
         torch.manual_seed(seed+300003)
-        llm=FinalMotionGPT2(payload)
+        llm=FinalMotionGPT2(payload,correction_cap_m)
     return FinalModel(core,llm)

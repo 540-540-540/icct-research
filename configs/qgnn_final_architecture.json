@@ -1,0 +1,65 @@
+{
+  "revision": "RC-HQGNN-FINAL-20260919",
+  "status": "ARCHITECTURE_FROZEN_PERFORMANCE_UNPROVEN",
+  "primary": {
+    "class": "RelationCarryingQuantumCore",
+    "depth": 3,
+    "channels": 4,
+    "qubit_cap": 8,
+    "message_width": 16,
+    "node_history_width": 32,
+    "graph_output_dim": 64,
+    "readout_feature_dim": 468
+  },
+  "backup": {
+    "same_architecture": true,
+    "channels": 2,
+    "activation": "resource gate failure only, never validation cherry-pick"
+  },
+  "dataset": "sind",
+  "snrs": [
+    -10,
+    -5,
+    0,
+    5,
+    10
+  ],
+  "history_length": 20,
+  "prediction_length": 20,
+  "formal_cache_N": 8,
+  "larger_N": "history-only 8-node ego patch per target; synthetic engineering checks only",
+  "shared_llm": {
+    "family": "GPT-2",
+    "pretrained_layers_used": 4,
+    "embedding_dim": 768,
+    "lora_rank": 8,
+    "lora_alpha": 16,
+    "vocab_size": 1681,
+    "tokens_per_agent": 40,
+    "correction_cap_m": 16.0,
+    "correction_formula": "16*tanh(raw_coordinate_head/4)"
+  },
+  "classical_controls": [
+    "AdaptiveClassicalCore depth3 width64 heads4",
+    "LegacyHigherOrder original pair+triplet"
+  ],
+  "training": {
+    "batch_size": 32,
+    "epochs": 20,
+    "learning_rate": 0.0003,
+    "lora_learning_rate": 7.5e-05,
+    "weight_decay": 0.0002,
+    "gradient_clip": 3.0,
+    "token_loss_weight": 0.035,
+    "selection_metric": "validation ADE+0.5FDE",
+    "seed_pilot": 2026,
+    "seeds_formal": [
+      2026,
+      2027,
+      2028
+    ],
+    "formal_hard_budget_seconds": 7200,
+    "resume": true
+  },
+  "test_set_used": false
+}

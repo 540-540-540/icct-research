@@ -1,0 +1,30 @@
+{
+  "kind": "quantum",
+  "seed": 2026,
+  "snr": 0.0,
+  "epochs": 12,
+  "batch_size": 32,
+  "train_limit": 4096,
+  "depth": 3,
+  "channels": 4,
+  "quantum_version": 3,
+  "lr": 0.0003,
+  "run_dir": "reports/qgnn/r2_pilot_v3_quantum_0db_seed2026",
+  "resume": false,
+  "max_seconds": 900.0,
+  "save_steps": 100,
+  "source_sha256": {
+    "prediction/qgnn_final/relational.py": "3a3fa5fde3320f828b0e2b2e20189d204b3f38c74c7dcca77c50ab94e857f0cc",
+    "prediction/qgnn_final/quantum.py": "2034523261f265d8b88776ed205d233b8c15d5ef2deaec1a822928003cf7181f",
+    "prediction/qgnn_final/model.py": "6ebcb2d767890578106c037e40334ce1a3855ef57d8736cad5017930b734136b",
+    "prediction/qgnn_final/common.py": "12413a9783d3b0baf49eee15de922209688698f113fbe4eec11017cd1da01a63",
+    "prediction/qgnn_final/__init__.py": "e45b6bbeacde4ba1e0b3c80630a54b4e7e09f9e8732171265a276fa928ec0cbc",
+    "prediction/qgnn_final/classical.py": "a5b10c9b31178679c03d191a99c5ac9443f1b6e3ced85162b64c1b20a7dda5a5",
+    "scripts/train_qgnn_final.py": "c7ef232e0fe0c095a3853477488831e2831c91e57fd9c241ef20efefa97ebe1b"
+  },
+  "token_sha256": "560a0fde9d8ea736b9dbe4fe709c76f5c63f16792a0a3c6cbe97d439b735361f",
+  "pid": 166534,
+  "cuda_visible_devices": "0",
+  "git_head": "25697455673a786d7a6f53da89f6f4be452bafbe",
+  "test_set_used": false
+}

@@ -1,0 +1,33 @@
+{
+  "pid": 166534,
+  "command": [
+    "/home/dell/YrM/envs/ICCT/bin/python",
+    "scripts/train_qgnn_final.py",
+    "--kind",
+    "quantum",
+    "--seed",
+    "2026",
+    "--snr",
+    "0",
+    "--epochs",
+    "12",
+    "--train-limit",
+    "4096",
+    "--batch-size",
+    "32",
+    "--depth",
+    "3",
+    "--channels",
+    "4",
+    "--quantum-version",
+    "3",
+    "--run-dir",
+    "reports/qgnn/r2_pilot_v3_quantum_0db_seed2026",
+    "--max-seconds",
+    "900"
+  ],
+  "gpu": 0,
+  "cwd": "/home/dell/YrM/ICCT",
+  "log": "reports/qgnn/r2_pilot_v3_quantum_0db_seed2026/train.log",
+  "created_at": "2026-09-19T08:31:39+0800"
+}

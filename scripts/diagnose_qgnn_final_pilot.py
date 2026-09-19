@@ -13,7 +13,7 @@ def main():
     p=argparse.ArgumentParser();p.add_argument('--run-dir',required=True);a=p.parse_args()
     torch.set_num_threads(4);directory=ROOT/a.run_dir
     cp=torch.load(directory/'best.pt',map_location='cpu',weights_only=False);c=cp['config']
-    model=build_model(c['kind'],c['seed'],c['depth'],channels=c.get('channels',1),enhanced=c.get('quantum_version',1)>=2,snr_db=c['snr'],quantum_version=c.get('quantum_version',1)).cuda().eval()
+    model=build_model(c['kind'],c['seed'],c['depth'],channels=c.get('channels',1),enhanced=c.get('quantum_version',1)>=2,snr_db=c['snr'],quantum_version=c.get('quantum_version',1),correction_cap_m=c.get('correction_cap',4.)).cuda().eval()
     missing,extra=model.load_state_dict(cp['model_state'],strict=False)
     if extra or any(not k.startswith('llm.gpt2.') for k in missing):raise ValueError('checkpoint mismatch')
     q=model.graph

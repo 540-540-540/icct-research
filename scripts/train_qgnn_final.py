@@ -37,6 +37,7 @@ def main():
     p.add_argument('--epochs',type=int,default=20);p.add_argument('--batch-size',type=int,default=32)
     p.add_argument('--train-limit',type=int);p.add_argument('--depth',type=int,default=3)
     p.add_argument('--channels',type=int,default=4);p.add_argument('--quantum-version',type=int,choices=[1,2,3],default=3)
+    p.add_argument('--correction-cap',type=float,default=16.)
     p.add_argument('--lr',type=float,default=3e-4);p.add_argument('--run-dir',required=True)
     p.add_argument('--resume',action='store_true');p.add_argument('--max-seconds',type=float,default=7200.)
     p.add_argument('--save-steps',type=int,default=100)
@@ -49,7 +50,7 @@ def main():
     token_hash=hashlib.sha256((ROOT/'configs/qgnn_final_tokens.json').read_bytes()).hexdigest()
     config=vars(args)|{'source_sha256':source,'token_sha256':token_hash,'pid':os.getpid(),'cuda_visible_devices':os.environ.get('CUDA_VISIBLE_DEVICES'),'git_head':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'test_set_used':False}
     if not args.resume: atomic_json(outdir/'config.json',config)
-    model=build_model(args.kind,args.seed,args.depth,channels=args.channels,enhanced=args.quantum_version>=2,snr_db=args.snr,quantum_version=args.quantum_version).to(device)
+    model=build_model(args.kind,args.seed,args.depth,channels=args.channels,enhanced=args.quantum_version>=2,snr_db=args.snr,quantum_version=args.quantum_version,correction_cap_m=args.correction_cap).to(device)
     digest=hashlib.sha256()
     for name,param in model.llm.named_parameters():
         if param.requires_grad:digest.update(name.encode());digest.update(param.detach().cpu().numpy().tobytes())
@@ -67,7 +68,7 @@ def main():
     if args.resume:
         saved=torch.load(outdir/'last.pt',map_location='cpu',weights_only=False)
         if saved['source_sha256']!=source or saved['token_sha256']!=token_hash: raise ValueError('Resume code/token hash mismatch')
-        for key in ['kind','seed','snr','epochs','batch_size','train_limit','depth','lr','channels','quantum_version']:
+        for key in ['kind','seed','snr','epochs','batch_size','train_limit','depth','lr','channels','quantum_version','correction_cap']:
             if saved['config'][key]!=vars(args)[key]: raise ValueError('Resume config mismatch: '+key)
         missing,unexpected=model.load_state_dict(saved['model_state'],strict=False)
         if unexpected or any(not k.startswith('llm.gpt2.') or 'lora_' in k for k in missing): raise ValueError('Checkpoint model mismatch')
@@ -106,7 +107,10 @@ def main():
             if device.type=='cuda':torch.cuda.synchronize()
             global_step+=1;loss_sum+=float(loss)*len(h);seen+=len(h)
             if step%25==0:
-                heartbeat={'pid':os.getpid(),'epoch':epoch,'batch':step+1,'global_step':global_step,'loss':float(loss),'gradient_norm':float(gradnorm),'step_seconds':time.perf_counter()-tick,'elapsed_seconds':elapsed(),'peak_allocated_gib':torch.cuda.max_memory_allocated()/2**30 if device.type=='cuda' else 0}
+                heartbeat={'pid':os.getpid(),'epoch':epoch,'total_epochs':args.epochs,'batch':step+1,'total_batches':(len(train)+args.batch_size-1)//args.batch_size,'global_step':global_step,'total_steps':args.epochs*((len(train)+args.batch_size-1)//args.batch_size),'loss':float(loss),'gradient_norm':float(gradnorm),'step_seconds':time.perf_counter()-tick,'elapsed_seconds':elapsed(),'peak_allocated_gib':torch.cuda.max_memory_allocated()/2**30 if device.type=='cuda' else 0}
+                done_epoch_fraction=epoch-1+(step+1)/max(1,(len(train)+args.batch_size-1)//args.batch_size)
+                remaining=elapsed()/max(done_epoch_fraction,1e-6)*(args.epochs-done_epoch_fraction)
+                heartbeat.update(estimated_remaining_seconds=remaining,estimated_finish_utc=time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime(time.time()+remaining)))
                 atomic_json(outdir/'heartbeat.json',heartbeat);print('HEARTBEAT',json.dumps(heartbeat),flush=True)
             if global_step%args.save_steps==0:checkpoint(epoch,step+1,loss_sum,seen)
             if elapsed()>args.max_seconds:
@@ -123,4 +127,15 @@ def main():
         print('EPOCH',json.dumps(record),flush=True)
     summary('COMPLETED');print('COMPLETED',json.dumps(best),flush=True)
 
-if __name__=='__main__': main()
+if __name__=='__main__':
+    try:
+        main()
+    except Exception as exc:
+        import traceback
+        traceback.print_exc()
+        if '--run-dir' in sys.argv:
+            d=ROOT/sys.argv[sys.argv.index('--run-dir')+1];d.mkdir(parents=True,exist_ok=True)
+            atomic_json(d/'failure.json',{'status':'FAILED','error':repr(exc),'traceback':traceback.format_exc(),'pid':os.getpid(),'time':time.strftime('%Y-%m-%dT%H:%M:%S%z')})
+            if (d/'summary.json').exists():
+                status=json.loads((d/'summary.json').read_text());status['status']='FAILED';status['error']=repr(exc);atomic_json(d/'summary.json',status)
+        raise
