@@ -1,0 +1,229 @@
+{
+  "scope": {
+    "split": "val",
+    "snr_db": 0.0,
+    "scenes": 1880,
+    "test_set_used": false,
+    "label_definition": "deltaJ=(classical ADE+0.5FDE)-(quantum ADE+0.5FDE); positive means frozen RC-HQGNN wins",
+    "feature_rule": "all candidate features use sensing history only; q_* are deterministic frozen-QGNN internal signals from history",
+    "cv": "5 chronological blocks per scene with 39-frame embargo around each held-out block; diagnostic only, not a deployable router estimate"
+  },
+  "global": {
+    "quantum_win_rate_J": 0.4420212765957447,
+    "deltaJ_mean": -0.042860535389565406,
+    "deltaADE_mean": -0.019479567910286974,
+    "deltaFDE_mean": -0.046761934958556864,
+    "oracle_min_gain_ADE_pct": 5.308166227031974,
+    "oracle_min_gain_FDE_pct": 6.6720430795883745
+  },
+  "predictability": {
+    "physics_only": {
+      "logistic_auc": 0.5036037989306187,
+      "hgb_auc": 0.5032195007794944,
+      "hgb_average_precision": 0.46474412822079575,
+      "hgb_balanced_accuracy_at_0p5": 0.49779458747601,
+      "deltaJ_regression_spearman": -0.007805355168139499,
+      "deltaJ_regression_r2": -0.2816535964861957,
+      "top_permutation_importance": [
+        {
+          "feature": "mean_distance",
+          "auc_drop": 0.020942388765972757
+        },
+        {
+          "feature": "min_distance",
+          "auc_drop": 0.009227965608324904
+        },
+        {
+          "feature": "mean_dcpa",
+          "auc_drop": 0.005716342486084892
+        },
+        {
+          "feature": "distance_change_mean",
+          "auc_drop": 0.0055801375248122065
+        },
+        {
+          "feature": "active_wedges",
+          "auc_drop": 0.00536729069021006
+        },
+        {
+          "feature": "triple_risk_std",
+          "auc_drop": 0.002786872765541611
+        },
+        {
+          "feature": "risk_change_abs_mean",
+          "auc_drop": 0.0026762126738946105
+        },
+        {
+          "feature": "triple_risk_mean",
+          "auc_drop": 0.0023207161593625752
+        },
+        {
+          "feature": "closing_pairs_30m_gt_2p0",
+          "auc_drop": 0.0017666689695244558
+        },
+        {
+          "feature": "min_dcpa",
+          "auc_drop": 0.0016325039974045108
+        },
+        {
+          "feature": "close_pairs_20m",
+          "auc_drop": 0.001514554827924014
+        },
+        {
+          "feature": "max_active_degree",
+          "auc_drop": 0.001473550953460508
+        },
+        {
+          "feature": "active_triangles",
+          "auc_drop": 0.0014371423796069596
+        },
+        {
+          "feature": "active_edges",
+          "auc_drop": 3.501907293400978e-05
+        },
+        {
+          "feature": "close_pairs_15m",
+          "auc_drop": -0.0005750678860467892
+        }
+      ]
+    },
+    "physics_plus_quantum_signals": {
+      "logistic_auc": 0.49327707667264337,
+      "hgb_auc": 0.5014620537122627,
+      "hgb_average_precision": 0.4461299575234805,
+      "hgb_balanced_accuracy_at_0p5": 0.49823911145678823,
+      "deltaJ_regression_spearman": 0.0120164746502575,
+      "deltaJ_regression_r2": -0.21486591378690867,
+      "top_permutation_importance": [
+        {
+          "feature": "mean_distance",
+          "auc_drop": 0.016667153225939712
+        },
+        {
+          "feature": "q_k3_rms",
+          "auc_drop": 0.014853958049460835
+        },
+        {
+          "feature": "distance_change_mean",
+          "auc_drop": 0.011273000172713975
+        },
+        {
+          "feature": "q_gate_std",
+          "auc_drop": 0.008277953018263635
+        },
+        {
+          "feature": "mean_dcpa",
+          "auc_drop": 0.007737781186575499
+        },
+        {
+          "feature": "min_distance",
+          "auc_drop": 0.0063984978320458215
+        },
+        {
+          "feature": "max_closing",
+          "auc_drop": 0.005854916758720693
+        },
+        {
+          "feature": "q_triple_phase_rms",
+          "auc_drop": 0.005845145739000897
+        },
+        {
+          "feature": "risk_change_abs_mean",
+          "auc_drop": 0.00512852989268192
+        },
+        {
+          "feature": "close_pairs_20m",
+          "auc_drop": 0.004786003166119083
+        },
+        {
+          "feature": "close_pairs_30m",
+          "auc_drop": 0.004184705993269438
+        },
+        {
+          "feature": "close_pairs_15m",
+          "auc_drop": 0.0038937463865325026
+        },
+        {
+          "feature": "active_wedges",
+          "auc_drop": 0.0028826490413252095
+        },
+        {
+          "feature": "q_readout_rms",
+          "auc_drop": 0.0028778649708210207
+        },
+        {
+          "feature": "closing_pairs_30m_gt_1p0",
+          "auc_drop": 0.0026601542646508937
+        }
+      ]
+    }
+  },
+  "key_correlations": {
+    "closing_pairs_30m_gt_0p5": 0.1571638487102304,
+    "close_pairs_30m": 0.25328474696332665,
+    "active_wedges": 0.18216567869698708,
+    "active_triangles": 0.1515786649818338,
+    "triple_risk_sum": 0.2160252108948939,
+    "q_pair_phase_rms": 0.2055675486264772,
+    "q_triple_phase_rms": 0.19873238131496584,
+    "q_k2_rms": 0.11179731889164002,
+    "q_k3_rms": 0.22317257429176937,
+    "q_gate_mean": -0.08245020062707059
+  },
+  "predefined_strata": {
+    "closing_lt10": {
+      "n": 1130,
+      "mean_deltaJ": -0.06776628950528339,
+      "quantum_win_rate_J": 0.41327433628318583
+    },
+    "closing_10_14": {
+      "n": 635,
+      "mean_deltaJ": -0.018512138114200802,
+      "quantum_win_rate_J": 0.44881889763779526
+    },
+    "closing_ge15": {
+      "n": 115,
+      "mean_deltaJ": 0.0674200722704763,
+      "quantum_win_rate_J": 0.6869565217391305
+    },
+    "active_wedges_ge35": {
+      "n": 416,
+      "mean_deltaJ": 0.02455762379731123,
+      "quantum_win_rate_J": 0.5697115384615384
+    },
+    "active_triangles_ge6": {
+      "n": 391,
+      "mean_deltaJ": 0.029609024257916013,
+      "quantum_win_rate_J": 0.578005115089514
+    },
+    "k3_top20": {
+      "n": 376,
+      "mean_deltaJ": 0.0356341634500534,
+      "quantum_win_rate_J": 0.5930851063829787
+    }
+  },
+  "density_controlled_k3": {
+    "weighted_deltaJ_high_minus_low": 0.05053218903826347,
+    "bootstrap95": [
+      0.0324740997787971,
+      0.06829745159621074
+    ],
+    "per_density_bin_effects": [
+      0.016082434346211844,
+      0.028695771231228587,
+      0.110745477796484,
+      0.016086103737086993,
+      0.07930384356580022
+    ]
+  },
+  "gate_diagnostic": {
+    "gate_mean_closing_lt10": 0.8537270203100896,
+    "gate_mean_closing_ge15": 0.7389855737271516,
+    "effective_gate_readout_spearman_deltaJ": 0.008408249467770417
+  },
+  "scene_specific_k3_spearman": {
+    "0": 0.18167922754833812,
+    "1": 0.3112258426560538
+  },
+  "test_set_used": false
+}
