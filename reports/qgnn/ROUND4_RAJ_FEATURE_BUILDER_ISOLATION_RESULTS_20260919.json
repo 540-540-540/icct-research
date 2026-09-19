@@ -1,0 +1,73 @@
+{
+  "revision": "ROUND4_RAJ_FEATURE_BUILDER_ISOLATION_20260919",
+  "prereg_commit": "c9e35a0",
+  "code_commit": "64abbbf",
+  "protocol": {
+    "dataset": "SinD",
+    "snr_db": 0,
+    "seed": 2026,
+    "train_samples": 4096,
+    "validation_samples": 1880,
+    "epochs": 20,
+    "batch_size": 32,
+    "lr": 0.0003,
+    "j": 3,
+    "test_set_used": false
+  },
+  "subsetbuilder_model": {
+    "kind": "raj_subsetbuilder_weighted_johnson",
+    "best_validation": {
+      "ADE": 0.7651642971374887,
+      "FDE": 1.5737162265054723,
+      "J": 1.552022410390225,
+      "scenes": 1880
+    },
+    "best_epoch": 19,
+    "parameters": {
+      "graph": 258950,
+      "llm_non_lora": 4052375,
+      "lora": 98304,
+      "trainable_total": 4409629,
+      "frozen_total": 67736832,
+      "total": 72146461
+    },
+    "elapsed_seconds": 261.7465690318495
+  },
+  "continuous_loader_reference": {
+    "kind": "raj_paper_johnson",
+    "best_validation": {
+      "ADE": 0.7689202470665283,
+      "FDE": 1.5687315095612344,
+      "J": 1.5532860018471455,
+      "scenes": 1880
+    },
+    "best_epoch": 19,
+    "parameters": {
+      "graph": 267354,
+      "llm_non_lora": 4052375,
+      "lora": 98304,
+      "trainable_total": 4418033,
+      "frozen_total": 67736832,
+      "total": 72154865
+    }
+  },
+  "subsetbuilder_relative_gain_pct": {
+    "ADE": 0.4884706760380875,
+    "FDE": -0.31775462619680866,
+    "J": 0.08134956829701166
+  },
+  "gates": {
+    "feature_equivalent_J_abs_le_1pct": true,
+    "strong_feature_equivalence": true,
+    "feature_material_new_J_worse_gt_3pct": false
+  },
+  "integrity": {
+    "same_train_indices": true,
+    "same_downstream_initialization": true,
+    "both_completed": true
+  },
+  "interpretation": {
+    "feature_builder_is_primary_explanation": false,
+    "feature_builder_equivalent_under_weighted_no_local_classical": true
+  }
+}
