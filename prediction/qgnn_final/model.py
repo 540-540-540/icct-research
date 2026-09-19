@@ -80,6 +80,7 @@ class FinalModel(nn.Module):
     def __init__(self,core,llm):
         super().__init__();self.graph=core;self.llm=llm
     def forward(self,history,mask,timestamps=None):
+        history=torch.where(mask[:,None,:,None],history,0.)
         graph=self.graph(history,mask)
         out=self.llm(history,mask,graph[:,None].expand(-1,20,-1,-1))
         if timestamps is not None:

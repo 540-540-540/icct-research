@@ -62,7 +62,10 @@ def patch_inputs(history, mask):
     agents = history.permute(0,2,1,3)
     batch = torch.arange(b,device=mask.device)[:,None,None]
     hp = agents[batch,slots].reshape(b*n,CAP,t,c).permute(0,2,1,3)
-    mp = mask[batch,slots].reshape(b*n,CAP)
+    # A filler can have the root index; it must not become another active ego.
+    neighbor_valid = valid.gather(2,neighbors)
+    mp = torch.cat((mask[:,:,None],neighbor_valid),-1).reshape(b*n,CAP)
+    hp = torch.where(mp[:,None,:,None],hp,0.)
     return hp,mp,(b,n)
 
 class BoundedCore(nn.Module):
