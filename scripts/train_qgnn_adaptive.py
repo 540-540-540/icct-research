@@ -37,6 +37,7 @@ def main():
     p.add_argument('--epochs',type=int,default=20);p.add_argument('--batch-size',type=int,default=32)
     p.add_argument('--train-limit',type=int);p.add_argument('--depth',type=int,default=3)
     p.add_argument('--channels',type=int,default=4);p.add_argument('--quantum-version',type=int,choices=[1,2,3],default=3)
+    p.add_argument('--controller-init',choices=['specialized','neutral'],default='specialized')
     p.add_argument('--adaptive-mode',choices=['feedback','history','phase_feedback','basis_feedback'],default='phase_feedback')
     p.add_argument('--correction-cap',type=float,default=16.)
     p.add_argument('--lr',type=float,default=3e-4);p.add_argument('--run-dir',required=True)
@@ -54,7 +55,7 @@ def main():
     token_hash=hashlib.sha256((ROOT/'configs/qgnn_final_tokens.json').read_bytes()).hexdigest()
     config=vars(args)|{'source_sha256':source,'token_sha256':token_hash,'pid':os.getpid(),'cuda_visible_devices':os.environ.get('CUDA_VISIBLE_DEVICES'),'git_head':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'test_set_used':False}
     if not args.resume: atomic_json(outdir/'config.json',config)
-    model=build_model(args.kind,args.seed,args.depth,channels=args.channels,enhanced=args.quantum_version>=2,snr_db=args.snr,quantum_version=args.quantum_version,correction_cap_m=args.correction_cap,adaptive_mode=args.adaptive_mode).to(device)
+    model=build_model(args.kind,args.seed,args.depth,channels=args.channels,enhanced=args.quantum_version>=2,snr_db=args.snr,quantum_version=args.quantum_version,correction_cap_m=args.correction_cap,adaptive_mode=args.adaptive_mode,controller_init=args.controller_init).to(device)
     digest=hashlib.sha256()
     for name,param in model.llm.named_parameters():
         if param.requires_grad:digest.update(name.encode());digest.update(param.detach().cpu().numpy().tobytes())
@@ -72,7 +73,7 @@ def main():
     if args.resume:
         saved=torch.load(outdir/'last.pt',map_location='cpu',weights_only=False)
         if saved['source_sha256']!=source or saved['token_sha256']!=token_hash: raise ValueError('Resume code/token hash mismatch')
-        for key in ['kind','seed','snr','epochs','batch_size','train_limit','depth','lr','channels','quantum_version','correction_cap','adaptive_mode']:
+        for key in ['kind','seed','snr','epochs','batch_size','train_limit','depth','lr','channels','quantum_version','correction_cap','adaptive_mode','controller_init']:
             if saved['config'][key]!=vars(args)[key]: raise ValueError('Resume config mismatch: '+key)
         missing,unexpected=model.load_state_dict(saved['model_state'],strict=False)
         if unexpected or any(not k.startswith('llm.gpt2.') or 'lora_' in k for k in missing): raise ValueError('Checkpoint model mismatch')

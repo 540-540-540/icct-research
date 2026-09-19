@@ -1,0 +1,17 @@
+{
+  "test_set_used": false,
+  "fresh_initialization_only": true,
+  "models": {
+    "quantum": {
+      "prediction": 0.0,
+      "token_logits": 0.0,
+      "graph_features": 0.0
+    },
+    "classical": {
+      "prediction": 0.0,
+      "token_logits": 0.0,
+      "graph_features": 0.0
+    }
+  },
+  "status": "PASS"
+}
