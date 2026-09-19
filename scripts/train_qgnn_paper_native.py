@@ -32,7 +32,7 @@ def evaluate(model,loader,device):
 
 def main():
     p=argparse.ArgumentParser()
-    p.add_argument('--kind',choices=['raj_quantum','raj_johnson','raj_multij_quantum','raj_multij_johnson','raj_paper_quantum','raj_paper_johnson','raj_paper_gin','raj_paper_ppgn','raj_weighted_multij_quantum','raj_paper_math_quantum'],required=True)
+    p.add_argument('--kind',choices=['raj_quantum','raj_johnson','raj_multij_quantum','raj_multij_johnson','raj_paper_quantum','raj_paper_johnson','raj_paper_gin','raj_paper_ppgn','raj_weighted_multij_quantum','raj_paper_math_quantum','raj_subsetbuilder_weighted_johnson'],required=True)
     p.add_argument('--j',type=int,choices=[2,3],default=3)
     p.add_argument('--seed',type=int,default=2026);p.add_argument('--snr',type=float,default=0.)
     p.add_argument('--epochs',type=int,default=20);p.add_argument('--batch-size',type=int,default=32)
