@@ -37,7 +37,7 @@ def main():
     p.add_argument('--epochs',type=int,default=20);p.add_argument('--batch-size',type=int,default=32)
     p.add_argument('--train-limit',type=int);p.add_argument('--depth',type=int,default=3)
     p.add_argument('--channels',type=int,default=4);p.add_argument('--quantum-version',type=int,choices=[1,2,3],default=3)
-    p.add_argument('--adaptive-mode',choices=['feedback','history','phase_feedback'],default='feedback')
+    p.add_argument('--adaptive-mode',choices=['feedback','history','phase_feedback','basis_feedback'],default='feedback')
     p.add_argument('--correction-cap',type=float,default=16.)
     p.add_argument('--lr',type=float,default=3e-4);p.add_argument('--run-dir',required=True)
     p.add_argument('--resume',action='store_true');p.add_argument('--max-seconds',type=float,default=7200.)

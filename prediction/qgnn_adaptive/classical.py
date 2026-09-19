@@ -4,7 +4,7 @@ import torch
 from prediction.qgnn_final.classical import AdaptiveClassicalCore,triplet_indices
 from prediction.qgnn_final.relational import rooted_to_global
 from prediction.qgnn_final.common import physical_graph
-from .controller import CouplingController
+from .controller import CouplingController,node_feedback
 
 def modulated_attention(value,score,weight,valid,multiplier):
     heads=score.shape[-1];width=value.shape[-1]
@@ -46,17 +46,23 @@ def adaptive_layer(layer,h,edge,risk,mask,d,l2,l3):
     return layer.norm(h+delta)*mask[...,None],(f2,f3)
 
 class SceneAdaptiveClassicalCore(AdaptiveClassicalCore):
-    def __init__(self,depth=3,channels=4,controller_seed=802029,feedback=True):
+    def __init__(self,depth=3,channels=4,controller_seed=802029,feedback=True,basis_feedback=False):
         super().__init__(depth,channels)
         with torch.random.fork_rng(devices=[]):
             torch.manual_seed(controller_seed);self.controller=CouplingController(depth,channels)
-        self.feedback_enabled=feedback;self.depth=depth;self.channels=channels
+        self.feedback_enabled=feedback;self.depth=depth;self.channels=channels;self.basis_feedback=basis_feedback
+        if basis_feedback:
+            self.basis_weights=torch.nn.Parameter(torch.tensor([.1,.25,.1,.25]).repeat(channels,depth-1,1))
     def forward_patch(self,history,mask):
         own=self.encoder(history,mask);edge,risk=physical_graph(history,mask)
         d=self.controller.prepare(edge,risk,mask);h=self.input(own)*mask[...,None]
         feedback=None;layers=[]
         for l,layer in enumerate(self.layers):
             l2,l3=self.controller(l,d,feedback if self.feedback_enabled else None)
+            if self.basis_feedback and l>0 and self.feedback_enabled and self.controller.enabled:
+                nf=node_feedback(feedback,d,h.shape[1])
+                gain=1+.6*torch.tanh((nf*self.basis_weights[:,l-1][None,:,None]).sum(-1))
+                h=(h.reshape(*h.shape[:2],self.channels,-1)*gain.transpose(1,2)[...,None]).flatten(-2)
             h,feedback=adaptive_layer(layer,h,edge,risk,mask,d,l2,l3);layers.append(h)
         joint=torch.cat(layers,-1);gate=torch.sigmoid(self.gate(torch.cat((own,joint),-1)))
         return (self.local(own)+gate*self.readout(joint))*mask[...,None]

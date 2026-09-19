@@ -74,3 +74,13 @@ class CouplingController(nn.Module):
                 logit=logit+gain[None,:,0,None]*v+gain[None,:,1,None]*v.square()
             out.append(1+.8*torch.tanh(logit))
         return tuple(out)
+
+
+def node_feedback(feedback,d,n):
+    """Four incident-relation response moments per node and channel."""
+    pooled=[]
+    for val,weight,indices in zip(feedback,[d["pw"],d["tw"]],[d["pairs"],d["tri"]]):
+        inc=torch.nn.functional.one_hot(indices,num_classes=n).sum(1).to(val.dtype)
+        den=(weight@inc).clamp_min(1e-6)[:,None]
+        pooled.extend(((val*weight[:,None])@inc/den,(val.square()*weight[:,None])@inc/den))
+    return torch.stack(pooled,-1)

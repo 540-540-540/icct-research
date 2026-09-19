@@ -1,0 +1,173 @@
+{
+  "status": "PASS",
+  "test_set_used": false,
+  "checks": {
+    "quantum_permutation_shapes": {
+      "1": 0.0,
+      "2": 4.440892098500626e-16,
+      "4": 1.5543122344752192e-15,
+      "8": 1.1102230246251565e-15,
+      "12": 0.0,
+      "16": 0.0,
+      "20": 0.0
+    },
+    "quantum_padding_to20": 8.881784197001252e-16,
+    "classical_permutation_shapes": {
+      "1": 0.0,
+      "2": 0.0,
+      "4": 2.220446049250313e-16,
+      "8": 2.220446049250313e-16,
+      "12": 0.0,
+      "16": 0.0,
+      "20": 0.0
+    },
+    "classical_padding_to20": 4.440892098500626e-16,
+    "identical_adaptive_controller_initialization": true,
+    "cross_vehicle_dependency": {
+      "on": 0.021386257682888217,
+      "entanglers_off": 1.6427015733982152e-16
+    },
+    "parameter_gradient_norms": {
+      "rx": 1.911805102998647,
+      "basis_weights": 0.6078870619546528,
+      "encoder.input.weight": 5.838971682414509,
+      "encoder.input.bias": 79.9630432067393,
+      "encoder.gru.weight_ih_l0": 238.37296853038205,
+      "encoder.gru.weight_hh_l0": 123.04290526057652,
+      "encoder.gru.bias_ih_l0": 295.7118109727473,
+      "encoder.gru.bias_hh_l0": 146.51774808723746,
+      "encoder.norm.weight": 42.31652701414457,
+      "encoder.norm.bias": 38.28236442521684,
+      "local.0.weight": 351.23899129182064,
+      "local.0.bias": 62.17872331518528,
+      "local.2.weight": 39.06040858071005,
+      "local.2.bias": 38.333959694605944,
+      "node_angle.weight": 19.43230512635845,
+      "node_angle.bias": 3.439737697184816,
+      "pair_angle.0.weight": 0.3058122315337304,
+      "pair_angle.0.bias": 1.0466858163966128,
+      "pair_angle.2.weight": 0.9047723354856348,
+      "pair_angle.2.bias": 3.1813849249447137,
+      "triple_angle.0.weight": 0.09997915711448695,
+      "triple_angle.0.bias": 0.2548267731436205,
+      "triple_angle.2.weight": 0.2897826666793419,
+      "triple_angle.2.bias": 1.195042368839033,
+      "readout.0.weight": 113.83758139834109,
+      "readout.0.bias": 4.221176090882968,
+      "readout.2.weight": 51.034689374472464,
+      "readout.2.bias": 12.835771616763065,
+      "gate.0.weight": 14.280070312365307,
+      "gate.0.bias": 0.5182497237550656,
+      "gate.2.weight": 3.695460588405195,
+      "gate.2.bias": 1.352223102727422,
+      "pair_value.0.weight": 7.615160994353421,
+      "pair_value.0.bias": 1.3463972335117442,
+      "pair_value.2.weight": 4.707356473003031,
+      "pair_value.2.bias": 4.237739885179363,
+      "triple_value.0.weight": 17.033883419618302,
+      "triple_value.0.bias": 1.5035331414386748,
+      "triple_value.2.weight": 7.486256659860879,
+      "triple_value.2.bias": 5.254902716542168,
+      "controller.relation_gain": 0.007012688054707567,
+      "controller.feedback_local": 1.3541642699326273,
+      "controller.scene_encoder.weight": 0.0005614370178645594,
+      "controller.scene_encoder.bias": 0.0005805766331687888,
+      "controller.scene_head.weight": 0.4010193342831557,
+      "controller.scene_head.bias": 1.7689399279981788,
+      "controller.query.weight": 0.0006142552078099831,
+      "controller.query.bias": 0.0027095465734045484,
+      "controller.pair_key.weight": 0.004713101100623356,
+      "controller.triple_key.weight": 0.0013428294062444476,
+      "controller.feedback_global.weight": 4.127496142168826
+    },
+    "state_norm": 4.440892098500626e-16,
+    "independent_PennyLane_prefix_feedback": {
+      "state_max_error": 3.8659043403122315e-16,
+      "gradient_max_error": 4.787836793695988e-16
+    },
+    "quantum_end_to_end_permutation": 1.9073486328125e-06,
+    "classical_end_to_end_permutation": 1.9073486328125e-06,
+    "shared_initialization_sha256": {
+      "quantum": "0d35048bfb3385d55aaab30cca077f76a7bc52701da744e786d67462a276b57f",
+      "classical": "0d35048bfb3385d55aaab30cca077f76a7bc52701da744e786d67462a276b57f"
+    }
+  },
+  "profiling": {
+    "quantum": {
+      "parameters": {
+        "graph": 69501,
+        "llm_non_lora": 4052375,
+        "lora": 98304,
+        "trainable_total": 4220180,
+        "frozen_total": 67736832,
+        "total": 71957012
+      },
+      "controller_params": 2112,
+      "B32_step_median_s": 0.13051962479948997,
+      "peak_allocated_GiB": 3.641134738922119,
+      "peak_reserved_GiB": 3.97265625,
+      "losses": [
+        1.7314565181732178,
+        1.6987252235412598,
+        1.6520041227340698,
+        1.6001983880996704,
+        1.5458370447158813,
+        1.5009379386901855
+      ],
+      "full20_train_only_estimate_s": 1289.533893018961
+    },
+    "classical": {
+      "parameters": {
+        "graph": 325282,
+        "llm_non_lora": 4052375,
+        "lora": 98304,
+        "trainable_total": 4475961,
+        "frozen_total": 67736832,
+        "total": 72212793
+      },
+      "controller_params": 2112,
+      "B32_step_median_s": 0.09571017976850271,
+      "peak_allocated_GiB": 3.6665096282958984,
+      "peak_reserved_GiB": 4.0390625,
+      "losses": [
+        1.7315753698349,
+        1.699047327041626,
+        1.6519322395324707,
+        1.6001026630401611,
+        1.5468945503234863,
+        1.5009379386901855
+      ],
+      "full20_train_only_estimate_s": 945.6165761128068
+    },
+    "dynamic_N": {
+      "8": {
+        "B16_core_forward_backward_s": 0.0629036957398057,
+        "peak_allocated_GiB": 0.035924434661865234,
+        "trajectories_per_scene": 4
+      },
+      "12": {
+        "B16_core_forward_backward_s": 0.06821722909808159,
+        "peak_allocated_GiB": 0.24903059005737305,
+        "trajectories_per_scene": 48
+      },
+      "16": {
+        "B16_core_forward_backward_s": 0.06585808098316193,
+        "peak_allocated_GiB": 0.32497644424438477,
+        "trajectories_per_scene": 64
+      },
+      "20": {
+        "B16_core_forward_backward_s": 0.06372265983372927,
+        "peak_allocated_GiB": 0.402651309967041,
+        "trajectories_per_scene": 80
+      }
+    }
+  },
+  "environment": {
+    "torch": "2.13.0",
+    "pennylane": "0.45.1",
+    "pennylane-lightning-gpu": "0.45.0",
+    "custatevec-cu12": "1.15.0",
+    "transformers": "4.57.6",
+    "gpu": "NVIDIA GeForce RTX 4090"
+  }
+}
