@@ -5,7 +5,7 @@ import torch
 from prediction.qgnn_final.model import FinalMotionGPT2,FinalModel
 from .raj_subset import RajSubsetQGNNCore,RajJohnsonGINCore,RajMultiJQGNNCore,RajMultiJJohnsonCore
 from .raj_paper import RajPaperQGNNCore,RajPaperJohnsonGINCore,RajPaperGINCore,RajPaperPPGNCore,RajWeightedMultiJQGNNCore
-from .raj_mechanism import RajSubsetBuilderWeightedJohnsonCore
+from .raj_mechanism import RajSubsetBuilderWeightedJohnsonCore,RajPaperMathRowLocalQGNNCore
 from .raj_paper_math import RajPaperMathQGNNCore
 
 def build_paper_model(kind,seed=2026,rounds=3,j=3,correction_cap_m=16.):
@@ -25,6 +25,8 @@ def build_paper_model(kind,seed=2026,rounds=3,j=3,correction_cap_m=16.):
             core=RajPaperQGNNCore(j=j,depth=rounds)
         elif kind=='raj_paper_johnson':
             core=RajPaperJohnsonGINCore(j=j,depth=rounds,hidden=128)
+        elif kind=='raj_paper_math_rowlocal_quantum':
+            core=RajPaperMathRowLocalQGNNCore(j=j,rounds=rounds)
         elif kind=='raj_subsetbuilder_weighted_johnson':
             core=RajSubsetBuilderWeightedJohnsonCore(j=j,depth=rounds,hidden=128)
         elif kind=='raj_paper_gin':

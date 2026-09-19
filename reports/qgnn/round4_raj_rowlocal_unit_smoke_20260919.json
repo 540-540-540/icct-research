@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "loader_global_norm_max_error": 2.220446049250313e-16,
+  "loader_equal_row_norm_max_error": 5.551115123125783e-17,
+  "loader_masked_zero_max": 0.0,
+  "reupload_global_norm_max_error": 2.220446049250313e-16,
+  "model_prediction_shape": [
+    4,
+    20,
+    8,
+    2
+  ],
+  "model_graph_shape": [
+    4,
+    8,
+    64
+  ],
+  "finite_loss": true,
+  "graph_gradient_norm": 0.049385588616132736,
+  "graph_params": 56763,
+  "test_used": false
+}
