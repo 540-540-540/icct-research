@@ -324,3 +324,16 @@ Project Adaptive Classical + same GPT-2。
 
 第二替代主路线候选：
 **SQM-GNN-style Quantum MSG/UPD。**
+
+## 10. Baseline priority freeze (user decision, 2026-09-19)
+
+If the final QGNN is based on a published paper route, the paper-native baseline family is promoted to the primary comparison.
+
+For the Raj route, primary baselines are:
+1. JohnsonGIN on the same j-subset lift (main matched baseline);
+2. GIN on the original graph;
+3. PPGN / 3-WL-style higher-order classical baseline where feasible.
+
+The project-specific Adaptive Classical / Pairwise / Routed / Pair+Triplet models are retained as secondary strong references and historical controls, not as the sole primary gate for adopting the paper route.
+
+This does not permit weakening baselines: paper-native baselines should be implemented faithfully and trained under the same downstream GPT-2 / token / data protocol. Existing stronger project baselines remain reportable secondary references.
