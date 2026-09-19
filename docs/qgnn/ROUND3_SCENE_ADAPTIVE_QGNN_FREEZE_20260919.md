@@ -41,6 +41,12 @@ L3同理。lambda_o=1+0.8*tanh(L_o)，严格在(0.2,1.8)。
 
 S、局部关系、量子反馈均不直接进入readout。关闭全部ZZ/ZZZ时，跨车梯度降到浮点误差；这用于确认控制器没有绕过量子交互成为隐蔽的经典图网络。所有场景执行完整量子演化，不根据lambda跳过线路。学习的有效相位可以为零；不声称每个输入都必然产生非零纠缠。
 
+### 5.1 最终neutral初始化覆盖规则
+
+上文0.1/0.05与通道prior描述的是已存档specialized实验的初值；最终主入口的controller_init=neutral覆盖它们。精确规则是：将scene_head的weight和bias、feedback_global.weight、relation_gain与feedback_local全部置零；保留scene_encoder、query、pair_key、triple_key及所有原R2参数的同seed随机初始化。控制器各参数仍可训练。最终主方案没有basis_weights，备用v3保留其独立记录的初始化，不据场景切换。
+
+由此初始L2=L3=0、lambda2=lambda3=1，最终有界相位增量恰为0，两侧分别恢复各自原R2核心；之后用同一训练损失学习调制。不是加载训练好的R2参数，不是量子线路关闭，也不是强制未来全部lambda恒为1。该规则适用于全部场景。
+
 ## 6. 连续输出与训练
 各轮state保留R2的7维单/二/三体统计与32维relation-carrying消息；4通道3轮共468维，经同样readout/gate与本车旁路得到[B,N,64]。原输出gate保留但不作为本轮主要创新。
 预测头、码本、历史19transition+1interaction+20query、GPT-2权重与LoRA、16*tanh(raw/4)校正不变。loss=scene-macro ADE+0.5FDE+0.035CE；AdamW非LoRA3e-4/LoRA7.5e-5、wd2e-4、cosine、clip3；按同一validation J选择checkpoint。

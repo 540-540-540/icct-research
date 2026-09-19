@@ -42,5 +42,7 @@
   "controller_init": "neutral",
   "selected_report": "reports/qgnn/round3_neutral_init_summary.json",
   "initialization_calibrations": 1,
-  "structural_revisions": 2
+  "structural_revisions": 2,
+  "backup_controller_init": "specialized",
+  "backup_report": "reports/qgnn/round3_v3_summary.json"
 }
