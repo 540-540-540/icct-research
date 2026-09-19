@@ -156,10 +156,26 @@ def main(args):
                                  'feedback_mean_abs_effect': float((x-y).abs().mean()), 'min_scene_weighted_mean': float(x.min()), 'max_scene_weighted_mean': float(x.max())}
     batch = next(iter(train_loader))
     h, m, y, ts = (batch[k].to(device) for k in ('history_state', 'vehicle_mask', 'future_state', 'history_timestamp'))
+    report['train_controller'] = controller_stats
+    save('training_statistics_complete')
     model.zero_grad(set_to_none=True)
-    out = model(h, m, ts)
-    loss = trajectory_metrics(out['prediction'], y, m)['loss'] + .035*token_loss(out['token_logits'], model.llm.future_token_ids(h, y), m)
-    loss.backward()
+    # Only the one-layer, dropout-free GRU needs cuDNN reserve buffers.
+    # GPT-2 and every other module remain in eval mode; no optimizer step.
+    with torch.no_grad():
+        reference_prediction = model(h, m, ts)['prediction'].detach()
+    gru = model.graph.encoder.gru
+    assert gru.num_layers == 1 and gru.dropout == 0
+    gru.train()
+    try:
+        out = model(h, m, ts)
+        loss = trajectory_metrics(out['prediction'], y, m)['loss'] + .035*token_loss(out['token_logits'], model.llm.future_token_ids(h, y), m)
+        loss.backward()
+    finally:
+        gru.eval()
+    drift = float((out['prediction'].detach() - reference_prediction).abs().max())
+    assert drift < 2e-4, drift
+    controller_stats['gradient_probe_backend'] = 'cuDNN GRU train only (one layer, no dropout); GPT-2 eval; no optimizer step'
+    controller_stats['gru_train_vs_eval_prediction_max_error_m'] = drift
     controller_stats['loss_probe'] = float(loss.detach())
     controller_stats['gradients'] = {}
     for name, parameter in core.controller.named_parameters():
@@ -179,5 +195,12 @@ if __name__ == '__main__':
         main(args)
     except Exception:
         directory = ROOT / args.out_dir; directory.mkdir(parents=True, exist_ok=True)
-        atomic_json(directory / 'failure.json', {'status': 'FAILED', 'pid': os.getpid(), 'traceback': traceback.format_exc(), 'test_set_used': False})
+        error = traceback.format_exc()
+        atomic_json(directory / 'failure.json', {'status': 'FAILED', 'pid': os.getpid(), 'traceback': error, 'test_set_used': False})
+        summary_path = directory / 'summary.json'
+        if summary_path.exists():
+            summary = json.loads(summary_path.read_text())
+            summary['status'] = 'FAILED'
+            summary['failure_traceback'] = error
+            atomic_json(summary_path, summary)
         raise
