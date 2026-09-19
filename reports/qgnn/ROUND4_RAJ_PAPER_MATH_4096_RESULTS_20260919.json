@@ -1,0 +1,74 @@
+{
+  "revision": "ROUND4_RAJ_PAPER_MATH_4096_SEED2026_20260919",
+  "prereg_commit": "0d9f164",
+  "git_head_at_launch": "0d9f16458950b0b44340c301e3cbd4d067417076",
+  "protocol": {
+    "dataset": "SinD",
+    "snr_db": 0,
+    "seed": 2026,
+    "train_samples": 4096,
+    "validation_samples": 1880,
+    "epochs": 20,
+    "batch_size": 32,
+    "lr": 0.0003,
+    "j": 3,
+    "test_set_used": false
+  },
+  "quantum": {
+    "kind": "raj_paper_math_quantum",
+    "best_validation": {
+      "ADE": 0.8105364381791429,
+      "FDE": 1.707538616752371,
+      "J": 1.6643057465553284,
+      "scenes": 1880
+    },
+    "best_epoch": 1,
+    "parameters": {
+      "graph": 56763,
+      "llm_non_lora": 4052375,
+      "lora": 98304,
+      "trainable_total": 4207442,
+      "frozen_total": 67736832,
+      "total": 71944274
+    },
+    "elapsed_seconds": 694.4505493231118,
+    "train_indices_sha256": "dd7b0bd5ff75e728dcca1dd61abc913595f70953ae6c3265271ae9806d53bd68",
+    "shared_initialization_sha256": "0d35048bfb3385d55aaab30cca077f76a7bc52701da744e786d67462a276b57f"
+  },
+  "johnson": {
+    "kind": "raj_johnson",
+    "best_validation": {
+      "ADE": 0.5501600268039297,
+      "FDE": 1.1557706815527475,
+      "J": 1.1280453675803035,
+      "scenes": 1880
+    },
+    "best_epoch": 20,
+    "parameters": {
+      "graph": 81248,
+      "llm_non_lora": 4052375,
+      "lora": 98304,
+      "trainable_total": 4231927,
+      "frozen_total": 67736832,
+      "total": 71968759
+    },
+    "elapsed_seconds": 336.3066520392895,
+    "train_indices_sha256": "dd7b0bd5ff75e728dcca1dd61abc913595f70953ae6c3265271ae9806d53bd68",
+    "shared_initialization_sha256": "0d35048bfb3385d55aaab30cca077f76a7bc52701da744e786d67462a276b57f"
+  },
+  "quantum_relative_gain_pct": {
+    "ADE": -47.32739542853195,
+    "FDE": -47.74026059030479,
+    "J": -47.53890174872328
+  },
+  "acceptance": {
+    "primary_both_ADE_FDE_win": false,
+    "strong_J_gain_ge_1pct": false
+  },
+  "integrity": {
+    "same_train_indices": true,
+    "same_shared_initialization": true,
+    "quantum_completed": true,
+    "johnson_completed": true
+  }
+}
