@@ -2,6 +2,7 @@
 from .model import RajResidualModel, build_model
 from .quantum import PennyLaneRajBranch, PennyLaneRajMultiJCore
 from .residual import RajResidualLLM
+from .self_baselines import SelfTemporalBaseline, build_self_baseline
 
 __all__ = [
     "PennyLaneRajBranch",
@@ -9,4 +10,6 @@ __all__ = [
     "RajResidualLLM",
     "RajResidualModel",
     "build_model",
+    "SelfTemporalBaseline",
+    "build_self_baseline",
 ]

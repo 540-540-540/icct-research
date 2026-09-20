@@ -21,7 +21,7 @@ sys.path.insert(0, str(ROOT))
 
 from frontend.sind_prediction_dataset import SinDPredictionDataset
 from prediction.q0.metrics import trajectory_metrics
-from prediction.qgnn_raj_pennylane import build_model
+from prediction.qgnn_raj_pennylane import build_model, build_self_baseline
 from scripts.train_q0_motion_llm import token_loss
 
 
@@ -81,6 +81,9 @@ def evaluate(model, loader, device):
 
 def main():
     parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--model", choices=("llm", "lstm", "transformer", "tcn"), default="llm"
+    )
     parser.add_argument("--seed", type=int, default=2026)
     parser.add_argument("--snr", type=float, default=0.0)
     parser.add_argument("--epochs", type=int, default=20)
@@ -111,6 +114,7 @@ def main():
     }
     config = vars(args) | {
         "phase": "self",
+        "model": args.model,
         "device": str(device),
         "git_head": subprocess.check_output(
             ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True
@@ -123,17 +127,18 @@ def main():
     if not args.resume:
         atomic_json(run_dir / "config.json", config)
 
-    model = build_model(seed=args.seed, phase="self").to(device)
+    model = (
+        build_model(seed=args.seed, phase="self")
+        if args.model == "llm"
+        else build_self_baseline(args.model, seed=args.seed)
+    ).to(device)
     trainable = [(name, p) for name, p in model.named_parameters() if p.requires_grad]
     regular = [p for name, p in trainable if "lora_" not in name]
     lora = [p for name, p in trainable if "lora_" in name]
-    optimizer = torch.optim.AdamW(
-        [
-            {"params": regular, "lr": args.lr},
-            {"params": lora, "lr": args.lr * 0.25},
-        ],
-        weight_decay=2e-4,
-    )
+    groups = [{"params": regular, "lr": args.lr}]
+    if lora:
+        groups.append({"params": lora, "lr": args.lr * 0.25})
+    optimizer = torch.optim.AdamW(groups, weight_decay=2e-4)
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
         optimizer, T_max=args.epochs, eta_min=args.lr * 0.08
     )
@@ -163,7 +168,7 @@ def main():
         if saved["source_sha256"] != source_hashes:
             raise ValueError("Resume source hash mismatch")
         for key in (
-            "seed", "snr", "epochs", "batch_size", "lr", "token_weight",
+            "model", "seed", "snr", "epochs", "batch_size", "lr", "token_weight",
             "train_limit", "val_limit",
         ):
             if saved["config"][key] != vars(args)[key]:
@@ -228,9 +233,11 @@ def main():
             run_dir / "summary.json",
             {
                 "status": status,
+                "model": args.model,
                 "selected_checkpoint": best,
                 "selection_rule": "minimum ADE + 0.5 * FDE",
-                "epochs_completed": len(records),
+                "initial_validation": records[0]["validation"] if records else None,
+                "epochs_completed": sum(row["epoch"] > 0 for row in records),
                 "global_step": global_step,
                 "elapsed_seconds": elapsed(),
                 "train_samples": len(train_data),
@@ -240,6 +247,16 @@ def main():
             },
         )
 
+    if not args.resume:
+        initial = evaluate(model, val_loader, device)
+        best = {"epoch": 0, **initial}
+        records.append({"epoch": 0, "train_loss": None, "validation": initial})
+        torch.save(
+            {"model_state": self_state(model), "validation": initial, "config": config},
+            run_dir / "best.pt",
+        )
+        atomic_json(run_dir / "training.json", records)
+        print("EPOCH0 " + json.dumps(records[0]), flush=True)
     summary("RUNNING")
     for epoch in range(start_epoch, args.epochs + 1):
         order = torch.randperm(
@@ -265,10 +282,14 @@ def main():
             optimizer.zero_grad(set_to_none=True)
             output = model(history, mask, timestamps)
             coordinate = trajectory_metrics(output["prediction"], future, mask)
-            tokens = token_loss(
-                output["token_logits"], model.llm.future_token_ids(history, future), mask
-            )
-            loss = coordinate["loss"] + args.token_weight * tokens
+            loss = coordinate["loss"]
+            if args.model == "llm":
+                tokens = token_loss(
+                    output["token_logits"],
+                    model.llm.future_token_ids(history, future),
+                    mask,
+                )
+                loss = loss + args.token_weight * tokens
             if not torch.isfinite(loss):
                 raise FloatingPointError("Nonfinite training loss")
             loss.backward()

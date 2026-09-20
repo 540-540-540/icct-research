@@ -37,6 +37,24 @@ trajectory metrics. ADE and FDE are still stored separately in every epoch and
 must be reported separately; the combined value is only an internal ordering
 rule, not a third paper metric.
 
+## Temporal baselines
+
+The Self-stage comparison contains exactly four trained models:
+
+- `llm`: four-layer GPT-2 with LoRA and the Self residual head;
+- `lstm`: two-layer LSTM encoder and two-layer future-query decoder;
+- `transformer`: four-layer classical Transformer encoder with 20 learned
+  future queries;
+- `tcn`: four causal residual TCN blocks with dilations 1, 2, 4, and 8.
+
+The three classical baselines use only each vehicle's own displacement/velocity
+history. All four models share the same SinD split, sensing input, CV residual,
+16 m bounded correction, timestamps, seed, exposure, optimizer family, batch
+size, validation set, and single-checkpoint selection rule. CV is additionally
+reported as the common zero-initialized epoch-0 physical reference. If a trained
+model never improves the combined validation criterion, `best.pt` remains this
+epoch-0 checkpoint. No GRU baseline is included.
+
 ## Commands
 
 One-epoch smoke, not performance evidence:
@@ -44,6 +62,7 @@ One-epoch smoke, not performance evidence:
 ```bash
 CUDA_VISIBLE_DEVICES=0 /home/dell/YrM/envs/ICCT/bin/python \
   scripts/train_raj_residual_self.py \
+  --model llm \
   --epochs 1 --batch-size 4 --train-limit 8 --val-limit 8 \
   --run-dir reports/qgnn/raj_pennylane_p2/self_smoke_seed2026
 ```
@@ -53,12 +72,18 @@ Formal run, to be started only after reviewing the smoke result:
 ```bash
 CUDA_VISIBLE_DEVICES=0 /home/dell/YrM/envs/ICCT/bin/python -u \
   scripts/train_raj_residual_self.py \
+  --model llm \
   --run-dir results/qgnn/raj_pennylane_p2/self_0db_seed2026 \
   --max-seconds 7200
 ```
 
 Resume the same frozen run with the same arguments plus `--resume`. Increasing
 `--max-seconds` does not alter the experiment contract.
+
+For the formal four-model comparison, run `llm` and `lstm` on GPU 0 and
+`transformer` and `tcn` on GPU 1 as four concurrent processes. Their measured
+batch-32 peak reserved memory is about 3.89, 0.31, 0.74, and 0.19 GiB,
+respectively, so the paired processes remain far below either 24 GiB limit.
 
 ## Gate after completion
 

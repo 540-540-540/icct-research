@@ -1,38 +1,70 @@
 {
-  "schema": "raj_pennylane_p2_self_stage_preflight_v1",
+  "schema": "raj_pennylane_p2_self_stage_preflight_v2",
   "passed": true,
   "scope": {
     "formal_training": false,
     "performance_evidence": false,
-    "optimizer_steps": 2,
-    "train_samples": 8,
-    "validation_samples": 8,
+    "optimizer_steps_per_model": 2,
+    "train_samples_per_model": 8,
+    "validation_samples_per_model": 8,
     "test_set_used": false
   },
   "protocol": {
-    "phase": "self",
-    "checkpoint_count": 1,
+    "trained_models": ["llm", "lstm", "transformer", "tcn"],
+    "excluded_models": ["gru"],
+    "checkpoint_count_per_model": 1,
     "checkpoint_file": "best.pt",
     "selection_rule": "minimum ADE + 0.5 * FDE",
-    "ADE_and_FDE_reported_separately": true
+    "ADE_and_FDE_reported_separately": true,
+    "common_epoch0": "constant velocity"
   },
-  "smoke": {
-    "epoch": 1,
-    "train_loss": 7.98118782043457,
-    "validation_ADE": 5.385775327682495,
-    "validation_FDE": 5.701695919036865,
-    "selection_score": 8.236623287200928,
+  "common_epoch0": {
+    "ADE": 0.758892834186554,
+    "FDE": 1.619161605834961,
+    "selection_score": 1.5684736371040344,
+    "identical_across_all_four_models": true
+  },
+  "models": {
+    "llm": {
+      "trainable_parameters": 4084119,
+      "batch32_peak_allocated_gib": 3.5390586853027344,
+      "batch32_peak_reserved_gib": 3.892578125
+    },
+    "lstm": {
+      "trainable_parameters": 1191746,
+      "batch32_peak_allocated_gib": 0.22191143035888672,
+      "batch32_peak_reserved_gib": 0.310546875
+    },
+    "transformer": {
+      "trainable_parameters": 1793090,
+      "batch32_peak_allocated_gib": 0.644953727722168,
+      "batch32_peak_reserved_gib": 0.7421875
+    },
+    "tcn": {
+      "trainable_parameters": 932738,
+      "batch32_peak_allocated_gib": 0.16111373901367188,
+      "batch32_peak_reserved_gib": 0.189453125
+    }
+  },
+  "checks": {
+    "four_way_parallel_smoke": "PASS",
+    "finite_forward_backward": "PASS",
+    "common_cv_initialization": "PASS",
     "checkpoint_replay_max_abs": 0.0,
-    "raj_core_calls": 0,
-    "resume_check": "PASS"
+    "own_vehicle_permutation_equivariance": "PASS",
+    "inactive_vehicle_zero_output": "PASS",
+    "llm_raj_core_calls": 0,
+    "test_set_used": false
   },
   "source": {
-    "base_commit": "2d376fb3a9c5c357cdd3c91da0637bba10919c58",
-    "train_script_sha256": "d6089e80934ff8b6fd95662116f9690e170210d2f99d6e624d76a1f0e20248f6"
+    "base_commit": "176c61e72cb079b4938cd362930df3177ed19cd1",
+    "train_script_sha256": "bd6e61fc5bc1fe1fe5bc159d928b80872fba92ed6bfc353a3720fb0ca6df41e2",
+    "baseline_module_sha256": "4a74789aa9e6485103ab151c046dc97e2b526da39036088f32ee0e1cf3d95f57",
+    "residual_module_sha256": "ef7a53888acf73058e8148ab8b65c502127278d3561711aac6a6d69094e27b25"
   },
   "limitations": [
     "The eight-sample smoke validates execution only.",
-    "Its ADE and FDE are not project performance results.",
-    "No formal Self-stage run was started."
+    "Smoke ADE and FDE are not project performance results.",
+    "No formal four-model training run was started by this preflight."
   ]
 }

@@ -58,6 +58,7 @@ class RajResidualLLM(nn.Module):
             nn.Linear(query_dim, 1),
         )
 
+        nn.init.zeros_(self.self_head[-1].weight)
         nn.init.zeros_(self.self_head[-1].bias)
         nn.init.normal_(self.interaction_residual_head[-1].weight, std=1e-3)
         nn.init.zeros_(self.interaction_residual_head[-1].bias)

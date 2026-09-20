@@ -26,6 +26,8 @@
   `docs/qgnn/RAJ_PENNYLANE_P2_SELF_TRAIN_PROTOCOL_20260920.md` 和
   `scripts/train_raj_residual_self.py`；只保留一个最低
   `ADE + 0.5 * FDE` checkpoint，同时逐 epoch 分别报告 ADE 与 FDE；
+- Self 对照冻结为 LSTM、经典 Transformer、TCN 三种 own-history baseline，
+  与 LLM 共享 CV 初始化、数据、训练 exposure 和 checkpoint 规则；不使用 GRU；
 - 当前停在 P2 通过后的边界，不自行进入 P3 的 4096/full training、
   multi-seed、multi-SNR 或 prediction test。
 
