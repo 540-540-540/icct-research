@@ -6,14 +6,20 @@
       "title": "SinD: A Drone Dataset at Signalized Intersection in China",
       "year": 2022,
       "url": "https://arxiv.org/abs/2209.02297",
-      "supports": "Original SinD provenance; not statistics for our two public v2 recordings"
+      "supports": "Original SinD provenance and explicit RTS smoothing in section III-D/PDF page4, jointly refining trajectory and estimating velocity/acceleration; this does not identify the exact pipeline of our two pinned public recordings.",
+      "verified_location": {
+        "section": "III-D Tracking and Postprocessing",
+        "pdf_page_1_based": 4,
+        "pdf_url": "https://arxiv.org/pdf/2209.02297"
+      }
     },
     {
       "id": "L2",
       "title": "SinD 2.0: A Multi-City UAV Dataset with Semantic Risk Annotations for SOTIF-Oriented Safety Validation at Signalized Intersections",
       "year": 2026,
       "url": "https://arxiv.org/html/2607.16943v1",
-      "supports": "Multi-city intersection context; section VI reports 50/60 QCNet and31/52 Diffuser protocols, explicitly not a standardized leaderboard; smoothing causality not established"
+      "supports": "Multi-city intersection context; section VI reports 50/60 QCNet and31/52 Diffuser protocols, explicitly not a standardized leaderboard; smoothing causality not established",
+      "causality_limit": "Section III-B inherits/upgrades SinD1.0 and describes recursive filtering, without establishing prefix-invariance for the pinned Changchun/Xian CSVs."
     },
     {
       "id": "L3",
@@ -72,7 +78,15 @@
       "url": "https://argoverse.github.io/user-guide/tasks/motion_forecasting.html",
       "supports": "Target/context distinction and multi-second trajectory scenes; do not copy raw metrics across tasks",
       "publication_date_status": "official living documentation; publication year not established"
+    },
+    {
+      "id": "L11",
+      "title": "Stone Soup 1.4 official smoother documentation",
+      "year": null,
+      "url": "https://stonesoup.readthedocs.io/en/v1.4/stonesoup.smoother.html",
+      "supports": "RTS/Kalman smoother runs a backward pass from the final track state; method-level explanation only, not proof of SinD release implementation."
     }
   ],
-  "only_primary_sources_used": true
+  "only_primary_sources_used": true,
+  "takeover_source_review_date": "2026-09-20"
 }

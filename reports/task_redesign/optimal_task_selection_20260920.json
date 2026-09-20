@@ -1,10 +1,10 @@
 {
-  "schema": "icct_optimal_task_selection_v1",
+  "schema": "icct_optimal_task_selection_v2",
   "date": "2026-09-20",
   "base_qgnn_commit": "e94d61989333f0b93b1ddf25f4423c08defb49e9",
   "temporary_branch": "task-redesign-gpt6pro-20260920",
   "worktree": "/home/dell/YrM/ICCT_task_redesign_gpt6pro",
-  "status": "RECOMMENDED_DESIGN_WITH_AUDITED_COUNTS_NOT_EMPIRICALLY_VALIDATED",
+  "status": "RECOMMENDED_DESIGN_STRICT_ONLINE_RELEASE_BLOCKED_GATES_UNPROVEN",
   "recommended_task": {
     "name": "SinD-IC4 target-centered interaction-residual forecasting",
     "history_frames": 20,
@@ -46,7 +46,8 @@
     "model_training_population": "same full history-admitted train cohort for every model; no outcome-based subsampling or risk oversampling",
     "prediction_parameterization": "p_CV + R_ego*(delta_self + sigmoid(g)*delta_context)",
     "correction_bound": "no inherited16m hard cap in new 40-step decoder; common unbounded linear coordinate heads, same zero initialization and gradient clipping for all models",
-    "decoder_scope": "new horizon-aware wrapper/head only after review; existing official models unchanged"
+    "decoder_scope": "new horizon-aware wrapper/head only after review; existing official models unchanged",
+    "release_state": "DESIGN_SELECTED_NOT_APPROVED_AS_STRICT_ONLINE_BENCHMARK"
   },
   "auxiliary_task": {
     "name": "SinD-Full4",
@@ -175,7 +176,8 @@
         "critical_ADE_eligible_origins": 180,
         "critical_FDE_eligible_origins": 177
       }
-    }
+    },
+    "applicability": "Exact counts for the audited supplied smoothed-state sensing protocol; must be recomputed with unchanged thresholds if causal source histories are rebuilt."
   },
   "split_policy": {
     "unit": "physical recording time with identity purge; never random overlapping-window split",
@@ -376,7 +378,7 @@
       "core behavior forN=2 and inactivej3 explicitly tested; never drop N2 samples to make circuit work",
       "parameter-matchedJohnson and strongJohnson share exact inputs/decoder/selfcheckpoint",
       "higher-order claim requires classicalpair+triplet versus strongpair evidence on frozenk>=2 stratum; not required to presuppose quantum win",
-      "source-smoothing/information-availability concern explicitly resolved or offline-state-simulation scope approved by user"
+      "source_availability_gate satisfied for strict-online scope; any separately user-approved offline simulation scope must remain explicitly distinct, never silently waive prediction-time availability"
     ],
     "engineering_P1_P2": "archived pass, not accuracy evidence",
     "full_Q_training_started": false
@@ -396,7 +398,7 @@
   "unresolved_questions": [
     "No newly trained strong graph/self models at20/30/40; cannot assert enlargedGraphGain",
     "User latestLSTM/TCN/Transformer0.4/0.9 not verifiable in committed snapshot; keptuser-reported",
-    "Veh_smoothed_tracks historicalcausality unverified; no strictonlinebenchmark approval yet",
+    "Original SinD paper explicitly reports RTS smoothing; exact pinned Changchun/Xian generation and prefix-invariance remain unverified, so strict-online release is blocked.",
     "RouteB assumes detection/identity association successful; not raw multi-target echo detection",
     "Two recordings and only10criticalval30sblocks limit claims; no cross-citygeneralization proof",
     "Future GT tensors/cachefull20hist not rebuilt, masks needfinite-label audit",
@@ -408,14 +410,20 @@
       "title": "SinD: A Drone Dataset at Signalized Intersection in China",
       "year": 2022,
       "url": "https://arxiv.org/abs/2209.02297",
-      "supports": "Original SinD provenance; not statistics for our two public v2 recordings"
+      "supports": "Original SinD provenance and explicit RTS smoothing in section III-D/PDF page4, jointly refining trajectory and estimating velocity/acceleration; this does not identify the exact pipeline of our two pinned public recordings.",
+      "verified_location": {
+        "section": "III-D Tracking and Postprocessing",
+        "pdf_page_1_based": 4,
+        "pdf_url": "https://arxiv.org/pdf/2209.02297"
+      }
     },
     {
       "id": "L2",
       "title": "SinD 2.0: A Multi-City UAV Dataset with Semantic Risk Annotations for SOTIF-Oriented Safety Validation at Signalized Intersections",
       "year": 2026,
       "url": "https://arxiv.org/html/2607.16943v1",
-      "supports": "Multi-city intersection context; section VI reports 50/60 QCNet and31/52 Diffuser protocols, explicitly not a standardized leaderboard; smoothing causality not established"
+      "supports": "Multi-city intersection context; section VI reports 50/60 QCNet and31/52 Diffuser protocols, explicitly not a standardized leaderboard; smoothing causality not established",
+      "causality_limit": "Section III-B inherits/upgrades SinD1.0 and describes recursive filtering, without establishing prefix-invariance for the pinned Changchun/Xian CSVs."
     },
     {
       "id": "L3",
@@ -474,6 +482,13 @@
       "url": "https://argoverse.github.io/user-guide/tasks/motion_forecasting.html",
       "supports": "Target/context distinction and multi-second trajectory scenes; do not copy raw metrics across tasks",
       "publication_date_status": "official living documentation; publication year not established"
+    },
+    {
+      "id": "L11",
+      "title": "Stone Soup 1.4 official smoother documentation",
+      "year": null,
+      "url": "https://stonesoup.readthedocs.io/en/v1.4/stonesoup.smoother.html",
+      "supports": "RTS/Kalman smoother runs a backward pass from the final track state; method-level explanation only, not proof of SinD release implementation."
     }
   ],
   "this_run": {
@@ -507,5 +522,36 @@
     "val_unique_target_tracks": 50,
     "val_unique_tracks_per_city": 20,
     "meaning": "engineering floor defined in finalreport, NOT a pre-audit statistical power calculation"
+  },
+  "source_availability_gate": {
+    "status": "BLOCKED_PENDING_PER_RELEASE_CAUSAL_HISTORY_VERIFICATION",
+    "strict_online_release_approved": false,
+    "original_SinD_RTS_documented": true,
+    "original_SinD_evidence": {
+      "source_id": "L1",
+      "section": "III-D Tracking and Postprocessing",
+      "pdf_page_1_based": 4,
+      "pdf_url": "https://arxiv.org/pdf/2209.02297",
+      "verified_in_pdf_text_and_page_image": true
+    },
+    "SinD2_evidence": {
+      "source_id": "L2",
+      "section": "III-B Multi-Source Data Alignment",
+      "meaning": "inherits/upgrades original pipeline; recursive filtering mentioned, but no causal per-file implementation proof"
+    },
+    "pinned_Changchun_Xian_pipeline_confirmed": false,
+    "leakage_magnitude_measured": false,
+    "required_acceptance": "Verify the exact release pipeline or rebuild from pre-smoothing observations; prefix-invariance must cover positions, velocities, association and dynamic quality filtering, not only pair_metrics. Re-audit membership/cache/counts before formal release.",
+    "offline_scope_exception": "Only separate explicit user approval can authorize an offline latent-state sensing simulation scope; that is not proof of compliance with the original strict prediction-time requirement.",
+    "threshold_changes_permitted_for_model_wins": false
+  },
+  "takeover_revalidation": {
+    "prior_research_commit": "8da14521467b96bb23dc93c51d52704a2b9b7a8d",
+    "script": "scripts/task_redesign/verify_task_selection.py",
+    "report": "reports/task_redesign/revalidation_20260920.json",
+    "old_preregistration_and_membership_preserved": true,
+    "new_model_training": false,
+    "new_test_access": false,
+    "change_reason": "Independent integrity/metadata verification plus primary-source RTS causality evidence; no threshold or model-winner search."
   }
 }

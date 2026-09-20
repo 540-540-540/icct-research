@@ -1,7 +1,7 @@
 # ICCT 轨迹预测主任务选择报告
 
 日期：2026-09-20
-状态：**主设计已选择；数据纳入统计已核验；新任务 Gate S/G 尚未获得实验通过证据；Gate Q 关闭。**
+状态：**唯一主设计已选择；现有平滑状态口径的纳入统计已核验；严格 prediction-time 来源验收尚未通过；新任务 Gate S/G 未获实验通过证据；Gate Q 关闭。**
 
 ## 1. Executive conclusion：唯一主推荐
 
@@ -12,6 +12,8 @@
 这个决定不是“4 秒已经实测最优”，更不是“4 秒一定让 GPT-2 或 QGNN 赢”。它是根据物理目的、已提交项目证据、文献和一次不看新预测误差的数据审计选择的可执行主设计。**本轮没有训练新的 self/strong-graph 模型，不能证明 Graph Gain 随 horizon 扩大。** 下一轮应先验证 Gate S/G，而不是直接训练 QGNN。
 
 若预注册 Gate G 在 train-design 失败：不改 DCPA/TTC/密度阈值追求显著性，不迁移到“恰好能赢”的子集；备用 Y 就是已经保留的 Full4 普通轨迹预测任务，并撤回“交互必要性”与 QGNN 主线资格。不是再开放一串候选 benchmark。
+
+**正式发布边界：推荐IC4的任务结构，不等于批准现有CSV构成严格在线benchmark。** 本次续接复核在L1发现明确RTS平滑证据；L2只描述继承升级流程与recursive filtering，未提供当前两个文件的因果生成证明。主任务发布仍被source-availability gate阻塞。下文样本数对当前平滑状态重建协议精确成立；换成真正因果历史后必须按原阈值重新统计，不能预先宣称数量完全相同。
 
 ### 本轮实际完成范围
 
@@ -44,6 +46,8 @@ P3：`reports/q0/llm_marginal_effect_audit_0db.json` 的 Automatum 历史比较�
 
 `tools/data_preprocessing/build_sind_high_interaction.py` 先要求每个候选车辆整个 history+future 完整，再对候选车辆按历史 GT 状态选图。因此“边的计算只看历史”不等于“context 集合不依赖未来”。20→40 若只修改 TOTAL，会随未来长度改变邻居集合，污染 horizon 比较。
 
+必须区分旧builder与最新修复：已提交的 `configs/sind_target_prediction.json` / `frontend/sind_target_dataset.py` 已把neighbor context改成完整history即可，不再要求邻居future；本轮并未发现这项修复失效。它仍继承旧accepted origins和整轨质量过滤，且target本身仍要求20帧future完整，因此不能直接把旧target-view样本清单当作新IC4的无未来纳入清单。
+
 旧 selection 是 `distance<=30 AND (closing>0.5 OR (0<TCPA<=4 AND DCPA<=10))`。接近但横向错开很远的车辆也可通过 OR 分支，车多、近、接近均不能单独证明行为依赖。旧窗口也只选择一个 focal 局部图，却监督其中多辆车，每辆被监督车辆并不一定拥有自己的关键邻居。
 
 全轨迹 position/velocity consistency 过滤还使用了预测时点之后的轨迹。本报告的新纳入规则不继承这一动态整轨过滤，而按历史可用性纳入，保留“历史质量/标签缺失”审计标记。原始文件本身已经平滑，其是否使用非因果平滑仍未知，见风险章节。
@@ -52,11 +56,11 @@ P3：`reports/q0/llm_marginal_effect_audit_0db.json` 的 Automatum 历史比较�
 
 ## 3. Literature evidence：支持什么，不支持什么
 
-以下文献均核验 primary source；完整 URL 见末尾 L1–L10 与 `literature_sources_20260920.json`。
+以下文献均核验 primary source；完整 URL 见末尾 L1–L11 与 `literature_sources_20260920.json`。
 
 | 来源 | 对本任务的实际作用 | 不可外推的结论 |
 |---|---|---|
-| L1 SinD 原论文，2022 | 数据系列与路口行为背景 | 原 Tianjin 数据量不是本项目两个公开录像的数据量 |
+| L1 SinD 原论文，2022 | 数据系列与路口背景；III-D、PDF第4页明确使用RTS平滑估计位置/速度/加速度 | 原Tianjin流程不是当前两个录像的逐文件生成证明；不能凭history字段名宣称在线因果 |
 | L2 SinD2.0，2026 | 多城市信号交叉口；其 benchmark 示例包含 QCNet 50历史/60未来、Diffuser 31历史/52预测帧，并明确不是完全标准化排行榜 | 不可把其多模态/地图/不同历史长度结果与本项目 ADE 直接排序；不能据此声称 2→4 是标准答案 |
 | L3 InterHub，2024 | 从行为依赖、潜在路径冲突理解交互，而非只看密度；采用运动外推等方法识别交互事件 | 完整事件起终点/回顾性片段标签不能原样作为在线筛选器；不提供“DCPA5m必然最优”证明 |
 | L4 SMART，2024 | 时间与 agent 交互分解、motion token、自车局部坐标；方法中采用 50m 邻域 | GPT-style motion Transformer 不等于文本预训练 GPT-2；多模态模拟能力不能直接证明本项目确定性轨迹优势 |
@@ -371,7 +375,11 @@ Q比较共享Self checkpoint、train数据/样本、future decoder、损失、ch
 
 ## 13. Scientific risks 与正式采用阻塞项
 
-**历史源平滑的因果性未证实。** 新selector只读history且通过接口测试，不等于`Veh_smoothed_tracks.csv`的上游平滑只用了过去帧。新增过去窗口再做一次因果滤波，不能抹掉原文件可能已经引入的未来信息。正式声称prediction-time available前必须核验生成流程或以原始未平滑观测重建causal history；否则应明确限定为“offline smoothed-state sensing simulation”，并让核心审查决定是否接受。当前不能签发严格在线benchmark已合规的结论。
+**历史源可用性是正式发布阻塞项，且已有明确文献风险证据。** L1原论文III-D（PDF第4页）明确采用Rauch–Tung–Striebel（RTS）平滑，并同时估计速度、加速度；这比仅凭文件名猜测更强。RTS平滑一般利用后续观测反向修正先前状态，因此“函数只接收历史时间戳”不能自动证明其输入值在预测时可得到。L2 III-B说明继承升级SinD1.0流程，并使用recursive state filtering，但没有给出本项目pinned Changchun/Xi'an两个文件的逐文件因果实现。因此结论是：原SinD存在已记录的非因果平滑机制，当前两文件的具体生成链仍未核定；不是声称已测出当前任务的泄漏幅度，也不是把所有SinD结果判为无效。[L1, L2, L11]
+
+新selector的几何测试、跨horizon membership一致性以及对已平滑历史再做因果滤波，都不能消除上游已可能注入的信息。要批准严格prediction-time benchmark，须对对应release的生成链做prefix-invariance检验：给定同一截至t0的原始观测，截断/修改t0之后数据，不应改变送入模型和selector的历史状态。该检验必须覆盖位置、速度、身份关联和动态质量过滤；不能只测试本轮pair_metrics。原始观测不可获取且来源无法核实，就保留发布阻塞，不以免责声明宣称满足原硬约束。
+
+当前可以保留IC4作为唯一下一轮任务设计，以及这套smoothed-state simulation的可重复审计；后者不是自动获准的严格在线正式benchmark。核心审查若另外明确接受offline latent-state simulation定位，那是另行批准的实验适用范围，不是本轮自行豁免约束。真正因果历史重建后，阈值不按模型误差调整，但membership、count、cache均须重新验收。
 
 **路口意图与静态语义缺失。** Graph可能学习邻车作为红绿灯/道路几何的代理，而不一定识别真实驾驶交互。多车信息胜过self不能排除这种解释。不能把所有误差都标成interaction-induced；后续若增加静态地图/当前信号，self/graph必须对称享有。
 
@@ -425,3 +433,25 @@ OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 /home/dell/YrM/envs/ICCT/bin/python scr
 [L8] Kinematics-Aware Multigraph Attention Network with Residual Learning for Heterogeneous Trajectory Prediction (2024). https://ieeexplore.ieee.org/document/10586904/
 [L9] FHWA SSAM Software User Manual (2008). https://www.fhwa.dot.gov/publications/research/safety/08050/
 [L10] Argoverse Motion Forecasting User Guide (未标注发布日期；访问2026-09-20). https://argoverse.github.io/user-guide/tasks/motion_forecasting.html
+
+[L11] Stone Soup 1.4 official smoother documentation. https://stonesoup.readthedocs.io/en/v1.4/stonesoup.smoother.html
+
+
+## 17. 续接后的独立复核记录
+
+本次开工发现本任务已经存在正确来源的worktree：branch reflog显示从base `e94d61989333f0b93b1ddf25f4423c08defb49e9`创建，并已有研究提交 `8da14521467b96bb23dc93c51d52704a2b9b7a8d`。任务worktree初始干净，故继续使用而未删除、重建或覆盖；正式目录的并行工作不纳入本分支。
+
+新脚本 `scripts/task_redesign/verify_task_selection.py` 已实际运行，57/57检查通过：20个既有项目证据文件SHA256、2份pinned CSV的字节级SHA256、prereg与摘要阈值一致性、gzip及其解压manifest哈希、121962行元数据的独立重计数、三个horizon的边界/纳入数、train-val目标身份互斥，以及交叉/跟驰/静止/分离和几何不变性检查。详细机器结果见 `reports/task_redesign/revalidation_20260920.json`。
+
+本次复核没有重新执行完整感知数据构建，没有读取新的future坐标标签、训练预测模型或运行Quantum core。CSV只按不透明字节核对哈希，样本重计数来自已有metadata-only manifest。57项通过仅说明这些产物/软件检查成立，不是source-availability、Gate S、Gate G或Gate Q通过。
+
+本次新增的实质证据是L1原论文的RTS平滑说明，已同时核对PDF正文与页图；L2和L11用于限定其解释。未改变原prereg阈值、membership、horizon选择或Gate效应量门槛。现有target-view已经修复neighbor的future-completeness依赖，报告也已明确区分这项修复与旧builder问题，避免重复诊断一个已修复的缺陷。
+
+复核命令（只在本worktree）：
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 \
+  /home/dell/YrM/envs/ICCT/bin/python scripts/task_redesign/verify_task_selection.py
+```
+
+最终审查结论保持：IC4是唯一推荐的下一轮任务结构，Full4是唯一辅助；严格在线数据发布等待来源因果性验收，新任务S/G尚无实验通过证据，Q关闭。原有设计与审计产物保留，新增复核与文献更正提交同一临时分支，不合并、不推送。
