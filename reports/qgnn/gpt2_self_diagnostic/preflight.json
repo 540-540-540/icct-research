@@ -1,0 +1,122 @@
+{
+  "status": "PASSED",
+  "test_set_used": false,
+  "data": "train only",
+  "train_targets": 319855,
+  "batch_size": 256,
+  "optimizer_steps_per_profile": 3,
+  "scope": "engineering checks and short-step timings, not validation results",
+  "old_replay": {
+    "tcn_global": {
+      "targets": 32,
+      "max_prediction_error_m": 0.0
+    },
+    "llm_ego": {
+      "targets": 32,
+      "max_prediction_error_m": 0.0
+    },
+    "llm_ego_heading": {
+      "targets": 32,
+      "max_prediction_error_m": 0.0
+    }
+  },
+  "profiles": {
+    "tcn_ego_pretrained_lora": {
+      "seconds_per_step": 0.008672846481204033,
+      "step_seconds": [
+        0.1608589105308056,
+        0.010288961231708527,
+        0.007056731730699539
+      ],
+      "peak_allocated_gib": 0.1616225242614746,
+      "peak_reserved_gib": 0.1796875,
+      "trainable_parameters": 932738,
+      "total_parameters": 932738,
+      "updated_parameter_tensors": 45,
+      "frozen_unchanged": true,
+      "epoch0_cv_max_error_m": 0.0,
+      "neighbor_invariant": true,
+      "rotation_max_error_m": 0.0001049041748046875
+    },
+    "llm_ego_heading_pretrained_lora": {
+      "seconds_per_step": 0.07980177458375692,
+      "step_seconds": [
+        0.1119033545255661,
+        0.0799139253795147,
+        0.07968962378799915
+      ],
+      "peak_allocated_gib": 4.082404613494873,
+      "peak_reserved_gib": 4.2578125,
+      "trainable_parameters": 4088727,
+      "total_parameters": 72121792,
+      "updated_parameter_tensors": 29,
+      "frozen_unchanged": true,
+      "epoch0_cv_max_error_m": 0.0,
+      "neighbor_invariant": true,
+      "rotation_max_error_m": null
+    },
+    "llm_ego_heading_pretrained_full": {
+      "seconds_per_step": 0.1645350344479084,
+      "step_seconds": [
+        0.09911365620791912,
+        0.23425127193331718,
+        0.09481879696249962
+      ],
+      "peak_allocated_gib": 4.98976993560791,
+      "peak_reserved_gib": 5.130859375,
+      "trainable_parameters": 33129879,
+      "total_parameters": 72121792,
+      "updated_parameter_tensors": 72,
+      "frozen_unchanged": true,
+      "epoch0_cv_max_error_m": 0.0,
+      "neighbor_invariant": true,
+      "rotation_max_error_m": null
+    },
+    "llm_ego_heading_random_lora": {
+      "seconds_per_step": 0.07906095217913389,
+      "step_seconds": [
+        0.2292066514492035,
+        0.07924007624387741,
+        0.07888182811439037
+      ],
+      "peak_allocated_gib": 4.082404613494873,
+      "peak_reserved_gib": 4.2578125,
+      "trainable_parameters": 4088727,
+      "total_parameters": 72121792,
+      "updated_parameter_tensors": 29,
+      "frozen_unchanged": true,
+      "epoch0_cv_max_error_m": 0.0,
+      "neighbor_invariant": true,
+      "rotation_max_error_m": null
+    },
+    "llm_ego_heading_random_full": {
+      "seconds_per_step": 0.09373570140451193,
+      "step_seconds": [
+        0.09562153369188309,
+        0.0937152560800314,
+        0.09375614672899246
+      ],
+      "peak_allocated_gib": 4.98976993560791,
+      "peak_reserved_gib": 5.130859375,
+      "trainable_parameters": 33129879,
+      "total_parameters": 72121792,
+      "updated_parameter_tensors": 72,
+      "frozen_unchanged": true,
+      "epoch0_cv_max_error_m": 0.0,
+      "neighbor_invariant": true,
+      "rotation_max_error_m": null
+    }
+  },
+  "checks": {
+    "shared_llm_peripheral_initialization": true,
+    "initialization_factor_changes_gpt": true,
+    "unused_word_embeddings_frozen": true,
+    "legacy_update_parity": {
+      "steps": 3,
+      "targets": 32,
+      "parameter_max_error": 0.0,
+      "prediction_max_error_m": 0.0,
+      "dropout_paired": true
+    }
+  }
+}
