@@ -1,0 +1,38 @@
+{
+  "schema": "raj_pennylane_p2_self_stage_preflight_v1",
+  "passed": true,
+  "scope": {
+    "formal_training": false,
+    "performance_evidence": false,
+    "optimizer_steps": 2,
+    "train_samples": 8,
+    "validation_samples": 8,
+    "test_set_used": false
+  },
+  "protocol": {
+    "phase": "self",
+    "checkpoint_count": 1,
+    "checkpoint_file": "best.pt",
+    "selection_rule": "minimum ADE + 0.5 * FDE",
+    "ADE_and_FDE_reported_separately": true
+  },
+  "smoke": {
+    "epoch": 1,
+    "train_loss": 7.98118782043457,
+    "validation_ADE": 5.385775327682495,
+    "validation_FDE": 5.701695919036865,
+    "selection_score": 8.236623287200928,
+    "checkpoint_replay_max_abs": 0.0,
+    "raj_core_calls": 0,
+    "resume_check": "PASS"
+  },
+  "source": {
+    "base_commit": "2d376fb3a9c5c357cdd3c91da0637bba10919c58",
+    "train_script_sha256": "d6089e80934ff8b6fd95662116f9690e170210d2f99d6e624d76a1f0e20248f6"
+  },
+  "limitations": [
+    "The eight-sample smoke validates execution only.",
+    "Its ADE and FDE are not project performance results.",
+    "No formal Self-stage run was started."
+  ]
+}

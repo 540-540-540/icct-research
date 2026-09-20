@@ -22,6 +22,10 @@
   `docs/qgnn/RAJ_PENNYLANE_P2_RESIDUAL_FREEZE_20260920.md` 冻结；
 - P2 的 5 项 preflight 已通过，记录位于
   `reports/qgnn/raj_pennylane_p2/preflight_20260920.json`；
+- Self 阶段训练协议与可恢复入口已冻结在
+  `docs/qgnn/RAJ_PENNYLANE_P2_SELF_TRAIN_PROTOCOL_20260920.md` 和
+  `scripts/train_raj_residual_self.py`；只保留一个最低
+  `ADE + 0.5 * FDE` checkpoint，同时逐 epoch 分别报告 ADE 与 FDE；
 - 当前停在 P2 通过后的边界，不自行进入 P3 的 4096/full training、
   multi-seed、multi-SNR 或 prediction test。
 
