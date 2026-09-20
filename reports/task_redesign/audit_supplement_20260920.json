@@ -1,0 +1,185 @@
+{
+  "checks": {
+    "crossing_detected": true,
+    "equal_speed_following_directed": true,
+    "stationary_density_is_not_interaction": true,
+    "diverging_not_interaction": true,
+    "translation_invariant": true,
+    "rotation_invariant": true,
+    "permutation_equivariant": true,
+    "tcpa_not_ttc": true,
+    "unique_membership_keys": true,
+    "interaction_membership_horizon_independent": true,
+    "future_frame_counts_bounded": true,
+    "censored_targets_not_removed": true,
+    "test_rows_not_in_manifest": true
+  },
+  "passed": true,
+  "scope": {
+    "future_labels_opened": false,
+    "model_training": false
+  },
+  "split_summary": {
+    "train": {
+      "full_targets": 36778,
+      "critical_targets": 12186,
+      "critical_rate": 0.33133938767741583,
+      "critical_by_scene": {
+        "0": 10752,
+        "1": 1434
+      },
+      "critical_endpoint_coverage": 0.8902839323814213,
+      "full_endpoint_coverage": 0.867502311164283,
+      "target_wedges_sum": 7342,
+      "target_wedges_mean": 0.19963021371472076,
+      "target_pair_density_mean": 0.036554107632311345,
+      "target_wedge_density_mean": 0.0024994274496826004,
+      "radius_context_more_than7_fraction": 0.807874272663005,
+      "risk_neighbors_more_than7_targets": 0,
+      "critical_zero_future_labels": 9,
+      "critical_ADE_eligible_origins": 1525,
+      "critical_FDE_eligible_origins": 1492,
+      "common_20_30_40_targets": 36778
+    },
+    "val": {
+      "full_targets": 3855,
+      "critical_targets": 1149,
+      "critical_rate": 0.2980544747081712,
+      "critical_by_scene": {
+        "0": 1063,
+        "1": 86
+      },
+      "critical_endpoint_coverage": 0.8633594429939078,
+      "full_endpoint_coverage": 0.8521400778210116,
+      "target_wedges_sum": 518,
+      "target_wedges_mean": 0.13437094682230868,
+      "target_pair_density_mean": 0.03705365885724198,
+      "target_wedge_density_mean": 0.0022469902818829856,
+      "radius_context_more_than7_fraction": 0.6892347600518807,
+      "risk_neighbors_more_than7_targets": 0,
+      "critical_zero_future_labels": 2,
+      "critical_ADE_eligible_origins": 180,
+      "critical_FDE_eligible_origins": 177,
+      "common_20_30_40_targets": 3855
+    }
+  },
+  "train_design_boundaries": {
+    "0": {
+      "fit": [
+        0,
+        9598
+      ],
+      "guard": [
+        9599,
+        9658
+      ],
+      "design": [
+        9659,
+        11998
+      ]
+    },
+    "1": {
+      "fit": [
+        0,
+        5627
+      ],
+      "guard": [
+        5628,
+        5687
+      ],
+      "design": [
+        5688,
+        7034
+      ]
+    }
+  },
+  "design_rebuild_requirement": "Purge identities crossing fit/design using frame metadata, and recompute contexts without those identities. Do not use stale full-train degrees. Within fit carve last15% as stopping-dev with another60frame gap and identity purge. Formal val is not used to tune thresholds or to choose epochs.",
+  "evidence_files": {
+    "docs/qgnn/QGNN_HISTORICAL_EXPERIMENT_UNIFIED_AUDIT_20260920.md": {
+      "sha256": "947c635d4995d298898517bfdd7fb57181865922b2ba574effb8f3054c1eabc2",
+      "bytes": 17272
+    },
+    "reports/qgnn/QGNN_HISTORICAL_EXPERIMENT_UNIFIED_AUDIT_20260920.json": {
+      "sha256": "fc7267a667589b3d0bcba06143ad0a6bdabb5fb1da93d764f3d3063060a049e1",
+      "bytes": 6575
+    },
+    "docs/task_redesign/GPT6PRO_TASK_REDESIGN_TASK_20260920.md": {
+      "sha256": "a0d82b2b04221cba33e60b202818fdeb28afa7df13d29a69c16c79f2ca3953d2",
+      "bytes": 15708
+    },
+    "configs/sind_prediction.json": {
+      "sha256": "0906ccf5d192027bd26a14dd727c9e4d6a1dc54077b33a9ba837f09677245b74",
+      "bytes": 1814
+    },
+    "configs/sind_target_prediction.json": {
+      "sha256": "9145e8224434257311bd058b523d83a3cfa9b971ee971bd7831c4ba8a6d238c4",
+      "bytes": 2064
+    },
+    "configs/sind_controlled_isac.json": {
+      "sha256": "f898e43f01671187bb87cc0494fa03afe1d3dd58526360533ec898d6fe4f89c2",
+      "bytes": 3070
+    },
+    "reports/sind/sind_dataset_build.json": {
+      "sha256": "8f3e6ebb065ffc27e4e6b98f64c51fd49f723f6f5614ae4fb58597eb277baff3",
+      "bytes": 8476
+    },
+    "reports/q0/sind_q0_interaction_diagnostic_0db_seed2026.json": {
+      "sha256": "36a9227398794b68aa27e9023921edb28f8b4323a690626217d200e6f6c7edc0",
+      "bytes": 14825
+    },
+    "reports/q0/llm_marginal_effect_audit_0db.json": {
+      "sha256": "7e7261703c32668d5027bfcaeb6a87cd8746ab0f6298c56203e0000690fee938",
+      "bytes": 3250
+    },
+    "reports/qgnn/raj_pennylane_p1_1/repair_preflight_20260920.json": {
+      "sha256": "32cdcb4f1ab0b20ec4a1a072ccb2fb4d7bac70da49ef7c38077022888d17f5b5",
+      "bytes": 18933
+    },
+    "reports/qgnn/raj_pennylane_p2/preflight_20260920.json": {
+      "sha256": "c75244bdcafd9eb0888235ceba1b10efce3eda1b251ebc2b4fd8c1325a948216",
+      "bytes": 2663
+    },
+    "reports/qgnn/sind_target_self_repair/preflight.json": {
+      "sha256": "fef966d78f669a970875179421ec8bee694488c5eac340472901f7c65a885a62",
+      "bytes": 43919
+    },
+    "docs/qgnn/RAJ_PENNYLANE_RESIDUAL_MASTER_TASK_20260920.md": {
+      "sha256": "57b781d9079f19c1a37b3de75b80df367bde55b010cb73392d4671738fbc4dd8",
+      "bytes": 18275
+    },
+    "docs/qgnn/RAJ_PENNYLANE_P2_RESIDUAL_FREEZE_20260920.md": {
+      "sha256": "8dfa947993a548f9dcfd3c6e07cd76b6540ae0d0fa3ef4269e48000fd78e50d8",
+      "bytes": 2525
+    },
+    "prediction/qgnn_raj_pennylane/residual.py": {
+      "sha256": "f51cc22e721b9cad221efbcb623ba04f19ec77f6367defc4c79214beae00ace5",
+      "bytes": 11635
+    },
+    "prediction/qgnn_raj_pennylane/self_baselines.py": {
+      "sha256": "4a74789aa9e6485103ab151c046dc97e2b526da39036088f32ee0e1cf3d95f57",
+      "bytes": 5692
+    },
+    "prediction/q0/motion_token_llm.py": {
+      "sha256": "536542276e4578bcff3688ba8782500807ea0458603187eb5b87cbe5ef4938f7",
+      "bytes": 10935
+    },
+    "prediction/qgnn_final/model.py": {
+      "sha256": "c062c42b7670d6457740c58ce10c9a400feba2fd8d18adf4baabd27ae8b3a3bf",
+      "bytes": 6356
+    },
+    "tools/data_preprocessing/build_sind_high_interaction.py": {
+      "sha256": "d96f6c837183a9d1db29614ce2895cd575a97fd70a1049d35d5c40c4efb85d46",
+      "bytes": 20401
+    },
+    "frontend/controlled_isac/automatum_frontend.py": {
+      "sha256": "41422f0b564ce73c1a7760abe8790bc021832ccba137030046f74e444e62b9d5",
+      "bytes": 4023
+    }
+  },
+  "membership_gzip": {
+    "sha256": "c74a9bf27b1862ed7d2f00c079b5feb551b0f5ba9bd66f9d18f19ce67425c4af",
+    "bytes": 530768,
+    "rows": 121962,
+    "contains_future_coordinates": false
+  }
+}
