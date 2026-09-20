@@ -81,6 +81,7 @@ def build_model(
     correction_cap_m: float = 16.0,
     query_dim: int = 32,
     phase: str = "joint",
+    self_frame: str = "legacy",
 ):
     if kind != "raj_pennylane":
         raise ValueError("P2 currently freezes only kind='raj_pennylane'")
@@ -94,6 +95,7 @@ def build_model(
             readout_dim=core.readout_dim,
             correction_cap_m=correction_cap_m,
             query_dim=query_dim,
+            self_frame=self_frame,
         )
 
     model = RajResidualModel(core, llm, kind)

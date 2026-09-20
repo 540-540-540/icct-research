@@ -7,6 +7,7 @@ import hashlib
 import json
 import os
 import random
+import signal
 import subprocess
 import sys
 import time
@@ -54,29 +55,63 @@ def subset_indices(length, limit, seed):
     return indices if limit is None else indices[:limit]
 
 
+def batch_inputs(batch, device):
+    """The Self phase evaluates targets only; context is for later interaction."""
+    history = batch["history_state"].to(device, non_blocking=True)
+    context = batch["vehicle_mask"].to(device, non_blocking=True)
+    mask = batch.get("target_mask", batch["vehicle_mask"]).to(device, non_blocking=True)
+    if mask.dtype != torch.bool or mask.shape != context.shape:
+        raise ValueError("Expected boolean target mask matching the context")
+    if torch.any(mask & ~context) or not torch.all(mask.any(dim=1)):
+        raise ValueError("Every sample needs a valid supervised target")
+    future = batch["future_state"].to(device, non_blocking=True)
+    timestamps = batch["history_timestamp"].to(device, non_blocking=True)
+    return history, mask, future, timestamps
+
+
 @torch.no_grad()
 def evaluate(model, loader, device):
     model.eval()
     ade = fde = 0.0
-    scenes = 0
+    samples = 0
+    origins = {}
+    target_views = False
     for batch in loader:
-        history = batch["history_state"].to(device, non_blocking=True)
-        mask = batch["vehicle_mask"].to(device, non_blocking=True)
-        future = batch["future_state"].to(device, non_blocking=True)
-        timestamps = batch["history_timestamp"].to(device, non_blocking=True)
+        history, mask, future, timestamps = batch_inputs(batch, device)
         metric = trajectory_metrics(
             model(history, mask, timestamps)["prediction"], future, mask
         )
-        ade += float(metric["scene_ade"].sum())
-        fde += float(metric["scene_fde"].sum())
-        scenes += len(history)
-    ade, fde = ade / scenes, fde / scenes
-    return {
-        "ADE": ade,
-        "FDE": fde,
-        "selection_score": ade + 0.5 * fde,
-        "scenes": scenes,
+        a, f = metric["scene_ade"].cpu(), metric["scene_fde"].cpu()
+        ade += float(a.sum())
+        fde += float(f.sum())
+        samples += len(history)
+        if "target_mask" in batch:
+            target_views = True
+            for sc, frame, av, fv in zip(
+                batch["scene_id"].tolist(), batch["start_frame"].tolist(),
+                a.tolist(), f.tolist(),
+            ):
+                value = origins.setdefault((int(sc), int(frame)), [0.0, 0.0, 0])
+                value[0] += av
+                value[1] += fv
+                value[2] += 1
+    if not samples:
+        raise ValueError("Validation subset is empty")
+    target_ade, target_fde = ade / samples, fde / samples
+    if target_views:
+        ade = sum(a / n for a, _, n in origins.values()) / len(origins)
+        fde = sum(f / n for _, f, n in origins.values()) / len(origins)
+    else:
+        ade, fde = target_ade, target_fde
+    result = {
+        "ADE": ade, "FDE": fde, "selection_score": ade + 0.5 * fde,
+        "scenes": len(origins) if target_views else samples,
+        "metric_unit": "origin_macro" if target_views else "legacy_window_macro",
+        "samples": samples,
     }
+    if target_views:
+        result.update(target_ADE=target_ade, target_FDE=target_fde, targets=samples)
+    return result
 
 
 def main():
@@ -84,6 +119,8 @@ def main():
     parser.add_argument(
         "--model", choices=("llm", "lstm", "transformer", "tcn"), default="llm"
     )
+    parser.add_argument("--dataset", choices=("legacy", "target"), default="target")
+    parser.add_argument("--self-frame", choices=("legacy", "ego_v1"), default="ego_v1")
     parser.add_argument("--seed", type=int, default=2026)
     parser.add_argument("--snr", type=float, default=0.0)
     parser.add_argument("--epochs", type=int, default=20)
@@ -98,16 +135,57 @@ def main():
     parser.add_argument("--save-steps", type=int, default=100)
     args = parser.parse_args()
 
+    if args.epochs < 1 or args.batch_size < 1 or args.save_steps < 1:
+        parser.error("epochs, batch-size, and save-steps must be positive")
+    if args.max_seconds <= 0 or args.token_weight < 0:
+        parser.error("max-seconds must be positive and token-weight nonnegative")
+    for limit in (args.train_limit, args.val_limit):
+        if limit is not None and limit < 1:
+            parser.error("subset limits must be positive")
+    if args.dataset == "target" and args.snr != 0.0:
+        parser.error("target_views_v1 currently freezes 0 dB only")
     torch.set_num_threads(4)
     seed_all(args.seed)
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     run_dir = ROOT / args.run_dir
     run_dir.mkdir(parents=True, exist_ok=True)
-    if (run_dir / "last.pt").exists() and not args.resume:
+    # The supported server is Linux. Keep one writer per experiment directory.
+    import fcntl
+    run_lock = (run_dir / ".run.lock").open("a+")
+    try:
+        fcntl.flock(run_lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except BlockingIOError as error:
+        raise RuntimeError(f"Another process owns this run: {run_dir}") from error
+    run_lock.seek(0)
+    run_lock.truncate()
+    run_lock.write(str(os.getpid()) + "\n")
+    run_lock.flush()
+    stop_requested = False
+
+    def request_stop(signum, frame):
+        nonlocal stop_requested
+        stop_requested = True
+
+    signal.signal(signal.SIGINT, request_stop)
+    signal.signal(signal.SIGTERM, request_stop)
+    if args.resume and not (run_dir / "last.pt").is_file():
+        raise FileNotFoundError(
+            "Initialization did not reach a checkpoint. Preserve this directory "
+            "and select a new --run-dir; no resumable optimizer state exists."
+        )
+    if any((run_dir / name).exists() for name in ("config.json", "best.pt", "last.pt")) and not args.resume:
         raise FileExistsError("Use --resume or a new run directory")
 
     source_files = list((ROOT / "prediction/qgnn_raj_pennylane").glob("*.py"))
-    source_files += [Path(__file__), ROOT / "configs/qgnn_final_tokens.json"]
+    source_files += [Path(__file__), ROOT / "configs/qgnn_final_tokens.json",
+                     ROOT / "prediction/q0/metrics.py",
+                     ROOT / "prediction/q0/motion_token_llm.py",
+                     ROOT / "prediction/qgnn_final/model.py"]
+    if args.dataset == "target":
+        source_files += [ROOT / "frontend/sind_target_dataset.py",
+                         ROOT / "configs/sind_target_prediction.json"]
+    else:
+        source_files += [ROOT / "frontend/sind_prediction_dataset.py"]
     source_hashes = {
         str(path.relative_to(ROOT)): hashlib.sha256(path.read_bytes()).hexdigest()
         for path in source_files
@@ -122,13 +200,14 @@ def main():
         "cuda_visible_devices": os.environ.get("CUDA_VISIBLE_DEVICES"),
         "test_set_used": False,
         "checkpoint_selection": "minimum ADE + 0.5 * FDE",
+        "time_budget_scope": "per_invocation",
+        "metric_unit": "origin_macro" if args.dataset == "target" else "legacy_window_macro",
+        "supervision": "center_only" if args.dataset == "target" else "all_selected_vehicles",
+        "self_frame_applied": args.self_frame if args.model == "llm" else "not_applicable",
         "source_sha256": source_hashes,
     }
-    if not args.resume:
-        atomic_json(run_dir / "config.json", config)
-
     model = (
-        build_model(seed=args.seed, phase="self")
+        build_model(seed=args.seed, phase="self", self_frame=args.self_frame)
         if args.model == "llm"
         else build_self_baseline(args.model, seed=args.seed)
     ).to(device)
@@ -143,8 +222,20 @@ def main():
         optimizer, T_max=args.epochs, eta_min=args.lr * 0.08
     )
 
-    train_data = SinDPredictionDataset("train", args.snr, ROOT, True)
-    val_data = SinDPredictionDataset("val", args.snr, ROOT, True)
+    if args.dataset == "target":
+        from frontend.sind_target_dataset import SinDTargetPredictionDataset
+        dataset_class = SinDTargetPredictionDataset
+    else:
+        dataset_class = SinDPredictionDataset
+    train_data = dataset_class("train", args.snr, ROOT, True)
+    val_data = dataset_class("val", args.snr, ROOT, True)
+    if args.dataset == "target":
+        config["data_manifest"] = {
+            split: json.loads((ROOT / "data/sind/target_views_v1" / split / "manifest.json").read_text())
+            for split in ("train", "val")
+        }
+    if not args.resume:
+        atomic_json(run_dir / "config.json", config)
     train_ids = subset_indices(len(train_data), args.train_limit, args.seed)
     val_ids = subset_indices(len(val_data), args.val_limit, args.seed + 1)
     train_data = Subset(train_data, train_ids.tolist())
@@ -169,10 +260,13 @@ def main():
             raise ValueError("Resume source hash mismatch")
         for key in (
             "model", "seed", "snr", "epochs", "batch_size", "lr", "token_weight",
-            "train_limit", "val_limit",
+            "train_limit", "val_limit", "dataset", "self_frame",
         ):
             if saved["config"][key] != vars(args)[key]:
                 raise ValueError(f"Resume config mismatch: {key}")
+        saved_run_config = json.loads((run_dir / "config.json").read_text())
+        if saved_run_config.get("data_manifest") != config.get("data_manifest"):
+            raise ValueError("Resume data manifest mismatch")
         missing, unexpected = model.load_state_dict(saved["model_state"], strict=False)
         disallowed = [
             name for name in missing
@@ -244,10 +338,18 @@ def main():
                 "validation_samples": len(val_data),
                 "trainable_parameters": sum(p.numel() for _, p in trainable),
                 "test_set_used": False,
+                "dataset": args.dataset,
+                "self_frame": config["self_frame_applied"],
+                "metric_unit": config["metric_unit"],
+                "supervision": config["supervision"],
+                "completed_data_passes": sum(row["epoch"] > 0 for row in records),
             },
         )
 
-    if not args.resume:
+    if not records:
+        # Save before the first validation/optimizer update, including epoch-0
+        # RNG state. A stopped initialization can safely resume the same model.
+        checkpoint(1, 0)
         initial = evaluate(model, val_loader, device)
         best = {"epoch": 0, **initial}
         records.append({"epoch": 0, "train_loss": None, "validation": initial})
@@ -256,8 +358,12 @@ def main():
             run_dir / "best.pt",
         )
         atomic_json(run_dir / "training.json", records)
+        checkpoint(1, 0)
         print("EPOCH0 " + json.dumps(records[0]), flush=True)
     summary("RUNNING")
+    if stop_requested:
+        summary("PAUSED_SIGNAL")
+        return
     for epoch in range(start_epoch, args.epochs + 1):
         order = torch.randperm(
             len(train_data), generator=torch.Generator().manual_seed(args.seed + 1009 * epoch)
@@ -274,21 +380,38 @@ def main():
         loss_sum = resumed_loss if epoch == start_epoch else 0.0
         seen = resumed_seen if epoch == start_epoch else 0
         model.train()
-        for step, batch in enumerate(loader, start=skip):
-            history = batch["history_state"].to(device, non_blocking=True)
-            mask = batch["vehicle_mask"].to(device, non_blocking=True)
-            future = batch["future_state"].to(device, non_blocking=True)
-            timestamps = batch["history_timestamp"].to(device, non_blocking=True)
+        # A replacement mid-epoch iterator draws a CPU base seed even with
+        # num_workers=0. Cancel that extra draw so dropout resumes exactly.
+        iterator_rng = torch.get_rng_state() if skip else None
+        iterator = iter(loader)
+        if iterator_rng is not None:
+            torch.set_rng_state(iterator_rng)
+        for step, batch in enumerate(iterator, start=skip):
+            history, mask, future, timestamps = batch_inputs(batch, device)
             optimizer.zero_grad(set_to_none=True)
             output = model(history, mask, timestamps)
             coordinate = trajectory_metrics(output["prediction"], future, mask)
-            loss = coordinate["loss"]
+            weights = batch.get("target_weight")
+            if weights is None:
+                loss = coordinate["loss"]
+            else:
+                weights = weights.to(device, dtype=history.dtype)
+                if not torch.isfinite(weights).all() or torch.any(weights <= 0):
+                    raise ValueError("Invalid target-to-origin loss weights")
+                loss = ((coordinate["scene_ade"] + 0.5 * coordinate["scene_fde"]) * weights).mean()
             if args.model == "llm":
-                tokens = token_loss(
-                    output["token_logits"],
-                    model.llm.future_token_ids(history, future),
-                    mask,
-                )
+                targets = model.llm.future_token_ids(history, future)
+                if weights is None:
+                    tokens = token_loss(output["token_logits"], targets, mask)
+                else:
+                    logits = output["token_logits"]
+                    ce = torch.nn.functional.cross_entropy(
+                        logits.reshape(-1, logits.shape[-1]), targets.reshape(-1),
+                        reduction="none",
+                    ).reshape_as(targets)
+                    valid = mask[:, None, :].expand_as(targets)
+                    per_sample = (ce * valid).sum((1, 2)) / valid.sum((1, 2))
+                    tokens = (per_sample * weights).mean()
                 loss = loss + args.token_weight * tokens
             if not torch.isfinite(loss):
                 raise FloatingPointError("Nonfinite training loss")
@@ -304,10 +427,11 @@ def main():
             seen += len(history)
             if global_step % args.save_steps == 0:
                 checkpoint(epoch, step + 1, loss_sum, seen)
-            if elapsed() > args.max_seconds:
+            if stop_requested or time.perf_counter() - started > args.max_seconds:
                 checkpoint(epoch, step + 1, loss_sum, seen)
-                summary("PAUSED_BUDGET")
-                print("PAUSED_BUDGET", flush=True)
+                status = "PAUSED_SIGNAL" if stop_requested else "PAUSED_BUDGET"
+                summary(status)
+                print(status, flush=True)
                 return
 
         scheduler.step()

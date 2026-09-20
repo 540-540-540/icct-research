@@ -18,8 +18,12 @@ class RajResidualLLM(nn.Module):
         readout_dim: int = 64,
         correction_cap_m: float = 16.0,
         query_dim: int = 32,
+        self_frame: str = "legacy",
     ):
         super().__init__()
+        if self_frame not in {"legacy", "ego_v1"}:
+            raise ValueError(f"Unknown Self coordinate interface: {self_frame}")
+        self.self_frame = self_frame
         root = Path(__file__).resolve().parents[2]
         payload = json.loads((root / "configs/qgnn_final_tokens.json").read_text())
         self.base = FinalMotionGPT2(payload, correction_cap_m)
@@ -65,6 +69,11 @@ class RajResidualLLM(nn.Module):
         nn.init.zeros_(self.interaction_gate[-1].weight)
         nn.init.constant_(self.interaction_gate[-1].bias, -2.0)
 
+        # Register no new parameters in legacy mode, so old checkpoints replay.
+        if self.self_frame == "ego_v1":
+            self.own_history_adapter = nn.Linear(4, d, bias=False)
+            nn.init.normal_(self.own_history_adapter.weight, std=0.01)
+
         self._base_default_trainable = {
             name: p.requires_grad for name, p in self.base.named_parameters()
         }
@@ -108,6 +117,8 @@ class RajResidualLLM(nn.Module):
         if phase not in {"self", "interaction", "joint"}:
             raise ValueError(phase)
         self.training_phase = phase
+        if self.self_frame == "ego_v1":
+            self.own_history_adapter.requires_grad_(phase == "self")
         if phase == "self":
             self._set_base_default()
             self.self_head.requires_grad_(True)
@@ -121,9 +132,49 @@ class RajResidualLLM(nn.Module):
             self.self_head.requires_grad_(False)
             self._set_interaction_trainable(True)
 
+    @staticmethod
+    def _ego_frame(history):
+        """One history-only direction per vehicle; columns rotate world to ego.
+
+        Prefer the latest usable velocity, including a pre-stop velocity. If
+        none reaches 0.2 m/s, use displacement, then any nonzero velocity.
+        A truly motionless history has no direction: keep a finite x-axis frame
+        and suppress its vector Self residual to preserve rotation equivariance.
+        """
+        velocity = history[..., 2:4]
+        displacement = torch.zeros_like(velocity)
+        displacement[:, 1:] = history[:, 1:, :2] - history[:, :-1, :2]
+
+        def latest(vector, threshold):
+            valid = torch.linalg.vector_norm(vector, dim=-1) >= threshold
+            steps = torch.arange(vector.shape[1], device=vector.device)[None]
+            index = torch.where(valid, steps, -1).max(dim=1).values
+            selected = vector[torch.arange(len(vector), device=vector.device), index.clamp_min(0)]
+            return selected, index >= 0
+
+        direction, usable = latest(velocity, 0.2)
+        for vector in (displacement, velocity):
+            fallback, available = latest(vector, 1e-4)
+            direction = torch.where((~usable & available)[:, None], fallback, direction)
+            usable = usable | available
+        default = torch.zeros_like(direction)
+        default[:, 0] = 1.0
+        direction = torch.where(usable[:, None], direction, default)
+        direction = direction / torch.linalg.vector_norm(direction, dim=-1, keepdim=True).clamp_min(1e-4)
+        lateral = torch.stack((-direction[:, 1], direction[:, 0]), -1)
+        return torch.stack((direction, lateral), -1), usable
+
     def _self_motion(self, history):
         motion, _ = self.base._history_motion_embeddings(history)
         history_tokens = motion + self.base.history_adapter(motion)
+        if self.self_frame == "ego_v1":
+            frame, has_direction = self._ego_frame(history)
+            position = (history[..., :2] - history[:, -1:, :2]) @ frame
+            velocity = history[..., 2:4] @ frame
+            # Continuous own states aligned to the 19 displacement tokens;
+            # their fixed units retain speed magnitude as well as turn history.
+            own_state = torch.cat((position / 10.0, velocity / 10.0), -1)
+            history_tokens = history_tokens + self.own_history_adapter(own_state[:, 1:])
         sequence = torch.cat(
             (
                 history_tokens,
@@ -141,9 +192,14 @@ class RajResidualLLM(nn.Module):
         expected_motion = torch.stack((ef, el), -1)
         raw = self.self_head(torch.cat((hidden, expected_motion), -1))
         correction = torch.tanh(raw) * self.correction_cap_m
+        if self.self_frame == "ego_v1":
+            correction = correction @ frame.transpose(-1, -2)
+            correction = correction * has_direction[:, None, None]
         return hidden, token_logits, expected_motion, correction
 
     def _interaction(self, hidden, readout, interaction_mask):
+        # The unchanged graph interface predicts a GLOBAL x/y residual in both
+        # modes; only the ego_v1 Self head is rotated back from its local frame.
         graph = self.interaction_projection(readout)[:, None]
         future = self.future_projection(hidden)
         fused = torch.nn.functional.gelu(
@@ -200,7 +256,7 @@ class RajResidualLLM(nn.Module):
         return sum(
             parameter.numel()
             for name, parameter in self.named_parameters()
-            if not name.startswith(("base.", "self_head."))
+            if not name.startswith(("base.", "self_head.", "own_history_adapter."))
         )
 
     @staticmethod

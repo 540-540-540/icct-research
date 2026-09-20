@@ -1,0 +1,1050 @@
+{
+  "base_commit": "df435d94d6bf04aa49718eb312b737dc33e1006f",
+  "test_used": false,
+  "formal_training_started": false,
+  "resume": {
+    "maximum_parameter_difference": 0.0,
+    "records_equal": true,
+    "steps": 8
+  },
+  "signal": {
+    "status": "PAUSED_SIGNAL",
+    "global_step": 0,
+    "exit_code": 0
+  },
+  "exclusive_run_lock": true,
+  "metric_aggregation_synthetic": {
+    "origin_ADE": 6,
+    "target_ADE": 4.666666666666667,
+    "passed": true
+  },
+  "data": {
+    "train": {
+      "revision": "SIND-TARGET-VIEWS-V1-FIXED-ORIGIN",
+      "status": "COMPLETE",
+      "split": "train",
+      "test_used": false,
+      "source_identity": {
+        "data/sind/splits/train/samples.npz": {
+          "bytes": 84385546,
+          "mtime_ns": 1789745116296944235
+        },
+        "data/sind/splits/train/trajectories.csv": {
+          "bytes": 42687752,
+          "mtime_ns": 1789745116099932237
+        },
+        "data/sind/isac/train/sensing_cache.npz": {
+          "bytes": 29028335,
+          "mtime_ns": 1789744889240013256
+        },
+        "configs/sind_controlled_isac.json": {
+          "bytes": 3070,
+          "mtime_ns": 1789750055437386234
+        }
+      },
+      "snr_db": 0.0,
+      "history_length": 20,
+      "prediction_length": 20,
+      "max_vehicles": 8,
+      "selection": "GT last-history-state ranking; inherited fixed accepted origins; source smoothing not proven online causal",
+      "context_eligibility": "20 complete historical frames, independent of future availability",
+      "target_eligibility": "20 historical plus 20 future frames within this existing guarded split",
+      "target_slot": 0,
+      "label_slots": [
+        0
+      ],
+      "origins": 15802,
+      "targets": 319855,
+      "context_windows": 342360,
+      "historical_only_neighbor_occurrences": 35388,
+      "target_unique": true,
+      "all_eligible_targets_covered": true,
+      "unique_history_states": 373204,
+      "cache_reused_states": 228553,
+      "cache_generated_states": 144651,
+      "cache_coverage": 1.0,
+      "gt_pool_rows": 390025,
+      "metric_primary": "origin-macro over each origin's unique target predictions",
+      "metric_secondary": "target-window-macro",
+      "build_seconds": 63.83323188312352,
+      "output_bytes": {
+        "views.npz": 77463716,
+        "state_pool.npz": 21506754
+      },
+      "validation": {
+        "split": "train",
+        "targets": 319855,
+        "origins": 15802,
+        "unique_history_states": 373204,
+        "cache_reuse_exact": 228553,
+        "frozen_current_sensing_parity": {
+          "checked": 128,
+          "max_abs_difference": 0.0,
+          "bitwise_equal": true
+        },
+        "all_target_keys_complete_unique": true,
+        "history_and_future_keys_valid": true,
+        "test_used": false
+      }
+    },
+    "val": {
+      "revision": "SIND-TARGET-VIEWS-V1-FIXED-ORIGIN",
+      "status": "COMPLETE",
+      "split": "val",
+      "test_used": false,
+      "source_identity": {
+        "data/sind/splits/val/samples.npz": {
+          "bytes": 10042066,
+          "mtime_ns": 1789745119415133635
+        },
+        "data/sind/splits/val/trajectories.csv": {
+          "bytes": 4644271,
+          "mtime_ns": 1789745119363130486
+        },
+        "data/sind/isac/val/sensing_cache.npz": {
+          "bytes": 3128844,
+          "mtime_ns": 1789744891863283030
+        },
+        "configs/sind_controlled_isac.json": {
+          "bytes": 3070,
+          "mtime_ns": 1789750055437386234
+        }
+      },
+      "snr_db": 0.0,
+      "history_length": 20,
+      "prediction_length": 20,
+      "max_vehicles": 8,
+      "selection": "GT last-history-state ranking; inherited fixed accepted origins; source smoothing not proven online causal",
+      "context_eligibility": "20 complete historical frames, independent of future availability",
+      "target_eligibility": "20 historical plus 20 future frames within this existing guarded split",
+      "target_slot": 0,
+      "label_slots": [
+        0
+      ],
+      "origins": 1880,
+      "targets": 31211,
+      "context_windows": 33739,
+      "historical_only_neighbor_occurrences": 4879,
+      "target_unique": true,
+      "all_eligible_targets_covered": true,
+      "unique_history_states": 37389,
+      "cache_reused_states": 24620,
+      "cache_generated_states": 12769,
+      "cache_coverage": 1.0,
+      "gt_pool_rows": 41760,
+      "metric_primary": "origin-macro over each origin's unique target predictions",
+      "metric_secondary": "target-window-macro",
+      "build_seconds": 5.9136006608605385,
+      "output_bytes": {
+        "views.npz": 7646218,
+        "state_pool.npz": 2252914
+      },
+      "validation": {
+        "split": "val",
+        "targets": 31211,
+        "origins": 1880,
+        "unique_history_states": 37389,
+        "cache_reuse_exact": 24620,
+        "frozen_current_sensing_parity": {
+          "checked": 128,
+          "max_abs_difference": 0.0,
+          "bitwise_equal": true
+        },
+        "all_target_keys_complete_unique": true,
+        "history_and_future_keys_valid": true,
+        "test_used": false
+      }
+    }
+  },
+  "smokes": {
+    "legacy_llm_smoke": {
+      "summary": {
+        "status": "COMPLETED",
+        "model": "llm",
+        "selected_checkpoint": {
+          "epoch": 0,
+          "ADE": 0.770793080329895,
+          "FDE": 1.645488291978836,
+          "selection_score": 1.593537226319313,
+          "scenes": 16,
+          "metric_unit": "legacy_window_macro",
+          "samples": 16
+        },
+        "selection_rule": "minimum ADE + 0.5 * FDE",
+        "initial_validation": {
+          "ADE": 0.770793080329895,
+          "FDE": 1.645488291978836,
+          "selection_score": 1.593537226319313,
+          "scenes": 16,
+          "metric_unit": "legacy_window_macro",
+          "samples": 16
+        },
+        "epochs_completed": 1,
+        "global_step": 4,
+        "elapsed_seconds": 0.9075136426836252,
+        "train_samples": 16,
+        "validation_samples": 16,
+        "trainable_parameters": 4087191,
+        "test_set_used": false,
+        "dataset": "legacy",
+        "self_frame": "ego_v1",
+        "metric_unit": "legacy_window_macro",
+        "supervision": "all_selected_vehicles",
+        "completed_data_passes": 1
+      },
+      "config": {
+        "model": "llm",
+        "dataset": "legacy",
+        "self_frame": "ego_v1",
+        "seed": 2026,
+        "snr": 0.0,
+        "epochs": 1,
+        "batch_size": 4,
+        "lr": 0.0003,
+        "token_weight": 0.035,
+        "train_limit": 16,
+        "val_limit": 16,
+        "run_dir": ".codex-work/sind-self-repair-20260920/legacy_llm_smoke",
+        "resume": false,
+        "max_seconds": 120.0,
+        "save_steps": 4,
+        "phase": "self",
+        "device": "cuda:0",
+        "git_head": "df435d94d6bf04aa49718eb312b737dc33e1006f",
+        "cuda_visible_devices": "0",
+        "test_set_used": false,
+        "checkpoint_selection": "minimum ADE + 0.5 * FDE",
+        "metric_unit": "legacy_window_macro",
+        "supervision": "all_selected_vehicles",
+        "self_frame_applied": "ego_v1",
+        "source_sha256": {
+          "prediction/qgnn_raj_pennylane/self_baselines.py": "4a74789aa9e6485103ab151c046dc97e2b526da39036088f32ee0e1cf3d95f57",
+          "prediction/qgnn_raj_pennylane/quantum.py": "5c92a0d3fd84eff2b131d5bfddbef8fbfac1837c5bf9319864d500ef7b6d05f8",
+          "prediction/qgnn_raj_pennylane/model.py": "0657b7284ff282cc5707644c7f45b5b72c31e7be39a2c018f13f1e2ca44eb9bd",
+          "prediction/qgnn_raj_pennylane/torch_reference.py": "966aa46f02c65bfbd8584be7ea7efb5926dc046d365f37b38610fd262fad2acb",
+          "prediction/qgnn_raj_pennylane/common.py": "2da7d6b18f345e06009c049c1b6f85517e7e1d2e6cd10067b6c65ceebf0cdb91",
+          "prediction/qgnn_raj_pennylane/residual.py": "f51cc22e721b9cad221efbcb623ba04f19ec77f6367defc4c79214beae00ace5",
+          "prediction/qgnn_raj_pennylane/__init__.py": "c7328614263f6af058f9433fb1f4689da9283dec8d5fbff36fe9268bbcaace65",
+          "prediction/qgnn_raj_pennylane/observables.py": "1c61335e3ca7062beb6d9ba04eeb5f9b32c4b02164923358174292b15a88c826",
+          "prediction/qgnn_raj_pennylane/classical.py": "4304e9abbdaacddeb7724d058d4e5e6ecbd0d8bd7fc472534dc0bd6b03039783",
+          "scripts/train_raj_residual_self.py": "db19eb05428d02f37eb68908271a6d299b6f3485d04eb5fd0ed12ded1a16343f",
+          "configs/qgnn_final_tokens.json": "560a0fde9d8ea736b9dbe4fe709c76f5c63f16792a0a3c6cbe97d439b735361f",
+          "prediction/q0/metrics.py": "3f44873ea06a01baa69756c1e8106cfd04d5c84bd670b399c147c795054f50a7",
+          "prediction/q0/motion_token_llm.py": "536542276e4578bcff3688ba8782500807ea0458603187eb5b87cbe5ef4938f7",
+          "prediction/qgnn_final/model.py": "c062c42b7670d6457740c58ce10c9a400feba2fd8d18adf4baabd27ae8b3a3bf",
+          "frontend/sind_prediction_dataset.py": "6c3dd34a381eb1d69fa096d8b4d1f8c1202c5beaf18f44cb3165693c203c8fcb"
+        }
+      }
+    },
+    "target_llm_final": {
+      "summary": {
+        "status": "COMPLETED",
+        "model": "llm",
+        "selected_checkpoint": {
+          "epoch": 2,
+          "ADE": 0.7400032414187645,
+          "FDE": 1.5224592024460435,
+          "selection_score": 1.5012328426417862,
+          "scenes": 232,
+          "metric_unit": "origin_macro",
+          "samples": 256,
+          "target_ADE": 0.7360824346542358,
+          "target_FDE": 1.510453462600708,
+          "targets": 256
+        },
+        "selection_rule": "minimum ADE + 0.5 * FDE",
+        "initial_validation": {
+          "ADE": 0.7578633010371363,
+          "FDE": 1.566890605364059,
+          "selection_score": 1.5413086037191657,
+          "scenes": 232,
+          "metric_unit": "origin_macro",
+          "samples": 256,
+          "target_ADE": 0.751740574836731,
+          "target_FDE": 1.549527645111084,
+          "targets": 256
+        },
+        "epochs_completed": 2,
+        "global_step": 8,
+        "elapsed_seconds": 2.112067449837923,
+        "train_samples": 1024,
+        "validation_samples": 256,
+        "trainable_parameters": 4087191,
+        "test_set_used": false,
+        "dataset": "target",
+        "self_frame": "ego_v1",
+        "metric_unit": "origin_macro",
+        "supervision": "center_only",
+        "completed_data_passes": 2
+      },
+      "config": {
+        "model": "llm",
+        "dataset": "target",
+        "self_frame": "ego_v1",
+        "seed": 2026,
+        "snr": 0.0,
+        "epochs": 2,
+        "batch_size": 256,
+        "lr": 0.0003,
+        "token_weight": 0.035,
+        "train_limit": 1024,
+        "val_limit": 256,
+        "run_dir": ".codex-work/sind-self-repair-20260920/target_llm_final",
+        "resume": false,
+        "max_seconds": 120.0,
+        "save_steps": 4,
+        "phase": "self",
+        "device": "cuda:0",
+        "git_head": "df435d94d6bf04aa49718eb312b737dc33e1006f",
+        "cuda_visible_devices": "0",
+        "test_set_used": false,
+        "checkpoint_selection": "minimum ADE + 0.5 * FDE",
+        "time_budget_scope": "per_invocation",
+        "metric_unit": "origin_macro",
+        "supervision": "center_only",
+        "self_frame_applied": "ego_v1",
+        "source_sha256": {
+          "prediction/qgnn_raj_pennylane/self_baselines.py": "4a74789aa9e6485103ab151c046dc97e2b526da39036088f32ee0e1cf3d95f57",
+          "prediction/qgnn_raj_pennylane/quantum.py": "5c92a0d3fd84eff2b131d5bfddbef8fbfac1837c5bf9319864d500ef7b6d05f8",
+          "prediction/qgnn_raj_pennylane/model.py": "0657b7284ff282cc5707644c7f45b5b72c31e7be39a2c018f13f1e2ca44eb9bd",
+          "prediction/qgnn_raj_pennylane/torch_reference.py": "966aa46f02c65bfbd8584be7ea7efb5926dc046d365f37b38610fd262fad2acb",
+          "prediction/qgnn_raj_pennylane/common.py": "2da7d6b18f345e06009c049c1b6f85517e7e1d2e6cd10067b6c65ceebf0cdb91",
+          "prediction/qgnn_raj_pennylane/residual.py": "f51cc22e721b9cad221efbcb623ba04f19ec77f6367defc4c79214beae00ace5",
+          "prediction/qgnn_raj_pennylane/__init__.py": "c7328614263f6af058f9433fb1f4689da9283dec8d5fbff36fe9268bbcaace65",
+          "prediction/qgnn_raj_pennylane/observables.py": "1c61335e3ca7062beb6d9ba04eeb5f9b32c4b02164923358174292b15a88c826",
+          "prediction/qgnn_raj_pennylane/classical.py": "4304e9abbdaacddeb7724d058d4e5e6ecbd0d8bd7fc472534dc0bd6b03039783",
+          "scripts/train_raj_residual_self.py": "f110cd713bc719e35bedd45dfddf54be7a51a5aee12cdd5a4b5d796a3e2f3a2d",
+          "configs/qgnn_final_tokens.json": "560a0fde9d8ea736b9dbe4fe709c76f5c63f16792a0a3c6cbe97d439b735361f",
+          "prediction/q0/metrics.py": "3f44873ea06a01baa69756c1e8106cfd04d5c84bd670b399c147c795054f50a7",
+          "prediction/q0/motion_token_llm.py": "536542276e4578bcff3688ba8782500807ea0458603187eb5b87cbe5ef4938f7",
+          "prediction/qgnn_final/model.py": "c062c42b7670d6457740c58ce10c9a400feba2fd8d18adf4baabd27ae8b3a3bf",
+          "frontend/sind_target_dataset.py": "00dadc9cbfbcc1f3941b7237aac7c0be8302c9e721002997357c44252a6f06be",
+          "configs/sind_target_prediction.json": "9145e8224434257311bd058b523d83a3cfa9b971ee971bd7831c4ba8a6d238c4"
+        },
+        "data_manifest": {
+          "train": {
+            "revision": "SIND-TARGET-VIEWS-V1-FIXED-ORIGIN",
+            "status": "COMPLETE",
+            "split": "train",
+            "test_used": false,
+            "source_identity": {
+              "data/sind/splits/train/samples.npz": {
+                "bytes": 84385546,
+                "mtime_ns": 1789745116296944235
+              },
+              "data/sind/splits/train/trajectories.csv": {
+                "bytes": 42687752,
+                "mtime_ns": 1789745116099932237
+              },
+              "data/sind/isac/train/sensing_cache.npz": {
+                "bytes": 29028335,
+                "mtime_ns": 1789744889240013256
+              },
+              "configs/sind_controlled_isac.json": {
+                "bytes": 3070,
+                "mtime_ns": 1789750055437386234
+              }
+            },
+            "snr_db": 0.0,
+            "history_length": 20,
+            "prediction_length": 20,
+            "max_vehicles": 8,
+            "selection": "GT last-history-state ranking; inherited fixed accepted origins; source smoothing not proven online causal",
+            "context_eligibility": "20 complete historical frames, independent of future availability",
+            "target_eligibility": "20 historical plus 20 future frames within this existing guarded split",
+            "target_slot": 0,
+            "label_slots": [
+              0
+            ],
+            "origins": 15802,
+            "targets": 319855,
+            "context_windows": 342360,
+            "historical_only_neighbor_occurrences": 35388,
+            "target_unique": true,
+            "all_eligible_targets_covered": true,
+            "unique_history_states": 373204,
+            "cache_reused_states": 228553,
+            "cache_generated_states": 144651,
+            "cache_coverage": 1.0,
+            "gt_pool_rows": 390025,
+            "metric_primary": "origin-macro over each origin's unique target predictions",
+            "metric_secondary": "target-window-macro",
+            "build_seconds": 63.83323188312352,
+            "output_bytes": {
+              "views.npz": 77463716,
+              "state_pool.npz": 21506754
+            }
+          },
+          "val": {
+            "revision": "SIND-TARGET-VIEWS-V1-FIXED-ORIGIN",
+            "status": "COMPLETE",
+            "split": "val",
+            "test_used": false,
+            "source_identity": {
+              "data/sind/splits/val/samples.npz": {
+                "bytes": 10042066,
+                "mtime_ns": 1789745119415133635
+              },
+              "data/sind/splits/val/trajectories.csv": {
+                "bytes": 4644271,
+                "mtime_ns": 1789745119363130486
+              },
+              "data/sind/isac/val/sensing_cache.npz": {
+                "bytes": 3128844,
+                "mtime_ns": 1789744891863283030
+              },
+              "configs/sind_controlled_isac.json": {
+                "bytes": 3070,
+                "mtime_ns": 1789750055437386234
+              }
+            },
+            "snr_db": 0.0,
+            "history_length": 20,
+            "prediction_length": 20,
+            "max_vehicles": 8,
+            "selection": "GT last-history-state ranking; inherited fixed accepted origins; source smoothing not proven online causal",
+            "context_eligibility": "20 complete historical frames, independent of future availability",
+            "target_eligibility": "20 historical plus 20 future frames within this existing guarded split",
+            "target_slot": 0,
+            "label_slots": [
+              0
+            ],
+            "origins": 1880,
+            "targets": 31211,
+            "context_windows": 33739,
+            "historical_only_neighbor_occurrences": 4879,
+            "target_unique": true,
+            "all_eligible_targets_covered": true,
+            "unique_history_states": 37389,
+            "cache_reused_states": 24620,
+            "cache_generated_states": 12769,
+            "cache_coverage": 1.0,
+            "gt_pool_rows": 41760,
+            "metric_primary": "origin-macro over each origin's unique target predictions",
+            "metric_secondary": "target-window-macro",
+            "build_seconds": 5.9136006608605385,
+            "output_bytes": {
+              "views.npz": 7646218,
+              "state_pool.npz": 2252914
+            }
+          }
+        }
+      }
+    },
+    "target_tcn_final": {
+      "summary": {
+        "status": "COMPLETED",
+        "model": "tcn",
+        "selected_checkpoint": {
+          "epoch": 2,
+          "ADE": 0.7505218576447203,
+          "FDE": 1.5477951246570667,
+          "selection_score": 1.5244194199732537,
+          "scenes": 232,
+          "metric_unit": "origin_macro",
+          "samples": 256,
+          "target_ADE": 0.745518684387207,
+          "target_FDE": 1.5317412614822388,
+          "targets": 256
+        },
+        "selection_rule": "minimum ADE + 0.5 * FDE",
+        "initial_validation": {
+          "ADE": 0.7578633010371363,
+          "FDE": 1.566890605364059,
+          "selection_score": 1.5413086037191657,
+          "scenes": 232,
+          "metric_unit": "origin_macro",
+          "samples": 256,
+          "target_ADE": 0.751740574836731,
+          "target_FDE": 1.549527645111084,
+          "targets": 256
+        },
+        "epochs_completed": 2,
+        "global_step": 8,
+        "elapsed_seconds": 1.0223956406116486,
+        "train_samples": 1024,
+        "validation_samples": 256,
+        "trainable_parameters": 932738,
+        "test_set_used": false,
+        "dataset": "target",
+        "self_frame": "not_applicable",
+        "metric_unit": "origin_macro",
+        "supervision": "center_only",
+        "completed_data_passes": 2
+      },
+      "config": {
+        "model": "tcn",
+        "dataset": "target",
+        "self_frame": "ego_v1",
+        "seed": 2026,
+        "snr": 0.0,
+        "epochs": 2,
+        "batch_size": 256,
+        "lr": 0.0003,
+        "token_weight": 0.035,
+        "train_limit": 1024,
+        "val_limit": 256,
+        "run_dir": ".codex-work/sind-self-repair-20260920/target_tcn_final",
+        "resume": false,
+        "max_seconds": 120.0,
+        "save_steps": 4,
+        "phase": "self",
+        "device": "cuda:0",
+        "git_head": "df435d94d6bf04aa49718eb312b737dc33e1006f",
+        "cuda_visible_devices": "0",
+        "test_set_used": false,
+        "checkpoint_selection": "minimum ADE + 0.5 * FDE",
+        "time_budget_scope": "per_invocation",
+        "metric_unit": "origin_macro",
+        "supervision": "center_only",
+        "self_frame_applied": "not_applicable",
+        "source_sha256": {
+          "prediction/qgnn_raj_pennylane/self_baselines.py": "4a74789aa9e6485103ab151c046dc97e2b526da39036088f32ee0e1cf3d95f57",
+          "prediction/qgnn_raj_pennylane/quantum.py": "5c92a0d3fd84eff2b131d5bfddbef8fbfac1837c5bf9319864d500ef7b6d05f8",
+          "prediction/qgnn_raj_pennylane/model.py": "0657b7284ff282cc5707644c7f45b5b72c31e7be39a2c018f13f1e2ca44eb9bd",
+          "prediction/qgnn_raj_pennylane/torch_reference.py": "966aa46f02c65bfbd8584be7ea7efb5926dc046d365f37b38610fd262fad2acb",
+          "prediction/qgnn_raj_pennylane/common.py": "2da7d6b18f345e06009c049c1b6f85517e7e1d2e6cd10067b6c65ceebf0cdb91",
+          "prediction/qgnn_raj_pennylane/residual.py": "f51cc22e721b9cad221efbcb623ba04f19ec77f6367defc4c79214beae00ace5",
+          "prediction/qgnn_raj_pennylane/__init__.py": "c7328614263f6af058f9433fb1f4689da9283dec8d5fbff36fe9268bbcaace65",
+          "prediction/qgnn_raj_pennylane/observables.py": "1c61335e3ca7062beb6d9ba04eeb5f9b32c4b02164923358174292b15a88c826",
+          "prediction/qgnn_raj_pennylane/classical.py": "4304e9abbdaacddeb7724d058d4e5e6ecbd0d8bd7fc472534dc0bd6b03039783",
+          "scripts/train_raj_residual_self.py": "f110cd713bc719e35bedd45dfddf54be7a51a5aee12cdd5a4b5d796a3e2f3a2d",
+          "configs/qgnn_final_tokens.json": "560a0fde9d8ea736b9dbe4fe709c76f5c63f16792a0a3c6cbe97d439b735361f",
+          "prediction/q0/metrics.py": "3f44873ea06a01baa69756c1e8106cfd04d5c84bd670b399c147c795054f50a7",
+          "prediction/q0/motion_token_llm.py": "536542276e4578bcff3688ba8782500807ea0458603187eb5b87cbe5ef4938f7",
+          "prediction/qgnn_final/model.py": "c062c42b7670d6457740c58ce10c9a400feba2fd8d18adf4baabd27ae8b3a3bf",
+          "frontend/sind_target_dataset.py": "00dadc9cbfbcc1f3941b7237aac7c0be8302c9e721002997357c44252a6f06be",
+          "configs/sind_target_prediction.json": "9145e8224434257311bd058b523d83a3cfa9b971ee971bd7831c4ba8a6d238c4"
+        },
+        "data_manifest": {
+          "train": {
+            "revision": "SIND-TARGET-VIEWS-V1-FIXED-ORIGIN",
+            "status": "COMPLETE",
+            "split": "train",
+            "test_used": false,
+            "source_identity": {
+              "data/sind/splits/train/samples.npz": {
+                "bytes": 84385546,
+                "mtime_ns": 1789745116296944235
+              },
+              "data/sind/splits/train/trajectories.csv": {
+                "bytes": 42687752,
+                "mtime_ns": 1789745116099932237
+              },
+              "data/sind/isac/train/sensing_cache.npz": {
+                "bytes": 29028335,
+                "mtime_ns": 1789744889240013256
+              },
+              "configs/sind_controlled_isac.json": {
+                "bytes": 3070,
+                "mtime_ns": 1789750055437386234
+              }
+            },
+            "snr_db": 0.0,
+            "history_length": 20,
+            "prediction_length": 20,
+            "max_vehicles": 8,
+            "selection": "GT last-history-state ranking; inherited fixed accepted origins; source smoothing not proven online causal",
+            "context_eligibility": "20 complete historical frames, independent of future availability",
+            "target_eligibility": "20 historical plus 20 future frames within this existing guarded split",
+            "target_slot": 0,
+            "label_slots": [
+              0
+            ],
+            "origins": 15802,
+            "targets": 319855,
+            "context_windows": 342360,
+            "historical_only_neighbor_occurrences": 35388,
+            "target_unique": true,
+            "all_eligible_targets_covered": true,
+            "unique_history_states": 373204,
+            "cache_reused_states": 228553,
+            "cache_generated_states": 144651,
+            "cache_coverage": 1.0,
+            "gt_pool_rows": 390025,
+            "metric_primary": "origin-macro over each origin's unique target predictions",
+            "metric_secondary": "target-window-macro",
+            "build_seconds": 63.83323188312352,
+            "output_bytes": {
+              "views.npz": 77463716,
+              "state_pool.npz": 21506754
+            }
+          },
+          "val": {
+            "revision": "SIND-TARGET-VIEWS-V1-FIXED-ORIGIN",
+            "status": "COMPLETE",
+            "split": "val",
+            "test_used": false,
+            "source_identity": {
+              "data/sind/splits/val/samples.npz": {
+                "bytes": 10042066,
+                "mtime_ns": 1789745119415133635
+              },
+              "data/sind/splits/val/trajectories.csv": {
+                "bytes": 4644271,
+                "mtime_ns": 1789745119363130486
+              },
+              "data/sind/isac/val/sensing_cache.npz": {
+                "bytes": 3128844,
+                "mtime_ns": 1789744891863283030
+              },
+              "configs/sind_controlled_isac.json": {
+                "bytes": 3070,
+                "mtime_ns": 1789750055437386234
+              }
+            },
+            "snr_db": 0.0,
+            "history_length": 20,
+            "prediction_length": 20,
+            "max_vehicles": 8,
+            "selection": "GT last-history-state ranking; inherited fixed accepted origins; source smoothing not proven online causal",
+            "context_eligibility": "20 complete historical frames, independent of future availability",
+            "target_eligibility": "20 historical plus 20 future frames within this existing guarded split",
+            "target_slot": 0,
+            "label_slots": [
+              0
+            ],
+            "origins": 1880,
+            "targets": 31211,
+            "context_windows": 33739,
+            "historical_only_neighbor_occurrences": 4879,
+            "target_unique": true,
+            "all_eligible_targets_covered": true,
+            "unique_history_states": 37389,
+            "cache_reused_states": 24620,
+            "cache_generated_states": 12769,
+            "cache_coverage": 1.0,
+            "gt_pool_rows": 41760,
+            "metric_primary": "origin-macro over each origin's unique target predictions",
+            "metric_secondary": "target-window-macro",
+            "build_seconds": 5.9136006608605385,
+            "output_bytes": {
+              "views.npz": 7646218,
+              "state_pool.npz": 2252914
+            }
+          }
+        }
+      }
+    },
+    "target_lstm_final": {
+      "summary": {
+        "status": "COMPLETED",
+        "model": "lstm",
+        "selected_checkpoint": {
+          "epoch": 0,
+          "ADE": 0.7578633010371363,
+          "FDE": 1.566890605364059,
+          "selection_score": 1.5413086037191657,
+          "scenes": 232,
+          "metric_unit": "origin_macro",
+          "samples": 256,
+          "target_ADE": 0.751740574836731,
+          "target_FDE": 1.549527645111084,
+          "targets": 256
+        },
+        "selection_rule": "minimum ADE + 0.5 * FDE",
+        "initial_validation": {
+          "ADE": 0.7578633010371363,
+          "FDE": 1.566890605364059,
+          "selection_score": 1.5413086037191657,
+          "scenes": 232,
+          "metric_unit": "origin_macro",
+          "samples": 256,
+          "target_ADE": 0.751740574836731,
+          "target_FDE": 1.549527645111084,
+          "targets": 256
+        },
+        "epochs_completed": 2,
+        "global_step": 8,
+        "elapsed_seconds": 1.0409371629357338,
+        "train_samples": 1024,
+        "validation_samples": 256,
+        "trainable_parameters": 1191746,
+        "test_set_used": false,
+        "dataset": "target",
+        "self_frame": "not_applicable",
+        "metric_unit": "origin_macro",
+        "supervision": "center_only",
+        "completed_data_passes": 2
+      },
+      "config": {
+        "model": "lstm",
+        "dataset": "target",
+        "self_frame": "ego_v1",
+        "seed": 2026,
+        "snr": 0.0,
+        "epochs": 2,
+        "batch_size": 256,
+        "lr": 0.0003,
+        "token_weight": 0.035,
+        "train_limit": 1024,
+        "val_limit": 256,
+        "run_dir": ".codex-work/sind-self-repair-20260920/target_lstm_final",
+        "resume": false,
+        "max_seconds": 120.0,
+        "save_steps": 4,
+        "phase": "self",
+        "device": "cuda:0",
+        "git_head": "df435d94d6bf04aa49718eb312b737dc33e1006f",
+        "cuda_visible_devices": "0",
+        "test_set_used": false,
+        "checkpoint_selection": "minimum ADE + 0.5 * FDE",
+        "time_budget_scope": "per_invocation",
+        "metric_unit": "origin_macro",
+        "supervision": "center_only",
+        "self_frame_applied": "not_applicable",
+        "source_sha256": {
+          "prediction/qgnn_raj_pennylane/self_baselines.py": "4a74789aa9e6485103ab151c046dc97e2b526da39036088f32ee0e1cf3d95f57",
+          "prediction/qgnn_raj_pennylane/quantum.py": "5c92a0d3fd84eff2b131d5bfddbef8fbfac1837c5bf9319864d500ef7b6d05f8",
+          "prediction/qgnn_raj_pennylane/model.py": "0657b7284ff282cc5707644c7f45b5b72c31e7be39a2c018f13f1e2ca44eb9bd",
+          "prediction/qgnn_raj_pennylane/torch_reference.py": "966aa46f02c65bfbd8584be7ea7efb5926dc046d365f37b38610fd262fad2acb",
+          "prediction/qgnn_raj_pennylane/common.py": "2da7d6b18f345e06009c049c1b6f85517e7e1d2e6cd10067b6c65ceebf0cdb91",
+          "prediction/qgnn_raj_pennylane/residual.py": "f51cc22e721b9cad221efbcb623ba04f19ec77f6367defc4c79214beae00ace5",
+          "prediction/qgnn_raj_pennylane/__init__.py": "c7328614263f6af058f9433fb1f4689da9283dec8d5fbff36fe9268bbcaace65",
+          "prediction/qgnn_raj_pennylane/observables.py": "1c61335e3ca7062beb6d9ba04eeb5f9b32c4b02164923358174292b15a88c826",
+          "prediction/qgnn_raj_pennylane/classical.py": "4304e9abbdaacddeb7724d058d4e5e6ecbd0d8bd7fc472534dc0bd6b03039783",
+          "scripts/train_raj_residual_self.py": "f110cd713bc719e35bedd45dfddf54be7a51a5aee12cdd5a4b5d796a3e2f3a2d",
+          "configs/qgnn_final_tokens.json": "560a0fde9d8ea736b9dbe4fe709c76f5c63f16792a0a3c6cbe97d439b735361f",
+          "prediction/q0/metrics.py": "3f44873ea06a01baa69756c1e8106cfd04d5c84bd670b399c147c795054f50a7",
+          "prediction/q0/motion_token_llm.py": "536542276e4578bcff3688ba8782500807ea0458603187eb5b87cbe5ef4938f7",
+          "prediction/qgnn_final/model.py": "c062c42b7670d6457740c58ce10c9a400feba2fd8d18adf4baabd27ae8b3a3bf",
+          "frontend/sind_target_dataset.py": "00dadc9cbfbcc1f3941b7237aac7c0be8302c9e721002997357c44252a6f06be",
+          "configs/sind_target_prediction.json": "9145e8224434257311bd058b523d83a3cfa9b971ee971bd7831c4ba8a6d238c4"
+        },
+        "data_manifest": {
+          "train": {
+            "revision": "SIND-TARGET-VIEWS-V1-FIXED-ORIGIN",
+            "status": "COMPLETE",
+            "split": "train",
+            "test_used": false,
+            "source_identity": {
+              "data/sind/splits/train/samples.npz": {
+                "bytes": 84385546,
+                "mtime_ns": 1789745116296944235
+              },
+              "data/sind/splits/train/trajectories.csv": {
+                "bytes": 42687752,
+                "mtime_ns": 1789745116099932237
+              },
+              "data/sind/isac/train/sensing_cache.npz": {
+                "bytes": 29028335,
+                "mtime_ns": 1789744889240013256
+              },
+              "configs/sind_controlled_isac.json": {
+                "bytes": 3070,
+                "mtime_ns": 1789750055437386234
+              }
+            },
+            "snr_db": 0.0,
+            "history_length": 20,
+            "prediction_length": 20,
+            "max_vehicles": 8,
+            "selection": "GT last-history-state ranking; inherited fixed accepted origins; source smoothing not proven online causal",
+            "context_eligibility": "20 complete historical frames, independent of future availability",
+            "target_eligibility": "20 historical plus 20 future frames within this existing guarded split",
+            "target_slot": 0,
+            "label_slots": [
+              0
+            ],
+            "origins": 15802,
+            "targets": 319855,
+            "context_windows": 342360,
+            "historical_only_neighbor_occurrences": 35388,
+            "target_unique": true,
+            "all_eligible_targets_covered": true,
+            "unique_history_states": 373204,
+            "cache_reused_states": 228553,
+            "cache_generated_states": 144651,
+            "cache_coverage": 1.0,
+            "gt_pool_rows": 390025,
+            "metric_primary": "origin-macro over each origin's unique target predictions",
+            "metric_secondary": "target-window-macro",
+            "build_seconds": 63.83323188312352,
+            "output_bytes": {
+              "views.npz": 77463716,
+              "state_pool.npz": 21506754
+            }
+          },
+          "val": {
+            "revision": "SIND-TARGET-VIEWS-V1-FIXED-ORIGIN",
+            "status": "COMPLETE",
+            "split": "val",
+            "test_used": false,
+            "source_identity": {
+              "data/sind/splits/val/samples.npz": {
+                "bytes": 10042066,
+                "mtime_ns": 1789745119415133635
+              },
+              "data/sind/splits/val/trajectories.csv": {
+                "bytes": 4644271,
+                "mtime_ns": 1789745119363130486
+              },
+              "data/sind/isac/val/sensing_cache.npz": {
+                "bytes": 3128844,
+                "mtime_ns": 1789744891863283030
+              },
+              "configs/sind_controlled_isac.json": {
+                "bytes": 3070,
+                "mtime_ns": 1789750055437386234
+              }
+            },
+            "snr_db": 0.0,
+            "history_length": 20,
+            "prediction_length": 20,
+            "max_vehicles": 8,
+            "selection": "GT last-history-state ranking; inherited fixed accepted origins; source smoothing not proven online causal",
+            "context_eligibility": "20 complete historical frames, independent of future availability",
+            "target_eligibility": "20 historical plus 20 future frames within this existing guarded split",
+            "target_slot": 0,
+            "label_slots": [
+              0
+            ],
+            "origins": 1880,
+            "targets": 31211,
+            "context_windows": 33739,
+            "historical_only_neighbor_occurrences": 4879,
+            "target_unique": true,
+            "all_eligible_targets_covered": true,
+            "unique_history_states": 37389,
+            "cache_reused_states": 24620,
+            "cache_generated_states": 12769,
+            "cache_coverage": 1.0,
+            "gt_pool_rows": 41760,
+            "metric_primary": "origin-macro over each origin's unique target predictions",
+            "metric_secondary": "target-window-macro",
+            "build_seconds": 5.9136006608605385,
+            "output_bytes": {
+              "views.npz": 7646218,
+              "state_pool.npz": 2252914
+            }
+          }
+        }
+      }
+    },
+    "continuous_final": {
+      "summary": {
+        "status": "COMPLETED",
+        "model": "transformer",
+        "selected_checkpoint": {
+          "epoch": 0,
+          "ADE": 0.7592209291954836,
+          "FDE": 1.5509878760128002,
+          "selection_score": 1.5347148672018838,
+          "scenes": 123,
+          "metric_unit": "origin_macro",
+          "samples": 128,
+          "target_ADE": 0.7646628618240356,
+          "target_FDE": 1.5645157098770142,
+          "targets": 128
+        },
+        "selection_rule": "minimum ADE + 0.5 * FDE",
+        "initial_validation": {
+          "ADE": 0.7592209291954836,
+          "FDE": 1.5509878760128002,
+          "selection_score": 1.5347148672018838,
+          "scenes": 123,
+          "metric_unit": "origin_macro",
+          "samples": 128,
+          "target_ADE": 0.7646628618240356,
+          "target_FDE": 1.5645157098770142,
+          "targets": 128
+        },
+        "epochs_completed": 2,
+        "global_step": 8,
+        "elapsed_seconds": 1.031730743125081,
+        "train_samples": 512,
+        "validation_samples": 128,
+        "trainable_parameters": 1793090,
+        "test_set_used": false,
+        "dataset": "target",
+        "self_frame": "not_applicable",
+        "metric_unit": "origin_macro",
+        "supervision": "center_only",
+        "completed_data_passes": 2
+      },
+      "config": {
+        "model": "transformer",
+        "dataset": "target",
+        "self_frame": "ego_v1",
+        "seed": 2026,
+        "snr": 0.0,
+        "epochs": 2,
+        "batch_size": 128,
+        "lr": 0.0003,
+        "token_weight": 0.035,
+        "train_limit": 512,
+        "val_limit": 128,
+        "run_dir": ".codex-work/sind-self-repair-20260920/continuous_final",
+        "resume": false,
+        "max_seconds": 120.0,
+        "save_steps": 4,
+        "phase": "self",
+        "device": "cuda:0",
+        "git_head": "df435d94d6bf04aa49718eb312b737dc33e1006f",
+        "cuda_visible_devices": "1",
+        "test_set_used": false,
+        "checkpoint_selection": "minimum ADE + 0.5 * FDE",
+        "time_budget_scope": "per_invocation",
+        "metric_unit": "origin_macro",
+        "supervision": "center_only",
+        "self_frame_applied": "not_applicable",
+        "source_sha256": {
+          "prediction/qgnn_raj_pennylane/self_baselines.py": "4a74789aa9e6485103ab151c046dc97e2b526da39036088f32ee0e1cf3d95f57",
+          "prediction/qgnn_raj_pennylane/quantum.py": "5c92a0d3fd84eff2b131d5bfddbef8fbfac1837c5bf9319864d500ef7b6d05f8",
+          "prediction/qgnn_raj_pennylane/model.py": "0657b7284ff282cc5707644c7f45b5b72c31e7be39a2c018f13f1e2ca44eb9bd",
+          "prediction/qgnn_raj_pennylane/torch_reference.py": "966aa46f02c65bfbd8584be7ea7efb5926dc046d365f37b38610fd262fad2acb",
+          "prediction/qgnn_raj_pennylane/common.py": "2da7d6b18f345e06009c049c1b6f85517e7e1d2e6cd10067b6c65ceebf0cdb91",
+          "prediction/qgnn_raj_pennylane/residual.py": "f51cc22e721b9cad221efbcb623ba04f19ec77f6367defc4c79214beae00ace5",
+          "prediction/qgnn_raj_pennylane/__init__.py": "c7328614263f6af058f9433fb1f4689da9283dec8d5fbff36fe9268bbcaace65",
+          "prediction/qgnn_raj_pennylane/observables.py": "1c61335e3ca7062beb6d9ba04eeb5f9b32c4b02164923358174292b15a88c826",
+          "prediction/qgnn_raj_pennylane/classical.py": "4304e9abbdaacddeb7724d058d4e5e6ecbd0d8bd7fc472534dc0bd6b03039783",
+          "scripts/train_raj_residual_self.py": "f110cd713bc719e35bedd45dfddf54be7a51a5aee12cdd5a4b5d796a3e2f3a2d",
+          "configs/qgnn_final_tokens.json": "560a0fde9d8ea736b9dbe4fe709c76f5c63f16792a0a3c6cbe97d439b735361f",
+          "prediction/q0/metrics.py": "3f44873ea06a01baa69756c1e8106cfd04d5c84bd670b399c147c795054f50a7",
+          "prediction/q0/motion_token_llm.py": "536542276e4578bcff3688ba8782500807ea0458603187eb5b87cbe5ef4938f7",
+          "prediction/qgnn_final/model.py": "c062c42b7670d6457740c58ce10c9a400feba2fd8d18adf4baabd27ae8b3a3bf",
+          "frontend/sind_target_dataset.py": "00dadc9cbfbcc1f3941b7237aac7c0be8302c9e721002997357c44252a6f06be",
+          "configs/sind_target_prediction.json": "9145e8224434257311bd058b523d83a3cfa9b971ee971bd7831c4ba8a6d238c4"
+        },
+        "data_manifest": {
+          "train": {
+            "revision": "SIND-TARGET-VIEWS-V1-FIXED-ORIGIN",
+            "status": "COMPLETE",
+            "split": "train",
+            "test_used": false,
+            "source_identity": {
+              "data/sind/splits/train/samples.npz": {
+                "bytes": 84385546,
+                "mtime_ns": 1789745116296944235
+              },
+              "data/sind/splits/train/trajectories.csv": {
+                "bytes": 42687752,
+                "mtime_ns": 1789745116099932237
+              },
+              "data/sind/isac/train/sensing_cache.npz": {
+                "bytes": 29028335,
+                "mtime_ns": 1789744889240013256
+              },
+              "configs/sind_controlled_isac.json": {
+                "bytes": 3070,
+                "mtime_ns": 1789750055437386234
+              }
+            },
+            "snr_db": 0.0,
+            "history_length": 20,
+            "prediction_length": 20,
+            "max_vehicles": 8,
+            "selection": "GT last-history-state ranking; inherited fixed accepted origins; source smoothing not proven online causal",
+            "context_eligibility": "20 complete historical frames, independent of future availability",
+            "target_eligibility": "20 historical plus 20 future frames within this existing guarded split",
+            "target_slot": 0,
+            "label_slots": [
+              0
+            ],
+            "origins": 15802,
+            "targets": 319855,
+            "context_windows": 342360,
+            "historical_only_neighbor_occurrences": 35388,
+            "target_unique": true,
+            "all_eligible_targets_covered": true,
+            "unique_history_states": 373204,
+            "cache_reused_states": 228553,
+            "cache_generated_states": 144651,
+            "cache_coverage": 1.0,
+            "gt_pool_rows": 390025,
+            "metric_primary": "origin-macro over each origin's unique target predictions",
+            "metric_secondary": "target-window-macro",
+            "build_seconds": 63.83323188312352,
+            "output_bytes": {
+              "views.npz": 77463716,
+              "state_pool.npz": 21506754
+            }
+          },
+          "val": {
+            "revision": "SIND-TARGET-VIEWS-V1-FIXED-ORIGIN",
+            "status": "COMPLETE",
+            "split": "val",
+            "test_used": false,
+            "source_identity": {
+              "data/sind/splits/val/samples.npz": {
+                "bytes": 10042066,
+                "mtime_ns": 1789745119415133635
+              },
+              "data/sind/splits/val/trajectories.csv": {
+                "bytes": 4644271,
+                "mtime_ns": 1789745119363130486
+              },
+              "data/sind/isac/val/sensing_cache.npz": {
+                "bytes": 3128844,
+                "mtime_ns": 1789744891863283030
+              },
+              "configs/sind_controlled_isac.json": {
+                "bytes": 3070,
+                "mtime_ns": 1789750055437386234
+              }
+            },
+            "snr_db": 0.0,
+            "history_length": 20,
+            "prediction_length": 20,
+            "max_vehicles": 8,
+            "selection": "GT last-history-state ranking; inherited fixed accepted origins; source smoothing not proven online causal",
+            "context_eligibility": "20 complete historical frames, independent of future availability",
+            "target_eligibility": "20 historical plus 20 future frames within this existing guarded split",
+            "target_slot": 0,
+            "label_slots": [
+              0
+            ],
+            "origins": 1880,
+            "targets": 31211,
+            "context_windows": 33739,
+            "historical_only_neighbor_occurrences": 4879,
+            "target_unique": true,
+            "all_eligible_targets_covered": true,
+            "unique_history_states": 37389,
+            "cache_reused_states": 24620,
+            "cache_generated_states": 12769,
+            "cache_coverage": 1.0,
+            "gt_pool_rows": 41760,
+            "metric_primary": "origin-macro over each origin's unique target predictions",
+            "metric_secondary": "target-window-macro",
+            "build_seconds": 5.9136006608605385,
+            "output_bytes": {
+              "views.npz": 7646218,
+              "state_pool.npz": 2252914
+            }
+          }
+        }
+      }
+    }
+  },
+  "full_validation_cv": {
+    "ADE": 0.7840919109835074,
+    "FDE": 1.6294946496166396,
+    "selection_score": 1.5988392357918273,
+    "scenes": 1880,
+    "metric_unit": "origin_macro",
+    "samples": 31211,
+    "target_ADE": 0.7551760842648814,
+    "target_FDE": 1.5431231433665151,
+    "targets": 31211
+  },
+  "formal_runs_expected": {
+    "legacy_llm": {
+      "epochs": 20,
+      "batch_size": 32,
+      "train_windows": 15802
+    },
+    "target_models": {
+      "models": [
+        "llm",
+        "lstm",
+        "transformer",
+        "tcn"
+      ],
+      "epochs": 20,
+      "batch_size": 256,
+      "train_targets": 319855,
+      "val_targets": 31211
+    }
+  }
+}

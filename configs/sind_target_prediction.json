@@ -1,0 +1,27 @@
+{
+  "revision": "SIND-TARGET-VIEWS-V1-FIXED-ORIGIN",
+  "status": "IMPLEMENTED_AUDIT_PROTOCOL",
+  "data_root": "data/sind/target_views_v1",
+  "allowed_splits": ["train", "val"],
+  "test_used": false,
+  "history_length": 20,
+  "prediction_length": 20,
+  "max_vehicles": 8,
+  "snr_levels_db": [0.0],
+  "built_split_counts": {
+    "train": {"origins": 15802, "targets": 319855, "history_candidate_windows": 342360, "unique_history_states": 373204, "cache_reused_states": 228553, "cache_generated_states": 144651, "cache_coverage": 1.0},
+    "val": {"origins": 1880, "targets": 31211, "history_candidate_windows": 33739, "unique_history_states": 37389, "cache_reused_states": 24620, "cache_generated_states": 12769, "cache_coverage": 1.0}
+  },
+  "origins": "Exactly the existing accepted train/val sample origins; no new interaction gate or split boundaries",
+  "context": "Every non-guard vehicle with 20 complete historical states; future availability is not consulted",
+  "targets": "Every history-eligible vehicle with 20 complete future labels inside the same inherited split",
+  "neighborhood": "For each target independently: center in slot0 plus up to 7 neighbors by original active-edge/DCPA/closing/distance/ID ordering",
+  "selection_input": "GT final historical [x,y,vx,vy]; source smoothing and full-track quality filter inherited, online causality unproven",
+  "input": "Reused frozen 0 dB states plus deterministic same-protocol missing-key sensing",
+  "supervision": "target_mask slot0 only; vehicle_mask describes available context",
+  "storage": "Shared unique sensed state pool, shared context-history indices, target-specific patch indices and future GT indices",
+  "metric_primary": "Mean within each origin over unique targets, then mean over origins",
+  "metric_secondary": "Equal weight per target-window",
+  "uniform_target_training_weight": "num_targets / (num_origins * origin_target_count)",
+  "metadata_only": ["scene_id", "start_frame", "vehicle_ids", "target_vehicle_id", "origin_index", "origin_target_count", "original_num_vehicles"]
+}
