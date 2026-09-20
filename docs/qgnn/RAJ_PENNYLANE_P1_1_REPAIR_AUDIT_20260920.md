@@ -78,6 +78,9 @@ active count 3/5/7 的 padding active/inactive error 均为 0.0。
 - default.qubit vs lightning.gpu formal qml.expval：
   - j2 max abs 5.96e-8；
   - j3 max abs 5.96e-8。
+- fast observable path vs direct qml.expval angle-gradient：
+  - j2 max abs 0.0；
+  - j3 max abs 0.0。
 
 因此训练快路径与 formal measurable model 数值等价。
 
@@ -105,9 +108,9 @@ SinD train active-count：
 
 | Batch | Seconds | Peak CUDA allocated |
 |---:|---:|---:|
-| 1 | 1.607 | 0.217 GiB |
-| 4 | 2.915 | 0.807 GiB |
-| 32 | 4.318 | 6.313 GiB |
+| 1 | 1.783 | 0.218 GiB |
+| 4 | 3.149 | 0.808 GiB |
+| 32 | 4.175 | 6.314 GiB |
 
 B=32 已满足冻结的 engineering gate <20 s。
 
@@ -141,21 +144,22 @@ Quantum / matched / strong 均为：
 
 reports/qgnn/raj_pennylane_p1_1/repair_preflight_20260920.json
 
-最终 13/13 checks passed：
+最终 14/14 checks passed：
 
 1. parameter budget
 2. fixed circuit topology
 3. formal observable contract
 4. CUDA forward/backward + all gradient groups
-5. statevector vs qml.expval exact equivalence
+5. statevector vs qml.expval exact forward equivalence
 6. default.qubit vs lightning.gpu formal backend consistency
-7. mechanism participation
-8. permutation + padding
-9. mixed active-count batch
-10. j=2/j=3 fixed Hamming weight
-11. logical resource accounting
-12. actual SinD train micro-smoke
-13. B=32 training-speed gate
+7. statevector-observable fast path vs direct qml.expval angle-gradient equivalence
+8. mechanism participation
+9. permutation + padding
+10. mixed active-count batch
+11. j=2/j=3 fixed Hamming weight
+12. logical resource accounting
+13. actual SinD train micro-smoke
+14. B=32 training-speed gate
 
 关键机制消融 max output change：
 - j2 off: 1.9996

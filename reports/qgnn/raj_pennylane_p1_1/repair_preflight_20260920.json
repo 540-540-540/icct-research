@@ -133,6 +133,28 @@
       "mean_abs": 4.831432587337758e-09
     }
   },
+  "gradient_equivalence": {
+    "j2": {
+      "loss_abs": 1.4210854715202004e-14,
+      "gradient_max_abs": 0.0,
+      "by_angle_group_abs": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "j3": {
+      "loss_abs": 1.9539925233402755e-14,
+      "gradient_max_abs": 0.0,
+      "by_angle_group_abs": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  },
   "ablations": {
     "j2_off": 1.9996311664581299,
     "j3_off": 2.923799514770508,
@@ -264,8 +286,8 @@
         "finite": true,
         "nonzero_tensors": 112,
         "all_finite_nonzero": true,
-        "max_abs_min": 6.642076186835766e-07,
-        "max_abs_max": 0.03295988216996193
+        "max_abs_min": 3.782915882766247e-07,
+        "max_abs_max": 0.061687588691711426
       },
       "quantum_specific_circuit": {
         "parameter_tensors": 8,
@@ -273,8 +295,8 @@
         "finite": true,
         "nonzero_tensors": 8,
         "all_finite_nonzero": true,
-        "max_abs_min": 3.332781489007175e-06,
-        "max_abs_max": 0.08824579417705536
+        "max_abs_min": 3.551831468939781e-06,
+        "max_abs_max": 0.10813894867897034
       },
       "post_measurement_readout": {
         "parameter_tensors": 16,
@@ -282,8 +304,8 @@
         "finite": true,
         "nonzero_tensors": 16,
         "all_finite_nonzero": true,
-        "max_abs_min": 0.006799527909606695,
-        "max_abs_max": 0.08183365315198898
+        "max_abs_min": 0.00687049888074398,
+        "max_abs_max": 0.061396289616823196
       },
       "multi_j_fusion": {
         "parameter_tensors": 10,
@@ -291,8 +313,8 @@
         "finite": true,
         "nonzero_tensors": 10,
         "all_finite_nonzero": true,
-        "max_abs_min": 0.0007425564108416438,
-        "max_abs_max": 0.022635553032159805
+        "max_abs_min": 0.005376444663852453,
+        "max_abs_max": 0.03657306358218193
       }
     },
     "train_active_count_distribution": {
@@ -307,8 +329,8 @@
   "profile": [
     {
       "batch": 1,
-      "seconds_forward_backward": 1.6067952159792185,
-      "peak_allocated_gib": 0.21721839904785156,
+      "seconds_forward_backward": 1.7832915596663952,
+      "peak_allocated_gib": 0.21783733367919922,
       "readout_shape": [
         1,
         8,
@@ -318,8 +340,8 @@
     },
     {
       "batch": 4,
-      "seconds_forward_backward": 2.914970427751541,
-      "peak_allocated_gib": 0.8069295883178711,
+      "seconds_forward_backward": 3.1490477565675974,
+      "peak_allocated_gib": 0.8075485229492188,
       "readout_shape": [
         4,
         8,
@@ -329,8 +351,8 @@
     },
     {
       "batch": 32,
-      "seconds_forward_backward": 4.318291941657662,
-      "peak_allocated_gib": 6.313410758972168,
+      "seconds_forward_backward": 4.17539550922811,
+      "peak_allocated_gib": 6.314029693603516,
       "readout_shape": [
         32,
         8,
@@ -486,6 +508,29 @@
         "mean_abs": 4.831432587337758e-09
       }
     },
+    "statevector_expval_gradient_equivalence": {
+      "passed": true,
+      "j2": {
+        "loss_abs": 1.4210854715202004e-14,
+        "gradient_max_abs": 0.0,
+        "by_angle_group_abs": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "j3": {
+        "loss_abs": 1.9539925233402755e-14,
+        "gradient_max_abs": 0.0,
+        "by_angle_group_abs": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
     "mechanism_participation": {
       "passed": true,
       "j2_off": 1.9996311664581299,
@@ -614,8 +659,8 @@
           "finite": true,
           "nonzero_tensors": 112,
           "all_finite_nonzero": true,
-          "max_abs_min": 6.642076186835766e-07,
-          "max_abs_max": 0.03295988216996193
+          "max_abs_min": 3.782915882766247e-07,
+          "max_abs_max": 0.061687588691711426
         },
         "quantum_specific_circuit": {
           "parameter_tensors": 8,
@@ -623,8 +668,8 @@
           "finite": true,
           "nonzero_tensors": 8,
           "all_finite_nonzero": true,
-          "max_abs_min": 3.332781489007175e-06,
-          "max_abs_max": 0.08824579417705536
+          "max_abs_min": 3.551831468939781e-06,
+          "max_abs_max": 0.10813894867897034
         },
         "post_measurement_readout": {
           "parameter_tensors": 16,
@@ -632,8 +677,8 @@
           "finite": true,
           "nonzero_tensors": 16,
           "all_finite_nonzero": true,
-          "max_abs_min": 0.006799527909606695,
-          "max_abs_max": 0.08183365315198898
+          "max_abs_min": 0.00687049888074398,
+          "max_abs_max": 0.061396289616823196
         },
         "multi_j_fusion": {
           "parameter_tensors": 10,
@@ -641,8 +686,8 @@
           "finite": true,
           "nonzero_tensors": 10,
           "all_finite_nonzero": true,
-          "max_abs_min": 0.0007425564108416438,
-          "max_abs_max": 0.022635553032159805
+          "max_abs_min": 0.005376444663852453,
+          "max_abs_max": 0.03657306358218193
         }
       },
       "train_active_count_distribution": {
@@ -659,8 +704,8 @@
       "profile": [
         {
           "batch": 1,
-          "seconds_forward_backward": 1.6067952159792185,
-          "peak_allocated_gib": 0.21721839904785156,
+          "seconds_forward_backward": 1.7832915596663952,
+          "peak_allocated_gib": 0.21783733367919922,
           "readout_shape": [
             1,
             8,
@@ -670,8 +715,8 @@
         },
         {
           "batch": 4,
-          "seconds_forward_backward": 2.914970427751541,
-          "peak_allocated_gib": 0.8069295883178711,
+          "seconds_forward_backward": 3.1490477565675974,
+          "peak_allocated_gib": 0.8075485229492188,
           "readout_shape": [
             4,
             8,
@@ -681,8 +726,8 @@
         },
         {
           "batch": 32,
-          "seconds_forward_backward": 4.318291941657662,
-          "peak_allocated_gib": 6.313410758972168,
+          "seconds_forward_backward": 4.17539550922811,
+          "peak_allocated_gib": 6.314029693603516,
           "readout_shape": [
             32,
             8,
@@ -692,8 +737,8 @@
         }
       ],
       "batch32_threshold_seconds": 20.0,
-      "scaling_t4_over_4t1": 0.453537949136706,
-      "scaling_t32_over_32t1": 0.08398495454479078
+      "scaling_t4_over_4t1": 0.44146563408239,
+      "scaling_t32_over_32t1": 0.07316869132032895
     }
   },
   "passed": true

@@ -305,6 +305,41 @@ def main():
         **backend_consistency,
     )
 
+    gradient_equivalence = {}
+    torch.manual_seed(77)
+    from prediction.qgnn_raj_pennylane.observables import conditional_embedding_rdm_features, normalize_formal_raw
+    for name, branch in (("j2", core.j2), ("j3", core.j3)):
+        _, feat, valid, _ = branch.builder(packed_history, packed_mask, branch.j)
+        base_angles = branch._angles(packed_history, packed_mask, feat, valid)
+        fast_angles = [value.detach().clone().requires_grad_(True) for value in base_angles]
+        state = canonical_joint_state(8, branch.j).to(device=device, dtype=torch.complex128)
+        psi = branch._state_qnode(state, *[value.to(torch.float64) for value in fast_angles])
+        fast_feature = conditional_embedding_rdm_features(psi, packed_mask)
+        weight = torch.randn_like(fast_feature)
+        fast_loss = (fast_feature * weight).sum()
+        fast_grad = torch.autograd.grad(fast_loss, fast_angles)
+
+        formal_angles = [value.detach().clone().requires_grad_(True) for value in base_angles]
+        formal_qnode = branch._build_formal_qnode("default.qubit", "backprop")
+        formal_values = formal_qnode(state, *[value.to(torch.float64) for value in formal_angles])
+        formal_raw = torch.stack(formal_values, -1).reshape(1, NODE_QUBITS, OBS_PER_NODE)
+        formal_feature = normalize_formal_raw(formal_raw, packed_mask)
+        formal_loss = (formal_feature * weight).sum()
+        formal_grad = torch.autograd.grad(formal_loss, formal_angles)
+        errors = [float((a-b).abs().max()) for a,b in zip(fast_grad, formal_grad)]
+        gradient_equivalence[name] = {
+            "loss_abs": float((fast_loss.detach()-formal_loss.detach()).abs()),
+            "gradient_max_abs": max(errors),
+            "by_angle_group_abs": errors,
+        }
+    report["gradient_equivalence"] = gradient_equivalence
+    record(
+        checks,
+        "statevector_expval_gradient_equivalence",
+        all(row["gradient_max_abs"] <= 1e-8 for row in gradient_equivalence.values()),
+        **gradient_equivalence,
+    )
+
     # Structural ablations.
     with torch.no_grad():
         base = core(history, mask)["readout"]
