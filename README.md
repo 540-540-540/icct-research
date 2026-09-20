@@ -2,6 +2,8 @@
 
 静态导航文档。研究进展保存在 Git 分支与提交历史中；实验事实保存在 `reports/` 与 `results/` 中。
 
+> **师兄审阅入口（2026-09-20）**：本分支是冻结在服务器提交 `bdd4aa0` 的完整研究快照。请先阅读 [`QGNN_RESEARCH_HANDOFF.md`](QGNN_RESEARCH_HANDOFF.md)。它说明当前真正需要解决的研究问题、tag1 组会后全部探索、证据边界、运行协议影响和建议重点审阅的代码。
+
 ## 仓库结构
 
 | 路径 | 内容 |
@@ -35,13 +37,13 @@
 | `stage0-senior-original` | `ca1682a47e9129fbaf50dab4e2a6abc574b60098` | 2026-09-11 17:00 +08:00 交接前的师兄原始项目快照 |
 | `stage1-meeting-freeze-20260915` | `8adc24c5791daaa6a27c986c9aeb1915e1c5e7c7` | 2026-09-15 组会前第一版完整稳定项目快照 |
 
-## 当前阶段状态 (Pre-Model Data Ready)
+## 本交接分支的冻结状态
 
-当前 `main` 分支作为最新稳定 baseline，已完成进入模型阶段前的全部数据与感知基建闭环：
+- **冻结边界**：`stage1-meeting-freeze-20260915` 之后，至服务器提交 `bdd4aa0`（2026-09-20 10:47 +08:00）。
+- **当前数据主线**：SinD public Changchun + Xi'an，20 帧历史预测 20 帧未来；正式历史输入来自冻结的 3-BS controlled-ISAC sensing cache。
+- **QGNN 状态**：仍处于开放研究与方案设计阶段。既有路线均作为证据和设计素材，不构成封闭候选集合。
+- **最新新增方案**：TRC-QGNN 与 TO-JQGNN 已完成工程预检；名称中的 `finalists` 只是开发期内部目录名，不表示完成最终选型。
+- **正式训练状态**：两种最新方案及其 matched classical controls 尚未启动 15,802-window 正式训练；预测 test 仍关闭。
+- **大型资产**：原始数据、sensing cache、checkpoint 和完整运行日志仍在服务器 `/home/dell/YrM/ICCT`，不进入 Git。
 
-- **ISAC Route-B**: `FROZEN` (`AUTOMATUM-CONTROLLED-ISAC-V2-FROZEN`，3-BS 确定性纯物理链路)
-- **Production ISAC Sensing Cache**: `COMPLETE` (`data/automatum_t_crossing/isac/{train,val,test}/sensing_cache.npz`)
-- **Model-Agnostic Prediction Dataset**: `COMPLETE` (`frontend/automatum_prediction_dataset.py`，物理时钟 $\Delta t = \frac{3}{29.97}\text{ s}$)
-- **Current-Stage Cleanup**: `COMPLETE`（当前工作树仅保留权威工具、配置与终审报告，移除过时中间文件与非当前有效历史工作文件）
-- **Formal Classical GNN Baseline**: `PENDING (NOT SELECTED)`
-- **Formal QGNN 主模型**: `PENDING (NOT SELECTED)`
+tag1 之后的完整研究尝试索引见 [`docs/qgnn/POST_STAGE1_ATTEMPT_LEDGER.md`](docs/qgnn/POST_STAGE1_ATTEMPT_LEDGER.md)。
