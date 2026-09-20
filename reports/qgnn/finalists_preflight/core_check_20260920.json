@@ -1,0 +1,68 @@
+{
+  "status": "PASS",
+  "test_set_used": false,
+  "rows": {
+    "trc": {
+      "shape": [
+        1,
+        8,
+        2,
+        4,
+        35
+      ],
+      "finite": true,
+      "trainable_grad_tensors": 15,
+      "nonzero_finite_grad_tensors": 15,
+      "permutation_max_abs": 2.980232238769531e-07,
+      "padding_active_max_abs": 0.0,
+      "seconds_including_backward_and_checks": 1.774913802742958,
+      "peak_allocated_gib": 0.0983428955078125
+    },
+    "rtcn": {
+      "shape": [
+        1,
+        8,
+        2,
+        4,
+        35
+      ],
+      "finite": true,
+      "trainable_grad_tensors": 24,
+      "nonzero_finite_grad_tensors": 24,
+      "permutation_max_abs": 2.980232238769531e-07,
+      "padding_active_max_abs": 0.0,
+      "seconds_including_backward_and_checks": 0.5738792475312948,
+      "peak_allocated_gib": 0.02503681182861328
+    },
+    "toj": {
+      "shape": [
+        1,
+        8,
+        4,
+        31
+      ],
+      "finite": true,
+      "trainable_grad_tensors": 14,
+      "nonzero_finite_grad_tensors": 14,
+      "permutation_max_abs": 0.0,
+      "padding_active_max_abs": 0.0,
+      "seconds_including_backward_and_checks": 1.0318359490484,
+      "peak_allocated_gib": 0.1226491928100586
+    },
+    "trtgn": {
+      "shape": [
+        1,
+        8,
+        4,
+        31
+      ],
+      "finite": true,
+      "trainable_grad_tensors": 36,
+      "nonzero_finite_grad_tensors": 36,
+      "permutation_max_abs": 0.0,
+      "padding_active_max_abs": 0.0,
+      "seconds_including_backward_and_checks": 0.14394363202154636,
+      "peak_allocated_gib": 0.03010845184326172
+    }
+  }
+}
