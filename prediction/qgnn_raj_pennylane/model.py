@@ -5,7 +5,6 @@ from torch import nn
 
 from prediction.q0.contracts import CANONICAL_DT
 
-from .classical import HistoricalRajJohnsonTokenCore, MatchedRajJohnsonTokenCore
 from .common import parameter_summary
 from .quantum import PennyLaneRajMultiJCore
 from .residual import RajResidualLLM
@@ -30,7 +29,15 @@ class RajResidualModel(nn.Module):
 
     def forward(self, history, mask, timestamps=None):
         history = torch.where(mask[:, None, :, None], history, 0.0)
-        core = self.core(history, mask, timestamps)
+        if self.training_phase == "self":
+            core = {
+                "readout": history.new_zeros(
+                    history.shape[0], history.shape[2], self.core.readout_dim
+                ),
+                "interaction_mask": torch.zeros_like(mask),
+            }
+        else:
+            core = self.core(history, mask, timestamps)
         out = self.llm(
             history,
             mask,
@@ -72,38 +79,21 @@ def build_model(
     seed: int = 2026,
     rounds: int = 3,
     correction_cap_m: float = 16.0,
-    matched_hidden: int = 32,
-    device_name: str = "lightning.gpu",
-    diff_method: str = "adjoint",
+    query_dim: int = 32,
     phase: str = "joint",
 ):
+    if kind != "raj_pennylane":
+        raise ValueError("P2 currently freezes only kind='raj_pennylane'")
     with torch.random.fork_rng(devices=[]):
         torch.manual_seed(seed + 100003)
-        if kind == "raj_pennylane":
-            core = PennyLaneRajMultiJCore(
-                rounds=rounds,
-                device_name=device_name,
-                diff_method=diff_method,
-            )
-        elif kind == "raj_matched":
-            core = MatchedRajJohnsonTokenCore(
-                rounds=rounds,
-                hidden=matched_hidden,
-            )
-        elif kind == "raj_strong":
-            core = HistoricalRajJohnsonTokenCore(
-                rounds=rounds,
-                hidden=64,
-            )
-        else:
-            raise ValueError(kind)
+        core = PennyLaneRajMultiJCore(rounds=rounds)
 
     with torch.random.fork_rng(devices=[]):
         torch.manual_seed(seed + 300003)
         llm = RajResidualLLM(
             readout_dim=core.readout_dim,
-            interaction_tokens=core.interaction_tokens,
             correction_cap_m=correction_cap_m,
+            query_dim=query_dim,
         )
 
     model = RajResidualModel(core, llm, kind)

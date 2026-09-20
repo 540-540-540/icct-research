@@ -1,8 +1,12 @@
-"""PennyLane-native Raj QGNN P1/P1.1 public surface.
-
-Residual/model.py and classical.py are retained as unapproved P2 prototypes but
-are intentionally not exported until the P2 interface is re-frozen.
-"""
+"""PennyLane-native Raj QGNN core and the frozen P2 residual interface."""
+from .model import RajResidualModel, build_model
 from .quantum import PennyLaneRajBranch, PennyLaneRajMultiJCore
+from .residual import RajResidualLLM
 
-__all__ = ["PennyLaneRajBranch", "PennyLaneRajMultiJCore"]
+__all__ = [
+    "PennyLaneRajBranch",
+    "PennyLaneRajMultiJCore",
+    "RajResidualLLM",
+    "RajResidualModel",
+    "build_model",
+]

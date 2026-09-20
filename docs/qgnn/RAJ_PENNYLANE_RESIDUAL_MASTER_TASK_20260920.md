@@ -14,11 +14,18 @@
 
 服务器状态优先于本地与 GitHub。禁止用 stale remote 覆盖服务器。
 
-当前执行门：
+当前状态更新（2026-09-20）：
 
-> **P1：Raj-PennyLane-native interaction core 实现与 correctness/preflight。**
+- P1/P1.1 Raj-PennyLane-native interaction core 已通过独立审查；
+- 用户已明确授权进入 P2；
+- P2 residual interface 已按
+  `docs/qgnn/RAJ_PENNYLANE_P2_RESIDUAL_FREEZE_20260920.md` 冻结；
+- P2 的 5 项 preflight 已通过，记录位于
+  `reports/qgnn/raj_pennylane_p2/preflight_20260920.json`；
+- 当前停在 P2 通过后的边界，不自行进入 P3 的 4096/full training、
+  multi-seed、multi-SNR 或 prediction test。
 
-P1 完成后必须停止，等待核心审查；不得自行进入 Residual LLM、4096/full training、multi-seed、multi-SNR 或 prediction test。
+下文 P1 STOP gate 保留为当时的执行记录，不再代表当前门状态。
 
 ---
 
