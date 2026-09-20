@@ -28,7 +28,12 @@ class PrefixHistoryEncoder(nn.Module):
         h=self.norm(seq.index_select(1,idx)).reshape(b,n,BLOCKS,-1).permute(0,2,1,3)
         return h*mask[:,None,:,None]
 
-def block_statistics(history: torch.Tensor, timestamps: torch.Tensor | None, mask: torch.Tensor):
+def block_statistics(
+    history: torch.Tensor,
+    timestamps: torch.Tensor | None,
+    mask: torch.Tensor,
+    acceleration: str = "delta",
+):
     b,t,n,_=history.shape
     p=history[...,:2].reshape(b,BLOCKS,BLOCK,n,2).mean(2)
     v=history[...,2:].reshape(b,BLOCKS,BLOCK,n,2).mean(2)
@@ -37,13 +42,23 @@ def block_statistics(history: torch.Tensor, timestamps: torch.Tensor | None, mas
     else:
         ts=timestamps.to(history.dtype)
     tb=ts.reshape(b,BLOCKS,BLOCK).mean(-1)
-    acc=torch.zeros_like(v)
-    tt=ts[:,:BLOCK]-ts[:,:BLOCK].mean(-1,keepdim=True)
-    vv=history[:,:BLOCK,:,2:]-history[:,:BLOCK,:,2:].mean(1,keepdim=True)
-    den=tt.square().sum(-1).clamp_min(1e-8)
-    acc[:,0]=(tt[:,:,None,None]*vv).sum(1)/den[:,None,None]
-    dt=(tb[:,1:]-tb[:,:-1]).clamp_min(1e-6)
-    acc[:,1:]=(v[:,1:]-v[:,:-1])/dt[:,:,None,None]
+    if acceleration == "delta":
+        acc=torch.zeros_like(v)
+        tt=ts[:,:BLOCK]-ts[:,:BLOCK].mean(-1,keepdim=True)
+        vv=history[:,:BLOCK,:,2:]-history[:,:BLOCK,:,2:].mean(1,keepdim=True)
+        den=tt.square().sum(-1).clamp_min(1e-8)
+        acc[:,0]=(tt[:,:,None,None]*vv).sum(1)/den[:,None,None]
+        dt=(tb[:,1:]-tb[:,:-1]).clamp_min(1e-6)
+        acc[:,1:]=(v[:,1:]-v[:,:-1])/dt[:,:,None,None]
+    elif acceleration == "window_ls":
+        tt=ts.reshape(b,BLOCKS,BLOCK)
+        tc=tt-tt.mean(-1,keepdim=True)
+        vv=history[...,2:].reshape(b,BLOCKS,BLOCK,n,2)
+        vc=vv-vv.mean(2,keepdim=True)
+        den=tc.square().sum(-1).clamp_min(1e-8)
+        acc=(tc[...,None,None]*vc).sum(2)/den[...,None,None]
+    else:
+        raise ValueError(f"Unknown acceleration mode: {acceleration}")
     valid=mask[:,None,:,None]
     return p*valid,v*valid,acc*valid,tb
 
@@ -80,20 +95,25 @@ def to_edge_features(phys):
     risk=torch.exp(-phys['d']/30.)*(.25+.75*torch.sigmoid(phys['c']/2.))*torch.exp(-phys['dcpa']/10.)
     return even*phys['pair'][...,None],odd*phys['pair'][...,None],risk*phys['pair']
 
-def to_patch_indices(risk: torch.Tensor, phys, mask: torch.Tensor, cap: int = 6):
+def to_patch_indices(risk: torch.Tensor, phys, mask: torch.Tensor, cap: int = 6, history: torch.Tensor | None = None):
     """Per-target root+top-risk sensed-history context. Fixed tensor width cap."""
     b,s,n,_=risk.shape;k=min(cap,n)
-    maxrisk=risk.max(1).values
-    recent_d=phys['d'][:,-1]
+    score=.5*risk.max(1).values+.5*risk[:,-1]
+    distance_sum=phys['d'].sum(1)
+    canonical=(history.permute(0,2,1,3).reshape(b,n,-1) if history is not None else None)
     slots=[];valid=[]
     allidx=torch.arange(n,device=mask.device)
+    def stable_sort(order,key,descending=False):
+        return order.gather(1,torch.argsort(key.gather(1,order),dim=-1,descending=descending,stable=True))
     for root in range(n):
         ok=mask.clone();ok[:,root]=False
-        # stable distance pre-sort, then risk sort; exact ties are rare and physically indistinguishable for this selector.
-        dkey=recent_d[:,root].masked_fill(~ok,float('inf'))
-        pre=torch.argsort(dkey,dim=-1,stable=True)
-        rr=maxrisk[:,root].gather(1,pre).masked_fill(~ok.gather(1,pre),-float('inf'))
-        order=pre.gather(1,torch.argsort(rr,dim=-1,descending=True,stable=True))
+        order=allidx.expand(b,-1)
+        # Full sensed history is the canonical final tie-break; exact ties are physically indistinguishable.
+        if canonical is not None:
+            for column in range(canonical.shape[-1]-1,-1,-1):
+                order=stable_sort(order,canonical[...,column])
+        order=stable_sort(order,distance_sum[:,root].masked_fill(~ok,float('inf')))
+        order=stable_sort(order,score[:,root].masked_fill(~ok,-float('inf')),descending=True)
         neigh=order[:,:max(k-1,0)]
         nv=ok.gather(1,neigh)
         rootcol=torch.full((b,1),root,device=mask.device,dtype=torch.long)
@@ -177,9 +197,9 @@ def apply_adjacent_twoqubit_unitary(state: torch.Tensor, U: torch.Tensor, node: 
     y=torch.einsum('...uv,...pvq->...puq',U,x)
     return y.reshape_as(state)
 
-def init_product_plus(valid: torch.Tensor):
+def init_product_plus(valid: torch.Tensor, dtype: torch.dtype = torch.complex64):
     """valid [...,M], returns [...,4**M] with |++> for valid nodes, |00> for padding."""
-    *lead,m=valid.shape;dtype=torch.complex64
+    *lead,m=valid.shape
     state=torch.ones(*lead,1,device=valid.device,dtype=dtype)
     plus=torch.full((*lead,4),.5,device=valid.device,dtype=dtype)
     zero=torch.zeros(*lead,4,device=valid.device,dtype=dtype);zero[...,0]=1

@@ -22,9 +22,9 @@ class TOFeatureBase(nn.Module):
     def __init__(self,cap:int=6):
         super().__init__();self.cap=int(cap);self.encoder=PrefixHistoryEncoder('last',32)
     def base_features(self,history,mask,timestamps):
-        h=self.encoder(history,mask);p,v,a,_=block_statistics(history,timestamps,mask)
+        h=self.encoder(history,mask);p,v,a,_=block_statistics(history,timestamps,mask,acceleration='window_ls')
         phys=pair_physics(p,v,a,mask);even,odd,risk=to_edge_features(phys)
-        slots,valid=to_patch_indices(risk,phys,mask,self.cap)
+        slots,valid=to_patch_indices(risk,phys,mask,self.cap,history=history)
         return h,p,v,a,phys,even,odd,risk,slots,valid
     def patch(self,h,p,v,a,even,odd,risk,slots,valid):
         B,S,N,D=h.shape;M=slots.shape[-1];T=N
@@ -144,7 +144,7 @@ class TOJQGNNCore(TOFeatureBase):
         node,ep,op,rp=self.patch(h,p,v,a,even,odd,risk,slots,valid)
         B,N,S,M,_=node.shape;BT=B*N
         node=node.reshape(BT,S,M,38);ep=ep.reshape(BT,S,M,M,6);op=op.reshape(BT,S,M,M,6);rp=rp.reshape(BT,S,M,M);va=valid.reshape(BT,M)
-        state=init_product_plus(va).to(history.dtype if False else torch.complex64)
+        state=init_product_plus(va,torch.complex128 if history.dtype==torch.float64 else torch.complex64)
         outs=[]
         for s in range(4):
             if self.training and self.use_checkpoint:
