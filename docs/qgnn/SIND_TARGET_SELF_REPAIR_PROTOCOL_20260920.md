@@ -67,8 +67,21 @@ cd /home/dell/YrM/ICCT
 bash scripts/run_sind_self_repair.sh
 ~~~
 
-GPU 0：先在旧数据验证修复后的 LLM，再训练新逐目标 LLM。
-GPU 1：依次训练新逐目标 TCN、Transformer、LSTM。
+默认五组并行：GPU 0 同时运行旧数据 LLM 和新逐目标 LSTM；
+GPU 1 同时运行新逐目标 LLM、Transformer、TCN。五组没有前后依赖。
+显存充足允许同时驻留，但共享算力后单组速度可能下降，实际总耗时以日志为准。
+原两队列方式保留为可选参数 sequential；只改变调度，不改变数据、batch、
+epoch、seed、优化器或检查点选择规则。
+
+正在运行的旧两队列不会因修改脚本自动切换。在原终端按 Ctrl-C，等待当前
+batch 保存以及训练进程退出，再执行：
+
+~~~bash
+bash scripts/run_sind_self_repair.sh resume parallel
+~~~
+
+已有 last.pt 的实验继续恢复；尚未开始的实验从头启动。旧 LLM 仍在 GPU 0，
+TCN 仍在 GPU 1。若提示启动器仍在运行或保存，等待保存结束后再执行同一命令。
 输出分开保存在 results/qgnn/self_repair_v1/。新启动拒绝覆盖已有运行。
 中断后检查日志，可用 bash scripts/run_sind_self_repair.sh resume 恢复同一协议。
 恢复同时核对源码与数据 manifest；不能跨接口或更换数据后续训。
@@ -88,5 +101,7 @@ GPU 1：依次训练新逐目标 TCN、Transformer、LSTM。
 - 四个模型均通过短时训练；小型Transformer中断恢复与连续8次更新的参数及全部epoch记录逐位一致。
 - TERM中断能保存初始恢复点；运行目录锁阻止第二个写入进程。每次恢复获得新的本次时间预算，累计时间仍记录。
 - 全新目标集CV全量val: ADE 0.784092 m / FDE 1.629495 m (origin-macro); target-macro 0.755176 / 1.543123 m。
-- 验收记录: reports/qgnn/sind_target_self_repair/preflight.json；短时训练不是性能证据，正式五组训练尚未启动。
-- 启动器为两个独立进程组设置中断处理并持有队列锁；Ctrl-C后等待当前batch保存完成，再运行resume命令。
+- 验收记录: reports/qgnn/sind_target_self_repair/preflight.json；短时训练不是性能证据，用户曾启动旧 LLM 和新 TCN，现按用户要求暂停并保存断点，等待五组并行恢复。
+- 启动器为每个独立进程组设置中断处理并持有运行锁；Ctrl-C后等待当前batch保存完成，再运行resume命令。
+
+- 并行启动器通过替身进程验收：五组同时在运行、GPU 分配及训练参数、两组恢复/三组新建、重复启动锁、五组 TERM 保存与最终锁释放；未自动启动正式训练。

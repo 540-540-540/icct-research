@@ -4,6 +4,7 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 python=/home/dell/YrM/envs/ICCT/bin/python
 mode="${1:-start}"
+schedule="${2:-parallel}"
 run_root=results/qgnn/self_repair_v1
 run_self() {
     local gpu="$1" dataset="$2" model="$3" batch="$4"
@@ -37,37 +38,62 @@ if [[ "$mode" == queue0 || "$mode" == queue1 ]]; then
     fi
     exit
 fi
+if [[ "$mode" == worker ]]; then
+    mode="$2"
+    run_self "$3" "$4" "$5" "$6"
+    exit
+fi
 if [[ "$mode" != start && "$mode" != resume ]]; then
-    echo "Usage: bash scripts/run_sind_self_repair.sh [start|resume]" >&2
+    echo "Usage: bash scripts/run_sind_self_repair.sh [start|resume] [parallel|sequential]" >&2
+    exit 2
+fi
+if [[ "$schedule" != parallel && "$schedule" != sequential ]]; then
+    echo "Unknown schedule: $schedule (expected parallel or sequential)" >&2
     exit 2
 fi
 mkdir -p "$run_root/launch_logs"
 exec 9>"$run_root/.launch.lock"
 if ! flock -n 9; then
-    echo "This experiment queue is already running. Check its terminal/logs." >&2
+    echo "This experiment launcher is already running or saving. Wait for it to stop before resuming." >&2
     exit 1
 fi
-# Each queue gets its own process group so interruption cannot hit unrelated jobs.
-setsid bash scripts/run_sind_self_repair.sh queue0 "$mode" &
-gpu0_job=$!
-setsid bash scripts/run_sind_self_repair.sh queue1 "$mode" &
-gpu1_job=$!
-stop_queues() {
+# Each worker gets its own process group; the inherited lock covers saving too.
+jobs=()
+spawn_job() {
+    setsid bash scripts/run_sind_self_repair.sh "$@" &
+    jobs+=("$!")
+}
+stop_jobs() {
     trap - INT TERM
-    echo "Stopping both queues; each trainer saves at the end of its current batch."
-    kill -TERM -- "-$gpu0_job" "-$gpu1_job" 2>/dev/null || true
-    wait "$gpu0_job" 2>/dev/null || true
-    wait "$gpu1_job" 2>/dev/null || true
+    echo "Stopping all workers; each trainer saves at the end of its current batch."
+    for job in "${jobs[@]}"; do
+        kill -TERM -- "-$job" 2>/dev/null || true
+    done
+    for job in "${jobs[@]}"; do
+        wait "$job" 2>/dev/null || true
+    done
     exit 130
 }
-trap stop_queues INT TERM
+trap stop_jobs INT TERM
+if [[ "$schedule" == parallel ]]; then
+    # Keep the two already-started runs on their original physical GPUs.
+    spawn_job worker "$mode" 0 legacy llm 32
+    spawn_job worker "$mode" 1 target llm 256
+    spawn_job worker "$mode" 0 target lstm 256
+    spawn_job worker "$mode" 1 target transformer 256
+    spawn_job worker "$mode" 1 target tcn 256
+else
+    spawn_job queue0 "$mode"
+    spawn_job queue1 "$mode"
+fi
 failed=0
-wait "$gpu0_job" || failed=1
-wait "$gpu1_job" || failed=1
+for job in "${jobs[@]}"; do
+    wait "$job" || failed=1
+done
 trap - INT TERM
 if [[ "$failed" == 0 ]]; then
     echo "All Self runs completed. Review selected checkpoints before Interaction training."
 else
-    echo "A queue stopped. Inspect launch_logs and summary.json before resuming." >&2
+    echo "A worker stopped. Inspect launch_logs and summary.json before resuming." >&2
 fi
 exit "$failed"
