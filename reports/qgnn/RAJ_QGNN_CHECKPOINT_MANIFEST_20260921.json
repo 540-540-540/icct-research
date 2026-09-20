@@ -1,0 +1,50 @@
+[
+  {
+    "source_relative": "runs\\seed2026_learning_curve\\1000_quantum\\best.pt",
+    "local_name": "RAJ_QGNN_seed2026_n1000_quantum_best.pt",
+    "bytes": 17151819,
+    "sha256": "9347656C033369202FCB50AE8D29B96D5A38E8F089F4D08F53C0570985A48E6F"
+  },
+  {
+    "source_relative": "runs\\seed2026_learning_curve\\1000_matched_classical\\best.pt",
+    "local_name": "RAJ_QGNN_seed2026_n1000_matched_classical_best.pt",
+    "bytes": 17130820,
+    "sha256": "4C8FB69952F3AC71D3E41914B956E7DD85E6C6257628A5785FCAA157E446D24A"
+  },
+  {
+    "source_relative": "runs\\seed2026_learning_curve\\2000_quantum\\best.pt",
+    "local_name": "RAJ_QGNN_seed2026_n2000_quantum_best.pt",
+    "bytes": 17151819,
+    "sha256": "E5BEEB33DC90DDCB0E26EA4083CE4B3C2BAA91DE1B5B1BC32BD585C7AAFF45E1"
+  },
+  {
+    "source_relative": "runs\\seed2026_learning_curve\\2000_matched_classical\\best.pt",
+    "local_name": "RAJ_QGNN_seed2026_n2000_matched_classical_best.pt",
+    "bytes": 17130820,
+    "sha256": "AA87E8E389374EB263F87E32B7B923A21F7484B94A7EDA04802AB0580866B06A"
+  },
+  {
+    "source_relative": "runs\\seed2026_learning_curve\\4096_quantum\\best.pt",
+    "local_name": "RAJ_QGNN_seed2026_n4096_quantum_best.pt",
+    "bytes": 17151819,
+    "sha256": "32A1F540CB98F86065B1F9C24E5B481EF6D0843730936C1F4CA5B5BAFD1207EF"
+  },
+  {
+    "source_relative": "runs\\seed2026_learning_curve\\4096_matched_classical\\best.pt",
+    "local_name": "RAJ_QGNN_seed2026_n4096_matched_classical_best.pt",
+    "bytes": 17130820,
+    "sha256": "32286B7EBA4574EE69CF4346D48B20FF397F5478126C39996A62F45834DB4481"
+  },
+  {
+    "source_relative": "runs\\seed2027_exact\\quantum\\best.pt",
+    "local_name": "RAJ_QGNN_seed2027_n4096_quantum_best.pt",
+    "bytes": 17151819,
+    "sha256": "B5F53E4B7BAF6D7D9ECAC3F560EC85DF1CE3AEDDA4BD8C56F0F115F0D2A355FA"
+  },
+  {
+    "source_relative": "runs\\seed2027_exact\\matched_classical\\best.pt",
+    "local_name": "RAJ_QGNN_seed2027_n4096_matched_classical_best.pt",
+    "bytes": 17130820,
+    "sha256": "DCE18AD5E3FE1B3032403473C82ACA17165C4BE6C826F7DD79AD82C50E05E0F1"
+  }
+]
