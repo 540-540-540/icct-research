@@ -1,16 +1,12 @@
 #!/usr/bin/env python3
-"""P1 correctness and short profile for the native PennyLane Raj core.
-
-This script never opens labels, validation data, or prediction test data. It
-does not run an optimizer step and does not perform trajectory training.
-"""
+"""Independent P1.1 correctness/performance gate for the repaired Raj-PennyLane core."""
 from __future__ import annotations
 
 import argparse
 import json
-import subprocess
 import sys
 import time
+from collections import Counter
 from pathlib import Path
 
 import numpy as np
@@ -20,19 +16,15 @@ import torch
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-
 from prediction.qgnn_raj_pennylane.common import (
     NODE_QUBITS,
     OBS_PER_NODE,
     TOTAL_QUBITS,
-    pool_subset_features,
-    uniform_joint_state,
+    canonical_joint_state,
+    canonical_pack,
 )
+from prediction.qgnn_raj_pennylane.observables import formal_observables
 from prediction.qgnn_raj_pennylane.quantum import PennyLaneRajMultiJCore
-from prediction.qgnn_raj_pennylane.torch_reference import (
-    ising_zz,
-    single_excitation,
-)
 
 
 def synthetic_history(batch: int, n: int = 8, seed: int = 20260920):
@@ -46,6 +38,7 @@ def synthetic_history(batch: int, n: int = 8, seed: int = 20260920):
     history = torch.cat((position, speed.expand(batch, 20, n, 2)), -1)
     return history, torch.ones(batch, n, dtype=torch.bool)
 
+
 def sind_train_micro_samples(root: Path, snr_db: float = 0.0, limit: int = 2):
     sample_path = root / "data" / "sind" / "splits" / "train" / "samples.npz"
     cache_path = root / "data" / "sind" / "isac" / "train" / "sensing_cache.npz"
@@ -55,8 +48,7 @@ def sind_train_micro_samples(root: Path, snr_db: float = 0.0, limit: int = 2):
         vehicle_ids = samples["vehicle_ids"]
         vehicle_masks = samples["vehicle_mask"]
         candidates = np.flatnonzero(vehicle_masks.sum(axis=1) >= 3)[:limit]
-    if len(candidates) == 0:
-        raise RuntimeError("no SinD train sample with >=3 active vehicles")
+        count_distribution = Counter(map(int, vehicle_masks.sum(axis=1)))
     with np.load(cache_path, allow_pickle=False) as cache:
         levels = cache["snr_levels_db"]
         hits = np.flatnonzero(np.isclose(levels, snr_db))
@@ -87,136 +79,13 @@ def sind_train_micro_samples(root: Path, snr_db: float = 0.0, limit: int = 2):
                     history[t, slot] = state_hat[lookup[key]]
             histories.append(history)
             masks.append(mask)
-    return candidates, np.stack(histories), np.stack(masks), float(levels[snr_index])
-
-def finite_tensor(value: torch.Tensor) -> bool:
-    return bool(torch.isfinite(value).all())
-
-
-def nvidia_snapshot():
-    try:
-        raw = subprocess.check_output(
-            [
-                "nvidia-smi",
-                "--query-gpu=index,memory.used,memory.total",
-                "--format=csv,noheader,nounits",
-            ],
-            text=True,
-            timeout=10,
-        )
-    except (FileNotFoundError, subprocess.SubprocessError):
-        return []
-    rows = []
-    for line in raw.strip().splitlines():
-        parts = [part.strip() for part in line.split(",")]
-        if len(parts) == 3:
-            rows.append(
-                {
-                    "index": int(parts[0]),
-                    "used_mib": int(parts[1]),
-                    "total_mib": int(parts[2]),
-                }
-            )
-    return rows
-
-
-def nvidia_peak_start():
-    try:
-        return subprocess.Popen(
-            [
-                "nvidia-smi",
-                "--query-gpu=index,memory.used,memory.total",
-                "--format=csv,noheader,nounits",
-                "--loop-ms=100",
-            ],
-            stdout=subprocess.PIPE,
-            stderr=subprocess.DEVNULL,
-            text=True,
-        )
-    except (FileNotFoundError, subprocess.SubprocessError):
-        return None
-
-
-def nvidia_peak_stop(process):
-    if process is None:
-        return []
-    try:
-        process.terminate()
-    except ProcessLookupError:
-        pass
-    try:
-        raw, _ = process.communicate(timeout=5)
-    except subprocess.TimeoutExpired:
-        process.kill()
-        raw, _ = process.communicate()
-    peaks = {}
-    for line in raw.strip().splitlines():
-        parts = [part.strip() for part in line.split(",")]
-        if len(parts) != 3:
-            continue
-        index, used, total = (int(part) for part in parts)
-        row = peaks.setdefault(index, {"index": index, "peak_used_mib": used, "total_mib": total})
-        row["peak_used_mib"] = max(row["peak_used_mib"], used)
-    return [peaks[index] for index in sorted(peaks)]
-
-def group_gradients(model: torch.nn.Module):
-    groups = {
-        "feature_and_angle_generation": [],
-        "quantum_specific_circuit": [],
-        "post_measurement_readout": [],
-        "multi_j_fusion": [],
-    }
-    quantum_names = (
-        ".node_bias",
-        ".embed_bias",
-        ".cross_bias",
-        ".cross_basis",
+    return (
+        candidates,
+        np.stack(histories),
+        np.stack(masks),
+        float(levels[snr_index]),
+        dict(sorted(count_distribution.items())),
     )
-    feature_names = (
-        ".builder.",
-        ".node_phase.",
-        ".graph_angle.",
-        ".embed_angle.",
-        ".cross_strength.",
-    )
-    for name, parameter in model.named_parameters():
-        if not parameter.requires_grad:
-            continue
-        if name.startswith("fusion."):
-            group = "multi_j_fusion"
-        elif any(token in name for token in quantum_names):
-            group = "quantum_specific_circuit"
-        elif ".readout." in name:
-            group = "post_measurement_readout"
-        elif any(token in name for token in feature_names):
-            group = "feature_and_angle_generation"
-        else:
-            continue
-        groups[group].append((name, parameter))
-    result = {}
-    for group, items in groups.items():
-        gradients = [parameter.grad for _, parameter in items]
-        finite = all(
-            gradient is not None and torch.isfinite(gradient).all()
-            for gradient in gradients
-        )
-        nonzero = [
-            (name, float(gradient.abs().max()))
-            for (name, _), gradient in zip(items, gradients)
-            if gradient is not None and float(gradient.abs().sum()) > 1e-16
-        ]
-        result[group] = {
-            "parameter_tensors": len(items),
-            "finite": bool(finite),
-            "nonzero_tensors": len(nonzero),
-            "max_abs_by_tensor": dict(nonzero),
-            "all_finite_nonzero": bool(finite and len(nonzero) == len(items)),
-        }
-    return result
-
-
-def occupied_count(index: int, wires):
-    return sum((index >> (TOTAL_QUBITS - 1 - wire)) & 1 for wire in wires)
 
 
 def record(checks, name, passed, **evidence):
@@ -225,471 +94,428 @@ def record(checks, name, passed, **evidence):
     print(json.dumps({"check": name, **row}, ensure_ascii=False), flush=True)
 
 
-def primitive_check(checks):
-    try:
-        torch.manual_seed(17)
-        state = torch.randn(16, dtype=torch.complex128)
-        state = state / state.norm()
-        angle_a = torch.tensor(0.37, dtype=torch.float64)
-        angle_b = torch.tensor(-0.23, dtype=torch.float64)
-        reference = ising_zz(
-            single_excitation(state, 0, 2, angle_a), 1, 3, angle_b
-        )
-        device = qml.device("default.qubit", wires=4, shots=None)
-
-        @qml.qnode(device, interface="torch", diff_method="backprop")
-        def circuit(value, first, second):
-            qml.StatePrep(value, wires=range(4))
-            qml.SingleExcitation(first, wires=[0, 2])
-            qml.IsingZZ(second, wires=[1, 3])
-            return qml.state()
-
-        production = circuit(state, angle_a, angle_b)
-        error = float((production - reference).abs().max())
-        record(
-            checks,
-            "torch_reference_single_excitation_isingzz",
-            error <= 1e-10,
-            max_abs_error=error,
-            role="reference-only primitive equivalence; not formal readout",
-        )
-    except Exception as exc:
-        record(checks, "torch_reference_single_excitation_isingzz", False, error=str(exc))
-
-
-def environment_report(report, checks):
-    devices = {}
-    for name in ("default.qubit", "lightning.qubit", "lightning.gpu"):
-        try:
-            device = qml.device(name, wires=TOTAL_QUBITS, shots=None)
-            devices[name] = {"available": True, "device": str(device)}
-        except Exception as exc:
-            devices[name] = {"available": False, "error": str(exc)}
-    report["environment"] = {
-        "python": sys.version,
-        "torch": torch.__version__,
-        "pennylane": qml.__version__,
-        "cuda_available": bool(torch.cuda.is_available()),
-        "cuda_device_count": int(torch.cuda.device_count()),
-        "cuda_devices": [
-            torch.cuda.get_device_name(i) for i in range(torch.cuda.device_count())
-        ],
-        "devices": devices,
+def finite_nonzero_gradients(model):
+    groups = {
+        "feature_and_angle_generation": [],
+        "quantum_specific_circuit": [],
+        "post_measurement_readout": [],
+        "multi_j_fusion": [],
     }
-    record(
-        checks,
-        "environment_required_devices",
-        devices.get("default.qubit", {}).get("available", False)
-        and devices.get("lightning.gpu", {}).get("available", False),
-        pennylane_version=qml.__version__,
-        required=("default.qubit", "lightning.gpu"),
-        devices=devices,
+    quantum_suffixes = ("subset_bias", "embed_bias", "cross_bias", "cross_basis")
+    for name, parameter in model.named_parameters():
+        if not parameter.requires_grad:
+            continue
+        if name.startswith("fusion."):
+            group = "multi_j_fusion"
+        elif ".readout." in name:
+            group = "post_measurement_readout"
+        elif any(name.endswith(suffix) for suffix in quantum_suffixes):
+            group = "quantum_specific_circuit"
+        else:
+            group = "feature_and_angle_generation"
+        grad = parameter.grad
+        groups[group].append(
+            {
+                "name": name,
+                "numel": parameter.numel(),
+                "grad_none": grad is None,
+                "finite": False if grad is None else bool(torch.isfinite(grad).all()),
+                "max_abs": None if grad is None else float(grad.abs().max()),
+                "nonzero": False if grad is None else float(grad.abs().sum()) > 1e-16,
+            }
+        )
+    result = {}
+    for group, rows in groups.items():
+        result[group] = {
+            "parameter_tensors": len(rows),
+            "parameter_count": sum(row["numel"] for row in rows),
+            "finite": all(row["finite"] for row in rows),
+            "nonzero_tensors": sum(row["nonzero"] for row in rows),
+            "all_finite_nonzero": bool(rows)
+            and all(row["finite"] and row["nonzero"] for row in rows),
+            "max_abs_min": min(
+                (row["max_abs"] for row in rows if row["max_abs"] is not None),
+                default=None,
+            ),
+            "max_abs_max": max(
+                (row["max_abs"] for row in rows if row["max_abs"] is not None),
+                default=None,
+            ),
+        }
+    return result
+
+
+def specs_for_branch(branch, history, mask):
+    packed_history, packed_mask, _ = canonical_pack(history, mask)
+    _, feat, valid, _ = branch.builder(packed_history, packed_mask, branch.j)
+    subset, graph, embed, cross = branch._angles(
+        packed_history, packed_mask, feat, valid
     )
-
-
-def qnode_metadata(core, history, mask):
-    branch = core.j2
-    with torch.no_grad():
-        _, feature, valid, _ = branch.builder(history, mask, branch.j)
-        node_feature, _ = pool_subset_features(feature, valid, branch.j)
-        edge, _ = __import__(
-            "prediction.qgnn_final.common", fromlist=["physical_graph"]
-        ).physical_graph(history, mask)
-        order = branch._canonical_pair_order(edge[0], mask[0], node_feature[0])
-        angles = branch._angles(history, mask, feature, valid)
-        qnode = branch.qnode_for_order(order)
-        state = uniform_joint_state(mask[0], branch.j)
-    spec = qml.specs(qnode)(
+    count = int(packed_mask[0].sum())
+    state = canonical_joint_state(count, branch.j).to(
+        device=history.device, dtype=torch.complex128
+    )
+    specs = qml.specs(branch._state_qnode)(
         state,
-        angles[0][0].to(torch.float64),
-        angles[1][0].to(torch.float64),
-        angles[2][0].to(torch.float64),
-        angles[3][0].to(torch.float64),
+        subset[:1].to(torch.float64),
+        graph[:1].to(torch.float64),
+        embed[:1].to(torch.float64),
+        cross[:1].to(torch.float64),
     )
-    resources = spec["resources"]
-    resource_data = {
-        "num_wires": int(len(qnode.device.wires)),
-        "num_gates": int(resources.num_gates),
-        "depth": int(resources.depth),
-        "gate_types": {str(key): int(value) for key, value in resources.gate_types.items()},
-        "gate_sizes": {str(key): int(value) for key, value in resources.gate_sizes.items()},
-    }
+    resources = specs["resources"]
     return {
-        "device": str(qnode.device),
-        "interface": str(qnode.interface),
-        "diff_method": str(qnode.diff_method),
-        "shots": str(qnode.device.shots),
-        "qubits": TOTAL_QUBITS,
-        "pair_order_length": len(order),
-        "observables_per_vehicle": OBS_PER_NODE,
-        "observable_count": len(branch._observables),
-        "qml_specs": resource_data,
+        "num_wires": TOTAL_QUBITS,
+        "num_gates": resources.num_gates,
+        "depth": resources.depth,
+        "gate_types": dict(resources.gate_types),
+        "gate_sizes": {str(k): v for k, v in resources.gate_sizes.items()},
+        "stateprep_is_logical_undecomposed": True,
     }
 
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--rounds", type=int, default=3)
-    parser.add_argument("--skip-profile", action="store_true")
+    parser.add_argument(
+        "--output",
+        default="reports/qgnn/raj_pennylane_p1_1/repair_preflight_20260920.json",
+    )
     args = parser.parse_args()
 
     torch.set_num_threads(min(8, torch.get_num_threads()))
+    if not torch.cuda.is_available():
+        raise RuntimeError("P1.1 performance gate requires CUDA")
+    device = torch.device("cuda:0")
     checks = {}
     report = {
-        "schema": "raj_pennylane_p1_preflight_v1",
+        "schema": "raj_pennylane_p1_1_repair_v1",
         "scope": {
             "formal_training": False,
             "optimizer_steps": 0,
+            "validation_opened": False,
+            "test_opened": False,
             "labels_opened": False,
-            "prediction_test_opened": False,
-            "rounds": args.rounds,
+        },
+        "environment": {
+            "python": sys.version,
+            "torch": torch.__version__,
+            "pennylane": qml.__version__,
+            "cuda_device": torch.cuda.get_device_name(0),
         },
     }
-    environment_report(report, checks)
-    primitive_check(checks)
 
-    history, mask = synthetic_history(1)
-    core = None
-    try:
-        core = PennyLaneRajMultiJCore(
-            rounds=args.rounds,
-            device_name="default.qubit",
-            diff_method="backprop",
-        )
-        report["parameter_breakdown"] = core.parameter_breakdown()
-        report["circuit"] = core.circuit_metadata()
-        total = report["parameter_breakdown"]["total_interaction_core"]
-        record(
-            checks,
-            "parameter_budget",
-            100000 <= total <= 150000,
-            total_interaction_core=total,
-            target="100k-150k",
-            breakdown=report["parameter_breakdown"],
-        )
-    except Exception as exc:
-        record(checks, "core_construction", False, error=str(exc))
+    torch.manual_seed(20260920)
+    core = PennyLaneRajMultiJCore(rounds=3).to(device)
+    breakdown = core.parameter_breakdown()
+    report["parameter_breakdown"] = breakdown
+    record(
+        checks,
+        "parameter_budget",
+        100000 <= breakdown["total_interaction_core"] <= 150000,
+        **breakdown,
+    )
+    metadata = core.circuit_metadata()
+    report["circuit"] = metadata
+    record(
+        checks,
+        "fixed_circuit_topology",
+        metadata["j2"]["fixed_topology"]
+        and metadata["j3"]["fixed_topology"]
+        and not metadata["j2"]["scene_specific_qnode_cache"]
+        and not metadata["j3"]["scene_specific_qnode_cache"],
+        metadata=metadata,
+    )
+    record(
+        checks,
+        "formal_observable_contract",
+        OBS_PER_NODE == 37 and len(formal_observables()) == 8 * 37,
+        observables_per_vehicle=OBS_PER_NODE,
+        formal_observable_count=len(formal_observables()),
+    )
 
-    if core is not None:
-        try:
-            core.train()
-            core.zero_grad(set_to_none=True)
-            output = core(history, mask)
-            projection = torch.randn_like(output["readout"])
-            loss = (output["readout"] * projection).mean()
-            loss.backward()
-            group_result = group_gradients(core)
-            report["gradient_checks"] = group_result
-            record(
-                checks,
-                "qnode_forward_output_contract",
-                tuple(output["readout"].shape) == (1, 8, 64)
-                and tuple(output["branch_readout"].shape) == (1, 8, 2, 64)
-                and finite_tensor(output["readout"]),
-                readout_shape=list(output["readout"].shape),
-                branch_shape=list(output["branch_readout"].shape),
-                interaction_mask_shape=list(output["interaction_mask"].shape),
+    history, mask = synthetic_history(1, 8, seed=7777)
+    history, mask = history.to(device), mask.to(device)
+
+    # Full CUDA forward/backward and gradient groups.
+    core.train()
+    core.zero_grad(set_to_none=True)
+    output = core(history, mask)
+    loss = (output["readout"] * torch.randn_like(output["readout"])).mean()
+    loss.backward()
+    gradient_groups = finite_nonzero_gradients(core)
+    report["gradient_checks"] = gradient_groups
+    record(
+        checks,
+        "cuda_forward_backward",
+        bool(torch.isfinite(output["readout"]).all())
+        and bool(torch.isfinite(loss))
+        and all(v["all_finite_nonzero"] for v in gradient_groups.values()),
+        readout_shape=list(output["readout"].shape),
+        branch_shape=list(output["branch_readout"].shape),
+        interaction_tokens=core.interaction_tokens,
+        gradient_groups=gradient_groups,
+    )
+
+    # Fast exact-statevector feature path must equal direct formal qml.expval.
+    core.eval()
+    packed_history, packed_mask, _ = canonical_pack(history, mask)
+    equivalence = {}
+    with torch.no_grad():
+        for name, branch in (("j2", core.j2), ("j3", core.j3)):
+            _, fast_raw = branch.forward_packed(
+                packed_history, packed_mask, return_raw=True
             )
-            record(
-                checks,
-                "finite_forward_backward",
-                finite_tensor(output["readout"])
-                and torch.isfinite(loss)
-                and all(row["finite"] for row in group_result.values()),
-                loss=float(loss.detach()),
-                gradient_groups=group_result,
+            formal_raw = branch.formal_expval_features(
+                packed_history,
+                packed_mask,
+                device_name="default.qubit",
+                diff_method="backprop",
             )
-            for group, row in group_result.items():
-                record(
-                    checks,
-                    f"gradient_{group}",
-                    row["all_finite_nonzero"],
-                    **row,
-                )
-        except Exception as exc:
-            record(checks, "synthetic_forward_backward", False, error=str(exc))
-
-        try:
-            core.eval()
-            with torch.no_grad():
-                base = core(history, mask)["readout"]
-                no_j2 = core(history, mask, branch_scales=(0.0, 1.0))["readout"]
-                no_j3 = core(history, mask, branch_scales=(1.0, 0.0))["readout"]
-                no_interaction = core(history, mask, interaction_scale=0.0)["readout"]
-                no_johnson = core(history, mask, johnson_scale=0.0)["readout"]
-                no_entangling = core(history, mask, entangling_scale=0.0)["readout"]
-            changes = {
-                "j2_off_max_abs": float((base - no_j2).abs().max()),
-                "j3_off_max_abs": float((base - no_j3).abs().max()),
-                "interaction_off_max_abs": float((base - no_interaction).abs().max()),
-                "johnson_off_max_abs": float((base - no_johnson).abs().max()),
-                "entangling_off_max_abs": float((base - no_entangling).abs().max()),
+            equivalence[name] = {
+                "max_abs": float((fast_raw - formal_raw).abs().max()),
+                "mean_abs": float((fast_raw - formal_raw).abs().mean()),
             }
-            report["ablations"] = changes
-            for name, value in changes.items():
-                record(checks, name, value > 1e-7, max_abs_change=value)
-        except Exception as exc:
-            record(checks, "ablation_checks", False, error=str(exc))
+    report["statevector_expval_equivalence"] = equivalence
+    record(
+        checks,
+        "statevector_expval_equivalence",
+        all(row["max_abs"] <= 1e-8 for row in equivalence.values()),
+        **equivalence,
+    )
 
-        try:
-            h5, m5 = history[:, :, :5], mask[:, :5]
-            padded = torch.cat(
-                (h5, torch.randn(1, 20, 3, 4) * 9999.0), dim=2
+    backend_consistency = {}
+    with torch.no_grad():
+        for name, branch in (("j2", core.j2), ("j3", core.j3)):
+            default_raw = branch.formal_expval_features(
+                packed_history, packed_mask,
+                device_name="default.qubit", diff_method="backprop",
             )
-            padded_mask = torch.cat(
-                (m5, torch.zeros(1, 3, dtype=torch.bool)), dim=1
+            lightning_raw = branch.formal_expval_features(
+                packed_history, packed_mask,
+                device_name="lightning.gpu", diff_method="adjoint",
             )
-            permutation = torch.tensor([2, 4, 0, 3, 1, 7, 6, 5])
+            backend_consistency[name] = {
+                "max_abs": float((default_raw - lightning_raw).abs().max()),
+                "mean_abs": float((default_raw - lightning_raw).abs().mean()),
+            }
+    report["formal_backend_consistency"] = backend_consistency
+    record(
+        checks,
+        "formal_backend_consistency",
+        all(row["max_abs"] <= 5e-6 for row in backend_consistency.values()),
+        **backend_consistency,
+    )
+
+    # Structural ablations.
+    with torch.no_grad():
+        base = core(history, mask)["readout"]
+        variants = {
+            "j2_off": core(history, mask, branch_scales=(0.0, 1.0))["readout"],
+            "j3_off": core(history, mask, branch_scales=(1.0, 0.0))["readout"],
+            "interaction_off": core(history, mask, interaction_scale=0.0)["readout"],
+            "johnson_off": core(history, mask, johnson_scale=0.0)["readout"],
+            "entangling_off": core(history, mask, entangling_scale=0.0)["readout"],
+            "subset_phase_off": core(history, mask, subset_scale=0.0)["readout"],
+        }
+    ablations = {
+        name: float((base - value).abs().max()) for name, value in variants.items()
+    }
+    report["ablations"] = ablations
+    record(
+        checks,
+        "mechanism_participation",
+        all(value > 1e-7 for value in ablations.values()),
+        **ablations,
+    )
+
+    # Stronger permutation/padding checks than the original Luna preflight.
+    permutation_errors = []
+    generator = torch.Generator().manual_seed(404)
+    with torch.no_grad():
+        original = core(history, mask)["readout"]
+        for _ in range(8):
+            permutation = torch.randperm(8, generator=generator).to(device)
             inverse = torch.argsort(permutation)
-            with torch.no_grad():
-                compact = core(h5, m5)["readout"]
-                padded_output = core(padded, padded_mask)["readout"]
-                original = core(history, mask)["readout"]
-                permuted = core(
-                    history[:, :, permutation], mask[:, permutation]
-                )["readout"]
-            padding_error = float((compact - padded_output[:, :5]).abs().max())
-            padded_output_error = float(padded_output[:, 5:].abs().max())
-            permutation_error = float(
-                (permuted[:, inverse] - original).abs().max()
-            )
-            report["mask_permutation"] = {
-                "padding_active_max_abs": padding_error,
-                "padding_output_max_abs": padded_output_error,
-                "permutation_max_abs": permutation_error,
-                "tolerance": 2e-5,
-            }
-            record(
-                checks,
-                "padding_invariance",
-                padding_error <= 2e-5 and padded_output_error <= 2e-5,
-                active_max_abs=padding_error,
-                padded_output_max_abs=padded_output_error,
-            )
-            record(
-                checks,
-                "vehicle_permutation_consistency",
-                permutation_error <= 2e-5,
-                inverse_permute_max_abs=permutation_error,
-            )
-        except Exception as exc:
-            record(checks, "mask_permutation_checks", False, error=str(exc))
+            permuted = core(
+                history[:, :, permutation], mask[:, permutation]
+            )["readout"][:, inverse]
+            permutation_errors.append(float((permuted - original).abs().max()))
+    padding = {}
+    for n in (3, 5, 7):
+        compact_h, compact_m = history[:, :, :n], mask[:, :n]
+        noisy_padding = torch.randn(1, 20, 8 - n, 4, device=device) * 1e5
+        padded_h = torch.cat((compact_h, noisy_padding), 2)
+        padded_m = torch.cat(
+            (compact_m, torch.zeros(1, 8 - n, dtype=torch.bool, device=device)), 1
+        )
+        with torch.no_grad():
+            compact_out = core(compact_h, compact_m)["readout"]
+            padded_out = core(padded_h, padded_m)["readout"]
+        padding[str(n)] = {
+            "active_max_abs": float(
+                (compact_out - padded_out[:, :n]).abs().max()
+            ),
+            "inactive_max_abs": float(padded_out[:, n:].abs().max()),
+        }
+    report["invariance"] = {
+        "permutation_errors": permutation_errors,
+        "padding": padding,
+    }
+    record(
+        checks,
+        "permutation_padding",
+        max(permutation_errors) <= 2e-5
+        and all(
+            row["active_max_abs"] <= 2e-5 and row["inactive_max_abs"] <= 2e-5
+            for row in padding.values()
+        ),
+        permutation_max_abs=max(permutation_errors),
+        padding=padding,
+    )
 
-        try:
-            state = uniform_joint_state(mask[0], 2)
-            nonzero = torch.where(state.abs() > 1e-12)[0].tolist()
-            node_weights = {
-                occupied_count(index, range(NODE_QUBITS)) for index in nonzero
-            }
-            embedding_weights = {
-                occupied_count(index, range(NODE_QUBITS, TOTAL_QUBITS))
-                for index in nonzero
-            }
-            record(
-                checks,
-                "fixed_hamming_weight_initialization",
-                node_weights == {2} and embedding_weights == {3},
-                node_weights=sorted(node_weights),
-                embedding_weights=sorted(embedding_weights),
-                nonzero_basis_states=len(nonzero),
-            )
-        except Exception as exc:
-            record(checks, "fixed_hamming_weight_initialization", False, error=str(exc))
+    # Mixed active counts in one optimizer batch.
+    mixed_h, mixed_m = synthetic_history(4, 8, seed=8888)
+    mixed_h, mixed_m = mixed_h.to(device), mixed_m.to(device)
+    for row, count in enumerate((8, 7, 5, 3)):
+        mixed_m[row, count:] = False
+        mixed_h[row, :, count:] = 0
+    with torch.no_grad():
+        mixed_out = core(mixed_h, mixed_m)
+    report["mixed_active_count"] = {
+        "counts": [8, 7, 5, 3],
+        "shape": list(mixed_out["readout"].shape),
+        "finite": bool(torch.isfinite(mixed_out["readout"]).all()),
+        "j2_groups": core.j2.last_group_count,
+        "j3_groups": core.j3.last_group_count,
+    }
+    record(
+        checks,
+        "mixed_active_count_batch",
+        report["mixed_active_count"]["finite"]
+        and core.j2.last_group_count == 4
+        and core.j3.last_group_count == 4,
+        **report["mixed_active_count"],
+    )
 
-        try:
-            report["qnode_identity"] = qnode_metadata(core, history, mask)
-            record(
-                checks,
-                "qnode_identity",
-                report["qnode_identity"]["qubits"] == 14
-                and report["qnode_identity"]["shots"] == "Shots(total=None)",
-                **report["qnode_identity"],
-            )
-        except Exception as exc:
-            record(checks, "qnode_identity", False, error=str(exc))
-
-        try:
-            cpu_core = core
-            gpu_core = PennyLaneRajMultiJCore(
-                rounds=args.rounds,
-                device_name="lightning.gpu",
-                diff_method="adjoint",
-            )
-            gpu_core.load_state_dict(cpu_core.state_dict())
-            cpu_core.eval()
-            gpu_core.eval()
-            with torch.no_grad():
-                cpu_output = cpu_core(history, mask)
-                gpu_output = gpu_core(history, mask)
-            output_error = float(
-                (cpu_output["readout"] - gpu_output["readout"]).abs().max()
-            )
-            branch_error = float(
-                (cpu_output["branch_readout"] - gpu_output["branch_readout"])
-                .abs()
-                .max()
-            )
-            report["cpu_gpu_consistency"] = {
-                "cpu_device": "default.qubit",
-                "cpu_diff_method": "backprop",
-                "gpu_device": "lightning.gpu",
-                "gpu_diff_method": "adjoint",
-                "readout_max_abs": output_error,
-                "branch_readout_max_abs": branch_error,
-                "tolerance": 5e-5,
-            }
-            record(
-                checks,
-                "cpu_gpu_numerical_consistency",
-                output_error <= 5e-5 and branch_error <= 5e-5,
-                **report["cpu_gpu_consistency"],
-            )
-        except Exception as exc:
-            record(checks, "cpu_gpu_numerical_consistency", False, error=str(exc))
-
-        try:
-            report["circuit"]["representative_specs"] = qnode_metadata(
-                core, history, mask
-            )
-            record(
-                checks,
-                "circuit_resource_profile",
-                report["circuit"]["representative_specs"]["qml_specs"]["num_wires"]
-                == 14,
-                **report["circuit"]["representative_specs"],
-            )
-        except Exception as exc:
-            record(checks, "circuit_resource_profile", False, error=str(exc))
-
-        try:
-            candidates, history_array, mask_array, actual_snr = (
-                sind_train_micro_samples(ROOT)
-            )
-            real_history = torch.as_tensor(history_array, dtype=torch.float32)
-            real_mask = torch.as_tensor(mask_array, dtype=torch.bool)
-            core.train()
-            core.zero_grad(set_to_none=True)
-            real_output = core(real_history, real_mask)
-            real_loss = (
-                real_output["readout"] * torch.randn_like(real_output["readout"])
-            ).mean()
-            real_loss.backward()
-            real_gradients = [
-                parameter.grad
-                for parameter in core.parameters()
-                if parameter.requires_grad and parameter.grad is not None
+    # Fixed-weight initialization for both higher-order branches.
+    weight_rows = {}
+    for j in (2, 3):
+        state = canonical_joint_state(8, j)
+        nonzero = torch.where(state.abs() > 1e-12)[0]
+        node_weights, embed_weights = set(), set()
+        for index in nonzero.tolist():
+            bits = [
+                int(bool(index & (1 << (TOTAL_QUBITS - 1 - wire))))
+                for wire in range(TOTAL_QUBITS)
             ]
-            real_gradients_finite = bool(real_gradients) and all(
-                torch.isfinite(gradient).all() for gradient in real_gradients
-            )
-            real_gradients_nonzero = sum(
-                float(gradient.abs().sum()) > 1e-16 for gradient in real_gradients
-            )
-            report["actual_data"] = {
-                "dataset": "SinD",
-                "sample_paths": [
-                    "data/sind/splits/train/samples.npz",
-                    "data/sind/isac/train/sensing_cache.npz",
-                ],
-                "snr_db": actual_snr,
-                "split": "train",
-                "sample_indices": [int(index) for index in candidates],
-                "active_counts": [int(row.sum()) for row in real_mask],
-                "labels_opened": False,
-                "readout_shape": list(real_output["readout"].shape),
-                "finite_loss": bool(torch.isfinite(real_loss)),
-                "gradient_tensors": len(real_gradients),
-                "missing_gradient_tensors": sum(
-                    parameter.requires_grad and parameter.grad is None
-                    for parameter in core.parameters()
-                ),
-                "nonzero_gradient_tensors": int(real_gradients_nonzero),
-            }
-            record(
-                checks,
-                "actual_train_micro_smoke",
-                tuple(real_output["readout"].shape) == (len(candidates), 8, 64)
-                and finite_tensor(real_output["readout"])
-                and torch.isfinite(real_loss)
-                and real_gradients_finite
-                and real_gradients_nonzero > 0,
-                **report["actual_data"],
-            )
-        except Exception as exc:
-            record(checks, "actual_train_micro_smoke", False, error=str(exc))
+            node_weights.add(sum(bits[:8]))
+            embed_weights.add(sum(bits[8:]))
+        weight_rows[str(j)] = {
+            "node_weights": sorted(node_weights),
+            "embedding_weights": sorted(embed_weights),
+            "nonzero_basis_states": len(nonzero),
+        }
+    report["fixed_weight"] = weight_rows
+    record(
+        checks,
+        "fixed_hamming_weight",
+        weight_rows["2"]["node_weights"] == [2]
+        and weight_rows["3"]["node_weights"] == [3]
+        and weight_rows["2"]["embedding_weights"] == [3]
+        and weight_rows["3"]["embedding_weights"] == [3],
+        **weight_rows,
+    )
 
-    if not args.skip_profile:
-        try:
-            profile_core = PennyLaneRajMultiJCore(
-                rounds=args.rounds,
-                device_name="lightning.gpu",
-                diff_method="adjoint",
-            )
-            if core is not None:
-                profile_core.load_state_dict(core.state_dict())
-            profile_rows = []
-            for batch in (1, 2, 4):
-                profile_history, profile_mask = synthetic_history(
-                    batch, seed=20261000 + batch
-                )
-                profile_core.train()
-                profile_core.zero_grad(set_to_none=True)
-                if torch.cuda.is_available():
-                    torch.cuda.empty_cache()
-                    torch.cuda.reset_peak_memory_stats()
-                    torch.cuda.synchronize()
-                monitor = nvidia_peak_start()
-                started = time.perf_counter()
-                profile_output = profile_core(profile_history, profile_mask)
-                profile_loss = profile_output["readout"].square().mean()
-                profile_loss.backward()
-                if torch.cuda.is_available():
-                    torch.cuda.synchronize()
-                elapsed = time.perf_counter() - started
-                nvidia_peak = nvidia_peak_stop(monitor)
-                profile_rows.append(
-                    {
-                        "batch": batch,
-                        "readout_shape": list(profile_output["readout"].shape),
-                        "step_seconds_forward_backward": elapsed,
-                        "torch_peak_allocated_gib": (
-                            torch.cuda.max_memory_allocated() / 2**30
-                            if torch.cuda.is_available()
-                            else 0.0
-                        ),
-                        "torch_peak_reserved_gib": (
-                            torch.cuda.max_memory_reserved() / 2**30
-                            if torch.cuda.is_available()
-                            else 0.0
-                        ),
-                        "nvidia_smi_peak": nvidia_peak,
-                        "nvidia_smi_after": nvidia_snapshot(),
-                        "finite": bool(
-                            finite_tensor(profile_output["readout"])
-                            and torch.isfinite(profile_loss)
-                        ),
-                    }
-                )
-            report["short_profile"] = profile_rows
-            record(
-                checks,
-                "short_profile_b1_b2_b4",
-                all(row["finite"] for row in profile_rows)
-                and [row["batch"] for row in profile_rows] == [1, 2, 4],
-                profile=profile_rows,
-            )
-        except Exception as exc:
-            record(checks, "short_profile_b1_b2_b4", False, error=str(exc))
-    else:
-        report["short_profile"] = {"skipped": True}
-        record(checks, "short_profile_b1_b2_b4", True, skipped=True)
+    # Logical resource accounting; StatePrep remains explicitly undecomposed.
+    specs = {
+        "j2": specs_for_branch(core.j2, packed_history, packed_mask),
+        "j3": specs_for_branch(core.j3, packed_history, packed_mask),
+    }
+    report["logical_resources"] = specs
+    record(
+        checks,
+        "logical_resource_accounting",
+        specs["j2"]["num_wires"] == 14
+        and specs["j3"]["num_wires"] == 14
+        and specs["j2"]["stateprep_is_logical_undecomposed"]
+        and specs["j3"]["stateprep_is_logical_undecomposed"],
+        **specs,
+    )
+
+    # Actual SinD train-history-only micro smoke.
+    indices, real_h_np, real_m_np, snr_db, count_distribution = sind_train_micro_samples(
+        ROOT, limit=2
+    )
+    real_h = torch.as_tensor(real_h_np, dtype=torch.float32, device=device)
+    real_m = torch.as_tensor(real_m_np, dtype=torch.bool, device=device)
+    core.train()
+    core.zero_grad(set_to_none=True)
+    real_out = core(real_h, real_m)
+    real_loss = (real_out["readout"] * torch.randn_like(real_out["readout"])).mean()
+    real_loss.backward()
+    real_grads = finite_nonzero_gradients(core)
+    report["actual_data"] = {
+        "dataset": "SinD",
+        "split": "train",
+        "snr_db": snr_db,
+        "sample_indices": [int(v) for v in indices],
+        "active_counts": [int(v) for v in real_m.sum(-1)],
+        "labels_opened": False,
+        "readout_shape": list(real_out["readout"].shape),
+        "finite": bool(torch.isfinite(real_out["readout"]).all())
+        and bool(torch.isfinite(real_loss)),
+        "gradient_groups": real_grads,
+        "train_active_count_distribution": {
+            str(k): int(v) for k, v in count_distribution.items()
+        },
+    }
+    record(
+        checks,
+        "actual_train_micro_smoke",
+        report["actual_data"]["finite"]
+        and all(v["all_finite_nonzero"] for v in real_grads.values()),
+        **report["actual_data"],
+    )
+
+    # Full repaired-core speed gate.
+    profile = []
+    for batch in (1, 4, 32):
+        h, m = synthetic_history(batch, 8, seed=12000 + batch)
+        h, m = h.to(device), m.to(device)
+        core.train()
+        core.zero_grad(set_to_none=True)
+        torch.cuda.empty_cache()
+        torch.cuda.reset_peak_memory_stats()
+        torch.cuda.synchronize()
+        started = time.perf_counter()
+        out = core(h, m)
+        profile_loss = out["readout"].square().mean()
+        profile_loss.backward()
+        torch.cuda.synchronize()
+        elapsed = time.perf_counter() - started
+        profile.append(
+            {
+                "batch": batch,
+                "seconds_forward_backward": elapsed,
+                "peak_allocated_gib": torch.cuda.max_memory_allocated() / 2**30,
+                "readout_shape": list(out["readout"].shape),
+                "finite": bool(torch.isfinite(profile_loss)),
+            }
+        )
+    report["profile"] = profile
+    t1, t4, t32 = (row["seconds_forward_backward"] for row in profile)
+    record(
+        checks,
+        "batch32_training_speed",
+        t32 <= 20.0 and t4 < 4.0 * t1 and t32 < 16.0 * t4,
+        profile=profile,
+        batch32_threshold_seconds=20.0,
+        scaling_t4_over_4t1=t4 / (4 * t1),
+        scaling_t32_over_32t1=t32 / (32 * t1),
+    )
 
     report["checks"] = checks
     report["passed"] = all(row["passed"] for row in checks.values())
-    output_path = (
-        ROOT / "reports" / "qgnn" / "raj_pennylane_preflight"
-        / "preflight_20260920.json"
-    )
+    output_path = ROOT / args.output
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(json.dumps(report, indent=2, ensure_ascii=False) + "\n")
     print(

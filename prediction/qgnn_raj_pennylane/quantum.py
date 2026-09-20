@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import math
-from typing import Iterable
 
 import pennylane as qml
 import torch
@@ -18,11 +17,18 @@ from .common import (
     OBS_PER_NODE,
     TOTAL_QUBITS,
     branch_agent_mask,
+    canonical_joint_state,
+    canonical_pack,
     directed_pair_features,
-    pad_vehicle_register,
+    node_subsets,
     pair_valid_mask,
     pool_subset_features,
-    uniform_joint_state,
+    restore_canonical,
+)
+from .observables import (
+    conditional_embedding_rdm_features,
+    formal_observables,
+    normalize_formal_raw,
 )
 
 
@@ -30,19 +36,20 @@ def _mlp(in_dim: int, hidden: int, out_dim: int):
     return nn.Sequential(nn.Linear(in_dim, hidden), nn.SiLU(), nn.Linear(hidden, out_dim))
 
 
-def _count(module: nn.Module) -> int:
+def _count(module) -> int:
     if isinstance(module, torch.Tensor):
         return int(module.numel()) if module.requires_grad else 0
     return sum(parameter.numel() for parameter in module.parameters() if parameter.requires_grad)
 
 
 class PennyLaneRajBranch(nn.Module):
-    """One native Raj higher-order branch on an 8+6 fixed-weight register.
+    """One Raj higher-order branch on an 8-vehicle + 6-embedding register.
 
-    The vehicle register starts in a fixed superposition of valid j-subsets and
-    the embedding register starts in a fixed weight-k=3 superposition. Every
-    feature injection below is a gate angle inside the PennyLane QNode. The
-    branch never exposes qml.state() to the model readout.
+    Training uses one fixed PennyLane QNode returning qml.state(). Amplitudes are
+    never exposed as model features: the state is only an exact-simulator
+    implementation detail used to evaluate a fixed set of measurable Hermitian
+    observables efficiently. The formal expval path evaluates the same
+    observables directly with qml.expval for numerical validation.
     """
 
     def __init__(
@@ -52,8 +59,6 @@ class PennyLaneRajBranch(nn.Module):
         encoder_hidden: int = 64,
         phase_hidden: int = 32,
         readout_hidden: int = 96,
-        device_name: str = "lightning.gpu",
-        diff_method: str = "adjoint",
     ):
         super().__init__()
         if j not in (2, 3):
@@ -65,8 +70,7 @@ class PennyLaneRajBranch(nn.Module):
         self.builder = SubsetFeatureBuilder(32)
         feat_dim = self.builder.out_dim
 
-        # History/physical feature -> unitary gate-angle generators.
-        self.node_phase = nn.ModuleList(
+        self.subset_phase = nn.ModuleList(
             _mlp(feat_dim, phase_hidden, 1) for _ in range(rounds)
         )
         self.graph_angle = nn.ModuleList(
@@ -80,9 +84,7 @@ class PennyLaneRajBranch(nn.Module):
             _mlp(feat_dim, phase_hidden, 1) for _ in range(rounds)
         )
 
-        # Explicit trainable circuit parameters. They are shared over vehicle
-        # slots; no absolute vehicle ID is encoded here.
-        self.node_bias = nn.Parameter(torch.zeros(rounds))
+        self.subset_bias = nn.Parameter(torch.zeros(rounds))
         self.embed_bias = nn.Parameter(torch.zeros(rounds, len(EMBED_PAIRS)))
         self.cross_bias = nn.Parameter(torch.zeros(rounds, EMBED_QUBITS))
         self.cross_basis = nn.Parameter(torch.randn(rounds, EMBED_QUBITS) * 0.05)
@@ -95,134 +97,91 @@ class PennyLaneRajBranch(nn.Module):
             nn.LayerNorm(64),
         )
 
-        self.device_name = str(device_name)
-        self.diff_method = str(diff_method)
-        self._device = qml.device(self.device_name, wires=TOTAL_QUBITS, shots=None)
-        self._observables = self._build_observables()
-        self._qnodes: dict[tuple[tuple[int, int, int], ...], qml.QNode] = {}
+        self._state_device = qml.device("default.qubit", wires=TOTAL_QUBITS, shots=None)
+        self._state_qnode = self._build_state_qnode()
+        self._formal_qnodes = {}
+        self.last_group_count = 0
 
-    @staticmethod
-    def _build_observables():
-        observables = []
-        for i in range(NODE_QUBITS):
-            zi = qml.PauliZ(i)
-            observables.append(zi)
-            for e in range(EMBED_QUBITS):
-                observables.append(zi @ qml.PauliZ(NODE_QUBITS + e))
-            for p, q in EMBED_PAIRS:
-                wp, wq = NODE_QUBITS + p, NODE_QUBITS + q
-                observables.extend(
-                    (
-                        zi @ qml.PauliX(wp) @ qml.PauliX(wq),
-                        zi @ qml.PauliY(wp) @ qml.PauliY(wq),
-                        zi @ qml.PauliX(wp) @ qml.PauliY(wq),
-                        zi @ qml.PauliY(wp) @ qml.PauliX(wq),
+    def _apply_circuit(self, subset_phase, graph_angles, embed_angles, cross_angles):
+        subsets = node_subsets(self.j)
+        for layer in range(self.rounds):
+            for subset_index, subset in enumerate(subsets):
+                angle = subset_phase[:, layer, subset_index]
+                if self.j == 2:
+                    qml.ControlledPhaseShift(angle, wires=list(subset))
+                else:
+                    a, b, target = subset
+                    qml.ctrl(qml.PhaseShift, control=[a, b])(
+                        angle, wires=target
                     )
+
+            for pair_index, (a, b) in enumerate(NODE_PAIRS):
+                qml.SingleExcitation(
+                    graph_angles[:, layer, pair_index], wires=[a, b]
                 )
-        return tuple(observables)
 
-    def _build_qnode(self, pair_order: tuple[tuple[int, int, int], ...]):
-        """Build one QNode for a canonical history-only occupation schedule."""
-        device = self._device
-        observables = self._observables
-        rounds = self.rounds
+            for pair_index, (p, q) in enumerate(EMBED_PAIRS):
+                qml.SingleExcitation(
+                    embed_angles[:, layer, pair_index],
+                    wires=[NODE_QUBITS + p, NODE_QUBITS + q],
+                )
 
-        @qml.qnode(device, interface="torch", diff_method=self.diff_method)
-        def circuit(state, node_phase, graph_angles, embed_angles, cross_angles):
+            for i in range(NODE_QUBITS):
+                for e in range(EMBED_QUBITS):
+                    qml.IsingZZ(
+                        cross_angles[:, layer, i, e],
+                        wires=[i, NODE_QUBITS + e],
+                    )
+
+    def _build_state_qnode(self):
+        device = self._state_device
+
+        @qml.qnode(device, interface="torch", diff_method="backprop")
+        def circuit(state, subset_phase, graph_angles, embed_angles, cross_angles):
             qml.StatePrep(state, wires=range(TOTAL_QUBITS))
-            for layer in range(rounds):
-                for i in range(NODE_QUBITS):
-                    qml.RZ(node_phase[layer, i], wires=i)
-                for pair_index, a, b in pair_order:
-                    qml.SingleExcitation(
-                        graph_angles[layer, pair_index], wires=[a, b]
-                    )
-                for pair_index, (p, q) in enumerate(EMBED_PAIRS):
-                    qml.SingleExcitation(
-                        embed_angles[layer, pair_index],
-                        wires=[NODE_QUBITS + p, NODE_QUBITS + q],
-                    )
-                for i in range(NODE_QUBITS):
-                    for e in range(EMBED_QUBITS):
-                        qml.IsingZZ(
-                            cross_angles[layer, i, e],
-                            wires=[i, NODE_QUBITS + e],
-                        )
-            return tuple(qml.expval(observable) for observable in observables)
+            self._apply_circuit(subset_phase, graph_angles, embed_angles, cross_angles)
+            return qml.state()
 
         return circuit
 
-    def qnode_for_order(self, pair_order: Iterable[tuple[int, int, int]]):
-        key = tuple((int(index), int(a), int(b)) for index, a, b in pair_order)
-        if key not in self._qnodes:
-            self._qnodes[key] = self._build_qnode(key)
-        return self._qnodes[key]
+    def _build_formal_qnode(self, device_name: str, diff_method: str):
+        key = (str(device_name), str(diff_method))
+        if key in self._formal_qnodes:
+            return self._formal_qnodes[key]
+        device = qml.device(device_name, wires=TOTAL_QUBITS, shots=None)
+        observables = formal_observables()
 
-    @staticmethod
-    def _canonical_pair_order(
-        edge: torch.Tensor, mask: torch.Tensor, node_key: torch.Tensor
-    ):
-        """Build a permutation-equivariant oriented non-commuting schedule.
+        @qml.qnode(device, interface="torch", diff_method=diff_method)
+        def circuit(state, subset_phase, graph_angles, embed_angles, cross_angles):
+            qml.StatePrep(state, wires=range(TOTAL_QUBITS))
+            self._apply_circuit(subset_phase, graph_angles, embed_angles, cross_angles)
+            return tuple(qml.expval(observable) for observable in observables)
 
-        Pair ordering uses only symmetric physical edge keys and unordered
-        node-key pairs. The orientation of SingleExcitation is chosen from the
-        node keys, not from the vehicle slot index. Exact ties are skipped
-        because no index-free order/orientation exists for non-commuting gates.
-        """
-        entries = []
-        active = mask.detach().cpu().tolist()
-        node_keys = [
-            tuple(float(value) for value in row.detach().cpu())
-            for row in node_key
-        ]
-        for pair_index, (a, b) in enumerate(NODE_PAIRS):
-            if not (active[a] and active[b]) or node_keys[a] == node_keys[b]:
-                continue
-            key_a = tuple(float(value) for value in edge[a, b].detach().cpu())
-            key_b = tuple(float(value) for value in edge[b, a].detach().cpu())
-            pair_key = (min(key_a, key_b), max(key_a, key_b))
-            if node_keys[a] > node_keys[b]:
-                first, second = a, b
-            else:
-                first, second = b, a
-            node_pair_key = (
-                max(node_keys[a], node_keys[b]),
-                min(node_keys[a], node_keys[b]),
-            )
-            entries.append(
-                (pair_index, (first, second), (pair_key, node_pair_key))
-            )
-        entries.sort(key=lambda item: item[2], reverse=True)
-        ordered = []
-        cursor = 0
-        while cursor < len(entries):
-            end = cursor + 1
-            while end < len(entries) and entries[end][2] == entries[cursor][2]:
-                end += 1
-            if end - cursor == 1:
-                pair_index, (first, second), _ = entries[cursor]
-                ordered.append((pair_index, first, second))
-            cursor = end
-        return tuple(ordered)
+        self._formal_qnodes[key] = circuit
+        return circuit
+
     def _angles(self, history, mask, feat, valid):
         edge, _ = physical_graph(history, mask)
         node_feat, scene_feat = pool_subset_features(feat, valid, self.j)
         pair_feat = directed_pair_features(edge)
         pair_mask = pair_valid_mask(mask)
 
-        node_rows, graph_rows, embed_rows, cross_rows = [], [], [], []
+        subset_rows, graph_rows, embed_rows, cross_rows = [], [], [], []
         for layer in range(self.rounds):
-            node = math.pi * torch.tanh(
-                self.node_phase[layer](node_feat).squeeze(-1) + self.node_bias[layer]
+            subset = math.pi * torch.tanh(
+                self.subset_phase[layer](feat).squeeze(-1) + self.subset_bias[layer]
             )
-            node = node * mask.to(node.dtype)
+            subset = subset * valid.to(subset.dtype)
+
             graph = (math.pi / 2) * torch.tanh(
                 self.graph_angle[layer](pair_feat).squeeze(-1)
             )
             graph = graph * pair_mask.to(graph.dtype)
+
             embed = (math.pi / 2) * torch.tanh(
                 self.embed_angle[layer](scene_feat) + self.embed_bias[layer]
             )
+
             strength = torch.tanh(
                 self.cross_strength[layer](node_feat).squeeze(-1)
             )
@@ -234,19 +193,67 @@ class PennyLaneRajBranch(nn.Module):
             )
             cross = cross * mask[..., None].to(cross.dtype)
 
-            node_rows.append(node)
+            subset_rows.append(subset)
             graph_rows.append(graph)
             embed_rows.append(embed)
             cross_rows.append(cross)
 
         return (
-            torch.stack(node_rows, 1),
+            torch.stack(subset_rows, 1),
             torch.stack(graph_rows, 1),
             torch.stack(embed_rows, 1),
             torch.stack(cross_rows, 1),
         )
 
-    def forward_patch(
+    def _statevector_raw(
+        self,
+        history,
+        mask,
+        *,
+        interaction_scale=1.0,
+        johnson_scale=1.0,
+        entangling_scale=1.0,
+        subset_scale=1.0,
+    ):
+        _, feat, valid, _ = self.builder(history, mask, self.j)
+        subset_phase, graph_angles, embed_angles, cross_angles = self._angles(
+            history, mask, feat, valid
+        )
+        subset_phase = subset_phase * float(subset_scale)
+        graph_angles = graph_angles * float(interaction_scale) * float(johnson_scale)
+        cross_angles = cross_angles * float(interaction_scale) * float(entangling_scale)
+
+        active = branch_agent_mask(mask, self.j)
+        counts = mask.sum(-1)
+        raw = history.new_zeros(history.shape[0], NODE_QUBITS, OBS_PER_NODE)
+        group_count = 0
+
+        for count in sorted(set(int(v) for v in counts.detach().cpu().tolist())):
+            indices = (counts == count).nonzero(as_tuple=True)[0]
+            if not indices.numel() or count < self.j:
+                continue
+            group_count += 1
+            state = canonical_joint_state(count, self.j).to(
+                device=history.device, dtype=torch.complex128
+            )
+            psi = self._state_qnode(
+                state,
+                subset_phase[indices].to(torch.float64),
+                graph_angles[indices].to(torch.float64),
+                embed_angles[indices].to(torch.float64),
+                cross_angles[indices].to(torch.float64),
+            )
+            if psi.ndim == 1:
+                psi = psi.unsqueeze(0)
+            features = conditional_embedding_rdm_features(
+                psi, active[indices]
+            ).to(history.dtype)
+            raw = raw.index_copy(0, indices, features)
+
+        self.last_group_count = group_count
+        return raw, active
+
+    def forward_packed(
         self,
         history: torch.Tensor,
         mask: torch.Tensor,
@@ -254,55 +261,73 @@ class PennyLaneRajBranch(nn.Module):
         interaction_scale: float = 1.0,
         johnson_scale: float = 1.0,
         entangling_scale: float = 1.0,
+        subset_scale: float = 1.0,
         return_raw: bool = False,
     ):
-        history, mask = pad_vehicle_register(history, mask)
-        _, feat, valid, _ = self.builder(history, mask, self.j)
-        node_feat, _ = pool_subset_features(feat, valid, self.j)
-        edge, _ = physical_graph(history, mask)
-        node_phase, graph_angles, embed_angles, cross_angles = self._angles(
-            history, mask, feat, valid
+        raw, active = self._statevector_raw(
+            history,
+            mask,
+            interaction_scale=interaction_scale,
+            johnson_scale=johnson_scale,
+            entangling_scale=entangling_scale,
+            subset_scale=subset_scale,
         )
-        graph_angles = graph_angles * float(interaction_scale) * float(johnson_scale)
-        cross_angles = cross_angles * float(interaction_scale) * float(entangling_scale)
-        active = branch_agent_mask(mask, self.j)
-        rows, raw_rows = [], []
-
-        for batch_index in range(history.shape[0]):
-            if not bool(active[batch_index].any()):
-                raw = history.new_zeros(NODE_QUBITS, OBS_PER_NODE)
-            else:
-                pair_order = self._canonical_pair_order(
-                    edge[batch_index], mask[batch_index], node_feat[batch_index]
-                )
-                state = uniform_joint_state(mask[batch_index], self.j)
-                values = self.qnode_for_order(pair_order)(
-                    state,
-                    node_phase[batch_index].to(torch.float64),
-                    graph_angles[batch_index].to(torch.float64),
-                    embed_angles[batch_index].to(torch.float64),
-                    cross_angles[batch_index].to(torch.float64),
-                )
-                raw = torch.stack(values).reshape(NODE_QUBITS, OBS_PER_NODE)
-                raw = raw.to(history.dtype)
-            raw_rows.append(raw)
-            rows.append(raw * active[batch_index, :, None].to(raw.dtype))
-
-        raw = torch.stack(raw_rows, 0)
-        output = self.readout(torch.stack(rows, 0)) * active[..., None].to(history.dtype)
+        output = self.readout(raw) * active[..., None].to(raw.dtype)
         if return_raw:
             return output, raw
         return output
 
+    def formal_expval_features(
+        self,
+        history: torch.Tensor,
+        mask: torch.Tensor,
+        *,
+        device_name: str = "default.qubit",
+        diff_method: str = "backprop",
+    ):
+        """Slow validation path for direct qml.expval equivalence."""
+        _, feat, valid, _ = self.builder(history, mask, self.j)
+        subset_phase, graph_angles, embed_angles, cross_angles = self._angles(
+            history, mask, feat, valid
+        )
+        active = branch_agent_mask(mask, self.j)
+        counts = mask.sum(-1)
+        raw = history.new_zeros(history.shape[0], NODE_QUBITS, OBS_PER_NODE)
+        qnode = self._build_formal_qnode(device_name, diff_method)
+
+        for count in sorted(set(int(v) for v in counts.detach().cpu().tolist())):
+            indices = (counts == count).nonzero(as_tuple=True)[0]
+            if not indices.numel() or count < self.j:
+                continue
+            state = canonical_joint_state(count, self.j).to(
+                device=history.device, dtype=torch.complex128
+            )
+            values = qnode(
+                state,
+                subset_phase[indices].to(torch.float64),
+                graph_angles[indices].to(torch.float64),
+                embed_angles[indices].to(torch.float64),
+                cross_angles[indices].to(torch.float64),
+            )
+            stacked = torch.stack(values, -1)
+            if stacked.ndim == 1:
+                stacked = stacked.unsqueeze(0)
+            stacked = stacked.reshape(len(indices), NODE_QUBITS, OBS_PER_NODE)
+            normalized = normalize_formal_raw(stacked, active[indices]).to(
+                device=history.device, dtype=history.dtype
+            )
+            raw = raw.index_copy(0, indices, normalized)
+        return raw
+
     def parameter_breakdown(self):
         feature_blocks = (
             "builder",
-            "node_phase",
+            "subset_phase",
             "graph_angle",
             "embed_angle",
             "cross_strength",
         )
-        quantum_blocks = ("node_bias", "embed_bias", "cross_bias", "cross_basis")
+        quantum_blocks = ("subset_bias", "embed_bias", "cross_bias", "cross_basis")
         feature = sum(_count(getattr(self, name)) for name in feature_blocks)
         quantum = sum(_count(getattr(self, name)) for name in quantum_blocks)
         return {
@@ -310,6 +335,28 @@ class PennyLaneRajBranch(nn.Module):
             "quantum_specific_circuit": quantum,
             "post_measurement_readout": _count(self.readout),
             "total": sum(parameter.numel() for parameter in self.parameters()),
+        }
+
+    def circuit_metadata(self):
+        return {
+            "j": self.j,
+            "vehicle_qubits": NODE_QUBITS,
+            "embedding_qubits": EMBED_QUBITS,
+            "total_qubits": TOTAL_QUBITS,
+            "rounds": self.rounds,
+            "fixed_topology": True,
+            "scene_specific_qnode_cache": False,
+            "training_device": "default.qubit with Torch/CUDA tensors",
+            "training_interface": "torch",
+            "training_diff_method": "backprop",
+            "training_measurement": "qml.state exact-simulator optimization",
+            "formal_measurement": "37 Hermitian observables/vehicle via qml.expval",
+            "state_amplitudes_used_as_features": False,
+            "subset_phase_gates_per_round": len(node_subsets(self.j)),
+            "johnson_single_excitation_per_round": len(NODE_PAIRS),
+            "embedding_single_excitation_per_round": len(EMBED_PAIRS),
+            "cross_isingzz_per_round": NODE_QUBITS * EMBED_QUBITS,
+            "logical_stateprep_undecomposed": True,
         }
 
 
@@ -343,26 +390,61 @@ class MultiJFusion(nn.Module):
 
 
 class PennyLaneRajMultiJCore(nn.Module):
-    """Raj Weighted Multi-j core with a single [B,N,64] interaction output."""
+    """Batched PennyLane-native Raj Weighted Multi-j interaction core."""
 
     readout_dim = 64
-    interaction_tokens = 1
+    interaction_tokens = 2
 
-    def __init__(
-        self,
-        rounds: int = 3,
-        device_name: str = "lightning.gpu",
-        diff_method: str = "adjoint",
-    ):
+    def __init__(self, rounds: int = 3):
         super().__init__()
         self.rounds = int(rounds)
-        self.j2 = PennyLaneRajBranch(
-            2, rounds, device_name=device_name, diff_method=diff_method
-        )
-        self.j3 = PennyLaneRajBranch(
-            3, rounds, device_name=device_name, diff_method=diff_method
-        )
+        self.j2 = PennyLaneRajBranch(2, rounds)
+        self.j3 = PennyLaneRajBranch(3, rounds)
         self.fusion = MultiJFusion()
+
+    def _forward_fixed_register(
+        self,
+        history,
+        mask,
+        *,
+        preserve_first: bool,
+        branch_scales,
+        interaction_scale,
+        johnson_scale,
+        entangling_scale,
+        subset_scale,
+    ):
+        packed_history, packed_mask, order = canonical_pack(
+            history, mask, preserve_first=preserve_first
+        )
+        scale2, scale3 = float(branch_scales[0]), float(branch_scales[1])
+        z2 = self.j2.forward_packed(
+            packed_history,
+            packed_mask,
+            interaction_scale=interaction_scale,
+            johnson_scale=johnson_scale,
+            entangling_scale=entangling_scale,
+            subset_scale=subset_scale,
+        ) * scale2
+        z3 = self.j3.forward_packed(
+            packed_history,
+            packed_mask,
+            interaction_scale=interaction_scale,
+            johnson_scale=johnson_scale,
+            entangling_scale=entangling_scale,
+            subset_scale=subset_scale,
+        ) * scale3
+        mask2 = branch_agent_mask(packed_mask, 2) & (scale2 != 0.0)
+        mask3 = branch_agent_mask(packed_mask, 3) & (scale3 != 0.0)
+        fused = self.fusion(z2, z3, mask2, mask3)
+        tokens = torch.stack((z2, z3), 2)
+        token_mask = torch.stack((mask2, mask3), 2)
+
+        return (
+            restore_canonical(fused, order),
+            restore_canonical(tokens, order),
+            restore_canonical(token_mask, order),
+        )
 
     def forward(
         self,
@@ -374,6 +456,7 @@ class PennyLaneRajMultiJCore(nn.Module):
         interaction_scale: float = 1.0,
         johnson_scale: float = 1.0,
         entangling_scale: float = 1.0,
+        subset_scale: float = 1.0,
     ):
         del timestamps
         if history.ndim != 4 or history.shape[1] != 20 or history.shape[-1] != 4:
@@ -384,85 +467,58 @@ class PennyLaneRajMultiJCore(nn.Module):
             raise ValueError("At least one vehicle slot is required")
         history = torch.where(mask[:, None, :, None], history, 0.0)
         original_n = history.shape[2]
+
         hp, mp, restore = patch_inputs(history, mask)
-        hp, mp = pad_vehicle_register(hp, mp)
-        scale2, scale3 = (float(branch_scales[0]), float(branch_scales[1]))
-        z2 = self.j2.forward_patch(
+        fused, tokens, token_mask = self._forward_fixed_register(
             hp,
             mp,
+            preserve_first=restore is not None,
+            branch_scales=branch_scales,
             interaction_scale=interaction_scale,
             johnson_scale=johnson_scale,
             entangling_scale=entangling_scale,
-        ) * scale2
-        z3 = self.j3.forward_patch(
-            hp,
-            mp,
-            interaction_scale=interaction_scale,
-            johnson_scale=johnson_scale,
-            entangling_scale=entangling_scale,
-        ) * scale3
-        mask2 = branch_agent_mask(mp, 2) & (scale2 != 0.0)
-        mask3 = branch_agent_mask(mp, 3) & (scale3 != 0.0)
-        fused = self.fusion(z2, z3, mask2, mask3)
-        branch_tokens = torch.stack((z2, z3), 2)
-        branch_masks = torch.stack((mask2, mask3), 2)
+            subset_scale=subset_scale,
+        )
 
         if restore is not None:
             batch_size, vehicle_count = restore
             readout = fused[:, 0].reshape(batch_size, vehicle_count, 64)
-            tokens = branch_tokens[:, 0].reshape(batch_size, vehicle_count, 2, 64)
-            interaction_mask = (
-                (mask2[:, 0] | mask3[:, 0]).reshape(batch_size, vehicle_count)
-            )
-            branch_masks = branch_masks[:, 0].reshape(
-                batch_size, vehicle_count, 2
-            )
+            tokens = tokens[:, 0].reshape(batch_size, vehicle_count, 2, 64)
+            token_mask = token_mask[:, 0].reshape(batch_size, vehicle_count, 2)
         else:
             readout = fused[:, :original_n]
-            tokens = branch_tokens[:, :original_n]
-            interaction_mask = (mask2 | mask3)[:, :original_n]
-            branch_masks = branch_masks[:, :original_n]
+            tokens = tokens[:, :original_n]
+            token_mask = token_mask[:, :original_n]
 
+        interaction_mask = token_mask.any(-1)
         return {
             "readout": readout,
             "interaction_mask": interaction_mask,
             "branch_readout": tokens,
-            "branch_mask": branch_masks,
+            "branch_mask": token_mask,
         }
 
     def parameter_breakdown(self):
         j2 = self.j2.parameter_breakdown()
         j3 = self.j3.parameter_breakdown()
-        fusion = {"multi_j_fusion": _count(self.fusion)}
+        fusion = _count(self.fusion)
         total = sum(parameter.numel() for parameter in self.parameters())
         return {
             "j2": j2,
             "j3": j3,
-            "multi_j_fusion": fusion["multi_j_fusion"],
+            "multi_j_fusion": fusion,
             "total_interaction_core": total,
         }
 
     def circuit_metadata(self):
         return {
-            "vehicle_qubits": NODE_QUBITS,
-            "embedding_qubits": EMBED_QUBITS,
-            "total_qubits_per_branch": TOTAL_QUBITS,
-            "j2_vehicle_weight": 2,
-            "j3_vehicle_weight": 3,
-            "embedding_hamming_weight": 3,
-            "vehicle_pair_count": len(NODE_PAIRS),
-            "embedding_pair_count": len(EMBED_PAIRS),
-            "cross_register_pair_count": NODE_QUBITS * EMBED_QUBITS,
-            "observables_per_vehicle": OBS_PER_NODE,
-            "observable_count": len(self.j2._observables),
-            "rounds": self.rounds,
-            "gate_families": [
-                "StatePrep(fixed initial state)",
-                "RZ(history/feature phase encoding)",
-                "SingleExcitation(weighted Johnson occupation transfer)",
-                "SingleExcitation(embedding weight-k evolution)",
-                "IsingZZ(vehicle-embedding entangling conditioning)",
-            ],
-            "data_reupload": "every round: RZ + node SingleExcitation + embedding SingleExcitation + IsingZZ",
-            "formal_readout": "PauliZ, Z_i Z_e, and Z_i {XX,YY,XY,YX}_{e_p,e_q} expectations",
+            "j2": self.j2.circuit_metadata(),
+            "j3": self.j3.circuit_metadata(),
+            "output": "[B,N,64]",
+            "branch_tokens": "[B,N,2,64]",
+            "interaction_tokens": 2,
+            "canonicalization": (
+                "raw first/middle/last history lexicographic packing; "
+                "no trainable feature controls circuit topology"
+            ),
         }

@@ -1,0 +1,700 @@
+{
+  "schema": "raj_pennylane_p1_1_repair_v1",
+  "scope": {
+    "formal_training": false,
+    "optimizer_steps": 0,
+    "validation_opened": false,
+    "test_opened": false,
+    "labels_opened": false
+  },
+  "environment": {
+    "python": "3.11.15 (main, Mar 11 2026, 17:20:07) [GCC 14.3.0]",
+    "torch": "2.13.0+cu130",
+    "pennylane": "0.45.1",
+    "cuda_device": "NVIDIA GeForce RTX 4090"
+  },
+  "parameter_breakdown": {
+    "j2": {
+      "history_feature_and_angle_generation": 51030,
+      "quantum_specific_circuit": 84,
+      "post_measurement_readout": 10058,
+      "total": 61172
+    },
+    "j3": {
+      "history_feature_and_angle_generation": 51030,
+      "quantum_specific_circuit": 84,
+      "post_measurement_readout": 10058,
+      "total": 61172
+    },
+    "multi_j_fusion": 16705,
+    "total_interaction_core": 139049
+  },
+  "circuit": {
+    "j2": {
+      "j": 2,
+      "vehicle_qubits": 8,
+      "embedding_qubits": 6,
+      "total_qubits": 14,
+      "rounds": 3,
+      "fixed_topology": true,
+      "scene_specific_qnode_cache": false,
+      "training_device": "default.qubit with Torch/CUDA tensors",
+      "training_interface": "torch",
+      "training_diff_method": "backprop",
+      "training_measurement": "qml.state exact-simulator optimization",
+      "formal_measurement": "37 Hermitian observables/vehicle via qml.expval",
+      "state_amplitudes_used_as_features": false,
+      "subset_phase_gates_per_round": 28,
+      "johnson_single_excitation_per_round": 28,
+      "embedding_single_excitation_per_round": 15,
+      "cross_isingzz_per_round": 48,
+      "logical_stateprep_undecomposed": true
+    },
+    "j3": {
+      "j": 3,
+      "vehicle_qubits": 8,
+      "embedding_qubits": 6,
+      "total_qubits": 14,
+      "rounds": 3,
+      "fixed_topology": true,
+      "scene_specific_qnode_cache": false,
+      "training_device": "default.qubit with Torch/CUDA tensors",
+      "training_interface": "torch",
+      "training_diff_method": "backprop",
+      "training_measurement": "qml.state exact-simulator optimization",
+      "formal_measurement": "37 Hermitian observables/vehicle via qml.expval",
+      "state_amplitudes_used_as_features": false,
+      "subset_phase_gates_per_round": 56,
+      "johnson_single_excitation_per_round": 28,
+      "embedding_single_excitation_per_round": 15,
+      "cross_isingzz_per_round": 48,
+      "logical_stateprep_undecomposed": true
+    },
+    "output": "[B,N,64]",
+    "branch_tokens": "[B,N,2,64]",
+    "interaction_tokens": 2,
+    "canonicalization": "raw first/middle/last history lexicographic packing; no trainable feature controls circuit topology"
+  },
+  "gradient_checks": {
+    "feature_and_angle_generation": {
+      "parameter_tensors": 112,
+      "parameter_count": 102060,
+      "finite": true,
+      "nonzero_tensors": 112,
+      "all_finite_nonzero": true,
+      "max_abs_min": 6.738584488630295e-06,
+      "max_abs_max": 0.037951819598674774
+    },
+    "quantum_specific_circuit": {
+      "parameter_tensors": 8,
+      "parameter_count": 168,
+      "finite": true,
+      "nonzero_tensors": 8,
+      "all_finite_nonzero": true,
+      "max_abs_min": 8.729146793484688e-05,
+      "max_abs_max": 0.07295805960893631
+    },
+    "post_measurement_readout": {
+      "parameter_tensors": 16,
+      "parameter_count": 20116,
+      "finite": true,
+      "nonzero_tensors": 16,
+      "all_finite_nonzero": true,
+      "max_abs_min": 0.006766448728740215,
+      "max_abs_max": 0.07598323374986649
+    },
+    "multi_j_fusion": {
+      "parameter_tensors": 10,
+      "parameter_count": 16705,
+      "finite": true,
+      "nonzero_tensors": 10,
+      "all_finite_nonzero": true,
+      "max_abs_min": 0.0006109921960160136,
+      "max_abs_max": 0.02165704220533371
+    }
+  },
+  "statevector_expval_equivalence": {
+    "j2": {
+      "max_abs": 0.0,
+      "mean_abs": 0.0
+    },
+    "j3": {
+      "max_abs": 0.0,
+      "mean_abs": 0.0
+    }
+  },
+  "formal_backend_consistency": {
+    "j2": {
+      "max_abs": 5.960464477539063e-08,
+      "mean_abs": 8.789000638387279e-09
+    },
+    "j3": {
+      "max_abs": 5.960464477539063e-08,
+      "mean_abs": 4.831432587337758e-09
+    }
+  },
+  "ablations": {
+    "j2_off": 1.9996311664581299,
+    "j3_off": 2.923799514770508,
+    "interaction_off": 0.6256486177444458,
+    "johnson_off": 0.6496196389198303,
+    "entangling_off": 0.10096123814582825,
+    "subset_phase_off": 0.03436383605003357
+  },
+  "invariance": {
+    "permutation_errors": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "padding": {
+      "3": {
+        "active_max_abs": 0.0,
+        "inactive_max_abs": 0.0
+      },
+      "5": {
+        "active_max_abs": 0.0,
+        "inactive_max_abs": 0.0
+      },
+      "7": {
+        "active_max_abs": 0.0,
+        "inactive_max_abs": 0.0
+      }
+    }
+  },
+  "mixed_active_count": {
+    "counts": [
+      8,
+      7,
+      5,
+      3
+    ],
+    "shape": [
+      4,
+      8,
+      64
+    ],
+    "finite": true,
+    "j2_groups": 4,
+    "j3_groups": 4
+  },
+  "fixed_weight": {
+    "2": {
+      "node_weights": [
+        2
+      ],
+      "embedding_weights": [
+        3
+      ],
+      "nonzero_basis_states": 560
+    },
+    "3": {
+      "node_weights": [
+        3
+      ],
+      "embedding_weights": [
+        3
+      ],
+      "nonzero_basis_states": 1120
+    }
+  },
+  "logical_resources": {
+    "j2": {
+      "num_wires": 14,
+      "num_gates": 358,
+      "depth": 73,
+      "gate_types": {
+        "StatePrep": 1,
+        "ControlledPhaseShift": 84,
+        "SingleExcitation": 129,
+        "IsingZZ": 144
+      },
+      "gate_sizes": {
+        "14": 1,
+        "2": 357
+      },
+      "stateprep_is_logical_undecomposed": true
+    },
+    "j3": {
+      "num_wires": 14,
+      "num_gates": 442,
+      "depth": 189,
+      "gate_types": {
+        "StatePrep": 1,
+        "2C(PhaseShift)": 168,
+        "SingleExcitation": 129,
+        "IsingZZ": 144
+      },
+      "gate_sizes": {
+        "14": 1,
+        "3": 168,
+        "2": 273
+      },
+      "stateprep_is_logical_undecomposed": true
+    }
+  },
+  "actual_data": {
+    "dataset": "SinD",
+    "split": "train",
+    "snr_db": 0.0,
+    "sample_indices": [
+      0,
+      1
+    ],
+    "active_counts": [
+      8,
+      8
+    ],
+    "labels_opened": false,
+    "readout_shape": [
+      2,
+      8,
+      64
+    ],
+    "finite": true,
+    "gradient_groups": {
+      "feature_and_angle_generation": {
+        "parameter_tensors": 112,
+        "parameter_count": 102060,
+        "finite": true,
+        "nonzero_tensors": 112,
+        "all_finite_nonzero": true,
+        "max_abs_min": 6.642076186835766e-07,
+        "max_abs_max": 0.03295988216996193
+      },
+      "quantum_specific_circuit": {
+        "parameter_tensors": 8,
+        "parameter_count": 168,
+        "finite": true,
+        "nonzero_tensors": 8,
+        "all_finite_nonzero": true,
+        "max_abs_min": 3.332781489007175e-06,
+        "max_abs_max": 0.08824579417705536
+      },
+      "post_measurement_readout": {
+        "parameter_tensors": 16,
+        "parameter_count": 20116,
+        "finite": true,
+        "nonzero_tensors": 16,
+        "all_finite_nonzero": true,
+        "max_abs_min": 0.006799527909606695,
+        "max_abs_max": 0.08183365315198898
+      },
+      "multi_j_fusion": {
+        "parameter_tensors": 10,
+        "parameter_count": 16705,
+        "finite": true,
+        "nonzero_tensors": 10,
+        "all_finite_nonzero": true,
+        "max_abs_min": 0.0007425564108416438,
+        "max_abs_max": 0.022635553032159805
+      }
+    },
+    "train_active_count_distribution": {
+      "3": 11,
+      "4": 102,
+      "5": 171,
+      "6": 328,
+      "7": 290,
+      "8": 14900
+    }
+  },
+  "profile": [
+    {
+      "batch": 1,
+      "seconds_forward_backward": 1.6067952159792185,
+      "peak_allocated_gib": 0.21721839904785156,
+      "readout_shape": [
+        1,
+        8,
+        64
+      ],
+      "finite": true
+    },
+    {
+      "batch": 4,
+      "seconds_forward_backward": 2.914970427751541,
+      "peak_allocated_gib": 0.8069295883178711,
+      "readout_shape": [
+        4,
+        8,
+        64
+      ],
+      "finite": true
+    },
+    {
+      "batch": 32,
+      "seconds_forward_backward": 4.318291941657662,
+      "peak_allocated_gib": 6.313410758972168,
+      "readout_shape": [
+        32,
+        8,
+        64
+      ],
+      "finite": true
+    }
+  ],
+  "checks": {
+    "parameter_budget": {
+      "passed": true,
+      "j2": {
+        "history_feature_and_angle_generation": 51030,
+        "quantum_specific_circuit": 84,
+        "post_measurement_readout": 10058,
+        "total": 61172
+      },
+      "j3": {
+        "history_feature_and_angle_generation": 51030,
+        "quantum_specific_circuit": 84,
+        "post_measurement_readout": 10058,
+        "total": 61172
+      },
+      "multi_j_fusion": 16705,
+      "total_interaction_core": 139049
+    },
+    "fixed_circuit_topology": {
+      "passed": true,
+      "metadata": {
+        "j2": {
+          "j": 2,
+          "vehicle_qubits": 8,
+          "embedding_qubits": 6,
+          "total_qubits": 14,
+          "rounds": 3,
+          "fixed_topology": true,
+          "scene_specific_qnode_cache": false,
+          "training_device": "default.qubit with Torch/CUDA tensors",
+          "training_interface": "torch",
+          "training_diff_method": "backprop",
+          "training_measurement": "qml.state exact-simulator optimization",
+          "formal_measurement": "37 Hermitian observables/vehicle via qml.expval",
+          "state_amplitudes_used_as_features": false,
+          "subset_phase_gates_per_round": 28,
+          "johnson_single_excitation_per_round": 28,
+          "embedding_single_excitation_per_round": 15,
+          "cross_isingzz_per_round": 48,
+          "logical_stateprep_undecomposed": true
+        },
+        "j3": {
+          "j": 3,
+          "vehicle_qubits": 8,
+          "embedding_qubits": 6,
+          "total_qubits": 14,
+          "rounds": 3,
+          "fixed_topology": true,
+          "scene_specific_qnode_cache": false,
+          "training_device": "default.qubit with Torch/CUDA tensors",
+          "training_interface": "torch",
+          "training_diff_method": "backprop",
+          "training_measurement": "qml.state exact-simulator optimization",
+          "formal_measurement": "37 Hermitian observables/vehicle via qml.expval",
+          "state_amplitudes_used_as_features": false,
+          "subset_phase_gates_per_round": 56,
+          "johnson_single_excitation_per_round": 28,
+          "embedding_single_excitation_per_round": 15,
+          "cross_isingzz_per_round": 48,
+          "logical_stateprep_undecomposed": true
+        },
+        "output": "[B,N,64]",
+        "branch_tokens": "[B,N,2,64]",
+        "interaction_tokens": 2,
+        "canonicalization": "raw first/middle/last history lexicographic packing; no trainable feature controls circuit topology"
+      }
+    },
+    "formal_observable_contract": {
+      "passed": true,
+      "observables_per_vehicle": 37,
+      "formal_observable_count": 296
+    },
+    "cuda_forward_backward": {
+      "passed": true,
+      "readout_shape": [
+        1,
+        8,
+        64
+      ],
+      "branch_shape": [
+        1,
+        8,
+        2,
+        64
+      ],
+      "interaction_tokens": 2,
+      "gradient_groups": {
+        "feature_and_angle_generation": {
+          "parameter_tensors": 112,
+          "parameter_count": 102060,
+          "finite": true,
+          "nonzero_tensors": 112,
+          "all_finite_nonzero": true,
+          "max_abs_min": 6.738584488630295e-06,
+          "max_abs_max": 0.037951819598674774
+        },
+        "quantum_specific_circuit": {
+          "parameter_tensors": 8,
+          "parameter_count": 168,
+          "finite": true,
+          "nonzero_tensors": 8,
+          "all_finite_nonzero": true,
+          "max_abs_min": 8.729146793484688e-05,
+          "max_abs_max": 0.07295805960893631
+        },
+        "post_measurement_readout": {
+          "parameter_tensors": 16,
+          "parameter_count": 20116,
+          "finite": true,
+          "nonzero_tensors": 16,
+          "all_finite_nonzero": true,
+          "max_abs_min": 0.006766448728740215,
+          "max_abs_max": 0.07598323374986649
+        },
+        "multi_j_fusion": {
+          "parameter_tensors": 10,
+          "parameter_count": 16705,
+          "finite": true,
+          "nonzero_tensors": 10,
+          "all_finite_nonzero": true,
+          "max_abs_min": 0.0006109921960160136,
+          "max_abs_max": 0.02165704220533371
+        }
+      }
+    },
+    "statevector_expval_equivalence": {
+      "passed": true,
+      "j2": {
+        "max_abs": 0.0,
+        "mean_abs": 0.0
+      },
+      "j3": {
+        "max_abs": 0.0,
+        "mean_abs": 0.0
+      }
+    },
+    "formal_backend_consistency": {
+      "passed": true,
+      "j2": {
+        "max_abs": 5.960464477539063e-08,
+        "mean_abs": 8.789000638387279e-09
+      },
+      "j3": {
+        "max_abs": 5.960464477539063e-08,
+        "mean_abs": 4.831432587337758e-09
+      }
+    },
+    "mechanism_participation": {
+      "passed": true,
+      "j2_off": 1.9996311664581299,
+      "j3_off": 2.923799514770508,
+      "interaction_off": 0.6256486177444458,
+      "johnson_off": 0.6496196389198303,
+      "entangling_off": 0.10096123814582825,
+      "subset_phase_off": 0.03436383605003357
+    },
+    "permutation_padding": {
+      "passed": true,
+      "permutation_max_abs": 0.0,
+      "padding": {
+        "3": {
+          "active_max_abs": 0.0,
+          "inactive_max_abs": 0.0
+        },
+        "5": {
+          "active_max_abs": 0.0,
+          "inactive_max_abs": 0.0
+        },
+        "7": {
+          "active_max_abs": 0.0,
+          "inactive_max_abs": 0.0
+        }
+      }
+    },
+    "mixed_active_count_batch": {
+      "passed": true,
+      "counts": [
+        8,
+        7,
+        5,
+        3
+      ],
+      "shape": [
+        4,
+        8,
+        64
+      ],
+      "finite": true,
+      "j2_groups": 4,
+      "j3_groups": 4
+    },
+    "fixed_hamming_weight": {
+      "passed": true,
+      "2": {
+        "node_weights": [
+          2
+        ],
+        "embedding_weights": [
+          3
+        ],
+        "nonzero_basis_states": 560
+      },
+      "3": {
+        "node_weights": [
+          3
+        ],
+        "embedding_weights": [
+          3
+        ],
+        "nonzero_basis_states": 1120
+      }
+    },
+    "logical_resource_accounting": {
+      "passed": true,
+      "j2": {
+        "num_wires": 14,
+        "num_gates": 358,
+        "depth": 73,
+        "gate_types": {
+          "StatePrep": 1,
+          "ControlledPhaseShift": 84,
+          "SingleExcitation": 129,
+          "IsingZZ": 144
+        },
+        "gate_sizes": {
+          "14": 1,
+          "2": 357
+        },
+        "stateprep_is_logical_undecomposed": true
+      },
+      "j3": {
+        "num_wires": 14,
+        "num_gates": 442,
+        "depth": 189,
+        "gate_types": {
+          "StatePrep": 1,
+          "2C(PhaseShift)": 168,
+          "SingleExcitation": 129,
+          "IsingZZ": 144
+        },
+        "gate_sizes": {
+          "14": 1,
+          "3": 168,
+          "2": 273
+        },
+        "stateprep_is_logical_undecomposed": true
+      }
+    },
+    "actual_train_micro_smoke": {
+      "passed": true,
+      "dataset": "SinD",
+      "split": "train",
+      "snr_db": 0.0,
+      "sample_indices": [
+        0,
+        1
+      ],
+      "active_counts": [
+        8,
+        8
+      ],
+      "labels_opened": false,
+      "readout_shape": [
+        2,
+        8,
+        64
+      ],
+      "finite": true,
+      "gradient_groups": {
+        "feature_and_angle_generation": {
+          "parameter_tensors": 112,
+          "parameter_count": 102060,
+          "finite": true,
+          "nonzero_tensors": 112,
+          "all_finite_nonzero": true,
+          "max_abs_min": 6.642076186835766e-07,
+          "max_abs_max": 0.03295988216996193
+        },
+        "quantum_specific_circuit": {
+          "parameter_tensors": 8,
+          "parameter_count": 168,
+          "finite": true,
+          "nonzero_tensors": 8,
+          "all_finite_nonzero": true,
+          "max_abs_min": 3.332781489007175e-06,
+          "max_abs_max": 0.08824579417705536
+        },
+        "post_measurement_readout": {
+          "parameter_tensors": 16,
+          "parameter_count": 20116,
+          "finite": true,
+          "nonzero_tensors": 16,
+          "all_finite_nonzero": true,
+          "max_abs_min": 0.006799527909606695,
+          "max_abs_max": 0.08183365315198898
+        },
+        "multi_j_fusion": {
+          "parameter_tensors": 10,
+          "parameter_count": 16705,
+          "finite": true,
+          "nonzero_tensors": 10,
+          "all_finite_nonzero": true,
+          "max_abs_min": 0.0007425564108416438,
+          "max_abs_max": 0.022635553032159805
+        }
+      },
+      "train_active_count_distribution": {
+        "3": 11,
+        "4": 102,
+        "5": 171,
+        "6": 328,
+        "7": 290,
+        "8": 14900
+      }
+    },
+    "batch32_training_speed": {
+      "passed": true,
+      "profile": [
+        {
+          "batch": 1,
+          "seconds_forward_backward": 1.6067952159792185,
+          "peak_allocated_gib": 0.21721839904785156,
+          "readout_shape": [
+            1,
+            8,
+            64
+          ],
+          "finite": true
+        },
+        {
+          "batch": 4,
+          "seconds_forward_backward": 2.914970427751541,
+          "peak_allocated_gib": 0.8069295883178711,
+          "readout_shape": [
+            4,
+            8,
+            64
+          ],
+          "finite": true
+        },
+        {
+          "batch": 32,
+          "seconds_forward_backward": 4.318291941657662,
+          "peak_allocated_gib": 6.313410758972168,
+          "readout_shape": [
+            32,
+            8,
+            64
+          ],
+          "finite": true
+        }
+      ],
+      "batch32_threshold_seconds": 20.0,
+      "scaling_t4_over_4t1": 0.453537949136706,
+      "scaling_t32_over_32t1": 0.08398495454479078
+    }
+  },
+  "passed": true
+}

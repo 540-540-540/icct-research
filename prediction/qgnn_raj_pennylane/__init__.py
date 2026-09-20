@@ -1,11 +1,8 @@
-from .quantum import PennyLaneRajMultiJCore
-from .classical import MatchedRajJohnsonTokenCore, HistoricalRajJohnsonTokenCore
-from .model import RajResidualModel, build_model
+"""PennyLane-native Raj QGNN P1/P1.1 public surface.
 
-__all__ = [
-    "PennyLaneRajMultiJCore",
-    "MatchedRajJohnsonTokenCore",
-    "HistoricalRajJohnsonTokenCore",
-    "RajResidualModel",
-    "build_model",
-]
+Residual/model.py and classical.py are retained as unapproved P2 prototypes but
+are intentionally not exported until the P2 interface is re-frozen.
+"""
+from .quantum import PennyLaneRajBranch, PennyLaneRajMultiJCore
+
+__all__ = ["PennyLaneRajBranch", "PennyLaneRajMultiJCore"]
