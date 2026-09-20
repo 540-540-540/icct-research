@@ -1,0 +1,170 @@
+{
+  "revision": "ROUND4_RAJ_PAPER_NATIVE_TWO_SEED_20260919",
+  "protocol": {
+    "dataset": "SinD",
+    "snr_db": 0,
+    "train_samples_per_seed": 4096,
+    "validation_samples": 1880,
+    "epochs": 20,
+    "batch_size": 32,
+    "test_set_used": false,
+    "primary_baseline_policy": "paper-native first"
+  },
+  "primary_model": "RajWeightedMultiJQGNNCore (j=2+j=3, graph-conditioned weighted Johnson quantum mixing + compound embedding evolution)",
+  "primary_baseline": "Raj multi-j JohnsonGIN",
+  "runs": {
+    "seed2026_quantum": {
+      "best_validation": {
+        "ADE": 0.5164579397542997,
+        "FDE": 1.102781151892974,
+        "J": 1.0678485157007866,
+        "scenes": 1880
+      },
+      "best_epoch": 19,
+      "parameters": {
+        "graph": 126535,
+        "llm_non_lora": 4052375,
+        "lora": 98304,
+        "trainable_total": 4277214,
+        "frozen_total": 67736832,
+        "total": 72014046
+      },
+      "elapsed_seconds": 386.5486829522997
+    },
+    "seed2026_johnson": {
+      "best_validation": {
+        "ADE": 0.5259523853580368,
+        "FDE": 1.1297818104003339,
+        "J": 1.0908432905582037,
+        "scenes": 1880
+      },
+      "best_epoch": 20,
+      "parameters": {
+        "graph": 179201,
+        "llm_non_lora": 4052375,
+        "lora": 98304,
+        "trainable_total": 4329880,
+        "frozen_total": 67736832,
+        "total": 72066712
+      },
+      "elapsed_seconds": 450.2298924792558
+    },
+    "seed2027_quantum": {
+      "best_validation": {
+        "ADE": 0.5308950420627568,
+        "FDE": 1.1482339365288932,
+        "J": 1.1050120103272034,
+        "scenes": 1880
+      },
+      "best_epoch": 20,
+      "parameters": {
+        "graph": 126535,
+        "llm_non_lora": 4052375,
+        "lora": 98304,
+        "trainable_total": 4277214,
+        "frozen_total": 67736832,
+        "total": 72014046
+      },
+      "elapsed_seconds": 520.0722978841513
+    },
+    "seed2027_johnson": {
+      "best_validation": {
+        "ADE": 0.5504226028126605,
+        "FDE": 1.1898912103172947,
+        "J": 1.145368207971308,
+        "scenes": 1880
+      },
+      "best_epoch": 20,
+      "parameters": {
+        "graph": 179201,
+        "llm_non_lora": 4052375,
+        "lora": 98304,
+        "trainable_total": 4329880,
+        "frozen_total": 67736832,
+        "total": 72066712
+      },
+      "elapsed_seconds": 589.077492332086
+    },
+    "seed2026_gin": {
+      "best_validation": {
+        "ADE": 0.5905720574424622,
+        "FDE": 1.191985092874854,
+        "J": 1.1865646038798894,
+        "scenes": 1880
+      },
+      "best_epoch": 20,
+      "parameters": {
+        "graph": 183971,
+        "llm_non_lora": 4052375,
+        "lora": 98304,
+        "trainable_total": 4334650,
+        "frozen_total": 67736832,
+        "total": 72071482
+      },
+      "elapsed_seconds": 373.79616955667734
+    },
+    "seed2026_ppgn": {
+      "best_validation": {
+        "ADE": 0.5795941069167345,
+        "FDE": 1.1514957791313212,
+        "J": 1.1553419964823952,
+        "scenes": 1880
+      },
+      "best_epoch": 20,
+      "parameters": {
+        "graph": 204192,
+        "llm_non_lora": 4052375,
+        "lora": 98304,
+        "trainable_total": 4354871,
+        "frozen_total": 67736832,
+        "total": 72091703
+      },
+      "elapsed_seconds": 316.3179775271565
+    }
+  },
+  "quantum_vs_johnson_gain_pct": {
+    "seed2026": {
+      "ADE": 1.8051910910669045,
+      "FDE": 2.3899002673615666,
+      "J": 2.107981509025947
+    },
+    "seed2027": {
+      "ADE": 3.547739618634449,
+      "FDE": 3.5009312975169626,
+      "J": 3.523425686450987
+    },
+    "two_seed_mean_metrics": {
+      "ADE": 2.696272829877211,
+      "FDE": 2.959810787234185,
+      "J": 2.832959786817124
+    }
+  },
+  "two_seed_mean": {
+    "quantum_ADE_mean": 0.5236764909085283,
+    "quantum_FDE_mean": 1.1255075442109335,
+    "quantum_J_mean": 1.086430263013995,
+    "johnson_ADE_mean": 0.5381874940853486,
+    "johnson_FDE_mean": 1.1598365103588142,
+    "johnson_J_mean": 1.118105749264756
+  },
+  "seed2026_quantum_vs_other_paper_baselines_gain_pct": {
+    "GIN": {
+      "ADE": 12.549546961148483,
+      "FDE": 7.48364568609966,
+      "J": 10.0050252460691
+    },
+    "PPGN": {
+      "ADE": 10.89316927294175,
+      "FDE": 4.23055195869646,
+      "J": 7.572950784096399
+    }
+  },
+  "interpretation": {
+    "seed2026_both_metrics_win": true,
+    "seed2027_both_metrics_win": true,
+    "two_seed_positive_signal": true,
+    "full_15802_train_executed": false,
+    "multi_snr_executed": false,
+    "test_used": false
+  }
+}

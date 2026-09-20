@@ -1,0 +1,33 @@
+{
+  "kind": "quantum",
+  "seed": 2026,
+  "snr": 0.0,
+  "epochs": 20,
+  "batch_size": 32,
+  "train_limit": 1000,
+  "depth": 3,
+  "classical_hidden": 42,
+  "correction_cap": 16.0,
+  "lr": 0.0003,
+  "run_dir": "runs/raj_learning_curve_20260920/1000_quantum",
+  "resume": false,
+  "max_seconds": 7200.0,
+  "save_steps": 100,
+  "source_sha256": {
+    "prediction/raj_qgnn/quantum.py": "2c01a64bb26ee92a6fca76759a3df3daf6a40b9139136a299b3185f1c4acae1d",
+    "prediction/raj_qgnn/model.py": "5de9d91f860840934212136320f434571f577055f3984c05d20490d3628dbd01",
+    "prediction/raj_qgnn/common.py": "17dcb2098368b8f9c3b1a336ed75e6706301a7d328a1c1ec45fb67b69bbe4e77",
+    "prediction/raj_qgnn/metrics.py": "a01009f624164828f8067946d71fe814ab60882d2f372039793163cc7042c12d",
+    "prediction/raj_qgnn/contracts.py": "37a245e3ed4aaadf5e104fca81733ed09eb12a5868c182adc7356e74df86136d",
+    "prediction/raj_qgnn/__init__.py": "4ef9b4e19f2bbbfcbca0a26d44013edb99ae74c0ef4e350a4d9805170d480378",
+    "prediction/raj_qgnn/motion_token_llm.py": "1d6b2eb557b98d2ece7c186d71bc146d61d76060aa17c1fec09a11030da86431",
+    "prediction/raj_qgnn/classical.py": "29cf2c2a42d07045d109d4624c291b68ecd635df7cf39db36c15ae9d203bcc4e",
+    "prediction/raj_qgnn/temporal.py": "897987034031b5db6453019349257d6eaff86bd3b74e084a721711c487969f82",
+    "scripts/train_raj_qgnn.py": "f0cb984cee082fd03951c795d2cea8a0d87c93db3d77affbef20aa46e7ca791e"
+  },
+  "token_sha256": "a84ecd895bf18e7683edc4ae9574646535bbd968d77d29889f5a42095cc5d63d",
+  "pid": 593125,
+  "cuda_visible_devices": "0",
+  "git_head": "afb0c6835d63b3c309dfdbd3bdd3d20b1a7033eb",
+  "test_set_used": false
+}

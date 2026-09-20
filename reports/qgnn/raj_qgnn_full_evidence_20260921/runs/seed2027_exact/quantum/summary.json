@@ -1,0 +1,28 @@
+{
+  "status": "COMPLETED",
+  "kind": "quantum",
+  "best_validation": {
+    "ADE": 0.5298540310894555,
+    "FDE": 1.146925225861846,
+    "J": 1.1033166440203785,
+    "scenes": 1880
+  },
+  "best_epoch": 20,
+  "epochs_completed": 20,
+  "global_step": 2560,
+  "elapsed_seconds": 453.079628078267,
+  "parameters": {
+    "total": 72014046,
+    "trainable": 4277214,
+    "frozen": 67736832,
+    "graph_total": 126535,
+    "graph_trainable": 126535,
+    "llm_lora_trainable": 98304,
+    "interface_trainable": 4052375
+  },
+  "shared_initialization_sha256": "e90d1fb2927e389e17d94fb4fca3c0ba3bd333bf50988e376a4d93c8a7594403",
+  "train_indices_sha256": "f3c77808c2bdda7cb1e81547b992edc18d7e7d8e4824a82c317d71af2089c98f",
+  "train_samples": 4096,
+  "validation_samples": 1880,
+  "test_set_used": false
+}
