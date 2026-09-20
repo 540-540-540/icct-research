@@ -13,7 +13,7 @@ TOTAL_QUBITS = NODE_QUBITS + EMBED_QUBITS
 NODE_PAIRS = tuple(itertools.combinations(range(NODE_QUBITS), 2))
 EMBED_PAIRS = tuple(itertools.combinations(range(EMBED_QUBITS), 2))
 EMBED_RING = tuple((i, (i + 1) % EMBED_QUBITS) for i in range(EMBED_QUBITS))
-OBS_PER_NODE = 1 + EMBED_QUBITS + 4 * len(EMBED_RING)
+OBS_PER_NODE = 1 + EMBED_QUBITS + 4 * len(EMBED_PAIRS)
 
 @lru_cache(maxsize=8)
 def node_subsets(j: int):
@@ -53,6 +53,8 @@ def pair_lookup():
     return table
 
 def uniform_joint_state(mask: torch.Tensor, j: int) -> torch.Tensor:
+    if mask.ndim != 1 or mask.numel() != NODE_QUBITS:
+        raise ValueError(f"uniform_joint_state expects [{NODE_QUBITS}] mask")
     active = tuple(bool(v) for v in mask.detach().cpu().tolist())
     valid = [(s, e, idx) for s, e, idx in joint_basis_indices(j) if all(active[i] for i in s)]
     state = torch.zeros(1 << TOTAL_QUBITS, dtype=torch.complex128, device=mask.device)
@@ -62,6 +64,22 @@ def uniform_joint_state(mask: torch.Tensor, j: int) -> torch.Tensor:
     amp = (len(valid) ** -0.5)
     state[torch.tensor([row[2] for row in valid], device=mask.device)] = amp
     return state
+def pad_vehicle_register(history: torch.Tensor, mask: torch.Tensor):
+    """Pad a <=8 vehicle scene to the fixed 8-qubit register."""
+    if history.ndim != 4 or mask.ndim != 2:
+        raise ValueError("Expected history [B,T,N,4] and mask [B,N]")
+    n = history.shape[2]
+    if n > NODE_QUBITS:
+        raise ValueError(f"Vehicle register accepts at most {NODE_QUBITS} slots")
+    if n == NODE_QUBITS:
+        return history, mask
+    extra_history = history.new_zeros(
+        history.shape[0], history.shape[1], NODE_QUBITS - n, history.shape[3]
+    )
+    extra_mask = torch.zeros(
+        mask.shape[0], NODE_QUBITS - n, dtype=torch.bool, device=mask.device
+    )
+    return torch.cat((history, extra_history), 2), torch.cat((mask, extra_mask), 1)
 
 def pool_subset_features(feat: torch.Tensor, valid: torch.Tensor, j: int):
     inc = subset_incidence(j).to(feat.device, feat.dtype)

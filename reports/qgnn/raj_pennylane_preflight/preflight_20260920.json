@@ -1,0 +1,1144 @@
+{
+  "schema": "raj_pennylane_p1_preflight_v1",
+  "scope": {
+    "formal_training": false,
+    "optimizer_steps": 0,
+    "labels_opened": false,
+    "prediction_test_opened": false,
+    "rounds": 3
+  },
+  "environment": {
+    "python": "3.11.15 (main, Mar 11 2026, 17:20:07) [GCC 14.3.0]",
+    "torch": "2.13.0+cu130",
+    "pennylane": "0.45.1",
+    "cuda_available": true,
+    "cuda_device_count": 2,
+    "cuda_devices": [
+      "NVIDIA GeForce RTX 4090",
+      "NVIDIA GeForce RTX 4090"
+    ],
+    "devices": {
+      "default.qubit": {
+        "available": true,
+        "device": "<default.qubit device (wires=14) at 0x77a1d579c790>"
+      },
+      "lightning.qubit": {
+        "available": true,
+        "device": "<lightning.qubit device (wires=14) at 0x77a1d6104250>"
+      },
+      "lightning.gpu": {
+        "available": true,
+        "device": "<lightning.gpu device (wires=14) at 0x77a1d676e5d0>"
+      }
+    }
+  },
+  "parameter_breakdown": {
+    "j2": {
+      "history_feature_and_angle_generation": 51030,
+      "quantum_specific_circuit": 84,
+      "post_measurement_readout": 12998,
+      "total": 64112
+    },
+    "j3": {
+      "history_feature_and_angle_generation": 51030,
+      "quantum_specific_circuit": 84,
+      "post_measurement_readout": 12998,
+      "total": 64112
+    },
+    "multi_j_fusion": 16705,
+    "total_interaction_core": 144929
+  },
+  "circuit": {
+    "vehicle_qubits": 8,
+    "embedding_qubits": 6,
+    "total_qubits_per_branch": 14,
+    "j2_vehicle_weight": 2,
+    "j3_vehicle_weight": 3,
+    "embedding_hamming_weight": 3,
+    "vehicle_pair_count": 28,
+    "embedding_pair_count": 15,
+    "cross_register_pair_count": 48,
+    "observables_per_vehicle": 67,
+    "observable_count": 536,
+    "rounds": 3,
+    "gate_families": [
+      "StatePrep(fixed initial state)",
+      "RZ(history/feature phase encoding)",
+      "SingleExcitation(weighted Johnson occupation transfer)",
+      "SingleExcitation(embedding weight-k evolution)",
+      "IsingZZ(vehicle-embedding entangling conditioning)"
+    ],
+    "data_reupload": "every round: RZ + node SingleExcitation + embedding SingleExcitation + IsingZZ",
+    "formal_readout": "PauliZ, Z_i Z_e, and Z_i {XX,YY,XY,YX}_{e_p,e_q} expectations",
+    "representative_specs": {
+      "device": "<default.qubit device (wires=14) at 0x77a1d4114f10>",
+      "interface": "torch",
+      "diff_method": "backprop",
+      "shots": "Shots(total=None)",
+      "qubits": 14,
+      "pair_order_length": 28,
+      "observables_per_vehicle": 67,
+      "observable_count": 536,
+      "qml_specs": {
+        "num_wires": 14,
+        "num_gates": 298,
+        "depth": 76,
+        "gate_types": {
+          "StatePrep": 1,
+          "RZ": 24,
+          "SingleExcitation": 129,
+          "IsingZZ": 144
+        },
+        "gate_sizes": {
+          "14": 1,
+          "1": 24,
+          "2": 273
+        }
+      }
+    }
+  },
+  "gradient_checks": {
+    "feature_and_angle_generation": {
+      "parameter_tensors": 112,
+      "finite": true,
+      "nonzero_tensors": 112,
+      "max_abs_by_tensor": {
+        "j2.builder.own.input.weight": 0.01972346194088459,
+        "j2.builder.own.input.bias": 0.009342905133962631,
+        "j2.builder.own.gru.weight_ih_l0": 0.0077885896898806095,
+        "j2.builder.own.gru.weight_hh_l0": 0.004400918725878,
+        "j2.builder.own.gru.bias_ih_l0": 0.030710266903042793,
+        "j2.builder.own.gru.bias_hh_l0": 0.013860795646905899,
+        "j2.builder.own.norm.weight": 0.0048003168776631355,
+        "j2.builder.own.norm.bias": 0.0034547261893749237,
+        "j2.node_phase.0.0.weight": 0.010231374762952328,
+        "j2.node_phase.0.0.bias": 0.001206452026963234,
+        "j2.node_phase.0.2.weight": 0.010133912786841393,
+        "j2.node_phase.0.2.bias": 0.0021076947450637817,
+        "j2.node_phase.1.0.weight": 0.015710236504673958,
+        "j2.node_phase.1.0.bias": 0.002379259094595909,
+        "j2.node_phase.1.2.weight": 0.019753605127334595,
+        "j2.node_phase.1.2.bias": 0.0003143996000289917,
+        "j2.node_phase.2.0.weight": 0.013060115277767181,
+        "j2.node_phase.2.0.bias": 0.0014365515671670437,
+        "j2.node_phase.2.2.weight": 0.022793155163526535,
+        "j2.node_phase.2.2.bias": 0.0002420470118522644,
+        "j2.graph_angle.0.0.weight": 0.8766383528709412,
+        "j2.graph_angle.0.0.bias": 0.17340053617954254,
+        "j2.graph_angle.0.2.weight": 1.5924509763717651,
+        "j2.graph_angle.0.2.bias": 1.1552892923355103,
+        "j2.graph_angle.1.0.weight": 0.8025601506233215,
+        "j2.graph_angle.1.0.bias": 0.09667982906103134,
+        "j2.graph_angle.1.2.weight": 0.7719468474388123,
+        "j2.graph_angle.1.2.bias": 0.5290602445602417,
+        "j2.graph_angle.2.0.weight": 1.069331407546997,
+        "j2.graph_angle.2.0.bias": 0.18729552626609802,
+        "j2.graph_angle.2.2.weight": 1.7231576442718506,
+        "j2.graph_angle.2.2.bias": 1.1721785068511963,
+        "j2.embed_angle.0.0.weight": 0.01265602558851242,
+        "j2.embed_angle.0.0.bias": 0.0036914804950356483,
+        "j2.embed_angle.0.2.weight": 0.018232865259051323,
+        "j2.embed_angle.0.2.bias": 0.021243082359433174,
+        "j2.embed_angle.1.0.weight": 0.014218342490494251,
+        "j2.embed_angle.1.0.bias": 0.004147173371165991,
+        "j2.embed_angle.1.2.weight": 0.018419742584228516,
+        "j2.embed_angle.1.2.bias": 0.02585737593472004,
+        "j2.embed_angle.2.0.weight": 0.013779179193079472,
+        "j2.embed_angle.2.0.bias": 0.004019079264253378,
+        "j2.embed_angle.2.2.weight": 0.027473410591483116,
+        "j2.embed_angle.2.2.bias": 0.03285711258649826,
+        "j2.cross_strength.0.0.weight": 0.0016086958348751068,
+        "j2.cross_strength.0.0.bias": 0.00044644332956522703,
+        "j2.cross_strength.0.2.weight": 0.0021596234291791916,
+        "j2.cross_strength.0.2.bias": 0.002660653553903103,
+        "j2.cross_strength.1.0.weight": 0.0021099706646054983,
+        "j2.cross_strength.1.0.bias": 0.0004105611005797982,
+        "j2.cross_strength.1.2.weight": 0.0022371599916368723,
+        "j2.cross_strength.1.2.bias": 0.003051098668947816,
+        "j2.cross_strength.2.0.weight": 0.0011734368745237589,
+        "j2.cross_strength.2.0.bias": 0.00015537659055553377,
+        "j2.cross_strength.2.2.weight": 0.0013049831613898277,
+        "j2.cross_strength.2.2.bias": 0.0006103611085563898,
+        "j3.builder.own.input.weight": 0.006195018533617258,
+        "j3.builder.own.input.bias": 0.01234635803848505,
+        "j3.builder.own.gru.weight_ih_l0": 0.01736784167587757,
+        "j3.builder.own.gru.weight_hh_l0": 0.00611543795093894,
+        "j3.builder.own.gru.bias_ih_l0": 0.0387171246111393,
+        "j3.builder.own.gru.bias_hh_l0": 0.018764322623610497,
+        "j3.builder.own.norm.weight": 0.008167389780282974,
+        "j3.builder.own.norm.bias": 0.006021488457918167,
+        "j3.node_phase.0.0.weight": 2.6227121452393476e-06,
+        "j3.node_phase.0.0.bias": 2.7298460736346897e-07,
+        "j3.node_phase.0.2.weight": 2.028071094173356e-06,
+        "j3.node_phase.0.2.bias": 2.0760671759489924e-07,
+        "j3.node_phase.1.0.weight": 4.021253062092001e-06,
+        "j3.node_phase.1.0.bias": 3.8670862068101997e-07,
+        "j3.node_phase.1.2.weight": 2.4763523924775654e-06,
+        "j3.node_phase.1.2.bias": 1.8269565771333873e-07,
+        "j3.node_phase.2.0.weight": 6.226032382983249e-07,
+        "j3.node_phase.2.0.bias": 8.94704541565261e-08,
+        "j3.node_phase.2.2.weight": 1.501398287473421e-06,
+        "j3.node_phase.2.2.bias": 6.8630470195785165e-09,
+        "j3.graph_angle.0.0.weight": 0.0005654892884194851,
+        "j3.graph_angle.0.0.bias": 9.571212285663933e-05,
+        "j3.graph_angle.0.2.weight": 0.0012177996104583144,
+        "j3.graph_angle.0.2.bias": 0.0005197872524149716,
+        "j3.graph_angle.1.0.weight": 0.0005483239074237645,
+        "j3.graph_angle.1.0.bias": 6.521259638248011e-05,
+        "j3.graph_angle.1.2.weight": 0.0009839480044320226,
+        "j3.graph_angle.1.2.bias": 0.0002132770314346999,
+        "j3.graph_angle.2.0.weight": 0.00039470219053328037,
+        "j3.graph_angle.2.0.bias": 4.3449548684293404e-05,
+        "j3.graph_angle.2.2.weight": 0.00045359309297055006,
+        "j3.graph_angle.2.2.bias": 0.00016279554984066635,
+        "j3.embed_angle.0.0.weight": 0.03605037182569504,
+        "j3.embed_angle.0.0.bias": 0.010515089146792889,
+        "j3.embed_angle.0.2.weight": 0.03152260556817055,
+        "j3.embed_angle.0.2.bias": 0.03914310783147812,
+        "j3.embed_angle.1.0.weight": 0.02568981982767582,
+        "j3.embed_angle.1.0.bias": 0.007493147626519203,
+        "j3.embed_angle.1.2.weight": 0.029575165361166,
+        "j3.embed_angle.1.2.bias": 0.0405418798327446,
+        "j3.embed_angle.2.0.weight": 0.027966437861323357,
+        "j3.embed_angle.2.0.bias": 0.008157186210155487,
+        "j3.embed_angle.2.2.weight": 0.035831451416015625,
+        "j3.embed_angle.2.2.bias": 0.03858401998877525,
+        "j3.cross_strength.0.0.weight": 0.0020953339990228415,
+        "j3.cross_strength.0.0.bias": 0.0006579590262845159,
+        "j3.cross_strength.0.2.weight": 0.002777904737740755,
+        "j3.cross_strength.0.2.bias": 0.004532419610768557,
+        "j3.cross_strength.1.0.weight": 0.0007323537138290703,
+        "j3.cross_strength.1.0.bias": 0.00021769487648271024,
+        "j3.cross_strength.1.2.weight": 0.00114577473141253,
+        "j3.cross_strength.1.2.bias": 0.0018091117963194847,
+        "j3.cross_strength.2.0.weight": 0.00017248040239792317,
+        "j3.cross_strength.2.0.bias": 4.598374289344065e-05,
+        "j3.cross_strength.2.2.weight": 0.00024417831446044147,
+        "j3.cross_strength.2.2.bias": 0.0005008134758099914
+      },
+      "all_finite_nonzero": true
+    },
+    "quantum_specific_circuit": {
+      "parameter_tensors": 8,
+      "finite": true,
+      "nonzero_tensors": 8,
+      "max_abs_by_tensor": {
+        "j2.node_bias": 0.0021076947450637817,
+        "j2.embed_bias": 0.03285711258649826,
+        "j2.cross_bias": 0.057975322008132935,
+        "j2.cross_basis": 0.011754459701478481,
+        "j3.node_bias": 2.0760671759489924e-07,
+        "j3.embed_bias": 0.0405418798327446,
+        "j3.cross_bias": 0.041202135384082794,
+        "j3.cross_basis": 0.010870999656617641
+      },
+      "all_finite_nonzero": true
+    },
+    "post_measurement_readout": {
+      "parameter_tensors": 16,
+      "finite": true,
+      "nonzero_tensors": 16,
+      "max_abs_by_tensor": {
+        "j2.readout.0.weight": 0.0073014842346310616,
+        "j2.readout.0.bias": 0.011038531549274921,
+        "j2.readout.1.weight": 0.04390353336930275,
+        "j2.readout.1.bias": 0.01356437336653471,
+        "j2.readout.3.weight": 0.0677349716424942,
+        "j2.readout.3.bias": 0.040416404604911804,
+        "j2.readout.4.weight": 0.008672690950334072,
+        "j2.readout.4.bias": 0.007982327602803707,
+        "j3.readout.0.weight": 0.015621712431311607,
+        "j3.readout.0.bias": 0.007613195106387138,
+        "j3.readout.1.weight": 0.03658881410956383,
+        "j3.readout.1.bias": 0.011361995711922646,
+        "j3.readout.3.weight": 0.04069264233112335,
+        "j3.readout.3.bias": 0.043584711849689484,
+        "j3.readout.4.weight": 0.010491649620234966,
+        "j3.readout.4.bias": 0.007747897878289223
+      },
+      "all_finite_nonzero": true
+    },
+    "multi_j_fusion": {
+      "parameter_tensors": 10,
+      "finite": true,
+      "nonzero_tensors": 10,
+      "max_abs_by_tensor": {
+        "fusion.gate.0.weight": 0.002797794295474887,
+        "fusion.gate.0.bias": 0.0011346441460773349,
+        "fusion.gate.2.weight": 0.0034416099078953266,
+        "fusion.gate.2.bias": 0.008625471033155918,
+        "fusion.delta.0.weight": 0.01371398288756609,
+        "fusion.delta.0.bias": 0.005362638272345066,
+        "fusion.delta.2.weight": 0.01129642128944397,
+        "fusion.delta.2.bias": 0.01546507328748703,
+        "fusion.norm.weight": 0.012571556493639946,
+        "fusion.norm.bias": 0.011775044724345207
+      },
+      "all_finite_nonzero": true
+    }
+  },
+  "ablations": {
+    "j2_off_max_abs": 2.43174409866333,
+    "j3_off_max_abs": 2.2133543491363525,
+    "interaction_off_max_abs": 3.510582685470581,
+    "johnson_off_max_abs": 3.474327802658081,
+    "entangling_off_max_abs": 0.2167741060256958
+  },
+  "mask_permutation": {
+    "padding_active_max_abs": 0.0,
+    "padding_output_max_abs": 0.0,
+    "permutation_max_abs": 9.5367431640625e-07,
+    "tolerance": 2e-05
+  },
+  "qnode_identity": {
+    "device": "<default.qubit device (wires=14) at 0x77a1d4114f10>",
+    "interface": "torch",
+    "diff_method": "backprop",
+    "shots": "Shots(total=None)",
+    "qubits": 14,
+    "pair_order_length": 28,
+    "observables_per_vehicle": 67,
+    "observable_count": 536,
+    "qml_specs": {
+      "num_wires": 14,
+      "num_gates": 298,
+      "depth": 76,
+      "gate_types": {
+        "StatePrep": 1,
+        "RZ": 24,
+        "SingleExcitation": 129,
+        "IsingZZ": 144
+      },
+      "gate_sizes": {
+        "14": 1,
+        "1": 24,
+        "2": 273
+      }
+    }
+  },
+  "cpu_gpu_consistency": {
+    "cpu_device": "default.qubit",
+    "cpu_diff_method": "backprop",
+    "gpu_device": "lightning.gpu",
+    "gpu_diff_method": "adjoint",
+    "readout_max_abs": 0.0,
+    "branch_readout_max_abs": 0.0,
+    "tolerance": 5e-05
+  },
+  "actual_data": {
+    "dataset": "SinD",
+    "sample_paths": [
+      "data/sind/splits/train/samples.npz",
+      "data/sind/isac/train/sensing_cache.npz"
+    ],
+    "snr_db": 0.0,
+    "split": "train",
+    "sample_indices": [
+      0,
+      1
+    ],
+    "active_counts": [
+      8,
+      8
+    ],
+    "labels_opened": false,
+    "readout_shape": [
+      2,
+      8,
+      64
+    ],
+    "finite_loss": true,
+    "gradient_tensors": 146,
+    "missing_gradient_tensors": 0,
+    "nonzero_gradient_tensors": 146
+  },
+  "short_profile": [
+    {
+      "batch": 1,
+      "readout_shape": [
+        1,
+        8,
+        64
+      ],
+      "step_seconds_forward_backward": 9.172031734138727,
+      "torch_peak_allocated_gib": 0.0,
+      "torch_peak_reserved_gib": 0.0,
+      "nvidia_smi_peak": [
+        {
+          "index": 0,
+          "peak_used_mib": 785,
+          "total_mib": 24564
+        },
+        {
+          "index": 1,
+          "peak_used_mib": 123,
+          "total_mib": 24564
+        }
+      ],
+      "nvidia_smi_after": [
+        {
+          "index": 0,
+          "used_mib": 551,
+          "total_mib": 24564
+        },
+        {
+          "index": 1,
+          "used_mib": 123,
+          "total_mib": 24564
+        }
+      ],
+      "finite": true
+    },
+    {
+      "batch": 2,
+      "readout_shape": [
+        2,
+        8,
+        64
+      ],
+      "step_seconds_forward_backward": 18.072026943787932,
+      "torch_peak_allocated_gib": 0.0,
+      "torch_peak_reserved_gib": 0.0,
+      "nvidia_smi_peak": [
+        {
+          "index": 0,
+          "peak_used_mib": 821,
+          "total_mib": 24564
+        },
+        {
+          "index": 1,
+          "peak_used_mib": 123,
+          "total_mib": 24564
+        }
+      ],
+      "nvidia_smi_after": [
+        {
+          "index": 0,
+          "used_mib": 551,
+          "total_mib": 24564
+        },
+        {
+          "index": 1,
+          "used_mib": 123,
+          "total_mib": 24564
+        }
+      ],
+      "finite": true
+    },
+    {
+      "batch": 4,
+      "readout_shape": [
+        4,
+        8,
+        64
+      ],
+      "step_seconds_forward_backward": 34.64768750593066,
+      "torch_peak_allocated_gib": 0.0,
+      "torch_peak_reserved_gib": 0.0,
+      "nvidia_smi_peak": [
+        {
+          "index": 0,
+          "peak_used_mib": 799,
+          "total_mib": 24564
+        },
+        {
+          "index": 1,
+          "peak_used_mib": 123,
+          "total_mib": 24564
+        }
+      ],
+      "nvidia_smi_after": [
+        {
+          "index": 0,
+          "used_mib": 551,
+          "total_mib": 24564
+        },
+        {
+          "index": 1,
+          "used_mib": 123,
+          "total_mib": 24564
+        }
+      ],
+      "finite": true
+    }
+  ],
+  "checks": {
+    "environment_required_devices": {
+      "passed": true,
+      "pennylane_version": "0.45.1",
+      "required": [
+        "default.qubit",
+        "lightning.gpu"
+      ],
+      "devices": {
+        "default.qubit": {
+          "available": true,
+          "device": "<default.qubit device (wires=14) at 0x77a1d579c790>"
+        },
+        "lightning.qubit": {
+          "available": true,
+          "device": "<lightning.qubit device (wires=14) at 0x77a1d6104250>"
+        },
+        "lightning.gpu": {
+          "available": true,
+          "device": "<lightning.gpu device (wires=14) at 0x77a1d676e5d0>"
+        }
+      }
+    },
+    "torch_reference_single_excitation_isingzz": {
+      "passed": true,
+      "max_abs_error": 0.0,
+      "role": "reference-only primitive equivalence; not formal readout"
+    },
+    "parameter_budget": {
+      "passed": true,
+      "total_interaction_core": 144929,
+      "target": "100k-150k",
+      "breakdown": {
+        "j2": {
+          "history_feature_and_angle_generation": 51030,
+          "quantum_specific_circuit": 84,
+          "post_measurement_readout": 12998,
+          "total": 64112
+        },
+        "j3": {
+          "history_feature_and_angle_generation": 51030,
+          "quantum_specific_circuit": 84,
+          "post_measurement_readout": 12998,
+          "total": 64112
+        },
+        "multi_j_fusion": 16705,
+        "total_interaction_core": 144929
+      }
+    },
+    "qnode_forward_output_contract": {
+      "passed": true,
+      "readout_shape": [
+        1,
+        8,
+        64
+      ],
+      "branch_shape": [
+        1,
+        8,
+        2,
+        64
+      ],
+      "interaction_mask_shape": [
+        1,
+        8
+      ]
+    },
+    "finite_forward_backward": {
+      "passed": true,
+      "loss": -0.08453567326068878,
+      "gradient_groups": {
+        "feature_and_angle_generation": {
+          "parameter_tensors": 112,
+          "finite": true,
+          "nonzero_tensors": 112,
+          "max_abs_by_tensor": {
+            "j2.builder.own.input.weight": 0.01972346194088459,
+            "j2.builder.own.input.bias": 0.009342905133962631,
+            "j2.builder.own.gru.weight_ih_l0": 0.0077885896898806095,
+            "j2.builder.own.gru.weight_hh_l0": 0.004400918725878,
+            "j2.builder.own.gru.bias_ih_l0": 0.030710266903042793,
+            "j2.builder.own.gru.bias_hh_l0": 0.013860795646905899,
+            "j2.builder.own.norm.weight": 0.0048003168776631355,
+            "j2.builder.own.norm.bias": 0.0034547261893749237,
+            "j2.node_phase.0.0.weight": 0.010231374762952328,
+            "j2.node_phase.0.0.bias": 0.001206452026963234,
+            "j2.node_phase.0.2.weight": 0.010133912786841393,
+            "j2.node_phase.0.2.bias": 0.0021076947450637817,
+            "j2.node_phase.1.0.weight": 0.015710236504673958,
+            "j2.node_phase.1.0.bias": 0.002379259094595909,
+            "j2.node_phase.1.2.weight": 0.019753605127334595,
+            "j2.node_phase.1.2.bias": 0.0003143996000289917,
+            "j2.node_phase.2.0.weight": 0.013060115277767181,
+            "j2.node_phase.2.0.bias": 0.0014365515671670437,
+            "j2.node_phase.2.2.weight": 0.022793155163526535,
+            "j2.node_phase.2.2.bias": 0.0002420470118522644,
+            "j2.graph_angle.0.0.weight": 0.8766383528709412,
+            "j2.graph_angle.0.0.bias": 0.17340053617954254,
+            "j2.graph_angle.0.2.weight": 1.5924509763717651,
+            "j2.graph_angle.0.2.bias": 1.1552892923355103,
+            "j2.graph_angle.1.0.weight": 0.8025601506233215,
+            "j2.graph_angle.1.0.bias": 0.09667982906103134,
+            "j2.graph_angle.1.2.weight": 0.7719468474388123,
+            "j2.graph_angle.1.2.bias": 0.5290602445602417,
+            "j2.graph_angle.2.0.weight": 1.069331407546997,
+            "j2.graph_angle.2.0.bias": 0.18729552626609802,
+            "j2.graph_angle.2.2.weight": 1.7231576442718506,
+            "j2.graph_angle.2.2.bias": 1.1721785068511963,
+            "j2.embed_angle.0.0.weight": 0.01265602558851242,
+            "j2.embed_angle.0.0.bias": 0.0036914804950356483,
+            "j2.embed_angle.0.2.weight": 0.018232865259051323,
+            "j2.embed_angle.0.2.bias": 0.021243082359433174,
+            "j2.embed_angle.1.0.weight": 0.014218342490494251,
+            "j2.embed_angle.1.0.bias": 0.004147173371165991,
+            "j2.embed_angle.1.2.weight": 0.018419742584228516,
+            "j2.embed_angle.1.2.bias": 0.02585737593472004,
+            "j2.embed_angle.2.0.weight": 0.013779179193079472,
+            "j2.embed_angle.2.0.bias": 0.004019079264253378,
+            "j2.embed_angle.2.2.weight": 0.027473410591483116,
+            "j2.embed_angle.2.2.bias": 0.03285711258649826,
+            "j2.cross_strength.0.0.weight": 0.0016086958348751068,
+            "j2.cross_strength.0.0.bias": 0.00044644332956522703,
+            "j2.cross_strength.0.2.weight": 0.0021596234291791916,
+            "j2.cross_strength.0.2.bias": 0.002660653553903103,
+            "j2.cross_strength.1.0.weight": 0.0021099706646054983,
+            "j2.cross_strength.1.0.bias": 0.0004105611005797982,
+            "j2.cross_strength.1.2.weight": 0.0022371599916368723,
+            "j2.cross_strength.1.2.bias": 0.003051098668947816,
+            "j2.cross_strength.2.0.weight": 0.0011734368745237589,
+            "j2.cross_strength.2.0.bias": 0.00015537659055553377,
+            "j2.cross_strength.2.2.weight": 0.0013049831613898277,
+            "j2.cross_strength.2.2.bias": 0.0006103611085563898,
+            "j3.builder.own.input.weight": 0.006195018533617258,
+            "j3.builder.own.input.bias": 0.01234635803848505,
+            "j3.builder.own.gru.weight_ih_l0": 0.01736784167587757,
+            "j3.builder.own.gru.weight_hh_l0": 0.00611543795093894,
+            "j3.builder.own.gru.bias_ih_l0": 0.0387171246111393,
+            "j3.builder.own.gru.bias_hh_l0": 0.018764322623610497,
+            "j3.builder.own.norm.weight": 0.008167389780282974,
+            "j3.builder.own.norm.bias": 0.006021488457918167,
+            "j3.node_phase.0.0.weight": 2.6227121452393476e-06,
+            "j3.node_phase.0.0.bias": 2.7298460736346897e-07,
+            "j3.node_phase.0.2.weight": 2.028071094173356e-06,
+            "j3.node_phase.0.2.bias": 2.0760671759489924e-07,
+            "j3.node_phase.1.0.weight": 4.021253062092001e-06,
+            "j3.node_phase.1.0.bias": 3.8670862068101997e-07,
+            "j3.node_phase.1.2.weight": 2.4763523924775654e-06,
+            "j3.node_phase.1.2.bias": 1.8269565771333873e-07,
+            "j3.node_phase.2.0.weight": 6.226032382983249e-07,
+            "j3.node_phase.2.0.bias": 8.94704541565261e-08,
+            "j3.node_phase.2.2.weight": 1.501398287473421e-06,
+            "j3.node_phase.2.2.bias": 6.8630470195785165e-09,
+            "j3.graph_angle.0.0.weight": 0.0005654892884194851,
+            "j3.graph_angle.0.0.bias": 9.571212285663933e-05,
+            "j3.graph_angle.0.2.weight": 0.0012177996104583144,
+            "j3.graph_angle.0.2.bias": 0.0005197872524149716,
+            "j3.graph_angle.1.0.weight": 0.0005483239074237645,
+            "j3.graph_angle.1.0.bias": 6.521259638248011e-05,
+            "j3.graph_angle.1.2.weight": 0.0009839480044320226,
+            "j3.graph_angle.1.2.bias": 0.0002132770314346999,
+            "j3.graph_angle.2.0.weight": 0.00039470219053328037,
+            "j3.graph_angle.2.0.bias": 4.3449548684293404e-05,
+            "j3.graph_angle.2.2.weight": 0.00045359309297055006,
+            "j3.graph_angle.2.2.bias": 0.00016279554984066635,
+            "j3.embed_angle.0.0.weight": 0.03605037182569504,
+            "j3.embed_angle.0.0.bias": 0.010515089146792889,
+            "j3.embed_angle.0.2.weight": 0.03152260556817055,
+            "j3.embed_angle.0.2.bias": 0.03914310783147812,
+            "j3.embed_angle.1.0.weight": 0.02568981982767582,
+            "j3.embed_angle.1.0.bias": 0.007493147626519203,
+            "j3.embed_angle.1.2.weight": 0.029575165361166,
+            "j3.embed_angle.1.2.bias": 0.0405418798327446,
+            "j3.embed_angle.2.0.weight": 0.027966437861323357,
+            "j3.embed_angle.2.0.bias": 0.008157186210155487,
+            "j3.embed_angle.2.2.weight": 0.035831451416015625,
+            "j3.embed_angle.2.2.bias": 0.03858401998877525,
+            "j3.cross_strength.0.0.weight": 0.0020953339990228415,
+            "j3.cross_strength.0.0.bias": 0.0006579590262845159,
+            "j3.cross_strength.0.2.weight": 0.002777904737740755,
+            "j3.cross_strength.0.2.bias": 0.004532419610768557,
+            "j3.cross_strength.1.0.weight": 0.0007323537138290703,
+            "j3.cross_strength.1.0.bias": 0.00021769487648271024,
+            "j3.cross_strength.1.2.weight": 0.00114577473141253,
+            "j3.cross_strength.1.2.bias": 0.0018091117963194847,
+            "j3.cross_strength.2.0.weight": 0.00017248040239792317,
+            "j3.cross_strength.2.0.bias": 4.598374289344065e-05,
+            "j3.cross_strength.2.2.weight": 0.00024417831446044147,
+            "j3.cross_strength.2.2.bias": 0.0005008134758099914
+          },
+          "all_finite_nonzero": true
+        },
+        "quantum_specific_circuit": {
+          "parameter_tensors": 8,
+          "finite": true,
+          "nonzero_tensors": 8,
+          "max_abs_by_tensor": {
+            "j2.node_bias": 0.0021076947450637817,
+            "j2.embed_bias": 0.03285711258649826,
+            "j2.cross_bias": 0.057975322008132935,
+            "j2.cross_basis": 0.011754459701478481,
+            "j3.node_bias": 2.0760671759489924e-07,
+            "j3.embed_bias": 0.0405418798327446,
+            "j3.cross_bias": 0.041202135384082794,
+            "j3.cross_basis": 0.010870999656617641
+          },
+          "all_finite_nonzero": true
+        },
+        "post_measurement_readout": {
+          "parameter_tensors": 16,
+          "finite": true,
+          "nonzero_tensors": 16,
+          "max_abs_by_tensor": {
+            "j2.readout.0.weight": 0.0073014842346310616,
+            "j2.readout.0.bias": 0.011038531549274921,
+            "j2.readout.1.weight": 0.04390353336930275,
+            "j2.readout.1.bias": 0.01356437336653471,
+            "j2.readout.3.weight": 0.0677349716424942,
+            "j2.readout.3.bias": 0.040416404604911804,
+            "j2.readout.4.weight": 0.008672690950334072,
+            "j2.readout.4.bias": 0.007982327602803707,
+            "j3.readout.0.weight": 0.015621712431311607,
+            "j3.readout.0.bias": 0.007613195106387138,
+            "j3.readout.1.weight": 0.03658881410956383,
+            "j3.readout.1.bias": 0.011361995711922646,
+            "j3.readout.3.weight": 0.04069264233112335,
+            "j3.readout.3.bias": 0.043584711849689484,
+            "j3.readout.4.weight": 0.010491649620234966,
+            "j3.readout.4.bias": 0.007747897878289223
+          },
+          "all_finite_nonzero": true
+        },
+        "multi_j_fusion": {
+          "parameter_tensors": 10,
+          "finite": true,
+          "nonzero_tensors": 10,
+          "max_abs_by_tensor": {
+            "fusion.gate.0.weight": 0.002797794295474887,
+            "fusion.gate.0.bias": 0.0011346441460773349,
+            "fusion.gate.2.weight": 0.0034416099078953266,
+            "fusion.gate.2.bias": 0.008625471033155918,
+            "fusion.delta.0.weight": 0.01371398288756609,
+            "fusion.delta.0.bias": 0.005362638272345066,
+            "fusion.delta.2.weight": 0.01129642128944397,
+            "fusion.delta.2.bias": 0.01546507328748703,
+            "fusion.norm.weight": 0.012571556493639946,
+            "fusion.norm.bias": 0.011775044724345207
+          },
+          "all_finite_nonzero": true
+        }
+      }
+    },
+    "gradient_feature_and_angle_generation": {
+      "passed": true,
+      "parameter_tensors": 112,
+      "finite": true,
+      "nonzero_tensors": 112,
+      "max_abs_by_tensor": {
+        "j2.builder.own.input.weight": 0.01972346194088459,
+        "j2.builder.own.input.bias": 0.009342905133962631,
+        "j2.builder.own.gru.weight_ih_l0": 0.0077885896898806095,
+        "j2.builder.own.gru.weight_hh_l0": 0.004400918725878,
+        "j2.builder.own.gru.bias_ih_l0": 0.030710266903042793,
+        "j2.builder.own.gru.bias_hh_l0": 0.013860795646905899,
+        "j2.builder.own.norm.weight": 0.0048003168776631355,
+        "j2.builder.own.norm.bias": 0.0034547261893749237,
+        "j2.node_phase.0.0.weight": 0.010231374762952328,
+        "j2.node_phase.0.0.bias": 0.001206452026963234,
+        "j2.node_phase.0.2.weight": 0.010133912786841393,
+        "j2.node_phase.0.2.bias": 0.0021076947450637817,
+        "j2.node_phase.1.0.weight": 0.015710236504673958,
+        "j2.node_phase.1.0.bias": 0.002379259094595909,
+        "j2.node_phase.1.2.weight": 0.019753605127334595,
+        "j2.node_phase.1.2.bias": 0.0003143996000289917,
+        "j2.node_phase.2.0.weight": 0.013060115277767181,
+        "j2.node_phase.2.0.bias": 0.0014365515671670437,
+        "j2.node_phase.2.2.weight": 0.022793155163526535,
+        "j2.node_phase.2.2.bias": 0.0002420470118522644,
+        "j2.graph_angle.0.0.weight": 0.8766383528709412,
+        "j2.graph_angle.0.0.bias": 0.17340053617954254,
+        "j2.graph_angle.0.2.weight": 1.5924509763717651,
+        "j2.graph_angle.0.2.bias": 1.1552892923355103,
+        "j2.graph_angle.1.0.weight": 0.8025601506233215,
+        "j2.graph_angle.1.0.bias": 0.09667982906103134,
+        "j2.graph_angle.1.2.weight": 0.7719468474388123,
+        "j2.graph_angle.1.2.bias": 0.5290602445602417,
+        "j2.graph_angle.2.0.weight": 1.069331407546997,
+        "j2.graph_angle.2.0.bias": 0.18729552626609802,
+        "j2.graph_angle.2.2.weight": 1.7231576442718506,
+        "j2.graph_angle.2.2.bias": 1.1721785068511963,
+        "j2.embed_angle.0.0.weight": 0.01265602558851242,
+        "j2.embed_angle.0.0.bias": 0.0036914804950356483,
+        "j2.embed_angle.0.2.weight": 0.018232865259051323,
+        "j2.embed_angle.0.2.bias": 0.021243082359433174,
+        "j2.embed_angle.1.0.weight": 0.014218342490494251,
+        "j2.embed_angle.1.0.bias": 0.004147173371165991,
+        "j2.embed_angle.1.2.weight": 0.018419742584228516,
+        "j2.embed_angle.1.2.bias": 0.02585737593472004,
+        "j2.embed_angle.2.0.weight": 0.013779179193079472,
+        "j2.embed_angle.2.0.bias": 0.004019079264253378,
+        "j2.embed_angle.2.2.weight": 0.027473410591483116,
+        "j2.embed_angle.2.2.bias": 0.03285711258649826,
+        "j2.cross_strength.0.0.weight": 0.0016086958348751068,
+        "j2.cross_strength.0.0.bias": 0.00044644332956522703,
+        "j2.cross_strength.0.2.weight": 0.0021596234291791916,
+        "j2.cross_strength.0.2.bias": 0.002660653553903103,
+        "j2.cross_strength.1.0.weight": 0.0021099706646054983,
+        "j2.cross_strength.1.0.bias": 0.0004105611005797982,
+        "j2.cross_strength.1.2.weight": 0.0022371599916368723,
+        "j2.cross_strength.1.2.bias": 0.003051098668947816,
+        "j2.cross_strength.2.0.weight": 0.0011734368745237589,
+        "j2.cross_strength.2.0.bias": 0.00015537659055553377,
+        "j2.cross_strength.2.2.weight": 0.0013049831613898277,
+        "j2.cross_strength.2.2.bias": 0.0006103611085563898,
+        "j3.builder.own.input.weight": 0.006195018533617258,
+        "j3.builder.own.input.bias": 0.01234635803848505,
+        "j3.builder.own.gru.weight_ih_l0": 0.01736784167587757,
+        "j3.builder.own.gru.weight_hh_l0": 0.00611543795093894,
+        "j3.builder.own.gru.bias_ih_l0": 0.0387171246111393,
+        "j3.builder.own.gru.bias_hh_l0": 0.018764322623610497,
+        "j3.builder.own.norm.weight": 0.008167389780282974,
+        "j3.builder.own.norm.bias": 0.006021488457918167,
+        "j3.node_phase.0.0.weight": 2.6227121452393476e-06,
+        "j3.node_phase.0.0.bias": 2.7298460736346897e-07,
+        "j3.node_phase.0.2.weight": 2.028071094173356e-06,
+        "j3.node_phase.0.2.bias": 2.0760671759489924e-07,
+        "j3.node_phase.1.0.weight": 4.021253062092001e-06,
+        "j3.node_phase.1.0.bias": 3.8670862068101997e-07,
+        "j3.node_phase.1.2.weight": 2.4763523924775654e-06,
+        "j3.node_phase.1.2.bias": 1.8269565771333873e-07,
+        "j3.node_phase.2.0.weight": 6.226032382983249e-07,
+        "j3.node_phase.2.0.bias": 8.94704541565261e-08,
+        "j3.node_phase.2.2.weight": 1.501398287473421e-06,
+        "j3.node_phase.2.2.bias": 6.8630470195785165e-09,
+        "j3.graph_angle.0.0.weight": 0.0005654892884194851,
+        "j3.graph_angle.0.0.bias": 9.571212285663933e-05,
+        "j3.graph_angle.0.2.weight": 0.0012177996104583144,
+        "j3.graph_angle.0.2.bias": 0.0005197872524149716,
+        "j3.graph_angle.1.0.weight": 0.0005483239074237645,
+        "j3.graph_angle.1.0.bias": 6.521259638248011e-05,
+        "j3.graph_angle.1.2.weight": 0.0009839480044320226,
+        "j3.graph_angle.1.2.bias": 0.0002132770314346999,
+        "j3.graph_angle.2.0.weight": 0.00039470219053328037,
+        "j3.graph_angle.2.0.bias": 4.3449548684293404e-05,
+        "j3.graph_angle.2.2.weight": 0.00045359309297055006,
+        "j3.graph_angle.2.2.bias": 0.00016279554984066635,
+        "j3.embed_angle.0.0.weight": 0.03605037182569504,
+        "j3.embed_angle.0.0.bias": 0.010515089146792889,
+        "j3.embed_angle.0.2.weight": 0.03152260556817055,
+        "j3.embed_angle.0.2.bias": 0.03914310783147812,
+        "j3.embed_angle.1.0.weight": 0.02568981982767582,
+        "j3.embed_angle.1.0.bias": 0.007493147626519203,
+        "j3.embed_angle.1.2.weight": 0.029575165361166,
+        "j3.embed_angle.1.2.bias": 0.0405418798327446,
+        "j3.embed_angle.2.0.weight": 0.027966437861323357,
+        "j3.embed_angle.2.0.bias": 0.008157186210155487,
+        "j3.embed_angle.2.2.weight": 0.035831451416015625,
+        "j3.embed_angle.2.2.bias": 0.03858401998877525,
+        "j3.cross_strength.0.0.weight": 0.0020953339990228415,
+        "j3.cross_strength.0.0.bias": 0.0006579590262845159,
+        "j3.cross_strength.0.2.weight": 0.002777904737740755,
+        "j3.cross_strength.0.2.bias": 0.004532419610768557,
+        "j3.cross_strength.1.0.weight": 0.0007323537138290703,
+        "j3.cross_strength.1.0.bias": 0.00021769487648271024,
+        "j3.cross_strength.1.2.weight": 0.00114577473141253,
+        "j3.cross_strength.1.2.bias": 0.0018091117963194847,
+        "j3.cross_strength.2.0.weight": 0.00017248040239792317,
+        "j3.cross_strength.2.0.bias": 4.598374289344065e-05,
+        "j3.cross_strength.2.2.weight": 0.00024417831446044147,
+        "j3.cross_strength.2.2.bias": 0.0005008134758099914
+      },
+      "all_finite_nonzero": true
+    },
+    "gradient_quantum_specific_circuit": {
+      "passed": true,
+      "parameter_tensors": 8,
+      "finite": true,
+      "nonzero_tensors": 8,
+      "max_abs_by_tensor": {
+        "j2.node_bias": 0.0021076947450637817,
+        "j2.embed_bias": 0.03285711258649826,
+        "j2.cross_bias": 0.057975322008132935,
+        "j2.cross_basis": 0.011754459701478481,
+        "j3.node_bias": 2.0760671759489924e-07,
+        "j3.embed_bias": 0.0405418798327446,
+        "j3.cross_bias": 0.041202135384082794,
+        "j3.cross_basis": 0.010870999656617641
+      },
+      "all_finite_nonzero": true
+    },
+    "gradient_post_measurement_readout": {
+      "passed": true,
+      "parameter_tensors": 16,
+      "finite": true,
+      "nonzero_tensors": 16,
+      "max_abs_by_tensor": {
+        "j2.readout.0.weight": 0.0073014842346310616,
+        "j2.readout.0.bias": 0.011038531549274921,
+        "j2.readout.1.weight": 0.04390353336930275,
+        "j2.readout.1.bias": 0.01356437336653471,
+        "j2.readout.3.weight": 0.0677349716424942,
+        "j2.readout.3.bias": 0.040416404604911804,
+        "j2.readout.4.weight": 0.008672690950334072,
+        "j2.readout.4.bias": 0.007982327602803707,
+        "j3.readout.0.weight": 0.015621712431311607,
+        "j3.readout.0.bias": 0.007613195106387138,
+        "j3.readout.1.weight": 0.03658881410956383,
+        "j3.readout.1.bias": 0.011361995711922646,
+        "j3.readout.3.weight": 0.04069264233112335,
+        "j3.readout.3.bias": 0.043584711849689484,
+        "j3.readout.4.weight": 0.010491649620234966,
+        "j3.readout.4.bias": 0.007747897878289223
+      },
+      "all_finite_nonzero": true
+    },
+    "gradient_multi_j_fusion": {
+      "passed": true,
+      "parameter_tensors": 10,
+      "finite": true,
+      "nonzero_tensors": 10,
+      "max_abs_by_tensor": {
+        "fusion.gate.0.weight": 0.002797794295474887,
+        "fusion.gate.0.bias": 0.0011346441460773349,
+        "fusion.gate.2.weight": 0.0034416099078953266,
+        "fusion.gate.2.bias": 0.008625471033155918,
+        "fusion.delta.0.weight": 0.01371398288756609,
+        "fusion.delta.0.bias": 0.005362638272345066,
+        "fusion.delta.2.weight": 0.01129642128944397,
+        "fusion.delta.2.bias": 0.01546507328748703,
+        "fusion.norm.weight": 0.012571556493639946,
+        "fusion.norm.bias": 0.011775044724345207
+      },
+      "all_finite_nonzero": true
+    },
+    "j2_off_max_abs": {
+      "passed": true,
+      "max_abs_change": 2.43174409866333
+    },
+    "j3_off_max_abs": {
+      "passed": true,
+      "max_abs_change": 2.2133543491363525
+    },
+    "interaction_off_max_abs": {
+      "passed": true,
+      "max_abs_change": 3.510582685470581
+    },
+    "johnson_off_max_abs": {
+      "passed": true,
+      "max_abs_change": 3.474327802658081
+    },
+    "entangling_off_max_abs": {
+      "passed": true,
+      "max_abs_change": 0.2167741060256958
+    },
+    "padding_invariance": {
+      "passed": true,
+      "active_max_abs": 0.0,
+      "padded_output_max_abs": 0.0
+    },
+    "vehicle_permutation_consistency": {
+      "passed": true,
+      "inverse_permute_max_abs": 9.5367431640625e-07
+    },
+    "fixed_hamming_weight_initialization": {
+      "passed": true,
+      "node_weights": [
+        2
+      ],
+      "embedding_weights": [
+        3
+      ],
+      "nonzero_basis_states": 560
+    },
+    "qnode_identity": {
+      "passed": true,
+      "device": "<default.qubit device (wires=14) at 0x77a1d4114f10>",
+      "interface": "torch",
+      "diff_method": "backprop",
+      "shots": "Shots(total=None)",
+      "qubits": 14,
+      "pair_order_length": 28,
+      "observables_per_vehicle": 67,
+      "observable_count": 536,
+      "qml_specs": {
+        "num_wires": 14,
+        "num_gates": 298,
+        "depth": 76,
+        "gate_types": {
+          "StatePrep": 1,
+          "RZ": 24,
+          "SingleExcitation": 129,
+          "IsingZZ": 144
+        },
+        "gate_sizes": {
+          "14": 1,
+          "1": 24,
+          "2": 273
+        }
+      }
+    },
+    "cpu_gpu_numerical_consistency": {
+      "passed": true,
+      "cpu_device": "default.qubit",
+      "cpu_diff_method": "backprop",
+      "gpu_device": "lightning.gpu",
+      "gpu_diff_method": "adjoint",
+      "readout_max_abs": 0.0,
+      "branch_readout_max_abs": 0.0,
+      "tolerance": 5e-05
+    },
+    "circuit_resource_profile": {
+      "passed": true,
+      "device": "<default.qubit device (wires=14) at 0x77a1d4114f10>",
+      "interface": "torch",
+      "diff_method": "backprop",
+      "shots": "Shots(total=None)",
+      "qubits": 14,
+      "pair_order_length": 28,
+      "observables_per_vehicle": 67,
+      "observable_count": 536,
+      "qml_specs": {
+        "num_wires": 14,
+        "num_gates": 298,
+        "depth": 76,
+        "gate_types": {
+          "StatePrep": 1,
+          "RZ": 24,
+          "SingleExcitation": 129,
+          "IsingZZ": 144
+        },
+        "gate_sizes": {
+          "14": 1,
+          "1": 24,
+          "2": 273
+        }
+      }
+    },
+    "actual_train_micro_smoke": {
+      "passed": true,
+      "dataset": "SinD",
+      "sample_paths": [
+        "data/sind/splits/train/samples.npz",
+        "data/sind/isac/train/sensing_cache.npz"
+      ],
+      "snr_db": 0.0,
+      "split": "train",
+      "sample_indices": [
+        0,
+        1
+      ],
+      "active_counts": [
+        8,
+        8
+      ],
+      "labels_opened": false,
+      "readout_shape": [
+        2,
+        8,
+        64
+      ],
+      "finite_loss": true,
+      "gradient_tensors": 146,
+      "missing_gradient_tensors": 0,
+      "nonzero_gradient_tensors": 146
+    },
+    "short_profile_b1_b2_b4": {
+      "passed": true,
+      "profile": [
+        {
+          "batch": 1,
+          "readout_shape": [
+            1,
+            8,
+            64
+          ],
+          "step_seconds_forward_backward": 9.172031734138727,
+          "torch_peak_allocated_gib": 0.0,
+          "torch_peak_reserved_gib": 0.0,
+          "nvidia_smi_peak": [
+            {
+              "index": 0,
+              "peak_used_mib": 785,
+              "total_mib": 24564
+            },
+            {
+              "index": 1,
+              "peak_used_mib": 123,
+              "total_mib": 24564
+            }
+          ],
+          "nvidia_smi_after": [
+            {
+              "index": 0,
+              "used_mib": 551,
+              "total_mib": 24564
+            },
+            {
+              "index": 1,
+              "used_mib": 123,
+              "total_mib": 24564
+            }
+          ],
+          "finite": true
+        },
+        {
+          "batch": 2,
+          "readout_shape": [
+            2,
+            8,
+            64
+          ],
+          "step_seconds_forward_backward": 18.072026943787932,
+          "torch_peak_allocated_gib": 0.0,
+          "torch_peak_reserved_gib": 0.0,
+          "nvidia_smi_peak": [
+            {
+              "index": 0,
+              "peak_used_mib": 821,
+              "total_mib": 24564
+            },
+            {
+              "index": 1,
+              "peak_used_mib": 123,
+              "total_mib": 24564
+            }
+          ],
+          "nvidia_smi_after": [
+            {
+              "index": 0,
+              "used_mib": 551,
+              "total_mib": 24564
+            },
+            {
+              "index": 1,
+              "used_mib": 123,
+              "total_mib": 24564
+            }
+          ],
+          "finite": true
+        },
+        {
+          "batch": 4,
+          "readout_shape": [
+            4,
+            8,
+            64
+          ],
+          "step_seconds_forward_backward": 34.64768750593066,
+          "torch_peak_allocated_gib": 0.0,
+          "torch_peak_reserved_gib": 0.0,
+          "nvidia_smi_peak": [
+            {
+              "index": 0,
+              "peak_used_mib": 799,
+              "total_mib": 24564
+            },
+            {
+              "index": 1,
+              "peak_used_mib": 123,
+              "total_mib": 24564
+            }
+          ],
+          "nvidia_smi_after": [
+            {
+              "index": 0,
+              "used_mib": 551,
+              "total_mib": 24564
+            },
+            {
+              "index": 1,
+              "used_mib": 123,
+              "total_mib": 24564
+            }
+          ],
+          "finite": true
+        }
+      ]
+    }
+  },
+  "passed": true
+}
