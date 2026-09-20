@@ -1,0 +1,27 @@
+{
+  "status": "COMPLETED",
+  "kind": "raj_multij_johnson",
+  "best_validation": {
+    "ADE": 0.5523043355805443,
+    "FDE": 1.1519576451959128,
+    "J": 1.1282831581785007,
+    "scenes": 1880
+  },
+  "best_epoch": 11,
+  "epochs_completed": 12,
+  "global_step": 1536,
+  "elapsed_seconds": 224.4505224507302,
+  "parameters": {
+    "graph": 179201,
+    "llm_non_lora": 4052375,
+    "lora": 98304,
+    "trainable_total": 4329880,
+    "frozen_total": 67736832,
+    "total": 72066712
+  },
+  "shared_initialization_sha256": "0d35048bfb3385d55aaab30cca077f76a7bc52701da744e786d67462a276b57f",
+  "train_indices_sha256": "dd7b0bd5ff75e728dcca1dd61abc913595f70953ae6c3265271ae9806d53bd68",
+  "train_samples": 4096,
+  "validation_samples": 1880,
+  "test_set_used": false
+}

@@ -1,0 +1,63 @@
+{
+  "status": "PASS",
+  "verified_at": "2026-09-20T02:25:37.670272+08:00",
+  "head": "094def5b38fa21ccc09cda2328fe78ee8cc694c1",
+  "protected_files_checked": 155,
+  "protected_files_changed": [],
+  "historical_summaries_checked": 9,
+  "historical_summaries_changed": [],
+  "tracked_status": "",
+  "algebra_verified": true,
+  "algebra_python": "/home/dell/YrM/envs/ICCT/bin/python",
+  "initial_system_python_missing_numpy_resolved_by_existing_project_environment": true,
+  "new_model_training": false,
+  "new_model_implementation": false,
+  "commit_push": false,
+  "report_sections": 21,
+  "files": {
+    "algebra_checks.json": {
+      "bytes": 2336,
+      "sha256": "a54132354937629596d7c8947c428fd9b218e1d9ad8016778957b509c791759c"
+    },
+    "historical_raw_summary_snapshot.json": {
+      "bytes": 2043050,
+      "sha256": "778483603bcdefbdd1c480423a3a62c439e6a68c863fc980ecfa58612b6e0aa6"
+    },
+    "access_manifest.json": {
+      "bytes": 18295,
+      "sha256": "d60e6b0e23b0b9826d8ceae2df35fc70e2d97677c8513791936673c5c1773e53"
+    },
+    "algebra_check.log": {
+      "bytes": 2337,
+      "sha256": "2ad94eae94a64748e039a53edacb7ada8e3590c1e10d3b0f5668cd933e79b2eb"
+    },
+    "02_quantum_validity_source.md": {
+      "bytes": 11227,
+      "sha256": "d4ba58e664b74ded14c4e898ac8be458fa380ae1e09de9abc01fbb5b84d457b6"
+    },
+    "01_historical_audit_source.md": {
+      "bytes": 11324,
+      "sha256": "a462b096389c1ac3e0128a3110ba4b14cf869ab15f18308a1cea7b926324d262"
+    },
+    "NEXT_SESSION.md": {
+      "bytes": 857,
+      "sha256": "75ae2aba6ddf59032c2f7d314c151ed1770888fd015898ea0057994c0ba089d3"
+    },
+    "selection_summary.json": {
+      "bytes": 2471,
+      "sha256": "81d4f9981911e06c92c3e2583f8a0df8366aa9ff049e203a1a6c2cc55e4f7186"
+    },
+    "literature_and_candidate_index.md": {
+      "bytes": 7192,
+      "sha256": "ff74a3d322a44468350880d1812d487571a9a046cbd26173e5eb0b039f1ca4c5"
+    },
+    "verify_report_algebra.py": {
+      "bytes": 2744,
+      "sha256": "a7f8e1dbe559048592df04d52c125df8c20c2ef690f337ee89da17fd64998792"
+    },
+    "ICCT_QGNN_Architecture_Selection_Server_Report.md": {
+      "bytes": 32069,
+      "sha256": "f85d135ad2f6037f688fe3a70f4453c7cbcd312de4c6b6352865c9390fd9f720"
+    }
+  }
+}

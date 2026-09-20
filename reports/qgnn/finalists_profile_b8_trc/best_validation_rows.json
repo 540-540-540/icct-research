@@ -1,0 +1,75 @@
+{
+  "summary": {
+    "ADE": 0.8704920634627342,
+    "FDE": 1.857824057340622,
+    "J": 1.7994040921330452,
+    "scenes": 8
+  },
+  "rows": [
+    {
+      "index": 0,
+      "scene_id": 0,
+      "start_frame": 13301,
+      "ADE": 0.9021075963973999,
+      "FDE": 2.005181312561035,
+      "closing_pairs_30m_gt_0p5": 4
+    },
+    {
+      "index": 1,
+      "scene_id": 0,
+      "start_frame": 12183,
+      "ADE": 0.9279767274856567,
+      "FDE": 2.0921874046325684,
+      "closing_pairs_30m_gt_0p5": 10
+    },
+    {
+      "index": 2,
+      "scene_id": 0,
+      "start_frame": 12212,
+      "ADE": 0.8196803331375122,
+      "FDE": 1.7579724788665771,
+      "closing_pairs_30m_gt_0p5": 18
+    },
+    {
+      "index": 3,
+      "scene_id": 0,
+      "start_frame": 13315,
+      "ADE": 1.1208974123001099,
+      "FDE": 2.508139133453369,
+      "closing_pairs_30m_gt_0p5": 5
+    },
+    {
+      "index": 4,
+      "scene_id": 0,
+      "start_frame": 12049,
+      "ADE": 0.7038373351097107,
+      "FDE": 1.482478141784668,
+      "closing_pairs_30m_gt_0p5": 2
+    },
+    {
+      "index": 5,
+      "scene_id": 0,
+      "start_frame": 12516,
+      "ADE": 0.7810524702072144,
+      "FDE": 1.4525601863861084,
+      "closing_pairs_30m_gt_0p5": 14
+    },
+    {
+      "index": 6,
+      "scene_id": 0,
+      "start_frame": 13429,
+      "ADE": 1.0416983366012573,
+      "FDE": 2.099965810775757,
+      "closing_pairs_30m_gt_0p5": 13
+    },
+    {
+      "index": 7,
+      "scene_id": 0,
+      "start_frame": 12305,
+      "ADE": 0.6666862964630127,
+      "FDE": 1.4641079902648926,
+      "closing_pairs_30m_gt_0p5": 10
+    }
+  ],
+  "test_set_used": false
+}

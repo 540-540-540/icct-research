@@ -1,0 +1,88 @@
+{
+  "primary_by_context": [
+    {
+      "K": 8,
+      "M1": 7,
+      "M2": 42,
+      "Q1": 7,
+      "Q2": 12,
+      "full_state_dimensions": [
+        128,
+        4096
+      ],
+      "reduced_state_dimensions": [
+        112,
+        2688
+      ],
+      "full_complex64_KiB_per_target": 33.0,
+      "reduced_complex64_KiB_per_target": 21.875,
+      "conditional_pauli_rotations_per_target": 28448,
+      "backup_Q": 16,
+      "backup_complex64_MiB_single_state": 0.5
+    },
+    {
+      "K": 12,
+      "M1": 11,
+      "M2": 110,
+      "Q1": 8,
+      "Q2": 14,
+      "full_state_dimensions": [
+        256,
+        16384
+      ],
+      "reduced_state_dimensions": [
+        176,
+        7040
+      ],
+      "full_complex64_KiB_per_target": 130.0,
+      "reduced_complex64_KiB_per_target": 56.375,
+      "conditional_pauli_rotations_per_target": 72160,
+      "backup_Q": 24,
+      "backup_complex64_MiB_single_state": 128.0
+    },
+    {
+      "K": 16,
+      "M1": 15,
+      "M2": 210,
+      "Q1": 8,
+      "Q2": 14,
+      "full_state_dimensions": [
+        256,
+        16384
+      ],
+      "reduced_state_dimensions": [
+        240,
+        13440
+      ],
+      "full_complex64_KiB_per_target": 130.0,
+      "reduced_complex64_KiB_per_target": 106.875,
+      "conditional_pauli_rotations_per_target": 135840,
+      "backup_Q": 32,
+      "backup_complex64_MiB_single_state": 32768.0
+    }
+  ],
+  "primary_trainable_parameter_breakdown": {
+    "temporal": 6624,
+    "quantum_encoding_and_dynamics": 428,
+    "quantum_softtoken_adapter": 103750,
+    "type_time_embedding": 4608,
+    "own_token_projection": 25408,
+    "context_head_projection": 10624,
+    "motion_embedding": 1291008,
+    "continuous_motion": 3072,
+    "history_adapter": 1182720,
+    "future_queries": 15360,
+    "token_head": 1294225,
+    "coordinate_head": 215942,
+    "lora": 98304
+  },
+  "primary_trainable_total": 4252073,
+  "parameter_count_status": "exact arithmetic for proposed layer definitions; not instantiated model count",
+  "steps_20_epochs_15802_B32": 9880,
+  "single_gpu_training_minutes_excluding_eval_profile_scenarios": {
+    "0.25": 41.166666666666664,
+    "0.5": 82.33333333333333,
+    "0.7": 115.26666666666667,
+    "1.0": 164.66666666666666
+  }
+}

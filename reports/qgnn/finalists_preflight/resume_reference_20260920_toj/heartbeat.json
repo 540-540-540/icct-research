@@ -1,0 +1,23 @@
+{
+  "status": "COMPLETED",
+  "pid": 2015432,
+  "kind": "toj",
+  "elapsed_seconds": 2.5852095149457455,
+  "run_dir": "/home/dell/YrM/ICCT/reports/qgnn/finalists_preflight/resume_reference_20260920_toj",
+  "test_set_used": false,
+  "global_step": 2,
+  "total_global_steps": 2,
+  "best_validation": {
+    "ADE": 0.9328745007514954,
+    "FDE": 2.0578842163085938,
+    "J": 1.9618166089057922,
+    "scenes": 2
+  },
+  "best_epoch": 1,
+  "memory": {
+    "allocated_gib": 0.34221792221069336,
+    "reserved_gib": 0.568359375,
+    "peak_allocated_gib": 0.5523266792297363,
+    "peak_reserved_gib": 0.568359375
+  }
+}

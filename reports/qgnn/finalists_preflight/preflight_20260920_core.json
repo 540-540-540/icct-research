@@ -1,0 +1,217 @@
+{
+  "status": "PASS",
+  "device": "cuda:0",
+  "test_set_used": false,
+  "core_checks": {
+    "trc": {
+      "shape": [
+        1,
+        8,
+        2,
+        4,
+        35
+      ],
+      "shape_expected": [
+        1,
+        8,
+        2,
+        4,
+        35
+      ],
+      "finite_forward_backward": true,
+      "trainable_gradient_tensors": 15,
+      "nonzero_finite_gradient_tensors": 15,
+      "permutation_max_abs": 2.980232238769531e-07,
+      "padding_active_max_abs": 0.0,
+      "all_padding_max_abs": 0.0,
+      "float64_forward_finite": true,
+      "seconds_including_backward_and_checks": 1.8110443912446499,
+      "peak_allocated_gib": 0.09834527969360352,
+      "peak_reserved_gib": 0.123046875
+    },
+    "rtcn": {
+      "shape": [
+        1,
+        8,
+        2,
+        4,
+        35
+      ],
+      "shape_expected": [
+        1,
+        8,
+        2,
+        4,
+        35
+      ],
+      "finite_forward_backward": true,
+      "trainable_gradient_tensors": 24,
+      "nonzero_finite_gradient_tensors": 24,
+      "permutation_max_abs": 2.980232238769531e-07,
+      "padding_active_max_abs": 0.0,
+      "all_padding_max_abs": 0.0,
+      "float64_forward_finite": true,
+      "seconds_including_backward_and_checks": 0.6047488003969193,
+      "peak_allocated_gib": 0.025261402130126953,
+      "peak_reserved_gib": 0.048828125
+    },
+    "toj": {
+      "shape": [
+        1,
+        8,
+        4,
+        31
+      ],
+      "shape_expected": [
+        1,
+        8,
+        4,
+        31
+      ],
+      "finite_forward_backward": true,
+      "trainable_gradient_tensors": 14,
+      "nonzero_finite_gradient_tensors": 14,
+      "permutation_max_abs": 0.0,
+      "padding_active_max_abs": 0.0,
+      "all_padding_max_abs": 0.0,
+      "float64_forward_finite": true,
+      "seconds_including_backward_and_checks": 1.3729535527527332,
+      "peak_allocated_gib": 0.12235736846923828,
+      "peak_reserved_gib": 0.146484375
+    },
+    "trtgn": {
+      "shape": [
+        1,
+        8,
+        4,
+        31
+      ],
+      "shape_expected": [
+        1,
+        8,
+        4,
+        31
+      ],
+      "finite_forward_backward": true,
+      "trainable_gradient_tensors": 36,
+      "nonzero_finite_gradient_tensors": 36,
+      "permutation_max_abs": 0.0,
+      "padding_active_max_abs": 0.0,
+      "all_padding_max_abs": 0.0,
+      "float64_forward_finite": true,
+      "seconds_including_backward_and_checks": 0.34231278114020824,
+      "peak_allocated_gib": 0.030429840087890625,
+      "peak_reserved_gib": 0.068359375
+    }
+  },
+  "toj_selector_check": {
+    "root_slot_is_root": true,
+    "final_stage_weighted_selection": 2,
+    "expected_selected_neighbor": 2,
+    "selected_slot_valid": true
+  },
+  "end_to_end_model_checks": {
+    "trc": {
+      "prediction_shape": [
+        1,
+        20,
+        8,
+        2
+      ],
+      "token_logits_shape": [
+        1,
+        20,
+        8,
+        1681
+      ],
+      "finite_forward_backward": true,
+      "core_trainable_gradient_tensors": 15,
+      "core_nonzero_finite_gradient_tensors": 15,
+      "checkpoint_load_prediction_max_abs": 0.0,
+      "parameters": {
+        "trainable": 4252073,
+        "frozen": 67786880,
+        "total": 72038953,
+        "core_trainable": 7052,
+        "llm_trainable": 4245021
+      }
+    },
+    "rtcn": {
+      "prediction_shape": [
+        1,
+        20,
+        8,
+        2
+      ],
+      "token_logits_shape": [
+        1,
+        20,
+        8,
+        1681
+      ],
+      "finite_forward_backward": true,
+      "core_trainable_gradient_tensors": 24,
+      "core_nonzero_finite_gradient_tensors": 24,
+      "checkpoint_load_prediction_max_abs": 0.0,
+      "parameters": {
+        "trainable": 4448161,
+        "frozen": 67786880,
+        "total": 72235041,
+        "core_trainable": 203140,
+        "llm_trainable": 4245021
+      }
+    },
+    "toj": {
+      "prediction_shape": [
+        1,
+        20,
+        8,
+        2
+      ],
+      "token_logits_shape": [
+        1,
+        20,
+        8,
+        1681
+      ],
+      "finite_forward_backward": true,
+      "core_trainable_gradient_tensors": 14,
+      "core_nonzero_finite_gradient_tensors": 14,
+      "checkpoint_load_prediction_max_abs": 0.0,
+      "parameters": {
+        "trainable": 4143959,
+        "frozen": 68002822,
+        "total": 72146781,
+        "core_trainable": 6722,
+        "llm_trainable": 4137237
+      }
+    },
+    "trtgn": {
+      "prediction_shape": [
+        1,
+        20,
+        8,
+        2
+      ],
+      "token_logits_shape": [
+        1,
+        20,
+        8,
+        1681
+      ],
+      "finite_forward_backward": true,
+      "core_trainable_gradient_tensors": 36,
+      "core_nonzero_finite_gradient_tensors": 36,
+      "checkpoint_load_prediction_max_abs": 0.0,
+      "parameters": {
+        "trainable": 4167404,
+        "frozen": 68002822,
+        "total": 72170226,
+        "core_trainable": 30167,
+        "llm_trainable": 4137237
+      }
+    }
+  },
+  "profiles": {},
+  "profile_definition": "Synthetic full-model train step: forward + ADE/FDE loss + token loss + backward + gradient clip + AdamW update."
+}

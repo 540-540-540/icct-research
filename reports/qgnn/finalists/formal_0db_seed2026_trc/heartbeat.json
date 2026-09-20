@@ -1,0 +1,23 @@
+{
+  "status": "COMPLETED",
+  "pid": 2041181,
+  "kind": "trc",
+  "elapsed_seconds": 7274.713824870065,
+  "run_dir": "/home/dell/YrM/ICCT/reports/qgnn/finalists/formal_0db_seed2026_trc",
+  "test_set_used": false,
+  "global_step": 9880,
+  "total_global_steps": 9880,
+  "best_validation": {
+    "ADE": 0.5767677173414762,
+    "FDE": 1.1804207174939678,
+    "J": 1.1669780760884603,
+    "scenes": 1880
+  },
+  "best_epoch": 16,
+  "memory": {
+    "allocated_gib": 0.36432647705078125,
+    "reserved_gib": 6.259765625,
+    "peak_allocated_gib": 5.540832042694092,
+    "peak_reserved_gib": 6.259765625
+  }
+}

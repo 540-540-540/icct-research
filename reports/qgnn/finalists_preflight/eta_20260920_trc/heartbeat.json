@@ -1,0 +1,23 @@
+{
+  "status": "COMPLETED",
+  "pid": 2014711,
+  "kind": "trc",
+  "elapsed_seconds": 5.748047662898898,
+  "run_dir": "/home/dell/YrM/ICCT/reports/qgnn/finalists_preflight/eta_20260920_trc",
+  "test_set_used": false,
+  "global_step": 6,
+  "total_global_steps": 6,
+  "best_validation": {
+    "ADE": 0.799616202712059,
+    "FDE": 1.7148726135492325,
+    "J": 1.6570525094866753,
+    "scenes": 32
+  },
+  "best_epoch": 1,
+  "memory": {
+    "allocated_gib": 0.3710355758666992,
+    "reserved_gib": 8.73046875,
+    "peak_allocated_gib": 5.5364532470703125,
+    "peak_reserved_gib": 8.73046875
+  }
+}

@@ -1,0 +1,397 @@
+{
+  "title": "ICCT QGNN Architecture Selection Report",
+  "date": "2026-09-20",
+  "status": "THEORY_SELECTION_COMPLETE_PROTOTYPE_NOT_IMPLEMENTED_OR_TRAINED",
+  "authority": {
+    "server": "/home/dell/YrM/ICCT",
+    "branch": "qgnn",
+    "head": "094def5b38fa21ccc09cda2328fe78ee8cc694c1",
+    "server_precedes_github": true
+  },
+  "execution": {
+    "new_model_training": false,
+    "formal_source_modified": false,
+    "auxiliary_check": "Small configuration algebra on assistant artifact-container CPU, not ICCT data/model",
+    "git_commit_or_push": false
+  },
+  "frozen_project": [
+    "SinD",
+    "current controlled 3-BS sensing",
+    "sensed history x,y,vx,vy",
+    "history20",
+    "future20",
+    "pretrained GPT-2",
+    "motion-token conditioning",
+    "LoRA"
+  ],
+  "primary": {
+    "name": "TRC-QGNN",
+    "expanded_name": "Temporal Rooted-Configuration Quantum Graph Neural Network",
+    "innovation": "Target-conditioned coherent configuration message passing over chronologically encoded multi-neighbor histories, with measurable structured readout",
+    "custom_design": true,
+    "published_algorithm_reproduction": false,
+    "predictive_advantage_verified": false,
+    "quantum_computational_speedup_claim": false,
+    "default": {
+      "target_count": 8,
+      "context_cap_including_target": 8,
+      "temporal_blocks": 4,
+      "frames_per_block": 5,
+      "temporal_encoder": "per-car causal GRU32 from 6 features",
+      "node_descriptor_dim": 42,
+      "direct_physics_role_dim": 10,
+      "learned_history_angle_dim": 12,
+      "node_angles_per_block_role": 24,
+      "directed_edge_dim": 12,
+      "encoding_subrounds_per_time_block": 4,
+      "feature_qubits_by_branch": [
+        4,
+        6
+      ],
+      "ordered_configuration_cardinality": [
+        "n",
+        "n*(n-1)"
+      ],
+      "index_bits": "ceil(log2(n)) per neighbor slot",
+      "qubits_by_branch_at_K8": [
+        7,
+        12
+      ],
+      "valid_state_dimensions_at_K8": [
+        112,
+        2688
+      ],
+      "measurements_per_branch_time": 35,
+      "output_shape": "[B,N_target,2,4,35]",
+      "quantum_soft_tokens_per_target": 8,
+      "sequence_positions": 48,
+      "lora": "4 blocks, fused QKV, rank8 alpha16",
+      "motion_codebook": "existing train-fitted41x41, bilinear interpolation plus continuous/overflow adapter"
+    },
+    "gate_definitions": {
+      "node": "shared Linear32->12 tanh angles; direct physical10; zero2; four groups of RX/RY/RZ on each two-qubit role",
+      "intra": "shared lambda_r ZZ within each role",
+      "edge": "for r=1..4, mu=1..3: exp(-i phi_ab_r_mu P_mu(a,0)Q_mu(b,1)/2), pairs [(Z,X),(X,Z),(Y,Y)]",
+      "hop": "Hermitian risk-weighted configuration Hamiltonian; exp(-i H); bounded alpha/beta per branch",
+      "time_order": "psi_m = V_m (U_G_m tensor I) psi_(m-1)",
+      "illegal_indices": "zero initial amplitude; identity extension"
+    },
+    "measurement": "15 root two-qubit Pauli coordinates +12 root-neighbor same-axis averages +8 symmetrized three-role Z moments (zero in branch1)",
+    "readout_rules": [
+      "No direct real/imag amplitudes",
+      "No rowwise additive normalization",
+      "No small-probability postselection",
+      "No classical multi-agent GNN after quantum core"
+    ],
+    "parameter_count_definition": {
+      "temporal": 6624,
+      "quantum_encoding_and_dynamics": 428,
+      "quantum_softtoken_adapter": 103750,
+      "type_time_embedding": 4608,
+      "own_token_projection": 25408,
+      "context_head_projection": 10624,
+      "motion_embedding": 1291008,
+      "continuous_motion": 3072,
+      "history_adapter": 1182720,
+      "future_queries": 15360,
+      "token_head": 1294225,
+      "coordinate_head": 215942,
+      "lora": 98304
+    },
+    "proposed_total_trainable_parameters": 4252073,
+    "direct_quantum_encoding_dynamics_parameters": 428,
+    "parameter_count_is_instantiated": false,
+    "matched_control": "RTCN with same role/configuration/time/physical weighting and same GPT2/48-token interface; hidden64/128",
+    "core_risks": [
+      "Readout traces away relevant configuration information",
+      "Underfitting from constrained shared unitary parameterization",
+      "Coherence contribution can be reproduced cheaply by a classical model",
+      "Conditional gate compilation and measurement cost",
+      "Improvement might be entirely due to context/temporal/interface changes"
+    ]
+  },
+  "backup": {
+    "name": "TES-QGNN",
+    "expanded_name": "Temporal Equivariant Spin-Graph Quantum Neural Network",
+    "unique_backup": true,
+    "default_context_cap": 8,
+    "qubits_per_vehicle": 2,
+    "default_qubits": 16,
+    "history_blocks": 4,
+    "encoding_subrounds": 4,
+    "spin_graph": "same-role world-frame node encoding and directed commuting-axis Pauli blocks; no configuration index, no feedback",
+    "output_shape": "[B,N_target,4,35]",
+    "quantum_tokens": 4,
+    "sequence_positions": 44,
+    "trigger": "Primary fails due to configuration restriction/readout/compilation or fails full-data matched-control gate; no seed-wise opportunistic switching",
+    "performance_tested": false
+  },
+  "eliminated_families": [
+    {
+      "family": "independent node/edge PQC + classical aggregation",
+      "reason": "Main multi-agent reasoning remains classical"
+    },
+    {
+      "family": "native SQM star message/update",
+      "reason": "Scalar/time/neighbor-neighbor/permutation/code boundaries unresolved for ICCT"
+    },
+    {
+      "family": "unrooted Raj multi-j or direct paper-fidelity",
+      "reason": "Full-data near tie; direct-amplitude/nonunitary adaptation and matching boundaries; fidelity transfer weak"
+    },
+    {
+      "family": "quantum-walk/kernel + strong classical graph transformer",
+      "reason": "Mostly classical interaction reasoning after quantum structural bias"
+    }
+  ],
+  "context_policy": {
+    "phase1": "same frozen8 vehicles, same targets",
+    "later_candidate_counts": [
+      12,
+      16,
+      "dynamic"
+    ],
+    "later_context_caps": [
+      8,
+      12
+    ],
+    "selection": "max history-block risk, history-only canonical tie-breaking",
+    "new_context_history": "same frozen sensing equations; new separate derived cache in future authorized engineering",
+    "no_groundtruth_future_routing": true,
+    "fixed_targets_for_context_comparison": true
+  },
+  "resources": {
+    "primary_by_context": [
+      {
+        "K": 8,
+        "M1": 7,
+        "M2": 42,
+        "Q1": 7,
+        "Q2": 12,
+        "full_state_dimensions": [
+          128,
+          4096
+        ],
+        "reduced_state_dimensions": [
+          112,
+          2688
+        ],
+        "full_complex64_KiB_per_target": 33.0,
+        "reduced_complex64_KiB_per_target": 21.875,
+        "conditional_pauli_rotations_per_target": 28448,
+        "backup_Q": 16,
+        "backup_complex64_MiB_single_state": 0.5
+      },
+      {
+        "K": 12,
+        "M1": 11,
+        "M2": 110,
+        "Q1": 8,
+        "Q2": 14,
+        "full_state_dimensions": [
+          256,
+          16384
+        ],
+        "reduced_state_dimensions": [
+          176,
+          7040
+        ],
+        "full_complex64_KiB_per_target": 130.0,
+        "reduced_complex64_KiB_per_target": 56.375,
+        "conditional_pauli_rotations_per_target": 72160,
+        "backup_Q": 24,
+        "backup_complex64_MiB_single_state": 128.0
+      },
+      {
+        "K": 16,
+        "M1": 15,
+        "M2": 210,
+        "Q1": 8,
+        "Q2": 14,
+        "full_state_dimensions": [
+          256,
+          16384
+        ],
+        "reduced_state_dimensions": [
+          240,
+          13440
+        ],
+        "full_complex64_KiB_per_target": 130.0,
+        "reduced_complex64_KiB_per_target": 106.875,
+        "conditional_pauli_rotations_per_target": 135840,
+        "backup_Q": 32,
+        "backup_complex64_MiB_single_state": 32768.0
+      }
+    ],
+    "primary_trainable_parameter_breakdown": {
+      "temporal": 6624,
+      "quantum_encoding_and_dynamics": 428,
+      "quantum_softtoken_adapter": 103750,
+      "type_time_embedding": 4608,
+      "own_token_projection": 25408,
+      "context_head_projection": 10624,
+      "motion_embedding": 1291008,
+      "continuous_motion": 3072,
+      "history_adapter": 1182720,
+      "future_queries": 15360,
+      "token_head": 1294225,
+      "coordinate_head": 215942,
+      "lora": 98304
+    },
+    "primary_trainable_total": 4252073,
+    "parameter_count_status": "exact arithmetic for proposed layer definitions; not instantiated model count",
+    "steps_20_epochs_15802_B32": 9880,
+    "single_gpu_training_minutes_excluding_eval_profile_scenarios": {
+      "0.25": 41.166666666666664,
+      "0.5": 82.33333333333333,
+      "0.7": 115.26666666666667,
+      "1.0": 164.66666666666666
+    }
+  },
+  "theory": {
+    "established_by_derivation": [
+      "Hermitian/unitary structure",
+      "Global-phase-invariant observables",
+      "Permutation equivariance conditional on equivariant selection",
+      "Index-only terminal unitary invisible under index trace",
+      "Nonzero cross-configuration coherent terms can affect readout after conditional encoding",
+      "Analytic parameter/state/call arithmetic"
+    ],
+    "not_established": [
+      "ICCT ADE/FDE improvement",
+      "Full-data quantum-specific sample advantage",
+      "Barren-plateau-free training",
+      "Two-hour runtime",
+      "Hardware practicality",
+      "Quantum computational advantage"
+    ]
+  },
+  "roadmap": {
+    "R0": "Algebra/interface/mask/permutation/reference correctness",
+    "R1": "Short end-to-end profiling, no training sweep",
+    "R2": "0dB nested4096 pilots, same Q/C, coherence/e_jk/time and 40-vs48 interface isolation",
+    "R3": "Full15802 at0dB, three seeds per main arm; same epochs plus matched-update learning curves",
+    "R4": "Other SNRs/context variants only after R3; freeze before prediction test"
+  },
+  "kill_criteria": {
+    "correctness_reference_max_error": 1e-08,
+    "prototype_full_data_median_J_gain_min_percent": 1.0,
+    "positive_seeds_min_of_three": 2,
+    "max_allowed_ADE_or_FDE_regression_percent": 0.5,
+    "paired_block_CI_support_required": true,
+    "block_lengths_for_sensitivity_frames": [
+      200,
+      400
+    ],
+    "resource_review_threshold_step_seconds": 2.0,
+    "max_predeclared_structural_revision_before_backup": 1,
+    "negative_conclusion_allowed": "Neither architecture validates a quantum-specific predictive advantage; do not weaken baseline or alter test"
+  },
+  "research_bibliography": [
+    {
+      "id": "L1",
+      "urls": [
+        "https://arxiv.org/abs/2606.26873",
+        "https://github.com/SnehalRaj/mp-qgnns/tree/851537589d61bcce96130b055e5724291e7ea318"
+      ]
+    },
+    {
+      "id": "L2",
+      "urls": [
+        "https://arxiv.org/abs/2601.18198"
+      ]
+    },
+    {
+      "id": "L3",
+      "urls": [
+        "https://doi.org/10.1038/s41534-023-00710-y"
+      ]
+    },
+    {
+      "id": "L4",
+      "urls": [
+        "https://doi.org/10.1038/s41534-024-00804-1",
+        "https://arxiv.org/abs/2210.09974"
+      ]
+    },
+    {
+      "id": "L5",
+      "urls": [
+        "https://doi.org/10.1088/2058-9565/ad8e80"
+      ]
+    },
+    {
+      "id": "L6",
+      "urls": [
+        "https://arxiv.org/abs/2503.24111"
+      ]
+    },
+    {
+      "id": "L7",
+      "urls": [
+        "https://arxiv.org/abs/2509.11390"
+      ]
+    },
+    {
+      "id": "L8",
+      "urls": [
+        "https://arxiv.org/abs/2101.00082"
+      ]
+    },
+    {
+      "id": "L9",
+      "urls": [
+        "https://arxiv.org/abs/2605.09486"
+      ]
+    },
+    {
+      "id": "L10",
+      "urls": [
+        "https://arxiv.org/abs/2512.13745"
+      ]
+    },
+    {
+      "id": "L11",
+      "urls": [
+        "https://arxiv.org/abs/2605.21916v2"
+      ]
+    },
+    {
+      "id": "L12",
+      "urls": [
+        "https://arxiv.org/abs/2312.14373"
+      ]
+    },
+    {
+      "id": "L13",
+      "urls": [
+        "https://doi.org/10.1103/PhysRevA.103.032430"
+      ]
+    },
+    {
+      "id": "L14",
+      "urls": [
+        "https://doi.org/10.1038/s41467-022-32550-3",
+        "https://arxiv.org/abs/2111.05292"
+      ]
+    },
+    {
+      "id": "L15",
+      "urls": [
+        "https://research.ibm.com/publications/potential-and-limitations-of-random-fourier-features-for-dequantizing-quantum-machine-learning"
+      ]
+    },
+    {
+      "id": "L16",
+      "urls": [
+        "https://arxiv.org/abs/2505.15902"
+      ]
+    },
+    {
+      "id": "L17",
+      "urls": [
+        "https://doi.org/10.1103/PhysRevResearch.6.043028"
+      ]
+    }
+  ]
+}

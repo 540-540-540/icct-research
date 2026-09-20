@@ -1,0 +1,27 @@
+{
+  "summary": {
+    "ADE": 0.9260702133178711,
+    "FDE": 2.05403208732605,
+    "J": 1.953086256980896,
+    "scenes": 2
+  },
+  "rows": [
+    {
+      "index": 0,
+      "scene_id": 0,
+      "start_frame": 13301,
+      "ADE": 0.926051914691925,
+      "FDE": 2.0352094173431396,
+      "closing_pairs_30m_gt_0p5": 4
+    },
+    {
+      "index": 1,
+      "scene_id": 0,
+      "start_frame": 12183,
+      "ADE": 0.9260885119438171,
+      "FDE": 2.07285475730896,
+      "closing_pairs_30m_gt_0p5": 10
+    }
+  ],
+  "test_set_used": false
+}

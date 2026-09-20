@@ -1,0 +1,25 @@
+{
+  "research_date": "2026-09-20",
+  "server_directory": "/home/dell/YrM/ICCT/docs/qgnn/theory_selection/20260920",
+  "branch": "qgnn",
+  "base_head": "094def5b38fa21ccc09cda2328fe78ee8cc694c1",
+  "current_head": "094def5b38fa21ccc09cda2328fe78ee8cc694c1",
+  "head_unchanged": true,
+  "artifact_hash_checks": {
+    "02_literature_and_candidates.md": true,
+    "ICCT_QGNN_Architecture_Selection_Report.md": true,
+    "MINIMAL_ROADMAP.md": true,
+    "README.md": true,
+    "algebra_sanity.json": true,
+    "algebra_sanity.py": true,
+    "complexity_tables.json": true,
+    "selection_summary.json": true
+  },
+  "original_source_files_checked": 66,
+  "original_source_changes": [],
+  "tracked_worktree_diff": [],
+  "tracked_index_diff": [],
+  "formal_model_training_executed": false,
+  "algebra_test_scope": "artifact-container CPU toy calculation, no ICCT data; reference identity checks only",
+  "commit_or_push_performed": false
+}

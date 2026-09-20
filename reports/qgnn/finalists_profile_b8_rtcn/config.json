@@ -1,0 +1,31 @@
+{
+  "kind": "rtcn",
+  "seed": 2026,
+  "snr": 0.0,
+  "epochs": 1,
+  "batch_size": 8,
+  "train_limit": 8,
+  "val_limit": 8,
+  "lr": 0.0003,
+  "correction_cap": 16.0,
+  "classical_width": 64,
+  "no_checkpoint": false,
+  "run_dir": "reports/qgnn/finalists_profile_b8_rtcn",
+  "resume": false,
+  "max_seconds": 120.0,
+  "save_steps": 100,
+  "source_sha256": {
+    "prediction/qgnn_finalists/trc.py": "bf0c0d7f9a56645b558d91fc6ba432a15a292f56c0d4ee10b28eed3cf28e3c36",
+    "prediction/qgnn_finalists/model.py": "2052be31e79d5cb42c52b423dd3cc228251a061c338dc64ab0805c69cdb70db0",
+    "prediction/qgnn_finalists/toj.py": "d13c13e8342c81bd8b870a79206d4b7e275833d4a153a36dbf95a66b793d17fe",
+    "prediction/qgnn_finalists/llm.py": "a7bbb2df9f2c065090d5005b181131a3b4658e903366a331de453cf2580608a6",
+    "prediction/qgnn_finalists/common.py": "846d2e2cee5cbf726f959e061ec16328f81285787937dc27dfc118f3d1218cff",
+    "prediction/qgnn_finalists/__init__.py": "15a615d1266809ece163a249658952184c00cb4a73de8fdc95f7397619f1e71b",
+    "scripts/train_qgnn_finalists.py": "933d5b2a575befe2052b0710c4f92f6e5a0b7b8774a1797dbfd47fca66aff337"
+  },
+  "token_sha256": "560a0fde9d8ea736b9dbe4fe709c76f5c63f16792a0a3c6cbe97d439b735361f",
+  "pid": 1967981,
+  "cuda_visible_devices": "0",
+  "git_head": "c8afb074761c6a7b17590d23de39896d65964224",
+  "test_set_used": false
+}

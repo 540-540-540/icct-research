@@ -1,0 +1,16 @@
+{
+  "pid": 406003,
+  "epoch": 12,
+  "total_epochs": 12,
+  "batch": 126,
+  "total_batches": 128,
+  "global_step": 1534,
+  "total_steps": 1536,
+  "loss": 0.8411458134651184,
+  "gradient_norm": 8.230985641479492,
+  "step_seconds": 0.08699548058211803,
+  "elapsed_seconds": 164.90386959537864,
+  "peak_allocated_gib": 3.667670249938965,
+  "estimated_remaining_seconds": 0.21499869123956059,
+  "estimated_finish_utc": "2026-09-19T04:07:10Z"
+}

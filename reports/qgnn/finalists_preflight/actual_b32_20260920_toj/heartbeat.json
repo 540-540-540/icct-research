@@ -1,0 +1,23 @@
+{
+  "status": "COMPLETED",
+  "pid": 2013434,
+  "kind": "toj",
+  "elapsed_seconds": 3.103770200163126,
+  "run_dir": "/home/dell/YrM/ICCT/reports/qgnn/finalists_preflight/actual_b32_20260920_toj",
+  "test_set_used": false,
+  "global_step": 3,
+  "total_global_steps": 3,
+  "best_validation": {
+    "ADE": 0.799186959862709,
+    "FDE": 1.7135949023067951,
+    "J": 1.6559844110161066,
+    "scenes": 32
+  },
+  "best_epoch": 1,
+  "memory": {
+    "allocated_gib": 0.37470006942749023,
+    "reserved_gib": 10.42578125,
+    "peak_allocated_gib": 7.148386001586914,
+    "peak_reserved_gib": 10.42578125
+  }
+}

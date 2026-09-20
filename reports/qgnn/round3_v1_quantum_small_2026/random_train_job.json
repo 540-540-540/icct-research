@@ -1,0 +1,14 @@
+{
+  "pid": 295983,
+  "command": [
+    "/home/dell/YrM/envs/ICCT/bin/python",
+    "scripts/audit_qgnn_adaptive_controller.py",
+    "--run-dir",
+    "reports/qgnn/round3_v1_quantum_small_2026"
+  ],
+  "gpu": "",
+  "cwd": "/home/dell/YrM/ICCT",
+  "log": "/home/dell/YrM/ICCT/reports/qgnn/round3_v1_quantum_small_2026/random_train.log",
+  "output_dir": "/home/dell/YrM/ICCT/reports/qgnn/round3_v1_quantum_small_2026",
+  "created_at": "2026-09-19T10:31:12+0800"
+}

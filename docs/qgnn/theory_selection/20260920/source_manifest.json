@@ -1,0 +1,337 @@
+{
+  "base_head": "094def5b38fa21ccc09cda2328fe78ee8cc694c1",
+  "branch": "qgnn",
+  "new_training_executed": false,
+  "sources": [
+    {
+      "path": "docs/qgnn/GPT6_PRO_FINAL_QGNN_ARCHITECTURE_TASK_20260919.md",
+      "sha256": "9c67c6d91e6b81bc97d749f20060f44b3baff1746ffc569dc8deff671b5ff08c",
+      "bytes": 17952
+    },
+    {
+      "path": "docs/qgnn/ROUND3_SELECTED_FEEDBACK_AUDIT_20260919.md",
+      "sha256": "4f5f0da12dba57ca4bcc6a79a01b9180c4882d736b4f160382414aaa2bf72435",
+      "bytes": 6359
+    },
+    {
+      "path": "docs/qgnn/ROUND4_RAJ_ROWLOCAL_REUPLOAD_PREREG_20260919.md",
+      "sha256": "1a84a25ccf4c53ba884f76b7d411908c1217dff0e51600fb0ca5888c85ca5272",
+      "bytes": 3480
+    },
+    {
+      "path": "docs/qgnn/Q0_DUAL_DIAGNOSTIC_FINDINGS_20260918.md",
+      "sha256": "04cb265ddc0de8c06e36d16b7a2aaa4cd9a38e7927a15398df65db35ade7883f",
+      "bytes": 5649
+    },
+    {
+      "path": "docs/qgnn/GPT6_PRO_ROUND3_ADAPTIVE_QUANTUM_TASK_20260919.md",
+      "sha256": "c2cce16bd3405c8ec1bbbf0d17335dae1c5c0418ce719e344ec931f0337613e4",
+      "bytes": 14582
+    },
+    {
+      "path": "docs/qgnn/ROUND3_EXECUTION_LOG_20260919.md",
+      "sha256": "2e340c65e515cb9baa19be3b7443d0918a7a17647e8180bbbfe4078fbb937f20",
+      "bytes": 14331
+    },
+    {
+      "path": "docs/qgnn/ROUND4_PAPER_NATIVE_ROUTE_AUDIT_20260919.md",
+      "sha256": "674fefb2afda037fd7740fdd35a224f8b36995735615d323cfdf7660e49dc72f",
+      "bytes": 11826
+    },
+    {
+      "path": "docs/qgnn/ROUND4_RAJ_FEATURE_BUILDER_ISOLATION_FINDINGS_20260919.md",
+      "sha256": "6d0d4c834c88e7925631f43cb6c6a1205dbfd597bb2746a77fcf8632c4ca975d",
+      "bytes": 3139
+    },
+    {
+      "path": "docs/qgnn/ROUND4_RAJ_PAPER_MATH_PROTOTYPE_PREREG_20260919.md",
+      "sha256": "163bc2a80b34ffee5886c8abea7f96c3c603987d6b93f12cf5b3346dba16f99c",
+      "bytes": 6111
+    },
+    {
+      "path": "docs/qgnn/QGNN_SELECTION_CANDIDATE_B_SQM_GNN_INITIAL_AUDIT_20260919.md",
+      "sha256": "38bc95a8e9d2222f656c6b763a23e37e8892031c27e4851e49dbcf8640d73976",
+      "bytes": 10711
+    },
+    {
+      "path": "docs/qgnn/ROUND4_RAJ_PAPER_MATH_PROTOTYPE_FINDINGS_20260919.md",
+      "sha256": "8a17a8dea96dd17221335cbcf73333d84b185debd629e4d17c8405061f3191f7",
+      "bytes": 5714
+    },
+    {
+      "path": "docs/qgnn/ROUND3_INDEPENDENT_ACCEPTANCE_20260919.md",
+      "sha256": "e16ca3eee38bfdded086964b671985b36dd9765e492e886d16208c781c1567cb",
+      "bytes": 5829
+    },
+    {
+      "path": "docs/qgnn/ROUND3_FEEDBACK_RETRAINING_FINDINGS_20260919.md",
+      "sha256": "2d7a96d01afce896d4b33cbcf105c21b2f8cfa574d48d067b0b9649f0379e0c0",
+      "bytes": 10841
+    },
+    {
+      "path": "docs/qgnn/ROUND4_RAJ_PAPER_MATH_4096_PREREG_20260919.md",
+      "sha256": "e645bd59b7dce1d777ab3f28e2f8fa9927fe8e82f4d00cd8432ec82b208ced1a",
+      "bytes": 3409
+    },
+    {
+      "path": "docs/qgnn/ROUND4_RAJ_INTERMEDIATE_WEIGHTED_MATCH_PREREG_20260919.md",
+      "sha256": "08993145a288d95e283d5a6a3bc9c719baaf08f2d228ffd51336d94adbf12601",
+      "bytes": 3189
+    },
+    {
+      "path": "docs/qgnn/ROUND3_SCENE_ADAPTIVE_QGNN_FREEZE_20260919.md",
+      "sha256": "7fd230d9f6716765084fced804eea548dae4c3cde55f6c20aed13c7d92b23322",
+      "bytes": 22848
+    },
+    {
+      "path": "docs/qgnn/ROUND4_RAJ_PAPER_MATH_VECTORIZATION_FINDINGS_20260919.md",
+      "sha256": "2f9b03eff74df8e6f8191e835cefabce70de49cf2bbf33cbe8379e652f271eae",
+      "bytes": 1030
+    },
+    {
+      "path": "docs/qgnn/SIND_Q0_INTERACTION_DIAGNOSTIC_20260919.md",
+      "sha256": "43436b55d793d43b86b54f9e2ef92bcaf490bcb968811c4f7b84fcd2cd762c52",
+      "bytes": 2780
+    },
+    {
+      "path": "docs/qgnn/HISTORY_ONLY_QUANTUM_MODE_DIAGNOSTIC_20260919.md",
+      "sha256": "34e08d93201dbb2cd9a0aa0df778da5a2a3dc40aad86d529d85f2d126f8e0898",
+      "bytes": 9028
+    },
+    {
+      "path": "docs/qgnn/ROUND4_RAJ_NEW_CHAT_START_PROMPT_20260919.md",
+      "sha256": "151a5f9d5a2a2251402482c0b3990ac06b14c165bcbb513d59e1138ec0d73dfd",
+      "bytes": 5896
+    },
+    {
+      "path": "docs/qgnn/ROUND4_RAJ_CONVERGENCE_PREREG_20260919.md",
+      "sha256": "b75b225df4fab716467ab31dc5992f07534299a7d8fec5dd2226e58c955449de",
+      "bytes": 1066
+    },
+    {
+      "path": "docs/qgnn/ROUND4_RAJ_PAPER_MATH_SANITY_FINDINGS_20260919.md",
+      "sha256": "d8b0e857a0620b03e7d785901db49faa4133b2e355d2c275f1de5f718aab34d8",
+      "bytes": 1227
+    },
+    {
+      "path": "docs/qgnn/FINAL_QGNN_ARCHITECTURE_FREEZE.md",
+      "sha256": "6f17a95f2f08d2b946fcb555753e8538dd281eb54b8847f4462d4ca58b67fdfe",
+      "bytes": 669
+    },
+    {
+      "path": "docs/qgnn/ROUND4_RAJ_FEATURE_BUILDER_ISOLATION_PREREG_20260919.md",
+      "sha256": "ef759c089d29cfa5dc3d6437473de15c58d53e7e668ea097976a07d294eec85c",
+      "bytes": 2772
+    },
+    {
+      "path": "docs/qgnn/ROUND4_RAJ_ADJACENCY_OPERATOR_ISOLATION_PREREG_20260919.md",
+      "sha256": "636b575ab51e76e82b77599e2098662bf5ed155196645247b45cb21890dacb0d",
+      "bytes": 4208
+    },
+    {
+      "path": "docs/qgnn/ROUND4_RAJ_PAPER_MATH_SANITY_PREREG_20260919.md",
+      "sha256": "bcbdf54c57ae1c6afdaa2bee2106ef2e4a61923d31c61b4281567c5fd65e021c",
+      "bytes": 1216
+    },
+    {
+      "path": "docs/qgnn/ROUND4_RAJ_PAPER_MATH_WEIGHTED_CLASSICAL_FINDINGS_20260919.md",
+      "sha256": "3d1a783e7623864ea98bc5b6b52f3320e71271ea9ae91eea2113e99ed108d83e",
+      "bytes": 5278
+    },
+    {
+      "path": "docs/qgnn/ROUND4_RAJ_PAPER_FIDELITY_AUDIT_20260919.md",
+      "sha256": "ccb232668b301219a4b155517c2e40bb0def9ad169bce84efea6ef77f83aced8",
+      "bytes": 12429
+    },
+    {
+      "path": "docs/qgnn/ROUND2_EXECUTION_LOG_20260919.md",
+      "sha256": "9b90a7b0dd56827194f81d6c4ada8f65b8dba96b4e0ad84976427c5223bf1190",
+      "bytes": 5865
+    },
+    {
+      "path": "docs/qgnn/SQM_GNN_UMSG_SOURCE_BOUNDARY_20260919.md",
+      "sha256": "d43b7b2beabaa3cd5d794de4d64aa5af57df0c3d2224daca15ba7b68cfc3dc82",
+      "bytes": 4860
+    },
+    {
+      "path": "docs/qgnn/ROUND4_RAJ_PAPER_MATH_WEIGHTED_CLASSICAL_PREREG_20260919.md",
+      "sha256": "34e6350de11f32cefa096d4558c5f0e6db2f60cce27f2ef898ab0bccab598f61",
+      "bytes": 2324
+    },
+    {
+      "path": "docs/qgnn/ROUND4_RAJ_INTERMEDIATE_WEIGHTED_MATCH_FINDINGS_20260919.md",
+      "sha256": "1d902e988ccecf55cc884804f5866ec88e3e922f6925a5a5d300035c8a66c627",
+      "bytes": 6684
+    },
+    {
+      "path": "docs/qgnn/GPT6_PRO_ROUND3_START_PROMPT_20260919.md",
+      "sha256": "d046f07c092bf3934fd7978d4e82bc431d8f186d01ff3ea90a5a46460ff1fd2f",
+      "bytes": 5444
+    },
+    {
+      "path": "docs/qgnn/ROUND4_RAJ_ROWLOCAL_REUPLOAD_FINDINGS_20260919.md",
+      "sha256": "e41c780b701e9762142edd65c5c689dfdcfe6f2be8cc6f362f1e458f9ed0578f",
+      "bytes": 3535
+    },
+    {
+      "path": "docs/qgnn/ROUND4_BASELINE_POLICY_20260919.md",
+      "sha256": "9b6b916b38aa4f391cd60eddc983d4ef35e4fc34c1fa06b49f10a62fd0a2f042",
+      "bytes": 4098
+    },
+    {
+      "path": "docs/qgnn/ROUND4_RAJ_PAPER_NATIVE_FINDINGS_20260919.md",
+      "sha256": "c91026513104d4dc4a85f8a48374e705bc2e18f7fed82cd6ed9509f029ca88d1",
+      "bytes": 7426
+    },
+    {
+      "path": "docs/qgnn/ROUND4_RAJ_NEW_CHAT_HANDOFF_20260919.md",
+      "sha256": "919cf95fe7f7fad7d1ed1b27aee85b7b5abb237b3abf7c492fe712e385dfc3c0",
+      "bytes": 14331
+    },
+    {
+      "path": "docs/qgnn/ROUND3_FEEDBACK_RETRAIN_PREREG_20260919.md",
+      "sha256": "88d5308936f7b2d0465b2697fe753da8cfef8739f832092d36c42aa0de86fade",
+      "bytes": 3000
+    },
+    {
+      "path": "docs/qgnn/ROUND4_RAJ_FULLTRAIN_FINDINGS_20260919.md",
+      "sha256": "6510e4ddb810ca0e11541869cce406874ce649498ef15e2f3a527101d41b5691",
+      "bytes": 5068
+    },
+    {
+      "path": "docs/qgnn/QGNN_DESIGN_CONTRACT_AND_PRO_HANDOFF.md",
+      "sha256": "523cc51e98b3b9bcf3d9a6c31c112b2adc0bc44e531b5606969c50b7d361dc6f",
+      "bytes": 6680
+    },
+    {
+      "path": "docs/qgnn/ROUND4_RAJ_PAPER_MATH_4096_FINDINGS_20260919.md",
+      "sha256": "a8d4e0e3cc561aa54b67b4229c8e1df01a28b2ce62e7b3f59a18142bd4386e8f",
+      "bytes": 4780
+    },
+    {
+      "path": "docs/qgnn/FINAL_QGNN_ARCHITECTURE_FREEZE_20260919.md",
+      "sha256": "e12392d19671f2f62ecbc911e5de1835f3acdca11161f4c969264554693ae7b9",
+      "bytes": 26782
+    },
+    {
+      "path": "docs/qgnn/G2_HIGHER_ORDER_DIAGNOSTIC_20260918.md",
+      "sha256": "ba22f68184493e040520a1a3dab130e735c1d67eeea66c21a258f5de85ceb65b",
+      "bytes": 1572
+    },
+    {
+      "path": "docs/qgnn/ROUND4_RAJ_FULLTRAIN_PREREG_20260919.md",
+      "sha256": "3fb26b0919fc24d03709d4fd6600dc066aa4df01c1b48974446cb68ad5fb57d4",
+      "bytes": 3171
+    },
+    {
+      "path": "docs/qgnn/QGNN_SELECTION_CANDIDATE_A_RAJ_FREEZE_20260919.md",
+      "sha256": "f8e45d91bf4dec2523858b37add636afaf2a860e87859a2ed2926fa391a4dcb3",
+      "bytes": 5016
+    },
+    {
+      "path": "docs/qgnn/ROUND4_RAJ_SEED2027_CONFIRMATION_PREREG_20260919.md",
+      "sha256": "c9fb380727d29ea6968ceeef0b967e3bbe4d58a5a270e4a68d84ed6b0db25c52",
+      "bytes": 1211
+    },
+    {
+      "path": "docs/qgnn/Q0_LLM_AND_TASK_SPACE_DIAGNOSTIC_20260918.md",
+      "sha256": "792a39b74385f646c5f4557db3dfc056ef78c8647ab772bd7c768e21db0904df",
+      "bytes": 6748
+    },
+    {
+      "path": "prediction/qgnn_paper_native/raj_fidelity_a.py",
+      "sha256": "78fd0b588ac28bb366a0464d5fcfb11d136f62db142c57de5d0a1d2baf857cc2",
+      "bytes": 8086
+    },
+    {
+      "path": "prediction/qgnn_paper_native/raj_paper.py",
+      "sha256": "86cd12bcd33cdd15bb013104ccb7608bc8f89ee25c74b5101699ce85d24ceea1",
+      "bytes": 15732
+    },
+    {
+      "path": "prediction/qgnn_paper_native/raj_subset.py",
+      "sha256": "9b120d244f1cb142703adf3b189797606d5a869b3cb0f9af86c40fc90bacb671",
+      "bytes": 7960
+    },
+    {
+      "path": "prediction/qgnn_paper_native/raj_paper_math.py",
+      "sha256": "46c826bce7eb34f3b71ca83db21ec1677e9f42004be9dee0f565eeb03382c75d",
+      "bytes": 10096
+    },
+    {
+      "path": "prediction/qgnn_paper_native/raj_joint.py",
+      "sha256": "12abb9bbfaec34f1d1257b620c6964798e6d1732f66f8680525a9744f22ade91",
+      "bytes": 7771
+    },
+    {
+      "path": "prediction/qgnn_paper_native/model.py",
+      "sha256": "67341bc9f2570542699eaa10ebb69092efe5d1d16c0f1d7427ccd5b846151253",
+      "bytes": 2376
+    },
+    {
+      "path": "prediction/qgnn_paper_native/__init__.py",
+      "sha256": "cc155ed25a172008c5d7a3ea0376c563151d312f0fd3adc3e7ef73afdfec780d",
+      "bytes": 195
+    },
+    {
+      "path": "prediction/qgnn_paper_native/raj_mechanism.py",
+      "sha256": "60bfa1ed81a5fe0b0c54749552544928ba67a092427ebda5d0dfd16d7815ef92",
+      "bytes": 9668
+    },
+    {
+      "path": "prediction/qgnn_final/relational.py",
+      "sha256": "3a3fa5fde3320f828b0e2b2e20189d204b3f38c74c7dcca77c50ab94e857f0cc",
+      "bytes": 4344
+    },
+    {
+      "path": "prediction/qgnn_final/quantum.py",
+      "sha256": "2034523261f265d8b88776ed205d233b8c15d5ef2deaec1a822928003cf7181f",
+      "bytes": 7642
+    },
+    {
+      "path": "prediction/qgnn_final/model.py",
+      "sha256": "c062c42b7670d6457740c58ce10c9a400feba2fd8d18adf4baabd27ae8b3a3bf",
+      "bytes": 6356
+    },
+    {
+      "path": "prediction/qgnn_final/common.py",
+      "sha256": "5afe0147ff04099425bc124cc5842b9b96859a0442eeabc3c34fbd47184f76f2",
+      "bytes": 3973
+    },
+    {
+      "path": "prediction/qgnn_final/__init__.py",
+      "sha256": "e45b6bbeacde4ba1e0b3c80630a54b4e7e09f9e8732171265a276fa928ec0cbc",
+      "bytes": 73
+    },
+    {
+      "path": "prediction/qgnn_final/classical.py",
+      "sha256": "a5b10c9b31178679c03d191a99c5ac9443f1b6e3ced85162b64c1b20a7dda5a5",
+      "bytes": 3942
+    },
+    {
+      "path": "prediction/qgnn_adaptive/quantum.py",
+      "sha256": "88f7cba6d85ad97df0478ce91acf22dbc50ec19e18cb6fc5d083208681ee43ea",
+      "bytes": 3788
+    },
+    {
+      "path": "prediction/qgnn_adaptive/model.py",
+      "sha256": "fbf5738d9b239440c7085b2fbae9f25ea2a5434c1cbb6811ae972b55c76c5184",
+      "bytes": 1740
+    },
+    {
+      "path": "prediction/qgnn_adaptive/__init__.py",
+      "sha256": "37d1569426f7790ad3ddfa694e8ecaeea5865ff828eced2ee99ea2b4bc04e3f1",
+      "bytes": 78
+    },
+    {
+      "path": "prediction/qgnn_adaptive/controller.py",
+      "sha256": "4284de877f6f2003675932f22b7a515dad260520d712114c5cb687e04ec7c25c",
+      "bytes": 4483
+    },
+    {
+      "path": "prediction/qgnn_adaptive/classical.py",
+      "sha256": "ef2eefb73c5081e0afd1863f8e45a5467f294ab736c18b474a2267483d708aeb",
+      "bytes": 4456
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "pid": 1967981,
+  "kind": "rtcn",
+  "epoch": 1,
+  "total_epochs": 1,
+  "batch": 1,
+  "total_batches": 1,
+  "global_step": 1,
+  "loss": 1.824902892112732,
+  "ADE": 0.7730170488357544,
+  "FDE": 1.5823264122009277,
+  "gradient_norm": 2.015228271484375,
+  "step_seconds": 0.7821502387523651,
+  "elapsed_seconds": 0.785055385902524,
+  "estimated_remaining_seconds": 0.0,
+  "estimated_finish_utc": "2026-09-20T02:03:38Z",
+  "peak_allocated_gib": 1.2974324226379395,
+  "peak_reserved_gib": 1.396484375
+}

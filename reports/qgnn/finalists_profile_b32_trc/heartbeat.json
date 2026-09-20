@@ -1,0 +1,19 @@
+{
+  "pid": 1968822,
+  "kind": "trc",
+  "epoch": 1,
+  "total_epochs": 1,
+  "batch": 1,
+  "total_batches": 1,
+  "global_step": 1,
+  "loss": 1.6709867715835571,
+  "ADE": 0.7072228193283081,
+  "FDE": 1.4035212993621826,
+  "gradient_norm": 2.088670492172241,
+  "step_seconds": 1.4481647312641144,
+  "elapsed_seconds": 1.4518510960042477,
+  "estimated_remaining_seconds": 0.0,
+  "estimated_finish_utc": "2026-09-20T02:04:11Z",
+  "peak_allocated_gib": 5.41582727432251,
+  "peak_reserved_gib": 6.056640625
+}

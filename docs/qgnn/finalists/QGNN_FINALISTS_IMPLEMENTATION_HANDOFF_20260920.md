@@ -2,7 +2,7 @@
 
 ## Frozen scope
 
-Authority is the server workspace `/home/dell/YrM/ICCT` on branch `qgnn`. This handoff finishes engineering preflight only: no 15,802-window formal run and no prediction test run was started.
+Authority is the server workspace `/home/dell/YrM/ICCT` on branch `qgnn`. Engineering preflight was frozen at `bdd4aa0`, after which all four 15,802-window formal training arms completed successfully. Prediction test was not started.
 
 The formal first gate is fixed at SinD 0 dB, seed 2026, 15,802 full-train windows, 1,880 full-validation windows, 20 epochs, and batch size 32. `J=ADE+0.5*FDE` is the validation checkpoint-selection value; ADE and FDE remain the reported prediction metrics.
 
@@ -10,6 +10,12 @@ The formal first gate is fixed at SinD 0 dB, seed 2026, 15,802 full-train window
 |---|---|---|
 | A | `trc` — TRC-QGNN | `rtcn --rtcn-width 128` — RTCN-128 |
 | B | `toj` — TO-JQGNN | `trtgn` — TR-TGN |
+
+## Formal completion status
+
+All four arms completed the frozen full SinD gate: 20/20 epochs, 9,880/9,880 training steps, 15,802 train windows, 1,880 validation windows, SNR 0 dB, seed 2026, batch size 32, and no train/validation limit. The matched initialization hash and full train/validation index hashes are identical across the four arms; prediction test remains closed.
+
+The result-of-record is [`QGNN_FINALISTS_FORMAL_RESULTS_20260920.md`](QGNN_FINALISTS_FORMAL_RESULTS_20260920.md). Versioned run metadata lives in `reports/qgnn/finalists/formal_0db_seed2026_{trc,rtcn128,toj,trtgn}/`; the server-resident checkpoint hashes and paths are frozen in `reports/qgnn/finalists/QGNN_FINALISTS_FORMAL_CHECKPOINT_MANIFEST_20260920.json`.
 
 ## Theory-to-code audit
 
@@ -99,7 +105,7 @@ For a formal command below, inspect its own run directory:
 - `last.pt`: resume source; `best.pt` and `best_validation_rows.json`: best-J validation checkpoint and rows.
 - `config.json` and `parameters.json`: frozen invocation and instantiated counts.
 
-## Frozen formal commands
+## Frozen formal commands (historical provenance)
 
 Run Pair A concurrently on GPU0/GPU1:
 

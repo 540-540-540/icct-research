@@ -1,0 +1,11 @@
+{
+  "pid": 182949,
+  "command": [
+    "/home/dell/YrM/envs/ICCT/bin/python",
+    "scripts/verify_qgnn_final_additional.py"
+  ],
+  "gpu": "",
+  "cwd": "/home/dell/YrM/ICCT",
+  "log": "reports/qgnn/additional_checks_candidate.log",
+  "created_at": "2026-09-19T08:49:53+0800"
+}

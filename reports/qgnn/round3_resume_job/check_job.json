@@ -1,0 +1,12 @@
+{
+  "pid": 282682,
+  "command": [
+    "/home/dell/YrM/envs/ICCT/bin/python",
+    "scripts/check_qgnn_adaptive_resume.py"
+  ],
+  "gpu": 1,
+  "cwd": "/home/dell/YrM/ICCT",
+  "log": "/home/dell/YrM/ICCT/reports/qgnn/round3_resume_job/check.log",
+  "output_dir": "/home/dell/YrM/ICCT/reports/qgnn/round3_resume_job",
+  "created_at": "2026-09-19T10:19:35+0800"
+}

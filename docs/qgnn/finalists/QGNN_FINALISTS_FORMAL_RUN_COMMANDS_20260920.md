@@ -10,6 +10,10 @@
 
 The runner writes an initial checkpoint before the first step. Its terminal ETA starts after a few measured training steps and continues to update from smoothed throughput rather than this document's planning estimate.
 
+## Completion record
+
+All four commands have now completed the frozen first gate. These blocks are retained as exact invocation provenance rather than a request to rerun the completed experiments. Read `QGNN_FINALISTS_FORMAL_RESULTS_20260920.md` for the final full-validation metrics and `reports/qgnn/finalists/QGNN_FINALISTS_FORMAL_CHECKPOINT_MANIFEST_20260920.json` for the server-resident `best.pt` and `last.pt` identities.
+
 ## Pair A: TRC-QGNN vs RTCN-128
 
 Start these in two terminals at the same time.

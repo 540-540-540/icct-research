@@ -1,0 +1,16 @@
+[
+  {
+    "epoch": 1,
+    "train_loss": 1.7296840747197468,
+    "validation": {
+      "ADE": 0.7997316271066666,
+      "FDE": 1.715115461498499,
+      "J": 1.657289357855916,
+      "scenes": 32
+    },
+    "training_seconds": 1.67772644944489,
+    "smoothed_train_step_seconds": 0.7737861480424181,
+    "validation_batch_seconds": 0.11903241649270058,
+    "smoothed_validation_batch_seconds": 0.11903241649270058
+  }
+]

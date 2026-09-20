@@ -1,0 +1,14 @@
+{
+  "pid": 4037774,
+  "command": [
+    "/home/dell/YrM/envs/ICCT/bin/python",
+    "-u",
+    "scripts/diagnose_qgnn_final_pilot.py",
+    "--run-dir",
+    "reports/qgnn/r2_pilot_v1_quantum_0db_seed2026"
+  ],
+  "gpu": 0,
+  "log": "reports/qgnn/r2_pilot_v1_quantum_0db_seed2026/diagnostic.log",
+  "output": "reports/qgnn/r2_pilot_v1_quantum_0db_seed2026/mechanism_diagnostic.json",
+  "test_set_used": false
+}

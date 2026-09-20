@@ -1,0 +1,90 @@
+{
+  "revision": "THEORETICAL_SELECTION_V1_20260920",
+  "status": "THEORETICAL_SELECTION_COMPLETE_NOT_EMPIRICALLY_VALIDATED",
+  "server_head": "094def5b38fa21ccc09cda2328fe78ee8cc694c1",
+  "primary": {
+    "name": "TO-JQGNN",
+    "M_cap": 6,
+    "Q_cap": 12,
+    "candidate_sizes": [
+      8,
+      12,
+      16
+    ],
+    "history_stages": 4,
+    "banks_per_stage": 4,
+    "node_dim": 38,
+    "edge_dim": 12,
+    "output_shape": "B,T,4,31",
+    "gpt_tokens": 44,
+    "quantum_parameters": 98,
+    "temporal_parameters": 6624,
+    "total_trainable_estimate": 4143895,
+    "rotation_scheduling_upper_bound": 2496,
+    "nontrivial_slots": 2448,
+    "batch32_targets8_naive_saved_state_GiB": 19.5,
+    "requires_checkpoint": true
+  },
+  "backup": {
+    "name": "T-SQW-GNN",
+    "unique": true,
+    "K_cap": 7,
+    "Q_cap": 9,
+    "subset_orders": [
+      1,
+      2
+    ],
+    "subset_feature_dim": 114,
+    "banks_per_stage": 12,
+    "output_shape": "B,T,4,62",
+    "quantum_parameters": 264,
+    "total_trainable_estimate": 4167931,
+    "reduced_dimensions": [
+      28,
+      84
+    ],
+    "inherits_raj_metrics": false
+  },
+  "matched_classical": {
+    "name": "TR-TGN",
+    "width": 32,
+    "tensor_rank": 16,
+    "interaction_parameters": 23127,
+    "total_trainable_estimate": 4166924,
+    "same_context_encoder_reader": true,
+    "two_tier_fairness": "same M6 for mechanism; retain full C8/C12 strong classical for project competitiveness; overall gate vs strongest validation-selected compliant classical"
+  },
+  "frozen": [
+    "SinD",
+    "3-BS controlled ISAC",
+    "20-history",
+    "20-future",
+    "GPT2 first4",
+    "41x41 mixed motion tokens",
+    "QKV LoRA8 alpha16"
+  ],
+  "historical_raj_full_J": {
+    "quantum": 1.0068451626741506,
+    "johnson": 1.007178534567356
+  },
+  "new_traffic_experiments": false,
+  "new_model_training": false,
+  "formal_code_changed": false,
+  "mathematical_checks_only": true,
+  "claimed_quantum_advantage": false,
+  "roadmap": [
+    "G0 math/shape/mask/gradient/profile",
+    "G1 paired pilot and reader factorial",
+    "G2 retrained mechanism controls",
+    "G3 data size vs matched updates",
+    "G4 context then full3seed and frozen5SNR/test"
+  ],
+  "kill_thresholds_proposed_not_measured": {
+    "J_gain_min_percent": 1,
+    "FDE_gain_min_percent": 2,
+    "ADE_regression_max_percent": 0.5,
+    "ordinary_J_regression_max_percent": 1,
+    "seeds": 3
+  },
+  "report": "ICCT_QGNN_Architecture_Selection_Server_Report.md"
+}

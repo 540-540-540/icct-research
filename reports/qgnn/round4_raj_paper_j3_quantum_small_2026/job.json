@@ -1,0 +1,7 @@
+{
+  "pid": 514291,
+  "gpu": 0,
+  "command": "env CUDA_VISIBLE_DEVICES=0 /home/dell/YrM/envs/ICCT/bin/python -u scripts/train_qgnn_paper_native.py --kind raj_paper_quantum --j 3 --seed 2026 --snr 0 --epochs 12 --train-limit 4096 --batch-size 32 --depth 3 --correction-cap 16 --run-dir reports/qgnn/round4_raj_paper_j3_quantum_small_2026 --max-seconds 1200",
+  "started": "2026-09-19T13:34:28+0800",
+  "test_set_used": false
+}

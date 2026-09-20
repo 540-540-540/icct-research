@@ -1,0 +1,7 @@
+{
+  "trainable": 4143959,
+  "frozen": 68002822,
+  "total": 72146781,
+  "core_trainable": 6722,
+  "llm_trainable": 4137237
+}

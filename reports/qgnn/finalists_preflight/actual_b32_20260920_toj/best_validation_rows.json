@@ -1,0 +1,267 @@
+{
+  "summary": {
+    "ADE": 0.799186959862709,
+    "FDE": 1.7135949023067951,
+    "J": 1.6559844110161066,
+    "scenes": 32
+  },
+  "rows": [
+    {
+      "index": 0,
+      "scene_id": 0,
+      "start_frame": 13301,
+      "ADE": 0.8770601153373718,
+      "FDE": 1.9545210599899292,
+      "closing_pairs_30m_gt_0p5": 4
+    },
+    {
+      "index": 1,
+      "scene_id": 0,
+      "start_frame": 12183,
+      "ADE": 0.9437698125839233,
+      "FDE": 2.135765552520752,
+      "closing_pairs_30m_gt_0p5": 10
+    },
+    {
+      "index": 2,
+      "scene_id": 0,
+      "start_frame": 12212,
+      "ADE": 0.8323178291320801,
+      "FDE": 1.7746989727020264,
+      "closing_pairs_30m_gt_0p5": 18
+    },
+    {
+      "index": 3,
+      "scene_id": 0,
+      "start_frame": 13315,
+      "ADE": 1.1230846643447876,
+      "FDE": 2.494736433029175,
+      "closing_pairs_30m_gt_0p5": 5
+    },
+    {
+      "index": 4,
+      "scene_id": 0,
+      "start_frame": 12049,
+      "ADE": 0.7021255493164062,
+      "FDE": 1.4667935371398926,
+      "closing_pairs_30m_gt_0p5": 2
+    },
+    {
+      "index": 5,
+      "scene_id": 0,
+      "start_frame": 12516,
+      "ADE": 0.7902032136917114,
+      "FDE": 1.4516611099243164,
+      "closing_pairs_30m_gt_0p5": 14
+    },
+    {
+      "index": 6,
+      "scene_id": 0,
+      "start_frame": 13429,
+      "ADE": 1.027662992477417,
+      "FDE": 2.112537145614624,
+      "closing_pairs_30m_gt_0p5": 13
+    },
+    {
+      "index": 7,
+      "scene_id": 0,
+      "start_frame": 12305,
+      "ADE": 0.6552823781967163,
+      "FDE": 1.4539719820022583,
+      "closing_pairs_30m_gt_0p5": 10
+    },
+    {
+      "index": 8,
+      "scene_id": 1,
+      "start_frame": 7332,
+      "ADE": 0.6475940942764282,
+      "FDE": 1.173582673072815,
+      "closing_pairs_30m_gt_0p5": 4
+    },
+    {
+      "index": 9,
+      "scene_id": 1,
+      "start_frame": 7322,
+      "ADE": 0.8145168423652649,
+      "FDE": 1.7570655345916748,
+      "closing_pairs_30m_gt_0p5": 6
+    },
+    {
+      "index": 10,
+      "scene_id": 1,
+      "start_frame": 7193,
+      "ADE": 0.6094154715538025,
+      "FDE": 1.3495954275131226,
+      "closing_pairs_30m_gt_0p5": 3
+    },
+    {
+      "index": 11,
+      "scene_id": 0,
+      "start_frame": 12263,
+      "ADE": 0.5986118912696838,
+      "FDE": 1.1331908702850342,
+      "closing_pairs_30m_gt_0p5": 15
+    },
+    {
+      "index": 12,
+      "scene_id": 0,
+      "start_frame": 12953,
+      "ADE": 0.5411843061447144,
+      "FDE": 1.0425676107406616,
+      "closing_pairs_30m_gt_0p5": 18
+    },
+    {
+      "index": 13,
+      "scene_id": 1,
+      "start_frame": 7809,
+      "ADE": 0.7183235287666321,
+      "FDE": 1.562288761138916,
+      "closing_pairs_30m_gt_0p5": 3
+    },
+    {
+      "index": 14,
+      "scene_id": 0,
+      "start_frame": 13364,
+      "ADE": 0.6379485130310059,
+      "FDE": 1.1739866733551025,
+      "closing_pairs_30m_gt_0p5": 11
+    },
+    {
+      "index": 15,
+      "scene_id": 0,
+      "start_frame": 13125,
+      "ADE": 0.8467966318130493,
+      "FDE": 2.137204885482788,
+      "closing_pairs_30m_gt_0p5": 3
+    },
+    {
+      "index": 16,
+      "scene_id": 0,
+      "start_frame": 12814,
+      "ADE": 0.6123479604721069,
+      "FDE": 1.0968716144561768,
+      "closing_pairs_30m_gt_0p5": 17
+    },
+    {
+      "index": 17,
+      "scene_id": 1,
+      "start_frame": 7299,
+      "ADE": 1.1114662885665894,
+      "FDE": 2.8620388507843018,
+      "closing_pairs_30m_gt_0p5": 5
+    },
+    {
+      "index": 18,
+      "scene_id": 0,
+      "start_frame": 12325,
+      "ADE": 0.9692555665969849,
+      "FDE": 2.31103777885437,
+      "closing_pairs_30m_gt_0p5": 12
+    },
+    {
+      "index": 19,
+      "scene_id": 0,
+      "start_frame": 12622,
+      "ADE": 0.49831652641296387,
+      "FDE": 1.0105067491531372,
+      "closing_pairs_30m_gt_0p5": 5
+    },
+    {
+      "index": 20,
+      "scene_id": 0,
+      "start_frame": 12418,
+      "ADE": 0.8979704976081848,
+      "FDE": 1.6711422204971313,
+      "closing_pairs_30m_gt_0p5": 7
+    },
+    {
+      "index": 21,
+      "scene_id": 0,
+      "start_frame": 13473,
+      "ADE": 0.7534099221229553,
+      "FDE": 1.9590270519256592,
+      "closing_pairs_30m_gt_0p5": 6
+    },
+    {
+      "index": 22,
+      "scene_id": 1,
+      "start_frame": 7993,
+      "ADE": 0.949932873249054,
+      "FDE": 2.0597214698791504,
+      "closing_pairs_30m_gt_0p5": 3
+    },
+    {
+      "index": 23,
+      "scene_id": 0,
+      "start_frame": 13229,
+      "ADE": 0.5596935153007507,
+      "FDE": 1.2759113311767578,
+      "closing_pairs_30m_gt_0p5": 11
+    },
+    {
+      "index": 24,
+      "scene_id": 0,
+      "start_frame": 12783,
+      "ADE": 0.6510323286056519,
+      "FDE": 1.334195613861084,
+      "closing_pairs_30m_gt_0p5": 13
+    },
+    {
+      "index": 25,
+      "scene_id": 0,
+      "start_frame": 12595,
+      "ADE": 0.9044027328491211,
+      "FDE": 1.7645803689956665,
+      "closing_pairs_30m_gt_0p5": 14
+    },
+    {
+      "index": 26,
+      "scene_id": 0,
+      "start_frame": 13340,
+      "ADE": 0.7193787693977356,
+      "FDE": 1.4542672634124756,
+      "closing_pairs_30m_gt_0p5": 7
+    },
+    {
+      "index": 27,
+      "scene_id": 0,
+      "start_frame": 12954,
+      "ADE": 0.6054965853691101,
+      "FDE": 1.203769564628601,
+      "closing_pairs_30m_gt_0p5": 11
+    },
+    {
+      "index": 28,
+      "scene_id": 1,
+      "start_frame": 7293,
+      "ADE": 1.424262523651123,
+      "FDE": 3.1788394451141357,
+      "closing_pairs_30m_gt_0p5": 4
+    },
+    {
+      "index": 29,
+      "scene_id": 0,
+      "start_frame": 13492,
+      "ADE": 0.823811411857605,
+      "FDE": 1.8050227165222168,
+      "closing_pairs_30m_gt_0p5": 6
+    },
+    {
+      "index": 30,
+      "scene_id": 0,
+      "start_frame": 13387,
+      "ADE": 0.8843051791191101,
+      "FDE": 1.981154441833496,
+      "closing_pairs_30m_gt_0p5": 5
+    },
+    {
+      "index": 31,
+      "scene_id": 0,
+      "start_frame": 13037,
+      "ADE": 0.843002200126648,
+      "FDE": 1.6927821636199951,
+      "closing_pairs_30m_gt_0p5": 13
+    }
+  ],
+  "test_set_used": false
+}

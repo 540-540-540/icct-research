@@ -1,0 +1,11 @@
+{
+  "pid": 4032891,
+  "epoch": 12,
+  "batch": 126,
+  "global_step": 1534,
+  "loss": 0.8512523174285889,
+  "gradient_norm": 6.084537506103516,
+  "step_seconds": 0.08121961541473866,
+  "elapsed_seconds": 157.24603130668402,
+  "peak_allocated_gib": 3.6653785705566406
+}

@@ -1,0 +1,12 @@
+{
+  "pid": 4026432,
+  "command": [
+    "/home/dell/YrM/envs/ICCT/bin/python",
+    "-u",
+    "scripts/prepare_qgnn_final_tokens.py"
+  ],
+  "gpu": "CPU",
+  "log": "reports/qgnn/token_fit.log",
+  "output": "configs/qgnn_final_tokens.json",
+  "test_set_used": false
+}

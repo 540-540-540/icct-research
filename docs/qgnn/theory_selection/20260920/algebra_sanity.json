@@ -1,0 +1,17 @@
+{
+  "scope": "Toy configuration algebra only; feature qubits=2; not a full Primary implementation or ICCT experiment",
+  "execution_location": "assistant artifact container, CPU",
+  "seed": 20260920,
+  "neighbors": 4,
+  "ordered_configurations": 12,
+  "norm_error": 0.0,
+  "density_trace_error": 2.220446049250313e-16,
+  "conditional_unitary_error": 6.661338147750939e-16,
+  "permutation_readout_max_error": 2.498001805406602e-16,
+  "global_phase_readout_max_error": 1.1102230246251565e-16,
+  "terminal_index_only_hop_readout_max_error": 1.1102230246251565e-16,
+  "temporal_reversal_readout_max_difference": 0.4385567201737619,
+  "dephased_configuration_readout_max_difference": 0.17967365362198717,
+  "no_new_training": true,
+  "status": "PASS_IDENTITY_CHECKS_NOT_PREDICTION_VALIDATION"
+}

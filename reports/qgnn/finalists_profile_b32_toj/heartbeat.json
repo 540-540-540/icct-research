@@ -1,0 +1,19 @@
+{
+  "pid": 1969194,
+  "kind": "toj",
+  "epoch": 1,
+  "total_epochs": 1,
+  "batch": 1,
+  "total_batches": 1,
+  "global_step": 1,
+  "loss": 1.6709998846054077,
+  "ADE": 0.7072228193283081,
+  "FDE": 1.4035212993621826,
+  "gradient_norm": 2.010648727416992,
+  "step_seconds": 1.700669627636671,
+  "elapsed_seconds": 1.7042661812156439,
+  "estimated_remaining_seconds": 0.0,
+  "estimated_finish_utc": "2026-09-20T02:04:24Z",
+  "peak_allocated_gib": 7.037426471710205,
+  "peak_reserved_gib": 7.97265625
+}

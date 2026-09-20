@@ -1,0 +1,26 @@
+{
+  "status": "COMPLETED",
+  "kind": "trtgn",
+  "best_validation": {
+    "ADE": 0.8709444552659988,
+    "FDE": 1.8584527224302292,
+    "J": 1.8001708164811134,
+    "scenes": 8
+  },
+  "best_epoch": 1,
+  "epochs_completed": 1,
+  "global_step": 1,
+  "elapsed_seconds": 0.8504111208021641,
+  "parameters": {
+    "trainable": 4167404,
+    "frozen": 68002822,
+    "total": 72170226,
+    "core_trainable": 30167,
+    "llm_trainable": 4137237
+  },
+  "shared_initialization_sha256": "018e5c740fa3a6586213097e2cbe45749468bce9a17ad29bb51db3c08747bc3b",
+  "train_indices_sha256": "4555582fa2501c9eda976c0f1a398e71f4df684cb37993a22875004b9e27f996",
+  "train_samples": 8,
+  "validation_samples": 8,
+  "test_set_used": false
+}

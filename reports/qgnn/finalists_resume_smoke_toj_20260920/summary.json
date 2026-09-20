@@ -1,0 +1,26 @@
+{
+  "status": "COMPLETED",
+  "kind": "toj",
+  "best_validation": {
+    "ADE": 0.9439064860343933,
+    "FDE": 2.0604379177093506,
+    "J": 1.9741254448890686,
+    "scenes": 2
+  },
+  "best_epoch": 1,
+  "epochs_completed": 1,
+  "global_step": 2,
+  "elapsed_seconds": 3.1581189706921577,
+  "parameters": {
+    "trainable": 4143959,
+    "frozen": 68002822,
+    "total": 72146781,
+    "core_trainable": 6722,
+    "llm_trainable": 4137237
+  },
+  "shared_initialization_sha256": "018e5c740fa3a6586213097e2cbe45749468bce9a17ad29bb51db3c08747bc3b",
+  "train_indices_sha256": "2d522340490a622f2a3d7a22c49863835ef6010fdf2dc5db1e783db34d1ee6c3",
+  "train_samples": 4,
+  "validation_samples": 2,
+  "test_set_used": false
+}
