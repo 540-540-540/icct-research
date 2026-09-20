@@ -1,0 +1,413 @@
+{
+  "pretrained_file_equality": {
+    "parameters": 67736832,
+    "mismatched": [],
+    "absent": [],
+    "layers": 4,
+    "ln_f_mean": 1.5078086853027344,
+    "ln_f_std": 1.3910776376724243
+  },
+  "parameter_groups": {
+    "other": {
+      "trainable": 0,
+      "frozen": 68033065,
+      "relative_update_l2": 0.0
+    },
+    "base.future_queries": {
+      "trainable": 15360,
+      "frozen": 0,
+      "relative_update_l2": 2.335391926396728
+    },
+    "lora": {
+      "trainable": 98304,
+      "frozen": 0,
+      "relative_update_l2": 0.20818236338738808
+    },
+    "base.motion_embedding": {
+      "trainable": 1291008,
+      "frozen": 0,
+      "relative_update_l2": 1.0442046145721553
+    },
+    "base.history_adapter": {
+      "trainable": 1182720,
+      "frozen": 0,
+      "relative_update_l2": 0.9667176188004603
+    },
+    "base.token_head": {
+      "trainable": 1294225,
+      "frozen": 0,
+      "relative_update_l2": 1.6818750878534274
+    },
+    "base.continuous_motion": {
+      "trainable": 3072,
+      "frozen": 0,
+      "relative_update_l2": 2.5866115313045257
+    },
+    "self_head": {
+      "trainable": 199430,
+      "frozen": 0,
+      "relative_update_l2": 0.5137898767633506
+    },
+    "own_history_adapter": {
+      "trainable": 3072,
+      "frozen": 0,
+      "relative_update_l2": 53.916590049123485
+    }
+  },
+  "train96_weighted_baseline": {
+    "ADE": 0.40170416235923767,
+    "FDE": 0.7029433250427246
+  },
+  "embedding_rms": {
+    "motion": 0.7297791242599487,
+    "history_adapter": 0.37272974848747253,
+    "own_adapter": 0.15426665544509888,
+    "gpt_wte": 0.14369603991508484,
+    "gpt_wpe": 0.12269312143325806
+  },
+  "without_own_adapter": {
+    "ADE": 0.8688204288482666,
+    "FDE": 1.7334543466567993,
+    "prediction_delta_mean_m": 0.736914336681366
+  },
+  "without_expected_motion": {
+    "ADE": 0.4009939134120941,
+    "FDE": 0.701731264591217,
+    "prediction_delta_mean_m": 0.005392446182668209
+  },
+  "token_targets": {
+    "vocab": 1681,
+    "unique": 81,
+    "top5_fraction": 0.6395833492279053,
+    "lateral_zero_fraction": 0.9125000238418579,
+    "forward_has_zero": false,
+    "quant_error_mean_m": 0.036685142666101456,
+    "quant_error_p95_m": 0.05630078166723251,
+    "ce": 0.9479088187217712,
+    "accuracy": 0.684374988079071
+  },
+  "gradient_batches": [
+    {
+      "coordinate": 0.8565776348114014,
+      "weighted_token": 0.037326522171497345,
+      "groups": {
+        "base.future_queries": {
+          "coordinate_norm": 0.29757199534229517,
+          "weighted_token_norm": 0.008107227488669598,
+          "cosine": 0.05651613833697665
+        },
+        "lora": {
+          "coordinate_norm": 5.4579939621077145,
+          "weighted_token_norm": 0.18335866172600912,
+          "cosine": 0.13850043095022463
+        },
+        "base.motion_embedding": {
+          "coordinate_norm": 2.8586229679921633,
+          "weighted_token_norm": 0.0948602922065664,
+          "cosine": 0.33949770092652404
+        },
+        "base.history_adapter": {
+          "coordinate_norm": 1.9211232344608185,
+          "weighted_token_norm": 0.06700324774833638,
+          "cosine": 0.31018487210513523
+        },
+        "base.token_head": {
+          "coordinate_norm": 0.007081607699004358,
+          "weighted_token_norm": 0.06987068274430477,
+          "cosine": 0.541760578312716
+        },
+        "base.continuous_motion": {
+          "coordinate_norm": 0.04232234547346225,
+          "weighted_token_norm": 0.001863903082461471,
+          "cosine": 0.2132903668587421
+        },
+        "self_head": {
+          "coordinate_norm": 13.15181365140134,
+          "weighted_token_norm": 0.0,
+          "cosine": 0.0
+        },
+        "own_history_adapter": {
+          "coordinate_norm": 0.223803384355565,
+          "weighted_token_norm": 0.010235562122587874,
+          "cosine": 0.286090445629767
+        }
+      }
+    },
+    {
+      "coordinate": 0.6260554790496826,
+      "weighted_token": 0.034336693584918976,
+      "groups": {
+        "base.future_queries": {
+          "coordinate_norm": 0.31076402089964456,
+          "weighted_token_norm": 0.005278397895287369,
+          "cosine": -0.009996060728782147
+        },
+        "lora": {
+          "coordinate_norm": 6.070867660505074,
+          "weighted_token_norm": 0.09563192986927951,
+          "cosine": 0.005717382183909286
+        },
+        "base.motion_embedding": {
+          "coordinate_norm": 2.928254043845973,
+          "weighted_token_norm": 0.06557567877452707,
+          "cosine": 0.03193519254001762
+        },
+        "base.history_adapter": {
+          "coordinate_norm": 2.2440000814580063,
+          "weighted_token_norm": 0.04417018234551866,
+          "cosine": 0.15063365842925378
+        },
+        "base.token_head": {
+          "coordinate_norm": 0.004776848367551067,
+          "weighted_token_norm": 0.0898227309465727,
+          "cosine": 0.18820929693489782
+        },
+        "base.continuous_motion": {
+          "coordinate_norm": 0.054503708906656456,
+          "weighted_token_norm": 0.0012845962952010067,
+          "cosine": 0.1267415181895132
+        },
+        "self_head": {
+          "coordinate_norm": 16.4725509347437,
+          "weighted_token_norm": 0.0,
+          "cosine": 0.0
+        },
+        "own_history_adapter": {
+          "coordinate_norm": 0.25888290143445325,
+          "weighted_token_norm": 0.00467269915928392,
+          "cosine": 0.22058940142518932
+        }
+      }
+    },
+    {
+      "coordinate": 0.7768943905830383,
+      "weighted_token": 0.03884010761976242,
+      "groups": {
+        "base.future_queries": {
+          "coordinate_norm": 0.335196331713009,
+          "weighted_token_norm": 0.007438940385265599,
+          "cosine": 0.16707730270339546
+        },
+        "lora": {
+          "coordinate_norm": 5.060692718815874,
+          "weighted_token_norm": 0.1318678689600348,
+          "cosine": 0.21054982303578318
+        },
+        "base.motion_embedding": {
+          "coordinate_norm": 2.943681260134509,
+          "weighted_token_norm": 0.07468513092968274,
+          "cosine": 0.0326074219170279
+        },
+        "base.history_adapter": {
+          "coordinate_norm": 1.891634004688384,
+          "weighted_token_norm": 0.061072449762691064,
+          "cosine": -0.030025805737051964
+        },
+        "base.token_head": {
+          "coordinate_norm": 0.003927056421825458,
+          "weighted_token_norm": 0.08547944419623914,
+          "cosine": -0.0005828292082802915
+        },
+        "base.continuous_motion": {
+          "coordinate_norm": 0.04249599600523928,
+          "weighted_token_norm": 0.0013144783654620803,
+          "cosine": 0.12050196798575075
+        },
+        "self_head": {
+          "coordinate_norm": 13.457812298260455,
+          "weighted_token_norm": 0.0,
+          "cosine": 0.0
+        },
+        "own_history_adapter": {
+          "coordinate_norm": 0.22786974310709668,
+          "weighted_token_norm": 0.005269940935403871,
+          "cosine": 0.09880673501409461
+        }
+      }
+    }
+  ],
+  "dropout_training": [
+    {
+      "name": "base.gpt2.drop",
+      "p": 0.1,
+      "training": true
+    },
+    {
+      "name": "base.gpt2.h.0.attn.attn_dropout",
+      "p": 0.1,
+      "training": true
+    },
+    {
+      "name": "base.gpt2.h.0.attn.resid_dropout",
+      "p": 0.1,
+      "training": true
+    },
+    {
+      "name": "base.gpt2.h.0.mlp.dropout",
+      "p": 0.1,
+      "training": true
+    },
+    {
+      "name": "base.gpt2.h.1.attn.attn_dropout",
+      "p": 0.1,
+      "training": true
+    },
+    {
+      "name": "base.gpt2.h.1.attn.resid_dropout",
+      "p": 0.1,
+      "training": true
+    },
+    {
+      "name": "base.gpt2.h.1.mlp.dropout",
+      "p": 0.1,
+      "training": true
+    },
+    {
+      "name": "base.gpt2.h.2.attn.attn_dropout",
+      "p": 0.1,
+      "training": true
+    },
+    {
+      "name": "base.gpt2.h.2.attn.resid_dropout",
+      "p": 0.1,
+      "training": true
+    },
+    {
+      "name": "base.gpt2.h.2.mlp.dropout",
+      "p": 0.1,
+      "training": true
+    },
+    {
+      "name": "base.gpt2.h.3.attn.attn_dropout",
+      "p": 0.1,
+      "training": true
+    },
+    {
+      "name": "base.gpt2.h.3.attn.resid_dropout",
+      "p": 0.1,
+      "training": true
+    },
+    {
+      "name": "base.gpt2.h.3.mlp.dropout",
+      "p": 0.1,
+      "training": true
+    }
+  ],
+  "elapsed_seconds": 4.352144975215197,
+  "scope": {
+    "dataset_split": "train",
+    "test_used": false,
+    "optimizer_updates": 0,
+    "sample_count": 96,
+    "sampling": "numpy default_rng choice without replacement over target views",
+    "sampling_seed": 20260921,
+    "model_initialization_seed": 302029,
+    "gradient_batches": 3,
+    "gradient_batch_size": 32,
+    "gradient_mode": "eval: deterministic; dropout disabled",
+    "weighting": "mean per-target error times existing target_weight; random subset weights are not renormalized and this is not a full origin-macro metric",
+    "checkpoint": "results/qgnn/self_repair_v1/target_llm_ego_v1_0db_seed2026/best.pt",
+    "source_head_audited": "175c16a",
+    "limits": "checkpoint interventions and local gradients do not identify retraining effects or the cause of the full validation gap",
+    "target_indices": [
+      199390,
+      144425,
+      46538,
+      269152,
+      213870,
+      33697,
+      145672,
+      69547,
+      63817,
+      6266,
+      173905,
+      238537,
+      14376,
+      169014,
+      83753,
+      187014,
+      66295,
+      156739,
+      199640,
+      118319,
+      39252,
+      142898,
+      100212,
+      281338,
+      292417,
+      283173,
+      137396,
+      243624,
+      8069,
+      80039,
+      118289,
+      297438,
+      292964,
+      53477,
+      236027,
+      33261,
+      161939,
+      137584,
+      139626,
+      63807,
+      152662,
+      95274,
+      182792,
+      118375,
+      65458,
+      201538,
+      73736,
+      311043,
+      189729,
+      117864,
+      240805,
+      177334,
+      1838,
+      269314,
+      58174,
+      278502,
+      58377,
+      3292,
+      273790,
+      316283,
+      141301,
+      187324,
+      139664,
+      249096,
+      95493,
+      214676,
+      285866,
+      208822,
+      240339,
+      284910,
+      81205,
+      287687,
+      295805,
+      219692,
+      127209,
+      315768,
+      120558,
+      150456,
+      58467,
+      285256,
+      281970,
+      31983,
+      19346,
+      112144,
+      317943,
+      255690,
+      154449,
+      98530,
+      173872,
+      178742,
+      75564,
+      75986,
+      311285,
+      86316,
+      127455,
+      60741
+    ],
+    "script": "scripts/diagnose_sind_llm_mechanism.py",
+    "archive_note": "Raw values copied without rerunning; saved script adds scope metadata and ROOT-relative paths."
+  }
+}

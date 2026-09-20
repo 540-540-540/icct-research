@@ -1,0 +1,364 @@
+{
+  "test_set_used": false,
+  "optimizer_updates": 0,
+  "common_target_input_identity": {
+    "targets": 14535,
+    "history_max_difference": 0.0,
+    "future_max_difference": 0.0,
+    "timestamp_max_difference": 0.0
+  },
+  "old_targets": 14535,
+  "new_targets": 31211,
+  "added_targets": 16676,
+  "models": {
+    "cv": {
+      "old_selected_population": {
+        "ADE": 0.8081746961579709,
+        "FDE": 1.7057918025487646,
+        "targets": 14535,
+        "origins": 1880,
+        "target_ADE": 0.8043295050878623,
+        "target_FDE": 1.6943018741590443
+      },
+      "new_full_population": {
+        "ADE": 0.7840919262814082,
+        "FDE": 1.6294946504625716,
+        "targets": 31211,
+        "origins": 1880,
+        "target_ADE": 0.7551761003321726,
+        "target_FDE": 1.5431231494536515
+      },
+      "added_targets_only": {
+        "ADE": 0.7265692634132442,
+        "FDE": 1.449817658707561,
+        "targets": 16676,
+        "origins": 1508,
+        "target_ADE": 0.7123334079524684,
+        "target_FDE": 1.411353974376122
+      },
+      "evaluation_seconds": 1.9184718951582909
+    },
+    "old_lstm": {
+      "old_selected_population": {
+        "ADE": 0.42231036615071726,
+        "FDE": 0.9293884936603952,
+        "targets": 14535,
+        "origins": 1880,
+        "target_ADE": 0.42002754729640956,
+        "target_FDE": 0.925441105198868
+      },
+      "new_full_population": {
+        "ADE": 0.4010520294038292,
+        "FDE": 0.8685938664572181,
+        "targets": 31211,
+        "origins": 1880,
+        "target_ADE": 0.3801101046246994,
+        "target_FDE": 0.821724799148049
+      },
+      "added_targets_only": {
+        "ADE": 0.34900096792474616,
+        "FDE": 0.733985421982945,
+        "targets": 16676,
+        "origins": 1508,
+        "target_ADE": 0.3453175866807496,
+        "target_FDE": 0.7313244328462587
+      },
+      "evaluation_seconds": 3.562708355486393,
+      "saved_metric_replay_max_difference": 9.767089248491345e-09,
+      "selected_epoch": 20
+    },
+    "old_transformer": {
+      "old_selected_population": {
+        "ADE": 0.42433296077638516,
+        "FDE": 0.9148861106092889,
+        "targets": 14535,
+        "origins": 1880,
+        "target_ADE": 0.4220646986669928,
+        "target_FDE": 0.9116799990992063
+      },
+      "new_full_population": {
+        "ADE": 0.40747734924258483,
+        "FDE": 0.8631819747332226,
+        "targets": 31211,
+        "origins": 1880,
+        "target_ADE": 0.3881471338684413,
+        "target_FDE": 0.8211934303890642
+      },
+      "added_targets_only": {
+        "ADE": 0.360506121507551,
+        "FDE": 0.7397573159881548,
+        "targets": 16676,
+        "origins": 1508,
+        "target_ADE": 0.3585841808613085,
+        "target_FDE": 0.742324260552058
+      },
+      "evaluation_seconds": 2.182559860870242,
+      "saved_metric_replay_max_difference": 7.76972192140235e-09,
+      "selected_epoch": 20
+    },
+    "old_tcn": {
+      "old_selected_population": {
+        "ADE": 0.417390889786655,
+        "FDE": 0.9110905651520622,
+        "targets": 14535,
+        "origins": 1880,
+        "target_ADE": 0.41550249037049947,
+        "target_FDE": 0.9079634443286152
+      },
+      "new_full_population": {
+        "ADE": 0.39939436817114765,
+        "FDE": 0.8561451704226608,
+        "targets": 31211,
+        "origins": 1880,
+        "target_ADE": 0.3805364202127626,
+        "target_FDE": 0.8143947847122681
+      },
+      "added_targets_only": {
+        "ADE": 0.3517387604417529,
+        "FDE": 0.7317950907829256,
+        "targets": 16676,
+        "origins": 1508,
+        "target_ADE": 0.3500595774601418,
+        "target_FDE": 0.732839227772738
+      },
+      "evaluation_seconds": 2.1168235167860985,
+      "saved_metric_replay_max_difference": 5.2332172484348405e-08,
+      "selected_epoch": 20
+    },
+    "new_lstm": {
+      "old_selected_population": {
+        "ADE": 0.40249942279161777,
+        "FDE": 0.8911264945011516,
+        "targets": 14535,
+        "origins": 1880,
+        "target_ADE": 0.4004660415834461,
+        "target_FDE": 0.8877312109981849
+      },
+      "new_full_population": {
+        "ADE": 0.3774091862730838,
+        "FDE": 0.8224673898346916,
+        "targets": 31211,
+        "origins": 1880,
+        "target_ADE": 0.3580379429991874,
+        "target_FDE": 0.7790324446070775
+      },
+      "added_targets_only": {
+        "ADE": 0.32185811741972037,
+        "FDE": 0.6804784482317182,
+        "targets": 16676,
+        "origins": 1508,
+        "target_ADE": 0.3210571074917395,
+        "target_FDE": 0.6842893065946798
+      },
+      "evaluation_seconds": 3.3064854089170694,
+      "saved_metric_replay_max_difference": 6.252793227634612e-09,
+      "selected_epoch": 20
+    },
+    "new_transformer": {
+      "old_selected_population": {
+        "ADE": 0.4077620238400423,
+        "FDE": 0.887756049257478,
+        "targets": 14535,
+        "origins": 1880,
+        "target_ADE": 0.4054110681117196,
+        "target_FDE": 0.8838668445856392
+      },
+      "new_full_population": {
+        "ADE": 0.3880131242502731,
+        "FDE": 0.8297661036045824,
+        "targets": 31211,
+        "origins": 1880,
+        "target_ADE": 0.36830221639331945,
+        "target_FDE": 0.7868286694716663
+      },
+      "added_targets_only": {
+        "ADE": 0.3385683253038245,
+        "FDE": 0.7020582773034034,
+        "targets": 16676,
+        "origins": 1508,
+        "target_ADE": 0.33595769973902906,
+        "target_FDE": 0.7022490415464085
+      },
+      "evaluation_seconds": 1.9739646092057228,
+      "saved_metric_replay_max_difference": 6.804320995534852e-09,
+      "selected_epoch": 15
+    },
+    "new_tcn": {
+      "old_selected_population": {
+        "ADE": 0.400884230601004,
+        "FDE": 0.8844387332605295,
+        "targets": 14535,
+        "origins": 1880,
+        "target_ADE": 0.3990616343063272,
+        "target_FDE": 0.8817874109264371
+      },
+      "new_full_population": {
+        "ADE": 0.3763112158753028,
+        "FDE": 0.8166997007810413,
+        "targets": 31211,
+        "origins": 1880,
+        "target_ADE": 0.35732789432233913,
+        "target_FDE": 0.7748652806736355
+      },
+      "added_targets_only": {
+        "ADE": 0.32136768110743075,
+        "FDE": 0.6745944692254048,
+        "targets": 16676,
+        "origins": 1508,
+        "target_ADE": 0.3209522700319058,
+        "target_FDE": 0.6816706798566248
+      },
+      "evaluation_seconds": 1.9942830801010132,
+      "saved_metric_replay_max_difference": 6.512491934618225e-09,
+      "selected_epoch": 20
+    },
+    "new_llm": {
+      "old_selected_population": {
+        "ADE": 0.6329178518889387,
+        "FDE": 1.3916865544452786,
+        "targets": 14535,
+        "origins": 1880,
+        "target_ADE": 0.6283315419749651,
+        "target_FDE": 1.3806622477254638
+      },
+      "new_full_population": {
+        "ADE": 0.6042773174230769,
+        "FDE": 1.3131275332681824,
+        "targets": 31211,
+        "origins": 1880,
+        "target_ADE": 0.5741149341633073,
+        "target_FDE": 1.2395455375646387
+      },
+      "added_targets_only": {
+        "ADE": 0.5320629224390576,
+        "FDE": 1.1250031657538373,
+        "targets": 16676,
+        "origins": 1508,
+        "target_ADE": 0.5268590937613856,
+        "target_FDE": 1.1165465340753373
+      },
+      "evaluation_seconds": 6.3361212108284235,
+      "saved_metric_replay_max_difference": 9.253915633777865e-09,
+      "selected_epoch": 20
+    },
+    "repaired_old_llm": {
+      "old_selected_population": {
+        "ADE": 0.7574163204252147,
+        "FDE": 1.6084328503118843,
+        "targets": 14535,
+        "origins": 1880,
+        "target_ADE": 0.7522054844351673,
+        "target_FDE": 1.5952440855714023
+      },
+      "new_full_population": {
+        "ADE": 0.7323454864227732,
+        "FDE": 1.5349855426067573,
+        "targets": 31211,
+        "origins": 1880,
+        "target_ADE": 0.7006365157077057,
+        "target_FDE": 1.4533465788040008
+      },
+      "added_targets_only": {
+        "ADE": 0.6668951636352581,
+        "FDE": 1.3486188871918197,
+        "targets": 16676,
+        "origins": 1508,
+        "target_ADE": 0.6556883890314251,
+        "target_FDE": 1.3296670237030066
+      },
+      "evaluation_seconds": 6.22472626529634,
+      "saved_metric_replay_max_difference": 1.7634570692592888e-08,
+      "selected_epoch": 11
+    }
+  },
+  "decomposition": {
+    "lstm": {
+      "ADE": {
+        "old_checkpoint_old_population": 0.42231036615071726,
+        "old_checkpoint_new_population": 0.4010520294038292,
+        "new_checkpoint_old_population": 0.40249942279161777,
+        "new_checkpoint_new_population": 0.3774091862730838,
+        "apparent_improvement": 0.04490117987763348,
+        "population_change_at_fixed_old_checkpoint": 0.02125833674688804,
+        "checkpoint_change_on_fixed_new_population": 0.02364284313074544,
+        "checkpoint_change_on_fixed_old_population": 0.019810943359099498
+      },
+      "FDE": {
+        "old_checkpoint_old_population": 0.9293884936603952,
+        "old_checkpoint_new_population": 0.8685938664572181,
+        "new_checkpoint_old_population": 0.8911264945011516,
+        "new_checkpoint_new_population": 0.8224673898346916,
+        "apparent_improvement": 0.10692110382570363,
+        "population_change_at_fixed_old_checkpoint": 0.060794627203177076,
+        "checkpoint_change_on_fixed_new_population": 0.04612647662252656,
+        "checkpoint_change_on_fixed_old_population": 0.038261999159243665
+      }
+    },
+    "transformer": {
+      "ADE": {
+        "old_checkpoint_old_population": 0.42433296077638516,
+        "old_checkpoint_new_population": 0.40747734924258483,
+        "new_checkpoint_old_population": 0.4077620238400423,
+        "new_checkpoint_new_population": 0.3880131242502731,
+        "apparent_improvement": 0.03631983652611204,
+        "population_change_at_fixed_old_checkpoint": 0.01685561153380033,
+        "checkpoint_change_on_fixed_new_population": 0.019464224992311707,
+        "checkpoint_change_on_fixed_old_population": 0.016570936936342873
+      },
+      "FDE": {
+        "old_checkpoint_old_population": 0.9148861106092889,
+        "old_checkpoint_new_population": 0.8631819747332226,
+        "new_checkpoint_old_population": 0.887756049257478,
+        "new_checkpoint_new_population": 0.8297661036045824,
+        "apparent_improvement": 0.08512000700470657,
+        "population_change_at_fixed_old_checkpoint": 0.05170413587606637,
+        "checkpoint_change_on_fixed_new_population": 0.033415871128640195,
+        "checkpoint_change_on_fixed_old_population": 0.027130061351810952
+      }
+    },
+    "tcn": {
+      "ADE": {
+        "old_checkpoint_old_population": 0.417390889786655,
+        "old_checkpoint_new_population": 0.39939436817114765,
+        "new_checkpoint_old_population": 0.400884230601004,
+        "new_checkpoint_new_population": 0.3763112158753028,
+        "apparent_improvement": 0.0410796739113522,
+        "population_change_at_fixed_old_checkpoint": 0.017996521615507355,
+        "checkpoint_change_on_fixed_new_population": 0.023083152295844844,
+        "checkpoint_change_on_fixed_old_population": 0.01650665918565103
+      },
+      "FDE": {
+        "old_checkpoint_old_population": 0.9110905651520622,
+        "old_checkpoint_new_population": 0.8561451704226608,
+        "new_checkpoint_old_population": 0.8844387332605295,
+        "new_checkpoint_new_population": 0.8166997007810413,
+        "apparent_improvement": 0.09439086437102095,
+        "population_change_at_fixed_old_checkpoint": 0.05494539472940141,
+        "checkpoint_change_on_fixed_new_population": 0.039445469641619546,
+        "checkpoint_change_on_fixed_old_population": 0.02665183189153275
+      }
+    },
+    "llm": {
+      "ADE": {
+        "old_checkpoint_old_population": 0.7574163204252147,
+        "old_checkpoint_new_population": 0.7323454864227732,
+        "new_checkpoint_old_population": 0.6329178518889387,
+        "new_checkpoint_new_population": 0.6042773174230769,
+        "apparent_improvement": 0.15313900300213779,
+        "population_change_at_fixed_old_checkpoint": 0.025070834002441478,
+        "checkpoint_change_on_fixed_new_population": 0.1280681689996963,
+        "checkpoint_change_on_fixed_old_population": 0.124498468536276
+      },
+      "FDE": {
+        "old_checkpoint_old_population": 1.6084328503118843,
+        "old_checkpoint_new_population": 1.5349855426067573,
+        "new_checkpoint_old_population": 1.3916865544452786,
+        "new_checkpoint_new_population": 1.3131275332681824,
+        "apparent_improvement": 0.2953053170437019,
+        "population_change_at_fixed_old_checkpoint": 0.07344730770512697,
+        "checkpoint_change_on_fixed_new_population": 0.2218580093385749,
+        "checkpoint_change_on_fixed_old_population": 0.21674629586660576
+      }
+    }
+  }
+}
