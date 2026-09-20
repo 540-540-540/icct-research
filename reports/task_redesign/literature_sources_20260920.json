@@ -1,0 +1,78 @@
+{
+  "retrieved_date": "2026-09-20",
+  "sources": [
+    {
+      "id": "L1",
+      "title": "SinD: A Drone Dataset at Signalized Intersection in China",
+      "year": 2022,
+      "url": "https://arxiv.org/abs/2209.02297",
+      "supports": "Original SinD provenance; not statistics for our two public v2 recordings"
+    },
+    {
+      "id": "L2",
+      "title": "SinD 2.0: A Multi-City UAV Dataset with Semantic Risk Annotations for SOTIF-Oriented Safety Validation at Signalized Intersections",
+      "year": 2026,
+      "url": "https://arxiv.org/html/2607.16943v1",
+      "supports": "Multi-city intersection context; section VI reports 50/60 QCNet and31/52 Diffuser protocols, explicitly not a standardized leaderboard; smoothing causality not established"
+    },
+    {
+      "id": "L3",
+      "title": "InterHub: A Naturalistic Trajectory Dataset with Dense Interaction for Autonomous Driving",
+      "year": 2024,
+      "url": "https://arxiv.org/html/2411.18302v2",
+      "supports": "Interaction is predicted conflict/behavioral dependence, not density alone; trajectory-event extraction cannot be imported as online inclusion unmodified"
+    },
+    {
+      "id": "L4",
+      "title": "SMART: Scalable Multi-agent Real-time Simulation via Next-token Prediction",
+      "year": 2024,
+      "url": "https://arxiv.org/html/2405.15677v3",
+      "supports": "Motion tokens and temporal/agent interaction factorization; 50m neighboring-agent radius in section3.2; not proof of textual GPT2 pretraining advantage"
+    },
+    {
+      "id": "L5",
+      "title": "One Fits All: Power General Time Series Analysis by Pretrained LM",
+      "year": 2023,
+      "url": "https://arxiv.org/html/2302.11939v6",
+      "supports": "Positive evidence for pretrained frozen transformer transfer under studied time-series settings, especially small-data ablations; not SinD-specific"
+    },
+    {
+      "id": "L6",
+      "title": "Are Language Models Actually Useful for Time Series Forecasting?",
+      "year": 2024,
+      "url": "https://arxiv.org/html/2406.16964v2",
+      "supports": "Counterevidence: removal/replacement and random-init ablations often retain or improve accuracy; requires controlled pretraining tests"
+    },
+    {
+      "id": "L7",
+      "title": "LoRA: Low-Rank Adaptation of Large Language Models",
+      "year": 2021,
+      "url": "https://arxiv.org/abs/2106.09685",
+      "supports": "Frozen W plus low-rank BA adaptation; parameter efficiency does not prove domain-transfer accuracy"
+    },
+    {
+      "id": "L8",
+      "title": "Kinematics-Aware Multigraph Attention Network with Residual Learning for Heterogeneous Trajectory Prediction",
+      "year": 2024,
+      "url": "https://ieeexplore.ieee.org/document/10586904/",
+      "doi": "10.26599/JICV.2023.9210036",
+      "supports": "Physics-plus-residual graph forecasting precedent, not causal identification of pure interaction residual"
+    },
+    {
+      "id": "L9",
+      "title": "FHWA SSAM Software User Manual",
+      "year": 2008,
+      "url": "https://www.fhwa.dot.gov/publications/research/safety/08050/",
+      "supports": "TTC/PET conflict thresholds, e.g.1.5s; not justification for equating TCPA with TTC or declaring DCPA5m an industry standard"
+    },
+    {
+      "id": "L10",
+      "title": "Argoverse Motion Forecasting User Guide",
+      "year": null,
+      "url": "https://argoverse.github.io/user-guide/tasks/motion_forecasting.html",
+      "supports": "Target/context distinction and multi-second trajectory scenes; do not copy raw metrics across tasks",
+      "publication_date_status": "official living documentation; publication year not established"
+    }
+  ],
+  "only_primary_sources_used": true
+}
