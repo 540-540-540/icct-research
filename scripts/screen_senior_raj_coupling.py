@@ -52,6 +52,7 @@ def main() -> None:
     parser.add_argument("--projection-hidden", type=int, default=128)
     parser.add_argument("--projection-depth", type=int, default=1)
     parser.add_argument("--classical-layers", type=int, default=0)
+    parser.add_argument("--quantum-first", action="store_true")
     args = parser.parse_args()
     if args.frozen_epochs < 0 or args.frozen_epochs >= args.epochs:
         raise ValueError("frozen_epochs must be in [0, epochs)")
@@ -83,6 +84,7 @@ def main() -> None:
         projection_hidden=args.projection_hidden,
         projection_depth=args.projection_depth,
         classical_layers=args.classical_layers,
+        quantum_first=args.quantum_first,
     )
     missing, unexpected = model.load_state_dict(base_state, strict=False)
     allowed = ("core.", "raj_projection.", "quantum_scale", "graph_layers.")
@@ -155,6 +157,7 @@ def main() -> None:
         "projection_hidden": args.projection_hidden,
         "projection_depth": args.projection_depth,
         "classical_layers": args.classical_layers,
+        "quantum_first": args.quantum_first,
         "frozen_epochs": args.frozen_epochs,
         "joint_epochs": args.epochs - args.frozen_epochs,
         "trainable_parameters": sum(parameter.numel() for parameter in model.parameters() if parameter.requires_grad),
