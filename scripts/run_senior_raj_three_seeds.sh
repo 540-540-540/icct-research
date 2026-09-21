@@ -34,7 +34,9 @@ for arm in ("raj_qgnn", "raj_graph_motion_token_gpt2"):
     for metric in ("ade_m", "fde_m"):
         values = [run[arm]["test"][metric] for run in runs]
         summary[arm][metric] = {"values": values, "mean": float(np.mean(values)), "std": float(np.std(values, ddof=1))}
-reference = runs[0]["senior_seed2026_reference"]
+reference = json.loads(
+    Path("reports/senior_r0_reproduction/phase2/phase2_results.json").read_text()
+)["test"]["graph_motion_token_gpt2"]
 summary["senior_seed2026_reference"] = reference
 for metric in ("ade_m", "fde_m"):
     candidate = summary["raj_graph_motion_token_gpt2"][metric]["mean"]
