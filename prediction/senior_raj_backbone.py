@@ -13,15 +13,24 @@ from target_interaction_graph import MultiTargetForecaster, build_edge_features
 class SeniorRajQGNN(MultiTargetForecaster):
     """Keep the senior GRU/decoder and replace only graph interaction."""
 
-    def __init__(self, config, quantum_scale: float = 0.05):
+    def __init__(
+        self,
+        config,
+        quantum_scale: float = 0.05,
+        projection_hidden: int = 128,
+        projection_depth: int = 1,
+    ):
         super().__init__(config=config, use_graph=False)
         self.core = RajWeightedMultiJQGNNCore(rounds=3)
-        self.raj_projection = nn.Sequential(
-            nn.Linear(64, config.hidden_dim),
-            nn.LayerNorm(config.hidden_dim),
-            nn.SiLU(),
-            nn.Linear(config.hidden_dim, config.hidden_dim),
-        )
+        if projection_hidden <= 0 or projection_depth <= 0:
+            raise ValueError("projection_hidden and projection_depth must be positive")
+        projection = [nn.Linear(64, projection_hidden), nn.LayerNorm(projection_hidden), nn.SiLU()]
+        for _ in range(projection_depth - 1):
+            projection.extend(
+                [nn.Linear(projection_hidden, projection_hidden), nn.LayerNorm(projection_hidden), nn.SiLU()]
+            )
+        projection.append(nn.Linear(projection_hidden, config.hidden_dim))
+        self.raj_projection = nn.Sequential(*projection)
         if quantum_scale < 0:
             raise ValueError("quantum_scale must be non-negative")
         self.register_buffer("quantum_scale", torch.tensor(float(quantum_scale)))

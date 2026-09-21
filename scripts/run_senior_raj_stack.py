@@ -51,6 +51,8 @@ def main() -> None:
     parser.add_argument("--position-noise", type=float, default=0.35)
     parser.add_argument("--velocity-noise", type=float, default=0.20)
     parser.add_argument("--quantum-scale", type=float, default=0.05)
+    parser.add_argument("--projection-hidden", type=int, default=128)
+    parser.add_argument("--projection-depth", type=int, default=1)
     args = parser.parse_args()
 
     if not torch.cuda.is_available():
@@ -94,7 +96,12 @@ def main() -> None:
     independent_test = evaluate(
         independent, test_raj, device, args.position_noise, args.velocity_noise, args.seed + 2000
     )
-    raj = SeniorRajQGNN(config, quantum_scale=args.quantum_scale)
+    raj = SeniorRajQGNN(
+        config,
+        quantum_scale=args.quantum_scale,
+        projection_hidden=args.projection_hidden,
+        projection_depth=args.projection_depth,
+    )
     missing, unexpected = raj.load_state_dict(independent.state_dict(), strict=False)
     allowed = ("core.", "raj_projection.", "quantum_scale")
     if unexpected or any(not key.startswith(allowed) for key in missing):
@@ -177,6 +184,8 @@ def main() -> None:
             "raj_core": "RajWeightedMultiJQGNNCore(j=2+j=3, rounds=3)",
             "test_noise_seed": args.seed + 2000,
             "quantum_scale": args.quantum_scale,
+            "projection_hidden": args.projection_hidden,
+            "projection_depth": args.projection_depth,
         },
         "independent_gru": {"validation": independent_validation, "test": independent_test},
         "raj_qgnn": {"validation": raj_validation, "test": raj_test},

@@ -48,6 +48,8 @@ def main() -> None:
     parser.add_argument("--position-noise", type=float, default=0.35)
     parser.add_argument("--velocity-noise", type=float, default=0.20)
     parser.add_argument("--quantum-scale", type=float, required=True)
+    parser.add_argument("--projection-hidden", type=int, default=128)
+    parser.add_argument("--projection-depth", type=int, default=1)
     args = parser.parse_args()
 
     if not torch.cuda.is_available():
@@ -71,7 +73,12 @@ def main() -> None:
 
     checkpoint = torch.load(args.independent_checkpoint, map_location="cpu", weights_only=False)
     base_state = checkpoint["model_state"]
-    model = SeniorRajQGNN(config, quantum_scale=args.quantum_scale)
+    model = SeniorRajQGNN(
+        config,
+        quantum_scale=args.quantum_scale,
+        projection_hidden=args.projection_hidden,
+        projection_depth=args.projection_depth,
+    )
     missing, unexpected = model.load_state_dict(base_state, strict=False)
     allowed = ("core.", "raj_projection.", "quantum_scale")
     if unexpected or any(not key.startswith(allowed) for key in missing):
@@ -116,6 +123,9 @@ def main() -> None:
         "seed": args.seed,
         "selection_split": "validation_only",
         "quantum_scale": args.quantum_scale,
+        "projection_hidden": args.projection_hidden,
+        "projection_depth": args.projection_depth,
+        "trainable_parameters": sum(parameter.numel() for parameter in model.parameters() if parameter.requires_grad),
         "quantum_parameter_delta_l2": quantum_parameter_delta,
         "active_validation": active_validation,
         "quantum_ablated_validation": ablated_validation,
