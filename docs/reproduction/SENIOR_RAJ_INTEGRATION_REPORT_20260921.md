@@ -1,5 +1,12 @@
 # Senior R0 + Raj QGNN integration report (2026-09-21)
 
+> **Status: superseded as final evidence.** This early diagnostic replaced the
+> senior graph interface and temporal decoder together and did not preserve the
+> accepted IndependentGRU warm start. It is useful only as an interface-failure
+> record and cannot answer the classical-GNN-versus-QGNN question. The
+> authoritative result is now
+> `SENIOR_RAJ_QGNN_FINAL_REPORT_20260921.md`.
+
 ## Verdict
 
 The direct graph-backbone replacement did not improve the reproduced senior
