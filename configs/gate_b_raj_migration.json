@@ -1,6 +1,6 @@
 {
   "revision": "SIND-IC4-GATE-B-RAJ-MIGRATION-READY-V2",
-  "status": "READY; FORMAL_QGNN_TRAINING_NOT_STARTED",
+  "status": "PREREGISTERED; FORMAL_QGNN_TRAINING_AUTHORIZED",
   "gate_a_decision": "PASS",
   "gate_a_summary": "reports/task_redesign/SIND_GATE_A_FINAL_SUMMARY_20260921.json",
   "benchmark": "data/task_redesign/sind_gate_a_ic4_v1",
@@ -13,9 +13,18 @@
   "models": ["raj_weighted_multij_quantum", "raj_multij_johnson"],
   "all_neighbor_reference": "reports/task_redesign/SIND_GATE_A_FINAL_SUMMARY_20260921.json",
   "checkpoint_rule": "minimum validation IC4 J = origin-macro ADE + 0.5 fixed-endpoint FDE4",
+  "decision_rule": {
+    "primary_view": "ic4",
+    "primary_comparison": "raj_multij_johnson minus raj_weighted_multij_quantum",
+    "pass": "both seeds improve ADE, FDE4, and J; each of the six origin-cluster bootstrap 95% CIs is strictly positive; no convergence warning",
+    "conditional_pass": "both-seed mean improves ADE, FDE4, and J and at least one seed improves all three, but a finite bootstrap or convergence confirmation remains",
+    "fail": "otherwise"
+  },
   "training": {
     "seeds": [2026, 2027],
-    "epochs": 30,
+    "base_epochs": 30,
+    "extension_epochs": 45,
+    "extension_rule": "after both models reach the base phase, extend both symmetrically iff either model has best epoch >=29 and its last three validation IC4 J values strictly decrease",
     "batch_size": 32,
     "train_limit": 16384,
     "patience": 6,
