@@ -1,0 +1,35 @@
+{
+  "revision": "GATE-B-RAJ-MIGRATION-READY-V1",
+  "status": "READY_FOR_IMPLEMENTATION_PREFLIGHT; FORMAL_QGNN_TRAINING_NOT_STARTED",
+  "gate_a_decision": "PASS",
+  "gate_a_summary": "reports/task_redesign/GATE_A_FINAL_SUMMARY_20260921.json",
+  "benchmark": "data/task_redesign/lankershim_gate_a_v1",
+  "snr_db": 0.0,
+  "history_steps": 20,
+  "future_steps": 40,
+  "raj_input": {
+    "history_state": "history_state[:, :, :8, :]",
+    "node_mask": "node_mask[:, :8]",
+    "target_slot": 0,
+    "context_slots": 7,
+    "ordering": "frozen history-only order already stored by Gate A builder"
+  },
+  "label": {
+    "future_xy": "future_xy[:, :40, :]",
+    "future_mask": "future_mask[:, :40]",
+    "membership": "k >= 1 is an evaluation view, not a training filter"
+  },
+  "matched_classical": {
+    "implementation": "experiments.gate_a.models.GateAModel(kind='graph')",
+    "node_cap": 8,
+    "all_neighbor_reference": "experiments.gate_a.models.GateAModel(kind='all_graph')"
+  },
+  "fairness": {
+    "seeds": [2026, 2027],
+    "same_sample_indices": true,
+    "same_batch_order_within_seed": true,
+    "checkpoint_metric": "validation IC4 origin-macro J = ADE + 0.5 FDE",
+    "test_access": false,
+    "raj_architecture_change_allowed": false
+  }
+}

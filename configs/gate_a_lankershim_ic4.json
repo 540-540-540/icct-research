@@ -1,0 +1,23 @@
+{
+  "revision": "LANKERSHIM-GATE-A-STRICT-CAUSAL-V1",
+  "raw_sha256": "ec10b87ac065f41cdef143ce8e75f4c77d45e056c0094573d27beeb85447d180",
+  "source_states": "data/f01_source/source_states.npy",
+  "source_identity": "data/f01_source/source_identity.csv",
+  "history_steps": 20,
+  "future_steps": 40,
+  "dt_s": 0.1,
+  "origin_stride_steps": 10,
+  "radius_m": 50.0,
+  "closing_mps": 0.5,
+  "tcpa_s": 4.0,
+  "dcpa_m": 5.0,
+  "following_heading_deg": 30.0,
+  "following_headway_s": 2.0,
+  "following_lateral_m": 2.5,
+  "minimum_speed_mps": 0.5,
+  "split_fractions": {"train": 0.8, "val": 0.1, "test": 0.1},
+  "guard_s": 6.0,
+  "snr_db": 0.0,
+  "limited_graph_nodes": 8,
+  "pilot": {"epochs": 10, "batch_size": 128, "train_limit": 8192, "patience": 3, "learning_rate": 0.001, "weight_decay": 0.0002}
+}

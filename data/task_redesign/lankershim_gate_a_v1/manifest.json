@@ -1,0 +1,67 @@
+{
+  "status": "COMPLETE",
+  "revision": "LANKERSHIM-GATE-A-STRICT-CAUSAL-V1",
+  "strict_causal": true,
+  "history_dependency": "raw Local_X/Y at t<=t0; OLS velocity uses current plus <=4 past frames",
+  "future_dependency": "future raw Local_X/Y only in future_xy/future_mask supervision",
+  "sensing": "frozen controlled 3-BS polar measurement and same-frame fusion at 0 dB",
+  "raw_sha256": "ec10b87ac065f41cdef143ce8e75f4c77d45e056c0094573d27beeb85447d180",
+  "source_states_sha256": "2190ddf95b0517d592fd770cf0d381b6004c00258092e12c3e5f28f95f65472d",
+  "intervals_ms": {
+    "train": [
+      1118935680200,
+      1118937327700
+    ],
+    "val": [
+      1118937339700,
+      1118937534400
+    ],
+    "test": [
+      1118937546400,
+      1118937747100
+    ]
+  },
+  "test_materialized": false,
+  "test_access": "time bounds only; no test cache",
+  "split_audit": {
+    "source_groups_owned": 2194,
+    "source_groups_purged_cross_split": 179
+  },
+  "visible_bs_row_counts": "validated during build; not replayed in finalize-existing",
+  "max_nodes": 53,
+  "splits": {
+    "train": {
+      "samples": 114740,
+      "origins": 1642,
+      "ic": 62033,
+      "future4_any": 114540,
+      "future4_endpoint": 107186
+    },
+    "val": {
+      "samples": 11695,
+      "origins": 193,
+      "ic": 5564,
+      "future4_any": 11675,
+      "future4_endpoint": 10940
+    }
+  },
+  "thresholds": {
+    "radius_m": 50.0,
+    "closing_mps": 0.5,
+    "tcpa_s": 4.0,
+    "dcpa_m": 5.0,
+    "following_heading_deg": 30.0,
+    "following_headway_s": 2.0,
+    "following_lateral_m": 2.5
+  },
+  "files": {
+    "train.npz": {
+      "bytes": 741347171,
+      "sha256": "70a6d8361b5d3c997181f44bfb86c8522200f5dda9680e1123a104eb5e6d026e"
+    },
+    "val.npz": {
+      "bytes": 67285936,
+      "sha256": "cdc326a8cd0a1d253ac43cea3c161d3cb408ed5a2d9e6d51f531ffcd5093034b"
+    }
+  }
+}
