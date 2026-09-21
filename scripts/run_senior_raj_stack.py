@@ -50,6 +50,7 @@ def main() -> None:
     parser.add_argument("--llm-learning-rate", type=float, default=3e-4)
     parser.add_argument("--position-noise", type=float, default=0.35)
     parser.add_argument("--velocity-noise", type=float, default=0.20)
+    parser.add_argument("--quantum-scale", type=float, default=0.05)
     args = parser.parse_args()
 
     if not torch.cuda.is_available():
@@ -93,9 +94,9 @@ def main() -> None:
     independent_test = evaluate(
         independent, test_raj, device, args.position_noise, args.velocity_noise, args.seed + 2000
     )
-    raj = SeniorRajQGNN(config)
+    raj = SeniorRajQGNN(config, quantum_scale=args.quantum_scale)
     missing, unexpected = raj.load_state_dict(independent.state_dict(), strict=False)
-    allowed = ("core.", "raj_projection.", "raj_gate")
+    allowed = ("core.", "raj_projection.", "quantum_scale")
     if unexpected or any(not key.startswith(allowed) for key in missing):
         raise RuntimeError(f"Unexpected Raj warm-start mismatch: missing={missing} unexpected={unexpected}")
     raj, raj_validation = train_model(
@@ -175,6 +176,7 @@ def main() -> None:
             "same_motion_token_gpt2": True,
             "raj_core": "RajWeightedMultiJQGNNCore(j=2+j=3, rounds=3)",
             "test_noise_seed": args.seed + 2000,
+            "quantum_scale": args.quantum_scale,
         },
         "independent_gru": {"validation": independent_validation, "test": independent_test},
         "raj_qgnn": {"validation": raj_validation, "test": raj_test},

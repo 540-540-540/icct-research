@@ -13,7 +13,7 @@ from target_interaction_graph import MultiTargetForecaster, build_edge_features
 class SeniorRajQGNN(MultiTargetForecaster):
     """Keep the senior GRU/decoder and replace only graph interaction."""
 
-    def __init__(self, config):
+    def __init__(self, config, quantum_scale: float = 0.05):
         super().__init__(config=config, use_graph=False)
         self.core = RajWeightedMultiJQGNNCore(rounds=3)
         self.raj_projection = nn.Sequential(
@@ -22,7 +22,12 @@ class SeniorRajQGNN(MultiTargetForecaster):
             nn.SiLU(),
             nn.Linear(config.hidden_dim, config.hidden_dim),
         )
-        self.raj_gate = nn.Parameter(torch.zeros(1))
+        if quantum_scale < 0:
+            raise ValueError("quantum_scale must be non-negative")
+        self.register_buffer("quantum_scale", torch.tensor(float(quantum_scale)))
+
+    def set_quantum_scale(self, value: float) -> None:
+        self.quantum_scale.fill_(float(value))
 
     def forward(self, history: torch.Tensor, target_mask: torch.Tensor) -> Dict[str, torch.Tensor]:
         batch, history_length, targets, channels = history.shape
@@ -51,7 +56,7 @@ class SeniorRajQGNN(MultiTargetForecaster):
         with torch.autocast(device_type=history.device.type, enabled=False):
             raj = self.core(history.float(), target_mask)
             interaction = self.raj_projection(raj)
-        nodes = (nodes + torch.tanh(self.raj_gate) * interaction) * target_mask[..., None]
+        nodes = (nodes + self.quantum_scale.to(nodes.dtype) * interaction) * target_mask[..., None]
 
         steps = torch.arange(self.config.prediction_length, device=history.device)
         times = (steps.to(history.dtype) + 1.0) * self.config.dt
@@ -87,20 +92,23 @@ def _self_check() -> None:
     torch.manual_seed(7)
     config = ForecasterConfig(dropout=0.0)
     base = IndependentGRUForecaster(config).eval()
-    model = SeniorRajQGNN(config).eval()
+    model = SeniorRajQGNN(config, quantum_scale=0.0).eval()
     missing, unexpected = model.load_state_dict(base.state_dict(), strict=False)
     assert not unexpected
-    assert missing and all(key.startswith(("core.", "raj_projection.", "raj_gate")) for key in missing)
+    assert missing and all(key.startswith(("core.", "raj_projection.", "quantum_scale")) for key in missing)
     history = torch.randn(2, 20, 5, 4)
     mask = torch.tensor([[1, 1, 1, 1, 0], [1, 1, 1, 0, 0]], dtype=torch.bool)
     base_output = base(history, mask)
     output = model(history, mask)
     assert torch.equal(output["future_position"], base_output["future_position"])
+    model.set_quantum_scale(0.1)
+    quantum_output = model(history, mask)
+    assert not torch.equal(quantum_output["future_position"], base_output["future_position"])
     assert output["node_features"].shape == (2, 5, 128)
     assert torch.isfinite(output["future_position"]).all()
     permutation = torch.tensor([2, 0, 3, 1, 4])
     permuted = model(history[:, :, permutation], mask[:, permutation])["future_position"]
-    assert torch.allclose(permuted, output["future_position"][:, :, permutation], atol=2e-4, rtol=2e-4)
+    assert torch.allclose(permuted, quantum_output["future_position"][:, :, permutation], atol=2e-4, rtol=2e-4)
     print("warm-started senior Raj backbone self-check passed")
 
 
