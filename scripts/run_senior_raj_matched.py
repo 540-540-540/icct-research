@@ -1,4 +1,4 @@
-"""Matched Raj QGNN versus multi-j JohnsonGIN on the senior R0 dataset."""
+"""Train the best Raj QGNN stack on the senior R0 dataset."""
 from __future__ import annotations
 
 import argparse
@@ -22,10 +22,7 @@ from run_multitarget_experiment import evaluate, set_seed
 from run_multitarget_graph_llm import train_graph_llm
 
 
-KINDS = {
-    "quantum": "raj_weighted_multij_quantum",
-    "classical": "raj_multij_johnson",
-}
+RAJ_KIND = "raj_weighted_multij_quantum"
 
 
 class SeniorProtocolAdapter(nn.Module):
@@ -73,7 +70,6 @@ def make_loader(dataset, batch_size, workers, shuffle, seed):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--kind", choices=KINDS, required=True)
     parser.add_argument("--seed", type=int, required=True)
     parser.add_argument("--output-dir", required=True)
     parser.add_argument("--cache", default="data/multitarget_lankershim_v1.npz")
@@ -98,7 +94,7 @@ def main():
     val_loader = make_loader(val_data, args.batch_size, args.workers, False, args.seed)
     test_loader = make_loader(test_data, args.batch_size, args.workers, False, args.seed)
 
-    model = SeniorProtocolAdapter(build_paper_model(KINDS[args.kind], seed=args.seed)).to(device)
+    model = SeniorProtocolAdapter(build_paper_model(RAJ_KIND, seed=args.seed)).to(device)
     initial_hash = llm_initialization_hash(model)
     validation = train_graph_llm(
         model,
@@ -112,7 +108,7 @@ def main():
         output_dir / "model.pt",
         output_dir / "training.jsonl",
         args.seed,
-        model_name=f"raj_matched_{args.kind}",
+        model_name="raj_best_quantum",
     )
     test = evaluate(
         model,
@@ -123,9 +119,8 @@ def main():
         args.seed + 2000,
     )
     result = {
-        "experiment": "senior_r0_matched_raj_quantum_vs_classical",
-        "kind": args.kind,
-        "implementation": KINDS[args.kind],
+        "experiment": "senior_r0_best_raj_qgnn",
+        "implementation": RAJ_KIND,
         "seed": args.seed,
         "protocol": {
             "cache": args.cache,
