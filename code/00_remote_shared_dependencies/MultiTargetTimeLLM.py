@@ -47,6 +47,7 @@ class MultiTargetGraphLLM(nn.Module):
         use_soft_tokens: bool = True,
         use_graph_context: bool = True,
         fixed_temperature: float = 0.22,
+        freeze_graph_backbone: bool = True,
     ):
         super().__init__()
         self.graph_backbone = graph_backbone
@@ -56,8 +57,10 @@ class MultiTargetGraphLLM(nn.Module):
         self.use_soft_tokens = use_soft_tokens
         self.use_graph_context = use_graph_context
         self.fixed_temperature = fixed_temperature
-        for parameter in self.graph_backbone.parameters():
-            parameter.requires_grad = False
+        self.freeze_graph_backbone = freeze_graph_backbone
+        if self.freeze_graph_backbone:
+            for parameter in self.graph_backbone.parameters():
+                parameter.requires_grad = False
 
         tokenizer_config = MotionTokenizerConfig(dt=config.dt)
         self.motion_tokenizer = MotionTokenizerV7(tokenizer_config)
@@ -152,9 +155,12 @@ class MultiTargetGraphLLM(nn.Module):
 
     def forward(self, history: torch.Tensor, target_mask: torch.Tensor) -> Dict[str, torch.Tensor]:
         batch, history_length, targets, _ = history.shape
-        # Keep the accepted phase-1 predictor deterministic and unchanged.
-        self.graph_backbone.eval()
-        with torch.no_grad():
+        if self.freeze_graph_backbone:
+            # Keep the accepted phase-1 predictor deterministic and unchanged.
+            self.graph_backbone.eval()
+            with torch.no_grad():
+                graph_output = self.graph_backbone(history, target_mask)
+        else:
             graph_output = self.graph_backbone(history, target_mask)
         nodes = graph_output["node_features"]
         target_history = history.permute(0, 2, 1, 3).reshape(batch * targets, history_length, 4)

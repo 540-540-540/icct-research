@@ -48,6 +48,7 @@ def main() -> None:
     parser.add_argument("--learning-rate", type=float, default=3e-4)
     parser.add_argument("--position-noise", type=float, default=0.35)
     parser.add_argument("--velocity-noise", type=float, default=0.20)
+    parser.add_argument("--unfreeze-graph", action="store_true")
     args = parser.parse_args()
 
     if not torch.cuda.is_available():
@@ -79,7 +80,13 @@ def main() -> None:
     original_cwd = Path.cwd()
     try:
         os.chdir(ROOT / "models")
-        model = MultiTargetGraphLLM(backbone, config, llm_layers=4, lora_rank=8)
+        model = MultiTargetGraphLLM(
+            backbone,
+            config,
+            llm_layers=4,
+            lora_rank=8,
+            freeze_graph_backbone=not args.unfreeze_graph,
+        )
     finally:
         os.chdir(original_cwd)
     train_loader = loader(train_data, args.batch_size, args.workers, True, args.seed)
@@ -117,7 +124,7 @@ def main() -> None:
         "seed": args.seed,
         "selection_split": "validation_only",
         "graph_checkpoint": args.checkpoint,
-        "graph_backbone_frozen": True,
+        "graph_backbone_frozen": not args.unfreeze_graph,
         "gpt2_base_frozen": True,
         "lora_and_heads_trainable": True,
         "validation": validation,
