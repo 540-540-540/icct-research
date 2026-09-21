@@ -1,0 +1,18 @@
+{
+  "revision": "SIND-IC4-GATE-B-PLUS-QUANTUM-SCREEN-V1",
+  "status": "DEVELOPMENT_SCREEN_NOT_FORMAL_EVIDENCE",
+  "benchmark": "data/task_redesign/sind_gate_a_ic4_v1",
+  "dt_s": 0.1,
+  "rounds": 3,
+  "development_seeds": [2026, 2027],
+  "modes": ["neighbor_residual", "dual_quantum_view", "full_multiscale", "multiscale_quantum_view", "fused_multiscale", "cross_order_multiscale", "quantum_latent_attention"],
+  "training": {
+    "epochs": 12,
+    "batch_size": 32,
+    "train_limit": 16384,
+    "learning_rate": 0.0003,
+    "weight_decay": 0.0001
+  },
+  "selection_rule": "Select only if epoch-12 validation IC4 J is below the frozen Raj epoch-12 J=2.786015 and neither ADE nor FDE4 is worse; this screen is not paper evidence.",
+  "formal_boundary": "Any selected architecture must be frozen and confirmed on untouched development seeds before test can be considered."
+}

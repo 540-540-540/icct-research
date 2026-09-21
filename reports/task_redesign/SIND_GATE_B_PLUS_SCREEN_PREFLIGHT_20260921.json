@@ -1,0 +1,123 @@
+{
+  "status": "PASS",
+  "test_accessed": false,
+  "checks": {
+    "test_artifact_absent": true,
+    "future_not_model_input": true,
+    "neighbor_residual_shape": true,
+    "neighbor_residual_finite": true,
+    "neighbor_residual_quantum_core_gradient": true,
+    "dual_quantum_view_shape": true,
+    "dual_quantum_view_finite": true,
+    "dual_quantum_view_quantum_core_gradient": true,
+    "full_multiscale_shape": true,
+    "full_multiscale_finite": true,
+    "full_multiscale_quantum_core_gradient": true,
+    "multiscale_quantum_view_shape": true,
+    "multiscale_quantum_view_finite": true,
+    "multiscale_quantum_view_quantum_core_gradient": true,
+    "fused_multiscale_shape": true,
+    "fused_multiscale_finite": true,
+    "fused_multiscale_quantum_core_gradient": true,
+    "cross_order_multiscale_shape": true,
+    "cross_order_multiscale_finite": true,
+    "cross_order_multiscale_quantum_core_gradient": true,
+    "quantum_latent_attention_shape": true,
+    "quantum_latent_attention_finite": true,
+    "quantum_latent_attention_quantum_core_gradient": true,
+    "johnson_full_multiscale_shape": true,
+    "johnson_full_multiscale_finite": true,
+    "johnson_full_multiscale_core_gradient": true
+  },
+  "profiles": {
+    "neighbor_residual": {
+      "parameters": {
+        "temporal_encoder": 195136,
+        "quantum_interaction_core": 126535,
+        "interaction_projection": 24832,
+        "time_embedding": 960,
+        "decoder": 73058,
+        "total": 420521
+      },
+      "quantum_core_gradient_l2": 0.0010076815960928798
+    },
+    "dual_quantum_view": {
+      "parameters": {
+        "temporal_encoder": 195136,
+        "quantum_interaction_core": 126535,
+        "interaction_projection": 33024,
+        "time_embedding": 960,
+        "decoder": 73058,
+        "total": 428713
+      },
+      "quantum_core_gradient_l2": 0.013196060433983803
+    },
+    "full_multiscale": {
+      "parameters": {
+        "temporal_encoder": 195136,
+        "quantum_interaction_core": 126535,
+        "interaction_projection": 33024,
+        "time_embedding": 960,
+        "decoder": 73058,
+        "total": 428713
+      },
+      "quantum_core_gradient_l2": 0.020383987575769424
+    },
+    "multiscale_quantum_view": {
+      "parameters": {
+        "temporal_encoder": 195136,
+        "quantum_interaction_core": 126535,
+        "interaction_projection": 49408,
+        "time_embedding": 960,
+        "decoder": 73058,
+        "total": 445097
+      },
+      "quantum_core_gradient_l2": 0.013601009733974934
+    },
+    "fused_multiscale": {
+      "parameters": {
+        "temporal_encoder": 195136,
+        "quantum_interaction_core": 126535,
+        "interaction_projection": 41216,
+        "time_embedding": 960,
+        "decoder": 73058,
+        "total": 436905
+      },
+      "quantum_core_gradient_l2": 0.02488207072019577
+    },
+    "cross_order_multiscale": {
+      "parameters": {
+        "temporal_encoder": 195136,
+        "quantum_interaction_core": 126535,
+        "interaction_projection": 49408,
+        "time_embedding": 960,
+        "decoder": 73058,
+        "total": 445097
+      },
+      "quantum_core_gradient_l2": 0.02757023647427559
+    },
+    "quantum_latent_attention": {
+      "parameters": {
+        "temporal_encoder": 195136,
+        "quantum_interaction_core": 126535,
+        "interaction_projection": 49408,
+        "time_embedding": 960,
+        "decoder": 73058,
+        "quantum_latent_attention": 129,
+        "total": 445226
+      },
+      "quantum_core_gradient_l2": 0.018457867205142975
+    },
+    "johnson_full_multiscale": {
+      "parameters": {
+        "temporal_encoder": 195136,
+        "johnson_interaction_core": 179201,
+        "interaction_projection": 33024,
+        "time_embedding": 960,
+        "decoder": 73058,
+        "total": 481379
+      },
+      "core_gradient_l2": 0.022981664165854454
+    }
+  }
+}

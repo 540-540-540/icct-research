@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "test_accessed": false,
+  "test_artifact_absent": true,
+  "full_population_by_seed": {
+    "2026": 36643,
+    "2027": 36643,
+    "2028": 36643,
+    "2029": 36643,
+    "2030": 36643
+  },
+  "train_indices_sha256_by_seed": {
+    "2026": "a0b277aa230611b11e821b72e4be95153ad35c953b7179c1b1776c86aac8b4bc",
+    "2027": "a0b277aa230611b11e821b72e4be95153ad35c953b7179c1b1776c86aac8b4bc",
+    "2028": "a0b277aa230611b11e821b72e4be95153ad35c953b7179c1b1776c86aac8b4bc",
+    "2029": "a0b277aa230611b11e821b72e4be95153ad35c953b7179c1b1776c86aac8b4bc",
+    "2030": "a0b277aa230611b11e821b72e4be95153ad35c953b7179c1b1776c86aac8b4bc"
+  },
+  "same_full_training_population_across_seeds": true,
+  "fixed_batch_order_seed": 20260921,
+  "epoch1_order_sha256_by_model_seed": {
+    "2026": "71413248478a661d5665eb0a804d37a035f068b49ed9a7b8ec184293771d81ba",
+    "2027": "71413248478a661d5665eb0a804d37a035f068b49ed9a7b8ec184293771d81ba",
+    "2028": "71413248478a661d5665eb0a804d37a035f068b49ed9a7b8ec184293771d81ba",
+    "2029": "71413248478a661d5665eb0a804d37a035f068b49ed9a7b8ec184293771d81ba",
+    "2030": "71413248478a661d5665eb0a804d37a035f068b49ed9a7b8ec184293771d81ba"
+  },
+  "same_batch_order_across_model_seeds": true,
+  "maximum_epochs": 50,
+  "early_stopping_patience": 8,
+  "early_stopping_metric": "validation IC4 J",
+  "remaining_seed_sources": [
+    "parameter initialization",
+    "dropout"
+  ]
+}

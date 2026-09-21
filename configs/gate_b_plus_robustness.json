@@ -1,0 +1,33 @@
+{
+  "revision": "SIND-IC4-GATE-B-PLUS-ROBUSTNESS-V1",
+  "status": "DEVELOPMENT_VARIANCE_CONTROL_NOT_FORMAL_EVIDENCE",
+  "selected_architecture": "full_multiscale quantum j=2+j=3 direct views",
+  "variance_controls": {
+    "full_training_population": 36643,
+    "ema_candidates": [0.0, 0.999],
+    "development_seeds": [2026, 2027],
+    "future_frozen_confirmation_seeds": [2028, 2029, 2030],
+    "confirmation_model_seeds": [2026, 2027, 2028, 2029, 2030],
+    "fixed_batch_order_seed": 20260921,
+    "maximum_epochs": 50,
+    "early_stopping_patience": 8
+  },
+  "selection_rule": "Choose raw or EMA by two-development-seed mean IC4 J with ADE and FDE4 both reported. Freeze the recipe, then run all five predeclared model seeds with batch order fixed to 20260921. Do not treat development selection as confirmation.",
+  "seed_reporting_rule": "Report every seed, mean, sample standard deviation, paired per-seed deltas, and paired confidence intervals. Never select or omit seeds by outcome.",
+  "primary_scoreboard": [
+    "Raj QGNN N<=8",
+    "Strong Graph N<=8",
+    "Matched Johnson N<=8",
+    "Large Johnson N<=8"
+  ],
+  "baseline_roles": {
+    "self": "Interaction-necessity control using target history only.",
+    "pool": "N<=8 neighbor-access control without explicit graph or higher-order interaction modeling.",
+    "strong_graph": "Primary practical classical GNN baseline with the same N<=8 information budget.",
+    "matched_johnson": "Primary mechanism control sharing the Raj multi-order interface, temporal encoder, interaction projection, decoder, data, and training recipe; only the interaction operator changes.",
+    "large_johnson": "Higher-capacity classical higher-order control with the same N<=8 information budget.",
+    "all_graph": "Neighborhood-budget ablation only; not a primary Raj performance hurdle because it uses a different visible-neighbor budget."
+  },
+  "fairness_rule": "Primary claims compare Raj, Strong Graph, Matched Johnson, and Large Johnson under the same N<=8 input budget, dataset, split, target, history, horizon, state, training population, and common training recipe. AllGraph is reported only as a neighborhood-budget/task-definition ablation.",
+  "test_accessed": false
+}

@@ -1,0 +1,390 @@
+{
+  "status": "DEVELOPMENT_MECHANISM_DIAGNOSTIC_NOT_FORMAL_EVIDENCE",
+  "test_accessed": false,
+  "runs": {
+    "control_2026": {
+      "checkpoint": "reports/task_redesign/sind_gate_b_plus_rank_control_seed2026/best.pt",
+      "checkpoint_epoch": 26,
+      "representations_ic": {
+        "j2": {
+          "samples": 1149,
+          "width": 64,
+          "total_variance": 25.558492040655114,
+          "mean_feature_variance": 0.39935143813523616,
+          "effective_rank": 3.1174420464990926,
+          "participation_ratio": 2.1316068396419126,
+          "rank_99pct": 8,
+          "top_eigenvalue_fraction": 0.652035202114253
+        },
+        "j3": {
+          "samples": 1149,
+          "width": 64,
+          "total_variance": 32.7454097889882,
+          "mean_feature_variance": 0.5116470279529404,
+          "effective_rank": 3.0716669666014504,
+          "participation_ratio": 1.8934972482112618,
+          "rank_99pct": 11,
+          "top_eigenvalue_fraction": 0.7122809622110012
+        },
+        "q2": {
+          "samples": 1149,
+          "width": 128,
+          "total_variance": 693.3517187329624,
+          "mean_feature_variance": 5.416810302601266,
+          "effective_rank": 3.0740231902066113,
+          "participation_ratio": 2.5809761827455735,
+          "rank_99pct": 5,
+          "top_eigenvalue_fraction": 0.5179098463417706
+        },
+        "q3": {
+          "samples": 1149,
+          "width": 128,
+          "total_variance": 146.320112615064,
+          "mean_feature_variance": 1.143125879805187,
+          "effective_rank": 3.0021241755386026,
+          "participation_ratio": 2.156102514489432,
+          "rank_99pct": 7,
+          "top_eigenvalue_fraction": 0.6399424411624842
+        }
+      },
+      "relations_ic": {
+        "j2_vs_j3": {
+          "cosine_mean": 0.049563530838406415,
+          "cosine_std": 0.060729269115005584,
+          "cosine_p05": -0.04901380565079331,
+          "cosine_p95": 0.14924820100108982,
+          "linear_cka": 0.6828348741352818,
+          "matched_feature_abs_correlation_mean": 0.2768666280084561
+        },
+        "q2_vs_q3": {
+          "cosine_mean": 0.25007214919384885,
+          "cosine_std": 0.17314745379663174,
+          "cosine_p05": -0.18100501270899516,
+          "cosine_p95": 0.4385283170528799,
+          "linear_cka": 0.15500498845467298,
+          "matched_feature_abs_correlation_mean": 0.19885709916551692
+        }
+      }
+    },
+    "control_2027": {
+      "checkpoint": "reports/task_redesign/sind_gate_b_plus_rank_control_seed2027/best.pt",
+      "checkpoint_epoch": 25,
+      "representations_ic": {
+        "j2": {
+          "samples": 1149,
+          "width": 64,
+          "total_variance": 37.948705988382606,
+          "mean_feature_variance": 0.5929485310684787,
+          "effective_rank": 3.266199673925391,
+          "participation_ratio": 2.2100895025857543,
+          "rank_99pct": 8,
+          "top_eigenvalue_fraction": 0.6429577197456211
+        },
+        "j3": {
+          "samples": 1149,
+          "width": 64,
+          "total_variance": 30.5099210294216,
+          "mean_feature_variance": 0.47671751608471247,
+          "effective_rank": 3.6572745746243873,
+          "participation_ratio": 2.1556362407729046,
+          "rank_99pct": 11,
+          "top_eigenvalue_fraction": 0.6648778543683963
+        },
+        "q2": {
+          "samples": 1149,
+          "width": 128,
+          "total_variance": 537.3350856445887,
+          "mean_feature_variance": 4.19793035659835,
+          "effective_rank": 3.0247100313443287,
+          "participation_ratio": 2.297213418773055,
+          "rank_99pct": 7,
+          "top_eigenvalue_fraction": 0.605457235155788
+        },
+        "q3": {
+          "samples": 1149,
+          "width": 128,
+          "total_variance": 109.30007644625672,
+          "mean_feature_variance": 0.8539068472363801,
+          "effective_rank": 3.274440188019888,
+          "participation_ratio": 2.2602883375272693,
+          "rank_99pct": 8,
+          "top_eigenvalue_fraction": 0.6302531515057188
+        }
+      },
+      "relations_ic": {
+        "j2_vs_j3": {
+          "cosine_mean": -0.05735901828570773,
+          "cosine_std": 0.14810318309666023,
+          "cosine_p05": -0.20518163978033582,
+          "cosine_p95": 0.24767481616081344,
+          "linear_cka": 0.6917290749717632,
+          "matched_feature_abs_correlation_mean": 0.33100842796692564
+        },
+        "q2_vs_q3": {
+          "cosine_mean": -0.020295529749016366,
+          "cosine_std": 0.24078305858659324,
+          "cosine_p05": -0.3546761934772696,
+          "cosine_p95": 0.4264580587734991,
+          "linear_cka": 0.24756941987263645,
+          "matched_feature_abs_correlation_mean": 0.25204651522492827
+        }
+      }
+    },
+    "rank001_2026": {
+      "checkpoint": "reports/task_redesign/sind_gate_b_plus_rank_rank001_seed2026/best.pt",
+      "checkpoint_epoch": 32,
+      "representations_ic": {
+        "j2": {
+          "samples": 1149,
+          "width": 64,
+          "total_variance": 27.244362142822727,
+          "mean_feature_variance": 0.4256931584816052,
+          "effective_rank": 3.1946946403243017,
+          "participation_ratio": 2.301078133106361,
+          "rank_99pct": 8,
+          "top_eigenvalue_fraction": 0.6096380304238664
+        },
+        "j3": {
+          "samples": 1149,
+          "width": 64,
+          "total_variance": 34.75499814113939,
+          "mean_feature_variance": 0.5430468459553031,
+          "effective_rank": 5.281580339832887,
+          "participation_ratio": 2.961622276097021,
+          "rank_99pct": 15,
+          "top_eigenvalue_fraction": 0.5535563438893593
+        },
+        "q2": {
+          "samples": 1149,
+          "width": 128,
+          "total_variance": 0.5093164479003606,
+          "mean_feature_variance": 0.003979034749221568,
+          "effective_rank": 70.15413248848954,
+          "participation_ratio": 59.42601236454148,
+          "rank_99pct": 82,
+          "top_eigenvalue_fraction": 0.038850589688381926
+        },
+        "q3": {
+          "samples": 1149,
+          "width": 128,
+          "total_variance": 417.35340443293,
+          "mean_feature_variance": 3.2605734721322652,
+          "effective_rank": 8.199916124195836,
+          "participation_ratio": 6.145251346763689,
+          "rank_99pct": 15,
+          "top_eigenvalue_fraction": 0.2485005651800398
+        }
+      },
+      "relations_ic": {
+        "j2_vs_j3": {
+          "cosine_mean": 0.11591838766102235,
+          "cosine_std": 0.08742466545173834,
+          "cosine_p05": -0.025797893262785938,
+          "cosine_p95": 0.26654802354830326,
+          "linear_cka": 0.6347433417597246,
+          "matched_feature_abs_correlation_mean": 0.28318127839061247
+        },
+        "q2_vs_q3": {
+          "cosine_mean": 0.03127199066568863,
+          "cosine_std": 0.07604490543255153,
+          "cosine_p05": -0.09616857242221076,
+          "cosine_p95": 0.1535776162368863,
+          "linear_cka": 0.19169176776196412,
+          "matched_feature_abs_correlation_mean": 0.07802363067308307
+        }
+      }
+    },
+    "rank001_2027": {
+      "checkpoint": "reports/task_redesign/sind_gate_b_plus_rank_rank001_seed2027/best.pt",
+      "checkpoint_epoch": 23,
+      "representations_ic": {
+        "j2": {
+          "samples": 1149,
+          "width": 64,
+          "total_variance": 36.05704679677031,
+          "mean_feature_variance": 0.5633913561995361,
+          "effective_rank": 3.767794576851682,
+          "participation_ratio": 2.4192352047340155,
+          "rank_99pct": 9,
+          "top_eigenvalue_fraction": 0.6125597492385639
+        },
+        "j3": {
+          "samples": 1149,
+          "width": 64,
+          "total_variance": 33.975128542443414,
+          "mean_feature_variance": 0.5308613834756785,
+          "effective_rank": 4.509168709339365,
+          "participation_ratio": 2.696997770927446,
+          "rank_99pct": 11,
+          "top_eigenvalue_fraction": 0.5809452826209325
+        },
+        "q2": {
+          "samples": 1149,
+          "width": 128,
+          "total_variance": 315.7696296359851,
+          "mean_feature_variance": 2.466950231531134,
+          "effective_rank": 6.0676705865835565,
+          "participation_ratio": 4.682534799871147,
+          "rank_99pct": 11,
+          "top_eigenvalue_fraction": 0.3185755870012046
+        },
+        "q3": {
+          "samples": 1149,
+          "width": 128,
+          "total_variance": 96.64692690325428,
+          "mean_feature_variance": 0.7550541164316741,
+          "effective_rank": 6.5775406586783225,
+          "participation_ratio": 4.519395825574971,
+          "rank_99pct": 14,
+          "top_eigenvalue_fraction": 0.3938326808936335
+        }
+      },
+      "relations_ic": {
+        "j2_vs_j3": {
+          "cosine_mean": -0.07914048283337062,
+          "cosine_std": 0.13319870140028417,
+          "cosine_p05": -0.2467457463000739,
+          "cosine_p95": 0.17749399708425045,
+          "linear_cka": 0.6624417943022829,
+          "matched_feature_abs_correlation_mean": 0.29465658155314856
+        },
+        "q2_vs_q3": {
+          "cosine_mean": -0.012653062679236932,
+          "cosine_std": 0.22077980570779424,
+          "cosine_p05": -0.33419828550892106,
+          "cosine_p95": 0.3835562518214404,
+          "linear_cka": 0.20086568998154886,
+          "matched_feature_abs_correlation_mean": 0.17164348936377025
+        }
+      }
+    },
+    "rank005_2026": {
+      "checkpoint": "reports/task_redesign/sind_gate_b_plus_rank_rank005_seed2026/best.pt",
+      "checkpoint_epoch": 23,
+      "representations_ic": {
+        "j2": {
+          "samples": 1149,
+          "width": 64,
+          "total_variance": 24.279804963266795,
+          "mean_feature_variance": 0.37937195255104356,
+          "effective_rank": 5.236989377200906,
+          "participation_ratio": 3.8730695547408684,
+          "rank_99pct": 11,
+          "top_eigenvalue_fraction": 0.3872361898059264
+        },
+        "j3": {
+          "samples": 1149,
+          "width": 64,
+          "total_variance": 42.197454451011055,
+          "mean_feature_variance": 0.6593352257970481,
+          "effective_rank": 9.35937752019169,
+          "participation_ratio": 6.708691473151506,
+          "rank_99pct": 16,
+          "top_eigenvalue_fraction": 0.28521220748625054
+        },
+        "q2": {
+          "samples": 1149,
+          "width": 128,
+          "total_variance": 1.8248181237599423,
+          "mean_feature_variance": 0.014256391591874553,
+          "effective_rank": 73.1708183144523,
+          "participation_ratio": 61.58113802348304,
+          "rank_99pct": 86,
+          "top_eigenvalue_fraction": 0.03669648278863965
+        },
+        "q3": {
+          "samples": 1149,
+          "width": 128,
+          "total_variance": 264.817080536288,
+          "mean_feature_variance": 2.0688834416897497,
+          "effective_rank": 16.511709640054793,
+          "participation_ratio": 12.826894323980524,
+          "rank_99pct": 28,
+          "top_eigenvalue_fraction": 0.14382660679606227
+        }
+      },
+      "relations_ic": {
+        "j2_vs_j3": {
+          "cosine_mean": -0.01997524781857909,
+          "cosine_std": 0.1272530200065101,
+          "cosine_p05": -0.2242657697136192,
+          "cosine_p95": 0.18641272862519745,
+          "linear_cka": 0.5448395515784555,
+          "matched_feature_abs_correlation_mean": 0.23529245789476946
+        },
+        "q2_vs_q3": {
+          "cosine_mean": 0.054026170113205076,
+          "cosine_std": 0.07496877815455526,
+          "cosine_p05": -0.06782851950623879,
+          "cosine_p95": 0.17835334080949708,
+          "linear_cka": 0.19596840049603056,
+          "matched_feature_abs_correlation_mean": 0.06508827718573254
+        }
+      }
+    },
+    "rank005_2027": {
+      "checkpoint": "reports/task_redesign/sind_gate_b_plus_rank_rank005_seed2027/best.pt",
+      "checkpoint_epoch": 25,
+      "representations_ic": {
+        "j2": {
+          "samples": 1149,
+          "width": 64,
+          "total_variance": 36.91034970549991,
+          "mean_feature_variance": 0.576724214148436,
+          "effective_rank": 5.082007919602622,
+          "participation_ratio": 3.455974104448617,
+          "rank_99pct": 11,
+          "top_eigenvalue_fraction": 0.47220034764904095
+        },
+        "j3": {
+          "samples": 1149,
+          "width": 64,
+          "total_variance": 36.72887871580953,
+          "mean_feature_variance": 0.573888729934524,
+          "effective_rank": 6.7301578602122945,
+          "participation_ratio": 4.521313432708743,
+          "rank_99pct": 14,
+          "top_eigenvalue_fraction": 0.3911838040421947
+        },
+        "q2": {
+          "samples": 1149,
+          "width": 128,
+          "total_variance": 4.934700046016151,
+          "mean_feature_variance": 0.03855234410950119,
+          "effective_rank": 72.88039843180621,
+          "participation_ratio": 57.27015961491314,
+          "rank_99pct": 93,
+          "top_eigenvalue_fraction": 0.044213565474475816
+        },
+        "q3": {
+          "samples": 1149,
+          "width": 128,
+          "total_variance": 14.618709477499117,
+          "mean_feature_variance": 0.11420866779296182,
+          "effective_rank": 31.480092594645228,
+          "participation_ratio": 22.039279861155674,
+          "rank_99pct": 54,
+          "top_eigenvalue_fraction": 0.10329112173088092
+        }
+      },
+      "relations_ic": {
+        "j2_vs_j3": {
+          "cosine_mean": -0.037017941040095585,
+          "cosine_std": 0.08460965666944513,
+          "cosine_p05": -0.1790191368993226,
+          "cosine_p95": 0.10215396563577465,
+          "linear_cka": 0.5978254972092883,
+          "matched_feature_abs_correlation_mean": 0.24852211390454182
+        },
+        "q2_vs_q3": {
+          "cosine_mean": -0.029136531445862757,
+          "cosine_std": 0.13625239521834148,
+          "cosine_p05": -0.2477311159033863,
+          "cosine_p95": 0.18881423835239988,
+          "linear_cka": 0.25029667809141715,
+          "matched_feature_abs_correlation_mean": 0.07070644800903725
+        }
+      }
+    }
+  }
+}

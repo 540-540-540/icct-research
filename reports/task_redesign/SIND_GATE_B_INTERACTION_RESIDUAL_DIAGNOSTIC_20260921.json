@@ -1,0 +1,126 @@
+{
+  "scope": "validation-only checkpoint transform diagnostic",
+  "test_accessed": false,
+  "seeds": {
+    "2026": {
+      "raj_weighted_multij_quantum": {
+        "original": {
+          "ade_m": 1.1358859800449335,
+          "ade_n": 1147,
+          "ade_origins": 180,
+          "fde_m": 3.0320228105751057,
+          "fde_n": 992,
+          "fde_origins": 177,
+          "J_m": 2.6518973853324863
+        },
+        "residual": {
+          "ade_m": 1.5867232060962642,
+          "ade_n": 1147,
+          "ade_origins": 180,
+          "fde_m": 4.3381955849937945,
+          "fde_n": 992,
+          "fde_origins": 177,
+          "J_m": 3.7558209985931614
+        },
+        "residual_plus_own_half": {
+          "ade_m": 1.2667144480068262,
+          "ade_n": 1147,
+          "ade_origins": 180,
+          "fde_m": 3.4245334309882622,
+          "fde_n": 992,
+          "fde_origins": 177,
+          "J_m": 2.9789811635009573
+        }
+      },
+      "raj_multij_johnson": {
+        "original": {
+          "ade_m": 1.1073724894864843,
+          "ade_n": 1147,
+          "ade_origins": 180,
+          "fde_m": 3.0022419604581456,
+          "fde_n": 992,
+          "fde_origins": 177,
+          "J_m": 2.6084934697155573
+        },
+        "residual": {
+          "ade_m": 1.8923343903568084,
+          "ade_n": 1147,
+          "ade_origins": 180,
+          "fde_m": 4.968013931131274,
+          "fde_n": 992,
+          "fde_origins": 177,
+          "J_m": 4.376341355922445
+        },
+        "residual_plus_own_half": {
+          "ade_m": 1.3552205055651287,
+          "ade_n": 1147,
+          "ade_origins": 180,
+          "fde_m": 3.6509768491765278,
+          "fde_n": 992,
+          "fde_origins": 177,
+          "J_m": 3.1807089301533926
+        }
+      }
+    },
+    "2027": {
+      "raj_weighted_multij_quantum": {
+        "original": {
+          "ade_m": 1.120683692956825,
+          "ade_n": 1147,
+          "ade_origins": 180,
+          "fde_m": 2.998415700127591,
+          "fde_n": 992,
+          "fde_origins": 177,
+          "J_m": 2.6198915430206204
+        },
+        "residual": {
+          "ade_m": 1.7682278906228135,
+          "ade_n": 1147,
+          "ade_origins": 180,
+          "fde_m": 4.885868714939936,
+          "fde_n": 992,
+          "fde_origins": 177,
+          "J_m": 4.211162248092782
+        },
+        "residual_plus_own_half": {
+          "ade_m": 1.284021360159672,
+          "ade_n": 1147,
+          "ade_origins": 180,
+          "fde_m": 3.4861617441331334,
+          "fde_n": 992,
+          "fde_origins": 177,
+          "J_m": 3.0271022322262384
+        }
+      },
+      "raj_multij_johnson": {
+        "original": {
+          "ade_m": 1.154431228098229,
+          "ade_n": 1147,
+          "ade_origins": 180,
+          "fde_m": 3.026621091849404,
+          "fde_n": 992,
+          "fde_origins": 177,
+          "J_m": 2.667741774022931
+        },
+        "residual": {
+          "ade_m": 1.708552478629606,
+          "ade_n": 1147,
+          "ade_origins": 180,
+          "fde_m": 4.633532075888614,
+          "fde_n": 992,
+          "fde_origins": 177,
+          "J_m": 4.025318516573913
+        },
+        "residual_plus_own_half": {
+          "ade_m": 1.2504624251579188,
+          "ade_n": 1147,
+          "ade_origins": 180,
+          "fde_m": 3.330903984385516,
+          "fde_n": 992,
+          "fde_origins": 177,
+          "J_m": 2.9159144173506766
+        }
+      }
+    }
+  }
+}

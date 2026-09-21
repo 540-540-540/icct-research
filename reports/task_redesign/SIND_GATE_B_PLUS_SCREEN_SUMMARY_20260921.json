@@ -1,0 +1,578 @@
+{
+  "scope": "development screen; not formal evidence",
+  "test_accessed": false,
+  "selection_metric": "maximize the worst per-seed relative margin over Strong Graph across co-primary IC4 ADE and FDE; mean metrics are tie-breakers",
+  "ranking": [
+    {
+      "candidate": "full_multiscale",
+      "worst_seed_primary_margin_pct": -4.023397924923091
+    },
+    {
+      "candidate": "full_multiscale_fde_weight_1",
+      "worst_seed_primary_margin_pct": -5.404885104150345
+    },
+    {
+      "candidate": "full_multiscale_fde_weight_0.75",
+      "worst_seed_primary_margin_pct": -5.4431077213671655
+    },
+    {
+      "candidate": "neighbor_residual",
+      "worst_seed_primary_margin_pct": -8.359059687521148
+    },
+    {
+      "candidate": "multiscale_quantum_view",
+      "worst_seed_primary_margin_pct": -8.860569075229341
+    },
+    {
+      "candidate": "dual_quantum_view",
+      "worst_seed_primary_margin_pct": -9.477386061649746
+    },
+    {
+      "candidate": "fused_multiscale",
+      "worst_seed_primary_margin_pct": -10.775264777096261
+    },
+    {
+      "candidate": "cross_order_multiscale",
+      "worst_seed_primary_margin_pct": -11.813104417847153
+    }
+  ],
+  "selected_for_next_iteration": "full_multiscale",
+  "candidates": {
+    "cross_order_multiscale": {
+      "seeds": {
+        "2026": {
+          "status": "SCREEN_FAIL",
+          "epochs": 12,
+          "checkpoint_epoch": 12,
+          "parameters": {
+            "temporal_encoder": 195136,
+            "quantum_interaction_core": 126535,
+            "interaction_projection": 49408,
+            "time_embedding": 960,
+            "decoder": 73058,
+            "total": 445097
+          },
+          "ic4": {
+            "ade_m": 1.2291263054839396,
+            "ade_n": 1147,
+            "ade_origins": 180,
+            "fde_m": 3.2598322969542557,
+            "fde_n": 992,
+            "fde_origins": 177,
+            "J_m": 2.8590424539610675
+          },
+          "path": "reports/task_redesign/sind_gate_b_plus_screen_cross_order_multiscale_seed2026/summary.json"
+        },
+        "2027": {
+          "status": "SCREEN_FAIL",
+          "epochs": 12,
+          "checkpoint_epoch": 12,
+          "parameters": {
+            "temporal_encoder": 195136,
+            "quantum_interaction_core": 126535,
+            "interaction_projection": 49408,
+            "time_embedding": 960,
+            "decoder": 73058,
+            "total": 445097
+          },
+          "ic4": {
+            "ade_m": 1.2204012562211735,
+            "ade_n": 1147,
+            "ade_origins": 180,
+            "fde_m": 3.1973265197904874,
+            "fde_n": 992,
+            "fde_origins": 177,
+            "J_m": 2.819064516116417
+          },
+          "path": "reports/task_redesign/sind_gate_b_plus_screen_cross_order_multiscale_seed2027/summary.json"
+        }
+      },
+      "two_seed_mean_ic4": {
+        "ade_m": 1.2247637808525567,
+        "fde_m": 3.2285794083723713,
+        "J_m": 2.8390534850387423
+      },
+      "strong_graph_relative_improvement_pct": {
+        "2026": {
+          "ade_m": -8.321441943959842,
+          "fde_m": -11.813104417847153
+        },
+        "2027": {
+          "ade_m": -8.16953670705101,
+          "fde_m": -10.565271036973638
+        }
+      },
+      "worst_seed_primary_margin_pct": -11.813104417847153,
+      "beats_strong_graph_both_primary_metrics_both_seeds": false
+    },
+    "dual_quantum_view": {
+      "seeds": {
+        "2026": {
+          "status": "SCREEN_FAIL",
+          "epochs": 12,
+          "checkpoint_epoch": 12,
+          "parameters": {
+            "temporal_encoder": 195136,
+            "quantum_interaction_core": 126535,
+            "interaction_projection": 33024,
+            "time_embedding": 960,
+            "decoder": 73058,
+            "total": 428713
+          },
+          "ic4": {
+            "ade_m": 1.2119779505993358,
+            "ade_n": 1147,
+            "ade_origins": 180,
+            "fde_m": 3.191736073584342,
+            "fde_n": 992,
+            "fde_origins": 177,
+            "J_m": 2.8078459873915067
+          },
+          "path": "reports/task_redesign/sind_gate_b_plus_screen_dual_quantum_view_seed2026/summary.json"
+        },
+        "2027": {
+          "status": "SCREEN_PASS",
+          "epochs": 12,
+          "checkpoint_epoch": 12,
+          "parameters": {
+            "temporal_encoder": 195136,
+            "quantum_interaction_core": 126535,
+            "interaction_projection": 33024,
+            "time_embedding": 960,
+            "decoder": 73058,
+            "total": 428713
+          },
+          "ic4": {
+            "ade_m": 1.1868295915517666,
+            "ade_n": 1147,
+            "ade_origins": 180,
+            "fde_m": 3.1510423987492158,
+            "fde_n": 992,
+            "fde_origins": 177,
+            "J_m": 2.7623507909263747
+          },
+          "path": "reports/task_redesign/sind_gate_b_plus_screen_dual_quantum_view_seed2027/summary.json"
+        }
+      },
+      "two_seed_mean_ic4": {
+        "ade_m": 1.1994037710755512,
+        "fde_m": 3.171389236166779,
+        "J_m": 2.7850983891589407
+      },
+      "strong_graph_relative_improvement_pct": {
+        "2026": {
+          "ade_m": -6.810177788454133,
+          "fde_m": -9.477386061649746
+        },
+        "2027": {
+          "ade_m": -5.193932252972926,
+          "fde_m": -8.964741233101236
+        }
+      },
+      "worst_seed_primary_margin_pct": -9.477386061649746,
+      "beats_strong_graph_both_primary_metrics_both_seeds": false
+    },
+    "full_multiscale_fde_weight_0.75": {
+      "seeds": {
+        "2026": {
+          "status": "SCREEN_PASS",
+          "epochs": 30,
+          "checkpoint_epoch": 29,
+          "parameters": {
+            "temporal_encoder": 195136,
+            "quantum_interaction_core": 126535,
+            "interaction_projection": 33024,
+            "time_embedding": 960,
+            "decoder": 73058,
+            "total": 428713
+          },
+          "ic4": {
+            "ade_m": 1.1348191773097962,
+            "ade_n": 1147,
+            "ade_origins": 180,
+            "fde_m": 3.0039160674413674,
+            "fde_n": 992,
+            "fde_origins": 177,
+            "J_m": 2.6367772110304797
+          },
+          "path": "reports/task_redesign/sind_gate_b_plus_screen_full_multiscale_fw075_seed2026/summary.json"
+        },
+        "2027": {
+          "status": "SCREEN_PASS",
+          "epochs": 30,
+          "checkpoint_epoch": 24,
+          "parameters": {
+            "temporal_encoder": 195136,
+            "quantum_interaction_core": 126535,
+            "interaction_projection": 33024,
+            "time_embedding": 960,
+            "decoder": 73058,
+            "total": 428713
+          },
+          "ic4": {
+            "ade_m": 1.154390709309184,
+            "ade_n": 1147,
+            "ade_origins": 180,
+            "fde_m": 3.0492038004764823,
+            "fde_n": 992,
+            "fde_origins": 177,
+            "J_m": 2.678992609547425
+          },
+          "path": "reports/task_redesign/sind_gate_b_plus_screen_full_multiscale_fw075_seed2027/summary.json"
+        }
+      },
+      "two_seed_mean_ic4": {
+        "ade_m": 1.1446049433094903,
+        "fde_m": 3.026559933958925,
+        "J_m": 2.6578849102889524
+      },
+      "strong_graph_relative_improvement_pct": {
+        "2026": {
+          "ade_m": -0.010266710105456479,
+          "fde_m": -3.0351104948217764
+        },
+        "2027": {
+          "ade_m": -2.318731292970951,
+          "fde_m": -5.4431077213671655
+        }
+      },
+      "worst_seed_primary_margin_pct": -5.4431077213671655,
+      "beats_strong_graph_both_primary_metrics_both_seeds": false
+    },
+    "full_multiscale_fde_weight_1": {
+      "seeds": {
+        "2026": {
+          "status": "SCREEN_PASS",
+          "epochs": 30,
+          "checkpoint_epoch": 24,
+          "parameters": {
+            "temporal_encoder": 195136,
+            "quantum_interaction_core": 126535,
+            "interaction_projection": 33024,
+            "time_embedding": 960,
+            "decoder": 73058,
+            "total": 428713
+          },
+          "ic4": {
+            "ade_m": 1.1447818644964523,
+            "ade_n": 1147,
+            "ade_origins": 180,
+            "fde_m": 3.0060482508299655,
+            "fde_n": 992,
+            "fde_origins": 177,
+            "J_m": 2.647805989911435
+          },
+          "path": "reports/task_redesign/sind_gate_b_plus_screen_full_multiscale_fw100_seed2026/summary.json"
+        },
+        "2027": {
+          "status": "SCREEN_PASS",
+          "epochs": 30,
+          "checkpoint_epoch": 30,
+          "parameters": {
+            "temporal_encoder": 195136,
+            "quantum_interaction_core": 126535,
+            "interaction_projection": 33024,
+            "time_embedding": 960,
+            "decoder": 73058,
+            "total": 428713
+          },
+          "ic4": {
+            "ade_m": 1.1718741458727682,
+            "ade_n": 1147,
+            "ade_origins": 180,
+            "fde_m": 3.0480984788276775,
+            "fde_n": 992,
+            "fde_origins": 177,
+            "J_m": 2.6959233852866067
+          },
+          "path": "reports/task_redesign/sind_gate_b_plus_screen_full_multiscale_fw100_seed2027/summary.json"
+        }
+      },
+      "two_seed_mean_ic4": {
+        "ade_m": 1.15832800518461,
+        "fde_m": 3.0270733648288215,
+        "J_m": 2.6718646875990206
+      },
+      "strong_graph_relative_improvement_pct": {
+        "2026": {
+          "ade_m": -0.8882665030317798,
+          "fde_m": -3.1082449453547283
+        },
+        "2027": {
+          "ade_m": -3.86836525433363,
+          "fde_m": -5.404885104150345
+        }
+      },
+      "worst_seed_primary_margin_pct": -5.404885104150345,
+      "beats_strong_graph_both_primary_metrics_both_seeds": false
+    },
+    "full_multiscale": {
+      "seeds": {
+        "2026": {
+          "status": "SCREEN_PASS",
+          "epochs": 30,
+          "checkpoint_epoch": 26,
+          "parameters": {
+            "temporal_encoder": 195136,
+            "johnson_interaction_core": 179201,
+            "interaction_projection": 33024,
+            "time_embedding": 960,
+            "decoder": 73058,
+            "total": 481379
+          },
+          "ic4": {
+            "ade_m": 1.135273626723726,
+            "ade_n": 1147,
+            "ade_origins": 180,
+            "fde_m": 3.0250691106406076,
+            "fde_n": 992,
+            "fde_origins": 177,
+            "J_m": 2.64780818204403
+          },
+          "path": "reports/task_redesign/sind_gate_b_plus_screen_johnson_full_multiscale_seed2026/summary.json"
+        },
+        "2027": {
+          "status": "SCREEN_PASS",
+          "epochs": 30,
+          "checkpoint_epoch": 24,
+          "parameters": {
+            "temporal_encoder": 195136,
+            "johnson_interaction_core": 179201,
+            "interaction_projection": 33024,
+            "time_embedding": 960,
+            "decoder": 73058,
+            "total": 481379
+          },
+          "ic4": {
+            "ade_m": 1.1281114249711897,
+            "ade_n": 1147,
+            "ade_origins": 180,
+            "fde_m": 3.008148632429555,
+            "fde_n": 992,
+            "fde_origins": 177,
+            "J_m": 2.6321857411859675
+          },
+          "path": "reports/task_redesign/sind_gate_b_plus_screen_johnson_full_multiscale_seed2027/summary.json"
+        }
+      },
+      "two_seed_mean_ic4": {
+        "ade_m": 1.1316925258474577,
+        "fde_m": 3.016608871535081,
+        "J_m": 2.6399969616149987
+      },
+      "strong_graph_relative_improvement_pct": {
+        "2026": {
+          "ade_m": -0.05031679738113469,
+          "fde_m": -3.7606654352405604
+        },
+        "2027": {
+          "ade_m": 0.010517384333385055,
+          "fde_m": -4.023397924923091
+        }
+      },
+      "worst_seed_primary_margin_pct": -4.023397924923091,
+      "beats_strong_graph_both_primary_metrics_both_seeds": false
+    },
+    "fused_multiscale": {
+      "seeds": {
+        "2026": {
+          "status": "SCREEN_FAIL",
+          "epochs": 12,
+          "checkpoint_epoch": 12,
+          "parameters": {
+            "temporal_encoder": 195136,
+            "quantum_interaction_core": 126535,
+            "interaction_projection": 41216,
+            "time_embedding": 960,
+            "decoder": 73058,
+            "total": 436905
+          },
+          "ic4": {
+            "ade_m": 1.2259410844906742,
+            "ade_n": 1147,
+            "ade_origins": 180,
+            "fde_m": 3.193999334821136,
+            "fde_n": 992,
+            "fde_origins": 177,
+            "J_m": 2.822940751901242
+          },
+          "path": "reports/task_redesign/sind_gate_b_plus_screen_fused_multiscale_seed2026/summary.json"
+        },
+        "2027": {
+          "status": "SCREEN_PASS",
+          "epochs": 12,
+          "checkpoint_epoch": 12,
+          "parameters": {
+            "temporal_encoder": 195136,
+            "quantum_interaction_core": 126535,
+            "interaction_projection": 41216,
+            "time_embedding": 960,
+            "decoder": 73058,
+            "total": 436905
+          },
+          "ic4": {
+            "ade_m": 1.2068957965856433,
+            "ade_n": 1147,
+            "ade_origins": 180,
+            "fde_m": 3.203399118790037,
+            "fde_n": 992,
+            "fde_origins": 177,
+            "J_m": 2.808595355980662
+          },
+          "path": "reports/task_redesign/sind_gate_b_plus_screen_fused_multiscale_seed2027/summary.json"
+        }
+      },
+      "two_seed_mean_ic4": {
+        "ade_m": 1.2164184405381588,
+        "fde_m": 3.1986992268055863,
+        "J_m": 2.815768053940952
+      },
+      "strong_graph_relative_improvement_pct": {
+        "2026": {
+          "ade_m": -8.040732199679459,
+          "fde_m": -9.555016516821002
+        },
+        "2027": {
+          "ade_m": -6.972488355663274,
+          "fde_m": -10.775264777096261
+        }
+      },
+      "worst_seed_primary_margin_pct": -10.775264777096261,
+      "beats_strong_graph_both_primary_metrics_both_seeds": false
+    },
+    "multiscale_quantum_view": {
+      "seeds": {
+        "2026": {
+          "status": "SCREEN_FAIL",
+          "epochs": 12,
+          "checkpoint_epoch": 12,
+          "parameters": {
+            "temporal_encoder": 195136,
+            "quantum_interaction_core": 126535,
+            "interaction_projection": 49408,
+            "time_embedding": 960,
+            "decoder": 73058,
+            "total": 445097
+          },
+          "ic4": {
+            "ade_m": 1.19405521536027,
+            "ade_n": 1147,
+            "ade_origins": 180,
+            "fde_m": 3.161942501787429,
+            "fde_n": 992,
+            "fde_origins": 177,
+            "J_m": 2.7750264662539843
+          },
+          "path": "reports/task_redesign/sind_gate_b_plus_screen_multiscale_quantum_view_seed2026/summary.json"
+        },
+        "2027": {
+          "status": "SCREEN_PASS",
+          "epochs": 12,
+          "checkpoint_epoch": 9,
+          "parameters": {
+            "temporal_encoder": 195136,
+            "quantum_interaction_core": 126535,
+            "interaction_projection": 49408,
+            "time_embedding": 960,
+            "decoder": 73058,
+            "total": 445097
+          },
+          "ic4": {
+            "ade_m": 1.2020386145655875,
+            "ade_n": 1147,
+            "ade_origins": 180,
+            "fde_m": 3.1480299482766236,
+            "fde_n": 992,
+            "fde_origins": 177,
+            "J_m": 2.776053588703899
+          },
+          "path": "reports/task_redesign/sind_gate_b_plus_screen_multiscale_quantum_view_seed2027/summary.json"
+        }
+      },
+      "two_seed_mean_ic4": {
+        "ade_m": 1.1980469149629287,
+        "fde_m": 3.1549862250320264,
+        "J_m": 2.7755400274789417
+      },
+      "strong_graph_relative_improvement_pct": {
+        "2026": {
+          "ade_m": -5.230668411741991,
+          "fde_m": -8.455458719736681
+        },
+        "2027": {
+          "ade_m": -6.541974927286373,
+          "fde_m": -8.860569075229341
+        }
+      },
+      "worst_seed_primary_margin_pct": -8.860569075229341,
+      "beats_strong_graph_both_primary_metrics_both_seeds": false
+    },
+    "neighbor_residual": {
+      "seeds": {
+        "2026": {
+          "status": "SCREEN_FAIL",
+          "epochs": 12,
+          "checkpoint_epoch": 12,
+          "parameters": {
+            "temporal_encoder": 195136,
+            "quantum_interaction_core": 126535,
+            "interaction_projection": 24832,
+            "time_embedding": 960,
+            "decoder": 73058,
+            "total": 420521
+          },
+          "ic4": {
+            "ade_m": 1.216938595410482,
+            "ade_n": 1147,
+            "ade_origins": 180,
+            "fde_m": 3.1374184715134588,
+            "fde_n": 992,
+            "fde_origins": 177,
+            "J_m": 2.7856478311672115
+          },
+          "path": "reports/task_redesign/sind_gate_b_plus_screen_neighbor_residual_seed2026/summary.json"
+        },
+        "2027": {
+          "status": "SCREEN_PASS",
+          "epochs": 12,
+          "checkpoint_epoch": 12,
+          "parameters": {
+            "temporal_encoder": 195136,
+            "quantum_interaction_core": 126535,
+            "interaction_projection": 24832,
+            "time_embedding": 960,
+            "decoder": 73058,
+            "total": 420521
+          },
+          "ic4": {
+            "ade_m": 1.207305996369815,
+            "ade_n": 1147,
+            "ade_origins": 180,
+            "fde_m": 3.133527299748705,
+            "fde_n": 992,
+            "fde_origins": 177,
+            "J_m": 2.7740696462441674
+          },
+          "path": "reports/task_redesign/sind_gate_b_plus_screen_neighbor_residual_seed2027/summary.json"
+        }
+      },
+      "two_seed_mean_ic4": {
+        "ade_m": 1.2121222958901485,
+        "fde_m": 3.135472885631082,
+        "J_m": 2.7798587387056894
+      },
+      "strong_graph_relative_improvement_pct": {
+        "2026": {
+          "ade_m": -7.247353525819566,
+          "fde_m": -7.614278036812617
+        },
+        "2027": {
+          "ade_m": -7.008846168624376,
+          "fde_m": -8.359059687521148
+        }
+      },
+      "worst_seed_primary_margin_pct": -8.359059687521148,
+      "beats_strong_graph_both_primary_metrics_both_seeds": false
+    }
+  }
+}

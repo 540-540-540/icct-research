@@ -30,7 +30,7 @@ def _johnson_cpu(n: int, j: int):
     inc=torch.zeros(s,n,dtype=torch.float64)
     for si,t in enumerate(vals):
         for i in t: inc[si,i]=1.
-    return w,v,inc
+    return w,v,inc,a
 
 class SubsetFeatureBuilder(nn.Module):
     def __init__(self,width=32):
@@ -58,7 +58,7 @@ class _SubsetReadout(nn.Module):
         self.inter=nn.Sequential(nn.Linear(dim,64),nn.SiLU(),nn.Linear(64,64))
         self.norm=nn.LayerNorm(64)
     def pool_nodes(self,zs,valid,subs,n,mask):
-        _,_,inc0=_johnson_cpu(n,subs.shape[-1]);inc=inc0.to(zs[0].device,zs[0].real.dtype)
+        _,_,inc0,_=_johnson_cpu(n,subs.shape[-1]);inc=inc0.to(zs[0].device,zs[0].real.dtype)
         den=torch.einsum('bs,sn->bn',valid.to(inc.dtype),inc).clamp_min(1.)
         pools=[]
         for z in zs:
@@ -81,7 +81,7 @@ class RajSubsetQGNNCore(BoundedCore):
     @staticmethod
     def _unit(x):return x/(torch.linalg.vector_norm(x,dim=-1,keepdim=True)+1e-8)
     def _mix(self,x,alpha,n):
-        w,v,_=_johnson_cpu(n,self.j);w=w.to(x.device,x.real.dtype);v=v.to(x.device,x.real.dtype).to(x.dtype)
+        w,v,_,_=_johnson_cpu(n,self.j);w=w.to(x.device,x.real.dtype);v=v.to(x.device,x.real.dtype).to(x.dtype)
         phase=torch.exp(1j*alpha.to(x.real.dtype)*w).to(x.dtype)
         tmp=torch.einsum('ij,bje->bie',v.T,x);tmp=phase[None,:,None]*tmp
         return torch.einsum('ij,bje->bie',v,tmp)
@@ -109,11 +109,7 @@ class RajJohnsonGINCore(BoundedCore):
     def forward_patch(self,history,mask):
         own,feat,valid,subs=self.builder(history,mask,self.j)
         if subs.shape[0]==0:return self.readout.local(own)*mask[...,None]
-        s=subs.shape[0];a=feat.new_zeros(s,s)
-        for u in range(s):
-            su=set(subs[u].tolist())
-            for v in range(u+1,s):
-                if len(su.intersection(subs[v].tolist()))==self.j-1:a[u,v]=a[v,u]=1
+        *_,a0=_johnson_cpu(own.shape[1],self.j);a=a0.to(feat.device,feat.dtype)
         h=self._unit(torch.tanh(self.input(feat)))*valid[...,None];hs=[h]
         for layer in self.layers:
             agg=torch.einsum('uv,bvh->buh',a,h)
