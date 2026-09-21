@@ -132,7 +132,13 @@ def main() -> None:
     )
 
     senior = json.loads(
-        (ROOT / "results" / "multitarget_graph_llm" / "phase2_results.json").read_text(encoding="utf-8")
+        (
+            ROOT
+            / "reports"
+            / "senior_r0_reproduction"
+            / "phase2"
+            / "phase2_results.json"
+        ).read_text(encoding="utf-8")
     )["test"]
     reference = senior["graph_motion_token_gpt2"]
     result = {
