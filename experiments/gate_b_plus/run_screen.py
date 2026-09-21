@@ -66,6 +66,20 @@ def effective_rank_loss(latents: dict[str, torch.Tensor]) -> torch.Tensor:
     return torch.stack(losses).mean()
 
 
+def attention_balance_loss(latents: dict[str, torch.Tensor]) -> torch.Tensor:
+    mask = latents["neighbor_mask"]
+    count = mask.sum(1)
+    valid = count > 1
+    if not valid.any():
+        return latents["attention_j2"].new_zeros(())
+    entropies = []
+    for name in ("attention_j2", "attention_j3"):
+        weights = latents[name]
+        entropy = -(weights * weights.clamp_min(1e-8).log()).sum(1) / count.clamp_min(2).float().log()
+        entropies.append(entropy)
+    return (entropies[0][valid] - entropies[1][valid]).square().mean()
+
+
 def load_matching_modules(model: GateBPlusQuantumModel, checkpoint: Path) -> None:
     state = torch.load(checkpoint, map_location="cpu", weights_only=True)["model"]
     for name in ("encoder", "time", "decoder"):
@@ -115,6 +129,7 @@ def main() -> None:
                         help="Frozen classical best.pt used for development-only trajectory distillation.")
     parser.add_argument("--distill-weight", type=float, choices=(0.0, 0.1, 0.25, 0.5, 1.0), default=0.0)
     parser.add_argument("--latent-rank-weight", type=float, choices=(0.0, 0.01, 0.05), default=0.0)
+    parser.add_argument("--attention-balance-weight", type=float, choices=(0.0, 0.05, 0.2), default=0.0)
     parser.add_argument("--config", default="configs/gate_b_plus_screen.json")
     parser.add_argument("--output", required=True)
     parser.add_argument("--resume", action="store_true")
@@ -174,6 +189,7 @@ def main() -> None:
                 or state.get("distill_teacher", "") != teacher_path
                 or state.get("distill_weight", 0.0) != args.distill_weight
                 or state.get("latent_rank_weight", 0.0) != args.latent_rank_weight
+                or state.get("attention_balance_weight", 0.0) != args.attention_balance_weight
                 or state.get("checkpoint_average_k", 1) != args.checkpoint_average_k
                 or state.get("patience", 0) != args.patience):
             raise RuntimeError("resume identity mismatch")
@@ -206,19 +222,24 @@ def main() -> None:
         for batch in loader:
             batch = {key: value.to(device, non_blocking=True) for key, value in batch.items()}
             optimizer.zero_grad(set_to_none=True)
-            if args.latent_rank_weight:
+            if args.latent_rank_weight or args.attention_balance_weight:
                 prediction, latents = model(batch["history_state"], batch["node_mask"], return_aux=True)
-                rank_loss = effective_rank_loss(latents)
+                rank_loss = (effective_rank_loss(latents) if args.latent_rank_weight
+                             else prediction.new_zeros(()))
+                balance_loss = (attention_balance_loss(latents) if args.attention_balance_weight
+                                else prediction.new_zeros(()))
             else:
                 prediction = model(batch["history_state"], batch["node_mask"])
                 rank_loss = prediction.new_zeros(())
+                balance_loss = prediction.new_zeros(())
             supervised = screen_loss(prediction, batch, args.fde_weight)
             distilled = prediction.new_zeros(())
             if teacher is not None and args.distill_weight:
                 with torch.no_grad():
                     teacher_prediction = teacher(batch["history_state"], batch["node_mask"])
                 distilled = distillation_loss(prediction, teacher_prediction, batch, args.fde_weight)
-            loss = supervised + args.distill_weight * distilled + args.latent_rank_weight * rank_loss
+            loss = (supervised + args.distill_weight * distilled + args.latent_rank_weight * rank_loss
+                    + args.attention_balance_weight * balance_loss)
             loss.backward(); torch.nn.utils.clip_grad_norm_(model.parameters(), 5.0); optimizer.step()
             if args.ema_decay:
                 current = model.state_dict()
@@ -264,6 +285,7 @@ def main() -> None:
                  "warmstart_classical": warmstart, "distill_teacher": teacher_path,
                  "warmstart_quantum": quantum_warmstart,
                  "distill_weight": args.distill_weight, "latent_rank_weight": args.latent_rank_weight,
+                 "attention_balance_weight": args.attention_balance_weight,
                  "checkpoint_average_k": args.checkpoint_average_k,
                  "patience": args.patience,
                  "checkpoint_candidates": checkpoint_candidates,
@@ -310,6 +332,7 @@ def main() -> None:
                "warmstart_classical": warmstart, "distill_teacher": teacher_path,
                "warmstart_quantum": quantum_warmstart,
                "distill_weight": args.distill_weight, "latent_rank_weight": args.latent_rank_weight,
+               "attention_balance_weight": args.attention_balance_weight,
                "checkpoint_average_k": args.checkpoint_average_k,
                "target_epochs": target_epochs, "early_stopping_patience": args.patience,
                "stopped_early": stopped_early,

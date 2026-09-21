@@ -234,6 +234,20 @@ two-metric win but makes seed 2026 lose both metrics, increasing rather than red
 role reversal. Checkpoint averaging is rejected as the stability fix. The remaining instability is
 between optimization basins, not merely selection noise among neighboring late checkpoints.
 
+A fixed 50/50 residual of quantum-message mean pooling and attention pooling was then tested. It
+produced ADE/FDE `1.050153 / 2.716184` in seed 2026 and `1.029584 / 2.729259` in seed 2027.
+Although the ADE spread is smaller, FDE degrades in both seeds and the model does not beat Strong Graph.
+The fixed residual is rejected: uniform quantum-message averaging suppresses useful selective neighbor
+information rather than stabilizing it.
+
+The subsequent attention diagnostic isolates a cross-order role reversal. In seed 2026, normalized j2/j3
+attention entropy is `0.699 / 0.698`; replacing j2 or j3 attention with mean pooling raises J from
+`2.386` to `2.510 / 2.573`, so j3 selectivity is more important. In seed 2027, entropy becomes
+`0.616 / 0.854`; the same ablations raise J from `2.333` to `2.595 / 2.404`, so j2 becomes dominant
+while j3 becomes diffuse. The pooled j2/j3 representations remain complementary (linear CKA
+`0.255 / 0.204`), ruling out simple branch redundancy. The next intervention therefore targets
+cross-order attention-role stability rather than representation removal or fixed pooling.
+
 ## Post-projection normalization control
 
 A paired control tested whether the scale imbalance diagnosed above could be removed by applying

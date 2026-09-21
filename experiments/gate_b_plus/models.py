@@ -161,6 +161,7 @@ class GateBPlusQuantumModel(nn.Module):
                                "residual_multiscale_quantum_attention"}:
                 neighbor_mask = node_mask[:, 1:]
                 pooled = []
+                branch_weights = []
                 for nodes, message_layer, attention_layer in zip(
                         (j2_nodes, j3_nodes), self.branch_messages, self.branch_attentions):
                     neighbors = nodes[:, 1:]
@@ -168,6 +169,7 @@ class GateBPlusQuantumModel(nn.Module):
                     messages = message_layer(torch.cat((target, neighbors), -1))
                     scores = attention_layer(messages).squeeze(-1).masked_fill(~neighbor_mask, -1e4)
                     weights = torch.softmax(scores, 1) * neighbor_mask
+                    branch_weights.append(weights)
                     attention_pool = (messages * weights[..., None]).sum(1)
                     if self.mode == "residual_multiscale_quantum_attention":
                         count = neighbor_mask.sum(1, keepdim=True).clamp_min(1)
@@ -258,6 +260,9 @@ class GateBPlusQuantumModel(nn.Module):
                           + 0.5 * delta_acceleration[:, None] * times.square()[None, :, None])
         if return_aux:
             latents = {"j2": j2_full, "j3": j3_full}
+            if self.branch_attentions is not None:
+                latents.update({"attention_j2": branch_weights[0], "attention_j3": branch_weights[1],
+                                "neighbor_mask": neighbor_mask})
             if self.branch_projections is not None:
                 latents.update({"q2": q2, "q3": q3})
             return prediction, latents

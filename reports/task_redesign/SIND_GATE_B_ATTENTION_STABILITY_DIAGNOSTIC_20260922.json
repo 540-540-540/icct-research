@@ -1,0 +1,142 @@
+{
+  "status": "DEVELOPMENT_DIAGNOSTIC_NOT_FORMAL_EVIDENCE",
+  "test_accessed": false,
+  "runs": {
+    "seed2026": {
+      "checkpoint": "reports/task_redesign/sind_gate_b_plus_multiscale_quantum_attention_seed2026/best.pt",
+      "checkpoint_epoch": 32,
+      "ic4_ablation": {
+        "attention": {
+          "ade_m": 1.040335749763702,
+          "ade_origins": 180,
+          "fde_m": 2.6923030867983964,
+          "fde_origins": 177,
+          "J_m": 2.3864872931629
+        },
+        "both_mean": {
+          "ade_m": 1.1816070260992653,
+          "ade_origins": 180,
+          "fde_m": 3.2166339462177986,
+          "fde_origins": 177,
+          "J_m": 2.7899239992081646
+        },
+        "j2_mean": {
+          "ade_m": 1.0894038522223755,
+          "ade_origins": 180,
+          "fde_m": 2.8410382158388927,
+          "fde_origins": 177,
+          "J_m": 2.5099229601418216
+        },
+        "j3_mean": {
+          "ade_m": 1.1021384883821888,
+          "ade_origins": 180,
+          "fde_m": 2.942129841512453,
+          "fde_origins": 177,
+          "J_m": 2.573203409138415
+        }
+      },
+      "attention": {
+        "j2_entropy": {
+          "mean": 0.6989913681656563,
+          "std": 0.18293563942143312
+        },
+        "j2_max_weight": {
+          "mean": 0.4826946266066831,
+          "std": 0.18432120416360348
+        },
+        "j2_attention_mean_cosine": {
+          "mean": 0.7471507614603293,
+          "std": 0.23692094350081305
+        },
+        "j3_entropy": {
+          "mean": 0.6981577489061445,
+          "std": 0.1753187818188271
+        },
+        "j3_max_weight": {
+          "mean": 0.48702052209665714,
+          "std": 0.17834909713036312
+        },
+        "j3_attention_mean_cosine": {
+          "mean": 0.7413149726787036,
+          "std": 0.27885847083128285
+        }
+      },
+      "j2_j3_pooled_relation": {
+        "cosine_mean": -0.036730931976294644,
+        "cosine_std": 0.07643831987669188,
+        "cosine_p05": -0.15855331921802876,
+        "cosine_p95": 0.08993851211877218,
+        "linear_cka": 0.2554650810210668,
+        "matched_feature_abs_correlation_mean": 0.17165292563709306
+      }
+    },
+    "seed2027": {
+      "checkpoint": "reports/task_redesign/sind_gate_b_plus_multiscale_quantum_attention_seed2027/best.pt",
+      "checkpoint_epoch": 34,
+      "ic4_ablation": {
+        "attention": {
+          "ade_m": 0.9994996306318897,
+          "ade_origins": 180,
+          "fde_m": 2.666368090611403,
+          "fde_origins": 177,
+          "J_m": 2.3326836759375915
+        },
+        "both_mean": {
+          "ade_m": 1.115391038535166,
+          "ade_origins": 180,
+          "fde_m": 3.041349189147547,
+          "fde_origins": 177,
+          "J_m": 2.6360656331089394
+        },
+        "j2_mean": {
+          "ade_m": 1.1018377197933114,
+          "ade_origins": 180,
+          "fde_m": 2.985853288872829,
+          "fde_origins": 177,
+          "J_m": 2.594764364229726
+        },
+        "j3_mean": {
+          "ade_m": 1.0276006419139025,
+          "ade_origins": 180,
+          "fde_m": 2.7526747927174062,
+          "fde_origins": 177,
+          "J_m": 2.4039380382726057
+        }
+      },
+      "attention": {
+        "j2_entropy": {
+          "mean": 0.6164432437273814,
+          "std": 0.24441081430036996
+        },
+        "j2_max_weight": {
+          "mean": 0.5584605456280438,
+          "std": 0.21574311119701756
+        },
+        "j2_attention_mean_cosine": {
+          "mean": 0.6709710785144821,
+          "std": 0.28711489423558667
+        },
+        "j3_entropy": {
+          "mean": 0.8542976538781191,
+          "std": 0.1038526164221821
+        },
+        "j3_max_weight": {
+          "mean": 0.3609461094162794,
+          "std": 0.13642374722491812
+        },
+        "j3_attention_mean_cosine": {
+          "mean": 0.8872280026177306,
+          "std": 0.13599861529377416
+        }
+      },
+      "j2_j3_pooled_relation": {
+        "cosine_mean": -0.011516617598975962,
+        "cosine_std": 0.0827260591886676,
+        "cosine_p05": -0.15608207281333245,
+        "cosine_p95": 0.11392845909957436,
+        "linear_cka": 0.2043051068365006,
+        "matched_feature_abs_correlation_mean": 0.1227736398417208
+      }
+    }
+  }
+}
