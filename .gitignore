@@ -67,6 +67,7 @@ results/senior_raj_two_classical_screen/
 results/senior_raj_two_classical_final/
 results/senior_raj_two_classical_scale010/
 results/senior_raj_initialization_matched/
+results/senior_raj_llm_validation/
 
 # OS/editor noise
 .DS_Store
