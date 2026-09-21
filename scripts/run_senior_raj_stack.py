@@ -53,6 +53,7 @@ def main() -> None:
     parser.add_argument("--quantum-scale", type=float, default=0.05)
     parser.add_argument("--projection-hidden", type=int, default=128)
     parser.add_argument("--projection-depth", type=int, default=1)
+    parser.add_argument("--classical-layers", type=int, default=0)
     args = parser.parse_args()
 
     if not torch.cuda.is_available():
@@ -101,9 +102,10 @@ def main() -> None:
         quantum_scale=args.quantum_scale,
         projection_hidden=args.projection_hidden,
         projection_depth=args.projection_depth,
+        classical_layers=args.classical_layers,
     )
     missing, unexpected = raj.load_state_dict(independent.state_dict(), strict=False)
-    allowed = ("core.", "raj_projection.", "quantum_scale")
+    allowed = ("core.", "raj_projection.", "quantum_scale", "graph_layers.")
     if unexpected or any(not key.startswith(allowed) for key in missing):
         raise RuntimeError(f"Unexpected Raj warm-start mismatch: missing={missing} unexpected={unexpected}")
     raj, raj_validation = train_model(
@@ -186,6 +188,7 @@ def main() -> None:
             "quantum_scale": args.quantum_scale,
             "projection_hidden": args.projection_hidden,
             "projection_depth": args.projection_depth,
+            "classical_layers": args.classical_layers,
         },
         "independent_gru": {"validation": independent_validation, "test": independent_test},
         "raj_qgnn": {"validation": raj_validation, "test": raj_test},

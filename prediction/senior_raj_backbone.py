@@ -11,7 +11,7 @@ from target_interaction_graph import MultiTargetForecaster, build_edge_features
 
 
 class SeniorRajQGNN(MultiTargetForecaster):
-    """Keep the senior GRU/decoder and replace only graph interaction."""
+    """Senior self path with optional local GNN and mandatory Raj interaction."""
 
     def __init__(
         self,
@@ -19,8 +19,12 @@ class SeniorRajQGNN(MultiTargetForecaster):
         quantum_scale: float = 0.05,
         projection_hidden: int = 128,
         projection_depth: int = 1,
+        classical_layers: int = 0,
     ):
-        super().__init__(config=config, use_graph=False)
+        if classical_layers < 0 or classical_layers > config.graph_layers:
+            raise ValueError("classical_layers must be between zero and config.graph_layers")
+        super().__init__(config=config, use_graph=classical_layers > 0)
+        self.graph_layers = nn.ModuleList(list(self.graph_layers)[:classical_layers])
         self.core = RajWeightedMultiJQGNNCore(rounds=3)
         if projection_hidden <= 0 or projection_depth <= 0:
             raise ValueError("projection_hidden and projection_depth must be positive")
@@ -60,6 +64,16 @@ class SeniorRajQGNN(MultiTargetForecaster):
         nodes = self.node_projection(torch.cat((nodes, state_context), dim=-1))
         nodes = nodes * target_mask[..., None]
 
+        edge_features, distances = build_edge_features(last_position, last_velocity)
+        pair_mask = target_mask[:, :, None] & target_mask[:, None, :]
+        adjacency = pair_mask & (distances <= self.config.graph_radius_m)
+        eye = torch.eye(targets, dtype=torch.bool, device=history.device)[None]
+        adjacency = adjacency | (eye & pair_mask)
+        attention = adjacency.to(history.dtype) / adjacency.sum(-1, keepdim=True).clamp_min(1)
+        for graph_layer in self.graph_layers:
+            nodes, attention = graph_layer(nodes, edge_features, adjacency)
+            nodes = nodes * target_mask[..., None]
+
         # Complex Raj operations stay fp32 when this frozen backbone is later
         # called from the senior GPT-2 AMP training region.
         with torch.autocast(device_type=history.device.type, enabled=False):
@@ -82,10 +96,6 @@ class SeniorRajQGNN(MultiTargetForecaster):
         residual = self.decoder(decoder_input) * self.config.residual_scale
         displacement = (constant_velocity + residual).permute(0, 2, 1, 3)
         displacement = displacement * target_mask[:, None, :, None]
-        _, distances = build_edge_features(last_position, last_velocity)
-        pair_mask = target_mask[:, :, None] & target_mask[:, None, :]
-        adjacency = pair_mask & (distances <= self.config.graph_radius_m)
-        attention = adjacency.to(history.dtype) / adjacency.sum(-1, keepdim=True).clamp_min(1)
         return {
             "displacement": displacement,
             "future_position": last_position[:, None] + displacement,

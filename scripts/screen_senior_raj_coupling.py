@@ -51,6 +51,7 @@ def main() -> None:
     parser.add_argument("--quantum-scale", type=float, required=True)
     parser.add_argument("--projection-hidden", type=int, default=128)
     parser.add_argument("--projection-depth", type=int, default=1)
+    parser.add_argument("--classical-layers", type=int, default=0)
     args = parser.parse_args()
     if args.frozen_epochs < 0 or args.frozen_epochs >= args.epochs:
         raise ValueError("frozen_epochs must be in [0, epochs)")
@@ -81,9 +82,10 @@ def main() -> None:
         quantum_scale=args.quantum_scale,
         projection_hidden=args.projection_hidden,
         projection_depth=args.projection_depth,
+        classical_layers=args.classical_layers,
     )
     missing, unexpected = model.load_state_dict(base_state, strict=False)
-    allowed = ("core.", "raj_projection.", "quantum_scale")
+    allowed = ("core.", "raj_projection.", "quantum_scale", "graph_layers.")
     if unexpected or any(not key.startswith(allowed) for key in missing):
         raise RuntimeError(f"Unexpected warm-start mismatch: missing={missing} unexpected={unexpected}")
     initial_core = {
@@ -152,6 +154,7 @@ def main() -> None:
         "quantum_scale": args.quantum_scale,
         "projection_hidden": args.projection_hidden,
         "projection_depth": args.projection_depth,
+        "classical_layers": args.classical_layers,
         "frozen_epochs": args.frozen_epochs,
         "joint_epochs": args.epochs - args.frozen_epochs,
         "trainable_parameters": sum(parameter.numel() for parameter in model.parameters() if parameter.requires_grad),
