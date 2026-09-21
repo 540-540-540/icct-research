@@ -41,11 +41,11 @@ class NodeTCN(nn.Module):
 
 
 class GateAModel(nn.Module):
-    def __init__(self, kind: str, max_nodes: int, width: int = 128):
+    def __init__(self, kind: str, max_nodes: int, width: int = 128, dt_s: float = 0.1):
         super().__init__()
         if kind not in {"self", "own", "pool", "graph", "all_graph"}:
             raise ValueError(kind)
-        self.kind, self.max_nodes, self.width = kind, max_nodes, width
+        self.kind, self.max_nodes, self.width, self.dt_s = kind, max_nodes, width, dt_s
         self.encoder = NodeTCN(width)
         branch_in = width
         if kind == "own":
@@ -89,7 +89,7 @@ class GateAModel(nn.Module):
             context = (message * weights[..., None]).sum(1)
             target = torch.cat([target, context], -1)
         steps = torch.arange(40, device=history.device)
-        times = (steps.to(history.dtype) + 1) * 0.1
+        times = (steps.to(history.dtype) + 1) * self.dt_s
         cv = history[:, -1, 0, 2:4][:, None] * times[None, :, None]
         x = torch.cat([target[:, None].expand(-1, 40, -1), self.time(steps)[None].expand(len(history), -1, -1),
                        cv / 20.0], -1)

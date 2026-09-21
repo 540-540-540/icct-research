@@ -1,5 +1,9 @@
 # Gate A 独立审计：Task / Interaction Necessity
 
+> 后续状态（2026-09-21）：本文件记录实现前审计。其 P0 smoothing 阻塞判断已被
+> `ICCT_SIND_CANONICAL_DATASET_DECISION_20260921.md` 覆盖；SinD-IC4 已完成并由
+> `CODEX_SIND_GATE_A_FINAL_REPORT_20260921.md` 给出正式 `PASS`。历史 q0 事实审计仍保留。
+
 日期：2026-09-21
 状态：`AUDIT COMPLETE / P0 SOURCE BLOCKED / GATE A NOT YET EVALUABLE`
 Material Passport：academic-research-suite / experiment-agent validate；证据状态 `ANALYZED`，未执行复现实验。

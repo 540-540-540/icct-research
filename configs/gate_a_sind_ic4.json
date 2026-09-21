@@ -1,0 +1,32 @@
+{
+  "revision": "SIND-GATE-A-IC4-CANONICAL-V1",
+  "dataset": "SinD public Changchun + Xi'an canonical smoothed trajectories",
+  "cache": "data/task_redesign/sind_gate_a_ic4_v1",
+  "source_sha256": {
+    "changchun": "f3011d7dc1786f940981a9d49c7f83c7860beda9d14ed0e06c995f7b7e590692",
+    "xian": "1bf5d8450577249beb9c97bc210e7510babf0796ba817f9a88c64d19a5a5e4a7"
+  },
+  "history_steps": 20,
+  "future_steps": 40,
+  "dt_s": 0.1001001001001001,
+  "origin_stride_steps": 10,
+  "guard_frames": 60,
+  "radius_m": 50.0,
+  "closing_mps": 0.5,
+  "tcpa_s": 4.004004004004004,
+  "dcpa_m": 5.0,
+  "following_heading_deg": 30.0,
+  "following_headway_s": 2.0,
+  "following_lateral_m": 2.5,
+  "minimum_speed_mps": 0.5,
+  "snr_db": 0.0,
+  "limited_graph_nodes": 8,
+  "pilot": {
+    "epochs": 30,
+    "batch_size": 128,
+    "train_limit": 16384,
+    "patience": 6,
+    "learning_rate": 0.001,
+    "weight_decay": 0.0002
+  }
+}

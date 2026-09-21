@@ -1,5 +1,8 @@
 # Gate A final report: strict-causal task and interaction necessity
 
+> 后续状态（2026-09-21）：本文件是 Lankershim auxiliary causal sanity experiment，
+> 不再代表正式 SinD Gate A。正式判决见 `CODEX_SIND_GATE_A_FINAL_REPORT_20260921.md`。
+
 ## Decision
 
 **PASS** for Gate A (Task / Interaction Necessity).

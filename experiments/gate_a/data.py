@@ -76,7 +76,10 @@ class GateADataset(Dataset):
         with np.load(root / f"{split}.npz", allow_pickle=False) as z:
             self.arrays = {k: z[k] for k in z.files}
         n = len(self.arrays["history_state"])
-        _, inverse, counts = np.unique(self.arrays["time_ms"], return_inverse=True, return_counts=True)
+        origin_key = self.arrays.get("origin_id", self.arrays.get("time_ms"))
+        if origin_key is None:
+            raise RuntimeError("benchmark lacks an origin key")
+        _, inverse, counts = np.unique(origin_key, return_inverse=True, return_counts=True)
         self.arrays["target_weight"] = (n / (len(counts) * counts[inverse])).astype(np.float32)
         self.indices = np.arange(n)
         if limit and limit < n:

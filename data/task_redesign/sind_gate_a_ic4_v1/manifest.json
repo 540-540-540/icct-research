@@ -1,0 +1,164 @@
+{
+  "status": "COMPLETE",
+  "revision": "SIND-GATE-A-IC4-CANONICAL-V1",
+  "dataset": "SinD public Changchun + Xi'an canonical smoothed trajectories",
+  "history_source": "official SinD canonical Veh_smoothed_tracks.csv states through frozen 3-BS sensing",
+  "history_causality_scope": "official smoothed canonical states; no claim of raw-video causal reconstruction",
+  "future_dependency": "future canonical x/y only populate target future_xy and future_mask",
+  "membership_dependency": "20-frame history only; future availability never selects target or neighbor",
+  "test_materialized": false,
+  "test_access": "vehicle/frame metadata only for physical-overlap audit; no test coordinates or labels loaded",
+  "raw_sha256": {
+    "changchun": "f3011d7dc1786f940981a9d49c7f83c7860beda9d14ed0e06c995f7b7e590692",
+    "xian": "1bf5d8450577249beb9c97bc210e7510babf0796ba817f9a88c64d19a5a5e4a7"
+  },
+  "sensing": {
+    "train": {
+      "reused": 373204,
+      "generated": 16821,
+      "generated_visible_bs": {
+        "2": 52,
+        "3": 16769
+      },
+      "config_sha256": "f898e43f01671187bb87cc0494fa03afe1d3dd58526360533ec898d6fe4f89c2"
+    },
+    "val": {
+      "reused": 37329,
+      "generated": 4276,
+      "generated_visible_bs": {
+        "3": 4276
+      },
+      "config_sha256": "f898e43f01671187bb87cc0494fa03afe1d3dd58526360533ec898d6fe4f89c2"
+    }
+  },
+  "snr_db": 0.0,
+  "history_steps": 20,
+  "future_steps": 40,
+  "guard_frames": 60,
+  "old_split_bounds": {
+    "train": {
+      "0": [
+        0,
+        11998
+      ],
+      "1": [
+        0,
+        7034
+      ]
+    },
+    "val": {
+      "0": [
+        12039,
+        13628
+      ],
+      "1": [
+        7075,
+        8155
+      ]
+    },
+    "test": {
+      "0": [
+        13669,
+        15396
+      ],
+      "1": [
+        8196,
+        9097
+      ]
+    }
+  },
+  "effective_bounds": {
+    "train": {
+      "0": [
+        0,
+        11998
+      ],
+      "1": [
+        0,
+        7034
+      ]
+    },
+    "val": {
+      "0": [
+        12059,
+        13628
+      ],
+      "1": [
+        7095,
+        8155
+      ]
+    }
+  },
+  "physical_vehicle_overlap": {
+    "train_val": 0,
+    "train_test": 0,
+    "val_test": 0
+  },
+  "max_nodes": 33,
+  "splits": {
+    "train": {
+      "samples": 36643,
+      "origins": 1892,
+      "targets": 36643,
+      "ic": 12142,
+      "k_ge_2": 3814,
+      "future2_endpoint": 34209,
+      "future4_endpoint": 31778,
+      "future4_complete": 31778,
+      "n_gt_8": 29597,
+      "neighbor_quantiles": {
+        "0": 0.0,
+        "0.1": 5.0,
+        "0.5": 14.0,
+        "0.9": 23.0,
+        "1": 32.0
+      },
+      "by_city": {
+        "0": 29806,
+        "1": 6837
+      }
+    },
+    "val": {
+      "samples": 3855,
+      "origins": 251,
+      "targets": 3855,
+      "ic": 1149,
+      "k_ge_2": 273,
+      "future2_endpoint": 3573,
+      "future4_endpoint": 3285,
+      "future4_complete": 3285,
+      "n_gt_8": 2657,
+      "neighbor_quantiles": {
+        "0": 0.0,
+        "0.1": 4.0,
+        "0.5": 11.0,
+        "0.9": 19.0,
+        "1": 26.0
+      },
+      "by_city": {
+        "0": 3066,
+        "1": 789
+      }
+    }
+  },
+  "thresholds": {
+    "radius_m": 50.0,
+    "closing_mps": 0.5,
+    "tcpa_s": 4.004004004004004,
+    "dcpa_m": 5.0,
+    "following_heading_deg": 30.0,
+    "following_headway_s": 2.0,
+    "following_lateral_m": 2.5,
+    "minimum_speed_mps": 0.5
+  },
+  "files": {
+    "train.npz": {
+      "bytes": 178964591,
+      "sha256": "fa61b328985bc55db1a9540e66d996ecfcb85bef028bee88552bb466f5f96bab"
+    },
+    "val.npz": {
+      "bytes": 15902025,
+      "sha256": "c6444eaff7dfa1c68385d10f527847f51b0bd5e7845be78ee1dc2292bb389dd4"
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "revision": "SIND-IC4-GATE-B-RAJ-MIGRATION-READY-V2",
+  "status": "PASS",
+  "test_accessed": false,
+  "device": "cuda",
+  "checks": {
+    "test_not_constructed": true,
+    "target_slot_zero_active": true,
+    "input_is_20_by_8_by_4": true,
+    "future_is_label_only": true,
+    "raj_weighted_multij_quantum_shape": true,
+    "raj_weighted_multij_quantum_finite": true,
+    "raj_weighted_multij_quantum_padded_invariant": true,
+    "raj_weighted_multij_quantum_loss_and_gradients_finite": true,
+    "raj_multij_johnson_shape": true,
+    "raj_multij_johnson_finite": true,
+    "raj_multij_johnson_padded_invariant": true,
+    "raj_multij_johnson_loss_and_gradients_finite": true,
+    "matched_shared_initialization": true,
+    "same_noncore_parameter_count": true,
+    "all_neighbor_reference_accepts_full_context": true
+  },
+  "parameters": {
+    "raj_weighted_multij_quantum": {
+      "temporal_encoder": 195136,
+      "interaction_core": 126535,
+      "interaction_projection": 24832,
+      "time_embedding": 960,
+      "decoder": 73058,
+      "total": 420521
+    },
+    "raj_multij_johnson": {
+      "temporal_encoder": 195136,
+      "interaction_core": 179201,
+      "interaction_projection": 24832,
+      "time_embedding": 960,
+      "decoder": 73058,
+      "total": 473187
+    }
+  },
+  "shared_initialization_sha256": {
+    "raj_weighted_multij_quantum": {
+      "encoder": "de0c0ccd4cfb9b3dcbf8329a43c8abe9b02f1d56e6272f6c79e6d88f3a6d5107",
+      "interaction_projection": "b87cea65b7a5baebf1e3b4114a8e48c23ea9f19095bf920b4ed8fa837ee0ad0a",
+      "time_embedding": "dc292595b99a360e297f22357be983d2752d1a71df3d397524f8c07ade31627e",
+      "decoder": "60b3856416fc349455b161b8415c0a29e253418191f8f59878f4ee6f6761bffd"
+    },
+    "raj_multij_johnson": {
+      "encoder": "de0c0ccd4cfb9b3dcbf8329a43c8abe9b02f1d56e6272f6c79e6d88f3a6d5107",
+      "interaction_projection": "b87cea65b7a5baebf1e3b4114a8e48c23ea9f19095bf920b4ed8fa837ee0ad0a",
+      "time_embedding": "dc292595b99a360e297f22357be983d2752d1a71df3d397524f8c07ade31627e",
+      "decoder": "60b3856416fc349455b161b8415c0a29e253418191f8f59878f4ee6f6761bffd"
+    }
+  },
+  "all_neighbor_reference_parameters": 319203
+}

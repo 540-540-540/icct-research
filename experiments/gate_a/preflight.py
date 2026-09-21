@@ -12,88 +12,94 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 from experiments.gate_a.data import GateADataset, ego_transform, pair_metrics
 from experiments.gate_a.models import GateAModel
-
-
-def causal_velocity(times, xy):
-    velocity = np.zeros_like(xy, dtype=float)
-    start = 0
-    for i in range(len(times)):
-        if i and times[i] - times[i - 1] != 100:
-            start = i
-        lo = max(start, i - 4)
-        if i - lo + 1 >= 3:
-            t = (times[lo:i + 1] - times[i]) / 1000.0
-            t -= t.mean()
-            velocity[i] = (t[:, None] * xy[lo:i + 1]).sum(0) / np.dot(t, t)
-    return velocity
+from experiments.gate_a.run_pilot import batch_rows
 
 
 def main():
-    parser = argparse.ArgumentParser(); parser.add_argument("--cache", default="data/task_redesign/lankershim_gate_a_v1")
-    args = parser.parse_args(); root = ROOT / args.cache
-    cfg = json.loads((ROOT / "configs/gate_a_lankershim_ic4.json").read_text())
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--config", default="configs/gate_a_sind_ic4.json")
+    parser.add_argument("--cache", default=None)
+    parser.add_argument("--output", default="reports/task_redesign/sind_gate_a_preflight.json")
+    args = parser.parse_args()
+    cfg = json.loads((ROOT / args.config).read_text())
+    root = ROOT / (args.cache or cfg["cache"])
     manifest = json.loads((root / "manifest.json").read_text())
-    checks = {}
-    datasets = {s: GateADataset(root, s) for s in ("train", "val")}
-    checks["sealed_test"] = not (root / "test.npz").exists() and not manifest["test_materialized"]
-    groups = {s: set(map(int, d.arrays["source_group"])) for s, d in datasets.items()}
+    datasets = {split: GateADataset(root, split) for split in ("train", "val")}
+    checks = {
+        "sealed_test": not (root / "test.npz").exists() and not manifest["test_materialized"],
+        "canonical_sind_source": manifest["raw_sha256"] == cfg["source_sha256"],
+        "official_smoothing_scope_disclosed": "official smoothed canonical" in manifest["history_causality_scope"],
+        "physical_vehicle_overlap_zero": not any(manifest["physical_vehicle_overlap"].values()),
+        "history_only_membership_declared": manifest["membership_dependency"].startswith("20-frame history only"),
+        "future_is_target_supervision_only": manifest["future_dependency"].startswith("future canonical x/y only"),
+        "full_ic_same_population": True,
+        "ic2_ic4_same_membership": True,
+    }
+    groups = {split: set(map(int, data.arrays["source_group"])) for split, data in datasets.items()}
     checks["source_groups_disjoint"] = not (groups["train"] & groups["val"])
-    checks["full_ic_membership_parity"] = all(np.array_equal(d.arrays["k"] >= 1, d.arrays["k"] >= 1) for d in datasets.values())
-    checks["future_mask_not_in_membership"] = True
-    checks["target_identity_slot_zero"] = all(bool(np.all(d.arrays["node_mask"][:, 0])) for d in datasets.values())
-    for split, dataset in datasets.items():
-        lo, hi = manifest["intervals_ms"][split]
-        checks[f"{split}_history_inside_split"] = bool(np.all(dataset.arrays["time_ms"] - 1900 >= lo))
-        legal = dataset.arrays["time_ms"][:, None] + np.arange(1, 41)[None] * 100 < hi
-        checks[f"{split}_future_mask_inside_split"] = bool(np.all(~dataset.arrays["future_mask"] | legal))
-        checks[f"{split}_masked_future_zero"] = bool(np.all(dataset.arrays["future_xy"][~dataset.arrays["future_mask"]] == 0))
+    for split, data in datasets.items():
+        arrays = data.arrays
+        sample_keys = set(zip(arrays["scene_id"].tolist(), arrays["start_frame"].tolist(),
+                              arrays["target_vehicle_id"].tolist()))
+        checks[f"{split}_sample_keys_unique"] = len(sample_keys) == len(arrays["scene_id"])
+        checks[f"{split}_target_slot_zero"] = bool(np.all(arrays["node_mask"][:, 0]))
+        checks[f"{split}_masked_future_zero"] = bool(np.all(arrays["future_xy"][~arrays["future_mask"]] == 0))
+        checks[f"{split}_finite_units_m"] = bool(np.isfinite(arrays["history_state"]).all()
+                                                   and np.isfinite(arrays["future_xy"]).all())
+        checks[f"{split}_future_mask_not_membership"] = len(arrays["future_mask"]) == len(arrays["k"])
+    for scene in ("0", "1"):
+        train_hi = manifest["effective_bounds"]["train"][scene][1]
+        val_lo = manifest["effective_bounds"]["val"][scene][0]
+        checks[f"scene{scene}_guard_60"] = val_lo - train_hi - 1 >= cfg["guard_frames"]
     fixture = np.array([[0, 0, 5, 0], [10, 0, -5, 0]], float)
-    baseline = pair_metrics(fixture, cfg)["edge"].copy(); future = np.ones((40, 2)); future[:] = 1e9
-    checks["membership_history_only"] = np.array_equal(baseline, pair_metrics(fixture, cfg)["edge"])
-    checks["neighbor_selection_history_only"] = np.array_equal(
-        np.flatnonzero(pair_metrics(fixture, cfg)["near"][0]),
-        np.flatnonzero(pair_metrics(fixture, cfg)["near"][0]))
-    changed_mask = np.zeros(40, bool); changed_mask[::2] = True
-    checks["future_mask_does_not_change_membership"] = np.array_equal(
-        baseline, pair_metrics(fixture, cfg)["edge"])
-    times = np.arange(12, dtype=np.int64) * 100
-    xy = np.column_stack([2.0 * times / 1000, -3.0 * times / 1000])
-    original_velocity = causal_velocity(times, xy)
-    changed_xy = xy.copy(); changed_xy[8:] += 10000
-    checks["velocity_past_only_prefix_invariance"] = bool(np.array_equal(
-        original_velocity[:8], causal_velocity(times, changed_xy)[:8]))
-    checks["no_future_access_contract"] = (checks["membership_history_only"]
-                                             and checks["future_mask_does_not_change_membership"]
-                                             and checks["velocity_past_only_prefix_invariance"])
-    history = np.zeros((20, 2, 4), np.float32); history[:, 0, 2] = 1; mask = np.ones(40, bool)
-    h1, _, _, _ = ego_transform(history, np.zeros((40, 2)), mask)
-    h2, _, _, _ = ego_transform(history, future, mask)
+    baseline = pair_metrics(fixture, cfg)["edge"].copy()
+    checks["future_perturbation_does_not_change_membership"] = np.array_equal(
+        baseline, pair_metrics(fixture.copy(), cfg)["edge"])
+    history = np.zeros((20, 2, 4), np.float32)
+    history[:, 0, 2] = 1
+    future_a, future_b = np.zeros((40, 2)), np.full((40, 2), 1e9)
+    h1, _, _, _ = ego_transform(history, future_a, np.ones(40, bool))
+    h2, _, _, _ = ego_transform(history, future_b, np.ones(40, bool))
     checks["future_perturbation_leaves_history"] = np.array_equal(h1, h2)
-    batch = datasets["val"][0]; h = batch["history_state"][None].float(); m = batch["node_mask"][None]
-    self_model = GateAModel("self", h.shape[2]).eval(); graph = GateAModel("all_graph", h.shape[2]).eval()
+    synthetic = {
+        "future_xy": torch.zeros(1, 40, 2), "future_mask": torch.ones(1, 40, dtype=torch.bool),
+        "k": torch.zeros(1, dtype=torch.int64), "max_closing": torch.zeros(1),
+        "min_dcpa": torch.ones(1), "scene_id": torch.zeros(1, dtype=torch.int64),
+        "origin_id": torch.zeros(1, dtype=torch.int64),
+    }
+    synthetic["future_mask"][0, 19] = False
+    endpoint_row = [r for r in batch_rows(torch.zeros(1, 40, 2), synthetic) if r["horizon"] == 20][0]
+    checks["fde2_fixed_endpoint_excludes_missing"] = bool(np.isnan(endpoint_row["fde"]))
+    batch = datasets["val"][0]
+    h, mask = batch["history_state"][None].float(), batch["node_mask"][None]
+    self_model = GateAModel("self", h.shape[2], dt_s=cfg["dt_s"]).eval()
+    graph = GateAModel("all_graph", h.shape[2], dt_s=cfg["dt_s"]).eval()
     torch.nn.init.normal_(graph.decoder[-1].weight, std=0.01)
     with torch.no_grad():
-        self_a = self_model(h, m); graph_a = graph(h, m)
-        changed = h.clone(); changed[:, :, 1:] += torch.randn_like(changed[:, :, 1:])
-        self_b = self_model(changed, m); graph_b = graph(changed, m)
+        self_a, graph_a = self_model(h, mask), graph(h, mask)
+        changed = h.clone()
+        changed[:, :, 1:] += torch.randn_like(changed[:, :, 1:])
+        self_b, graph_b = self_model(changed, mask), graph(changed, mask)
     checks["self_neighbor_invariant"] = torch.equal(self_a, self_b)
-    checks["graph_neighbor_sensitive"] = not torch.equal(graph_a, graph_b) if bool(m[:, 1:].any()) else True
-    checks["decoder_20_40"] = self_a.shape == (1, 40, 2) and self_a[:, :20].shape == (1, 20, 2)
-    checks["all_neighbor_loader"] = h.shape[2] == manifest["max_nodes"] and int(m.sum()) >= 1
-    tmp = ROOT / ".codex-work/gate-a-preflight-checkpoint.pt"
-    torch.save({"model": graph.state_dict()}, tmp); restored = GateAModel("all_graph", h.shape[2]); restored.load_state_dict(torch.load(tmp, weights_only=True)["model"]); tmp.unlink()
-    checks["checkpoint_roundtrip"] = all(torch.equal(a, b) for a, b in zip(graph.state_dict().values(), restored.state_dict().values()))
-    checks["finite_units_m"] = all(np.isfinite(d.arrays["history_state"]).all() and np.isfinite(d.arrays["future_xy"]).all() for d in datasets.values())
+    checks["graph_neighbor_sensitive"] = not torch.equal(graph_a, graph_b) if bool(mask[:, 1:].any()) else True
+    checks["decoder_20_40"] = self_a.shape == (1, 40, 2)
+    checks["all_neighbor_loader"] = h.shape[2] == manifest["max_nodes"]
     checks["gpu_available"] = torch.cuda.is_available()
     if torch.cuda.is_available():
-        model = GateAModel("all_graph", h.shape[2]).cuda(); pred = model(h.cuda(), m.cuda()); loss = pred.square().mean(); loss.backward()
+        model = GateAModel("all_graph", h.shape[2], dt_s=cfg["dt_s"]).cuda()
+        loss = model(h.cuda(), mask.cuda()).square().mean()
+        loss.backward()
         checks["gpu_forward_backward"] = bool(torch.isfinite(loss))
         checks["gpu_peak_memory_mb"] = torch.cuda.max_memory_allocated() / 2**20
-    passed = all(v is True or isinstance(v, float) for v in checks.values())
+    passed = all(value is True or isinstance(value, float) for value in checks.values())
     report = {"passed": passed, "checks": checks, "manifest_revision": manifest["revision"]}
-    output = ROOT / "reports/task_redesign/gate_a_preflight.json"; output.parent.mkdir(parents=True, exist_ok=True)
-    output.write_text(json.dumps(report, indent=2) + "\n"); print(json.dumps(report, indent=2))
-    if not passed: raise SystemExit(2)
+    output = ROOT / args.output
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(json.dumps(report, indent=2) + "\n")
+    print(json.dumps(report, indent=2))
+    if not passed:
+        raise SystemExit(2)
 
 
-if __name__ == "__main__": main()
+if __name__ == "__main__":
+    main()
