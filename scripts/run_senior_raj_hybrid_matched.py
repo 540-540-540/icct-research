@@ -84,6 +84,8 @@ def main() -> None:
     parser.add_argument("--position-noise", type=float, default=0.35)
     parser.add_argument("--velocity-noise", type=float, default=0.20)
     parser.add_argument("--quantum-scale", type=float, default=0.15)
+    parser.add_argument("--qgnn-classical-layers", type=int, default=1)
+    parser.add_argument("--validation-only", action="store_true")
     args = parser.parse_args()
 
     if not torch.cuda.is_available():
@@ -95,7 +97,7 @@ def main() -> None:
 
     train_data = MultiTargetSceneDataset(args.cache, "train")
     val_data = MultiTargetSceneDataset(args.cache, "val")
-    test_data = MultiTargetSceneDataset(args.cache, "test")
+    test_data = None if args.validation_only else MultiTargetSceneDataset(args.cache, "test")
     metadata = train_data.metadata
     config = ForecasterConfig(
         history_length=int(metadata["history_length"]),
@@ -125,9 +127,11 @@ def main() -> None:
     )
     independent_state = {key: value.detach().cpu() for key, value in independent.state_dict().items()}
 
+    set_seed(args.seed + 17)
+    classical_model = TargetInteractionGNN(config)
     classical, classical_validation = train_arm(
         "target_interaction_gnn",
-        TargetInteractionGNN(config),
+        classical_model,
         independent_state,
         train_data,
         val_data,
@@ -135,16 +139,18 @@ def main() -> None:
         output_dir,
         device,
     )
+    set_seed(args.seed + 17)
+    quantum_model = SeniorRajQGNN(
+        config,
+        quantum_scale=args.quantum_scale,
+        projection_hidden=128,
+        projection_depth=1,
+        classical_layers=args.qgnn_classical_layers,
+        quantum_first=True,
+    )
     quantum, quantum_validation = train_arm(
         "raj_hybrid_qgnn",
-        SeniorRajQGNN(
-            config,
-            quantum_scale=args.quantum_scale,
-            projection_hidden=128,
-            projection_depth=1,
-            classical_layers=1,
-            quantum_first=True,
-        ),
+        quantum_model,
         independent_state,
         train_data,
         val_data,
@@ -153,13 +159,16 @@ def main() -> None:
         device,
     )
 
-    test_loader = loader(test_data, args.batch_size, args.workers, False, args.seed)
-    classical_test = evaluate(
-        classical, test_loader, device, args.position_noise, args.velocity_noise, args.seed + 2000
-    )
-    quantum_test = evaluate(
-        quantum, test_loader, device, args.position_noise, args.velocity_noise, args.seed + 2000
-    )
+    classical_test = None
+    quantum_test = None
+    if not args.validation_only:
+        test_loader = loader(test_data, args.batch_size, args.workers, False, args.seed)
+        classical_test = evaluate(
+            classical, test_loader, device, args.position_noise, args.velocity_noise, args.seed + 2000
+        )
+        quantum_test = evaluate(
+            quantum, test_loader, device, args.position_noise, args.velocity_noise, args.seed + 2000
+        )
     val_loader = loader(val_data, args.batch_size, args.workers, False, args.seed)
     quantum.set_quantum_scale(0.0)
     quantum_ablated_validation = evaluate(
@@ -176,7 +185,8 @@ def main() -> None:
             "learning_rate": args.learning_rate,
             "quantum_scale": args.quantum_scale,
             "quantum_first": True,
-            "classical_layers_in_qgnn": 1,
+            "classical_layers_in_qgnn": args.qgnn_classical_layers,
+            "validation_only": args.validation_only,
             "raj_core": "RajWeightedMultiJQGNNCore(j=2+j=3, rounds=3)",
             "test_noise_seed": args.seed + 2000,
         },
@@ -194,8 +204,15 @@ def main() -> None:
             "target_interaction_gnn": classical_test,
             "raj_hybrid_qgnn": quantum_test,
         },
-        "qgnn_gain_over_gnn_percent": {
+        "qgnn_gain_over_gnn_percent": None
+        if args.validation_only
+        else {
             metric: 100.0 * (classical_test[metric] - quantum_test[metric]) / classical_test[metric]
+            for metric in ("ade_m", "fde_m")
+        },
+        "qgnn_validation_gain_over_gnn_percent": {
+            metric: 100.0 * (classical_validation[metric] - quantum_validation[metric])
+            / classical_validation[metric]
             for metric in ("ade_m", "fde_m")
         },
         "quantum_validation_gain_over_ablation_percent": {

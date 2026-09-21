@@ -78,6 +78,7 @@ def main() -> None:
 
     checkpoint = torch.load(args.independent_checkpoint, map_location="cpu", weights_only=False)
     base_state = checkpoint["model_state"]
+    set_seed(args.seed + 17)
     model = SeniorRajQGNN(
         config,
         quantum_scale=args.quantum_scale,
