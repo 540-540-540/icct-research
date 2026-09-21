@@ -44,6 +44,7 @@ def main() -> None:
     parser.add_argument("--workers", type=int, default=4)
     parser.add_argument("--batch-size", type=int, default=128)
     parser.add_argument("--epochs", type=int, default=30)
+    parser.add_argument("--frozen-epochs", type=int, default=0)
     parser.add_argument("--learning-rate", type=float, default=4e-4)
     parser.add_argument("--position-noise", type=float, default=0.35)
     parser.add_argument("--velocity-noise", type=float, default=0.20)
@@ -51,6 +52,8 @@ def main() -> None:
     parser.add_argument("--projection-hidden", type=int, default=128)
     parser.add_argument("--projection-depth", type=int, default=1)
     args = parser.parse_args()
+    if args.frozen_epochs < 0 or args.frozen_epochs >= args.epochs:
+        raise ValueError("frozen_epochs must be in [0, epochs)")
 
     if not torch.cuda.is_available():
         raise RuntimeError("CUDA is required")
@@ -88,13 +91,37 @@ def main() -> None:
         for key, value in model.state_dict().items()
         if key.startswith(("core.", "raj_projection."))
     }
+    frozen_validation = None
+    if args.frozen_epochs:
+        for module in (model.history_encoder, model.node_projection, model.time_embedding, model.decoder):
+            for parameter in module.parameters():
+                parameter.requires_grad_(False)
+        model, frozen_validation = train_model(
+            f"senior_raj_qgnn_quantum_only_{args.quantum_scale:g}",
+            model,
+            train_loader,
+            val_loader,
+            device,
+            args.frozen_epochs,
+            args.learning_rate,
+            2e-4,
+            args.position_noise,
+            args.velocity_noise,
+            output_dir / "raj_qgnn_frozen.pt",
+            output_dir / "frozen_training.jsonl",
+            args.seed + 17,
+            graph_weighting=True,
+            use_amp=False,
+        )
+        for parameter in model.parameters():
+            parameter.requires_grad_(True)
     model, active_validation = train_model(
-        f"senior_raj_qgnn_fixed_{args.quantum_scale:g}",
+        f"senior_raj_qgnn_joint_{args.quantum_scale:g}",
         model,
         train_loader,
         val_loader,
         device,
-        args.epochs,
+        args.epochs - args.frozen_epochs,
         args.learning_rate,
         2e-4,
         args.position_noise,
@@ -125,8 +152,11 @@ def main() -> None:
         "quantum_scale": args.quantum_scale,
         "projection_hidden": args.projection_hidden,
         "projection_depth": args.projection_depth,
+        "frozen_epochs": args.frozen_epochs,
+        "joint_epochs": args.epochs - args.frozen_epochs,
         "trainable_parameters": sum(parameter.numel() for parameter in model.parameters() if parameter.requires_grad),
         "quantum_parameter_delta_l2": quantum_parameter_delta,
+        "frozen_validation": frozen_validation,
         "active_validation": active_validation,
         "quantum_ablated_validation": ablated_validation,
         "active_gain_over_ablation_percent": {
