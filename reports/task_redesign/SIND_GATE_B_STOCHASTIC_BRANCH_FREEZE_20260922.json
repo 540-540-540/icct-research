@@ -1,0 +1,30 @@
+{
+  "revision": "SIND-GATE-B-STOCHASTIC-MULTIORDER-FREEZE-V1",
+  "date": "2026-09-22",
+  "source_commit": "84061d3",
+  "test_accessed": false,
+  "development_only": true,
+  "candidate": {
+    "mode": "stochastic_multiscale_quantum_attention",
+    "core_kind": "quantum",
+    "neighbor_budget": "N<=8",
+    "history_seconds": 2.0,
+    "future_seconds": 4.0,
+    "branch_drop_probability": 0.2,
+    "fde_weight": 0.75,
+    "ema_decay": 0.999,
+    "train_samples": 36643,
+    "max_epochs": 40,
+    "patience": 8,
+    "order_seed": 20260921,
+    "dropout_seed": 20260921
+  },
+  "development_seeds": [2026, 2027],
+  "confirmation_seeds": [2028, 2029, 2030],
+  "confirmation_primary_baseline": "Strong Graph N<=8",
+  "success_rule": "Raj ADE and FDE must both be lower than Strong Graph under paired-seed comparison; report all seeds and aggregate dispersion.",
+  "development_results": {
+    "2026": {"ade_m": 1.022715120008204, "fde_m": 2.6805677962016827},
+    "2027": {"ade_m": 1.0202841228671973, "fde_m": 2.6580532020729546}
+  }
+}

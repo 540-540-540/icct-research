@@ -53,3 +53,8 @@ The target decomposition failed because its intermediate endpoint remained inacc
 became dependent on it. It is rejected without a loss-weight sweep. The next transfer uses ModDrop only
 at the j2/j3 quantum readout boundary to prevent cross-order co-adaptation without constraining attention
 entropy or changing inference capacity.
+
+The ModDrop transfer is the first intervention to beat Strong Graph on both ADE and FDE in both
+development seeds. It reduces ADE seed dispersion by about 94% without forcing the two orders to have
+identical attention patterns. The architecture and training recipe are frozen at source commit
+`84061d3` for independent seeds 2028--2030; no test split is opened.

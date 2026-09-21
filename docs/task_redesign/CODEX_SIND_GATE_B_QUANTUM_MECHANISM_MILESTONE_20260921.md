@@ -321,6 +321,37 @@ an inaccurate intermediate target that the decoder relies on, not an ignored aux
 its loss would further constrain the already degraded shared representation; the target-decomposition
 direction is rejected.
 
+### Stochastic multi-order quantum readout
+
+The final development intervention applies ModDrop/StochasticBranch at the quantum-order readout
+boundary. During training, 10% of samples retain only j2, 10% retain only j3, and 80% retain both;
+inverted scaling preserves each branch's expected magnitude. Validation and inference always use both
+branches. Batch order, ordinary dropout stream, and branch-drop stream are fixed across development
+seeds, while all model parameters remain independently initialized.
+
+| Variant | Seed | ADE | FDE | J | Best epoch | Stop epoch |
+|---|---:|---:|---:|---:|---:|---:|
+| Strong Graph N<=8 | 2026 | 1.043666 | 2.707381 | 2.397356 | 23 | 31 |
+| Strong Graph N<=8 | 2027 | 1.028331 | 2.664979 | 2.360821 | 22 | 30 |
+| stochastic multi-order Raj | 2026 | 1.022715 | 2.680568 | 2.362999 | 36 | 40 |
+| stochastic multi-order Raj | 2027 | 1.020284 | 2.658053 | 2.349311 | 24 | 32 |
+
+Raj improves ADE/FDE over Strong Graph by `2.007% / 0.990%` in seed 2026 and
+`0.782% / 0.260%` in seed 2027. Two-seed mean ADE/FDE is `1.021500 / 2.669310`, versus
+Strong Graph `1.035999 / 2.686180`. ADE/FDE sample standard deviation is
+`0.001719 / 0.015920`; the original order-separated candidate was `0.028880 / 0.018362`.
+The intervention therefore reduces ADE initialization dispersion by about 94% while retaining a mean
+FDE advantage.
+
+Mechanism ablations confirm that this is not branch removal. Replacing either order's learned attention
+with mean pooling worsens J from `2.363` to `2.496 / 2.577` in seed 2026 and from `2.349` to
+`2.676 / 2.397` in seed 2027. Order specialization remains: 2026 relies more on j3 selectivity and
+2027 more on j2. However, the extreme entropy split in seed 2027 contracts from `0.616 / 0.854` to
+`0.658 / 0.785`, and the role difference no longer propagates into a large performance difference.
+The supported mechanism statement is therefore: stochastic missing-order training preserves j2/j3
+specialization while preventing the downstream predictor from becoming fragile to one order-specific
+readout.
+
 ## Post-projection normalization control
 
 A paired control tested whether the scale imbalance diagnosed above could be removed by applying
