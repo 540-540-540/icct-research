@@ -218,6 +218,22 @@ The shared version beats Strong Graph on both primary metrics only in seed 2026;
 a portable cure for readout instability and is rejected for the current attention interface. The
 unregularized order-separated model remains the best worst-seed candidate.
 
+A dual readout then combined the shared cross-order quantum message with the two order-separated
+quantum messages. It produced `1.030729 / 2.623526` in seed 2026, beating Strong Graph on ADE/FDE by
+1.240% / 3.097%, but produced `1.032797 / 2.693998` in seed 2027, losing by 0.434% / 1.089%.
+This is a larger seed-dependent role reversal than the unregularized order-separated model. It shows
+that the shared quantum view can materially improve endpoint prediction, but competing shared and
+order-specific readouts are initialization-sensitive. The dual readout is rejected by the worst-seed
+rule; its seed-2026 result is not treated as a method win.
+
+Top-5 EMA checkpoint averaging was tested on the unregularized order-separated model to distinguish
+within-run checkpoint noise from initialization sensitivity. The averaged epochs were
+`25,26,23,24,22` for seed 2026 and `32,36,35,31,29` for seed 2027. Averaged ADE/FDE was
+`1.052034 / 2.728177` and `0.999956 / 2.616751`, respectively. Averaging makes seed 2027 a clear
+two-metric win but makes seed 2026 lose both metrics, increasing rather than reducing the cross-seed
+role reversal. Checkpoint averaging is rejected as the stability fix. The remaining instability is
+between optimization basins, not merely selection noise among neighboring late checkpoints.
+
 ## Post-projection normalization control
 
 A paired control tested whether the scale imbalance diagnosed above could be removed by applying
