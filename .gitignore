@@ -63,6 +63,8 @@ results/senior_raj_curriculum_screen/
 results/senior_raj_hybrid_screen/
 results/senior_raj_quantum_first_screen/
 results/senior_raj_hybrid_matched/
+results/senior_raj_two_classical_screen/
+results/senior_raj_two_classical_final/
 
 # OS/editor noise
 .DS_Store
