@@ -268,6 +268,17 @@ class GateBPlusQuantumModel(nn.Module):
             return prediction, latents
         return prediction
 
+    def initialize_quantum_evolution_near_identity(self, scale: float = 0.01) -> None:
+        """Use a fixed nonzero near-identity start for compound evolutions."""
+        if self.core_kind not in {"quantum", "quantum_wide"}:
+            raise ValueError("near-identity quantum initialization requires a quantum core")
+        with torch.no_grad():
+            for branch_no, branch in enumerate((self.core.j2, self.core.j3)):
+                for layer_no, layer in enumerate(branch.embed_layers):
+                    angles = torch.linspace(-scale, scale, layer.theta.numel(),
+                                            device=layer.theta.device, dtype=layer.theta.dtype)
+                    layer.theta.copy_(angles.roll(branch_no + layer_no))
+
     def parameter_audit(self) -> dict[str, int]:
         groups = {"temporal_encoder": self.encoder, f"{self.core_kind}_interaction_core": self.core,
                   "interaction_projection": self.interaction, "time_embedding": self.time,

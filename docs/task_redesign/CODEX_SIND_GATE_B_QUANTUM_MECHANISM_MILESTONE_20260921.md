@@ -248,6 +248,25 @@ while j3 becomes diffuse. The pooled j2/j3 representations remain complementary 
 `0.255 / 0.204`), ruling out simple branch redundancy. The next intervention therefore targets
 cross-order attention-role stability rather than representation removal or fixed pooling.
 
+### Attention-role balance control
+
+An auxiliary loss that directly matched the normalized j2 and j3 attention entropies was tested at
+weights 0.05 and 0.20. This was a deliberately narrow test of whether the cross-seed role reversal could
+be removed by making the two order-specific selectors similarly concentrated.
+
+| Balance weight | Seed | ADE | FDE | J | Best epoch | Stop epoch |
+|---:|---:|---:|---:|---:|---:|---:|
+| 0.05 | 2026 | 1.050450 | 2.706080 | 2.403490 | 24 | 32 |
+| 0.05 | 2027 | 1.049806 | 2.779758 | 2.439684 | 29 | 37 |
+| 0.20 | 2026 | 1.078048 | 2.778869 | 2.467482 | 22 | 30 |
+| 0.20 | 2027 | 1.016667 | 2.661875 | 2.347605 | 34 | 40 |
+
+Weight 0.05 degrades both seeds. Weight 0.20 makes seed 2027 a two-metric win over Strong Graph but
+substantially degrades seed 2026, increasing rather than reducing initialization sensitivity. The
+forward-distribution constraint is rejected. Complementary orders are allowed to specialize differently;
+subsequent stability interventions act on quantum optimization rather than forcing matched attention
+entropy.
+
 ## Post-projection normalization control
 
 A paired control tested whether the scale imbalance diagnosed above could be removed by applying
