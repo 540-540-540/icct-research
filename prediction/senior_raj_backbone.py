@@ -1,4 +1,4 @@
-"""Raj QGNN drop-in backbone for the reproduced senior Graph-LLM stack."""
+"""Raj interaction replacement with the senior forecaster's shared self path."""
 from __future__ import annotations
 
 from typing import Dict
@@ -7,29 +7,22 @@ import torch
 from torch import nn
 
 from prediction.qgnn_paper_native.raj_paper import RajWeightedMultiJQGNNCore
+from target_interaction_graph import MultiTargetForecaster, build_edge_features
 
 
-class SeniorRajQGNN(nn.Module):
-    """Match TargetInteractionGNN's output contract with a Raj multi-j core."""
+class SeniorRajQGNN(MultiTargetForecaster):
+    """Keep the senior GRU/decoder and replace only graph interaction."""
 
     def __init__(self, config):
-        super().__init__()
-        self.config = config
+        super().__init__(config=config, use_graph=False)
         self.core = RajWeightedMultiJQGNNCore(rounds=3)
-        self.node_projection = nn.Sequential(
+        self.raj_projection = nn.Sequential(
             nn.Linear(64, config.hidden_dim),
             nn.LayerNorm(config.hidden_dim),
             nn.SiLU(),
+            nn.Linear(config.hidden_dim, config.hidden_dim),
         )
-        self.time_embedding = nn.Embedding(config.prediction_length, 24)
-        self.decoder = nn.Sequential(
-            nn.Linear(config.hidden_dim + 24 + 2, config.hidden_dim),
-            nn.SiLU(),
-            nn.Dropout(config.dropout),
-            nn.Linear(config.hidden_dim, config.hidden_dim // 2),
-            nn.SiLU(),
-            nn.Linear(config.hidden_dim // 2, 2),
-        )
+        self.raj_gate = nn.Parameter(torch.zeros(1))
 
     def forward(self, history: torch.Tensor, target_mask: torch.Tensor) -> Dict[str, torch.Tensor]:
         batch, history_length, targets, channels = history.shape
@@ -38,14 +31,28 @@ class SeniorRajQGNN(nn.Module):
         if target_mask.shape != (batch, targets) or target_mask.dtype != torch.bool:
             raise ValueError("Expected boolean target mask [B,N]")
 
-        # Raj's complex matrix exponential must stay in fp32 even when the
-        # frozen backbone is called inside the senior stack's AMP region.
-        with torch.autocast(device_type=history.device.type, enabled=False):
-            readout = self.core(history.float(), target_mask)
-            nodes = self.node_projection(readout) * target_mask[..., None]
-
         last_position = history[:, -1, :, :2]
         last_velocity = history[:, -1, :, 2:4]
+        relative_position = (history[..., :2] - last_position[:, None]) / self.config.position_scale
+        velocity = history[..., 2:4] / self.config.velocity_scale
+        acceleration = torch.diff(velocity, dim=1, prepend=velocity[:, :1]) / self.config.dt
+        encoder_input = torch.cat((relative_position, velocity, acceleration), dim=-1)
+        encoder_input = encoder_input.permute(0, 2, 1, 3).reshape(batch * targets, history_length, 6)
+        _, hidden = self.history_encoder(encoder_input)
+        nodes = hidden[-1].view(batch, targets, self.config.hidden_dim)
+        state_context = torch.cat(
+            (last_position / self.config.position_scale, last_velocity / self.config.velocity_scale), dim=-1
+        )
+        nodes = self.node_projection(torch.cat((nodes, state_context), dim=-1))
+        nodes = nodes * target_mask[..., None]
+
+        # Complex Raj operations stay fp32 when this frozen backbone is later
+        # called from the senior GPT-2 AMP training region.
+        with torch.autocast(device_type=history.device.type, enabled=False):
+            raj = self.core(history.float(), target_mask)
+            interaction = self.raj_projection(raj)
+        nodes = (nodes + torch.tanh(self.raj_gate) * interaction) * target_mask[..., None]
+
         steps = torch.arange(self.config.prediction_length, device=history.device)
         times = (steps.to(history.dtype) + 1.0) * self.config.dt
         constant_velocity = last_velocity[:, :, None, :] * times[None, None, :, None]
@@ -61,33 +68,40 @@ class SeniorRajQGNN(nn.Module):
         residual = self.decoder(decoder_input) * self.config.residual_scale
         displacement = (constant_velocity + residual).permute(0, 2, 1, 3)
         displacement = displacement * target_mask[:, None, :, None]
+        _, distances = build_edge_features(last_position, last_velocity)
         pair_mask = target_mask[:, :, None] & target_mask[:, None, :]
-        attention = pair_mask.to(history.dtype) / pair_mask.sum(-1, keepdim=True).clamp_min(1)
+        adjacency = pair_mask & (distances <= self.config.graph_radius_m)
+        attention = adjacency.to(history.dtype) / adjacency.sum(-1, keepdim=True).clamp_min(1)
         return {
             "displacement": displacement,
             "future_position": last_position[:, None] + displacement,
             "node_features": nodes,
             "attention": attention,
-            "adjacency": pair_mask,
+            "adjacency": adjacency,
         }
 
 
 def _self_check() -> None:
-    from target_interaction_graph import ForecasterConfig
+    from target_interaction_graph import ForecasterConfig, IndependentGRUForecaster
 
     torch.manual_seed(7)
-    model = SeniorRajQGNN(ForecasterConfig(dropout=0.0)).eval()
+    config = ForecasterConfig(dropout=0.0)
+    base = IndependentGRUForecaster(config).eval()
+    model = SeniorRajQGNN(config).eval()
+    missing, unexpected = model.load_state_dict(base.state_dict(), strict=False)
+    assert not unexpected
+    assert missing and all(key.startswith(("core.", "raj_projection.", "raj_gate")) for key in missing)
     history = torch.randn(2, 20, 5, 4)
     mask = torch.tensor([[1, 1, 1, 1, 0], [1, 1, 1, 0, 0]], dtype=torch.bool)
+    base_output = base(history, mask)
     output = model(history, mask)
+    assert torch.equal(output["future_position"], base_output["future_position"])
     assert output["node_features"].shape == (2, 5, 128)
-    assert output["future_position"].shape == (2, 20, 5, 2)
     assert torch.isfinite(output["future_position"]).all()
-    assert torch.count_nonzero(output["displacement"] * (~mask[:, None, :, None])) == 0
     permutation = torch.tensor([2, 0, 3, 1, 4])
     permuted = model(history[:, :, permutation], mask[:, permutation])["future_position"]
     assert torch.allclose(permuted, output["future_position"][:, :, permutation], atol=2e-4, rtol=2e-4)
-    print("senior Raj backbone self-check passed")
+    print("warm-started senior Raj backbone self-check passed")
 
 
 if __name__ == "__main__":

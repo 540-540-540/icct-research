@@ -56,6 +56,7 @@ wandb/
 runs/
 results/senior_raj_stack/
 results/senior_raj_matched/
+results/senior_raj_warmstarted/
 
 # OS/editor noise
 .DS_Store

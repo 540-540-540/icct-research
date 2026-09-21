@@ -19,7 +19,7 @@ from MultiTargetTimeLLM import MultiTargetGraphLLM
 from multitarget_scene_dataset import MultiTargetSceneDataset
 from run_multitarget_experiment import evaluate, set_seed, train_model
 from run_multitarget_graph_llm import train_graph_llm
-from target_interaction_graph import ForecasterConfig
+from target_interaction_graph import ForecasterConfig, IndependentGRUForecaster
 from prediction.senior_raj_backbone import SeniorRajQGNN
 
 
@@ -41,8 +41,9 @@ def main() -> None:
     parser.add_argument("--output-dir", required=True)
     parser.add_argument("--seed", type=int, required=True)
     parser.add_argument("--workers", type=int, default=4)
-    parser.add_argument("--raj-batch-size", type=int, default=24)
+    parser.add_argument("--phase1-batch-size", type=int, default=128)
     parser.add_argument("--llm-batch-size", type=int, default=24)
+    parser.add_argument("--independent-epochs", type=int, default=35)
     parser.add_argument("--raj-epochs", type=int, default=30)
     parser.add_argument("--llm-epochs", type=int, default=16)
     parser.add_argument("--raj-learning-rate", type=float, default=4e-4)
@@ -68,11 +69,35 @@ def main() -> None:
         dt=float(metadata["dt"]),
         hidden_dim=128,
     )
-    train_raj = loader(train_data, args.raj_batch_size, args.workers, True, args.seed)
-    val_raj = loader(val_data, args.raj_batch_size, args.workers, False, args.seed)
-    test_raj = loader(test_data, args.raj_batch_size, args.workers, False, args.seed)
+    train_raj = loader(train_data, args.phase1_batch_size, args.workers, True, args.seed)
+    val_raj = loader(val_data, args.phase1_batch_size, args.workers, False, args.seed)
+    test_raj = loader(test_data, args.phase1_batch_size, args.workers, False, args.seed)
 
+    independent = IndependentGRUForecaster(config)
+    independent, independent_validation = train_model(
+        "independent_gru",
+        independent,
+        train_raj,
+        val_raj,
+        device,
+        args.independent_epochs,
+        1e-3,
+        1e-4,
+        args.position_noise,
+        args.velocity_noise,
+        output_dir / "independent_gru.pt",
+        output_dir / "independent_training.jsonl",
+        args.seed,
+        graph_weighting=False,
+    )
+    independent_test = evaluate(
+        independent, test_raj, device, args.position_noise, args.velocity_noise, args.seed + 2000
+    )
     raj = SeniorRajQGNN(config)
+    missing, unexpected = raj.load_state_dict(independent.state_dict(), strict=False)
+    allowed = ("core.", "raj_projection.", "raj_gate")
+    if unexpected or any(not key.startswith(allowed) for key in missing):
+        raise RuntimeError(f"Unexpected Raj warm-start mismatch: missing={missing} unexpected={unexpected}")
     raj, raj_validation = train_model(
         "senior_raj_qgnn",
         raj,
@@ -146,10 +171,12 @@ def main() -> None:
         "seed": args.seed,
         "protocol": {
             "cache": args.cache,
+            "same_independent_gru_warm_start_as_senior_gnn": True,
             "same_motion_token_gpt2": True,
             "raj_core": "RajWeightedMultiJQGNNCore(j=2+j=3, rounds=3)",
             "test_noise_seed": args.seed + 2000,
         },
+        "independent_gru": {"validation": independent_validation, "test": independent_test},
         "raj_qgnn": {"validation": raj_validation, "test": raj_test},
         "raj_graph_motion_token_gpt2": {"validation": llm_validation, "test": llm_test},
         "senior_seed2026_reference": reference,
