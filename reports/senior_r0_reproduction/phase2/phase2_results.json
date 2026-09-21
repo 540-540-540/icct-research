@@ -1,0 +1,59 @@
+{
+  "phase": "graph_motion_token_gpt2_gate",
+  "device": "NVIDIA GeForce RTX 4090",
+  "model": {
+    "llm": "local GPT-2",
+    "llm_layers": 4,
+    "adaptation": "LoRA rank 8",
+    "tokenization": "uncertainty-guided agent-centric motion tokens",
+    "parameter_summary": {
+      "trainable": 2505958,
+      "total": 70643348
+    }
+  },
+  "validation": {
+    "ade_m": 0.5479971731126014,
+    "fde_m": 1.1047327293842333,
+    "interaction_ade_m": 0.5348984025285051,
+    "interaction_fde_m": 1.076638092865815,
+    "collision_rate": 0.004083333333333333,
+    "ground_truth_collision_rate": 0.0010833333333333333,
+    "excess_collision_rate": 0.0031666666666666666
+  },
+  "test": {
+    "independent_gru": {
+      "ade_m": 0.7003655487699835,
+      "fde_m": 1.4703460928886438,
+      "interaction_ade_m": 0.6732393860251591,
+      "interaction_fde_m": 1.411726438523442,
+      "collision_rate": 0.006208333333333333,
+      "ground_truth_collision_rate": 0.000875,
+      "excess_collision_rate": 0.005625
+    },
+    "target_interaction_gnn": {
+      "ade_m": 0.6196326046978363,
+      "fde_m": 1.252823861825558,
+      "interaction_ade_m": 0.5954018534919029,
+      "interaction_fde_m": 1.2023749488843805,
+      "collision_rate": 0.002375,
+      "ground_truth_collision_rate": 0.000875,
+      "excess_collision_rate": 0.0019166666666666666
+    },
+    "graph_motion_token_gpt2": {
+      "ade_m": 0.5911531277186552,
+      "fde_m": 1.195073048045906,
+      "interaction_ade_m": 0.5664654475310457,
+      "interaction_fde_m": 1.1442785500403783,
+      "collision_rate": 0.00375,
+      "ground_truth_collision_rate": 0.000875,
+      "excess_collision_rate": 0.0032916666666666667
+    }
+  },
+  "relative_gain_percent": {
+    "ade_vs_gnn": 4.596187605890926,
+    "fde_vs_gnn": 4.609651487280918,
+    "interaction_ade_vs_gnn": 4.859979153768412
+  },
+  "llm_gate_passed": true,
+  "gate_rule": "Graph+LLM test ADE and FDE must both be lower than the accepted GNN."
+}

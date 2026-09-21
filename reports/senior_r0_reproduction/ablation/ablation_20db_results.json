@@ -1,0 +1,238 @@
+{
+  "experiment": "multi_target_graph_llm_component_ablation",
+  "device": "NVIDIA GeForce RTX 4090",
+  "seed": 2026,
+  "variants": {
+    "full_retrained": {
+      "variant": "full_retrained",
+      "description": "Full model retrained under the identical empirically calibrated 20 dB noise.",
+      "model_options": {
+        "graph_backbone": "TargetInteractionGNN",
+        "config": "ForecasterConfig",
+        "llm_layers": 4,
+        "lora_rank": 8
+      },
+      "token_loss_weight": 0.035,
+      "training_noise": {
+        "snr_db": 20,
+        "position_sigma_m": 0.3391253806298064,
+        "velocity_sigma_mps": 0.2
+      },
+      "parameter_summary": {
+        "trainable": 2505958,
+        "total": 70643348
+      },
+      "validation": {
+        "ade_m": 0.5460698776317237,
+        "fde_m": 1.1039277405163381,
+        "interaction_ade_m": 0.5331436404666385,
+        "interaction_fde_m": 1.0762913249247783,
+        "collision_rate": 0.004,
+        "ground_truth_collision_rate": 0.0010833333333333333,
+        "excess_collision_rate": 0.0030416666666666665
+      },
+      "test_20db": {
+        "ade_m": 0.5894733964779149,
+        "fde_m": 1.19413846824503,
+        "interaction_ade_m": 0.5650166353822348,
+        "interaction_fde_m": 1.143803606539906,
+        "collision_rate": 0.003958333333333334,
+        "ground_truth_collision_rate": 0.000875,
+        "excess_collision_rate": 0.0035
+      }
+    },
+    "without_uncertainty": {
+      "variant": "without_uncertainty",
+      "description": "Replace the learned uncertainty temperature with a fixed 0.22 temperature.",
+      "model_options": {
+        "graph_backbone": "TargetInteractionGNN",
+        "config": "ForecasterConfig",
+        "llm_layers": 4,
+        "lora_rank": 8,
+        "use_uncertainty": false
+      },
+      "token_loss_weight": 0.035,
+      "training_noise": {
+        "snr_db": 20,
+        "position_sigma_m": 0.3391253806298064,
+        "velocity_sigma_mps": 0.2
+      },
+      "parameter_summary": {
+        "trainable": 2505958,
+        "total": 70643348
+      },
+      "validation": {
+        "ade_m": 0.5464712839494194,
+        "fde_m": 1.103017436194703,
+        "interaction_ade_m": 0.5336020758551521,
+        "interaction_fde_m": 1.075527470769109,
+        "collision_rate": 0.004166666666666667,
+        "ground_truth_collision_rate": 0.0010833333333333333,
+        "excess_collision_rate": 0.0033333333333333335
+      },
+      "test_20db": {
+        "ade_m": 0.5913306013988423,
+        "fde_m": 1.1969534170535592,
+        "interaction_ade_m": 0.5666432134670014,
+        "interaction_fde_m": 1.1466945122408791,
+        "collision_rate": 0.0031666666666666666,
+        "ground_truth_collision_rate": 0.000875,
+        "excess_collision_rate": 0.0027083333333333334
+      }
+    },
+    "without_soft_token": {
+      "variant": "without_soft_token",
+      "description": "Replace each soft motion-token distribution with its hard argmax token.",
+      "model_options": {
+        "graph_backbone": "TargetInteractionGNN",
+        "config": "ForecasterConfig",
+        "llm_layers": 4,
+        "lora_rank": 8,
+        "use_soft_tokens": false
+      },
+      "token_loss_weight": 0.035,
+      "training_noise": {
+        "snr_db": 20,
+        "position_sigma_m": 0.3391253806298064,
+        "velocity_sigma_mps": 0.2
+      },
+      "parameter_summary": {
+        "trainable": 2505958,
+        "total": 70643348
+      },
+      "validation": {
+        "ade_m": 0.5578842042887515,
+        "fde_m": 1.130336926947771,
+        "interaction_ade_m": 0.5449603825749578,
+        "interaction_fde_m": 1.1019082237449853,
+        "collision_rate": 0.004291666666666667,
+        "ground_truth_collision_rate": 0.0010833333333333333,
+        "excess_collision_rate": 0.003375
+      },
+      "test_20db": {
+        "ade_m": 0.6015035758391762,
+        "fde_m": 1.2210555676982842,
+        "interaction_ade_m": 0.5761739714280031,
+        "interaction_fde_m": 1.16897157965511,
+        "collision_rate": 0.0031666666666666666,
+        "ground_truth_collision_rate": 0.000875,
+        "excess_collision_rate": 0.0027083333333333334
+      }
+    },
+    "without_graph_context": {
+      "variant": "without_graph_context",
+      "description": "Remove graph node context from the LLM token sequence and correction head.",
+      "model_options": {
+        "graph_backbone": "TargetInteractionGNN",
+        "config": "ForecasterConfig",
+        "llm_layers": 4,
+        "lora_rank": 8,
+        "use_graph_context": false
+      },
+      "token_loss_weight": 0.035,
+      "training_noise": {
+        "snr_db": 20,
+        "position_sigma_m": 0.3391253806298064,
+        "velocity_sigma_mps": 0.2
+      },
+      "parameter_summary": {
+        "trainable": 2505958,
+        "total": 70643348
+      },
+      "validation": {
+        "ade_m": 0.5721182380149801,
+        "fde_m": 1.1550624459972527,
+        "interaction_ade_m": 0.5585452128642314,
+        "interaction_fde_m": 1.1257395135003168,
+        "collision_rate": 0.003958333333333334,
+        "ground_truth_collision_rate": 0.0010833333333333333,
+        "excess_collision_rate": 0.0030416666666666665
+      },
+      "test_20db": {
+        "ade_m": 0.6178511708521396,
+        "fde_m": 1.2508601784837547,
+        "interaction_ade_m": 0.5922173564404528,
+        "interaction_fde_m": 1.1988583716953287,
+        "collision_rate": 0.0037916666666666667,
+        "ground_truth_collision_rate": 0.000875,
+        "excess_collision_rate": 0.0032916666666666667
+      }
+    },
+    "without_token_loss": {
+      "variant": "without_token_loss",
+      "description": "Remove the future motion-token auxiliary cross-entropy loss.",
+      "model_options": {
+        "graph_backbone": "TargetInteractionGNN",
+        "config": "ForecasterConfig",
+        "llm_layers": 4,
+        "lora_rank": 8
+      },
+      "token_loss_weight": 0.0,
+      "training_noise": {
+        "snr_db": 20,
+        "position_sigma_m": 0.3391253806298064,
+        "velocity_sigma_mps": 0.2
+      },
+      "parameter_summary": {
+        "trainable": 2505958,
+        "total": 70643348
+      },
+      "validation": {
+        "ade_m": 0.5594283213022939,
+        "fde_m": 1.1332637232750506,
+        "interaction_ade_m": 0.5463040857263514,
+        "interaction_fde_m": 1.1049830751161318,
+        "collision_rate": 0.0037083333333333334,
+        "ground_truth_collision_rate": 0.0010833333333333333,
+        "excess_collision_rate": 0.0027916666666666667
+      },
+      "test_20db": {
+        "ade_m": 0.6031151542957983,
+        "fde_m": 1.224831169153653,
+        "interaction_ade_m": 0.5780012132723896,
+        "interaction_fde_m": 1.1732751550311333,
+        "collision_rate": 0.0033333333333333335,
+        "ground_truth_collision_rate": 0.000875,
+        "excess_collision_rate": 0.002916666666666667
+      }
+    },
+    "without_lora": {
+      "variant": "without_lora",
+      "description": "Keep GPT-2 frozen and remove all LoRA adapters.",
+      "model_options": {
+        "graph_backbone": "TargetInteractionGNN",
+        "config": "ForecasterConfig",
+        "llm_layers": 4,
+        "lora_rank": 0
+      },
+      "token_loss_weight": 0.035,
+      "training_noise": {
+        "snr_db": 20,
+        "position_sigma_m": 0.3391253806298064,
+        "velocity_sigma_mps": 0.2
+      },
+      "parameter_summary": {
+        "trainable": 2235622,
+        "total": 70373012
+      },
+      "validation": {
+        "ade_m": 0.5475152005168673,
+        "fde_m": 1.1062350758433455,
+        "interaction_ade_m": 0.5343701462204392,
+        "interaction_fde_m": 1.0780212072423987,
+        "collision_rate": 0.0037083333333333334,
+        "ground_truth_collision_rate": 0.0010833333333333333,
+        "excess_collision_rate": 0.0027916666666666667
+      },
+      "test_20db": {
+        "ade_m": 0.5912535753008287,
+        "fde_m": 1.196282158192358,
+        "interaction_ade_m": 0.5663608094992261,
+        "interaction_fde_m": 1.1455449767720298,
+        "collision_rate": 0.003,
+        "ground_truth_collision_rate": 0.000875,
+        "excess_collision_rate": 0.0025416666666666665
+      }
+    }
+  }
+}

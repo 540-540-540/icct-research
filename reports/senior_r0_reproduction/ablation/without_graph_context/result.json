@@ -1,0 +1,39 @@
+{
+  "variant": "without_graph_context",
+  "description": "Remove graph node context from the LLM token sequence and correction head.",
+  "model_options": {
+    "graph_backbone": "TargetInteractionGNN",
+    "config": "ForecasterConfig",
+    "llm_layers": 4,
+    "lora_rank": 8,
+    "use_graph_context": false
+  },
+  "token_loss_weight": 0.035,
+  "training_noise": {
+    "snr_db": 20,
+    "position_sigma_m": 0.3391253806298064,
+    "velocity_sigma_mps": 0.2
+  },
+  "parameter_summary": {
+    "trainable": 2505958,
+    "total": 70643348
+  },
+  "validation": {
+    "ade_m": 0.5721182380149801,
+    "fde_m": 1.1550624459972527,
+    "interaction_ade_m": 0.5585452128642314,
+    "interaction_fde_m": 1.1257395135003168,
+    "collision_rate": 0.003958333333333334,
+    "ground_truth_collision_rate": 0.0010833333333333333,
+    "excess_collision_rate": 0.0030416666666666665
+  },
+  "test_20db": {
+    "ade_m": 0.6178511708521396,
+    "fde_m": 1.2508601784837547,
+    "interaction_ade_m": 0.5922173564404528,
+    "interaction_fde_m": 1.1988583716953287,
+    "collision_rate": 0.0037916666666666667,
+    "ground_truth_collision_rate": 0.000875,
+    "excess_collision_rate": 0.0032916666666666667
+  }
+}

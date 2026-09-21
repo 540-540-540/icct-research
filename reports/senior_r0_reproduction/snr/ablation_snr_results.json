@@ -1,0 +1,371 @@
+{
+  "experiment": "multi_target_graph_llm_ablation_snr",
+  "device": "NVIDIA GeForce RTX 4090",
+  "snr_db": [
+    5,
+    10,
+    15,
+    20
+  ],
+  "noise_map": {
+    "5": {
+      "position_sigma_m": 0.7557223877999647,
+      "velocity_sigma_mps": 0.4456890760558679
+    },
+    "10": {
+      "position_sigma_m": 0.5123031086987804,
+      "velocity_sigma_mps": 0.3021319771155772
+    },
+    "15": {
+      "position_sigma_m": 0.48241662565787996,
+      "velocity_sigma_mps": 0.28450635264276614
+    },
+    "20": {
+      "position_sigma_m": 0.3391253806298064,
+      "velocity_sigma_mps": 0.2
+    }
+  },
+  "same_test_noise_seed": 4026,
+  "parameter_summary": {
+    "full_model": {
+      "trainable": 2505958,
+      "total": 70643348
+    },
+    "without_uncertainty": {
+      "trainable": 2505958,
+      "total": 70643348
+    },
+    "without_soft_token": {
+      "trainable": 2505958,
+      "total": 70643348
+    },
+    "without_graph_context": {
+      "trainable": 2505958,
+      "total": 70643348
+    },
+    "without_token_loss": {
+      "trainable": 2505958,
+      "total": 70643348
+    },
+    "without_lora": {
+      "trainable": 2235622,
+      "total": 70373012
+    }
+  },
+  "test": {
+    "5": {
+      "full_model": {
+        "ade_m": 0.8338600449735564,
+        "fde_m": 1.5227506357884855,
+        "interaction_ade_m": 0.8086966978495257,
+        "interaction_fde_m": 1.4711860488767834,
+        "collision_rate": 0.020958333333333332,
+        "ground_truth_collision_rate": 0.000875,
+        "excess_collision_rate": 0.020291666666666666
+      },
+      "without_uncertainty": {
+        "ade_m": 0.8353412316100468,
+        "fde_m": 1.525500399117433,
+        "interaction_ade_m": 0.8097622104260211,
+        "interaction_fde_m": 1.4735401865228717,
+        "collision_rate": 0.018375,
+        "ground_truth_collision_rate": 0.000875,
+        "excess_collision_rate": 0.01775
+      },
+      "without_soft_token": {
+        "ade_m": 0.8467346083736735,
+        "fde_m": 1.5544505580914718,
+        "interaction_ade_m": 0.8212756545684566,
+        "interaction_fde_m": 1.5018434385297472,
+        "collision_rate": 0.01879166666666667,
+        "ground_truth_collision_rate": 0.000875,
+        "excess_collision_rate": 0.018166666666666668
+      },
+      "without_graph_context": {
+        "ade_m": 0.8682330732755651,
+        "fde_m": 1.5874125319778458,
+        "interaction_ade_m": 0.8424593815632242,
+        "interaction_fde_m": 1.5348872674298866,
+        "collision_rate": 0.02033333333333333,
+        "ground_truth_collision_rate": 0.000875,
+        "excess_collision_rate": 0.019708333333333335
+      },
+      "without_token_loss": {
+        "ade_m": 0.8521848822849194,
+        "fde_m": 1.5619947793071036,
+        "interaction_ade_m": 0.8269930786274261,
+        "interaction_fde_m": 1.5103682110235008,
+        "collision_rate": 0.02033333333333333,
+        "ground_truth_collision_rate": 0.000875,
+        "excess_collision_rate": 0.01975
+      },
+      "without_lora": {
+        "ade_m": 0.8321193976859668,
+        "fde_m": 1.5205082028019914,
+        "interaction_ade_m": 0.8066928521396111,
+        "interaction_fde_m": 1.4682630236151597,
+        "collision_rate": 0.019208333333333334,
+        "ground_truth_collision_rate": 0.000875,
+        "excess_collision_rate": 0.018583333333333334
+      }
+    },
+    "10": {
+      "full_model": {
+        "ade_m": 0.6683209053552663,
+        "fde_m": 1.2903549328922832,
+        "interaction_ade_m": 0.6435831884793899,
+        "interaction_fde_m": 1.2392761389506506,
+        "collision_rate": 0.007333333333333333,
+        "ground_truth_collision_rate": 0.000875,
+        "excess_collision_rate": 0.006791666666666666
+      },
+      "without_uncertainty": {
+        "ade_m": 0.6703260939491886,
+        "fde_m": 1.29339057560661,
+        "interaction_ade_m": 0.645253950073737,
+        "interaction_fde_m": 1.2421514054979281,
+        "collision_rate": 0.006416666666666667,
+        "ground_truth_collision_rate": 0.000875,
+        "excess_collision_rate": 0.005916666666666666
+      },
+      "without_soft_token": {
+        "ade_m": 0.6817799897283283,
+        "fde_m": 1.3206507118166215,
+        "interaction_ade_m": 0.6563472858687391,
+        "interaction_fde_m": 1.2680791328045835,
+        "collision_rate": 0.006291666666666667,
+        "ground_truth_collision_rate": 0.000875,
+        "excess_collision_rate": 0.00575
+      },
+      "without_graph_context": {
+        "ade_m": 0.7038896924474142,
+        "fde_m": 1.3613216984758303,
+        "interaction_ade_m": 0.678186153197606,
+        "interaction_fde_m": 1.3089978242928262,
+        "collision_rate": 0.0057083333333333335,
+        "ground_truth_collision_rate": 0.000875,
+        "excess_collision_rate": 0.005166666666666667
+      },
+      "without_token_loss": {
+        "ade_m": 0.686316077454219,
+        "fde_m": 1.328736885853087,
+        "interaction_ade_m": 0.6611670515615953,
+        "interaction_fde_m": 1.276865092301272,
+        "collision_rate": 0.006833333333333334,
+        "ground_truth_collision_rate": 0.000875,
+        "excess_collision_rate": 0.006333333333333333
+      },
+      "without_lora": {
+        "ade_m": 0.6691013175518536,
+        "fde_m": 1.292038108548098,
+        "interaction_ade_m": 0.6439760060799073,
+        "interaction_fde_m": 1.240398475457011,
+        "collision_rate": 0.007166666666666667,
+        "ground_truth_collision_rate": 0.000875,
+        "excess_collision_rate": 0.006666666666666667
+      }
+    },
+    "15": {
+      "full_model": {
+        "ade_m": 0.6526358398975848,
+        "fde_m": 1.2701877850550407,
+        "interaction_ade_m": 0.6279377239840402,
+        "interaction_fde_m": 1.2192553722952295,
+        "collision_rate": 0.0067083333333333335,
+        "ground_truth_collision_rate": 0.000875,
+        "excess_collision_rate": 0.006166666666666667
+      },
+      "without_uncertainty": {
+        "ade_m": 0.6545837570577367,
+        "fde_m": 1.2729509263212127,
+        "interaction_ade_m": 0.6296096504921712,
+        "interaction_fde_m": 1.2220578690599986,
+        "collision_rate": 0.005583333333333333,
+        "ground_truth_collision_rate": 0.000875,
+        "excess_collision_rate": 0.005083333333333333
+      },
+      "without_soft_token": {
+        "ade_m": 0.66576162386624,
+        "fde_m": 1.2998169786480585,
+        "interaction_ade_m": 0.6403476391748567,
+        "interaction_fde_m": 1.2474162325697842,
+        "collision_rate": 0.0055,
+        "ground_truth_collision_rate": 0.000875,
+        "excess_collision_rate": 0.005
+      },
+      "without_graph_context": {
+        "ade_m": 0.6870909231368867,
+        "fde_m": 1.3389507525022395,
+        "interaction_ade_m": 0.6614224722342339,
+        "interaction_fde_m": 1.2867926120095476,
+        "collision_rate": 0.005291666666666667,
+        "ground_truth_collision_rate": 0.000875,
+        "excess_collision_rate": 0.00475
+      },
+      "without_token_loss": {
+        "ade_m": 0.6699361082369333,
+        "fde_m": 1.307250927774751,
+        "interaction_ade_m": 0.6447724279180176,
+        "interaction_fde_m": 1.2554833119309794,
+        "collision_rate": 0.005791666666666666,
+        "ground_truth_collision_rate": 0.000875,
+        "excess_collision_rate": 0.005333333333333333
+      },
+      "without_lora": {
+        "ade_m": 0.6534538025104224,
+        "fde_m": 1.2715571680037425,
+        "interaction_ade_m": 0.6283621480145792,
+        "interaction_fde_m": 1.2201076064081091,
+        "collision_rate": 0.006375,
+        "ground_truth_collision_rate": 0.000875,
+        "excess_collision_rate": 0.005875
+      }
+    },
+    "20": {
+      "full_model": {
+        "ade_m": 0.5894733964779149,
+        "fde_m": 1.19413846824503,
+        "interaction_ade_m": 0.5650166353822348,
+        "interaction_fde_m": 1.143803606539906,
+        "collision_rate": 0.003958333333333334,
+        "ground_truth_collision_rate": 0.000875,
+        "excess_collision_rate": 0.0035
+      },
+      "without_uncertainty": {
+        "ade_m": 0.5913306013988423,
+        "fde_m": 1.1969534170535592,
+        "interaction_ade_m": 0.5666432134670014,
+        "interaction_fde_m": 1.1466945122408791,
+        "collision_rate": 0.0031666666666666666,
+        "ground_truth_collision_rate": 0.000875,
+        "excess_collision_rate": 0.0027083333333333334
+      },
+      "without_soft_token": {
+        "ade_m": 0.6015035758391762,
+        "fde_m": 1.2210555676982842,
+        "interaction_ade_m": 0.5761739714280031,
+        "interaction_fde_m": 1.16897157965511,
+        "collision_rate": 0.0031666666666666666,
+        "ground_truth_collision_rate": 0.000875,
+        "excess_collision_rate": 0.0027083333333333334
+      },
+      "without_graph_context": {
+        "ade_m": 0.6178511708521396,
+        "fde_m": 1.2508601784837547,
+        "interaction_ade_m": 0.5922173564404528,
+        "interaction_fde_m": 1.1988583716953287,
+        "collision_rate": 0.0037916666666666667,
+        "ground_truth_collision_rate": 0.000875,
+        "excess_collision_rate": 0.0032916666666666667
+      },
+      "without_token_loss": {
+        "ade_m": 0.6031151542957983,
+        "fde_m": 1.224831169153653,
+        "interaction_ade_m": 0.5780012132723896,
+        "interaction_fde_m": 1.1732751550311333,
+        "collision_rate": 0.0033333333333333335,
+        "ground_truth_collision_rate": 0.000875,
+        "excess_collision_rate": 0.002916666666666667
+      },
+      "without_lora": {
+        "ade_m": 0.5912535753008287,
+        "fde_m": 1.196282158192358,
+        "interaction_ade_m": 0.5663608094992261,
+        "interaction_fde_m": 1.1455449767720298,
+        "collision_rate": 0.003,
+        "ground_truth_collision_rate": 0.000875,
+        "excess_collision_rate": 0.0025416666666666665
+      }
+    }
+  },
+  "degradation_vs_full_percent": {
+    "5": {
+      "without_uncertainty": {
+        "ade_increase_percent": 0.1776301245537446,
+        "fde_increase_percent": 0.1805787017467676
+      },
+      "without_soft_token": {
+        "ade_increase_percent": 1.5439717345523432,
+        "fde_increase_percent": 2.081754002129969
+      },
+      "without_graph_context": {
+        "ade_increase_percent": 4.122157969938321,
+        "fde_increase_percent": 4.24638773215013
+      },
+      "without_token_loss": {
+        "ade_increase_percent": 2.1975914809473993,
+        "fde_increase_percent": 2.5771877940013077
+      },
+      "without_lora": {
+        "ade_increase_percent": -0.20874573593999252,
+        "fde_increase_percent": -0.14726199640251209
+      }
+    },
+    "10": {
+      "without_uncertainty": {
+        "ade_increase_percent": 0.3000337978139966,
+        "fde_increase_percent": 0.2352564117783072
+      },
+      "without_soft_token": {
+        "ade_increase_percent": 2.0138655345379917,
+        "fde_increase_percent": 2.347863998662093
+      },
+      "without_graph_context": {
+        "ade_increase_percent": 5.322111998462799,
+        "fde_increase_percent": 5.499786436626215
+      },
+      "without_token_loss": {
+        "ade_increase_percent": 2.6925945237919415,
+        "fde_increase_percent": 2.9745267741777126
+      },
+      "without_lora": {
+        "ade_increase_percent": 0.11677207615890127,
+        "fde_increase_percent": 0.13044284273336385
+      }
+    },
+    "15": {
+      "without_uncertainty": {
+        "ade_increase_percent": 0.2984692290968339,
+        "fde_increase_percent": 0.21753801277912682
+      },
+      "without_soft_token": {
+        "ade_increase_percent": 2.011195703060843,
+        "fde_increase_percent": 2.3326624568141185
+      },
+      "without_graph_context": {
+        "ade_increase_percent": 5.27937344732842,
+        "fde_increase_percent": 5.413606417591168
+      },
+      "without_token_loss": {
+        "ade_increase_percent": 2.6508302611856798,
+        "fde_increase_percent": 2.917926243331358
+      },
+      "without_lora": {
+        "ade_increase_percent": 0.12533216272124723,
+        "fde_increase_percent": 0.10780948807836904
+      }
+    },
+    "20": {
+      "without_uncertainty": {
+        "ade_increase_percent": 0.3150617028731386,
+        "fde_increase_percent": 0.23573051897960978
+      },
+      "without_soft_token": {
+        "ade_increase_percent": 2.0408349949533484,
+        "fde_increase_percent": 2.254102029960811
+      },
+      "without_graph_context": {
+        "ade_increase_percent": 4.814089074041517,
+        "fde_increase_percent": 4.750011137492791
+      },
+      "without_token_loss": {
+        "ade_increase_percent": 2.314227902292544,
+        "fde_increase_percent": 2.5702798900474852
+      },
+      "without_lora": {
+        "ade_increase_percent": 0.301994769153337,
+        "fde_increase_percent": 0.17951770287397442
+      }
+    }
+  }
+}

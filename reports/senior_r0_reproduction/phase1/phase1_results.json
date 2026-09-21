@@ -1,0 +1,87 @@
+{
+  "phase": "target_interaction_graph_gate",
+  "device": "NVIDIA GeForce RTX 4090",
+  "metadata": {
+    "source_csv": "/home/dell/YrM/ICCT/data/Lankershim_Vehicle_Trajectories.csv",
+    "history_length": 20,
+    "prediction_length": 20,
+    "max_targets": 8,
+    "min_targets": 2,
+    "radius_m": 45.0,
+    "stride": 3,
+    "scenes_per_time": 2,
+    "dt": 0.1,
+    "native_delta_ms": 100.0,
+    "seed": 2026,
+    "temporal_split": [
+      0.7,
+      0.15,
+      0.15
+    ],
+    "counts": {
+      "train": 6000,
+      "val": 1200,
+      "test": 1200
+    }
+  },
+  "parameters": {
+    "independent_gru": 98210,
+    "target_interaction_gnn": 400558
+  },
+  "validation": {
+    "independent_gru": {
+      "ade_m": 0.6549161988138064,
+      "fde_m": 1.3616853098373005,
+      "interaction_ade_m": 0.6397867310784154,
+      "interaction_fde_m": 1.3299466968871174,
+      "collision_rate": 0.008125,
+      "ground_truth_collision_rate": 0.0010833333333333333,
+      "excess_collision_rate": 0.00725
+    },
+    "target_interaction_gnn": {
+      "ade_m": 0.5777905573452762,
+      "fde_m": 1.1671607185093724,
+      "interaction_ade_m": 0.5639115421753457,
+      "interaction_fde_m": 1.1375171064609273,
+      "collision_rate": 0.0045,
+      "ground_truth_collision_rate": 0.0010833333333333333,
+      "excess_collision_rate": 0.0035833333333333333
+    }
+  },
+  "test": {
+    "constant_velocity": {
+      "ade_m": 1.056293143174614,
+      "fde_m": 2.038661457974435,
+      "interaction_ade_m": 1.0245775364643581,
+      "interaction_fde_m": 1.9657232493041499,
+      "collision_rate": 0.039375,
+      "ground_truth_collision_rate": 0.000875,
+      "excess_collision_rate": 0.03904166666666667
+    },
+    "independent_gru": {
+      "ade_m": 0.7003655487699835,
+      "fde_m": 1.4703460928886438,
+      "interaction_ade_m": 0.6732393860251591,
+      "interaction_fde_m": 1.411726438523442,
+      "collision_rate": 0.006208333333333333,
+      "ground_truth_collision_rate": 0.000875,
+      "excess_collision_rate": 0.005625
+    },
+    "target_interaction_gnn": {
+      "ade_m": 0.6196326046978363,
+      "fde_m": 1.252823861825558,
+      "interaction_ade_m": 0.5954018534919029,
+      "interaction_fde_m": 1.2023749488843805,
+      "collision_rate": 0.002375,
+      "ground_truth_collision_rate": 0.000875,
+      "excess_collision_rate": 0.0019166666666666666
+    }
+  },
+  "relative_gain_percent": {
+    "ade": 11.527258046021014,
+    "fde": 14.793947636895563,
+    "interaction_ade": 11.561642730502312
+  },
+  "graph_gate_passed": true,
+  "gate_rule": "GNN test ADE and FDE must both be lower than the independent GRU under identical noise."
+}

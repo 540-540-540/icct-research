@@ -1,0 +1,67 @@
+{
+  "scene_index": 870,
+  "target_ids": [
+    1401,
+    1435,
+    1396,
+    1452
+  ],
+  "models": [
+    "lstm",
+    "transformer",
+    "target_interaction_gnn",
+    "proposed"
+  ],
+  "metrics": [
+    {
+      "snr_db": 5,
+      "model_key": "lstm",
+      "ade_m": 2.2945101261138916,
+      "fde_m": 4.907224655151367
+    },
+    {
+      "snr_db": 5,
+      "model_key": "transformer",
+      "ade_m": 1.9570645093917847,
+      "fde_m": 4.165938854217529
+    },
+    {
+      "snr_db": 5,
+      "model_key": "target_interaction_gnn",
+      "ade_m": 1.1065294742584229,
+      "fde_m": 2.2018139362335205
+    },
+    {
+      "snr_db": 5,
+      "model_key": "proposed",
+      "ade_m": 1.0115879774093628,
+      "fde_m": 1.7968723773956299
+    },
+    {
+      "snr_db": 20,
+      "model_key": "lstm",
+      "ade_m": 1.9881504774093628,
+      "fde_m": 4.704010009765625
+    },
+    {
+      "snr_db": 20,
+      "model_key": "transformer",
+      "ade_m": 1.7605648040771484,
+      "fde_m": 3.8807640075683594
+    },
+    {
+      "snr_db": 20,
+      "model_key": "target_interaction_gnn",
+      "ade_m": 0.9633873105049133,
+      "fde_m": 1.9968934059143066
+    },
+    {
+      "snr_db": 20,
+      "model_key": "proposed",
+      "ade_m": 0.9573511481285095,
+      "fde_m": 1.8211896419525146
+    }
+  ],
+  "noise_seed_protocol": "scene seed = base seed + snr * 100000 + scene index",
+  "output": "/home/dell/YrM/ICCT-senior-r0-reproduction/reports/senior_r0_reproduction/snr/trajectory_examples_comparison.npz"
+}

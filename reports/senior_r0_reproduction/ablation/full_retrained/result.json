@@ -1,0 +1,38 @@
+{
+  "variant": "full_retrained",
+  "description": "Full model retrained under the identical empirically calibrated 20 dB noise.",
+  "model_options": {
+    "graph_backbone": "TargetInteractionGNN",
+    "config": "ForecasterConfig",
+    "llm_layers": 4,
+    "lora_rank": 8
+  },
+  "token_loss_weight": 0.035,
+  "training_noise": {
+    "snr_db": 20,
+    "position_sigma_m": 0.3391253806298064,
+    "velocity_sigma_mps": 0.2
+  },
+  "parameter_summary": {
+    "trainable": 2505958,
+    "total": 70643348
+  },
+  "validation": {
+    "ade_m": 0.5460698776317237,
+    "fde_m": 1.1039277405163381,
+    "interaction_ade_m": 0.5331436404666385,
+    "interaction_fde_m": 1.0762913249247783,
+    "collision_rate": 0.004,
+    "ground_truth_collision_rate": 0.0010833333333333333,
+    "excess_collision_rate": 0.0030416666666666665
+  },
+  "test_20db": {
+    "ade_m": 0.5894733964779149,
+    "fde_m": 1.19413846824503,
+    "interaction_ade_m": 0.5650166353822348,
+    "interaction_fde_m": 1.143803606539906,
+    "collision_rate": 0.003958333333333334,
+    "ground_truth_collision_rate": 0.000875,
+    "excess_collision_rate": 0.0035
+  }
+}

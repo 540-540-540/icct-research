@@ -1,0 +1,38 @@
+{
+  "variant": "without_lora",
+  "description": "Keep GPT-2 frozen and remove all LoRA adapters.",
+  "model_options": {
+    "graph_backbone": "TargetInteractionGNN",
+    "config": "ForecasterConfig",
+    "llm_layers": 4,
+    "lora_rank": 0
+  },
+  "token_loss_weight": 0.035,
+  "training_noise": {
+    "snr_db": 20,
+    "position_sigma_m": 0.3391253806298064,
+    "velocity_sigma_mps": 0.2
+  },
+  "parameter_summary": {
+    "trainable": 2235622,
+    "total": 70373012
+  },
+  "validation": {
+    "ade_m": 0.5475152005168673,
+    "fde_m": 1.1062350758433455,
+    "interaction_ade_m": 0.5343701462204392,
+    "interaction_fde_m": 1.0780212072423987,
+    "collision_rate": 0.0037083333333333334,
+    "ground_truth_collision_rate": 0.0010833333333333333,
+    "excess_collision_rate": 0.0027916666666666667
+  },
+  "test_20db": {
+    "ade_m": 0.5912535753008287,
+    "fde_m": 1.196282158192358,
+    "interaction_ade_m": 0.5663608094992261,
+    "interaction_fde_m": 1.1455449767720298,
+    "collision_rate": 0.003,
+    "ground_truth_collision_rate": 0.000875,
+    "excess_collision_rate": 0.0025416666666666665
+  }
+}

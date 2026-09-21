@@ -1,0 +1,51 @@
+{
+  "snr_db": [
+    5,
+    10,
+    15,
+    20
+  ],
+  "noise_map": {
+    "5": {
+      "position_sigma_m": 0.7557223877999647,
+      "velocity_sigma_mps": 0.4456890760558679
+    },
+    "10": {
+      "position_sigma_m": 0.5123031086987804,
+      "velocity_sigma_mps": 0.3021319771155772
+    },
+    "15": {
+      "position_sigma_m": 0.48241662565787996,
+      "velocity_sigma_mps": 0.28450635264276614
+    },
+    "20": {
+      "position_sigma_m": 0.3391253806298064,
+      "velocity_sigma_mps": 0.2
+    }
+  },
+  "proposed_best_on_ade_and_fde": {
+    "5": true,
+    "10": true,
+    "15": true,
+    "20": true
+  },
+  "trajectory_example": {
+    "scene_index": 161,
+    "selected_indices": [
+      4,
+      5,
+      2,
+      1
+    ],
+    "target_ids": [
+      1503,
+      1510,
+      1502,
+      1504
+    ],
+    "path": "/home/dell/YrM/ICCT-senior-r0-reproduction/reports/senior_r0_reproduction/snr/trajectory_examples.npz"
+  },
+  "comparison_rows": 28,
+  "ablation_rows": 24,
+  "statistical_note": "Single-seed point estimates; no error bars or significance claims."
+}

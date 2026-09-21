@@ -1,0 +1,57 @@
+{
+  "style": {
+    "journal": "ieee",
+    "lang": "en",
+    "sciplots_used": false,
+    "cjk_font": null,
+    "constrained_layout": true
+  },
+  "resolved_font": "/home/dell/YrM/ICCT/code/figure_tools/fonts/times.ttf",
+  "figures": [
+    {
+      "basename": "reports/senior_r0_reproduction/figures/fig_snr_model_comparison",
+      "verdict": "PASS",
+      "issues": [],
+      "paths": [
+        "reports/senior_r0_reproduction/figures/fig_snr_model_comparison.pdf",
+        "reports/senior_r0_reproduction/figures/fig_snr_model_comparison.svg",
+        "reports/senior_r0_reproduction/figures/fig_snr_model_comparison.png",
+        "reports/senior_r0_reproduction/figures/fig_snr_model_comparison_grayscale.png"
+      ]
+    },
+    {
+      "basename": "reports/senior_r0_reproduction/figures/fig_snr_ablation",
+      "verdict": "PASS",
+      "issues": [],
+      "paths": [
+        "reports/senior_r0_reproduction/figures/fig_snr_ablation.pdf",
+        "reports/senior_r0_reproduction/figures/fig_snr_ablation.svg",
+        "reports/senior_r0_reproduction/figures/fig_snr_ablation.png",
+        "reports/senior_r0_reproduction/figures/fig_snr_ablation_grayscale.png"
+      ]
+    },
+    {
+      "basename": "reports/senior_r0_reproduction/figures/fig_snr_trajectory_prediction_comparison",
+      "verdict": "PASS",
+      "issues": [],
+      "paths": [
+        "reports/senior_r0_reproduction/figures/fig_snr_trajectory_prediction_comparison.pdf",
+        "reports/senior_r0_reproduction/figures/fig_snr_trajectory_prediction_comparison.svg",
+        "reports/senior_r0_reproduction/figures/fig_snr_trajectory_prediction_comparison.png",
+        "reports/senior_r0_reproduction/figures/fig_snr_trajectory_prediction_comparison_grayscale.png"
+      ]
+    },
+    {
+      "basename": "reports/senior_r0_reproduction/figures/fig_snr_trajectory_scene_overview",
+      "verdict": "PASS",
+      "issues": [],
+      "paths": [
+        "reports/senior_r0_reproduction/figures/fig_snr_trajectory_scene_overview.pdf",
+        "reports/senior_r0_reproduction/figures/fig_snr_trajectory_scene_overview.svg",
+        "reports/senior_r0_reproduction/figures/fig_snr_trajectory_scene_overview.png",
+        "reports/senior_r0_reproduction/figures/fig_snr_trajectory_scene_overview_grayscale.png"
+      ]
+    }
+  ],
+  "statistical_note": "Single-seed point estimates; no error bars or significance claims."
+}

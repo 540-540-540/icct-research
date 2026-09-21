@@ -1,0 +1,39 @@
+{
+  "variant": "without_soft_token",
+  "description": "Replace each soft motion-token distribution with its hard argmax token.",
+  "model_options": {
+    "graph_backbone": "TargetInteractionGNN",
+    "config": "ForecasterConfig",
+    "llm_layers": 4,
+    "lora_rank": 8,
+    "use_soft_tokens": false
+  },
+  "token_loss_weight": 0.035,
+  "training_noise": {
+    "snr_db": 20,
+    "position_sigma_m": 0.3391253806298064,
+    "velocity_sigma_mps": 0.2
+  },
+  "parameter_summary": {
+    "trainable": 2505958,
+    "total": 70643348
+  },
+  "validation": {
+    "ade_m": 0.5578842042887515,
+    "fde_m": 1.130336926947771,
+    "interaction_ade_m": 0.5449603825749578,
+    "interaction_fde_m": 1.1019082237449853,
+    "collision_rate": 0.004291666666666667,
+    "ground_truth_collision_rate": 0.0010833333333333333,
+    "excess_collision_rate": 0.003375
+  },
+  "test_20db": {
+    "ade_m": 0.6015035758391762,
+    "fde_m": 1.2210555676982842,
+    "interaction_ade_m": 0.5761739714280031,
+    "interaction_fde_m": 1.16897157965511,
+    "collision_rate": 0.0031666666666666666,
+    "ground_truth_collision_rate": 0.000875,
+    "excess_collision_rate": 0.0027083333333333334
+  }
+}
