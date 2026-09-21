@@ -36,11 +36,6 @@ def main() -> None:
         dt=float(metadata["dt"]),
         hidden_dim=128,
     )
-    q_paths = {
-        2026: ROOT / "results/senior_raj_two_classical_screen/seed2026_matched/raj_qgnn.pt",
-        2027: ROOT / "results/senior_raj_two_classical_screen/seed2027/raj_qgnn.pt",
-        2028: ROOT / "results/senior_raj_two_classical_screen/seed2028/raj_qgnn.pt",
-    }
     runs = []
     for seed in (2026, 2027, 2028):
         loader = DataLoader(
@@ -53,7 +48,7 @@ def main() -> None:
         )
         classical = TargetInteractionGNN(config).to(device)
         classical.load_state_dict(
-            load_state(ROOT / f"results/senior_raj_hybrid_matched/seed{seed}/target_interaction_gnn.pt")
+            load_state(ROOT / f"results/senior_raj_initialization_matched/seed{seed}/target_interaction_gnn.pt")
         )
         quantum = SeniorRajQGNN(
             config,
@@ -63,7 +58,9 @@ def main() -> None:
             classical_layers=2,
             quantum_first=True,
         ).to(device)
-        quantum.load_state_dict(load_state(q_paths[seed]))
+        quantum.load_state_dict(
+            load_state(ROOT / f"results/senior_raj_initialization_matched/seed{seed}/raj_hybrid_qgnn.pt")
+        )
         classical_test = evaluate(classical, loader, device, 0.35, 0.20, seed + 2000)
         quantum_test = evaluate(quantum, loader, device, 0.35, 0.20, seed + 2000)
         gain = {
