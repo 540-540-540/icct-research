@@ -1,0 +1,210 @@
+{
+  "status": "DEVELOPMENT_DIAGNOSTIC_NOT_FORMAL_EVIDENCE",
+  "test_accessed": false,
+  "runs": {
+    "seed2028": {
+      "checkpoint": "reports/task_redesign/sind_gate_b_plus_confirmation_stochastic_raj_seed2028/best.pt",
+      "checkpoint_epoch": 31,
+      "ic4_ablation": {
+        "attention": {
+          "ade_m": 1.019890587296113,
+          "ade_origins": 180,
+          "fde_m": 2.614109088317005,
+          "fde_origins": 177,
+          "J_m": 2.3269451314546155
+        },
+        "both_mean": {
+          "ade_m": 1.1382397351002147,
+          "ade_origins": 180,
+          "fde_m": 3.0523573753195756,
+          "fde_origins": 177,
+          "J_m": 2.6644184227600025
+        },
+        "j2_mean": {
+          "ade_m": 1.0435468633722529,
+          "ade_origins": 180,
+          "fde_m": 2.7302731626463816,
+          "fde_origins": 177,
+          "J_m": 2.408683444695444
+        },
+        "j3_mean": {
+          "ade_m": 1.085666775871212,
+          "ade_origins": 180,
+          "fde_m": 2.8802051006734493,
+          "fde_origins": 177,
+          "J_m": 2.5257693262079366
+        }
+      },
+      "attention": {
+        "j2_entropy": {
+          "mean": 0.8087322821141949,
+          "std": 0.14080587753601528
+        },
+        "j2_max_weight": {
+          "mean": 0.38952467375936667,
+          "std": 0.15502879095091113
+        },
+        "j2_attention_mean_cosine": {
+          "mean": 0.8424609806891158,
+          "std": 0.15463208488635677
+        },
+        "j3_entropy": {
+          "mean": 0.5407672031876591,
+          "std": 0.237772977456079
+        },
+        "j3_max_weight": {
+          "mean": 0.6072294797531099,
+          "std": 0.21610758814824074
+        },
+        "j3_attention_mean_cosine": {
+          "mean": 0.6528362775743461,
+          "std": 0.29190267183649476
+        }
+      },
+      "j2_j3_pooled_relation": {
+        "cosine_mean": -0.0015824298394557092,
+        "cosine_std": 0.09199321405112003,
+        "cosine_p05": -0.14803642769084388,
+        "cosine_p95": 0.14526283654698888,
+        "linear_cka": 0.3096148314559143,
+        "matched_feature_abs_correlation_mean": 0.14435547461191225
+      }
+    },
+    "seed2029": {
+      "checkpoint": "reports/task_redesign/sind_gate_b_plus_confirmation_stochastic_raj_seed2029/best.pt",
+      "checkpoint_epoch": 24,
+      "ic4_ablation": {
+        "attention": {
+          "ade_m": 1.0451786295422316,
+          "ade_origins": 180,
+          "fde_m": 2.6892618341569854,
+          "fde_origins": 177,
+          "J_m": 2.3898095466207243
+        },
+        "both_mean": {
+          "ade_m": 1.159261693803841,
+          "ade_origins": 180,
+          "fde_m": 3.1120328083306883,
+          "fde_origins": 177,
+          "J_m": 2.7152780979691853
+        },
+        "j2_mean": {
+          "ade_m": 1.117447597296547,
+          "ade_origins": 180,
+          "fde_m": 2.934215308580099,
+          "fde_origins": 177,
+          "J_m": 2.5845552515865964
+        },
+        "j3_mean": {
+          "ade_m": 1.0793428770463023,
+          "ade_origins": 180,
+          "fde_m": 2.8252854479664675,
+          "fde_origins": 177,
+          "J_m": 2.491985601029536
+        }
+      },
+      "attention": {
+        "j2_entropy": {
+          "mean": 0.685778409498764,
+          "std": 0.18340311769922357
+        },
+        "j2_max_weight": {
+          "mean": 0.5049692477554316,
+          "std": 0.18437345261401972
+        },
+        "j2_attention_mean_cosine": {
+          "mean": 0.7795328831322835,
+          "std": 0.21937262576137811
+        },
+        "j3_entropy": {
+          "mean": 0.753240262325999,
+          "std": 0.15303486806605227
+        },
+        "j3_max_weight": {
+          "mean": 0.439618382521875,
+          "std": 0.16523685598585214
+        },
+        "j3_attention_mean_cosine": {
+          "mean": 0.8140411367323784,
+          "std": 0.22214070913808284
+        }
+      },
+      "j2_j3_pooled_relation": {
+        "cosine_mean": 0.01971363842565409,
+        "cosine_std": 0.07494136409023171,
+        "cosine_p05": -0.10701137615067853,
+        "cosine_p95": 0.13280894039163696,
+        "linear_cka": 0.6368424084780054,
+        "matched_feature_abs_correlation_mean": 0.2354352403229975
+      }
+    },
+    "seed2030": {
+      "checkpoint": "reports/task_redesign/sind_gate_b_plus_confirmation_stochastic_raj_seed2030/best.pt",
+      "checkpoint_epoch": 36,
+      "ic4_ablation": {
+        "attention": {
+          "ade_m": 1.0058067055973292,
+          "ade_origins": 180,
+          "fde_m": 2.6396588669770167,
+          "fde_origins": 177,
+          "J_m": 2.3256361390858373
+        },
+        "both_mean": {
+          "ade_m": 1.1763974889290363,
+          "ade_origins": 180,
+          "fde_m": 3.210137954512062,
+          "fde_origins": 177,
+          "J_m": 2.7814664661850674
+        },
+        "j2_mean": {
+          "ade_m": 1.1273737953990677,
+          "ade_origins": 180,
+          "fde_m": 3.030245951428174,
+          "fde_origins": 177,
+          "J_m": 2.6424967711131546
+        },
+        "j3_mean": {
+          "ade_m": 1.0477815455998345,
+          "ade_origins": 180,
+          "fde_m": 2.8035932645225916,
+          "fde_origins": 177,
+          "J_m": 2.44957817786113
+        }
+      },
+      "attention": {
+        "j2_entropy": {
+          "mean": 0.5995752934666723,
+          "std": 0.21683514966330872
+        },
+        "j2_max_weight": {
+          "mean": 0.5671393672754912,
+          "std": 0.19531833757465783
+        },
+        "j2_attention_mean_cosine": {
+          "mean": 0.6668118531341536,
+          "std": 0.2913819049918776
+        },
+        "j3_entropy": {
+          "mean": 0.7532871685876755,
+          "std": 0.15545297604644884
+        },
+        "j3_max_weight": {
+          "mean": 0.4279698010005569,
+          "std": 0.15558668689466945
+        },
+        "j3_attention_mean_cosine": {
+          "mean": 0.7703774584971167,
+          "std": 0.2460889545284936
+        }
+      },
+      "j2_j3_pooled_relation": {
+        "cosine_mean": 0.03514903446778562,
+        "cosine_std": 0.07960485425694071,
+        "cosine_p05": -0.09088354936703172,
+        "cosine_p95": 0.17300606860901657,
+        "linear_cka": 0.5278473480720689,
+        "matched_feature_abs_correlation_mean": 0.17554054499707442
+      }
+    }
+  }
+}

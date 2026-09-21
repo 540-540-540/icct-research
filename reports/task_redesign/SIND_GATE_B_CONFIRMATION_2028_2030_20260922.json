@@ -1,0 +1,50 @@
+{
+  "status": "CONFIRMATION_FAILED_STRICT_STABILITY_GATE",
+  "test_accessed": false,
+  "method_commit": "84061d3",
+  "freeze_commit": "ad963ce",
+  "task": "SinD-IC4 history-only 2s-to-4s N<=8",
+  "seeds": [2028, 2029, 2030],
+  "metrics": {
+    "raj_stochastic_multiscale": {
+      "2028": {"ade_m": 1.01988601576454, "fde_m": 2.6140874743289535},
+      "2029": {"ade_m": 1.0451937138981564, "fde_m": 2.6892796997469257},
+      "2030": {"ade_m": 1.0058044981245897, "fde_m": 2.6396494841645604},
+      "mean": {"ade_m": 1.0236280759291, "fde_m": 2.64767221941348},
+      "sample_sd": {"ade_m": 0.0199594549154157, "fde_m": 0.0382327202992735}
+    },
+    "strong_graph_n8": {
+      "2028": {"ade_m": 1.0346526688998359, "fde_m": 2.682414942772024},
+      "2029": {"ade_m": 1.0370295069213784, "fde_m": 2.6742550577173616},
+      "2030": {"ade_m": 1.0561910609541925, "fde_m": 2.7074342025154987},
+      "mean": {"ade_m": 1.04262441225847, "fde_m": 2.68803473433496},
+      "sample_sd": {"ade_m": 0.0118090138186915, "fde_m": 0.0172887378166274}
+    },
+    "matched_johnson_n8": {
+      "2028": {"ade_m": 1.0491260852657212, "fde_m": 2.734665383605547},
+      "2029": {"ade_m": 0.9970907284591131, "fde_m": 2.5505058050861638},
+      "2030": {"ade_m": 1.0403104657261628, "fde_m": 2.6822484834739337},
+      "mean": {"ade_m": 1.02884242648367, "fde_m": 2.65580655738855},
+      "sample_sd": {"ade_m": 0.0278488156399576, "fde_m": 0.0948845044326942}
+    },
+    "large_johnson_n8": {
+      "2028": {"ade_m": 0.9947408051139711, "fde_m": 2.5856482815206356},
+      "2029": {"ade_m": 1.0088396574261047, "fde_m": 2.6397333401354026},
+      "2030": {"ade_m": 1.036723596200867, "fde_m": 2.701054734786903},
+      "mean": {"ade_m": 1.01343468624698, "fde_m": 2.64214545214765},
+      "sample_sd": {"ade_m": 0.0213652616239539, "fde_m": 0.0577410259446825}
+    }
+  },
+  "paired_decision": {
+    "versus_strong_graph": "Raj wins ADE and FDE on seeds 2028 and 2030, loses both on 2029; mean improves ADE 1.82% and FDE 1.50%.",
+    "versus_matched_johnson": "Raj wins ADE and FDE on seeds 2028 and 2030, loses both on 2029; mean improves ADE 0.51% and FDE 0.31%.",
+    "versus_large_johnson": "Raj loses ADE and FDE on seeds 2028 and 2029, wins both on 2030; mean is worse by ADE 1.01% and FDE 0.21%.",
+    "strict_gate": "FAIL"
+  },
+  "diagnosis": {
+    "seed2029_raj_pooled_j2_j3_linear_cka": 0.6368424084780054,
+    "seed2028_raj_pooled_j2_j3_linear_cka": 0.3096148314559143,
+    "seed2030_raj_pooled_j2_j3_linear_cka": 0.5278473480720689,
+    "interpretation": "The failed Raj seed has the highest cross-order redundancy. Reopen development with an explicitly bounded cross-order redundancy penalty; these confirmation seeds are now exhausted and cannot be reused as independent confirmation."
+  }
+}
