@@ -103,7 +103,8 @@ def main() -> None:
                                            "all_neighbor_quantum_latent_attention", "horizon_multiscale",
                                            "horizon_independent", "horizon_trajectory", "horizon_kinematic",
                                            "horizon_adaptive", "horizon_ranknorm",
-                                           "multiscale_quantum_attention", "dual_readout_quantum_attention",
+                                           "multiscale_quantum_attention", "target_conditioned_quantum_attention",
+                                           "dual_readout_quantum_attention",
                                            "residual_multiscale_quantum_attention"),
                         required=True)
     parser.add_argument("--seed", type=int, choices=tuple(range(2026, 2031)), required=True)
@@ -134,6 +135,8 @@ def main() -> None:
                         help="Initialization of the trainable compound quantum evolutions.")
     parser.add_argument("--quantum-init-scale", type=float, choices=(0.01, 0.05, 0.1), default=0.01,
                         help="Maximum absolute angle for the fixed near-identity pattern.")
+    parser.add_argument("--target-loss-weight", type=float, choices=(0.0, 0.25, 0.5), default=0.0,
+                        help="Auxiliary supervised weight for a history-only predicted 4 s target.")
     parser.add_argument("--config", default="configs/gate_b_plus_screen.json")
     parser.add_argument("--output", required=True)
     parser.add_argument("--resume", action="store_true")
@@ -142,6 +145,8 @@ def main() -> None:
         raise RuntimeError("CUDA required")
     if args.distill_weight and not args.distill_teacher:
         raise ValueError("--distill-weight requires --distill-teacher")
+    if args.target_loss_weight and args.mode != "target_conditioned_quantum_attention":
+        raise ValueError("--target-loss-weight requires target_conditioned_quantum_attention")
     if args.warmstart_classical and args.warmstart_quantum:
         raise ValueError("choose only one warm-start source")
     cfg = json.loads((ROOT / args.config).read_text())
@@ -198,6 +203,7 @@ def main() -> None:
                 or state.get("attention_balance_weight", 0.0) != args.attention_balance_weight
                 or state.get("quantum_init", "random") != args.quantum_init
                 or state.get("quantum_init_scale", 0.01) != args.quantum_init_scale
+                or state.get("target_loss_weight", 0.0) != args.target_loss_weight
                 or state.get("checkpoint_average_k", 1) != args.checkpoint_average_k
                 or state.get("patience", 0) != args.patience):
             raise RuntimeError("resume identity mismatch")
@@ -227,10 +233,11 @@ def main() -> None:
         ).tolist()
         loader = DataLoader(Subset(train, order), cfg["training"]["batch_size"], shuffle=False, num_workers=2)
         model.train(); losses = []; supervised_losses = []; distill_losses = []; rank_losses = []
+        target_losses = []
         for batch in loader:
             batch = {key: value.to(device, non_blocking=True) for key, value in batch.items()}
             optimizer.zero_grad(set_to_none=True)
-            if args.latent_rank_weight or args.attention_balance_weight:
+            if args.latent_rank_weight or args.attention_balance_weight or args.target_loss_weight:
                 prediction, latents = model(batch["history_state"], batch["node_mask"], return_aux=True)
                 rank_loss = (effective_rank_loss(latents) if args.latent_rank_weight
                              else prediction.new_zeros(()))
@@ -241,13 +248,24 @@ def main() -> None:
                 rank_loss = prediction.new_zeros(())
                 balance_loss = prediction.new_zeros(())
             supervised = screen_loss(prediction, batch, args.fde_weight)
+            target_loss = prediction.new_zeros(())
+            if args.target_loss_weight:
+                endpoint = batch["future_mask"][:, -1]
+                if endpoint.any():
+                    endpoint_error = torch.linalg.vector_norm(
+                        latents["quantum_target"][endpoint] - batch["future_xy"][endpoint, -1], dim=-1
+                    )
+                    endpoint_weight = batch["target_weight"][endpoint]
+                    target_loss = ((endpoint_error * endpoint_weight).sum()
+                                   / endpoint_weight.sum().clamp_min(1e-8))
             distilled = prediction.new_zeros(())
             if teacher is not None and args.distill_weight:
                 with torch.no_grad():
                     teacher_prediction = teacher(batch["history_state"], batch["node_mask"])
                 distilled = distillation_loss(prediction, teacher_prediction, batch, args.fde_weight)
             loss = (supervised + args.distill_weight * distilled + args.latent_rank_weight * rank_loss
-                    + args.attention_balance_weight * balance_loss)
+                    + args.attention_balance_weight * balance_loss
+                    + args.target_loss_weight * target_loss)
             loss.backward(); torch.nn.utils.clip_grad_norm_(model.parameters(), 5.0); optimizer.step()
             if args.ema_decay:
                 current = model.state_dict()
@@ -261,6 +279,7 @@ def main() -> None:
                             ema[key].copy_(value)
             losses.append(float(loss.detach())); supervised_losses.append(float(supervised.detach()))
             distill_losses.append(float(distilled.detach())); rank_losses.append(float(rank_loss.detach())); updates += 1
+            target_losses.append(float(target_loss.detach()))
         raw_state = None
         if ema is not None:
             raw_state = {key: value.detach().clone() for key, value in model.state_dict().items()}
@@ -271,6 +290,7 @@ def main() -> None:
                         "supervised_loss": float(np.mean(supervised_losses)),
                         "distillation_loss": float(np.mean(distill_losses)),
                         "latent_rank_loss": float(np.mean(rank_losses)),
+                        "target_loss": float(np.mean(target_losses)),
                         "learning_rate": optimizer.param_groups[0]["lr"], "validation": metrics})
         if score < best:
             best, best_epoch = score, epoch
@@ -296,6 +316,7 @@ def main() -> None:
                  "attention_balance_weight": args.attention_balance_weight,
                  "quantum_init": args.quantum_init,
                  "quantum_init_scale": args.quantum_init_scale,
+                 "target_loss_weight": args.target_loss_weight,
                  "checkpoint_average_k": args.checkpoint_average_k,
                  "patience": args.patience,
                  "checkpoint_candidates": checkpoint_candidates,
@@ -345,6 +366,7 @@ def main() -> None:
                "attention_balance_weight": args.attention_balance_weight,
                "quantum_init": args.quantum_init,
                "quantum_init_scale": args.quantum_init_scale,
+               "target_loss_weight": args.target_loss_weight,
                "checkpoint_average_k": args.checkpoint_average_k,
                "target_epochs": target_epochs, "early_stopping_patience": args.patience,
                "stopped_early": stopped_early,

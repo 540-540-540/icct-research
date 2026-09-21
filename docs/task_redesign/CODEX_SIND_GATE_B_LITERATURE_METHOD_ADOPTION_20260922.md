@@ -41,3 +41,9 @@ Scale 0.01 reduced cross-seed ADE/FDE spread but degraded both means and did not
 two-metric wins. It is rejected as the final recipe. Scales 0.05 and 0.10 form the bounded final test of
 the initialization hypothesis; failure of both closes this branch and activates the TNT-inspired
 quantum-conditioned endpoint experiment.
+
+Both scales failed the paired-seed rule. Scale 0.05 yielded a very strong seed-2027 result but degraded
+seed 2026 and increased ADE/FDE dispersion; scale 0.10 degraded both means. The initialization branch
+is closed. The next experiment implements the predeclared TNT transfer: a history-only quantum
+interaction target head predicts the 4 s endpoint, and its prediction conditions the shared trajectory
+decoder. The future endpoint appears only in the auxiliary supervised loss and never enters history.

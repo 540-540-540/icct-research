@@ -287,6 +287,21 @@ away too much performance for its stability gain and is rejected as the final re
 follow-up tests scales 0.05 and 0.10 to locate whether this is an initialization-direction failure or only
 an overly restrictive amplitude.
 
+The bounded amplitude follow-up closes the initialization branch:
+
+| Fixed-pattern scale | Seed | ADE | FDE | J | Best epoch | Stop epoch |
+|---:|---:|---:|---:|---:|---:|---:|
+| 0.05 | 2026 | 1.060123 | 2.739136 | 2.429691 | 21 | 29 |
+| 0.05 | 2027 | 0.991991 | 2.622500 | 2.303241 | 32 | 40 |
+| 0.10 | 2026 | 1.069479 | 2.790417 | 2.464687 | 19 | 27 |
+| 0.10 | 2027 | 1.030428 | 2.708264 | 2.384560 | 32 | 40 |
+
+Scale 0.05 produces the strongest single-seed result but also the largest instability: two-seed
+ADE/FDE is `1.026057 / 2.680818` with sample standard deviation `0.048177 / 0.082474`. Scale 0.10
+is weaker on both means (`1.049953 / 2.749340`) and remains unstable. No scale is a paired two-seed
+win over Strong Graph. Fixed quantum evolution initialization is therefore not sufficient to control the
+joint quantum-readout/decoder basin and this search direction is closed.
+
 ## Post-projection normalization control
 
 A paired control tested whether the scale imbalance diagnosed above could be removed by applying

@@ -32,6 +32,7 @@ class GateBPlusQuantumModel(nn.Module):
                         "all_neighbor_quantum_latent_attention", "horizon_multiscale",
                         "horizon_independent", "horizon_trajectory", "horizon_kinematic",
                         "horizon_adaptive", "horizon_ranknorm", "multiscale_quantum_attention",
+                        "target_conditioned_quantum_attention",
                         "dual_readout_quantum_attention", "residual_multiscale_quantum_attention"}:
             raise ValueError(mode)
         if core_kind not in {"quantum", "quantum_wide", "johnson", "johnson_wide", "johnson_large"}:
@@ -54,6 +55,7 @@ class GateBPlusQuantumModel(nn.Module):
                       "quantum_latent_attention": 256,
                       "all_neighbor_quantum_latent_attention": 256,
                       "multiscale_quantum_attention": 256,
+                      "target_conditioned_quantum_attention": 256,
                       "residual_multiscale_quantum_attention": 256,
                       "dual_readout_quantum_attention": 384,
                       "horizon_multiscale": 128, "horizon_independent": 128,
@@ -63,7 +65,8 @@ class GateBPlusQuantumModel(nn.Module):
         self.attention = (nn.Linear(width, 1)
                           if mode in {"quantum_latent_attention", "all_neighbor_quantum_latent_attention"}
                           else None)
-        if mode in {"multiscale_quantum_attention", "dual_readout_quantum_attention",
+        if mode in {"multiscale_quantum_attention", "target_conditioned_quantum_attention",
+                    "dual_readout_quantum_attention",
                     "residual_multiscale_quantum_attention"}:
             self.branch_messages = nn.ModuleList(
                 nn.Sequential(nn.Linear(128, width), nn.GELU(), nn.Linear(width, width)) for _ in range(2)
@@ -78,6 +81,17 @@ class GateBPlusQuantumModel(nn.Module):
             self.shared_attention = nn.Linear(width, 1)
         else:
             self.shared_message = self.shared_attention = None
+        if mode == "target_conditioned_quantum_attention":
+            self.quantum_target_head = nn.Sequential(
+                nn.Linear(width, 64), nn.GELU(), nn.Linear(64, 2)
+            )
+            self.target_context = nn.Sequential(
+                nn.Linear(2, 64), nn.GELU(), nn.Linear(64, width)
+            )
+            nn.init.zeros_(self.quantum_target_head[-1].weight)
+            nn.init.zeros_(self.quantum_target_head[-1].bias)
+        else:
+            self.quantum_target_head = self.target_context = None
         if mode in {"horizon_multiscale", "horizon_independent", "horizon_trajectory",
                     "horizon_kinematic", "horizon_adaptive", "horizon_ranknorm"}:
             self.branch_norms = nn.ModuleList((nn.LayerNorm(64), nn.LayerNorm(64)))
@@ -142,6 +156,7 @@ class GateBPlusQuantumModel(nn.Module):
                          "all_neighbor_quantum_latent_attention", "horizon_multiscale",
                          "horizon_independent", "horizon_trajectory", "horizon_kinematic",
                          "horizon_adaptive", "horizon_ranknorm", "multiscale_quantum_attention",
+                         "target_conditioned_quantum_attention",
                          "dual_readout_quantum_attention", "residual_multiscale_quantum_attention"}:
             j2_nodes = self.core.j2(history, node_mask)
             j3_nodes = self.core.j3(history, node_mask)
@@ -157,7 +172,8 @@ class GateBPlusQuantumModel(nn.Module):
                 weights = torch.softmax(scores, 1) * neighbor_mask
                 interaction_context = (messages * weights[..., None]).sum(1)
                 quantum_context = None
-            elif self.mode in {"multiscale_quantum_attention", "dual_readout_quantum_attention",
+            elif self.mode in {"multiscale_quantum_attention", "target_conditioned_quantum_attention",
+                               "dual_readout_quantum_attention",
                                "residual_multiscale_quantum_attention"}:
                 neighbor_mask = node_mask[:, 1:]
                 pooled = []
@@ -243,8 +259,17 @@ class GateBPlusQuantumModel(nn.Module):
             interaction_by_time = interaction_context[:, None] + quantum_residual
             target_by_time = torch.cat((temporal[:, None].expand(-1, 40, -1), interaction_by_time), -1)
         else:
-            target = torch.cat((temporal, interaction_context), -1)
-            target_by_time = target[:, None].expand(-1, 40, -1)
+            if self.quantum_target_head is not None:
+                target_delta = self.quantum_target_head(interaction_context) * 10.0
+                quantum_target = cv[:, -1] + target_delta
+                target_residual = self.target_context(target_delta / 20.0)
+                ratio = (times / times[-1])[None, :, None]
+                interaction_by_time = interaction_context[:, None] + ratio * target_residual[:, None]
+                target_by_time = torch.cat((temporal[:, None].expand(-1, 40, -1),
+                                            interaction_by_time), -1)
+            else:
+                target = torch.cat((temporal, interaction_context), -1)
+                target_by_time = target[:, None].expand(-1, 40, -1)
         decoded = torch.cat((target_by_time,
                              time_embedding[None].expand(len(history), -1, -1), cv / 20.0), -1)
         prediction = cv + self.decoder(decoded) * 10.0
@@ -263,6 +288,8 @@ class GateBPlusQuantumModel(nn.Module):
             if self.branch_attentions is not None:
                 latents.update({"attention_j2": branch_weights[0], "attention_j3": branch_weights[1],
                                 "neighbor_mask": neighbor_mask})
+            if self.quantum_target_head is not None:
+                latents["quantum_target"] = quantum_target
             if self.branch_projections is not None:
                 latents.update({"q2": q2, "q3": q3})
             return prediction, latents
@@ -291,6 +318,9 @@ class GateBPlusQuantumModel(nn.Module):
         if self.shared_message is not None:
             groups["quantum_shared_message"] = self.shared_message
             groups["quantum_shared_attention"] = self.shared_attention
+        if self.quantum_target_head is not None:
+            groups["quantum_target_head"] = self.quantum_target_head
+            groups["quantum_target_context"] = self.target_context
         if self.branch_norms is not None:
             groups["quantum_branch_norms"] = self.branch_norms
             groups["quantum_branch_projections"] = self.branch_projections
