@@ -58,3 +58,21 @@ The ModDrop transfer is the first intervention to beat Strong Graph on both ADE 
 development seeds. It reduces ADE seed dispersion by about 94% without forcing the two orders to have
 identical attention patterns. The architecture and training recipe are frozen at source commit
 `84061d3` for independent seeds 2028--2030; no test split is opened.
+
+## Post-confirmation redundancy-reduction experiment
+
+Independent seeds 2028--2030 invalidated the strict stability claim. Raj retained a three-seed mean
+advantage over Strong Graph and Matched Johnson, but lost both ADE and FDE on seed 2029 and lost the
+three-seed mean to Large Johnson. The failed Raj seed also had the highest j2/j3 attention-pooled linear
+CKA (0.637, versus 0.310 and 0.528 in the two winning seeds).
+
+[Barlow Twins, ICML 2021](https://proceedings.mlr.press/v139/zbontar21a.html) and
+[VICReg, ICLR 2022](https://openreview.net/references/pdf?id=BqaZWNlJc) motivate a bounded adaptation:
+penalize cross-correlation between the attention-pooled j2 and j3 representations. Unlike Barlow Twins,
+the two quantum orders are not positive views and are therefore not pulled toward equality. Branch drop
+and the trajectory loss remain responsible for keeping both orders informative.
+
+Weight 0.005 drove pooled CKA to 0.014/0.009 on development seeds 2026/2027, down from approximately
+0.68/0.53, but damaged seed-2026 ADE/FDE. This is evidence of over-decorrelation: shared traffic signal
+was removed together with redundant signal. The bounded follow-up reduces the weight to 0.001; no other
+architecture, data, loss, or training-recipe field changes.

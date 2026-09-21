@@ -201,6 +201,7 @@ class GateBPlusQuantumModel(nn.Module):
                         pooled.append(0.5 * (mean_pool + attention_pool))
                     else:
                         pooled.append(attention_pool)
+                branch_pooled = tuple(pooled)
                 if (self.mode == "stochastic_multiscale_quantum_attention" and self.training
                         and self.branch_drop_probability):
                     choice = torch.rand(len(history), device=history.device)
@@ -304,6 +305,8 @@ class GateBPlusQuantumModel(nn.Module):
             latents = {"j2": j2_full, "j3": j3_full}
             if self.branch_attentions is not None:
                 latents.update({"attention_j2": branch_weights[0], "attention_j3": branch_weights[1],
+                                "pooled_j2": branch_pooled[0],
+                                "pooled_j3": branch_pooled[1],
                                 "neighbor_mask": neighbor_mask})
             if self.quantum_target_head is not None:
                 latents["quantum_target"] = quantum_target

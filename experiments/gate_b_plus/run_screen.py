@@ -80,6 +80,15 @@ def attention_balance_loss(latents: dict[str, torch.Tensor]) -> torch.Tensor:
     return (entropies[0][valid] - entropies[1][valid]).square().mean()
 
 
+def cross_order_redundancy_loss(latents: dict[str, torch.Tensor]) -> torch.Tensor:
+    standardized = []
+    for name in ("pooled_j2", "pooled_j3"):
+        value = latents[name] - latents[name].mean(0, keepdim=True)
+        standardized.append(value / value.std(0, unbiased=False, keepdim=True).clamp_min(1e-4))
+    cross_correlation = standardized[0].T @ standardized[1] / max(len(standardized[0]), 1)
+    return cross_correlation.square().sum() / cross_correlation.shape[0]
+
+
 def load_matching_modules(model: GateBPlusQuantumModel, checkpoint: Path) -> None:
     state = torch.load(checkpoint, map_location="cpu", weights_only=True)["model"]
     for name in ("encoder", "time", "decoder"):
@@ -140,6 +149,8 @@ def main() -> None:
                         help="Auxiliary supervised weight for a history-only predicted 4 s target.")
     parser.add_argument("--branch-drop-probability", type=float, choices=(0.0, 0.2), default=0.0,
                         help="Probability of dropping exactly one order-specific quantum readout.")
+    parser.add_argument("--cross-order-redundancy-weight", type=float, choices=(0.0, 0.001, 0.005, 0.01), default=0.0,
+                        help="Decorrelation weight for the j=2 and j=3 attention-pooled quantum latents.")
     parser.add_argument("--config", default="configs/gate_b_plus_screen.json")
     parser.add_argument("--output", required=True)
     parser.add_argument("--resume", action="store_true")
@@ -152,6 +163,8 @@ def main() -> None:
         raise ValueError("--target-loss-weight requires target_conditioned_quantum_attention")
     if args.branch_drop_probability and args.mode != "stochastic_multiscale_quantum_attention":
         raise ValueError("--branch-drop-probability requires stochastic_multiscale_quantum_attention")
+    if args.cross_order_redundancy_weight and args.mode != "stochastic_multiscale_quantum_attention":
+        raise ValueError("--cross-order-redundancy-weight requires stochastic_multiscale_quantum_attention")
     if args.warmstart_classical and args.warmstart_quantum:
         raise ValueError("choose only one warm-start source")
     cfg = json.loads((ROOT / args.config).read_text())
@@ -211,6 +224,7 @@ def main() -> None:
                 or state.get("quantum_init_scale", 0.01) != args.quantum_init_scale
                 or state.get("target_loss_weight", 0.0) != args.target_loss_weight
                 or state.get("branch_drop_probability", 0.0) != args.branch_drop_probability
+                or state.get("cross_order_redundancy_weight", 0.0) != args.cross_order_redundancy_weight
                 or state.get("checkpoint_average_k", 1) != args.checkpoint_average_k
                 or state.get("patience", 0) != args.patience):
             raise RuntimeError("resume identity mismatch")
@@ -240,20 +254,24 @@ def main() -> None:
         ).tolist()
         loader = DataLoader(Subset(train, order), cfg["training"]["batch_size"], shuffle=False, num_workers=2)
         model.train(); losses = []; supervised_losses = []; distill_losses = []; rank_losses = []
-        target_losses = []
+        target_losses = []; redundancy_losses = []
         for batch in loader:
             batch = {key: value.to(device, non_blocking=True) for key, value in batch.items()}
             optimizer.zero_grad(set_to_none=True)
-            if args.latent_rank_weight or args.attention_balance_weight or args.target_loss_weight:
+            if (args.latent_rank_weight or args.attention_balance_weight or args.target_loss_weight
+                    or args.cross_order_redundancy_weight):
                 prediction, latents = model(batch["history_state"], batch["node_mask"], return_aux=True)
                 rank_loss = (effective_rank_loss(latents) if args.latent_rank_weight
                              else prediction.new_zeros(()))
                 balance_loss = (attention_balance_loss(latents) if args.attention_balance_weight
                                 else prediction.new_zeros(()))
+                redundancy_loss = (cross_order_redundancy_loss(latents)
+                                   if args.cross_order_redundancy_weight else prediction.new_zeros(()))
             else:
                 prediction = model(batch["history_state"], batch["node_mask"])
                 rank_loss = prediction.new_zeros(())
                 balance_loss = prediction.new_zeros(())
+                redundancy_loss = prediction.new_zeros(())
             supervised = screen_loss(prediction, batch, args.fde_weight)
             target_loss = prediction.new_zeros(())
             if args.target_loss_weight:
@@ -272,6 +290,7 @@ def main() -> None:
                 distilled = distillation_loss(prediction, teacher_prediction, batch, args.fde_weight)
             loss = (supervised + args.distill_weight * distilled + args.latent_rank_weight * rank_loss
                     + args.attention_balance_weight * balance_loss
+                    + args.cross_order_redundancy_weight * redundancy_loss
                     + args.target_loss_weight * target_loss)
             loss.backward(); torch.nn.utils.clip_grad_norm_(model.parameters(), 5.0); optimizer.step()
             if args.ema_decay:
@@ -287,6 +306,7 @@ def main() -> None:
             losses.append(float(loss.detach())); supervised_losses.append(float(supervised.detach()))
             distill_losses.append(float(distilled.detach())); rank_losses.append(float(rank_loss.detach())); updates += 1
             target_losses.append(float(target_loss.detach()))
+            redundancy_losses.append(float(redundancy_loss.detach()))
         raw_state = None
         if ema is not None:
             raw_state = {key: value.detach().clone() for key, value in model.state_dict().items()}
@@ -298,6 +318,7 @@ def main() -> None:
                         "distillation_loss": float(np.mean(distill_losses)),
                         "latent_rank_loss": float(np.mean(rank_losses)),
                         "target_loss": float(np.mean(target_losses)),
+                        "cross_order_redundancy_loss": float(np.mean(redundancy_losses)),
                         "learning_rate": optimizer.param_groups[0]["lr"], "validation": metrics})
         if score < best:
             best, best_epoch = score, epoch
@@ -325,6 +346,7 @@ def main() -> None:
                  "quantum_init_scale": args.quantum_init_scale,
                  "target_loss_weight": args.target_loss_weight,
                  "branch_drop_probability": args.branch_drop_probability,
+                 "cross_order_redundancy_weight": args.cross_order_redundancy_weight,
                  "checkpoint_average_k": args.checkpoint_average_k,
                  "patience": args.patience,
                  "checkpoint_candidates": checkpoint_candidates,
@@ -376,6 +398,7 @@ def main() -> None:
                "quantum_init_scale": args.quantum_init_scale,
                "target_loss_weight": args.target_loss_weight,
                "branch_drop_probability": args.branch_drop_probability,
+               "cross_order_redundancy_weight": args.cross_order_redundancy_weight,
                "checkpoint_average_k": args.checkpoint_average_k,
                "target_epochs": target_epochs, "early_stopping_patience": args.patience,
                "stopped_early": stopped_early,

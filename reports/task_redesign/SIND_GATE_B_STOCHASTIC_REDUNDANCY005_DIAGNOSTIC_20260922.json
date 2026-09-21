@@ -1,0 +1,142 @@
+{
+  "status": "DEVELOPMENT_DIAGNOSTIC_NOT_FORMAL_EVIDENCE",
+  "test_accessed": false,
+  "runs": {
+    "seed2026": {
+      "checkpoint": "reports/task_redesign/sind_gate_b_plus_stochastic_redundancy005_seed2026/best.pt",
+      "checkpoint_epoch": 30,
+      "ic4_ablation": {
+        "attention": {
+          "ade_m": 1.0396763411811927,
+          "ade_origins": 180,
+          "fde_m": 2.707195379191537,
+          "fde_origins": 177,
+          "J_m": 2.3932740307769613
+        },
+        "both_mean": {
+          "ade_m": 1.163926578185828,
+          "ade_origins": 180,
+          "fde_m": 3.0971412457348735,
+          "fde_origins": 177,
+          "J_m": 2.7124972010532646
+        },
+        "j2_mean": {
+          "ade_m": 1.0663261732750375,
+          "ade_origins": 180,
+          "fde_m": 2.8005360992281165,
+          "fde_origins": 177,
+          "J_m": 2.466594222889096
+        },
+        "j3_mean": {
+          "ade_m": 1.141190259320709,
+          "ade_origins": 180,
+          "fde_m": 3.0067603021700777,
+          "fde_origins": 177,
+          "J_m": 2.644570410405748
+        }
+      },
+      "attention": {
+        "j2_entropy": {
+          "mean": 0.8204299564902112,
+          "std": 0.14751368608551488
+        },
+        "j2_max_weight": {
+          "mean": 0.3807978006784972,
+          "std": 0.15507022140262552
+        },
+        "j2_attention_mean_cosine": {
+          "mean": 0.8776892076244008,
+          "std": 0.15037446710612754
+        },
+        "j3_entropy": {
+          "mean": 0.6823940353639897,
+          "std": 0.21246330753610498
+        },
+        "j3_max_weight": {
+          "mean": 0.5131440888652602,
+          "std": 0.19459334612062637
+        },
+        "j3_attention_mean_cosine": {
+          "mean": 0.6560256224242343,
+          "std": 0.29248264482177
+        }
+      },
+      "j2_j3_pooled_relation": {
+        "cosine_mean": -0.005446943055293919,
+        "cosine_std": 0.08890262588360368,
+        "cosine_p05": -0.14476803900655622,
+        "cosine_p95": 0.15377013684170268,
+        "linear_cka": 0.013694498896060588,
+        "matched_feature_abs_correlation_mean": 0.05019825174088266
+      }
+    },
+    "seed2027": {
+      "checkpoint": "reports/task_redesign/sind_gate_b_plus_stochastic_redundancy005_seed2027/best.pt",
+      "checkpoint_epoch": 29,
+      "ic4_ablation": {
+        "attention": {
+          "ade_m": 1.0195386540665334,
+          "ade_origins": 180,
+          "fde_m": 2.6421713102719417,
+          "fde_origins": 177,
+          "J_m": 2.3406243092025045
+        },
+        "both_mean": {
+          "ade_m": 1.0707826256596067,
+          "ade_origins": 180,
+          "fde_m": 2.832430552209605,
+          "fde_origins": 177,
+          "J_m": 2.4869979017644095
+        },
+        "j2_mean": {
+          "ade_m": 1.0599924110787802,
+          "ade_origins": 180,
+          "fde_m": 2.7948421330241557,
+          "fde_origins": 177,
+          "J_m": 2.4574134775908583
+        },
+        "j3_mean": {
+          "ade_m": 1.0303858492091356,
+          "ade_origins": 180,
+          "fde_m": 2.675712798623215,
+          "fde_origins": 177,
+          "J_m": 2.368242248520743
+        }
+      },
+      "attention": {
+        "j2_entropy": {
+          "mean": 0.7382049352648766,
+          "std": 0.1961846293697544
+        },
+        "j2_max_weight": {
+          "mean": 0.46282613180169235,
+          "std": 0.1868107343806776
+        },
+        "j2_attention_mean_cosine": {
+          "mean": 0.7895293034275943,
+          "std": 0.2139477034756562
+        },
+        "j3_entropy": {
+          "mean": 0.9335298695519657,
+          "std": 0.10232731387967345
+        },
+        "j3_max_weight": {
+          "mean": 0.2753469895756276,
+          "std": 0.12661477888558426
+        },
+        "j3_attention_mean_cosine": {
+          "mean": 0.9266340967569276,
+          "std": 0.10305298295222831
+        }
+      },
+      "j2_j3_pooled_relation": {
+        "cosine_mean": 0.026938570090440473,
+        "cosine_std": 0.08193431390250255,
+        "cosine_p05": -0.10211922977650938,
+        "cosine_p95": 0.1644528671166848,
+        "linear_cka": 0.009484867170009778,
+        "matched_feature_abs_correlation_mean": 0.04711558970774175
+      }
+    }
+  }
+}
