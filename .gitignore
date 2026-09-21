@@ -54,6 +54,7 @@ checkpoints/
 ~$*
 wandb/
 runs/
+results/senior_raj_stack/
 
 # OS/editor noise
 .DS_Store
