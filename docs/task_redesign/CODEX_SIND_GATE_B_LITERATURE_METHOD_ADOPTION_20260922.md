@@ -21,6 +21,7 @@ trajectory-model capacity.
 | [McClean et al., Nature Communications 2018](https://www.nature.com/articles/s41467-018-07090-4) | Deep randomly initialized parameterized quantum circuits can have vanishing-gradient regions; structured starts deserve explicit testing. | **Diagnostic motivation.** Our reduced D=6 compound evolution is much smaller than the asymptotic setting, so no barren-plateau claim is made. |
 | [Grant et al., Quantum 2019](https://quantum-journal.org/papers/q-2019-12-09-214/) | Initialize trainable quantum blocks near an identity-effective circuit to improve the initial optimization landscape. | **Adapted now.** Test a fixed, small, nonzero near-identity initialization only for the compound quantum evolutions. Exact zero angles were rejected in preflight because the zero-initialized trajectory head blocks upstream gradients on update 1; after one decoder update both random and near-identity quantum angles receive nonzero gradients. |
 | [Skolik et al., Quantum Machine Intelligence 2021](https://link.springer.com/article/10.1007/s42484-020-00036-4) | Grow or unfreeze quantum layers progressively so fewer quantum parameters compete at once. | **Reserved follow-up.** Use only if near-identity initialization does not stabilize paired seeds; it is more invasive and changes training dynamics without changing model capacity. |
+| [TNT, CoRL 2020](https://proceedings.mlr.press/v155/zhao21b.html) | Predict target states first, then generate trajectories conditioned on those targets. | **Reserved long-horizon follow-up.** If bounded initialization tests fail, add one quantum-conditioned endpoint and feed that prediction to the deterministic trajectory decoder. Do not import TNT's map, multimodal sampling, or target-selection stack. |
 
 ## Current experimental decision
 
@@ -35,3 +36,8 @@ The first literature-guided experiment is the smallest quantum-specific interven
 This experiment tests whether quantum-evolution initialization is the source of the observed basin and
 branch-role instability. It does not claim that the current model has a barren plateau, and it does not
 use literature as justification for test-set access or baseline weakening.
+
+Scale 0.01 reduced cross-seed ADE/FDE spread but degraded both means and did not produce paired
+two-metric wins. It is rejected as the final recipe. Scales 0.05 and 0.10 form the bounded final test of
+the initialization hypothesis; failure of both closes this branch and activates the TNT-inspired
+quantum-conditioned endpoint experiment.

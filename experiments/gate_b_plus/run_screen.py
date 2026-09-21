@@ -132,6 +132,8 @@ def main() -> None:
     parser.add_argument("--attention-balance-weight", type=float, choices=(0.0, 0.05, 0.2), default=0.0)
     parser.add_argument("--quantum-init", choices=("random", "near_identity"), default="random",
                         help="Initialization of the trainable compound quantum evolutions.")
+    parser.add_argument("--quantum-init-scale", type=float, choices=(0.01, 0.05, 0.1), default=0.01,
+                        help="Maximum absolute angle for the fixed near-identity pattern.")
     parser.add_argument("--config", default="configs/gate_b_plus_screen.json")
     parser.add_argument("--output", required=True)
     parser.add_argument("--resume", action="store_true")
@@ -159,7 +161,7 @@ def main() -> None:
     model = GateBPlusQuantumModel(args.mode, dt_s=cfg["dt_s"], rounds=cfg["rounds"],
                                   core_kind=args.core_kind).to(device)
     if args.quantum_init == "near_identity" and not state_path.exists():
-        model.initialize_quantum_evolution_near_identity()
+        model.initialize_quantum_evolution_near_identity(args.quantum_init_scale)
     warmstart = str(args.warmstart_classical or "")
     quantum_warmstart = str(args.warmstart_quantum or "")
     teacher_path = str(args.distill_teacher or "")
@@ -195,6 +197,7 @@ def main() -> None:
                 or state.get("latent_rank_weight", 0.0) != args.latent_rank_weight
                 or state.get("attention_balance_weight", 0.0) != args.attention_balance_weight
                 or state.get("quantum_init", "random") != args.quantum_init
+                or state.get("quantum_init_scale", 0.01) != args.quantum_init_scale
                 or state.get("checkpoint_average_k", 1) != args.checkpoint_average_k
                 or state.get("patience", 0) != args.patience):
             raise RuntimeError("resume identity mismatch")
@@ -292,6 +295,7 @@ def main() -> None:
                  "distill_weight": args.distill_weight, "latent_rank_weight": args.latent_rank_weight,
                  "attention_balance_weight": args.attention_balance_weight,
                  "quantum_init": args.quantum_init,
+                 "quantum_init_scale": args.quantum_init_scale,
                  "checkpoint_average_k": args.checkpoint_average_k,
                  "patience": args.patience,
                  "checkpoint_candidates": checkpoint_candidates,
@@ -340,6 +344,7 @@ def main() -> None:
                "distill_weight": args.distill_weight, "latent_rank_weight": args.latent_rank_weight,
                "attention_balance_weight": args.attention_balance_weight,
                "quantum_init": args.quantum_init,
+               "quantum_init_scale": args.quantum_init_scale,
                "checkpoint_average_k": args.checkpoint_average_k,
                "target_epochs": target_epochs, "early_stopping_patience": args.patience,
                "stopped_early": stopped_early,

@@ -267,6 +267,26 @@ forward-distribution constraint is rejected. Complementary orders are allowed to
 subsequent stability interventions act on quantum optimization rather than forcing matched attention
 entropy.
 
+### Literature-guided quantum initialization
+
+A fixed near-identity pattern with compound-evolution angles in `[-0.01, 0.01]` tested whether random
+quantum evolution initialization caused the remaining basin instability. Exact identity was not trained:
+because the trajectory decoder output layer is initialized to zero, all upstream gradients are zero on
+the first update. After one decoder update, both random and near-identity compound angles had nonzero
+gradient norms around `1e-6`, so the nonzero near-identity run passed the trainability preflight.
+
+| Quantum initialization | Seed | ADE | FDE | J | Best epoch | Stop epoch |
+|---|---:|---:|---:|---:|---:|---:|
+| fixed near-identity, scale 0.01 | 2026 | 1.053537 | 2.716083 | 2.411578 | 21 | 29 |
+| fixed near-identity, scale 0.01 | 2027 | 1.026118 | 2.694997 | 2.373616 | 24 | 32 |
+
+The two-seed mean ADE/FDE is `1.039827 / 2.705540`, worse than the random-initialization candidate's
+`1.019912 / 2.679326`. ADE/FDE sample standard deviation decreases from `0.028880 / 0.018362` to
+`0.019388 / 0.014910`, but neither seed is a two-metric Strong Graph win. Scale 0.01 therefore trades
+away too much performance for its stability gain and is rejected as the final recipe. The bounded
+follow-up tests scales 0.05 and 0.10 to locate whether this is an initialization-direction failure or only
+an overly restrictive amplitude.
+
 ## Post-projection normalization control
 
 A paired control tested whether the scale imbalance diagnosed above could be removed by applying
