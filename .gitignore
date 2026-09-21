@@ -57,6 +57,12 @@ runs/
 results/senior_raj_stack/
 results/senior_raj_matched/
 results/senior_raj_warmstarted/
+results/senior_raj_coupling_screen/
+results/senior_raj_capacity_screen/
+results/senior_raj_curriculum_screen/
+results/senior_raj_hybrid_screen/
+results/senior_raj_quantum_first_screen/
+results/senior_raj_hybrid_matched/
 
 # OS/editor noise
 .DS_Store
