@@ -1,0 +1,36 @@
+{
+  "arm": "quantum",
+  "seed": 2027,
+  "selection_split": "validation_only",
+  "graph_checkpoint": "results/senior_raj_initialization_matched/seed2027/raj_hybrid_qgnn.pt",
+  "graph_backbone_frozen": false,
+  "shared_classical_backbone_frozen": true,
+  "gpt2_base_frozen": true,
+  "lora_and_heads_trainable": true,
+  "quantum_coordinate_features": true,
+  "quantum_finetune_lr": 1e-05,
+  "metric_aligned_loss": true,
+  "token_weight": 0.035,
+  "validation": {
+    "ade_m": 0.5322788555448564,
+    "fde_m": 1.0731980298049009,
+    "interaction_ade_m": 0.5187688904831235,
+    "interaction_fde_m": 1.0445618287716256,
+    "collision_rate": 0.004,
+    "ground_truth_collision_rate": 0.0010833333333333333,
+    "excess_collision_rate": 0.003125
+  },
+  "quantum_ablated_validation": {
+    "ade_m": 0.5815210144280161,
+    "fde_m": 1.1870281154174613,
+    "interaction_ade_m": 0.5681451548629033,
+    "interaction_fde_m": 1.1586553004352147,
+    "collision_rate": 0.0055,
+    "ground_truth_collision_rate": 0.0010833333333333333,
+    "excess_collision_rate": 0.004625
+  },
+  "parameter_summary": {
+    "trainable": 2674093,
+    "total": 70811483
+  }
+}

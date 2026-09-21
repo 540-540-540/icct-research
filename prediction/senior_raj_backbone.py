@@ -106,6 +106,7 @@ class SeniorRajQGNN(MultiTargetForecaster):
             "displacement": displacement,
             "future_position": last_position[:, None] + displacement,
             "node_features": nodes,
+            "quantum_features": raj,
             "attention": attention,
             "adjacency": adjacency,
         }

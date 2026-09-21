@@ -49,7 +49,17 @@ def main() -> None:
     parser.add_argument("--position-noise", type=float, default=0.35)
     parser.add_argument("--velocity-noise", type=float, default=0.20)
     parser.add_argument("--unfreeze-graph", action="store_true")
+    parser.add_argument("--quantum-coordinate-features", action="store_true")
+    parser.add_argument("--quantum-finetune-lr", type=float, default=0.0)
+    parser.add_argument("--metric-aligned-loss", action="store_true")
+    parser.add_argument("--token-weight", type=float, default=0.035)
+    parser.add_argument("--resume-llm-checkpoint")
     args = parser.parse_args()
+
+    if args.quantum_coordinate_features and args.arm != "quantum":
+        parser.error("--quantum-coordinate-features requires --arm quantum")
+    if args.quantum_finetune_lr > 0 and args.arm != "quantum":
+        parser.error("--quantum-finetune-lr requires --arm quantum")
 
     if not torch.cuda.is_available():
         raise RuntimeError("CUDA is required")
@@ -85,10 +95,20 @@ def main() -> None:
             config,
             llm_layers=4,
             lora_rank=8,
-            freeze_graph_backbone=not args.unfreeze_graph,
+            freeze_graph_backbone=not (args.unfreeze_graph or args.quantum_finetune_lr > 0),
+            quantum_coordinate_dim=64 if args.quantum_coordinate_features else 0,
         )
     finally:
         os.chdir(original_cwd)
+    if args.resume_llm_checkpoint:
+        resume = torch.load(args.resume_llm_checkpoint, map_location="cpu", weights_only=False)
+        model.load_state_dict(resume["model_state"])
+    if args.quantum_finetune_lr > 0:
+        for parameter in model.graph_backbone.parameters():
+            parameter.requires_grad = False
+        for module in (model.graph_backbone.core, model.graph_backbone.raj_projection):
+            for parameter in module.parameters():
+                parameter.requires_grad = True
     train_loader = loader(train_data, args.batch_size, args.workers, True, args.seed)
     val_loader = loader(val_data, args.batch_size, args.workers, False, args.seed)
     output_dir = Path(args.output_dir)
@@ -106,7 +126,10 @@ def main() -> None:
         output_dir / "graph_motion_token_gpt2.pt",
         output_dir / "training.jsonl",
         args.seed,
+        token_weight=args.token_weight,
         model_name=f"{args.arm}_graph_motion_token_gpt2",
+        quantum_learning_rate=args.quantum_finetune_lr if args.quantum_finetune_lr > 0 else None,
+        metric_aligned_loss=args.metric_aligned_loss,
     )
     quantum_ablated_validation = None
     if args.arm == "quantum":
@@ -124,9 +147,15 @@ def main() -> None:
         "seed": args.seed,
         "selection_split": "validation_only",
         "graph_checkpoint": args.checkpoint,
-        "graph_backbone_frozen": not args.unfreeze_graph,
+        "graph_backbone_frozen": not (args.unfreeze_graph or args.quantum_finetune_lr > 0),
+        "shared_classical_backbone_frozen": args.quantum_finetune_lr > 0 or not args.unfreeze_graph,
         "gpt2_base_frozen": True,
         "lora_and_heads_trainable": True,
+        "quantum_coordinate_features": args.quantum_coordinate_features,
+        "quantum_finetune_lr": args.quantum_finetune_lr,
+        "metric_aligned_loss": args.metric_aligned_loss,
+        "token_weight": args.token_weight,
+        "resume_llm_checkpoint": args.resume_llm_checkpoint,
         "validation": validation,
         "quantum_ablated_validation": quantum_ablated_validation,
         "parameter_summary": model.trainable_parameter_summary(),

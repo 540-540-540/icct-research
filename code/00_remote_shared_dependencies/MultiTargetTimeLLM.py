@@ -48,6 +48,7 @@ class MultiTargetGraphLLM(nn.Module):
         use_graph_context: bool = True,
         fixed_temperature: float = 0.22,
         freeze_graph_backbone: bool = True,
+        quantum_coordinate_dim: int = 0,
     ):
         super().__init__()
         self.graph_backbone = graph_backbone
@@ -58,6 +59,7 @@ class MultiTargetGraphLLM(nn.Module):
         self.use_graph_context = use_graph_context
         self.fixed_temperature = fixed_temperature
         self.freeze_graph_backbone = freeze_graph_backbone
+        self.quantum_coordinate_dim = quantum_coordinate_dim
         if self.freeze_graph_backbone:
             for parameter in self.graph_backbone.parameters():
                 parameter.requires_grad = False
@@ -112,9 +114,15 @@ class MultiTargetGraphLLM(nn.Module):
         )
         self.future_queries = nn.Parameter(torch.randn(config.prediction_length, self.d_llm) * 0.02)
         self.token_head = nn.Sequential(nn.LayerNorm(self.d_llm), nn.Linear(self.d_llm, self.vocab_size))
+        if quantum_coordinate_dim > 0:
+            if not hasattr(graph_backbone, "quantum_scale"):
+                raise ValueError("quantum coordinate features require a quantum graph backbone")
+            self.register_buffer(
+                "quantum_coordinate_reference_scale", graph_backbone.quantum_scale.detach().clone()
+            )
         self.coordinate_head = nn.Sequential(
-            nn.LayerNorm(self.d_llm + hidden_dim),
-            nn.Linear(self.d_llm + hidden_dim, 256),
+            nn.LayerNorm(self.d_llm + hidden_dim + quantum_coordinate_dim),
+            nn.Linear(self.d_llm + hidden_dim + quantum_coordinate_dim, 256),
             nn.GELU(),
             nn.Dropout(dropout),
             nn.Linear(256, config.prediction_length * 2),
@@ -183,6 +191,17 @@ class MultiTargetGraphLLM(nn.Module):
         token_logits = self.token_head(future_hidden).reshape(batch, targets, self.config.prediction_length, self.vocab_size)
         token_logits = token_logits.permute(0, 2, 1, 3)
         coordinate_input = torch.cat([pooled, coordinate_nodes], dim=-1)
+        if self.quantum_coordinate_dim > 0:
+            quantum_features = graph_output.get("quantum_features")
+            expected = (batch, targets, self.quantum_coordinate_dim)
+            if quantum_features is None or quantum_features.shape != expected:
+                raise ValueError(f"Expected quantum_features with shape {expected}")
+            gate = self.graph_backbone.quantum_scale.to(quantum_features.dtype)
+            gate = gate / self.quantum_coordinate_reference_scale.clamp_min(1e-12)
+            quantum_coordinates = quantum_features.reshape(batch * targets, -1) * gate
+            if not self.use_graph_context:
+                quantum_coordinates = torch.zeros_like(quantum_coordinates)
+            coordinate_input = torch.cat((coordinate_input, quantum_coordinates), dim=-1)
         correction = self.coordinate_head(coordinate_input)
         correction = torch.tanh(correction.view(batch, targets, self.config.prediction_length, 2)) * self.correction_scale_m
         correction = correction.permute(0, 2, 1, 3) * target_mask[:, None, :, None]

@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import copy
 import json
+import math
 import time
 from pathlib import Path
 from typing import Dict, Optional, Sequence
@@ -24,6 +25,17 @@ def token_loss(logits: torch.Tensor, targets: torch.Tensor, mask: torch.Tensor) 
     return losses[valid].mean()
 
 
+def metric_aligned_prediction_loss(
+    output: Dict[str, torch.Tensor], future: torch.Tensor, mask: torch.Tensor
+) -> torch.Tensor:
+    """Optimize the same ADE + 0.35 FDE score used for checkpoint selection."""
+    distance = torch.linalg.vector_norm(output["future_position"] - future[..., :2], dim=-1)
+    valid = mask[:, None, :].to(distance.dtype)
+    ade = (distance * valid).sum() / valid.expand_as(distance).sum().clamp_min(1.0)
+    fde = (distance[:, -1] * mask).sum() / mask.sum().clamp_min(1)
+    return ade + 0.35 * fde
+
+
 def train_graph_llm(
     model: MultiTargetGraphLLM,
     train_loader: DataLoader,
@@ -38,14 +50,19 @@ def train_graph_llm(
     seed: int,
     token_weight: float = 0.035,
     model_name: str = "graph_motion_token_gpt2",
+    quantum_learning_rate: float | None = None,
+    metric_aligned_loss: bool = False,
 ) -> Dict[str, float]:
     model.to(device)
     lora_parameters = []
     head_parameters = []
+    quantum_parameters = []
     for name, parameter in model.named_parameters():
         if not parameter.requires_grad:
             continue
-        if "lora_" in name:
+        if name.startswith(("graph_backbone.core.", "graph_backbone.raj_projection.")):
+            quantum_parameters.append(parameter)
+        elif "lora_" in name:
             lora_parameters.append(parameter)
         else:
             head_parameters.append(parameter)
@@ -53,8 +70,16 @@ def train_graph_llm(
         {"params": head_parameters, "lr": learning_rate},
         {"params": lora_parameters, "lr": learning_rate * 0.25},
     ]
+    if quantum_parameters:
+        if quantum_learning_rate is None or quantum_learning_rate <= 0:
+            raise ValueError("A positive quantum_learning_rate is required for trainable Raj parameters")
+        parameter_groups.append({"params": quantum_parameters, "lr": quantum_learning_rate})
     optimizer = torch.optim.AdamW(parameter_groups, weight_decay=2.0e-4)
-    scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=max(epochs, 1), eta_min=learning_rate * 0.08)
+    def cosine_factor(step: int) -> float:
+        progress = min(step, max(epochs, 1)) / max(epochs, 1)
+        return 0.08 + 0.92 * 0.5 * (1.0 + math.cos(math.pi * progress))
+
+    scheduler = torch.optim.lr_scheduler.LambdaLR(optimizer, lr_lambda=cosine_factor)
     scaler = torch.cuda.amp.GradScaler(enabled=device.type == "cuda")
 
     initial = evaluate(model, validation_loader, device, position_sigma, velocity_sigma, seed + 1000)
@@ -81,7 +106,10 @@ def train_graph_llm(
                 optimizer.zero_grad(set_to_none=True)
                 with torch.cuda.amp.autocast(enabled=device.type == "cuda"):
                     output = model(observed, mask)
-                    coordinate = prediction_loss(output, future, mask, graph_weighting=True)
+                    if metric_aligned_loss:
+                        coordinate = metric_aligned_prediction_loss(output, future, mask)
+                    else:
+                        coordinate = prediction_loss(output, future, mask, graph_weighting=True)
                     targets = model.future_token_ids(observed, future)
                     classification = token_loss(output["token_logits"], targets, mask)
                     loss = coordinate + token_weight * classification
@@ -107,6 +135,7 @@ def train_graph_llm(
                 "validation": validation,
                 "head_lr": optimizer.param_groups[0]["lr"],
                 "lora_lr": optimizer.param_groups[1]["lr"],
+                "quantum_lr": optimizer.param_groups[2]["lr"] if len(optimizer.param_groups) > 2 else None,
                 "seconds": time.time() - started,
             }
             print(json.dumps(record, ensure_ascii=False), flush=True)
