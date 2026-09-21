@@ -104,6 +104,7 @@ def main() -> None:
                                            "horizon_independent", "horizon_trajectory", "horizon_kinematic",
                                            "horizon_adaptive", "horizon_ranknorm",
                                            "multiscale_quantum_attention", "target_conditioned_quantum_attention",
+                                           "stochastic_multiscale_quantum_attention",
                                            "dual_readout_quantum_attention",
                                            "residual_multiscale_quantum_attention"),
                         required=True)
@@ -137,6 +138,8 @@ def main() -> None:
                         help="Maximum absolute angle for the fixed near-identity pattern.")
     parser.add_argument("--target-loss-weight", type=float, choices=(0.0, 0.25, 0.5), default=0.0,
                         help="Auxiliary supervised weight for a history-only predicted 4 s target.")
+    parser.add_argument("--branch-drop-probability", type=float, choices=(0.0, 0.2), default=0.0,
+                        help="Probability of dropping exactly one order-specific quantum readout.")
     parser.add_argument("--config", default="configs/gate_b_plus_screen.json")
     parser.add_argument("--output", required=True)
     parser.add_argument("--resume", action="store_true")
@@ -147,6 +150,8 @@ def main() -> None:
         raise ValueError("--distill-weight requires --distill-teacher")
     if args.target_loss_weight and args.mode != "target_conditioned_quantum_attention":
         raise ValueError("--target-loss-weight requires target_conditioned_quantum_attention")
+    if args.branch_drop_probability and args.mode != "stochastic_multiscale_quantum_attention":
+        raise ValueError("--branch-drop-probability requires stochastic_multiscale_quantum_attention")
     if args.warmstart_classical and args.warmstart_quantum:
         raise ValueError("choose only one warm-start source")
     cfg = json.loads((ROOT / args.config).read_text())
@@ -164,7 +169,8 @@ def main() -> None:
     val_loader = DataLoader(val, cfg["training"]["batch_size"] * 2, shuffle=False, num_workers=2)
     device = torch.device("cuda:0")
     model = GateBPlusQuantumModel(args.mode, dt_s=cfg["dt_s"], rounds=cfg["rounds"],
-                                  core_kind=args.core_kind).to(device)
+                                  core_kind=args.core_kind,
+                                  branch_drop_probability=args.branch_drop_probability).to(device)
     if args.quantum_init == "near_identity" and not state_path.exists():
         model.initialize_quantum_evolution_near_identity(args.quantum_init_scale)
     warmstart = str(args.warmstart_classical or "")
@@ -204,6 +210,7 @@ def main() -> None:
                 or state.get("quantum_init", "random") != args.quantum_init
                 or state.get("quantum_init_scale", 0.01) != args.quantum_init_scale
                 or state.get("target_loss_weight", 0.0) != args.target_loss_weight
+                or state.get("branch_drop_probability", 0.0) != args.branch_drop_probability
                 or state.get("checkpoint_average_k", 1) != args.checkpoint_average_k
                 or state.get("patience", 0) != args.patience):
             raise RuntimeError("resume identity mismatch")
@@ -317,6 +324,7 @@ def main() -> None:
                  "quantum_init": args.quantum_init,
                  "quantum_init_scale": args.quantum_init_scale,
                  "target_loss_weight": args.target_loss_weight,
+                 "branch_drop_probability": args.branch_drop_probability,
                  "checkpoint_average_k": args.checkpoint_average_k,
                  "patience": args.patience,
                  "checkpoint_candidates": checkpoint_candidates,
@@ -367,6 +375,7 @@ def main() -> None:
                "quantum_init": args.quantum_init,
                "quantum_init_scale": args.quantum_init_scale,
                "target_loss_weight": args.target_loss_weight,
+               "branch_drop_probability": args.branch_drop_probability,
                "checkpoint_average_k": args.checkpoint_average_k,
                "target_epochs": target_epochs, "early_stopping_patience": args.patience,
                "stopped_early": stopped_early,

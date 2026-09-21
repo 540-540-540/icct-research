@@ -25,7 +25,7 @@ class GateBPlusQuantumModel(nn.Module):
     """Quantum-primary interaction model; no classical cross-agent message passing."""
 
     def __init__(self, mode: str, width: int = 128, dt_s: float = 0.1, rounds: int = 3,
-                 core_kind: str = "quantum"):
+                 core_kind: str = "quantum", branch_drop_probability: float = 0.0):
         super().__init__()
         if mode not in {"neighbor_residual", "dual_quantum_view", "full_multiscale", "multiscale_quantum_view",
                         "fused_multiscale", "cross_order_multiscale", "quantum_latent_attention",
@@ -33,11 +33,15 @@ class GateBPlusQuantumModel(nn.Module):
                         "horizon_independent", "horizon_trajectory", "horizon_kinematic",
                         "horizon_adaptive", "horizon_ranknorm", "multiscale_quantum_attention",
                         "target_conditioned_quantum_attention",
+                        "stochastic_multiscale_quantum_attention",
                         "dual_readout_quantum_attention", "residual_multiscale_quantum_attention"}:
             raise ValueError(mode)
         if core_kind not in {"quantum", "quantum_wide", "johnson", "johnson_wide", "johnson_large"}:
             raise ValueError(core_kind)
+        if not 0.0 <= branch_drop_probability < 1.0:
+            raise ValueError(branch_drop_probability)
         self.mode, self.core_kind, self.dt_s = mode, core_kind, float(dt_s)
+        self.branch_drop_probability = float(branch_drop_probability)
         self.encoder = NodeTCN(width)
         if core_kind == "quantum":
             self.core = RajWeightedMultiJQGNNCore(rounds=rounds)
@@ -56,6 +60,7 @@ class GateBPlusQuantumModel(nn.Module):
                       "all_neighbor_quantum_latent_attention": 256,
                       "multiscale_quantum_attention": 256,
                       "target_conditioned_quantum_attention": 256,
+                      "stochastic_multiscale_quantum_attention": 256,
                       "residual_multiscale_quantum_attention": 256,
                       "dual_readout_quantum_attention": 384,
                       "horizon_multiscale": 128, "horizon_independent": 128,
@@ -66,6 +71,7 @@ class GateBPlusQuantumModel(nn.Module):
                           if mode in {"quantum_latent_attention", "all_neighbor_quantum_latent_attention"}
                           else None)
         if mode in {"multiscale_quantum_attention", "target_conditioned_quantum_attention",
+                    "stochastic_multiscale_quantum_attention",
                     "dual_readout_quantum_attention",
                     "residual_multiscale_quantum_attention"}:
             self.branch_messages = nn.ModuleList(
@@ -157,6 +163,7 @@ class GateBPlusQuantumModel(nn.Module):
                          "horizon_independent", "horizon_trajectory", "horizon_kinematic",
                          "horizon_adaptive", "horizon_ranknorm", "multiscale_quantum_attention",
                          "target_conditioned_quantum_attention",
+                         "stochastic_multiscale_quantum_attention",
                          "dual_readout_quantum_attention", "residual_multiscale_quantum_attention"}:
             j2_nodes = self.core.j2(history, node_mask)
             j3_nodes = self.core.j3(history, node_mask)
@@ -173,6 +180,7 @@ class GateBPlusQuantumModel(nn.Module):
                 interaction_context = (messages * weights[..., None]).sum(1)
                 quantum_context = None
             elif self.mode in {"multiscale_quantum_attention", "target_conditioned_quantum_attention",
+                               "stochastic_multiscale_quantum_attention",
                                "dual_readout_quantum_attention",
                                "residual_multiscale_quantum_attention"}:
                 neighbor_mask = node_mask[:, 1:]
@@ -193,6 +201,15 @@ class GateBPlusQuantumModel(nn.Module):
                         pooled.append(0.5 * (mean_pool + attention_pool))
                     else:
                         pooled.append(attention_pool)
+                if (self.mode == "stochastic_multiscale_quantum_attention" and self.training
+                        and self.branch_drop_probability):
+                    choice = torch.rand(len(history), device=history.device)
+                    half = self.branch_drop_probability / 2.0
+                    keep_j2 = (choice >= half).to(pooled[0].dtype)[:, None]
+                    keep_j3 = ((choice < half) | (choice >= self.branch_drop_probability)).to(
+                        pooled[1].dtype)[:, None]
+                    scale = 1.0 / (1.0 - half)
+                    pooled = [pooled[0] * keep_j2 * scale, pooled[1] * keep_j3 * scale]
                 if self.mode == "dual_readout_quantum_attention":
                     quantum_nodes = torch.cat((j2_nodes, j3_nodes), -1)
                     neighbors = quantum_nodes[:, 1:]

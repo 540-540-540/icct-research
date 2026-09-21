@@ -302,6 +302,25 @@ is weaker on both means (`1.049953 / 2.749340`) and remains unstable. No scale i
 win over Strong Graph. Fixed quantum evolution initialization is therefore not sufficient to control the
 joint quantum-readout/decoder basin and this search direction is closed.
 
+### Quantum-conditioned target decomposition
+
+A TNT-inspired deterministic target head predicted the 4 s endpoint directly from the order-separated
+quantum interaction context. Its history-only prediction was then embedded as a horizon-growing residual
+to condition the trajectory decoder. The future endpoint was used only as an auxiliary label with fixed
+weight 0.25.
+
+| Variant | Seed | ADE | FDE | J | Best epoch | Stop epoch |
+|---|---:|---:|---:|---:|---:|---:|
+| quantum-conditioned target | 2026 | 1.084140 | 2.799020 | 2.483650 | 28 | 36 |
+| quantum-conditioned target | 2027 | 1.082613 | 2.833976 | 2.499601 | 16 | 24 |
+
+The target head itself has IC4 endpoint error `2.826753 / 3.085887`, so it does not learn a sufficiently
+accurate endpoint bottleneck. The decoder nevertheless uses it: zeroing only the learned target context
+at inference worsens ADE/FDE to `1.145905 / 2.989503` and `1.184653 / 3.158645`. The failure is thus
+an inaccurate intermediate target that the decoder relies on, not an ignored auxiliary head. Increasing
+its loss would further constrain the already degraded shared representation; the target-decomposition
+direction is rejected.
+
 ## Post-projection normalization control
 
 A paired control tested whether the scale imbalance diagnosed above could be removed by applying

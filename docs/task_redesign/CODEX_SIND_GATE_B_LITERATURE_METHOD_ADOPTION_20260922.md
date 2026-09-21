@@ -22,6 +22,7 @@ trajectory-model capacity.
 | [Grant et al., Quantum 2019](https://quantum-journal.org/papers/q-2019-12-09-214/) | Initialize trainable quantum blocks near an identity-effective circuit to improve the initial optimization landscape. | **Adapted now.** Test a fixed, small, nonzero near-identity initialization only for the compound quantum evolutions. Exact zero angles were rejected in preflight because the zero-initialized trajectory head blocks upstream gradients on update 1; after one decoder update both random and near-identity quantum angles receive nonzero gradients. |
 | [Skolik et al., Quantum Machine Intelligence 2021](https://link.springer.com/article/10.1007/s42484-020-00036-4) | Grow or unfreeze quantum layers progressively so fewer quantum parameters compete at once. | **Reserved follow-up.** Use only if near-identity initialization does not stabilize paired seeds; it is more invasive and changes training dynamics without changing model capacity. |
 | [TNT, CoRL 2020](https://proceedings.mlr.press/v155/zhao21b.html) | Predict target states first, then generate trajectories conditioned on those targets. | **Reserved long-horizon follow-up.** If bounded initialization tests fail, add one quantum-conditioned endpoint and feed that prediction to the deterministic trajectory decoder. Do not import TNT's map, multimodal sampling, or target-selection stack. |
+| [ModDrop, TPAMI 2016](https://arxiv.org/abs/1501.00102) and [Stochastic Branch, ACML 2019](https://proceedings.mlr.press/v101/park19a.html) | Randomly remove complete representation channels or branches during training to prevent fragile co-adaptation while preserving branch-specific information. | **Adopted next.** Drop exactly one of j2 or j3 readouts in 20% of training samples, symmetrically split across orders; retain both branches at validation and inference. |
 
 ## Current experimental decision
 
@@ -47,3 +48,8 @@ seed 2026 and increased ADE/FDE dispersion; scale 0.10 degraded both means. The 
 is closed. The next experiment implements the predeclared TNT transfer: a history-only quantum
 interaction target head predicts the 4 s endpoint, and its prediction conditions the shared trajectory
 decoder. The future endpoint appears only in the auxiliary supervised loss and never enters history.
+
+The target decomposition failed because its intermediate endpoint remained inaccurate while the decoder
+became dependent on it. It is rejected without a loss-weight sweep. The next transfer uses ModDrop only
+at the j2/j3 quantum readout boundary to prevent cross-order co-adaptation without constraining attention
+entropy or changing inference capacity.
