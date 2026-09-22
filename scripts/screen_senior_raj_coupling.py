@@ -39,6 +39,7 @@ def main() -> None:
         "--independent-checkpoint",
         default="reports/senior_r0_reproduction/phase1/independent_gru.pt",
     )
+    parser.add_argument("--resume-checkpoint")
     parser.add_argument("--output-dir", required=True)
     parser.add_argument("--seed", type=int, default=2026)
     parser.add_argument("--workers", type=int, default=4)
@@ -76,8 +77,6 @@ def main() -> None:
     train_loader = loader(train_data, args.batch_size, args.workers, True, args.seed)
     val_loader = loader(val_data, args.batch_size, args.workers, False, args.seed)
 
-    checkpoint = torch.load(args.independent_checkpoint, map_location="cpu", weights_only=False)
-    base_state = checkpoint["model_state"]
     set_seed(args.seed + 17)
     model = SeniorRajQGNN(
         config,
@@ -87,10 +86,15 @@ def main() -> None:
         classical_layers=args.classical_layers,
         quantum_first=args.quantum_first,
     )
-    missing, unexpected = model.load_state_dict(base_state, strict=False)
-    allowed = ("core.", "raj_projection.", "quantum_scale", "graph_layers.")
-    if unexpected or any(not key.startswith(allowed) for key in missing):
-        raise RuntimeError(f"Unexpected warm-start mismatch: missing={missing} unexpected={unexpected}")
+    if args.resume_checkpoint:
+        checkpoint = torch.load(args.resume_checkpoint, map_location="cpu", weights_only=False)
+        model.load_state_dict(checkpoint["model_state"])
+    else:
+        checkpoint = torch.load(args.independent_checkpoint, map_location="cpu", weights_only=False)
+        missing, unexpected = model.load_state_dict(checkpoint["model_state"], strict=False)
+        allowed = ("core.", "raj_projection.", "quantum_scale", "graph_layers.")
+        if unexpected or any(not key.startswith(allowed) for key in missing):
+            raise RuntimeError(f"Unexpected warm-start mismatch: missing={missing} unexpected={unexpected}")
     initial_core = {
         key: value.detach().cpu().clone()
         for key, value in model.state_dict().items()
@@ -153,6 +157,7 @@ def main() -> None:
     )
     result = {
         "seed": args.seed,
+        "resume_checkpoint": args.resume_checkpoint,
         "selection_split": "validation_only",
         "quantum_scale": args.quantum_scale,
         "projection_hidden": args.projection_hidden,

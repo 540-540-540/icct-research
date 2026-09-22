@@ -1,0 +1,66 @@
+{
+  "freeze_date": "2026-09-22",
+  "selection_split": "validation_only",
+  "test_split_opened": true,
+  "test_opened_after_freeze": true,
+  "selection_changed_after_test": false,
+  "scheme": "independent_single_model_raj_qgnn_motion_token_gpt2",
+  "distillation": false,
+  "ensemble": false,
+  "routing": false,
+  "selected_results": {
+    "2026": "results/senior_raj_frozen_single_model/seed2026/result.json",
+    "2027": "results/senior_raj_frozen_single_model/seed2027/result.json",
+    "2028": "results/senior_raj_frozen_single_model/seed2028/result.json"
+  },
+  "per_seed": [
+    {"seed": 2026, "ade_m": 0.5226793127117031, "fde_m": 1.0519460296069933},
+    {"seed": 2027, "ade_m": 0.5265489621318171, "fde_m": 1.05903752898609},
+    {"seed": 2028, "ade_m": 0.5215665035370004, "fde_m": 1.0544827259609821}
+  ],
+  "three_seed": {
+    "ade_mean_m": 0.5235982594601736,
+    "ade_sample_std_m": 0.0026152573022857717,
+    "fde_mean_m": 1.0551554281846884,
+    "fde_sample_std_m": 0.003593290563295271,
+    "classical_ade_mean_m": 0.5478482411771922,
+    "classical_fde_mean_m": 1.1034988306093143,
+    "ade_gain_percent": 4.426404959320732,
+    "fde_gain_percent": 4.380920131825812
+  },
+  "senior_original_graph_gpt2": {
+    "validation_ade_m": 0.5479971731126014,
+    "validation_fde_m": 1.1047327293842333,
+    "qgnn_gain_over_validation_ade_percent": 4.452379444294634,
+    "qgnn_gain_over_validation_fde_percent": 4.4877190546512296,
+    "test_ade_m": 0.5911531277186552,
+    "test_fde_m": 1.195073048045906,
+    "test_comparison_available": true,
+    "note": "QGNN test was opened once after model freeze; no post-test selection or tuning."
+  },
+  "final_test": {
+    "per_seed": [
+      {"seed": 2026, "ade_m": 0.5670595684282835, "fde_m": 1.1488106976796142},
+      {"seed": 2027, "ade_m": 0.5648625416950196, "fde_m": 1.1461172909300277},
+      {"seed": 2028, "ade_m": 0.5640209106310725, "fde_m": 1.1429345699760327}
+    ],
+    "ade_mean_m": 0.5653143402514585,
+    "ade_sample_std_m": 0.0015689014480961107,
+    "fde_mean_m": 1.145954186195225,
+    "fde_sample_std_m": 0.0029414573876032544,
+    "ade_gain_over_senior_original_percent": 4.3709127560421255,
+    "fde_gain_over_senior_original_percent": 4.110113765095492,
+    "quantum_ablated_ade_mean_m": 0.6217374315580784,
+    "quantum_ablated_fde_mean_m": 1.277461062665811,
+    "enabled_gain_over_ablation_ade_percent": 9.075067454958141,
+    "enabled_gain_over_ablation_fde_percent": 10.294394116103774
+  },
+  "quantum_ablation": {
+    "ablated_ade_mean_m": 0.5825343142669959,
+    "ablated_fde_mean_m": 1.1944350760903666,
+    "enabled_gain_over_ablation_ade_percent": 10.117181660102144,
+    "enabled_gain_over_ablation_fde_percent": 11.660713143285216
+  },
+  "target_gain_percent": 5.0,
+  "target_reached_against_classical": false
+}

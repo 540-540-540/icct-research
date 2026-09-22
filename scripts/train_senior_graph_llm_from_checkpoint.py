@@ -54,12 +54,15 @@ def main() -> None:
     parser.add_argument("--metric-aligned-loss", action="store_true")
     parser.add_argument("--token-weight", type=float, default=0.035)
     parser.add_argument("--resume-llm-checkpoint")
+    parser.add_argument("--resume-llm-only", action="store_true")
     args = parser.parse_args()
 
     if args.quantum_coordinate_features and args.arm != "quantum":
         parser.error("--quantum-coordinate-features requires --arm quantum")
     if args.quantum_finetune_lr > 0 and args.arm != "quantum":
         parser.error("--quantum-finetune-lr requires --arm quantum")
+    if args.resume_llm_only and not args.resume_llm_checkpoint:
+        parser.error("--resume-llm-only requires --resume-llm-checkpoint")
 
     if not torch.cuda.is_available():
         raise RuntimeError("CUDA is required")
@@ -102,7 +105,19 @@ def main() -> None:
         os.chdir(original_cwd)
     if args.resume_llm_checkpoint:
         resume = torch.load(args.resume_llm_checkpoint, map_location="cpu", weights_only=False)
-        model.load_state_dict(resume["model_state"])
+        resume_state = resume["model_state"]
+        if args.resume_llm_only:
+            resume_state = {
+                key: value for key, value in resume_state.items()
+                if not key.startswith("graph_backbone.")
+            }
+            missing, unexpected = model.load_state_dict(resume_state, strict=False)
+            if unexpected or any(not key.startswith("graph_backbone.") for key in missing):
+                raise RuntimeError(
+                    f"Unexpected LLM-only checkpoint mismatch: missing={missing} unexpected={unexpected}"
+                )
+        else:
+            model.load_state_dict(resume_state)
     if args.quantum_finetune_lr > 0:
         for parameter in model.graph_backbone.parameters():
             parameter.requires_grad = False
@@ -156,6 +171,7 @@ def main() -> None:
         "metric_aligned_loss": args.metric_aligned_loss,
         "token_weight": args.token_weight,
         "resume_llm_checkpoint": args.resume_llm_checkpoint,
+        "resume_llm_only": args.resume_llm_only,
         "validation": validation,
         "quantum_ablated_validation": quantum_ablated_validation,
         "parameter_summary": model.trainable_parameter_summary(),
