@@ -1,3 +1,0 @@
-method,scene_index,snr_db,ade_m,fde_m,targets_with_lower_ade_than_independent
-Independent Transformer,111,20,1.009786430687059,2.2860555086178747,
-Proposed,111,20,0.7516727129784139,1.2177344751961008,4

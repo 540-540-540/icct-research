@@ -1,8 +1,0 @@
-{
-  "arm": "quantum",
-  "source": "/home/js_cn/sensing/diagnostics/core_message_seed2026_v2/future_token_qgnn_llm_seed2026_v1",
-  "source_epoch": 14,
-  "epoch0_exact_max_abs_m": 0.0,
-  "relation_strength_gradient": 0.010873180814087391,
-  "relation_coordinate_strength_gradient": 0.0065488144755363464
-}

@@ -1,6 +1,0 @@
-{
-  "file": "prediction/qgnn_final/common.py",
-  "old": "    mp = mask[batch,slots].reshape(b*n,CAP)\n",
-  "new": "    # A filler can have the root index; it must not become another active ego.\n    neighbor_valid = valid.gather(2,neighbors)\n    mp = torch.cat((mask[:,:,None],neighbor_valid),-1).reshape(b*n,CAP)\n    hp = torch.where(mp[:,None,:,None],hp,0.)\n",
-  "reason": "N>8 with fewer than7 valid neighbors can select self among negative-infinity fillers; self must stay masked. N<=8 return branch is unchanged."
-}

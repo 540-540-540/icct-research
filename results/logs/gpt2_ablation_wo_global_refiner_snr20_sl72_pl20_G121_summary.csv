@@ -1,2 +1,0 @@
-ablation,method,best_val_ade,best_val_fde,step5_ade,step10_ade,step15_ade,step20_ade,val_token_acc,val_token_temp,checkpoint
-wo_global_refiner,w/o Global Refiner,0.7575650686834013,1.1937698930355032,0.5904317079555421,0.6847826583044869,0.9428229241144089,1.1937698954627627,0.6605357263769422,0.22915854085059392,./checkpoints/gpt2_ablation_wo_global_refiner_snr20_sl72_pl20_G121/wo_global_refiner_snr20/checkpoint.pth

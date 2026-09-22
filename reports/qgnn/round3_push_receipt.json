@@ -1,9 +1,0 @@
-{
-  "published_and_GitHub_API_verified_commit": "625267099551f926ab0219429fa4b325522f95b9",
-  "server_head_at_close": "e18cbedf3781ab77aa099f2b1a3ce5f0ab27210e",
-  "verification": "non-force authorized Windows bare relay, git ls-remote, independent GitHub API ref",
-  "time": "2026-09-19T11:07:17+0800",
-  "all_experiment_jobs_completed": true,
-  "test_set_used": false,
-  "full_train_executed": false
-}

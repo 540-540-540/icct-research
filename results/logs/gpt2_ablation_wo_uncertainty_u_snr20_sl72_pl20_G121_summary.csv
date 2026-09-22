@@ -1,2 +1,0 @@
-ablation,method,best_val_ade,best_val_fde,step5_ade,step10_ade,step15_ade,step20_ade,val_token_acc,val_token_temp,checkpoint
-wo_uncertainty_u,w/o Uncertainty u,0.7605561745655168,1.1556984602563587,0.588175276347569,0.7110901392641522,0.9327923019727071,1.1556984543800355,0.658790934085846,0.18000000715255737,./checkpoints/gpt2_ablation_wo_uncertainty_u_snr20_sl72_pl20_G121/wo_uncertainty_u_snr20/checkpoint.pth

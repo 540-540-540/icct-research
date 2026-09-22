@@ -1,5 +1,0 @@
-2026-09-14T08:52:15.199482+00:00 run started; zero-update diagnostic scope
-2026-09-14T08:52:39.207098+00:00 archive reproduction workers finished
-2026-09-14T08:56:44.606568+00:00 full train/V_select inference matrix workers finished
-2026-09-14T08:58:29.620402+00:00 candidate A in-memory context intervention workers finished
-2026-09-14T09:07:46.480600+00:00 run finished; execution_status=complete; optimizer_steps=0

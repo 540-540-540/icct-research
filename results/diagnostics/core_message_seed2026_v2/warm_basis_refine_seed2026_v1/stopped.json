@@ -1,9 +1,0 @@
-{
-  "status": "stopped_after_diagnostic",
-  "reason": "The classical refinement improved slightly, while the quantum refinement remained below its protected epoch-0 checkpoint for three consecutive epochs. Resources were reassigned to the higher-priority QGNN+LLM experiment.",
-  "classical_completed_epochs": 16,
-  "classical_best_epoch": 14,
-  "quantum_completed_epochs": 3,
-  "quantum_selected_epoch": 0,
-  "retain_as_mechanism_optimization_ablation": true
-}

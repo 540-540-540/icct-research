@@ -1,9 +1,0 @@
-{
-  "server_head": "e18cbedf3781ab77aa099f2b1a3ce5f0ab27210e",
-  "github_ref_independently_verified": "e18cbedf3781ab77aa099f2b1a3ce5f0ab27210e",
-  "method": "Windows authorized Git credential-manager bundle push, followed by GitHub API ref verification",
-  "bundle": "/tmp/icct_round3_6252670.bundle",
-  "remote_tracking_ref_updated_from_verified_GitHub_ref": true,
-  "test_set_used": false,
-  "completed_at": "2026-09-19T11:08:37+0800"
-}

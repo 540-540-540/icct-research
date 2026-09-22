@@ -1,4 +1,0 @@
-INVALID / INTERRUPTED DUPLICATE RUN.
-This directory came from an accidental duplicate launch and must not be used for scientific results.
-The valid preregistered seed2026 convergence runs use directories ending in _20e_2026, not _20ep_2026.
-Duplicate processes 535362/535363 were terminated.

@@ -1,5 +1,0 @@
-{
-  "status": "stopped_after_epoch_2",
-  "reason": "Relation attention remained near-uniform and validation gain was negligible; replaced by time-aligned risk attention.",
-  "artifacts_preserved": true
-}

@@ -1,9 +1,0 @@
-{
-  "initial_parameter_hash_matches_retained_quantum": true,
-  "max_encoded_angle": 1.4343730211257935,
-  "max_initial_prediction_difference": 0.24116897583007812,
-  "loss": 1.114227056503296,
-  "encoder_gradient_max": 0.3135601878166199,
-  "core_gradient_max": 0.04308705031871796,
-  "parameters": 352148
-}

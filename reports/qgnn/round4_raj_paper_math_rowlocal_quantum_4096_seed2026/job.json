@@ -1,8 +1,0 @@
-{
-  "status": "COMPLETED",
-  "pid": 921502,
-  "gpu": 0,
-  "git_head": "92fcb2b7efd83c8dd053801dfb703675b022cf76",
-  "launched_utc": "2026-09-19T11:04:31Z",
-  "command": "env CUDA_VISIBLE_DEVICES=0 /home/dell/YrM/envs/ICCT/bin/python -u scripts/train_qgnn_paper_native.py --kind raj_paper_math_rowlocal_quantum --j 3 --seed 2026 --snr 0 --epochs 20 --batch-size 32 --train-limit 4096 --depth 3 --correction-cap 16 --lr 3e-4 --run-dir reports/qgnn/round4_raj_paper_math_rowlocal_quantum_4096_seed2026 --max-seconds 7200 --save-steps 100"
-}

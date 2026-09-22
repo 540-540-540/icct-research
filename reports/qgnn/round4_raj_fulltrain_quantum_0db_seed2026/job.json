@@ -1,8 +1,0 @@
-{
-  "status": "COMPLETED",
-  "pid": 603766,
-  "gpu": 0,
-  "git_head": "c654ae68c5f4dfc76cf78e6151ba3a2b183648b7",
-  "launched_utc": "2026-09-19T06:44:00Z",
-  "command": "env CUDA_VISIBLE_DEVICES=0 /home/dell/YrM/envs/ICCT/bin/python -u scripts/train_qgnn_paper_native.py --kind raj_weighted_multij_quantum --j 3 --seed 2026 --snr 0 --epochs 20 --batch-size 32 --depth 3 --correction-cap 16 --lr 3e-4 --run-dir reports/qgnn/round4_raj_fulltrain_quantum_0db_seed2026 --max-seconds 7200 --save-steps 100"
-}

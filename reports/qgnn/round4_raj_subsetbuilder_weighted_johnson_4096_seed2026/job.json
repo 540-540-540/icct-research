@@ -1,8 +1,0 @@
-{
-  "status": "COMPLETED",
-  "pid": 785260,
-  "gpu": 1,
-  "git_head": "64abbbf555a3fc08644c518d61aff5a9ff86fdc3",
-  "launched_utc": "2026-09-19T09:08:30Z",
-  "command": "env CUDA_VISIBLE_DEVICES=1 /home/dell/YrM/envs/ICCT/bin/python -u scripts/train_qgnn_paper_native.py --kind raj_subsetbuilder_weighted_johnson --j 3 --seed 2026 --snr 0 --epochs 20 --batch-size 32 --train-limit 4096 --depth 3 --correction-cap 16 --lr 3e-4 --run-dir reports/qgnn/round4_raj_subsetbuilder_weighted_johnson_4096_seed2026 --max-seconds 7200 --save-steps 100"
-}

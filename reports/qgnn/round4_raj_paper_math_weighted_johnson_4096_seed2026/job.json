@@ -1,8 +1,0 @@
-{
-  "status": "COMPLETED",
-  "pid": 760932,
-  "gpu": 1,
-  "git_head": "7189d76e134f088b8535873d95722189fbc83091",
-  "launched_utc": "2026-09-19T08:48:28Z",
-  "command": "env CUDA_VISIBLE_DEVICES=1 /home/dell/YrM/envs/ICCT/bin/python -u scripts/train_qgnn_paper_native.py --kind raj_paper_johnson --j 3 --seed 2026 --snr 0 --epochs 20 --batch-size 32 --train-limit 4096 --depth 3 --correction-cap 16 --lr 3e-4 --run-dir reports/qgnn/round4_raj_paper_math_weighted_johnson_4096_seed2026 --max-seconds 7200 --save-steps 100"
-}

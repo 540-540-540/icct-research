@@ -1,9 +1,0 @@
-{
-  "status": "COMPLETED",
-  "pid": 735313,
-  "gpu": 0,
-  "command": "env CUDA_VISIBLE_DEVICES=0 /home/dell/YrM/envs/ICCT/bin/python -u scripts/run_raj_paper_math_sanity.py",
-  "git_head": "0bb23f6532b7035f081a150fc471bb26b8b1dc28",
-  "launched_utc": "2026-09-19T08:26:49Z",
-  "launcher_pid": 735309
-}

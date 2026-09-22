@@ -1,7 +1,0 @@
-{
-  "pid": 495922,
-  "gpu": 0,
-  "command": "env CUDA_VISIBLE_DEVICES=0 /home/dell/YrM/envs/ICCT/bin/python -u scripts/audit_qgnn_representation_bottleneck.py",
-  "started": "2026-09-19T13:19:18+0800",
-  "test_set_used": false
-}

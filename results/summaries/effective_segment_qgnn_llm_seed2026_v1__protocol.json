@@ -1,9 +1,0 @@
-{
-  "seed": 2026,
-  "arm": "quantum",
-  "interface": "effective QGNN influence alpha*gate routes LLM temporal states -> early/middle/late trust gains",
-  "segments": 3,
-  "selection": "fixed 256 scenes ADE+.5FDE",
-  "confirmation_scenes": 234,
-  "no_test": true
-}
