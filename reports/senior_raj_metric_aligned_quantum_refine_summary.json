@@ -9,6 +9,8 @@
     "model_soup": false
   },
   "test_accessed_during_optimization": false,
+  "post_freeze_test_accessed_once": true,
+  "selection_changed_after_test": false,
   "seeds": {
     "2026": {"ade_m": 0.5203611210631843, "fde_m": 1.0465148230233046, "selected_stage": "refinement"},
     "2027": {"ade_m": 0.5225408966958729, "fde_m": 1.0510690979766766, "selected_stage": "joint_quantum_finetune"},
@@ -22,5 +24,14 @@
   "gain_over_prior_frozen_qgnn_percent": {"ade_m": 0.5212349423800496, "fde_m": 0.6110323816102755},
   "quantum_off_mean": {"ade_m": 0.6000849906484131, "fde_m": 1.2459992136736733},
   "gain_over_quantum_off_percent": {"ade_m": 13.200781474078221, "fde_m": 15.83396880723733},
-  "five_percent_target_reached": {"ade_m": false, "fde_m": false}
+  "five_percent_target_reached_on_validation": {"ade_m": false, "fde_m": false},
+  "test": {
+    "mean": {"ade_m": 0.5604533705313562, "fde_m": 1.1352680597441986},
+    "sample_std": {"ade_m": 0.0016014879153421417, "fde_m": 0.0016808354711485664},
+    "senior_original_graph_gpt2": {"ade_m": 0.5911531277186552, "fde_m": 1.195073048045906},
+    "gain_over_senior_original_percent": {"ade_m": 5.193198808872715, "fde_m": 5.004295628580694},
+    "quantum_off_mean": {"ade_m": 0.6360783857845376, "fde_m": 1.321196163896689},
+    "gain_over_quantum_off_percent": {"ade_m": 11.8892603401239, "fde_m": 14.072709960352938},
+    "five_percent_target_reached": {"ade_m": true, "fde_m": true}
+  }
 }

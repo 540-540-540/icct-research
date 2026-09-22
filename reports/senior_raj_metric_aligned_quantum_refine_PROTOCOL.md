@@ -4,7 +4,7 @@
 
 This is the strongest validation-only, single-model, three-seed result obtained after the previous freeze. It uses no distillation, teacher model, ensemble, routing, or model soup.
 
-The test split was not accessed during this optimization round and must not be used to select or tune this candidate. Because the historical frozen test was already opened for the earlier checkpoint, any later formal claim should use a new untouched holdout or an external test set.
+The test split was not accessed during optimization. After commit `3cd274e` froze the protocol and checkpoints, the user explicitly authorized one final test evaluation. The selection was not changed afterward. Because the test has now been opened for this checkpoint, any later optimization or formal confirmation must use a new untouched holdout or an external test set.
 
 ## Fixed training protocol
 
@@ -28,4 +28,10 @@ Compared with the matched classical GNN+LLM mean (`0.5478482412 / 1.1034988306`)
 
 The three-seed quantum-off mean is `0.6000849906 / 1.2459992137`; enabling the quantum core improves those values by `13.2008% / 15.8340%`. This confirms that the retained gain is quantum-core dependent.
 
-The requested 5% margin is not claimed: the measured margins remain 0.0754 and 0.0348 percentage points short for ADE and FDE, respectively.
+On validation, the requested 5% margin is not claimed: the measured margins remain 0.0754 and 0.0348 percentage points short for ADE and FDE, respectively.
+
+## One-shot frozen test
+
+The post-freeze three-seed test result is `0.5604533705 ± 0.0016014879` ADE and `1.1352680597 ± 0.0016808355` FDE. Against the senior original Graph+GPT-2 test result (`0.5911531277 / 1.1950730480`), this is a `5.1932% / 5.0043%` improvement, so the 5% target is reached on both test metrics.
+
+The test quantum-off mean is `0.6360783858 / 1.3211961639`; enabling the quantum core improves it by `11.8893% / 14.0727%`. No parameter, checkpoint, or selection rule was changed after seeing the test.
