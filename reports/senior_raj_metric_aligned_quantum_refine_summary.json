@@ -1,0 +1,26 @@
+{
+  "status": "frozen_validation_only",
+  "method": "metric_aligned_quantum_core_refinement",
+  "prohibited_methods_used": {
+    "distillation": false,
+    "teacher_model": false,
+    "ensemble": false,
+    "routing": false,
+    "model_soup": false
+  },
+  "test_accessed_during_optimization": false,
+  "seeds": {
+    "2026": {"ade_m": 0.5203611210631843, "fde_m": 1.0465148230233046, "selected_stage": "refinement"},
+    "2027": {"ade_m": 0.5225408966958729, "fde_m": 1.0510690979766766, "selected_stage": "joint_quantum_finetune"},
+    "2028": {"ade_m": 0.519705229363463, "fde_m": 1.0485403395265032, "selected_stage": "refinement"}
+  },
+  "mean": {"ade_m": 0.5208690823741734, "fde_m": 1.0487080868421614},
+  "sample_std": {"ade_m": 0.0014845102980850274, "fde_m": 0.0022817667407429797},
+  "matched_classical_mean": {"ade_m": 0.5478482411771922, "fde_m": 1.1034988306093143},
+  "gain_over_matched_classical_percent": {"ade_m": 4.924567932361558, "fde_m": 4.965183672818148},
+  "prior_frozen_qgnn_mean": {"ade_m": 0.5235982594601736, "fde_m": 1.0551554281846884},
+  "gain_over_prior_frozen_qgnn_percent": {"ade_m": 0.5212349423800496, "fde_m": 0.6110323816102755},
+  "quantum_off_mean": {"ade_m": 0.6000849906484131, "fde_m": 1.2459992136736733},
+  "gain_over_quantum_off_percent": {"ade_m": 13.200781474078221, "fde_m": 15.83396880723733},
+  "five_percent_target_reached": {"ade_m": false, "fde_m": false}
+}

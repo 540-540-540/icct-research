@@ -67,6 +67,17 @@ def prediction_loss(
     return main_loss + 0.15 * final_loss
 
 
+def metric_aligned_prediction_loss(
+    output: Dict[str, torch.Tensor], future: torch.Tensor, mask: torch.Tensor
+) -> torch.Tensor:
+    """Optimize the ADE + 0.35 FDE score used for checkpoint selection."""
+    distance = torch.linalg.vector_norm(output["future_position"] - future[..., :2], dim=-1)
+    valid = mask[:, None, :].to(distance.dtype)
+    ade = (distance * valid).sum() / valid.expand_as(distance).sum().clamp_min(1.0)
+    fde = (distance[:, -1] * mask).sum() / mask.sum().clamp_min(1)
+    return ade + 0.35 * fde
+
+
 @torch.no_grad()
 def evaluate(
     model: nn.Module,
@@ -135,6 +146,7 @@ def train_model(
     seed: int,
     graph_weighting: bool,
     use_amp: bool = True,
+    metric_aligned_loss: bool = False,
 ) -> Tuple[nn.Module, Dict[str, float]]:
     model.to(device)
     optimizer = torch.optim.AdamW(model.parameters(), lr=learning_rate, weight_decay=weight_decay)
@@ -166,7 +178,10 @@ def train_model(
                 optimizer.zero_grad(set_to_none=True)
                 with torch.cuda.amp.autocast(enabled=amp_enabled):
                     output = model(observed, mask)
-                    loss = prediction_loss(output, future, mask, graph_weighting=graph_weighting)
+                    if metric_aligned_loss:
+                        loss = metric_aligned_prediction_loss(output, future, mask)
+                    else:
+                        loss = prediction_loss(output, future, mask, graph_weighting=graph_weighting)
                 scaler.scale(loss).backward()
                 scaler.unscale_(optimizer)
                 torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=5.0)

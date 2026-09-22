@@ -54,6 +54,8 @@ def main() -> None:
     parser.add_argument("--projection-depth", type=int, default=1)
     parser.add_argument("--classical-layers", type=int, default=0)
     parser.add_argument("--quantum-first", action="store_true")
+    parser.add_argument("--quantum-only", action="store_true")
+    parser.add_argument("--metric-aligned-loss", action="store_true")
     args = parser.parse_args()
     if args.frozen_epochs < 0 or args.frozen_epochs >= args.epochs:
         raise ValueError("frozen_epochs must be in [0, epochs)")
@@ -95,6 +97,9 @@ def main() -> None:
         allowed = ("core.", "raj_projection.", "quantum_scale", "graph_layers.")
         if unexpected or any(not key.startswith(allowed) for key in missing):
             raise RuntimeError(f"Unexpected warm-start mismatch: missing={missing} unexpected={unexpected}")
+    if args.quantum_only:
+        for name, parameter in model.named_parameters():
+            parameter.requires_grad_(name.startswith(("core.", "raj_projection.")))
     initial_core = {
         key: value.detach().cpu().clone()
         for key, value in model.state_dict().items()
@@ -121,6 +126,7 @@ def main() -> None:
             args.seed + 17,
             graph_weighting=True,
             use_amp=False,
+            metric_aligned_loss=args.metric_aligned_loss,
         )
         for parameter in model.parameters():
             parameter.requires_grad_(True)
@@ -140,6 +146,7 @@ def main() -> None:
         args.seed + 17,
         graph_weighting=True,
         use_amp=False,
+        metric_aligned_loss=args.metric_aligned_loss,
     )
     final_state = model.state_dict()
     quantum_parameter_delta = sum(
@@ -164,6 +171,8 @@ def main() -> None:
         "projection_depth": args.projection_depth,
         "classical_layers": args.classical_layers,
         "quantum_first": args.quantum_first,
+        "quantum_only": args.quantum_only,
+        "metric_aligned_loss": args.metric_aligned_loss,
         "frozen_epochs": args.frozen_epochs,
         "joint_epochs": args.epochs - args.frozen_epochs,
         "trainable_parameters": sum(parameter.numel() for parameter in model.parameters() if parameter.requires_grad),
